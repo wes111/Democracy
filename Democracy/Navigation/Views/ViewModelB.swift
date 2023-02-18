@@ -7,16 +7,36 @@
 
 import Foundation
 
-protocol BCoordinatorDelegate: AnyObject {
-    
+protocol BCoordinatorDelegate {
+    func BToC()
+    func BToD()
+    func BToE()
 }
 
 protocol ViewModelBProtocol: ObservableObject {
-    
+    func BToC()
+    func BToD()
+    func BToE()
 }
 
 final class ViewModelB: ViewModelBProtocol {
+
+    var coordinator: BCoordinatorDelegate
     
-    weak var coordinator: BCoordinatorDelegate?
+    init(coordinator: BCoordinatorDelegate) {
+        self.coordinator = coordinator
+    }
+    
+    func BToE() {
+        coordinator.BToE()
+    }
+    
+    func BToC() {
+        coordinator.BToC()
+    }
+    
+    func BToD() {
+        coordinator.BToD()
+    }
     
 }

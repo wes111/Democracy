@@ -7,14 +7,34 @@
 
 import SwiftUI
 
-struct C: View {
+struct C<ViewModel: ViewModelCProtocol>: View {
+
+    @StateObject var viewModel: ViewModel
+    
+    init(viewModel: ViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+    
     var body: some View {
-        Text("This is C!")
+        VStack {
+            Text("This is C!")
+            Button("Go to B") {
+                viewModel.CToB()
+            }
+            Button("Go to E") {
+                viewModel.CToE()
+            }
+            Button("Go to D") {
+                viewModel.CToD()
+            }
+        }
     }
 }
 
 struct C_Previews: PreviewProvider {
     static var previews: some View {
-        C()
+        let coordinator = MainCoordinator()
+        let viewModel = ViewModelC(coordinator: coordinator)
+        C(viewModel: viewModel)
     }
 }

@@ -7,16 +7,37 @@
 
 import Foundation
 
-protocol ECoordinatorDelegate: AnyObject {
-    
+protocol ECoordinatorDelegate {
+    func EToB()
+    func EToC()
+    func EToD()
 }
 
 protocol ViewModelEProtocol: ObservableObject {
-    
+    func EToB()
+    func EToC()
+    func EToD()
 }
 
 final class ViewModelE: ViewModelEProtocol {
+
+    var coordinator: ECoordinatorDelegate
     
-    weak var coordinator: ECoordinatorDelegate?
+    init(coordinator: ECoordinatorDelegate) {
+        self.coordinator = coordinator
+    }
+    
+    func EToB() {
+        coordinator.EToB()
+    }
+    
+    func EToC() {
+        coordinator.EToC()
+    }
+    
+    func EToD() {
+        coordinator.EToD()
+    }
+    
     
 }

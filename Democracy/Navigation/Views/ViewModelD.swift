@@ -7,16 +7,36 @@
 
 import Foundation
 
-protocol DCoordinatorDelegate: AnyObject {
-    
+protocol DCoordinatorDelegate {
+    func DToB()
+    func DToC()
+    func DToE()
 }
 
 protocol ViewModelDProtocol: ObservableObject {
-    
+    func DToB()
+    func DToC()
+    func DToE()
 }
 
 final class ViewModelD: ViewModelDProtocol {
+
+    var coordinator: DCoordinatorDelegate
     
-    weak var coordinator: DCoordinatorDelegate?
+    init(coordinator: DCoordinatorDelegate) {
+        self.coordinator = coordinator
+    }
+    
+    func DToB() {
+        coordinator.DToB()
+    }
+    
+    func DToE() {
+        coordinator.DToE()
+    }
+    
+    func DToC() {
+        coordinator.DToC()
+    }
     
 }

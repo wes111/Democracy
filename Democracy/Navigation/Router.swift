@@ -5,33 +5,17 @@
 //  Created by Wesley Luntsford on 2/14/23.
 //
 
-import Combine
-import SwiftUI
-
-enum MainPath: Hashable {
-    case a
-    case b
-    case c
-    case d
-    case e
-}
-
-protocol Coordinator {
-    var id: UUID { get }
-    var childCoordinators: [UUID: Coordinator] { get set }
-    func start()
-}
+import Foundation
 
 protocol RouterProtocol: ObservableObject {
     associatedtype Path: Hashable
+    var paths: [Path] { get }
+    
     func push(_ path: Path)
     func push(_ paths: [Path])
     func pop()
     func pop(to path: Path)
     func popToRoot()
-    
-    var paths: [Path] { get }
-    
 }
 
 final class Router<T: Hashable>: RouterProtocol {

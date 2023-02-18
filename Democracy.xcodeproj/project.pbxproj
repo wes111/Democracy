@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EED47ECD299F167100FEFC6E /* A.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECC299F167100FEFC6E /* A.swift */; };
+		EED47ECD299F167100FEFC6E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECC299F167100FEFC6E /* MainCoordinator.swift */; };
 		EED47ECF299F167B00FEFC6E /* B.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECE299F167B00FEFC6E /* B.swift */; };
 		EED47ED1299F168200FEFC6E /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED0299F168200FEFC6E /* C.swift */; };
 		EED47ED3299F168800FEFC6E /* D.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED2299F168800FEFC6E /* D.swift */; };
 		EED47ED5299F169000FEFC6E /* E.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED4299F169000FEFC6E /* E.swift */; };
-		EED47ED7299F184F00FEFC6E /* ViewModelA.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED6299F184F00FEFC6E /* ViewModelA.swift */; };
 		EED47ED9299F185700FEFC6E /* ViewModelB.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED8299F185700FEFC6E /* ViewModelB.swift */; };
 		EED47EDB299F185E00FEFC6E /* ViewModelC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47EDA299F185E00FEFC6E /* ViewModelC.swift */; };
 		EED47EDD299F186600FEFC6E /* ViewModelD.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47EDC299F186600FEFC6E /* ViewModelD.swift */; };
@@ -26,12 +25,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EED47ECC299F167100FEFC6E /* A.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A.swift; sourceTree = "<group>"; };
+		EED47ECC299F167100FEFC6E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		EED47ECE299F167B00FEFC6E /* B.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B.swift; sourceTree = "<group>"; };
 		EED47ED0299F168200FEFC6E /* C.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
 		EED47ED2299F168800FEFC6E /* D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = D.swift; sourceTree = "<group>"; };
 		EED47ED4299F169000FEFC6E /* E.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = E.swift; sourceTree = "<group>"; };
-		EED47ED6299F184F00FEFC6E /* ViewModelA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelA.swift; sourceTree = "<group>"; };
 		EED47ED8299F185700FEFC6E /* ViewModelB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelB.swift; sourceTree = "<group>"; };
 		EED47EDA299F185E00FEFC6E /* ViewModelC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelC.swift; sourceTree = "<group>"; };
 		EED47EDC299F186600FEFC6E /* ViewModelD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelD.swift; sourceTree = "<group>"; };
@@ -59,12 +57,11 @@
 		EED47ECB299F166300FEFC6E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EED47ECC299F167100FEFC6E /* A.swift */,
+				EED47ECC299F167100FEFC6E /* MainCoordinator.swift */,
 				EED47ECE299F167B00FEFC6E /* B.swift */,
 				EED47ED0299F168200FEFC6E /* C.swift */,
 				EED47ED2299F168800FEFC6E /* D.swift */,
 				EED47ED4299F169000FEFC6E /* E.swift */,
-				EED47ED6299F184F00FEFC6E /* ViewModelA.swift */,
 				EED47ED8299F185700FEFC6E /* ViewModelB.swift */,
 				EED47EDA299F185E00FEFC6E /* ViewModelC.swift */,
 				EED47EDC299F186600FEFC6E /* ViewModelD.swift */,
@@ -192,12 +189,11 @@
 				EED47ED5299F169000FEFC6E /* E.swift in Sources */,
 				EED47ECF299F167B00FEFC6E /* B.swift in Sources */,
 				EEF83473299C6A11001EEA5E /* Router.swift in Sources */,
-				EED47ECD299F167100FEFC6E /* A.swift in Sources */,
+				EED47ECD299F167100FEFC6E /* MainCoordinator.swift in Sources */,
 				EEF83463299C6824001EEA5E /* ContentView.swift in Sources */,
 				EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */,
 				EED47ED1299F168200FEFC6E /* C.swift in Sources */,
 				EED47ED3299F168800FEFC6E /* D.swift in Sources */,
-				EED47ED7299F184F00FEFC6E /* ViewModelA.swift in Sources */,
 				EED47ED9299F185700FEFC6E /* ViewModelB.swift in Sources */,
 				EED47EDB299F185E00FEFC6E /* ViewModelC.swift in Sources */,
 				EED47EDD299F186600FEFC6E /* ViewModelD.swift in Sources */,

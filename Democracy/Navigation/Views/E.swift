@@ -7,14 +7,34 @@
 
 import SwiftUI
 
-struct E: View {
+struct E<ViewModel: ViewModelEProtocol>: View {
+
+    @StateObject var viewModel: ViewModel
+    
+    init(viewModel: ViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+    
     var body: some View {
-        Text("This is E!")
+        VStack {
+            Text("This is E!")
+            Button("Go to C") {
+                viewModel.EToC()
+            }
+            Button("Go to B") {
+                viewModel.EToB()
+            }
+            Button("Go to D") {
+                viewModel.EToD()
+            }
+        }
     }
 }
 
 struct E_Previews: PreviewProvider {
     static var previews: some View {
-        E()
+        let coordinator = MainCoordinator()
+        let viewModel = ViewModelE(coordinator: coordinator)
+        E(viewModel: viewModel)
     }
 }
