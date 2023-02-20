@@ -14,6 +14,10 @@ enum MainPath: Hashable {
     case e
 }
 
+protocol MainCoordinatorParent: Coordinator {
+    
+}
+
 protocol Coordinator {
     var id: UUID { get }
     var childCoordinators: [UUID: Coordinator] { get set }
@@ -21,11 +25,12 @@ protocol Coordinator {
     func start()
 }
 
+// This is just practice. Not to be used as is.
 struct MainCoordinator: View, Coordinator {
     
     @StateObject private var router = Router<MainPath>()
     let id = UUID()
-    let parentCoordinator: Coordinator? = nil
+    let parentCoordinator: Coordinator? // TODO: Should this be a specific type?
     var childCoordinators: [UUID : Coordinator] = [:]
     
     func start() {
@@ -34,12 +39,10 @@ struct MainCoordinator: View, Coordinator {
     
     var body: some View {
         NavigationStack(path: $router.paths) {
-            VStack {
-                createBView()
-            }
-            .navigationDestination(for: MainPath.self) { path in
-                createViewFromPath(path)
-            }
+            createBView()
+                .navigationDestination(for: MainPath.self) { path in
+                    createViewFromPath(path)
+                }
         }
     }
     
@@ -51,6 +54,10 @@ struct MainCoordinator: View, Coordinator {
         case .d: createDView()
         case .e: createEView()
         }
+    }
+    
+    private func createRootView() {
+        
     }
     
     private func createBView() -> B<ViewModelB> {
@@ -136,8 +143,9 @@ extension MainCoordinator: ECoordinatorDelegate {
     
 }
 
-struct A_Previews: PreviewProvider {
+struct MainCoordinator_Previews: PreviewProvider {
     static var previews: some View {
-        MainCoordinator()
+        let coordinator = MainTabCoordinator()
+        MainCoordinator(parentCoordinator: coordinator)
     }
 }
