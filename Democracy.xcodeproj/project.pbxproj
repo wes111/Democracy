@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		EE54ADDF29A329C9007C3E3F /* MainTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADDE29A329C9007C3E3F /* MainTabCoordinator.swift */; };
+		EE54ADE729A40101007C3E3F /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADE629A40101007C3E3F /* AuthenticationCoordinator.swift */; };
+		EE54ADEA29A712AE007C3E3F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADE929A712AD007C3E3F /* LoginView.swift */; };
+		EE54ADEC29A714E8007C3E3F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADEB29A714E8007C3E3F /* LoginViewModel.swift */; };
 		EED47ECD299F167100FEFC6E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECC299F167100FEFC6E /* MainCoordinator.swift */; };
 		EED47ECF299F167B00FEFC6E /* B.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECE299F167B00FEFC6E /* B.swift */; };
 		EED47ED1299F168200FEFC6E /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED0299F168200FEFC6E /* C.swift */; };
@@ -26,6 +29,9 @@
 
 /* Begin PBXFileReference section */
 		EE54ADDE29A329C9007C3E3F /* MainTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabCoordinator.swift; sourceTree = "<group>"; };
+		EE54ADE629A40101007C3E3F /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
+		EE54ADE929A712AD007C3E3F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		EE54ADEB29A714E8007C3E3F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		EED47ECC299F167100FEFC6E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		EED47ECE299F167B00FEFC6E /* B.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B.swift; sourceTree = "<group>"; };
 		EED47ED0299F168200FEFC6E /* C.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
@@ -54,6 +60,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE54ADE829A7128E007C3E3F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				EE54ADE629A40101007C3E3F /* AuthenticationCoordinator.swift */,
+				EE54ADE929A712AD007C3E3F /* LoginView.swift */,
+				EE54ADEB29A714E8007C3E3F /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		EED47ECB299F166300FEFC6E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +104,7 @@
 		EEF8345F299C6824001EEA5E /* Democracy */ = {
 			isa = PBXGroup;
 			children = (
+				EE54ADE829A7128E007C3E3F /* Login */,
 				EEF8346E299C69DC001EEA5E /* Navigation */,
 				EEF83460299C6824001EEA5E /* DemocracyApp.swift */,
 				EEF83462299C6824001EEA5E /* ContentView.swift */,
@@ -189,11 +206,14 @@
 				EED47ED5299F169000FEFC6E /* E.swift in Sources */,
 				EED47ECF299F167B00FEFC6E /* B.swift in Sources */,
 				EEF83473299C6A11001EEA5E /* Router.swift in Sources */,
+				EE54ADEA29A712AE007C3E3F /* LoginView.swift in Sources */,
+				EE54ADEC29A714E8007C3E3F /* LoginViewModel.swift in Sources */,
 				EED47ECD299F167100FEFC6E /* MainCoordinator.swift in Sources */,
 				EEF83463299C6824001EEA5E /* ContentView.swift in Sources */,
 				EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */,
 				EED47ED1299F168200FEFC6E /* C.swift in Sources */,
 				EED47ED3299F168800FEFC6E /* D.swift in Sources */,
+				EE54ADE729A40101007C3E3F /* AuthenticationCoordinator.swift in Sources */,
 				EED47ED9299F185700FEFC6E /* ViewModelB.swift in Sources */,
 				EED47EDB299F185E00FEFC6E /* ViewModelC.swift in Sources */,
 				EE54ADDF29A329C9007C3E3F /* MainTabCoordinator.swift in Sources */,
