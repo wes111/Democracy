@@ -11,12 +11,7 @@ enum MainTabPath: Hashable {
     case b
 }
 
-struct MainTabCoordinator: View, Coordinator {
-    
-    @StateObject private var router = Router<MainPath>()
-    let id = UUID()
-    let parentCoordinator: Coordinator? = nil
-    var childCoordinators: [UUID : Coordinator] = [:]
+struct MainTabCoordinator: View {
     
     func start() {
         print("start coordinator")
@@ -24,26 +19,25 @@ struct MainTabCoordinator: View, Coordinator {
     
     var body: some View {
         TabView {
-            
-            MainCoordinator(parentCoordinator: self)
+            MainCoordinator()
                 .tabItem {
                     Label("Editor", systemImage: "pencil.circle")
                     Text("Editor")
                 }
             
-            MainCoordinator(parentCoordinator: self)
+            MainCoordinator()
                 .tabItem {
                     Label("Notes", systemImage: "note.text")
                     Text("Notes")
                 }
             
-            MainCoordinator(parentCoordinator: self)
+            MainCoordinator()
                 .tabItem {
                     Label("Share", systemImage: "square.and.arrow.up")
                     Text("Share")
                 }
             
-            MainCoordinator(parentCoordinator: self)
+            MainCoordinator()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")
                     Text("Settings")

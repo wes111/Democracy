@@ -33,7 +33,7 @@ struct C<ViewModel: ViewModelCProtocol>: View {
 
 struct C_Previews: PreviewProvider {
     static var previews: some View {
-        let coordinator = MainCoordinator(parentCoordinator: MainTabCoordinator())
+        let coordinator = MainCoordinator()
         let viewModel = ViewModelC(coordinator: coordinator)
         C(viewModel: viewModel)
     }

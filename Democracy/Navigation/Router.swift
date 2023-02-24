@@ -6,46 +6,47 @@
 //
 
 import Foundation
+import SwiftUI
 
 protocol RouterProtocol: ObservableObject {
-    associatedtype Path: Hashable
-    var paths: [Path] { get }
+    //associatedtype Path: Hashable
+    var navigationPath: NavigationPath { get }
     
-    func push(_ path: Path)
-    func push(_ paths: [Path])
+    func push(_ path: any Hashable)
+    func push(_ paths: [any Hashable])
     func pop()
-    func pop(to path: Path)
+    func pop(count: Int)
     func popToRoot()
 }
 
-final class Router<T: Hashable>: RouterProtocol {
+final class Router: RouterProtocol {
     
-    @Published var paths: [T] = []
+    @Published var navigationPath = NavigationPath()
     
     init() {}
     
-    func push(_ path: T) {
-        paths.append(path)
+    func push(_ path: any Hashable) {
+        navigationPath.append(path)
     }
     
-    func push(_ paths: [T]) {
-        self.paths += paths
+    func push(_ paths: [any Hashable]) {
+        paths.forEach { navigationPath.append($0) }
     }
     
     func pop() {
-        paths.removeLast()
+        navigationPath.removeLast()
     }
     
-    func pop(to path: T) {
-        guard let popIndex = paths.firstIndex(where: { $0 == path }) else {
-            return debugPrint("")
+    func pop(count: Int) {
+        for _ in 0..<count {
+            navigationPath.removeLast()
         }
-        let popCount = paths.count - 1 - popIndex
-        paths.removeLast(popCount)
     }
     
     func popToRoot() {
-        paths = []
+        for _ in 0 ..< navigationPath.count {
+            navigationPath.removeLast()
+        }
     }
     
 }

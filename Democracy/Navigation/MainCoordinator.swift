@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum MainPath: Hashable {
-    case b
+    //case b
     case c
     case d
     case e
@@ -20,36 +20,34 @@ protocol MainCoordinatorParent: Coordinator {
 
 protocol Coordinator {
     var id: UUID { get }
-    var childCoordinators: [UUID: Coordinator] { get set }
-    var parentCoordinator: Coordinator? { get }
+    //var childCoordinators: [UUID: Coordinator] { get set }
+    //var parentCoordinator: Coordinator? { get }
     func start()
 }
 
 // This is just practice. Not to be used as is.
 struct MainCoordinator: View, Coordinator {
     
-    @StateObject private var router = Router<MainPath>()
+    @EnvironmentObject private var router: Router
     let id = UUID()
-    let parentCoordinator: Coordinator? // TODO: Should this be a specific type?
-    var childCoordinators: [UUID : Coordinator] = [:]
+    //let parentCoordinator: Coordinator? // TODO: Should this be a specific type?
+    //var childCoordinators: [UUID : Coordinator] = [:]
     
     func start() {
         print("start coordinator")
     }
     
     var body: some View {
-        NavigationStack(path: $router.paths) {
-            createBView()
-                .navigationDestination(for: MainPath.self) { path in
-                    createViewFromPath(path)
-                }
-        }
+        createBView()
+            .navigationDestination(for: MainPath.self) { path in
+                createViewFromPath(path)
+            }
     }
     
     @ViewBuilder
     func createViewFromPath(_ path: MainPath) -> some View {
         switch path {
-        case .b: createBView()
+        //case .b: createBView()
         case .c: createCView()
         case .d: createDView()
         case .e: createEView()
@@ -84,15 +82,15 @@ struct MainCoordinator: View, Coordinator {
 extension MainCoordinator: BCoordinatorDelegate {
     
     func BToC() {
-        router.push(.c)
+        router.push(MainPath.c)
     }
     
     func BToD() {
-        router.push([.c, .d])
+        router.push([MainPath.c, MainPath.d])
     }
     
     func BToE() {
-        router.push([.c, .d, .e])
+        router.push([MainPath.c, MainPath.d, MainPath.e])
     }
 }
 
@@ -102,11 +100,11 @@ extension MainCoordinator: CCoordinatorDelegate {
     }
     
     func CToD() {
-        router.push(.d)
+        router.push(MainPath.d)
     }
     
     func CToE() {
-        router.push([.d, .e])
+        router.push([MainPath.d, MainPath.e])
     }
     
 }
@@ -121,7 +119,7 @@ extension MainCoordinator: DCoordinatorDelegate {
     }
     
     func DToE() {
-        router.push(.e)
+        router.push(MainPath.e)
     }
     
 }
@@ -133,7 +131,7 @@ extension MainCoordinator: ECoordinatorDelegate {
     }
     
     func EToC() {
-        router.pop(to: .c)
+        router.pop(count: 2)
     }
     
     func EToD() {
@@ -145,7 +143,6 @@ extension MainCoordinator: ECoordinatorDelegate {
 
 struct MainCoordinator_Previews: PreviewProvider {
     static var previews: some View {
-        let coordinator = MainTabCoordinator()
-        MainCoordinator(parentCoordinator: coordinator)
+        MainCoordinator()
     }
 }

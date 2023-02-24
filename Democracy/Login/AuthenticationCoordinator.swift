@@ -14,7 +14,7 @@ enum AuthenticationPath {
 }
 
 struct AuthenticationCoordinator: View, Coordinator {
-    @StateObject private var router = Router<AuthenticationPath>()
+    @StateObject private var router = Router()
     
     var id = UUID()
     var childCoordinators: [UUID : Coordinator] = [:]
@@ -25,19 +25,20 @@ struct AuthenticationCoordinator: View, Coordinator {
     }
     
     var body: some View {
-        NavigationStack(path: $router.paths) {
+        NavigationStack(path: $router.navigationPath) {
             createLoginView()
                 .navigationDestination(for: AuthenticationPath.self) { path in
                     createViewFromPath(path)
                 }
         }
+        .environmentObject(router)
     }
     
     @ViewBuilder
     func createViewFromPath(_ path: AuthenticationPath) -> some View {
         switch path {
         case .signIn: MainTabCoordinator()
-        case .createAccount: createLoginView()
+        case .createAccount: MainTabCoordinator()
         case .goToMain: MainTabCoordinator()
         }
     }
@@ -52,7 +53,7 @@ struct AuthenticationCoordinator: View, Coordinator {
 extension AuthenticationCoordinator: LoginCoordinatorDelegate {
     
     func goToMainView() {
-        router.push(.goToMain)
+        router.push(AuthenticationPath.goToMain)
     }
     
     
