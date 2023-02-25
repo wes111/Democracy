@@ -13,12 +13,9 @@ enum AuthenticationPath {
     case createAccount
 }
 
-struct AuthenticationCoordinator: View, Coordinator {
-    @StateObject private var router = Router()
+struct AuthenticationCoordinator: View {
     
-    var id = UUID()
-    var childCoordinators: [UUID : Coordinator] = [:]
-    var parentCoordinator: Coordinator?
+    @StateObject private var router = Router()
     
     func start() {
         print("Start Authentication coordinator.")
@@ -37,9 +34,9 @@ struct AuthenticationCoordinator: View, Coordinator {
     @ViewBuilder
     func createViewFromPath(_ path: AuthenticationPath) -> some View {
         switch path {
-        case .signIn: MainTabCoordinator()
-        case .createAccount: MainTabCoordinator()
-        case .goToMain: MainTabCoordinator()
+        case .signIn: MainTabView()
+        case .createAccount: MainTabView()
+        case .goToMain: MainTabView()
         }
     }
     

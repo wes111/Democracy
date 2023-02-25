@@ -8,30 +8,14 @@
 import SwiftUI
 
 enum MainPath: Hashable {
-    //case b
     case c
     case d
     case e
 }
 
-protocol MainCoordinatorParent: Coordinator {
-    
-}
-
-protocol Coordinator {
-    var id: UUID { get }
-    //var childCoordinators: [UUID: Coordinator] { get set }
-    //var parentCoordinator: Coordinator? { get }
-    func start()
-}
-
-// This is just practice. Not to be used as is.
-struct MainCoordinator: View, Coordinator {
+struct MainCoordinator: View {
     
     @EnvironmentObject private var router: Router
-    let id = UUID()
-    //let parentCoordinator: Coordinator? // TODO: Should this be a specific type?
-    //var childCoordinators: [UUID : Coordinator] = [:]
     
     func start() {
         print("start coordinator")
@@ -47,7 +31,6 @@ struct MainCoordinator: View, Coordinator {
     @ViewBuilder
     func createViewFromPath(_ path: MainPath) -> some View {
         switch path {
-        //case .b: createBView()
         case .c: createCView()
         case .d: createDView()
         case .e: createEView()
@@ -73,9 +56,9 @@ struct MainCoordinator: View, Coordinator {
         return D(viewModel: viewModel)
     }
     
-    private func createEView() -> E<ViewModelE> {
-        let viewModel = ViewModelE(coordinator: self)
-        return E(viewModel: viewModel)
+    private func createEView() -> SettingsView<SettingsViewModel> {
+        let viewModel = SettingsViewModel(coordinator: self)
+        return SettingsView(viewModel: viewModel)
     }
 }
 
@@ -124,7 +107,7 @@ extension MainCoordinator: DCoordinatorDelegate {
     
 }
 
-extension MainCoordinator: ECoordinatorDelegate {
+extension MainCoordinator: SettingsCoordinatorDelegate {
     
     func EToB() {
         router.popToRoot()

@@ -11,14 +11,18 @@ enum MainTabPath: Hashable {
     case b
 }
 
-struct MainTabCoordinator: View {
+struct MainTabView: View {
     
-    func start() {
-        print("start coordinator")
-    }
+    let mainTab = "Main"
     
     var body: some View {
-        TabView {
+        TabView(selection: Binding.constant(mainTab)) {
+            MainCoordinator()
+                .tabItem {
+                    Label("Editor", systemImage: "pencil.circle")
+                    Text("Editor")
+                }
+            
             MainCoordinator()
                 .tabItem {
                     Label("Editor", systemImage: "pencil.circle")
@@ -30,6 +34,7 @@ struct MainTabCoordinator: View {
                     Label("Notes", systemImage: "note.text")
                     Text("Notes")
                 }
+                .tag(mainTab)
             
             MainCoordinator()
                 .tabItem {
@@ -43,6 +48,7 @@ struct MainTabCoordinator: View {
                     Text("Settings")
                 }
         }
+        .navigationBarBackButtonHidden()
     }
     
 }

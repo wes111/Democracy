@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct E<ViewModel: ViewModelEProtocol>: View {
+struct SettingsView<ViewModel: SettingsViewModelProtocol>: View {
 
     @StateObject var viewModel: ViewModel
     
@@ -17,24 +17,24 @@ struct E<ViewModel: ViewModelEProtocol>: View {
     
     var body: some View {
         VStack {
-            Text("This is E!")
+            Text("Settings")
             Button("Go to C") {
-                viewModel.EToC()
+                
             }
             Button("Go to B") {
-                viewModel.EToB()
+                
             }
             Button("Go to D") {
-                viewModel.EToD()
+                
             }
         }
     }
 }
 
-struct E_Previews: PreviewProvider {
+struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        let coordinator = MainCoordinator()
-        let viewModel = ViewModelE(coordinator: coordinator)
-        E(viewModel: viewModel)
+        let coordinator = SettingsCoordinator()
+        let viewModel = SettingsViewModel(coordinator: coordinator)
+        SettingsView(viewModel: viewModel)
     }
 }
