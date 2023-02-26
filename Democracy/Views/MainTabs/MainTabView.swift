@@ -19,36 +19,31 @@ struct MainTabView: View {
         TabView(selection: $selectedTab) {
             VotingTabCoordinator()
                 .tabItem {
-                    Label("Editor", systemImage: "pencil.circle")
-                    Text("Editor")
+                    Label("Voting", systemImage: "checklist")
                 }
                 .tag(MainTab.voting)
             
             EventsTabCoordinator()
                 .tabItem {
-                    Label("Editor", systemImage: "pencil.circle")
-                    Text("Editor")
+                    Label("Events", systemImage: "calendar")
                 }
                 .tag(MainTab.events)
             
             UpdatesTabCoordinator()
                 .tabItem {
-                    Label("Notes", systemImage: "note.text")
-                    Text("Notes")
+                    Label("Updates", systemImage: "newspaper.fill")
                 }
                 .tag(MainTab.updates)
             
             CommunitiesTabCoordinator()
                 .tabItem {
-                    Label("Share", systemImage: "square.and.arrow.up")
-                    Text("Share")
+                    Label("Communities", systemImage: "person.3.fill")
                 }
                 .tag(MainTab.communities)
             
             HistoryTabCoordinator()
                 .tabItem {
-                    Label("Settings", systemImage: "gearshape")
-                    Text("Settings")
+                    Label("History", systemImage: "books.vertical.fill")
                 }
                 .tag(MainTab.history)
         }

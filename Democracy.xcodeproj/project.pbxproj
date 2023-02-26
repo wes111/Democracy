@@ -38,6 +38,11 @@
 		EED4A51129AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A51029AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift */; };
 		EED4A51329AB1C6F00DDCCDA /* HistoryTabMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A51229AB1C6F00DDCCDA /* HistoryTabMainView.swift */; };
 		EED4A51529AB1C7900DDCCDA /* HistoryTabMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A51429AB1C7900DDCCDA /* HistoryTabMainViewModel.swift */; };
+		EED4A51A29ABC2D400DDCCDA /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A51929ABC2D400DDCCDA /* Community.swift */; };
+		EED4A51C29ABC2FE00DDCCDA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A51B29ABC2FE00DDCCDA /* User.swift */; };
+		EED4A51F29ABC86300DDCCDA /* CommunityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A51E29ABC86300DDCCDA /* CommunityCoordinator.swift */; };
+		EED4A52129ABC86D00DDCCDA /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52029ABC86D00DDCCDA /* CommunityView.swift */; };
+		EED4A52329ABC87B00DDCCDA /* CommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52229ABC87B00DDCCDA /* CommunityViewModel.swift */; };
 		EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF83460299C6824001EEA5E /* DemocracyApp.swift */; };
 		EEF83463299C6824001EEA5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF83462299C6824001EEA5E /* ContentView.swift */; };
 		EEF83465299C6827001EEA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEF83464299C6827001EEA5E /* Assets.xcassets */; };
@@ -77,6 +82,11 @@
 		EED4A51029AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesTabMainViewModel.swift; sourceTree = "<group>"; };
 		EED4A51229AB1C6F00DDCCDA /* HistoryTabMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabMainView.swift; sourceTree = "<group>"; };
 		EED4A51429AB1C7900DDCCDA /* HistoryTabMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabMainViewModel.swift; sourceTree = "<group>"; };
+		EED4A51929ABC2D400DDCCDA /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
+		EED4A51B29ABC2FE00DDCCDA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EED4A51E29ABC86300DDCCDA /* CommunityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCoordinator.swift; sourceTree = "<group>"; };
+		EED4A52029ABC86D00DDCCDA /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
+		EED4A52229ABC87B00DDCCDA /* CommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewModel.swift; sourceTree = "<group>"; };
 		EEF8345D299C6824001EEA5E /* Democracy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Democracy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF83460299C6824001EEA5E /* DemocracyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemocracyApp.swift; sourceTree = "<group>"; };
 		EEF83462299C6824001EEA5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -178,6 +188,7 @@
 				EED4A4FC29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift */,
 				EED4A50E29AB1A5A00DDCCDA /* CommunitiesTabMainView.swift */,
 				EED4A51029AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift */,
+				EED4A51D29ABC80A00DDCCDA /* Community */,
 			);
 			path = CommunitiesTab;
 			sourceTree = "<group>";
@@ -202,6 +213,45 @@
 			path = EventsTab;
 			sourceTree = "<group>";
 		};
+		EED4A51629ABC1C800DDCCDA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EEF8346E299C69DC001EEA5E /* Navigation */,
+				EED4A4ED29AA7E7A00DDCCDA /* Root */,
+				EE54ADE829A7128E007C3E3F /* Login */,
+				EED4A4F229AA7FC600DDCCDA /* MainTabs */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EED4A51729ABC1FC00DDCCDA /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				EED47ECB299F166300FEFC6E /* Views */,
+				EED47ECC299F167100FEFC6E /* MainCoordinator.swift */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		EED4A51829ABC2B800DDCCDA /* Domain Models */ = {
+			isa = PBXGroup;
+			children = (
+				EED4A51929ABC2D400DDCCDA /* Community.swift */,
+				EED4A51B29ABC2FE00DDCCDA /* User.swift */,
+			);
+			path = "Domain Models";
+			sourceTree = "<group>";
+		};
+		EED4A51D29ABC80A00DDCCDA /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				EED4A51E29ABC86300DDCCDA /* CommunityCoordinator.swift */,
+				EED4A52029ABC86D00DDCCDA /* CommunityView.swift */,
+				EED4A52229ABC87B00DDCCDA /* CommunityViewModel.swift */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
 		EEF83454299C6824001EEA5E = {
 			isa = PBXGroup;
 			children = (
@@ -221,10 +271,9 @@
 		EEF8345F299C6824001EEA5E /* Democracy */ = {
 			isa = PBXGroup;
 			children = (
-				EED4A4ED29AA7E7A00DDCCDA /* Root */,
-				EE54ADE829A7128E007C3E3F /* Login */,
-				EED4A4F229AA7FC600DDCCDA /* MainTabs */,
-				EEF8346E299C69DC001EEA5E /* Navigation */,
+				EED4A51829ABC2B800DDCCDA /* Domain Models */,
+				EED4A51629ABC1C800DDCCDA /* Views */,
+				EED4A51729ABC1FC00DDCCDA /* Example */,
 				EEF83460299C6824001EEA5E /* DemocracyApp.swift */,
 				EEF83462299C6824001EEA5E /* ContentView.swift */,
 				EEF83464299C6827001EEA5E /* Assets.xcassets */,
@@ -245,8 +294,6 @@
 			isa = PBXGroup;
 			children = (
 				EEF83472299C6A11001EEA5E /* Router.swift */,
-				EED47ECC299F167100FEFC6E /* MainCoordinator.swift */,
-				EED47ECB299F166300FEFC6E /* Views */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -321,16 +368,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EED4A52129ABC86D00DDCCDA /* CommunityView.swift in Sources */,
 				EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */,
 				EED47ECF299F167B00FEFC6E /* B.swift in Sources */,
 				EED4A51529AB1C7900DDCCDA /* HistoryTabMainViewModel.swift in Sources */,
 				EEF83473299C6A11001EEA5E /* Router.swift in Sources */,
 				EE54ADEA29A712AE007C3E3F /* LoginView.swift in Sources */,
+				EED4A51A29ABC2D400DDCCDA /* Community.swift in Sources */,
 				EED4A4F129AA7ED700DDCCDA /* RootViewModel.swift in Sources */,
 				EE54ADEC29A714E8007C3E3F /* LoginViewModel.swift in Sources */,
 				EED4A50D29AB18E400DDCCDA /* UpdatesTabMainViewModel.swift in Sources */,
 				EED4A51329AB1C6F00DDCCDA /* HistoryTabMainView.swift in Sources */,
 				EED47ECD299F167100FEFC6E /* MainCoordinator.swift in Sources */,
+				EED4A52329ABC87B00DDCCDA /* CommunityViewModel.swift in Sources */,
 				EEF83463299C6824001EEA5E /* ContentView.swift in Sources */,
 				EED4A50529AA870000DDCCDA /* VotingTabMainViewModel.swift in Sources */,
 				EED4A4FD29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift in Sources */,
@@ -349,9 +399,11 @@
 				EED4A50F29AB1A5A00DDCCDA /* CommunitiesTabMainView.swift in Sources */,
 				EED4A4EF29AA7E9600DDCCDA /* RootView.swift in Sources */,
 				EE54ADDF29A329C9007C3E3F /* MainTabView.swift in Sources */,
+				EED4A51F29ABC86300DDCCDA /* CommunityCoordinator.swift in Sources */,
 				EED4A50B29AB18D400DDCCDA /* UpdatesTabMainView.swift in Sources */,
 				EED4A4FB29AA857000DDCCDA /* VotingTabCoordinator.swift in Sources */,
 				EED47EDD299F186600FEFC6E /* ViewModelD.swift in Sources */,
+				EED4A51C29ABC2FE00DDCCDA /* User.swift in Sources */,
 				EED4A50729AA8BAE00DDCCDA /* EventsTabMainView.swift in Sources */,
 				EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */,
 				EED4A50129AA859500DDCCDA /* UpdatesTabCoordinator.swift in Sources */,

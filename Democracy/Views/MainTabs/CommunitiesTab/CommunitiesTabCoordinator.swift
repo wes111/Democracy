@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-enum CommunitiesTabPath {
+enum CommunitiesTabPath: Hashable {
     case one
+    case goToCommunity(Community)
 }
 
 struct CommunitiesTabCoordinator: View {
-    
+
     @StateObject private var router = Router()
     
     var body: some View {
@@ -22,12 +23,14 @@ struct CommunitiesTabCoordinator: View {
                     createViewFromPath(path)
                 }
         }
+        .environmentObject(router)
     }
     
     @ViewBuilder
     func createViewFromPath(_ path: CommunitiesTabPath) -> some View {
         switch path {
         case .one: Text("")
+        case .goToCommunity(let community): createCommunityView(community)
         }
     }
     
@@ -35,12 +38,18 @@ struct CommunitiesTabCoordinator: View {
         let viewModel = CommunitiesTabMainViewModel(coordinator: self)
         return CommunitiesTabMainView(viewModel: viewModel)
     }
+    
+    func createCommunityView(_ community: Community) -> CommunityView<CommunityViewModel> {
+        let coordinator = CommunityCoordinator(community)
+        let viewModel = CommunityViewModel(coordinator: coordinator, community: community)
+        return CommunityView(viewModel: viewModel)
+    }
 }
 
 extension CommunitiesTabCoordinator: CommunitiesTabMainCoordinatorDelegate {
     
-    func tappedNav() {
-        print("tapped nav")
+    func goToCommunity(_ community: Community) {
+        router.push(CommunitiesTabPath.goToCommunity(community))
     }
     
 }
