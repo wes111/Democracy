@@ -21,6 +21,23 @@
 		EED47EDD299F186600FEFC6E /* ViewModelD.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47EDC299F186600FEFC6E /* ViewModelD.swift */; };
 		EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47EDE299F186D00FEFC6E /* SettingsViewModel.swift */; };
 		EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4EB29A9984200DDCCDA /* SettingsCoordinator.swift */; };
+		EED4A4EF29AA7E9600DDCCDA /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4EE29AA7E9600DDCCDA /* RootView.swift */; };
+		EED4A4F129AA7ED700DDCCDA /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4F029AA7ED700DDCCDA /* RootViewModel.swift */; };
+		EED4A4F929AA855900DDCCDA /* EventsTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4F829AA855900DDCCDA /* EventsTabCoordinator.swift */; };
+		EED4A4FB29AA857000DDCCDA /* VotingTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4FA29AA857000DDCCDA /* VotingTabCoordinator.swift */; };
+		EED4A4FD29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4FC29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift */; };
+		EED4A4FF29AA858600DDCCDA /* HistoryTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4FE29AA858600DDCCDA /* HistoryTabCoordinator.swift */; };
+		EED4A50129AA859500DDCCDA /* UpdatesTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A50029AA859500DDCCDA /* UpdatesTabCoordinator.swift */; };
+		EED4A50329AA86C900DDCCDA /* VotingTabMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A50229AA86C900DDCCDA /* VotingTabMainView.swift */; };
+		EED4A50529AA870000DDCCDA /* VotingTabMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A50429AA870000DDCCDA /* VotingTabMainViewModel.swift */; };
+		EED4A50729AA8BAE00DDCCDA /* EventsTabMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A50629AA8BAE00DDCCDA /* EventsTabMainView.swift */; };
+		EED4A50929AA8BC100DDCCDA /* EventsTabMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A50829AA8BC100DDCCDA /* EventsTabMainViewModel.swift */; };
+		EED4A50B29AB18D400DDCCDA /* UpdatesTabMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A50A29AB18D400DDCCDA /* UpdatesTabMainView.swift */; };
+		EED4A50D29AB18E400DDCCDA /* UpdatesTabMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A50C29AB18E400DDCCDA /* UpdatesTabMainViewModel.swift */; };
+		EED4A50F29AB1A5A00DDCCDA /* CommunitiesTabMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A50E29AB1A5A00DDCCDA /* CommunitiesTabMainView.swift */; };
+		EED4A51129AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A51029AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift */; };
+		EED4A51329AB1C6F00DDCCDA /* HistoryTabMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A51229AB1C6F00DDCCDA /* HistoryTabMainView.swift */; };
+		EED4A51529AB1C7900DDCCDA /* HistoryTabMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A51429AB1C7900DDCCDA /* HistoryTabMainViewModel.swift */; };
 		EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF83460299C6824001EEA5E /* DemocracyApp.swift */; };
 		EEF83463299C6824001EEA5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF83462299C6824001EEA5E /* ContentView.swift */; };
 		EEF83465299C6827001EEA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEF83464299C6827001EEA5E /* Assets.xcassets */; };
@@ -43,6 +60,23 @@
 		EED47EDC299F186600FEFC6E /* ViewModelD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelD.swift; sourceTree = "<group>"; };
 		EED47EDE299F186D00FEFC6E /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		EED4A4EB29A9984200DDCCDA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		EED4A4EE29AA7E9600DDCCDA /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		EED4A4F029AA7ED700DDCCDA /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
+		EED4A4F829AA855900DDCCDA /* EventsTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTabCoordinator.swift; sourceTree = "<group>"; };
+		EED4A4FA29AA857000DDCCDA /* VotingTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTabCoordinator.swift; sourceTree = "<group>"; };
+		EED4A4FC29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesTabCoordinator.swift; sourceTree = "<group>"; };
+		EED4A4FE29AA858600DDCCDA /* HistoryTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabCoordinator.swift; sourceTree = "<group>"; };
+		EED4A50029AA859500DDCCDA /* UpdatesTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesTabCoordinator.swift; sourceTree = "<group>"; };
+		EED4A50229AA86C900DDCCDA /* VotingTabMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTabMainView.swift; sourceTree = "<group>"; };
+		EED4A50429AA870000DDCCDA /* VotingTabMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTabMainViewModel.swift; sourceTree = "<group>"; };
+		EED4A50629AA8BAE00DDCCDA /* EventsTabMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTabMainView.swift; sourceTree = "<group>"; };
+		EED4A50829AA8BC100DDCCDA /* EventsTabMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTabMainViewModel.swift; sourceTree = "<group>"; };
+		EED4A50A29AB18D400DDCCDA /* UpdatesTabMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesTabMainView.swift; sourceTree = "<group>"; };
+		EED4A50C29AB18E400DDCCDA /* UpdatesTabMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesTabMainViewModel.swift; sourceTree = "<group>"; };
+		EED4A50E29AB1A5A00DDCCDA /* CommunitiesTabMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesTabMainView.swift; sourceTree = "<group>"; };
+		EED4A51029AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesTabMainViewModel.swift; sourceTree = "<group>"; };
+		EED4A51229AB1C6F00DDCCDA /* HistoryTabMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabMainView.swift; sourceTree = "<group>"; };
+		EED4A51429AB1C7900DDCCDA /* HistoryTabMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabMainViewModel.swift; sourceTree = "<group>"; };
 		EEF8345D299C6824001EEA5E /* Democracy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Democracy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF83460299C6824001EEA5E /* DemocracyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemocracyApp.swift; sourceTree = "<group>"; };
 		EEF83462299C6824001EEA5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,6 +129,79 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		EED4A4ED29AA7E7A00DDCCDA /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				EED4A4EE29AA7E9600DDCCDA /* RootView.swift */,
+				EED4A4F029AA7ED700DDCCDA /* RootViewModel.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		EED4A4F229AA7FC600DDCCDA /* MainTabs */ = {
+			isa = PBXGroup;
+			children = (
+				EE54ADDE29A329C9007C3E3F /* MainTabView.swift */,
+				EED4A4F629AA843F00DDCCDA /* VotingTab */,
+				EED4A4F729AA846D00DDCCDA /* EventsTab */,
+				EED4A4F329AA83B900DDCCDA /* UpdatesTab */,
+				EED4A4F529AA842100DDCCDA /* CommunitiesTab */,
+				EED4A4F429AA83CB00DDCCDA /* HistoryTab */,
+			);
+			path = MainTabs;
+			sourceTree = "<group>";
+		};
+		EED4A4F329AA83B900DDCCDA /* UpdatesTab */ = {
+			isa = PBXGroup;
+			children = (
+				EED4A50029AA859500DDCCDA /* UpdatesTabCoordinator.swift */,
+				EED4A50A29AB18D400DDCCDA /* UpdatesTabMainView.swift */,
+				EED4A50C29AB18E400DDCCDA /* UpdatesTabMainViewModel.swift */,
+				EED4A4EA29A997AB00DDCCDA /* Settings */,
+			);
+			path = UpdatesTab;
+			sourceTree = "<group>";
+		};
+		EED4A4F429AA83CB00DDCCDA /* HistoryTab */ = {
+			isa = PBXGroup;
+			children = (
+				EED4A4FE29AA858600DDCCDA /* HistoryTabCoordinator.swift */,
+				EED4A51229AB1C6F00DDCCDA /* HistoryTabMainView.swift */,
+				EED4A51429AB1C7900DDCCDA /* HistoryTabMainViewModel.swift */,
+			);
+			path = HistoryTab;
+			sourceTree = "<group>";
+		};
+		EED4A4F529AA842100DDCCDA /* CommunitiesTab */ = {
+			isa = PBXGroup;
+			children = (
+				EED4A4FC29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift */,
+				EED4A50E29AB1A5A00DDCCDA /* CommunitiesTabMainView.swift */,
+				EED4A51029AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift */,
+			);
+			path = CommunitiesTab;
+			sourceTree = "<group>";
+		};
+		EED4A4F629AA843F00DDCCDA /* VotingTab */ = {
+			isa = PBXGroup;
+			children = (
+				EED4A4FA29AA857000DDCCDA /* VotingTabCoordinator.swift */,
+				EED4A50229AA86C900DDCCDA /* VotingTabMainView.swift */,
+				EED4A50429AA870000DDCCDA /* VotingTabMainViewModel.swift */,
+			);
+			path = VotingTab;
+			sourceTree = "<group>";
+		};
+		EED4A4F729AA846D00DDCCDA /* EventsTab */ = {
+			isa = PBXGroup;
+			children = (
+				EED4A4F829AA855900DDCCDA /* EventsTabCoordinator.swift */,
+				EED4A50629AA8BAE00DDCCDA /* EventsTabMainView.swift */,
+				EED4A50829AA8BC100DDCCDA /* EventsTabMainViewModel.swift */,
+			);
+			path = EventsTab;
+			sourceTree = "<group>";
+		};
 		EEF83454299C6824001EEA5E = {
 			isa = PBXGroup;
 			children = (
@@ -114,8 +221,9 @@
 		EEF8345F299C6824001EEA5E /* Democracy */ = {
 			isa = PBXGroup;
 			children = (
-				EED4A4EA29A997AB00DDCCDA /* Settings */,
+				EED4A4ED29AA7E7A00DDCCDA /* Root */,
 				EE54ADE829A7128E007C3E3F /* Login */,
+				EED4A4F229AA7FC600DDCCDA /* MainTabs */,
 				EEF8346E299C69DC001EEA5E /* Navigation */,
 				EEF83460299C6824001EEA5E /* DemocracyApp.swift */,
 				EEF83462299C6824001EEA5E /* ContentView.swift */,
@@ -136,10 +244,9 @@
 		EEF8346E299C69DC001EEA5E /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				EED47ECC299F167100FEFC6E /* MainCoordinator.swift */,
-				EE54ADDE29A329C9007C3E3F /* MainTabView.swift */,
-				EED47ECB299F166300FEFC6E /* Views */,
 				EEF83472299C6A11001EEA5E /* Router.swift */,
+				EED47ECC299F167100FEFC6E /* MainCoordinator.swift */,
+				EED47ECB299F166300FEFC6E /* Views */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -216,21 +323,38 @@
 			files = (
 				EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */,
 				EED47ECF299F167B00FEFC6E /* B.swift in Sources */,
+				EED4A51529AB1C7900DDCCDA /* HistoryTabMainViewModel.swift in Sources */,
 				EEF83473299C6A11001EEA5E /* Router.swift in Sources */,
 				EE54ADEA29A712AE007C3E3F /* LoginView.swift in Sources */,
+				EED4A4F129AA7ED700DDCCDA /* RootViewModel.swift in Sources */,
 				EE54ADEC29A714E8007C3E3F /* LoginViewModel.swift in Sources */,
+				EED4A50D29AB18E400DDCCDA /* UpdatesTabMainViewModel.swift in Sources */,
+				EED4A51329AB1C6F00DDCCDA /* HistoryTabMainView.swift in Sources */,
 				EED47ECD299F167100FEFC6E /* MainCoordinator.swift in Sources */,
 				EEF83463299C6824001EEA5E /* ContentView.swift in Sources */,
+				EED4A50529AA870000DDCCDA /* VotingTabMainViewModel.swift in Sources */,
+				EED4A4FD29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift in Sources */,
 				EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */,
+				EED4A4FF29AA858600DDCCDA /* HistoryTabCoordinator.swift in Sources */,
+				EED4A4F929AA855900DDCCDA /* EventsTabCoordinator.swift in Sources */,
 				EED47ED1299F168200FEFC6E /* C.swift in Sources */,
 				EED47ED3299F168800FEFC6E /* D.swift in Sources */,
 				EE54ADE729A40101007C3E3F /* AuthenticationCoordinator.swift in Sources */,
 				EED47ED9299F185700FEFC6E /* ViewModelB.swift in Sources */,
 				EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */,
+				EED4A51129AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift in Sources */,
 				EED47EDB299F185E00FEFC6E /* ViewModelC.swift in Sources */,
+				EED4A50329AA86C900DDCCDA /* VotingTabMainView.swift in Sources */,
+				EED4A50929AA8BC100DDCCDA /* EventsTabMainViewModel.swift in Sources */,
+				EED4A50F29AB1A5A00DDCCDA /* CommunitiesTabMainView.swift in Sources */,
+				EED4A4EF29AA7E9600DDCCDA /* RootView.swift in Sources */,
 				EE54ADDF29A329C9007C3E3F /* MainTabView.swift in Sources */,
+				EED4A50B29AB18D400DDCCDA /* UpdatesTabMainView.swift in Sources */,
+				EED4A4FB29AA857000DDCCDA /* VotingTabCoordinator.swift in Sources */,
 				EED47EDD299F186600FEFC6E /* ViewModelD.swift in Sources */,
+				EED4A50729AA8BAE00DDCCDA /* EventsTabMainView.swift in Sources */,
 				EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */,
+				EED4A50129AA859500DDCCDA /* UpdatesTabCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

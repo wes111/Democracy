@@ -8,7 +8,6 @@
 import SwiftUI
 
 enum AuthenticationPath {
-    case goToMain
     case signIn
     case createAccount
 }
@@ -28,7 +27,6 @@ struct AuthenticationCoordinator: View {
                     createViewFromPath(path)
                 }
         }
-        .environmentObject(router)
     }
     
     @ViewBuilder
@@ -36,7 +34,6 @@ struct AuthenticationCoordinator: View {
         switch path {
         case .signIn: MainTabView()
         case .createAccount: MainTabView()
-        case .goToMain: MainTabView()
         }
     }
     
@@ -48,10 +45,6 @@ struct AuthenticationCoordinator: View {
 }
 
 extension AuthenticationCoordinator: LoginCoordinatorDelegate {
-    
-    func goToMainView() {
-        router.push(AuthenticationPath.goToMain)
-    }
     
     
 }

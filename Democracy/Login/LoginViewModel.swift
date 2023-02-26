@@ -8,7 +8,7 @@
 import Foundation
 
 protocol LoginCoordinatorDelegate {
-    func goToMainView()
+
 }
 
 protocol LoginViewModelProtocol: ObservableObject {
@@ -26,7 +26,8 @@ final class LoginViewModel: LoginViewModelProtocol {
         print("Log in.")
         // Add spinner.
         // if login successful
-        coordinator.goToMainView()
+        temp_authPublisher.send(true)
+        //coordinator.goToMainView()
         // else show error
     }
     

@@ -8,49 +8,49 @@
 import SwiftUI
 
 enum MainTab {
-    case one, two, three, four, five
+    case voting, events, updates, communities, history
 }
 
 struct MainTabView: View {
     
-    @State private var selectedTab: MainTab = .three
+    @State private var selectedTab: MainTab = .updates
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            MainCoordinator()
+            VotingTabCoordinator()
                 .tabItem {
                     Label("Editor", systemImage: "pencil.circle")
                     Text("Editor")
                 }
-                .tag(MainTab.one)
+                .tag(MainTab.voting)
             
-            MainCoordinator()
+            EventsTabCoordinator()
                 .tabItem {
                     Label("Editor", systemImage: "pencil.circle")
                     Text("Editor")
                 }
-                .tag(MainTab.two)
+                .tag(MainTab.events)
             
-            MainCoordinator()
+            UpdatesTabCoordinator()
                 .tabItem {
                     Label("Notes", systemImage: "note.text")
                     Text("Notes")
                 }
-                .tag(MainTab.three)
+                .tag(MainTab.updates)
             
-            MainCoordinator()
+            CommunitiesTabCoordinator()
                 .tabItem {
                     Label("Share", systemImage: "square.and.arrow.up")
                     Text("Share")
                 }
-                .tag(MainTab.four)
+                .tag(MainTab.communities)
             
-            SettingsCoordinator()
+            HistoryTabCoordinator()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape")
                     Text("Settings")
                 }
-                .tag(MainTab.five)
+                .tag(MainTab.history)
         }
         .navigationBarBackButtonHidden()
     }

@@ -14,7 +14,7 @@ enum SettingsPath: Hashable {
 
 struct SettingsCoordinator: View {
     
-    @EnvironmentObject private var router: Router
+    @StateObject private var router = Router()
     
     var body: some View {
         createRootView()

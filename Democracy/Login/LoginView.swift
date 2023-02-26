@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LoginView<ViewModel: LoginViewModel>: View {
+struct LoginView<ViewModel: LoginViewModelProtocol>: View {
     
     @StateObject var viewModel: ViewModel
     

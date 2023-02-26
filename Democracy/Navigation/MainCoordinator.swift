@@ -15,17 +15,15 @@ enum MainPath: Hashable {
 
 struct MainCoordinator: View {
     
-    @EnvironmentObject private var router: Router
-    
-    func start() {
-        print("start coordinator")
-    }
+    @StateObject private var router = Router()
     
     var body: some View {
-        createBView()
-            .navigationDestination(for: MainPath.self) { path in
-                createViewFromPath(path)
-            }
+        NavigationStack(path: $router.navigationPath) {
+            createBView()
+                .navigationDestination(for: MainPath.self) { path in
+                    createViewFromPath(path)
+                }
+        }
     }
     
     @ViewBuilder

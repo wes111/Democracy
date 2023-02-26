@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 protocol RouterProtocol: ObservableObject {
-    //associatedtype Path: Hashable
     var navigationPath: NavigationPath { get }
     
     func push(_ path: any Hashable)
