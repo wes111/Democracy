@@ -39,11 +39,10 @@ struct CommunitiesTabCoordinator: View {
         return CommunitiesTabMainView(viewModel: viewModel)
     }
     
-    func createCommunityView(_ community: Community) -> CommunityView<CommunityViewModel> {
-        let coordinator = CommunityCoordinator(community)
-        let viewModel = CommunityViewModel(coordinator: coordinator, community: community)
-        return CommunityView(viewModel: viewModel)
+    func createCommunityView(_ community: Community) -> CommunityCoordinator {
+        CommunityCoordinator(community)
     }
+    
 }
 
 extension CommunitiesTabCoordinator: CommunitiesTabMainCoordinatorDelegate {
