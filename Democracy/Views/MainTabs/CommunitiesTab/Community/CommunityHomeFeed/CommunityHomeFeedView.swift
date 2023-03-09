@@ -16,10 +16,21 @@ struct CommunityHomeFeedView<ViewModel: CommunityHomeFeedViewModelProtocol>: Vie
     }
     
     var body: some View {
-        Text("Community Home Feed View")
-            .onTapGesture {
-                viewModel.goToPost()
+        ScrollView {
+            LazyVStack {
+                ForEach(viewModel.posts) { post in
+                    createPostCardView(post)
+                }
             }
+        }
+        .refreshable {
+            //viewModel.refreshCommunities()
+        }
+    }
+    
+    func createPostCardView(_ post: Post) -> PostCardView<PostCardViewModel> {
+        let viewModel = PostCardViewModel(coordinator: viewModel.coordinator, post: post)
+        return PostCardView(viewModel: viewModel)
     }
 }
 

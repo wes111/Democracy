@@ -16,7 +16,7 @@ protocol PostCardViewModelProtocol: ObservableObject {
 }
 
 final class PostCardViewModel: PostCardViewModelProtocol {
-
+    
     private let coordinator: PostCardCoordinatorDelegate
     private let post: Post
     

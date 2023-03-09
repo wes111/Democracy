@@ -14,7 +14,6 @@ enum CommunityPath: Hashable {
 
 struct CommunityCoordinator: View {
     
-    //@EnvironmentObject private var router: Router
     private let router: Router
     private let community: Community
     
@@ -42,7 +41,6 @@ struct CommunityCoordinator: View {
     
     func createCommunityView() -> CommunityView<CommunityViewModel> {
         let viewModel = CommunityViewModel(coordinator: self, community: community)
-        print(router)
         return CommunityView(viewModel: viewModel, router: router)
     }
     

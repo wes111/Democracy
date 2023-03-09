@@ -15,7 +15,6 @@ enum PostPath {
 
 struct PostCoordinator: View {
     
-    @EnvironmentObject private var router: Router
     private let post: Post
     
     init(_ post: Post) {

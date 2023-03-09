@@ -11,12 +11,21 @@ protocol CommunityHomeFeedCoordinatorDelegate: PostCardCoordinatorDelegate {
 }
 
 protocol CommunityHomeFeedViewModelProtocol: ObservableObject {
+    var posts: [Post] { get }
+    var coordinator: CommunityHomeFeedCoordinatorDelegate { get }
     func goToPost()
 }
 
 final class CommunityHomeFeedViewModel: CommunityHomeFeedViewModelProtocol {
+    
+    @Published var posts: [Post] = [
+        Post(title: "words", body: "words"),
+        Post(title: "words", body: "words"),
+        Post(title: "words", body: "words"),
+        Post(title: "words", body: "words"),
+    ]
 
-    private let coordinator: CommunityHomeFeedCoordinatorDelegate
+    let coordinator: CommunityHomeFeedCoordinatorDelegate
     
     init(coordinator: CommunityHomeFeedCoordinatorDelegate
     ) {

@@ -23,7 +23,6 @@ struct CommunitiesTabCoordinator: View {
                     createViewFromPath(path)
                 }
         }
-        .environmentObject(router)
     }
     
     @ViewBuilder

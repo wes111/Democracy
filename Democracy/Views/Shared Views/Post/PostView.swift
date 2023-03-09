@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct PostView<ViewModel: PostViewModelProtocol>: View {
     
     @StateObject private var viewModel: ViewModel
