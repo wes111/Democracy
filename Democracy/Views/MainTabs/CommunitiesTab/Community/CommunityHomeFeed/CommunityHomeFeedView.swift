@@ -7,14 +7,28 @@
 
 import SwiftUI
 
-struct CommunityHomeFeedView: View {
+struct CommunityHomeFeedView<ViewModel: CommunityHomeFeedViewModelProtocol>: View {
+    
+    @StateObject var viewModel: ViewModel
+    
+    init(viewModel: ViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+    
     var body: some View {
-        Text("Community home feed view")
+        Text("Community Home Feed View")
+            .onTapGesture {
+                viewModel.goToPost()
+            }
     }
 }
 
 struct CommunityHomeFeedView_Previews: PreviewProvider {
     static var previews: some View {
-        CommunityHomeFeedView()
+        let community = Community(name: "Test Community", foundedDate: Date())
+        let router = Router()
+        let coordinator = CommunityCoordinator(community, router)
+        let viewModel = CommunityHomeFeedViewModel(coordinator: coordinator)
+        CommunityHomeFeedView(viewModel: viewModel)
     }
 }

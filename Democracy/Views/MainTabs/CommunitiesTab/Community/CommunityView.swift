@@ -13,13 +13,18 @@ enum CommunityTab: String {
     case archive = "Archive"
 }
 
+// Note: This is essentially a coordinator since it has a picker.
 struct CommunityView<ViewModel: CommunityViewModelProtocol>: View {
     
     @StateObject private var viewModel: ViewModel
     @State private var tabSelection: CommunityTab = .feed
+    private let router: Router
     
-    init(viewModel: ViewModel) {
+    init(viewModel: ViewModel,
+         router: Router
+    ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        self.router = router
     }
     
     var body: some View {
@@ -37,10 +42,11 @@ struct CommunityView<ViewModel: CommunityViewModelProtocol>: View {
                 }
                 .tag(CommunityTab.info)
                 
-                CommunityHomeFeedView().tabItem {
-                    Text(CommunityTab.feed.rawValue)
-                }
-                .tag(CommunityTab.feed)
+                createCommunityHomeFeedView()
+                    .tabItem {
+                        Text(CommunityTab.feed.rawValue)
+                    }
+                    .tag(CommunityTab.feed)
                 
                 CommunityArchiveFeedView().tabItem {
                     Text(CommunityTab.archive.rawValue)
@@ -53,13 +59,20 @@ struct CommunityView<ViewModel: CommunityViewModelProtocol>: View {
         .navigationBarTitleDisplayMode(.inline)
     }
     
+    func createCommunityHomeFeedView() -> CommunityHomeFeedView<CommunityHomeFeedViewModel> {
+        let coordinator = CommunityCoordinator(viewModel.community, router)
+        let viewModel = CommunityHomeFeedViewModel(coordinator: coordinator)
+        return CommunityHomeFeedView(viewModel: viewModel)
+    }
+    
 }
 
 struct CommunityView_Previews: PreviewProvider {
     static var previews: some View {
+        let router = Router()
         let community = Community(name: "Test Community", foundedDate: Date())
-        let coordinator = CommunityCoordinator(community)
+        let coordinator = CommunityCoordinator(community, router)
         let viewModel = CommunityViewModel(coordinator: coordinator, community: community)
-        CommunityView(viewModel: viewModel)
+        CommunityView(viewModel: viewModel, router: router)
     }
 }

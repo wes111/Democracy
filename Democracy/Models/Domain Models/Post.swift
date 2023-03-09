@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Post {
+struct Post: Hashable {
     let id: UUID = UUID()
     let title: String
     let body: String

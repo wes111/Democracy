@@ -40,7 +40,7 @@ struct CommunitiesTabCoordinator: View {
     }
     
     func createCommunityView(_ community: Community) -> CommunityCoordinator {
-        CommunityCoordinator(community)
+        CommunityCoordinator(community, router)
     }
     
 }

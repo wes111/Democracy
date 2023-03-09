@@ -50,6 +50,9 @@
 		EED4A53329B81D6800DDCCDA /* CommunityHomeFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A53229B81D6800DDCCDA /* CommunityHomeFeedView.swift */; };
 		EED4A53529B81D8000DDCCDA /* CommunityInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A53429B81D8000DDCCDA /* CommunityInfoView.swift */; };
 		EED4A53729B81D9500DDCCDA /* CommunityArchiveFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A53629B81D9500DDCCDA /* CommunityArchiveFeedView.swift */; };
+		EED4A53A29B9629900DDCCDA /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A53929B9629900DDCCDA /* PostCardView.swift */; };
+		EED4A53C29B965AF00DDCCDA /* PostCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A53B29B965AF00DDCCDA /* PostCardViewModel.swift */; };
+		EED4A53E29B971B700DDCCDA /* CommunityHomeFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A53D29B971B700DDCCDA /* CommunityHomeFeedViewModel.swift */; };
 		EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF83460299C6824001EEA5E /* DemocracyApp.swift */; };
 		EEF83463299C6824001EEA5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF83462299C6824001EEA5E /* ContentView.swift */; };
 		EEF83465299C6827001EEA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEF83464299C6827001EEA5E /* Assets.xcassets */; };
@@ -101,6 +104,9 @@
 		EED4A53229B81D6800DDCCDA /* CommunityHomeFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityHomeFeedView.swift; sourceTree = "<group>"; };
 		EED4A53429B81D8000DDCCDA /* CommunityInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityInfoView.swift; sourceTree = "<group>"; };
 		EED4A53629B81D9500DDCCDA /* CommunityArchiveFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityArchiveFeedView.swift; sourceTree = "<group>"; };
+		EED4A53929B9629900DDCCDA /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
+		EED4A53B29B965AF00DDCCDA /* PostCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardViewModel.swift; sourceTree = "<group>"; };
+		EED4A53D29B971B700DDCCDA /* CommunityHomeFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityHomeFeedViewModel.swift; sourceTree = "<group>"; };
 		EEF8345D299C6824001EEA5E /* Democracy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Democracy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF83460299C6824001EEA5E /* DemocracyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemocracyApp.swift; sourceTree = "<group>"; };
 		EEF83462299C6824001EEA5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -293,6 +299,7 @@
 				EED4A52929B8187D00DDCCDA /* PostCoordinator.swift */,
 				EED4A52B29B8190700DDCCDA /* PostView.swift */,
 				EED4A52D29B81A2E00DDCCDA /* PostViewModel.swift */,
+				EED4A53829B9623C00DDCCDA /* PostCard */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -301,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				EED4A53229B81D6800DDCCDA /* CommunityHomeFeedView.swift */,
+				EED4A53D29B971B700DDCCDA /* CommunityHomeFeedViewModel.swift */,
 			);
 			path = CommunityHomeFeed;
 			sourceTree = "<group>";
@@ -319,6 +327,15 @@
 				EED4A53429B81D8000DDCCDA /* CommunityInfoView.swift */,
 			);
 			path = CommunityInfo;
+			sourceTree = "<group>";
+		};
+		EED4A53829B9623C00DDCCDA /* PostCard */ = {
+			isa = PBXGroup;
+			children = (
+				EED4A53929B9629900DDCCDA /* PostCardView.swift */,
+				EED4A53B29B965AF00DDCCDA /* PostCardViewModel.swift */,
+			);
+			path = PostCard;
 			sourceTree = "<group>";
 		};
 		EEF83454299C6824001EEA5E = {
@@ -479,9 +496,12 @@
 				EED4A50B29AB18D400DDCCDA /* UpdatesTabMainView.swift in Sources */,
 				EED4A4FB29AA857000DDCCDA /* VotingTabCoordinator.swift in Sources */,
 				EED47EDD299F186600FEFC6E /* ViewModelD.swift in Sources */,
+				EED4A53E29B971B700DDCCDA /* CommunityHomeFeedViewModel.swift in Sources */,
 				EED4A51C29ABC2FE00DDCCDA /* User.swift in Sources */,
+				EED4A53A29B9629900DDCCDA /* PostCardView.swift in Sources */,
 				EED4A50729AA8BAE00DDCCDA /* EventsTabMainView.swift in Sources */,
 				EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */,
+				EED4A53C29B965AF00DDCCDA /* PostCardViewModel.swift in Sources */,
 				EED4A50129AA859500DDCCDA /* UpdatesTabCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,7 +19,7 @@ struct PostView<ViewModel: PostViewModelProtocol>: View {
     
     var body: some View {
         VStack {
-            
+            Text("This is a post's main view.")
         }
     }
     
