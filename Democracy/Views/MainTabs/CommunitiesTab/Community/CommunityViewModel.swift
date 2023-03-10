@@ -7,18 +7,19 @@
 
 import Foundation
 
-protocol CommunityCoordinatorDelegate {
+protocol CommunityCoordinatorDelegate: CommunityHomeFeedCoordinatorDelegate {
     func go()
 }
 
 protocol CommunityViewModelProtocol: ObservableObject {
     var community: Community { get }
+    var coordinator: CommunityCoordinatorDelegate { get }
     func go()
 }
 
 final class CommunityViewModel: CommunityViewModelProtocol {
 
-    private let coordinator: CommunityCoordinatorDelegate
+    let coordinator: CommunityCoordinatorDelegate
     let community: Community
     
     init(coordinator: CommunityCoordinatorDelegate,

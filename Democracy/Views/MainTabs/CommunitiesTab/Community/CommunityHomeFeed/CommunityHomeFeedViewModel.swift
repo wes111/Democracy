@@ -19,12 +19,9 @@ protocol CommunityHomeFeedViewModelProtocol: ObservableObject {
 final class CommunityHomeFeedViewModel: CommunityHomeFeedViewModelProtocol {
     
     @Published var posts: [Post] = [
-        Post(title: "words", body: "words"),
-        Post(title: "words", body: "words"),
-        Post(title: "words", body: "words"),
-        Post(title: "words", body: "words"),
+        Post.post
     ]
-
+    
     let coordinator: CommunityHomeFeedCoordinatorDelegate
     
     init(coordinator: CommunityHomeFeedCoordinatorDelegate
@@ -33,7 +30,7 @@ final class CommunityHomeFeedViewModel: CommunityHomeFeedViewModelProtocol {
     }
     
     func goToPost() {
-        coordinator.goToPostView(Post(title: "Test Post", body: "Test Post body."))
+        coordinator.goToPostView(Post.post)
     }
     
 }

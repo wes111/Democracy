@@ -12,13 +12,15 @@ protocol PostCardCoordinatorDelegate {
 }
 
 protocol PostCardViewModelProtocol: ObservableObject {
+    var post: Post { get }
     func goToPostView(_ post: Post)
+    func noAction()
 }
 
 final class PostCardViewModel: PostCardViewModelProtocol {
     
     private let coordinator: PostCardCoordinatorDelegate
-    private let post: Post
+    let post: Post
     
     init(coordinator: PostCardCoordinatorDelegate,
          post: Post
@@ -29,6 +31,10 @@ final class PostCardViewModel: PostCardViewModelProtocol {
     
     func goToPostView(_ post: Post) {
         coordinator.goToPostView(post)
+    }
+    
+    func noAction() {
+        print("No Action.")
     }
     
 }

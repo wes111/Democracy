@@ -18,13 +18,10 @@ struct CommunityView<ViewModel: CommunityViewModelProtocol>: View {
     
     @StateObject private var viewModel: ViewModel
     @State private var tabSelection: CommunityTab = .feed
-    private let router: Router
     
-    init(viewModel: ViewModel,
-         router: Router
+    init(viewModel: ViewModel
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        self.router = router
     }
     
     var body: some View {
@@ -60,8 +57,7 @@ struct CommunityView<ViewModel: CommunityViewModelProtocol>: View {
     }
     
     func createCommunityHomeFeedView() -> CommunityHomeFeedView<CommunityHomeFeedViewModel> {
-        let coordinator = CommunityCoordinator(viewModel.community, router)
-        let viewModel = CommunityHomeFeedViewModel(coordinator: coordinator)
+        let viewModel = CommunityHomeFeedViewModel(coordinator: viewModel.coordinator)
         return CommunityHomeFeedView(viewModel: viewModel)
     }
     
@@ -70,9 +66,9 @@ struct CommunityView<ViewModel: CommunityViewModelProtocol>: View {
 struct CommunityView_Previews: PreviewProvider {
     static var previews: some View {
         let router = Router()
-        let community = Community(name: "Test Community", foundedDate: Date())
+        let community = Community.community
         let coordinator = CommunityCoordinator(community, router)
         let viewModel = CommunityViewModel(coordinator: coordinator, community: community)
-        CommunityView(viewModel: viewModel, router: router)
+        CommunityView(viewModel: viewModel)
     }
 }

@@ -41,7 +41,7 @@ struct CommunityCoordinator: View {
     
     func createCommunityView() -> CommunityView<CommunityViewModel> {
         let viewModel = CommunityViewModel(coordinator: self, community: community)
-        return CommunityView(viewModel: viewModel, router: router)
+        return CommunityView(viewModel: viewModel)
     }
     
     func createPostView(post: Post) -> PostView<PostViewModel> {
