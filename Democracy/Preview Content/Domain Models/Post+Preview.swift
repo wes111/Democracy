@@ -8,7 +8,7 @@
 import Foundation
 
 extension Post {
-    static let post = Post(
+    static let preview = Post(
         title: "The Title of a Post",
         subtitle: "The subtitle for this post",
         body: "The body of this post",
@@ -23,5 +23,6 @@ extension Post {
             Tag(name: "Zebra"),
             Tag(name: "Donkey"),
             Tag(name: "Chicken")
-        ])
+        ],
+        link: nil)
 }

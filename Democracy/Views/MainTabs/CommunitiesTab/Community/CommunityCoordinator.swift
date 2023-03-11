@@ -69,8 +69,6 @@ extension CommunityCoordinator: CommunityHomeFeedCoordinatorDelegate {
 
 struct CommunityCoordinator_Previews: PreviewProvider {
     static var previews: some View {
-        let community = Community(name: "Test Community", foundedDate: Date())
-        let router = Router()
-        CommunityCoordinator(community, router)
+        CommunityCoordinator.preview
     }
 }

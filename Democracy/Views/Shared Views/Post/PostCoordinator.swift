@@ -51,7 +51,6 @@ extension PostCoordinator: PostCoordinatorDelegate {
 
 struct PostCoordinator_Previews: PreviewProvider {
     static var previews: some View {
-        let post = Post.post
-        PostCoordinator(post)
+        PostCoordinator(Post.preview)
     }
 }

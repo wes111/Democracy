@@ -46,6 +46,7 @@ struct PostCardView<ViewModel: PostCardViewModelProtocol>: View {
                     }
                 }
                 .frame(maxWidth: 250)
+                
                 Spacer()
                 Image(systemName: "arrow.down")
                 Image(systemName: "arrow.up")
@@ -64,11 +65,6 @@ struct PostCardView<ViewModel: PostCardViewModelProtocol>: View {
 
 struct PostCardView_Previews: PreviewProvider {
     static var previews: some View {
-        let post = Post.post
-        let community = Community(name: "Community Name", foundedDate: Date())
-        let router = Router()
-        let coordinator = CommunityCoordinator(community, router)
-        let viewModel = PostCardViewModel(coordinator: coordinator, post: post)
-        PostCardView(viewModel: viewModel)
+        PostCardView(viewModel: PostCardViewModel.preview)
     }
 }

@@ -22,8 +22,6 @@ struct UpdatesTabMainView<ViewModel: UpdatesTabMainViewModelProtocol>: View {
 
 struct UpdatesTabMainView_Previews: PreviewProvider {
     static var previews: some View {
-        let coordinator = UpdatesTabCoordinator()
-        let viewModel = UpdatesTabMainViewModel(coordinator: coordinator)
-        UpdatesTabMainView(viewModel: viewModel)
+        UpdatesTabMainView(viewModel: UpdatesTabMainViewModel.preview)
     }
 }

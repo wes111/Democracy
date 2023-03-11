@@ -8,5 +8,5 @@
 import Foundation
 
 extension Community {
-    static let community = Community(name: "Test Community", foundedDate: Date())
+    static let preview = Community(name: "Test Community", foundedDate: Date())
 }

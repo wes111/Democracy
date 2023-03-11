@@ -42,8 +42,6 @@ struct CommunitiesTabMainView<ViewModel: CommunitiesTabMainViewModelProtocol>: V
 
 struct CommunitiesTabMainView_Previews: PreviewProvider {
     static var previews: some View {
-        let coordinator = CommunitiesTabCoordinator()
-        let viewModel = CommunitiesTabMainViewModel(coordinator: coordinator)
-        CommunitiesTabMainView(viewModel: viewModel)
+        CommunitiesTabMainView(viewModel: CommunitiesTabMainViewModel.preview)
     }
 }

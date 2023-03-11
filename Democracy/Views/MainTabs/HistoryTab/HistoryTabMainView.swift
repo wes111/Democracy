@@ -22,8 +22,6 @@ struct HistoryTabMainView<ViewModel: HistoryTabMainViewModelProtocol>: View {
 
 struct HistoryTabMainView_Previews: PreviewProvider {
     static var previews: some View {
-        let coordinator = HistoryTabCoordinator()
-        let viewModel = HistoryTabMainViewModel(coordinator: coordinator)
-        HistoryTabMainView(viewModel: viewModel)
+        HistoryTabMainView(viewModel: HistoryTabMainViewModel.preview)
     }
 }

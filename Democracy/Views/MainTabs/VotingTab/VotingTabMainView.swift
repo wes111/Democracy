@@ -22,8 +22,6 @@ struct VotingTabMainView<ViewModel: VotingTabMainViewModelProtocol>: View {
 
 struct VotingTabMainView_Previews: PreviewProvider {
     static var previews: some View {
-        let coordinator = VotingTabCoordinator()
-        let viewModel = VotingTabMainViewModel(coordinator: coordinator)
-        VotingTabMainView(viewModel: viewModel)
+        VotingTabMainView(viewModel: VotingTabMainViewModel.preview)
     }
 }

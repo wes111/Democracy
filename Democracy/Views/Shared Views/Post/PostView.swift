@@ -25,9 +25,6 @@ struct PostView<ViewModel: PostViewModelProtocol>: View {
 
 struct PostView_Previews: PreviewProvider {
     static var previews: some View {
-        let post = Post.post
-        let coordinator = PostCoordinator(post)
-        let viewModel = PostViewModel(coordinator: coordinator, post: post)
-        PostView(viewModel: viewModel)
+        PostView(viewModel: PostViewModel.preview)
     }
 }

@@ -19,7 +19,7 @@ protocol CommunityHomeFeedViewModelProtocol: ObservableObject {
 final class CommunityHomeFeedViewModel: CommunityHomeFeedViewModelProtocol {
     
     @Published var posts: [Post] = [
-        Post.post
+        Post.preview
     ]
     
     let coordinator: CommunityHomeFeedCoordinatorDelegate
@@ -30,7 +30,7 @@ final class CommunityHomeFeedViewModel: CommunityHomeFeedViewModelProtocol {
     }
     
     func goToPost() {
-        coordinator.goToPostView(Post.post)
+        coordinator.goToPostView(Post.preview)
     }
     
 }

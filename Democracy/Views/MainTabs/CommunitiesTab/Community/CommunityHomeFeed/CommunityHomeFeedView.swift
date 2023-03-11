@@ -36,10 +36,6 @@ struct CommunityHomeFeedView<ViewModel: CommunityHomeFeedViewModelProtocol>: Vie
 
 struct CommunityHomeFeedView_Previews: PreviewProvider {
     static var previews: some View {
-        let community = Community(name: "Test Community", foundedDate: Date())
-        let router = Router()
-        let coordinator = CommunityCoordinator(community, router)
-        let viewModel = CommunityHomeFeedViewModel(coordinator: coordinator)
-        CommunityHomeFeedView(viewModel: viewModel)
+        CommunityHomeFeedView(viewModel: CommunityHomeFeedViewModel.preview)
     }
 }

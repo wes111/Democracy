@@ -22,8 +22,6 @@ struct EventsTabMainView<ViewModel: EventsTabMainViewModelProtocol>: View {
 
 struct EventsTabMainView_Previews: PreviewProvider {
     static var previews: some View {
-        let coordinator = EventsTabCoordinator()
-        let viewModel = EventsTabMainViewModel(coordinator: coordinator)
-        EventsTabMainView(viewModel: viewModel)
+        EventsTabMainView(viewModel: EventsTabMainViewModel.preview)
     }
 }

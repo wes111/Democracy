@@ -65,10 +65,6 @@ struct CommunityView<ViewModel: CommunityViewModelProtocol>: View {
 
 struct CommunityView_Previews: PreviewProvider {
     static var previews: some View {
-        let router = Router()
-        let community = Community.community
-        let coordinator = CommunityCoordinator(community, router)
-        let viewModel = CommunityViewModel(coordinator: coordinator, community: community)
-        CommunityView(viewModel: viewModel)
+        CommunityView(viewModel: CommunityViewModel.preview)
     }
 }
