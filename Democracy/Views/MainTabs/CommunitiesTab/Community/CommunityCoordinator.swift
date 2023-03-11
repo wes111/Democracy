@@ -15,7 +15,7 @@ enum CommunityPath: Hashable {
 struct CommunityCoordinator: View {
     
     private let router: Router
-    private let community: Community
+    let community: Community
     
     init(_ community: Community,
          _ router: Router

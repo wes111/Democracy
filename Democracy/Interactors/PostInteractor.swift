@@ -5,11 +5,12 @@
 //  Created by Wesley Luntsford on 3/10/23.
 //
 
+import Combine
 import Foundation
 import Factory
 
 protocol PostInteractorProtocol {
-    func getPosts()
+    func subscribeToPosts() -> AnyPublisher<[Post], Never>
     func refreshPosts()
 }
 
@@ -18,16 +19,18 @@ struct PostInteractor: PostInteractorProtocol {
     @Injected(\.postLocalRepository) var localRepository
     @Injected(\.postRemoteRepository) var remoteRepository
     
+    private var postsPublisher = PassthroughSubject<[Post], Never>()
+    
     init() {
         
     }
     
-    func getPosts() {
-        print("get Posts.")
+    func subscribeToPosts() -> AnyPublisher<[Post], Never> {
+        postsPublisher.eraseToAnyPublisher()
     }
     
     func refreshPosts() {
-        print("refresh Posts.")
+        postsPublisher.send(Post.previewArray)
     }
     
 }
