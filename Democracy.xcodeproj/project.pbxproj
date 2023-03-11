@@ -31,6 +31,12 @@
 		EE80D8DC29BC18EE0000F8EF /* CommunityHomeFeedViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8DB29BC18EE0000F8EF /* CommunityHomeFeedViewModel+Preview.swift */; };
 		EE80D8DE29BC19ED0000F8EF /* HistoryTabCoordinator+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8DD29BC19ED0000F8EF /* HistoryTabCoordinator+Preview.swift */; };
 		EE80D8E029BC1A080000F8EF /* HistoryTabMainViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8DF29BC1A080000F8EF /* HistoryTabMainViewModel+Preview.swift */; };
+		EE80D8E229BC1DD80000F8EF /* PostInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8E129BC1DD80000F8EF /* PostInteractor.swift */; };
+		EE80D8E429BC1E2F0000F8EF /* PostLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8E329BC1E2F0000F8EF /* PostLocalRepository.swift */; };
+		EE80D8E629BC1F030000F8EF /* PostRemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8E529BC1F030000F8EF /* PostRemoteRepository.swift */; };
+		EE80D8E929BD11600000F8EF /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = EE80D8E829BD11600000F8EF /* Factory */; };
+		EE80D8EB29BD15640000F8EF /* ProjectNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8EA29BD15640000F8EF /* ProjectNotes.swift */; };
+		EE80D8ED29BD180E0000F8EF /* Container+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8EC29BD180E0000F8EF /* Container+Extensions.swift */; };
 		EED47ECD299F167100FEFC6E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECC299F167100FEFC6E /* MainCoordinator.swift */; };
 		EED47ECF299F167B00FEFC6E /* B.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECE299F167B00FEFC6E /* B.swift */; };
 		EED47ED1299F168200FEFC6E /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED0299F168200FEFC6E /* C.swift */; };
@@ -108,6 +114,11 @@
 		EE80D8DB29BC18EE0000F8EF /* CommunityHomeFeedViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunityHomeFeedViewModel+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8DD29BC19ED0000F8EF /* HistoryTabCoordinator+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryTabCoordinator+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8DF29BC1A080000F8EF /* HistoryTabMainViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HistoryTabMainViewModel+Preview.swift"; sourceTree = "<group>"; };
+		EE80D8E129BC1DD80000F8EF /* PostInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInteractor.swift; sourceTree = "<group>"; };
+		EE80D8E329BC1E2F0000F8EF /* PostLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLocalRepository.swift; sourceTree = "<group>"; };
+		EE80D8E529BC1F030000F8EF /* PostRemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRemoteRepository.swift; sourceTree = "<group>"; };
+		EE80D8EA29BD15640000F8EF /* ProjectNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNotes.swift; sourceTree = "<group>"; };
+		EE80D8EC29BD180E0000F8EF /* Container+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Extensions.swift"; sourceTree = "<group>"; };
 		EED47ECC299F167100FEFC6E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		EED47ECE299F167B00FEFC6E /* B.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B.swift; sourceTree = "<group>"; };
 		EED47ED0299F168200FEFC6E /* C.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
@@ -166,6 +177,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE80D8E929BD11600000F8EF /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +206,7 @@
 		EE80D8B729BC0EDC0000F8EF /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
+				EE80D8E129BC1DD80000F8EF /* PostInteractor.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -210,6 +223,7 @@
 		EE80D8B929BC0F240000F8EF /* Remote */ = {
 			isa = PBXGroup;
 			children = (
+				EE80D8E529BC1F030000F8EF /* PostRemoteRepository.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -217,6 +231,7 @@
 		EE80D8BA29BC0F2A0000F8EF /* Local */ = {
 			isa = PBXGroup;
 			children = (
+				EE80D8E329BC1E2F0000F8EF /* PostLocalRepository.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -468,6 +483,7 @@
 			isa = PBXGroup;
 			children = (
 				EED4A54229BAB60100DDCCDA /* Hashable+Extensions.swift */,
+				EE80D8EC29BD180E0000F8EF /* Container+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -491,6 +507,7 @@
 		EEF8345F299C6824001EEA5E /* Democracy */ = {
 			isa = PBXGroup;
 			children = (
+				EE80D8EA29BD15640000F8EF /* ProjectNotes.swift */,
 				EE80D8B829BC0EFA0000F8EF /* Repositories */,
 				EE80D8B729BC0EDC0000F8EF /* Interactors */,
 				EED4A54129BAB5F400DDCCDA /* Extensions */,
@@ -541,6 +558,9 @@
 			dependencies = (
 			);
 			name = Democracy;
+			packageProductDependencies = (
+				EE80D8E829BD11600000F8EF /* Factory */,
+			);
 			productName = Democracy;
 			productReference = EEF8345D299C6824001EEA5E /* Democracy.app */;
 			productType = "com.apple.product-type.application";
@@ -569,6 +589,9 @@
 				Base,
 			);
 			mainGroup = EEF83454299C6824001EEA5E;
+			packageReferences = (
+				EE80D8E729BD11600000F8EF /* XCRemoteSwiftPackageReference "Factory" */,
+			);
 			productRefGroup = EEF8345E299C6824001EEA5E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -624,12 +647,14 @@
 				EE80D8CE29BC15550000F8EF /* VotingTabCoordinator+Preview.swift in Sources */,
 				EED4A4FF29AA858600DDCCDA /* HistoryTabCoordinator.swift in Sources */,
 				EED4A4F929AA855900DDCCDA /* EventsTabCoordinator.swift in Sources */,
+				EE80D8EB29BD15640000F8EF /* ProjectNotes.swift in Sources */,
 				EE80D8D029BC157D0000F8EF /* VotingTabMainViewModel+Preview.swift in Sources */,
 				EED4A54329BAB60100DDCCDA /* Hashable+Extensions.swift in Sources */,
 				EED4A52629B810FF00DDCCDA /* Post.swift in Sources */,
 				EE80D8D829BC17020000F8EF /* UpdatesTabMainViewModel+Preview.swift in Sources */,
 				EE80D8B129BAE4A80000F8EF /* Post+Preview.swift in Sources */,
 				EED47ED1299F168200FEFC6E /* C.swift in Sources */,
+				EE80D8E429BC1E2F0000F8EF /* PostLocalRepository.swift in Sources */,
 				EED47ED3299F168800FEFC6E /* D.swift in Sources */,
 				EE54ADE729A40101007C3E3F /* AuthenticationCoordinator.swift in Sources */,
 				EED47ED9299F185700FEFC6E /* ViewModelB.swift in Sources */,
@@ -643,12 +668,14 @@
 				EE80D8DA29BC176E0000F8EF /* CommunityViewModel+Preview.swift in Sources */,
 				EED4A52C29B8190700DDCCDA /* PostView.swift in Sources */,
 				EE80D8B429BAE6410000F8EF /* Community+Preview.swift in Sources */,
+				EE80D8E629BC1F030000F8EF /* PostRemoteRepository.swift in Sources */,
 				EED4A50329AA86C900DDCCDA /* VotingTabMainView.swift in Sources */,
 				EE80D8BE29BC11240000F8EF /* CommunityCoordinator+Preview.swift in Sources */,
 				EED4A50929AA8BC100DDCCDA /* EventsTabMainViewModel.swift in Sources */,
 				EE80D8C629BC12C70000F8EF /* CommunitiesTabMainViewModel+Preview.swift in Sources */,
 				EE80D8C329BC12720000F8EF /* CommunitiesTabCoordinator+Preview.swift in Sources */,
 				EED4A54029BAB3E800DDCCDA /* Comment.swift in Sources */,
+				EE80D8E229BC1DD80000F8EF /* PostInteractor.swift in Sources */,
 				EED4A50F29AB1A5A00DDCCDA /* CommunitiesTabMainView.swift in Sources */,
 				EED4A4EF29AA7E9600DDCCDA /* RootView.swift in Sources */,
 				EE54ADDF29A329C9007C3E3F /* MainTabView.swift in Sources */,
@@ -663,6 +690,7 @@
 				EED4A51C29ABC2FE00DDCCDA /* User.swift in Sources */,
 				EED4A53A29B9629900DDCCDA /* PostCardView.swift in Sources */,
 				EED4A50729AA8BAE00DDCCDA /* EventsTabMainView.swift in Sources */,
+				EE80D8ED29BD180E0000F8EF /* Container+Extensions.swift in Sources */,
 				EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */,
 				EED4A53C29B965AF00DDCCDA /* PostCardViewModel.swift in Sources */,
 				EED4A50129AA859500DDCCDA /* UpdatesTabCoordinator.swift in Sources */,
@@ -869,6 +897,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EE80D8E729BD11600000F8EF /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EE80D8E829BD11600000F8EF /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE80D8E729BD11600000F8EF /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EEF83455299C6824001EEA5E /* Project object */;
 }

@@ -24,7 +24,7 @@ struct CommunityHomeFeedView<ViewModel: CommunityHomeFeedViewModelProtocol>: Vie
             }
         }
         .refreshable {
-            //viewModel.refreshCommunities()
+            viewModel.refreshPosts()
         }
     }
     

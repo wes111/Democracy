@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Factory
 
 protocol CommunityHomeFeedCoordinatorDelegate: PostCardCoordinatorDelegate {
 }
@@ -13,10 +14,14 @@ protocol CommunityHomeFeedCoordinatorDelegate: PostCardCoordinatorDelegate {
 protocol CommunityHomeFeedViewModelProtocol: ObservableObject {
     var posts: [Post] { get }
     var coordinator: CommunityHomeFeedCoordinatorDelegate { get }
+    
     func goToPost()
+    func refreshPosts()
 }
 
 final class CommunityHomeFeedViewModel: CommunityHomeFeedViewModelProtocol {
+    
+    @Injected(\.postInteractor) var postInteractor
     
     @Published var posts: [Post] = [
         Post.preview
@@ -31,6 +36,10 @@ final class CommunityHomeFeedViewModel: CommunityHomeFeedViewModelProtocol {
     
     func goToPost() {
         coordinator.goToPostView(Post.preview)
+    }
+    
+    func refreshPosts() {
+        postInteractor.refreshPosts()
     }
     
 }
