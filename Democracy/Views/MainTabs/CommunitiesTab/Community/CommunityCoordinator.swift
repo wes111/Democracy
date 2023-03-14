@@ -14,8 +14,10 @@ enum CommunityPath: Hashable {
 
 struct CommunityCoordinator: View {
     
-    private let router: Router
+    @State private var isShowingCreatePostView = false
     let community: Community
+    private let router: Router
+    
     
     init(_ community: Community,
          _ router: Router
@@ -29,6 +31,9 @@ struct CommunityCoordinator: View {
             .navigationDestination(for: CommunityPath.self) { path in
                 createViewFromPath(path)
             }
+            .popover(isPresented: $isShowingCreatePostView) {
+                createAddPostView()
+            }
     }
     
     @ViewBuilder
@@ -39,9 +44,9 @@ struct CommunityCoordinator: View {
         }
     }
     
-    func createCommunityView() -> CommunityView<CommunityViewModel> {
+    func createCommunityView() -> CommunityViewPicker<CommunityViewModel> {
         let viewModel = CommunityViewModel(coordinator: self, community: community)
-        return CommunityView(viewModel: viewModel)
+        return CommunityViewPicker(viewModel: viewModel)
     }
     
     func createPostView(post: Post) -> PostView<PostViewModel> {
@@ -49,10 +54,20 @@ struct CommunityCoordinator: View {
         let viewModel = PostViewModel(coordinator: coordinator, post: post)
         return PostView(viewModel: viewModel)
     }
+    
+    func createAddPostView() -> AddPostView<AddPostViewModel> {
+        let viewModel = AddPostViewModel()
+        return AddPostView(viewModel: viewModel)
+    }
 }
 
 extension CommunityCoordinator: CommunityCoordinatorDelegate {
     
+    func showCreatePostView() {
+        //TODO: Causes 'Update NavigationAuthority bound path tried to update multiple times per frame.'
+        isShowingCreatePostView = true
+    }
+
     func go() {
         print("go")
     }
@@ -69,6 +84,9 @@ extension CommunityCoordinator: CommunityHomeFeedCoordinatorDelegate {
 
 struct CommunityCoordinator_Previews: PreviewProvider {
     static var previews: some View {
-        CommunityCoordinator.preview
+        NavigationStack {
+            CommunityCoordinator.preview
+        }
+        
     }
 }

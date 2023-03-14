@@ -9,18 +9,26 @@ import Foundation
 
 protocol CommunityCoordinatorDelegate: CommunityHomeFeedCoordinatorDelegate {
     func go()
+    func showCreatePostView()
 }
 
 protocol CommunityViewModelProtocol: ObservableObject {
     var community: Community { get }
     var coordinator: CommunityCoordinatorDelegate { get }
+    var canCreatePost: Bool { get }
+    
     func go()
+    func showCreatePostView()
 }
 
 final class CommunityViewModel: CommunityViewModelProtocol {
 
     let coordinator: CommunityCoordinatorDelegate
     let community: Community
+    var canCreatePost: Bool {
+        return true
+        // Communityinteractor.canMakePostsInThisCommunity
+    }
     
     init(coordinator: CommunityCoordinatorDelegate,
          community: Community
@@ -31,6 +39,10 @@ final class CommunityViewModel: CommunityViewModelProtocol {
     
     func go() {
         coordinator.go()
+    }
+    
+    func showCreatePostView() {
+        coordinator.showCreatePostView()
     }
     
 }

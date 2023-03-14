@@ -13,8 +13,7 @@ enum CommunityTab: String {
     case archive = "Archive"
 }
 
-// Note: This is essentially a coordinator since it has a picker.
-struct CommunityView<ViewModel: CommunityViewModelProtocol>: View {
+struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
     
     @StateObject private var viewModel: ViewModel
     @State private var tabSelection: CommunityTab = .feed
@@ -54,6 +53,17 @@ struct CommunityView<ViewModel: CommunityViewModelProtocol>: View {
         }
         .navigationTitle(viewModel.community.name)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                if tabSelection == .feed {
+                    Button {
+                        viewModel.showCreatePostView()
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+        }
     }
     
     func createCommunityHomeFeedView() -> CommunityHomeFeedView<CommunityHomeFeedViewModel> {
@@ -65,6 +75,9 @@ struct CommunityView<ViewModel: CommunityViewModelProtocol>: View {
 
 struct CommunityView_Previews: PreviewProvider {
     static var previews: some View {
-        CommunityView(viewModel: CommunityViewModel.preview)
+        NavigationStack {
+            CommunityViewPicker(viewModel: CommunityViewModel.preview)
+        }
+        
     }
 }

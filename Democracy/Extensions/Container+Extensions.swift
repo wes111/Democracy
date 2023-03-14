@@ -20,11 +20,21 @@ extension Container {
     var postLocalRepository: Factory<PostLocalRepositoryProtocol> {
          self { PostLocalRepository() }
     }
-    
     var postRemoteRepository: Factory<PostRemoteRepositoryProtocol> {
          self { PostRemoteRepository() }
     }
-    
+    var userLocalRepository: Factory<UserLocalRepositoryProtocol> {
+         self { UserLocalRepository() }
+    }
+    var userRemoteRepository: Factory<UserRemoteRepositoryProtocol> {
+         self { UserRemoteRepository() }
+    }
+    var communityLocalRepository: Factory<CommunityLocalRepositoryProtocol> {
+         self { CommunityLocalRepository() }
+    }
+    var communityRemoteRepository: Factory<CommunityRemoteRepositoryProtocol> {
+         self { CommunityRemoteRepository() }
+    }
     
     // MARK: - Services
     
