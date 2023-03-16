@@ -9,7 +9,7 @@ import Combine
 import Factory
 
 protocol AddPostCoordinatorDelegate {
-    func go()
+    func close()
 }
 
 protocol AddPostViewModelProtocol: ObservableObject {
@@ -21,7 +21,7 @@ protocol AddPostViewModelProtocol: ObservableObject {
     var alert: AddPostAlert? { get set }
     var isLoading: Bool { get set }
     
-    func go()
+    func close()
     func submitPost()
 }
 
@@ -37,7 +37,14 @@ final class AddPostViewModel: AddPostViewModelProtocol {
     
     @Injected(\.postInteractor) var postInteractor
     
-    func go() {
+    let coordinator: AddPostCoordinatorDelegate
+    
+    init(coordinator: AddPostCoordinatorDelegate) {
+        self.coordinator = coordinator
+    }
+    
+    func close() {
+        coordinator.close()
     }
     
     func submitPost() {
@@ -53,6 +60,7 @@ final class AddPostViewModel: AddPostViewModelProtocol {
             }
             await MainActor.run {
                 isLoading = false
+                close()
             }
             
         }

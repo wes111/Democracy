@@ -14,7 +14,6 @@ enum PostField {
 struct AddPostView<ViewModel: AddPostViewModelProtocol>: View {
     
     @StateObject private var viewModel: ViewModel
-
     @FocusState private var focusedField: PostField?
     
     init(viewModel: ViewModel) {
@@ -22,38 +21,46 @@ struct AddPostView<ViewModel: AddPostViewModelProtocol>: View {
     }
     
     var body: some View {
-        ZStack {
-            VStack {
-                Text("Create Post")
-                    .font(.title)
-                Form {
-                    TextField("Title", text: $viewModel.title)
-                        .focused($focusedField, equals: .title)
-                        .submitLabel(.next)
-                    
-                    TextField("Subtitle", text: $viewModel.subtitle)
-                        .focused($focusedField, equals: .subtitle)
-                        .submitLabel(.next)
-                    
-                    TextField("Body", text: $viewModel.body)
-                        .focused($focusedField, equals: .body)
-                        .submitLabel(.next)
-                    
-                    TextField("Link", text: $viewModel.link)
-                        .focused($focusedField, equals: .link)
-                        .submitLabel(.next)
-                    
-                    Button {
-                        viewModel.submitPost()
-                    } label: {
-                        Text("Submit")
-                    }
-                    .disabled(viewModel.isLoading)
-                }
+        ZStack(alignment: .topTrailing) {
+            Button {
+                viewModel.close()
+            } label: {
+                Image(systemName: "xmark")
             }
             
-            if viewModel.isLoading {
-                ProgressView()
+            ZStack {
+                VStack {
+                    Text("Create Post")
+                        .font(.title)
+                    Form {
+                        TextField("Title", text: $viewModel.title)
+                            .focused($focusedField, equals: .title)
+                            .submitLabel(.next)
+                        
+                        TextField("Subtitle", text: $viewModel.subtitle)
+                            .focused($focusedField, equals: .subtitle)
+                            .submitLabel(.next)
+                        
+                        TextField("Body", text: $viewModel.body)
+                            .focused($focusedField, equals: .body)
+                            .submitLabel(.next)
+                        
+                        TextField("Link", text: $viewModel.link)
+                            .focused($focusedField, equals: .link)
+                            .submitLabel(.next)
+                        
+                        Button {
+                            viewModel.submitPost()
+                        } label: {
+                            Text("Submit")
+                        }
+                        .disabled(viewModel.isLoading)
+                    }
+                }
+                
+                if viewModel.isLoading {
+                    ProgressView()
+                }
             }
         }
         .onAppear {

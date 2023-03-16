@@ -31,7 +31,7 @@ struct CommunityCoordinator: View {
             .navigationDestination(for: CommunityPath.self) { path in
                 createViewFromPath(path)
             }
-            .popover(isPresented: $isShowingCreatePostView) {
+            .fullScreenCover(isPresented: $isShowingCreatePostView) {
                 createAddPostView()
             }
     }
@@ -56,7 +56,7 @@ struct CommunityCoordinator: View {
     }
     
     func createAddPostView() -> AddPostView<AddPostViewModel> {
-        let viewModel = AddPostViewModel()
+        let viewModel = AddPostViewModel(coordinator: self)
         return AddPostView(viewModel: viewModel)
     }
 }
@@ -79,14 +79,20 @@ extension CommunityCoordinator: CommunityHomeFeedCoordinatorDelegate {
     func goToPostView(_ post: Post) {
         router.push(CommunityPath.postView(post))
     }
+}
+
+extension CommunityCoordinator: AddPostCoordinatorDelegate {
     
+    func close() {
+        isShowingCreatePostView = false
+    }
 }
 
 struct CommunityCoordinator_Previews: PreviewProvider {
+    
     static var previews: some View {
         NavigationStack {
             CommunityCoordinator.preview
         }
-        
     }
 }
