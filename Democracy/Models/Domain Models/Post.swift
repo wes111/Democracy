@@ -11,15 +11,24 @@ struct Post: Identifiable {
     let id: UUID = UUID()
     let creationDate = Date()
     let title: String
-    let subtitle: String
+    let subtitle: String?
     let body: String
-    let comments: [Comment]
-    let likeCount: Int = 0
-    let superLikeCount: Int = 0
+    var comments: [Comment]?
+    var likeCount: Int = 0
+    var superLikeCount: Int = 0
     let creator: Comrade
     let community: Community = Community(name: "Postable Community", foundedDate: Date())
     let tags: [Tag]
     let link: Link?
+    
+    init(title: String, subtitle: String? = nil, body: String, creator: Comrade, tags: [Tag], link: Link? = nil) {
+        self.title = title
+        self.subtitle = subtitle
+        self.body = body
+        self.creator = creator
+        self.tags = tags
+        self.link = link
+    }
 }
 
 extension Post: Hashable {

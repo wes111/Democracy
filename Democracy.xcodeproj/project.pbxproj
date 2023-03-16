@@ -46,6 +46,7 @@
 		EE80D8FC29C01FF00000F8EF /* CommunityInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8FB29C01FF00000F8EF /* CommunityInteractor.swift */; };
 		EE80D8FE29C020780000F8EF /* CommunityLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8FD29C020780000F8EF /* CommunityLocalRepository.swift */; };
 		EE80D90029C020960000F8EF /* CommunityRemoteRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8FF29C020960000F8EF /* CommunityRemoteRepositoryProtocol.swift */; };
+		EE80D90229C2BB0C0000F8EF /* AddPostAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D90129C2BB0C0000F8EF /* AddPostAlert.swift */; };
 		EED47ECD299F167100FEFC6E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECC299F167100FEFC6E /* MainCoordinator.swift */; };
 		EED47ECF299F167B00FEFC6E /* B.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECE299F167B00FEFC6E /* B.swift */; };
 		EED47ED1299F168200FEFC6E /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED0299F168200FEFC6E /* C.swift */; };
@@ -137,6 +138,7 @@
 		EE80D8FB29C01FF00000F8EF /* CommunityInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityInteractor.swift; sourceTree = "<group>"; };
 		EE80D8FD29C020780000F8EF /* CommunityLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityLocalRepository.swift; sourceTree = "<group>"; };
 		EE80D8FF29C020960000F8EF /* CommunityRemoteRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRemoteRepositoryProtocol.swift; sourceTree = "<group>"; };
+		EE80D90129C2BB0C0000F8EF /* AddPostAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostAlert.swift; sourceTree = "<group>"; };
 		EED47ECC299F167100FEFC6E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		EED47ECE299F167B00FEFC6E /* B.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B.swift; sourceTree = "<group>"; };
 		EED47ED0299F168200FEFC6E /* C.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
@@ -299,13 +301,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		EE80D8EE29BD37710000F8EF /* AddPostost */ = {
+		EE80D8EE29BD37710000F8EF /* AddPost */ = {
 			isa = PBXGroup;
 			children = (
 				EE80D8EF29BD37860000F8EF /* AddPostView.swift */,
 				EE80D8F129BD39210000F8EF /* AddPostViewModel.swift */,
+				EE80D90129C2BB0C0000F8EF /* AddPostAlert.swift */,
 			);
-			path = AddPostost;
+			path = AddPost;
 			sourceTree = "<group>";
 		};
 		EED47ECB299F166300FEFC6E /* Views */ = {
@@ -463,7 +466,7 @@
 		EED4A52729B8185600DDCCDA /* Shared Views */ = {
 			isa = PBXGroup;
 			children = (
-				EE80D8EE29BD37710000F8EF /* AddPostost */,
+				EE80D8EE29BD37710000F8EF /* AddPost */,
 				EED4A52829B8186F00DDCCDA /* Post */,
 			);
 			path = "Shared Views";
@@ -662,6 +665,7 @@
 				EE80D8B629BAECCE0000F8EF /* Link.swift in Sources */,
 				EED47ECF299F167B00FEFC6E /* B.swift in Sources */,
 				EED4A51529AB1C7900DDCCDA /* HistoryTabMainViewModel.swift in Sources */,
+				EE80D90229C2BB0C0000F8EF /* AddPostAlert.swift in Sources */,
 				EEF83473299C6A11001EEA5E /* Router.swift in Sources */,
 				EE80D8F629C01EBA0000F8EF /* UserInteractor.swift in Sources */,
 				EE54ADEA29A712AE007C3E3F /* LoginView.swift in Sources */,

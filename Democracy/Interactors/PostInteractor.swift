@@ -11,6 +11,7 @@ import Factory
 protocol PostInteractorProtocol {
     func subscribeToPosts() -> AnyPublisher<[Post], Never>
     func refreshPosts()
+    func submitPost() async throws
 }
 
 struct PostInteractor: PostInteractorProtocol {
@@ -30,6 +31,11 @@ struct PostInteractor: PostInteractorProtocol {
     
     func refreshPosts() {
         postsPublisher.send(Post.previewArray)
+    }
+    
+    func submitPost() async throws {
+        try? await Task.sleep(nanoseconds: UInt64(3 * 1E9))
+        print("Post submitted")
     }
     
 }

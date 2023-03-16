@@ -32,7 +32,7 @@ struct PostCardView<ViewModel: PostCardViewModelProtocol>: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text(viewModel.post.title)
-                    Text(viewModel.post.subtitle)
+                    Text(viewModel.post.subtitle ?? "")
                 }
                 Spacer()
             }

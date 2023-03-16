@@ -13,7 +13,6 @@ extension Post {
         title: "The Title of a Post",
         subtitle: "The subtitle for this post",
         body: "The body of this post",
-        comments: [],
         creator: UserAccount(userName: "Hamlin"),
         tags: [
             Tag(name: "Dog"),
@@ -32,7 +31,6 @@ extension Post {
             title: "The Title of a Post",
             subtitle: "The subtitle for this post",
             body: "The body of this post",
-            comments: [],
             creator: UserAccount(userName: "Hamlin"),
             tags: [
                 Tag(name: "Dog"),
@@ -49,7 +47,6 @@ extension Post {
             title: "The Title of a Post",
             subtitle: "The subtitle for this post",
             body: "The body of this post",
-            comments: [],
             creator: UserAccount(userName: "Hamlin"),
             tags: [
                 Tag(name: "Dog"),
@@ -66,7 +63,6 @@ extension Post {
             title: "The Title of a Post",
             subtitle: "The subtitle for this post",
             body: "The body of this post",
-            comments: [],
             creator: UserAccount(userName: "Hamlin"),
             tags: [
                 Tag(name: "Dog"),
@@ -83,7 +79,6 @@ extension Post {
             title: "The Title of a Post",
             subtitle: "The subtitle for this post",
             body: "The body of this post",
-            comments: [],
             creator: UserAccount(userName: "Hamlin"),
             tags: [
                 Tag(name: "Dog"),
@@ -100,7 +95,6 @@ extension Post {
             title: "The Title of a Post",
             subtitle: "The subtitle for this post",
             body: "The body of this post",
-            comments: [],
             creator: UserAccount(userName: "Hamlin"),
             tags: [
                 Tag(name: "Dog"),
@@ -117,7 +111,6 @@ extension Post {
             title: "The Title of a Post",
             subtitle: "The subtitle for this post",
             body: "The body of this post",
-            comments: [],
             creator: UserAccount(userName: "Hamlin"),
             tags: [
                 Tag(name: "Dog"),
@@ -134,7 +127,6 @@ extension Post {
             title: "The Title of a Post",
             subtitle: "The subtitle for this post",
             body: "The body of this post",
-            comments: [],
             creator: UserAccount(userName: "Hamlin"),
             tags: [
                 Tag(name: "Dog"),
@@ -151,7 +143,6 @@ extension Post {
             title: "The Title of a Post",
             subtitle: "The subtitle for this post",
             body: "The body of this post",
-            comments: [],
             creator: UserAccount(userName: "Hamlin"),
             tags: [
                 Tag(name: "Dog"),
@@ -168,7 +159,6 @@ extension Post {
             title: "The Title of a Post",
             subtitle: "The subtitle for this post",
             body: "The body of this post",
-            comments: [],
             creator: UserAccount(userName: "Hamlin"),
             tags: [
                 Tag(name: "Dog"),
@@ -185,7 +175,6 @@ extension Post {
             title: "The Title of a Post",
             subtitle: "The subtitle for this post",
             body: "The body of this post",
-            comments: [],
             creator: UserAccount(userName: "Hamlin"),
             tags: [
                 Tag(name: "Dog"),
@@ -202,7 +191,6 @@ extension Post {
             title: "The Title of a Post",
             subtitle: "The subtitle for this post",
             body: "The body of this post",
-            comments: [],
             creator: UserAccount(userName: "Hamlin"),
             tags: [
                 Tag(name: "Dog"),
@@ -219,7 +207,6 @@ extension Post {
             title: "The Title of a Post",
             subtitle: "The subtitle for this post",
             body: "The body of this post",
-            comments: [],
             creator: UserAccount(userName: "Hamlin"),
             tags: [
                 Tag(name: "Dog"),
