@@ -33,10 +33,11 @@ struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
             .pickerStyle(.segmented)
             
             TabView(selection: $tabSelection) {
-                CommunityInfoView().tabItem {
-                    Text(CommunityTab.info.rawValue)
-                }
-                .tag(CommunityTab.info)
+                createCommunityInfoView()
+                    .tabItem {
+                        Text(CommunityTab.info.rawValue)
+                    }
+                    .tag(CommunityTab.info)
                 
                 createCommunityHomeFeedView()
                     .tabItem {
@@ -69,6 +70,11 @@ struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
     func createCommunityHomeFeedView() -> CommunityHomeFeedView<CommunityHomeFeedViewModel> {
         let viewModel = CommunityHomeFeedViewModel(coordinator: viewModel.coordinator)
         return CommunityHomeFeedView(viewModel: viewModel)
+    }
+    
+    func createCommunityInfoView() -> CommunityInfoView<CommunityInfoViewModel> {
+        let viewModel = CommunityInfoViewModel(coordinator: viewModel.coordinator)
+        return CommunityInfoView(viewModel: viewModel)
     }
     
 }

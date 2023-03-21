@@ -14,6 +14,9 @@ extension Container {
     var postInteractor: Factory<PostInteractorProtocol> {
          self { PostInteractor() }
     }
+    var candidateInteractor: Factory<CandidateInteractorProtocol> {
+         self { CandidateInteractor() }
+    }
     
     // MARK: - Repositories
     
@@ -34,6 +37,12 @@ extension Container {
     }
     var communityRemoteRepository: Factory<CommunityRemoteRepositoryProtocol> {
          self { CommunityRemoteRepository() }
+    }
+    var candidateLocalRepository: Factory<CandidateLocalRepositoryProtocol> {
+         self { CandidateLocalRepository() }
+    }
+    var candidateRemoteRepository: Factory<CandidateRemoteRepositoryProtocol> {
+         self { CandidateRemoteRepository() }
     }
     
     // MARK: - Services

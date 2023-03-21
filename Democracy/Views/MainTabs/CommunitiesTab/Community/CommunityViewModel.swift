@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CommunityCoordinatorDelegate: CommunityHomeFeedCoordinatorDelegate {
+protocol CommunityCoordinatorDelegate: CommunityHomeFeedCoordinatorDelegate, CommunityInfoCoordinatorDelegate {
     func go()
     func showCreatePostView()
 }

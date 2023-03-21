@@ -10,6 +10,8 @@ import SwiftUI
 enum CommunityPath: Hashable {
     case one
     case postView(Post)
+    case candidates
+    case singleCandidate(Candidate)
 }
 
 struct CommunityCoordinator: View {
@@ -41,6 +43,8 @@ struct CommunityCoordinator: View {
         switch path {
         case .one: Text("")
         case .postView(let post): createPostView(post: post)
+        case .candidates: createCandidatesView()
+        case .singleCandidate(let candidate): createCandidateView(candidate)
         }
     }
     
@@ -58,6 +62,16 @@ struct CommunityCoordinator: View {
     func createAddPostView() -> AddPostView<AddPostViewModel> {
         let viewModel = AddPostViewModel(coordinator: self)
         return AddPostView(viewModel: viewModel)
+    }
+    
+    func createCandidatesView() -> CandidatesView<CandidatesViewModel> {
+        let viewModel = CandidatesViewModel(coordinator: self)
+        return CandidatesView(viewModel: viewModel)
+    }
+    
+    func createCandidateView(_ candidate: Candidate) -> CandidateView<CandidateViewModel> {
+        let viewModel = CandidateViewModel(coordinator: self, candidate: candidate)
+        return CandidateView(viewModel: viewModel)
     }
 }
 
@@ -86,6 +100,28 @@ extension CommunityCoordinator: AddPostCoordinatorDelegate {
     func close() {
         isShowingCreatePostView = false
     }
+}
+
+extension CommunityCoordinator: CommunityInfoCoordinatorDelegate {
+    
+    func showCandidates() {
+        router.push(CommunityPath.candidates)
+    }
+}
+
+extension CommunityCoordinator: CandidateCardCoordinatorDelegate {
+    
+    func goToCandidateView(_ candidate: Candidate) {
+        router.push(CommunityPath.singleCandidate(candidate))
+    }
+}
+
+extension CommunityCoordinator: CandidateCoordinatorDelegate {
+    
+}
+
+extension CommunityCoordinator: CandidatesCoordinatorDelegate {
+    
 }
 
 struct CommunityCoordinator_Previews: PreviewProvider {

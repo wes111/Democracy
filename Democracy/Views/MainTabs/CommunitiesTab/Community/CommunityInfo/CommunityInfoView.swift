@@ -6,15 +6,27 @@
 //
 
 import SwiftUI
-
-struct CommunityInfoView: View {
+    
+struct CommunityInfoView<ViewModel: CommunityInfoViewModelProtocol>: View {
+    
+    @StateObject var viewModel: ViewModel
+    
+    init(viewModel: ViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+    
     var body: some View {
-        Text("Community Info view")
+        Button {
+            viewModel.showCandidates()
+        } label: {
+            Text("Show Candidates")
+        }
+
     }
 }
 
 struct CommunityInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        CommunityInfoView()
+        CommunityInfoView(viewModel: CommunityInfoViewModel.preview)
     }
 }
