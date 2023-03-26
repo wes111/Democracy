@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Community: Hashable, Identifiable {
-    let id: UUID = UUID() // TODO: Change where id is assigned value.
+struct Community: Hashable, Identifiable, Codable {
+    let id: UUID // TODO: Change where id is assigned value.
     let name: String
     let foundedDate: Date
+    let representatives: [Candidate]
 }

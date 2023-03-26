@@ -5,7 +5,8 @@
 //  Created by Wesley Luntsford on 3/20/23.
 //
 
-import Foundation
+import Combine
+import Factory
 
 protocol CandidateCardCoordinatorDelegate {
     func goToCandidateView(_ candidate: Candidate)
@@ -13,12 +14,17 @@ protocol CandidateCardCoordinatorDelegate {
 
 protocol CandidateCardViewModelProtocol: ObservableObject {
     func goToCandidateView()
+    
+    func upVoteCandidate()
+    func downVoteCandidate()
 }
 
 final class CandidateCardViewModel: CandidateCardViewModelProtocol {
     
+    @Injected(\.candidateInteractor) var candidateInteractor
+
     private let coordinator: CandidateCardCoordinatorDelegate
-    let candidate: Candidate
+    @Published var candidate: Candidate
     
     init(coordinator: CandidateCardCoordinatorDelegate,
          candidate: Candidate
@@ -31,8 +37,13 @@ final class CandidateCardViewModel: CandidateCardViewModelProtocol {
         coordinator.goToCandidateView(candidate)
     }
     
-    func noAction() {
-        print("No Action.")
+    func upVoteCandidate() {
+        candidateInteractor.upVoteCandidate(candidate)
+        self.candidate = try! candidateInteractor.getCandidate(id: candidate.id)
+    }
+    
+    func downVoteCandidate() {
+        candidateInteractor.downVoteCandidate(candidate)
     }
     
 }

@@ -17,7 +17,7 @@ struct Post: Identifiable {
     var likeCount: Int = 0
     var superLikeCount: Int = 0
     let creator: Comrade
-    let community: Community = Community(name: "Postable Community", foundedDate: Date())
+    let community: Community = Community.preview
     let tags: [Tag]
     let link: Link?
     

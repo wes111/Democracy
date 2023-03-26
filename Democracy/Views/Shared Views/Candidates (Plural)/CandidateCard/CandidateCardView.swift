@@ -23,7 +23,33 @@ struct CandidateCardView<ViewModel: CandidateCardViewModel>: View {
                     .scaledToFit()
                     .frame(maxHeight: 150)
             }
-            Text(viewModel.candidate.userName)
+            
+            HStack {
+                Text(viewModel.candidate.userName)
+                VStack {
+                    Button {
+                        viewModel.downVoteCandidate()
+                    } label: {
+                        Image(systemName: "arrow.down")
+                    }
+                    Text("\(viewModel.candidate.downVotes)")
+                }
+                VStack {
+                    Button {
+                        viewModel.upVoteCandidate()
+                    } label: {
+                        Image(systemName: "arrow.up")
+                    }
+                    Text("\(viewModel.candidate.upVotes)")
+                }
+                
+
+
+
+                
+                
+            }
+            
         }
         .onTapGesture {
             viewModel.goToCandidateView()

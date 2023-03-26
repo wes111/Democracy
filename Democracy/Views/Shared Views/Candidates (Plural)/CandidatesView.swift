@@ -22,6 +22,16 @@ struct CandidatesView<ViewModel: CandidatesViewModelProtocol>: View {
     
     var body: some View {
         ScrollView {
+            
+//            LazyVGrid(columns: columns) {
+//                ForEach(viewModel.representatives) { representative in
+//                    // TODO: Create slightly different card for reps.
+//                    createCandidateCardView(representative)
+//                }
+//            }
+            
+            Divider().padding(.top, 200)
+            
             LazyVGrid(columns: columns) {
                 ForEach(viewModel.candidates) { candidate in
                     createCandidateCardView(candidate)
@@ -30,7 +40,8 @@ struct CandidatesView<ViewModel: CandidatesViewModelProtocol>: View {
         }
         .padding()
         .refreshable {
-            viewModel.refreshPosts()
+            viewModel.refreshRepresentatives()
+            viewModel.refreshCandidates()
         }
     }
     

@@ -8,5 +8,13 @@
 import Foundation
 
 extension Community {
-    static let preview = Community(name: "Test Community", foundedDate: Date())
+    static let preview = Community(name: "Test Community", foundedDate: Date(), representatives: Candidate.representativePreviewArray)
+    
+    static var previewArray: [Community] {
+        var array: [Community] = []
+        for index in 0...25 {
+            array.append(Community(name: "Test Community \(index)", foundedDate: Date(), representatives: Candidate.representativePreviewArray))
+        }
+        return array
+    }
 }
