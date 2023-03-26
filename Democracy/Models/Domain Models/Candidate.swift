@@ -8,7 +8,7 @@
 import Foundation
 
 struct Candidate: Hashable, Identifiable, Codable {
-    let id: UUID
+    let id = UUID()
     let userName: String
     let firstName: String?
     let lastName: String?

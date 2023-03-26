@@ -44,7 +44,7 @@ struct CandidateInteractor: CandidateInteractorProtocol {
             //update local repository
             var upVotedCandidate = candidate
             upVotedCandidate.upVotes += 1
-            try localRepository.updateCandidate(upVotedCandidate)
+            //try localRepository.updateCandidate(upVotedCandidate)
             candidatesPublisher.send(try localRepository.getCandidates())
         } catch {
             

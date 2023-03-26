@@ -63,6 +63,9 @@
 		EE80D92229C9557D0000F8EF /* CandidateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D92129C9557D0000F8EF /* CandidateInteractor.swift */; };
 		EE80D92429C955C30000F8EF /* CandidateLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D92329C955C30000F8EF /* CandidateLocalRepository.swift */; };
 		EE80D92629C955DB0000F8EF /* CandidateRemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D92529C955DB0000F8EF /* CandidateRemoteRepository.swift */; };
+		EE80D92929D0D2420000F8EF /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = EE80D92829D0D2420000F8EF /* GRDB */; };
+		EE80D92D29D0D4DC0000F8EF /* GRDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D92C29D0D4DC0000F8EF /* GRDBService.swift */; };
+		EE80D93029D0D7970000F8EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D92F29D0D7970000F8EF /* AppDelegate.swift */; };
 		EED47ECD299F167100FEFC6E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECC299F167100FEFC6E /* MainCoordinator.swift */; };
 		EED47ECF299F167B00FEFC6E /* B.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECE299F167B00FEFC6E /* B.swift */; };
 		EED47ED1299F168200FEFC6E /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED0299F168200FEFC6E /* C.swift */; };
@@ -171,6 +174,8 @@
 		EE80D92129C9557D0000F8EF /* CandidateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateInteractor.swift; sourceTree = "<group>"; };
 		EE80D92329C955C30000F8EF /* CandidateLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateLocalRepository.swift; sourceTree = "<group>"; };
 		EE80D92529C955DB0000F8EF /* CandidateRemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateRemoteRepository.swift; sourceTree = "<group>"; };
+		EE80D92C29D0D4DC0000F8EF /* GRDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRDBService.swift; sourceTree = "<group>"; };
+		EE80D92F29D0D7970000F8EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EED47ECC299F167100FEFC6E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		EED47ECE299F167B00FEFC6E /* B.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B.swift; sourceTree = "<group>"; };
 		EED47ED0299F168200FEFC6E /* C.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
@@ -230,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE80D8E929BD11600000F8EF /* Factory in Frameworks */,
+				EE80D92929D0D2420000F8EF /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +391,32 @@
 				EE80D91929C9306A0000F8EF /* CandidateViewModel.swift */,
 			);
 			path = "Candidate (Single)";
+			sourceTree = "<group>";
+		};
+		EE80D92A29D0D48D0000F8EF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EE80D92B29D0D4A40000F8EF /* GRDBService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		EE80D92B29D0D4A40000F8EF /* GRDBService */ = {
+			isa = PBXGroup;
+			children = (
+				EE80D92C29D0D4DC0000F8EF /* GRDBService.swift */,
+			);
+			path = GRDBService;
+			sourceTree = "<group>";
+		};
+		EE80D92E29D0D7780000F8EF /* App Setup */ = {
+			isa = PBXGroup;
+			children = (
+				EEF83462299C6824001EEA5E /* ContentView.swift */,
+				EEF83460299C6824001EEA5E /* DemocracyApp.swift */,
+				EE80D92F29D0D7970000F8EF /* AppDelegate.swift */,
+			);
+			path = "App Setup";
 			sourceTree = "<group>";
 		};
 		EED47ECB299F166300FEFC6E /* Views */ = {
@@ -625,15 +657,15 @@
 		EEF8345F299C6824001EEA5E /* Democracy */ = {
 			isa = PBXGroup;
 			children = (
+				EE80D92E29D0D7780000F8EF /* App Setup */,
 				EE80D8EA29BD15640000F8EF /* ProjectNotes.swift */,
+				EE80D92A29D0D48D0000F8EF /* Services */,
 				EE80D8B829BC0EFA0000F8EF /* Repositories */,
 				EE80D8B729BC0EDC0000F8EF /* Interactors */,
 				EED4A54129BAB5F400DDCCDA /* Extensions */,
 				EED4A52429B80F7700DDCCDA /* Models */,
 				EED4A51629ABC1C800DDCCDA /* Views */,
 				EED4A51729ABC1FC00DDCCDA /* Example */,
-				EEF83460299C6824001EEA5E /* DemocracyApp.swift */,
-				EEF83462299C6824001EEA5E /* ContentView.swift */,
 				EEF83464299C6827001EEA5E /* Assets.xcassets */,
 				EEF83466299C6827001EEA5E /* Preview Content */,
 			);
@@ -678,6 +710,7 @@
 			name = Democracy;
 			packageProductDependencies = (
 				EE80D8E829BD11600000F8EF /* Factory */,
+				EE80D92829D0D2420000F8EF /* GRDB */,
 			);
 			productName = Democracy;
 			productReference = EEF8345D299C6824001EEA5E /* Democracy.app */;
@@ -709,6 +742,7 @@
 			mainGroup = EEF83454299C6824001EEA5E;
 			packageReferences = (
 				EE80D8E729BD11600000F8EF /* XCRemoteSwiftPackageReference "Factory" */,
+				EE80D92729D0D2420000F8EF /* XCRemoteSwiftPackageReference "GRDB.swift" */,
 			);
 			productRefGroup = EEF8345E299C6824001EEA5E /* Products */;
 			projectDirPath = "";
@@ -754,6 +788,7 @@
 				EE80D90229C2BB0C0000F8EF /* AddPostAlert.swift in Sources */,
 				EEF83473299C6A11001EEA5E /* Router.swift in Sources */,
 				EE80D8F629C01EBA0000F8EF /* UserInteractor.swift in Sources */,
+				EE80D93029D0D7970000F8EF /* AppDelegate.swift in Sources */,
 				EE54ADEA29A712AE007C3E3F /* LoginView.swift in Sources */,
 				EED4A51A29ABC2D400DDCCDA /* Community.swift in Sources */,
 				EED4A4F129AA7ED700DDCCDA /* RootViewModel.swift in Sources */,
@@ -788,6 +823,7 @@
 				EED47ED1299F168200FEFC6E /* C.swift in Sources */,
 				EE80D8E429BC1E2F0000F8EF /* PostLocalRepository.swift in Sources */,
 				EE80D91529C92DC70000F8EF /* Candidate+Preview.swift in Sources */,
+				EE80D92D29D0D4DC0000F8EF /* GRDBService.swift in Sources */,
 				EED47ED3299F168800FEFC6E /* D.swift in Sources */,
 				EE54ADE729A40101007C3E3F /* AuthenticationCoordinator.swift in Sources */,
 				EED47ED9299F185700FEFC6E /* ViewModelB.swift in Sources */,
@@ -1051,6 +1087,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		EE80D92729D0D2420000F8EF /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.10.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1058,6 +1102,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE80D8E729BD11600000F8EF /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
+		};
+		EE80D92829D0D2420000F8EF /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE80D92729D0D2420000F8EF /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

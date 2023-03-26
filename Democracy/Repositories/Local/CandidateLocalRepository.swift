@@ -5,6 +5,7 @@
 //  Created by Wesley Luntsford on 3/20/23.
 //
 
+import Factory
 import Foundation
 
 protocol CandidateLocalRepositoryProtocol {
@@ -27,6 +28,12 @@ class CandidateLocalRepository: CandidateLocalRepositoryProtocol {
     let decoder = JSONDecoder()
     let defaults = UserDefaults.standard
     let key = "Candidates"
+    
+    @Injected(\.grdbService) var grdbService
+    
+    init() {
+        let bob = grdbService.database
+    }
     
     func getCandidates() throws -> [Candidate] {
         guard let data = defaults.object(forKey: key) as? Data else {
@@ -62,11 +69,15 @@ class CandidateLocalRepository: CandidateLocalRepositoryProtocol {
         defaults.removeObject(forKey: key)
     }
     
+    func upvoteCandidate() {
+        //
+    }
+    
     func upvoteCandidate(id: UUID) {
-        var upVotedCandidate = candidate
-        upVotedCandidate.upVotes += 1
-        try localRepository.updateCandidate(upVotedCandidate)
-        candidatesPublisher.send(try localRepository.getCandidates())
+//        var upVotedCandidate = candidate
+//        upVotedCandidate.upVotes += 1
+//        try localRepository.updateCandidate(upVotedCandidate)
+//        candidatesPublisher.send(try getCandidates())
     }
     
 }

@@ -9,22 +9,30 @@ import Foundation
 
 extension Candidate {
     
-    static let preview = Candidate(id: UUID(), userName: "Hamlin11", firstName: "Wesley", lastName: "Luntsford", imageName: "bernie", upVotes: 10, downVotes: 5)
+    static let preview = Candidate(
+        userName: "Hamlin11",
+        firstName: "Bernie",
+        lastName: "Sanders",
+        imageName: "bernie",
+        upVotes: 5,
+        downVotes: 4,
+        community: Community(id: UUID(), name: "A Community", foundedDate: Date(), representatives: []),
+        isRepresentative: true)
     
-    static let representativePreview = Candidate(id: UUID(), userName: "Hamlin11", firstName: "Wesley", lastName: "Luntsford", imageName: "bernie", upVotes: 10, downVotes: 5)
+    static let representativePreview = Candidate.preview
     
     static var previewArray: [Candidate] {
-        var array: [Candidate] = [Candidate(id: UUID(), userName: "Bob", firstName: "Wesley", lastName: "Luntsford", imageName: "bernie", upVotes: 2, downVotes: 2)]
-        for index in 0...100 {
-            array.append(Candidate(id: UUID(), userName: "Bernie", firstName: "Wesley", lastName: "Luntsford", imageName: "bernie", upVotes: index, downVotes: index))
+        var array: [Candidate] = [Candidate.preview]
+        for _ in 0...100 {
+            array.append(Candidate.preview)
         }
         return array
     }
     
     static var representativePreviewArray: [Candidate] {
         var array: [Candidate] = []
-        for index in 0...10 {
-            array.append(Candidate(id: UUID(), userName: "Bernie", firstName: "Wesley", lastName: "Luntsford", imageName: "bernie", upVotes: index, downVotes: index))
+        for _ in 0...10 {
+            array.append(Candidate.preview)
         }
         return array
     }

@@ -50,5 +50,7 @@ extension Container {
     }
     
     // MARK: - Services
-    
+    var grdbService: Factory<GRDBServiceProtocol> {
+         self { GRDBService() }
+    }
 }
