@@ -24,11 +24,41 @@ class GRDBService: GRDBServiceProtocol {
             // Open or create the database
             let databaseURL = directoryURL.appendingPathComponent("db.sqlite")
             let dbQueue = try DatabaseQueue(path: databaseURL.path)
+            try migrator.migrate(dbQueue)
             return dbQueue
         } catch {
             print("\(error)")
             return nil
         }
     }()
+    
+    private var migrator: DatabaseMigrator {
+        var migrator = DatabaseMigrator()
+        
+        migrator.registerMigration("firstMigration") { db in
+            // Create a table
+            // See <https://swiftpackageindex.com/groue/grdb.swift/documentation/grdb/databaseschema>
+            try db.create(table: "candidate") { t in
+                
+                t.column("id", .text).primaryKey()
+                t.column("userName", .text).notNull()
+                t.column("firstName", .text)
+                t.column("lastName", .text)
+                t.column("imageName", .text)
+                t.column("upVotes", .integer).notNull()
+                t.column("downVotes", .integer).notNull()
+                t.column("communityId", .text).notNull()
+                t.column("isRepresentative", .boolean).notNull()
+            }
+        }
+        
+        
+        // Migrations for future application versions will be inserted here:
+        // migrator.registerMigration(...) { db in
+        //     ...
+        // }
+        
+        return migrator
+    }
     
 }

@@ -19,11 +19,11 @@ protocol CandidatesViewModelProtocol: ObservableObject {
     
     func refreshCandidates()
     func refreshRepresentatives()
+    func addCandidate()
 }
 
 final class CandidatesViewModel: CandidatesViewModelProtocol {
     
-    //TODO: Should representatives be in the CandidateInteractor?
     @Injected(\.candidateInteractor) var candidateInteractor
     @Injected(\.communityInteractor) var communityInteractor
     @Published var candidates: [Candidate] = []
@@ -35,20 +35,11 @@ final class CandidatesViewModel: CandidatesViewModelProtocol {
     init(coordinator: CandidatesCoordinatorDelegate
     ) {
         self.coordinator = coordinator
-        //candidateInteractor.subscribeToCandidates().assign(to: &$candidates)
+        candidateInteractor.subscribeToCandidates()
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$candidates)
+        
         communityInteractor.subscribeToRepresentatives().assign(to: &$representatives)
-        //candidateInteractor.subscribeToCandidates().receive(on: DispatchQueue.main).assign(to: &$candidates)
-        bob()
-    }
-    
-    func bob() {
-        candidateInteractor.subscribeToCandidates().sink { candidates in
-            Task {
-                await MainActor.run(body: {
-                    self.candidates = candidates
-                })
-            }
-        }.store(in: &cancellables)
     }
     
     func refreshCandidates() {
@@ -57,6 +48,18 @@ final class CandidatesViewModel: CandidatesViewModelProtocol {
     
     func refreshRepresentatives() {
         communityInteractor.refreshRepresentatives()
+    }
+    
+    func addCandidate() {
+        Task {
+            do {
+                //TODO: ...
+                try await candidateInteractor.addCandidate(Candidate.preview)
+            } catch {
+               print("Failed to add candidate, error: \(error)")
+            }
+        }
+        
     }
     
 }

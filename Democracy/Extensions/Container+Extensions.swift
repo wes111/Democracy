@@ -16,7 +16,6 @@ extension Container {
     }
     var candidateInteractor: Factory<CandidateInteractorProtocol> {
          self { CandidateInteractor() }
-            .singleton
     }
     var communityInteractor: Factory<CommunityInteractorProtocol> {
         self { CommunityInteractor() }

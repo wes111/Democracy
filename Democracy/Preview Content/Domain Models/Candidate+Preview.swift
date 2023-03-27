@@ -10,13 +10,14 @@ import Foundation
 extension Candidate {
     
     static let preview = Candidate(
+        id: UUID(),
         userName: "Hamlin11",
         firstName: "Bernie",
         lastName: "Sanders",
         imageName: "bernie",
         upVotes: 5,
         downVotes: 4,
-        community: Community(id: UUID(), name: "A Community", foundedDate: Date(), representatives: []),
+        communityId: UUID(),
         isRepresentative: true)
     
     static let representativePreview = Candidate.preview

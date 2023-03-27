@@ -12,10 +12,10 @@ import Foundation
 protocol CandidateInteractorProtocol {
     func subscribeToCandidates() -> AnyPublisher<[Candidate], Never>
     func refreshCandidates()
-    
-    func upVoteCandidate(_ candidate: Candidate)
+    func upVoteCandidate(_ candidate: Candidate) async throws
     func downVoteCandidate(_ candidate: Candidate)
-    func getCandidate(id: UUID) throws -> Candidate
+    func getCandidate(id: UUID) async throws -> Candidate?
+    func addCandidate(_ candidate: Candidate) async throws
 }
 
 struct CandidateInteractor: CandidateInteractorProtocol {
@@ -25,11 +25,7 @@ struct CandidateInteractor: CandidateInteractorProtocol {
     
     private var candidatesPublisher = CurrentValueSubject<[Candidate], Never>([])
     
-    init() {
-        // TODO: Had to make the interactor a singleton for now because the init is called to many times. fix.
-        refreshCandidates()
-        getCandidates()
-    }
+    init() {}
     
     func subscribeToCandidates() -> AnyPublisher<[Candidate], Never> {
         candidatesPublisher.eraseToAnyPublisher()
@@ -39,37 +35,34 @@ struct CandidateInteractor: CandidateInteractorProtocol {
         //feches from remote repository and then updates local.
     }
     
-    func upVoteCandidate(_ candidate: Candidate) {
-        do {
-            //update local repository
-            var upVotedCandidate = candidate
-            upVotedCandidate.upVotes += 1
-            //try localRepository.updateCandidate(upVotedCandidate)
-            candidatesPublisher.send(try localRepository.getCandidates())
-        } catch {
-            
+    private func updateCandidates() {
+        Task {
+            do {
+                let candidates = try await localRepository.getCandidates()
+                candidatesPublisher.send(candidates)
+            } catch {
+                print("Failed to update candidates from local repository, error: \(error)")
+            }
         }
-        //update remote repository
-        getCandidates()
+    }
+    
+    func upVoteCandidate(_ candidate: Candidate) async throws {
+        try await localRepository.upvoteCandidate(candidate)
+        updateCandidates()
     }
     
     func downVoteCandidate(_ candidate: Candidate) {
         print("Downvoted candidate")
+        updateCandidates()
     }
     
-    func getCandidate(id: UUID) throws -> Candidate {
-        guard let candidate = try localRepository.getCandidates().first(where: { $0.id == id }) else {
-            throw CandidateInteractorError.unexpected
-        }
-        return candidate
+    func getCandidate(id: UUID) async throws -> Candidate? {
+        try await localRepository.getCandidate(id: id)
     }
     
-    private func getCandidates() {
-        do {
-            candidatesPublisher.send(try localRepository.getCandidates())
-        } catch {
-            print("Failed to get candidates from local storage, error: \(error)")
-        }
+    func addCandidate(_ candidate: Candidate) async throws {
+        try await localRepository.addCandidate(candidate)
+        updateCandidates()
     }
     
 }

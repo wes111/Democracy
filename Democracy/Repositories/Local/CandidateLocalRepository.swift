@@ -7,77 +7,75 @@
 
 import Factory
 import Foundation
+import GRDB
 
 protocol CandidateLocalRepositoryProtocol {
-    func getCandidates() throws -> [Candidate]
-    //func updateCandidate(_ candidate: Candidate) throws
-    func addCandidates(_ candidates: [Candidate]) throws
-    //func initiallyStoreCandidates(_ candidates: [Candidate]) throws
-    func deleteAllCandidates()
-    
-    func upvoteCandidate()
+    func getCandidates() async throws -> [Candidate]
+    func addCandidate(_ candidate: Candidate) async throws
+    func deleteAllCandidates() async throws
+    func upvoteCandidate(_ candidate: Candidate) async throws
+    func getCandidate(id: UUID) async throws -> Candidate?
 }
 
 enum CandidateLocalRepositoryError: Error {
     case unexpected
+    case noDatabase
 }
 
 class CandidateLocalRepository: CandidateLocalRepositoryProtocol {
-
-    let encoder = JSONEncoder()
-    let decoder = JSONDecoder()
-    let defaults = UserDefaults.standard
-    let key = "Candidates"
     
     @Injected(\.grdbService) var grdbService
+    private var db: DatabaseQueue?
     
     init() {
-        let bob = grdbService.database
+        self.db = grdbService.database
     }
     
-    func getCandidates() throws -> [Candidate] {
-        guard let data = defaults.object(forKey: key) as? Data else {
-            throw CandidateLocalRepositoryError.unexpected
-        }
-        return try decoder.decode([Candidate].self, from: data)
+    private func createTable() {
         
     }
     
-    func initiallyStoreCandidates(_ candidates: [Candidate]) throws {
-        let encoded = try encoder.encode(candidates)
-        defaults.set(encoded, forKey: key)
-    }
-    
-    func addCandidates(_ candidates: [Candidate]) throws {
-        var currentCandidates = try getCandidates()
-        currentCandidates += candidates
-        let encoded = try encoder.encode(candidates)
-        defaults.set(encoded, forKey: key)
-    }
-    
-    private func updateCandidate(_ candidate: Candidate) throws {
-        var candidates = try getCandidates()
-        guard let index = candidates.firstIndex(where: { $0.id == candidate.id }) else {
-            return print("Tried to update candidate but didn't find the candidate's ID")
+    func getCandidates() async throws -> [Candidate] {
+        guard let db = db else {
+            throw CandidateLocalRepositoryError.noDatabase
         }
-        candidates[index] = candidate
-        let encoded = try encoder.encode(candidates)
-        defaults.set(encoded, forKey: key)
+        return try await db.read { db in
+            try Candidate.fetchAll(db)
+        }
     }
     
-    func deleteAllCandidates() {
-        defaults.removeObject(forKey: key)
+    func addCandidate(_ candidate: Candidate) async throws {
+        guard let db = db else {
+            throw CandidateLocalRepositoryError.noDatabase
+        }
+        
+        try await db.write { db in
+            try candidate.insert(db)
+        }
     }
     
-    func upvoteCandidate() {
-        //
+    func deleteAllCandidates() async throws {
+        guard let db = db else {
+            throw CandidateLocalRepositoryError.noDatabase
+        }
+        try await db.write { db in
+            _ = try Candidate.deleteAll(db)
+        }
     }
     
-    func upvoteCandidate(id: UUID) {
-//        var upVotedCandidate = candidate
-//        upVotedCandidate.upVotes += 1
-//        try localRepository.updateCandidate(upVotedCandidate)
-//        candidatesPublisher.send(try getCandidates())
+    func upvoteCandidate(_ candidate: Candidate) async throws {
+        guard let db = db else {
+            throw CandidateLocalRepositoryError.unexpected
+        }
+        try await db.write { db in
+            var upvotedCandidate = candidate
+            upvotedCandidate.upVotes += 1
+            try upvotedCandidate.save(db)
+        }
+    }
+    
+    func getCandidate(id: UUID) async throws -> Candidate? {
+        try await getCandidates().first(where: { $0.id == id })
     }
     
 }

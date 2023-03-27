@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import GRDB
 
 struct Candidate: Hashable, Identifiable, Codable {
-    let id = UUID()
+    let id: UUID
     let userName: String
     let firstName: String?
     let lastName: String?
@@ -18,6 +19,10 @@ struct Candidate: Hashable, Identifiable, Codable {
     var score: Int {
         upVotes - downVotes
     }
-    let community: Community
+    let communityId: UUID
     let isRepresentative: Bool // This will be determined by server?
+}
+
+extension Candidate: FetchableRecord, PersistableRecord {
+    
 }
