@@ -16,10 +16,11 @@ protocol CandidatesViewModelProtocol: ObservableObject {
     var coordinator: CandidatesCoordinatorDelegate { get }
     var candidates: [Candidate] { get }
     var representatives: [Candidate] { get }
+    var isShowingCreateCandidateView: Bool { get set }
     
     func refreshCandidates()
     func refreshRepresentatives()
-    func addCandidate()
+    func showCreateCandidateView()
 }
 
 final class CandidatesViewModel: CandidatesViewModelProtocol {
@@ -28,6 +29,7 @@ final class CandidatesViewModel: CandidatesViewModelProtocol {
     @Injected(\.communityInteractor) var communityInteractor
     @Published var candidates: [Candidate] = []
     @Published var representatives: [Candidate] = []
+    @Published var isShowingCreateCandidateView = false
 
     let coordinator: CandidatesCoordinatorDelegate
     private var cancellables = Set<AnyCancellable>()
@@ -50,17 +52,10 @@ final class CandidatesViewModel: CandidatesViewModelProtocol {
         communityInteractor.refreshRepresentatives()
     }
     
-    func addCandidate() {
-        Task {
-            do {
-                //TODO: ...
-                try await candidateInteractor.addCandidate(Candidate.preview)
-            } catch {
-               print("Failed to add candidate, error: \(error)")
-            }
-        }
-        
+    func showCreateCandidateView() {
+        isShowingCreateCandidateView = true
     }
+    
     
 }
 

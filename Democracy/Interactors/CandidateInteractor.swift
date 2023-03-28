@@ -16,6 +16,7 @@ protocol CandidateInteractorProtocol {
     func downVoteCandidate(_ candidate: Candidate) async throws
     func getCandidate(id: UUID) async throws -> Candidate?
     func addCandidate(_ candidate: Candidate) async throws
+    func submitCandidate() async throws
 }
 
 struct CandidateInteractor: CandidateInteractorProtocol {
@@ -66,6 +67,10 @@ struct CandidateInteractor: CandidateInteractorProtocol {
     func addCandidate(_ candidate: Candidate) async throws {
         try await localRepository.addCandidate(candidate)
         updateCandidates()
+    }
+    
+    func submitCandidate() async throws {
+        
     }
     
 }

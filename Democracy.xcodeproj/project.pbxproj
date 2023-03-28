@@ -66,6 +66,10 @@
 		EE80D92929D0D2420000F8EF /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = EE80D92829D0D2420000F8EF /* GRDB */; };
 		EE80D92D29D0D4DC0000F8EF /* GRDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D92C29D0D4DC0000F8EF /* GRDBService.swift */; };
 		EE80D93029D0D7970000F8EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D92F29D0D7970000F8EF /* AppDelegate.swift */; };
+		EE80D93329D286180000F8EF /* CreateCandidateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D93229D286180000F8EF /* CreateCandidateView.swift */; };
+		EE80D93529D286240000F8EF /* CreateCandidateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D93429D286240000F8EF /* CreateCandidateViewModel.swift */; };
+		EE80D93729D289BB0000F8EF /* CreateCandidateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D93629D289BB0000F8EF /* CreateCandidateAlert.swift */; };
+		EE80D93929D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D93829D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift */; };
 		EED47ECD299F167100FEFC6E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECC299F167100FEFC6E /* MainCoordinator.swift */; };
 		EED47ECF299F167B00FEFC6E /* B.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECE299F167B00FEFC6E /* B.swift */; };
 		EED47ED1299F168200FEFC6E /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED0299F168200FEFC6E /* C.swift */; };
@@ -176,6 +180,10 @@
 		EE80D92529C955DB0000F8EF /* CandidateRemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidateRemoteRepository.swift; sourceTree = "<group>"; };
 		EE80D92C29D0D4DC0000F8EF /* GRDBService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GRDBService.swift; sourceTree = "<group>"; };
 		EE80D92F29D0D7970000F8EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EE80D93229D286180000F8EF /* CreateCandidateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCandidateView.swift; sourceTree = "<group>"; };
+		EE80D93429D286240000F8EF /* CreateCandidateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCandidateViewModel.swift; sourceTree = "<group>"; };
+		EE80D93629D289BB0000F8EF /* CreateCandidateAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCandidateAlert.swift; sourceTree = "<group>"; };
+		EE80D93829D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateCandidateViewModel+Preview.swift"; sourceTree = "<group>"; };
 		EED47ECC299F167100FEFC6E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		EED47ECE299F167B00FEFC6E /* B.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B.swift; sourceTree = "<group>"; };
 		EED47ED0299F168200FEFC6E /* C.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
@@ -343,6 +351,7 @@
 				EE80D91229C92DA60000F8EF /* CandidateCardViewModel+Preview.swift */,
 				EE80D91B29C930C40000F8EF /* CandidateViewModel+Preview.swift */,
 				EE80D91F29C938320000F8EF /* CandidatesViewModel+Preview.swift */,
+				EE80D93829D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -367,6 +376,7 @@
 		EE80D90629C926490000F8EF /* Candidates (Plural) */ = {
 			isa = PBXGroup;
 			children = (
+				EE80D93129D285F60000F8EF /* CreateCandidate */,
 				EE80D90729C926600000F8EF /* CandidatesView.swift */,
 				EE80D91D29C932180000F8EF /* CandidatesViewModel.swift */,
 				EE80D91629C92F1F0000F8EF /* Candidate (Single) */,
@@ -417,6 +427,16 @@
 				EE80D92F29D0D7970000F8EF /* AppDelegate.swift */,
 			);
 			path = "App Setup";
+			sourceTree = "<group>";
+		};
+		EE80D93129D285F60000F8EF /* CreateCandidate */ = {
+			isa = PBXGroup;
+			children = (
+				EE80D93229D286180000F8EF /* CreateCandidateView.swift */,
+				EE80D93429D286240000F8EF /* CreateCandidateViewModel.swift */,
+				EE80D93629D289BB0000F8EF /* CreateCandidateAlert.swift */,
+			);
+			path = CreateCandidate;
 			sourceTree = "<group>";
 		};
 		EED47ECB299F166300FEFC6E /* Views */ = {
@@ -576,7 +596,6 @@
 			isa = PBXGroup;
 			children = (
 				EE80D90629C926490000F8EF /* Candidates (Plural) */,
-				EE80D8EE29BD37710000F8EF /* AddPost */,
 				EED4A52829B8186F00DDCCDA /* Post */,
 			);
 			path = "Shared Views";
@@ -585,6 +604,7 @@
 		EED4A52829B8186F00DDCCDA /* Post */ = {
 			isa = PBXGroup;
 			children = (
+				EE80D8EE29BD37710000F8EF /* AddPost */,
 				EED4A52929B8187D00DDCCDA /* PostCoordinator.swift */,
 				EED4A52B29B8190700DDCCDA /* PostView.swift */,
 				EED4A52D29B81A2E00DDCCDA /* PostViewModel.swift */,
@@ -772,6 +792,7 @@
 			files = (
 				EE80D91A29C9306A0000F8EF /* CandidateViewModel.swift in Sources */,
 				EED4A52129ABC86D00DDCCDA /* CommunityViewPicker.swift in Sources */,
+				EE80D93729D289BB0000F8EF /* CreateCandidateAlert.swift in Sources */,
 				EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */,
 				EE80D92429C955C30000F8EF /* CandidateLocalRepository.swift in Sources */,
 				EE80D8F029BD37860000F8EF /* AddPostView.swift in Sources */,
@@ -845,6 +866,7 @@
 				EE80D8E629BC1F030000F8EF /* PostRemoteRepository.swift in Sources */,
 				EED4A50329AA86C900DDCCDA /* VotingTabMainView.swift in Sources */,
 				EE80D8FA29C01F360000F8EF /* UserRemoteRepository.swift in Sources */,
+				EE80D93929D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift in Sources */,
 				EE80D8BE29BC11240000F8EF /* CommunityCoordinator+Preview.swift in Sources */,
 				EED4A50929AA8BC100DDCCDA /* EventsTabMainViewModel.swift in Sources */,
 				EE80D8C629BC12C70000F8EF /* CommunitiesTabMainViewModel+Preview.swift in Sources */,
@@ -856,6 +878,7 @@
 				EED4A4EF29AA7E9600DDCCDA /* RootView.swift in Sources */,
 				EE54ADDF29A329C9007C3E3F /* MainTabView.swift in Sources */,
 				EED4A51F29ABC86300DDCCDA /* CommunityCoordinator.swift in Sources */,
+				EE80D93529D286240000F8EF /* CreateCandidateViewModel.swift in Sources */,
 				EED4A50B29AB18D400DDCCDA /* UpdatesTabMainView.swift in Sources */,
 				EED4A4FB29AA857000DDCCDA /* VotingTabCoordinator.swift in Sources */,
 				EE80D8D429BC15FC0000F8EF /* EventsTabMainViewModel+Preview.swift in Sources */,
@@ -872,6 +895,7 @@
 				EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */,
 				EE80D92029C938320000F8EF /* CandidatesViewModel+Preview.swift in Sources */,
 				EED4A53C29B965AF00DDCCDA /* PostCardViewModel.swift in Sources */,
+				EE80D93329D286180000F8EF /* CreateCandidateView.swift in Sources */,
 				EE80D8FE29C020780000F8EF /* CommunityLocalRepository.swift in Sources */,
 				EED4A50129AA859500DDCCDA /* UpdatesTabCoordinator.swift in Sources */,
 				EE80D8D629BC16D90000F8EF /* UpdatesTabCoordinator+Preview.swift in Sources */,

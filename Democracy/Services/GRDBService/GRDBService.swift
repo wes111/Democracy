@@ -49,6 +49,8 @@ class GRDBService: GRDBServiceProtocol {
                 t.column("downVotes", .integer).notNull()
                 t.column("communityId", .text).notNull()
                 t.column("isRepresentative", .boolean).notNull()
+                t.column("summary", .text).notNull()
+                t.column("externalLink", .text)
             }
         }
         

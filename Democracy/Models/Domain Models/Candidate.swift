@@ -9,8 +9,8 @@ import Foundation
 import GRDB
 
 struct Candidate: Hashable, Identifiable, Codable {
-    let id: UUID
-    let userName: String
+    let id: UUID // <-- link to user.
+    let userName: String // TODO: Remove these 4 fields, should be in user.
     let firstName: String?
     let lastName: String?
     let imageName: String?
@@ -21,6 +21,8 @@ struct Candidate: Hashable, Identifiable, Codable {
     }
     let communityId: UUID
     let isRepresentative: Bool // This will be determined by server?
+    let summary: String
+    let exteneralLink: String?
 }
 
 extension Candidate: FetchableRecord, PersistableRecord {

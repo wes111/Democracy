@@ -23,7 +23,7 @@ struct CandidatesView<ViewModel: CandidatesViewModelProtocol>: View {
     var body: some View {
         VStack {
             Button {
-                viewModel.addCandidate()
+                viewModel.showCreateCandidateView()
             } label: {
                 Image(systemName: "plus")
             }
@@ -52,11 +52,26 @@ struct CandidatesView<ViewModel: CandidatesViewModelProtocol>: View {
             viewModel.refreshRepresentatives()
             viewModel.refreshCandidates()
         }
+        .fullScreenCover(isPresented: $viewModel.isShowingCreateCandidateView) {
+            createCreateCandidateView()
+        }
     }
     
     func createCandidateCardView(_ candidate: Candidate) -> CandidateCardView<CandidateCardViewModel> {
         let viewModel = CandidateCardViewModel(coordinator: viewModel.coordinator, candidate: candidate)
         return CandidateCardView(viewModel: viewModel)
+    }
+    
+    func createCreateCandidateView() -> CreateCandidateView<CreateCandidateViewModel> {
+        let viewModel = CreateCandidateViewModel(coordinator: self)
+        return CreateCandidateView(viewModel: viewModel)
+    }
+}
+
+extension CandidatesView: CreateCandidateCoordinatorDelegate {
+    
+    func closeCreateCandidateView() {
+        viewModel.isShowingCreateCandidateView = false
     }
 }
 
