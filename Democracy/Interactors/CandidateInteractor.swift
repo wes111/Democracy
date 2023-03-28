@@ -13,7 +13,7 @@ protocol CandidateInteractorProtocol {
     func subscribeToCandidates() -> AnyPublisher<[Candidate], Never>
     func refreshCandidates()
     func upVoteCandidate(_ candidate: Candidate) async throws
-    func downVoteCandidate(_ candidate: Candidate)
+    func downVoteCandidate(_ candidate: Candidate) async throws
     func getCandidate(id: UUID) async throws -> Candidate?
     func addCandidate(_ candidate: Candidate) async throws
 }
@@ -23,12 +23,15 @@ struct CandidateInteractor: CandidateInteractorProtocol {
     @Injected(\.candidateLocalRepository) var localRepository
     @Injected(\.candidateRemoteRepository) var remoteRepository
     
-    private var candidatesPublisher = CurrentValueSubject<[Candidate], Never>([])
+    private var candidatesPublisher = PassthroughSubject<[Candidate], Never>()
     
     init() {}
     
     func subscribeToCandidates() -> AnyPublisher<[Candidate], Never> {
-        candidatesPublisher.eraseToAnyPublisher()
+        defer {
+            updateCandidates()
+        }
+        return candidatesPublisher.eraseToAnyPublisher()
     }
     
     func refreshCandidates() {
@@ -47,12 +50,12 @@ struct CandidateInteractor: CandidateInteractorProtocol {
     }
     
     func upVoteCandidate(_ candidate: Candidate) async throws {
-        try await localRepository.upvoteCandidate(candidate)
+        try await localRepository.upVoteCandidate(candidate)
         updateCandidates()
     }
     
-    func downVoteCandidate(_ candidate: Candidate) {
-        print("Downvoted candidate")
+    func downVoteCandidate(_ candidate: Candidate) async throws {
+        try await localRepository.downVoteCandidate(candidate)
         updateCandidates()
     }
     

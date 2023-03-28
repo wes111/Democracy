@@ -13,7 +13,8 @@ protocol CandidateLocalRepositoryProtocol {
     func getCandidates() async throws -> [Candidate]
     func addCandidate(_ candidate: Candidate) async throws
     func deleteAllCandidates() async throws
-    func upvoteCandidate(_ candidate: Candidate) async throws
+    func upVoteCandidate(_ candidate: Candidate) async throws
+    func downVoteCandidate(_ candidate: Candidate) async throws
     func getCandidate(id: UUID) async throws -> Candidate?
 }
 
@@ -63,14 +64,25 @@ class CandidateLocalRepository: CandidateLocalRepositoryProtocol {
         }
     }
     
-    func upvoteCandidate(_ candidate: Candidate) async throws {
+    func upVoteCandidate(_ candidate: Candidate) async throws {
         guard let db = db else {
-            throw CandidateLocalRepositoryError.unexpected
+            throw CandidateLocalRepositoryError.noDatabase
         }
         try await db.write { db in
             var upvotedCandidate = candidate
             upvotedCandidate.upVotes += 1
             try upvotedCandidate.save(db)
+        }
+    }
+    
+    func downVoteCandidate(_ candidate: Candidate) async throws {
+        guard let db = db else {
+            throw CandidateLocalRepositoryError.noDatabase
+        }
+        try await db.write { db in
+            var downVotedCandidate = candidate
+            downVotedCandidate.downVotes -= 1
+            try downVotedCandidate.save(db)
         }
     }
     
