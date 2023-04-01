@@ -13,7 +13,7 @@ extension Post {
         title: "The Title of a Post",
         subtitle: "The subtitle for this post",
         body: "The body of this post",
-        creator: UserAccount(userName: "Hamlin"),
+        creator: User.preview,
         tags: [
             Tag(name: "Dog"),
             Tag(name: "Cat"),
@@ -23,202 +23,29 @@ extension Post {
             Tag(name: "Zebra"),
             Tag(name: "Donkey"),
             Tag(name: "Chicken")
-        ],
-        link: nil)
+        ]
+    )
     
-    static let previewArray = [
-        Post(
-            title: "The Title of a Post",
-            subtitle: "The subtitle for this post",
-            body: "The body of this post",
-            creator: UserAccount(userName: "Hamlin"),
-            tags: [
-                Tag(name: "Dog"),
-                Tag(name: "Cat"),
-                Tag(name: "Mouse"),
-                Tag(name: "Horse"),
-                Tag(name: "Elephant"),
-                Tag(name: "Zebra"),
-                Tag(name: "Donkey"),
-                Tag(name: "Chicken")
-            ],
-            link: nil),
-        Post(
-            title: "The Title of a Post",
-            subtitle: "The subtitle for this post",
-            body: "The body of this post",
-            creator: UserAccount(userName: "Hamlin"),
-            tags: [
-                Tag(name: "Dog"),
-                Tag(name: "Cat"),
-                Tag(name: "Mouse"),
-                Tag(name: "Horse"),
-                Tag(name: "Elephant"),
-                Tag(name: "Zebra"),
-                Tag(name: "Donkey"),
-                Tag(name: "Chicken")
-            ],
-            link: nil),
-        Post(
-            title: "The Title of a Post",
-            subtitle: "The subtitle for this post",
-            body: "The body of this post",
-            creator: UserAccount(userName: "Hamlin"),
-            tags: [
-                Tag(name: "Dog"),
-                Tag(name: "Cat"),
-                Tag(name: "Mouse"),
-                Tag(name: "Horse"),
-                Tag(name: "Elephant"),
-                Tag(name: "Zebra"),
-                Tag(name: "Donkey"),
-                Tag(name: "Chicken")
-            ],
-            link: nil),
-        Post(
-            title: "The Title of a Post",
-            subtitle: "The subtitle for this post",
-            body: "The body of this post",
-            creator: UserAccount(userName: "Hamlin"),
-            tags: [
-                Tag(name: "Dog"),
-                Tag(name: "Cat"),
-                Tag(name: "Mouse"),
-                Tag(name: "Horse"),
-                Tag(name: "Elephant"),
-                Tag(name: "Zebra"),
-                Tag(name: "Donkey"),
-                Tag(name: "Chicken")
-            ],
-            link: nil),
-        Post(
-            title: "The Title of a Post",
-            subtitle: "The subtitle for this post",
-            body: "The body of this post",
-            creator: UserAccount(userName: "Hamlin"),
-            tags: [
-                Tag(name: "Dog"),
-                Tag(name: "Cat"),
-                Tag(name: "Mouse"),
-                Tag(name: "Horse"),
-                Tag(name: "Elephant"),
-                Tag(name: "Zebra"),
-                Tag(name: "Donkey"),
-                Tag(name: "Chicken")
-            ],
-            link: nil),
-        Post(
-            title: "The Title of a Post",
-            subtitle: "The subtitle for this post",
-            body: "The body of this post",
-            creator: UserAccount(userName: "Hamlin"),
-            tags: [
-                Tag(name: "Dog"),
-                Tag(name: "Cat"),
-                Tag(name: "Mouse"),
-                Tag(name: "Horse"),
-                Tag(name: "Elephant"),
-                Tag(name: "Zebra"),
-                Tag(name: "Donkey"),
-                Tag(name: "Chicken")
-            ],
-            link: nil),
-        Post(
-            title: "The Title of a Post",
-            subtitle: "The subtitle for this post",
-            body: "The body of this post",
-            creator: UserAccount(userName: "Hamlin"),
-            tags: [
-                Tag(name: "Dog"),
-                Tag(name: "Cat"),
-                Tag(name: "Mouse"),
-                Tag(name: "Horse"),
-                Tag(name: "Elephant"),
-                Tag(name: "Zebra"),
-                Tag(name: "Donkey"),
-                Tag(name: "Chicken")
-            ],
-            link: nil),
-        Post(
-            title: "The Title of a Post",
-            subtitle: "The subtitle for this post",
-            body: "The body of this post",
-            creator: UserAccount(userName: "Hamlin"),
-            tags: [
-                Tag(name: "Dog"),
-                Tag(name: "Cat"),
-                Tag(name: "Mouse"),
-                Tag(name: "Horse"),
-                Tag(name: "Elephant"),
-                Tag(name: "Zebra"),
-                Tag(name: "Donkey"),
-                Tag(name: "Chicken")
-            ],
-            link: nil),
-        Post(
-            title: "The Title of a Post",
-            subtitle: "The subtitle for this post",
-            body: "The body of this post",
-            creator: UserAccount(userName: "Hamlin"),
-            tags: [
-                Tag(name: "Dog"),
-                Tag(name: "Cat"),
-                Tag(name: "Mouse"),
-                Tag(name: "Horse"),
-                Tag(name: "Elephant"),
-                Tag(name: "Zebra"),
-                Tag(name: "Donkey"),
-                Tag(name: "Chicken")
-            ],
-            link: nil),
-        Post(
-            title: "The Title of a Post",
-            subtitle: "The subtitle for this post",
-            body: "The body of this post",
-            creator: UserAccount(userName: "Hamlin"),
-            tags: [
-                Tag(name: "Dog"),
-                Tag(name: "Cat"),
-                Tag(name: "Mouse"),
-                Tag(name: "Horse"),
-                Tag(name: "Elephant"),
-                Tag(name: "Zebra"),
-                Tag(name: "Donkey"),
-                Tag(name: "Chicken")
-            ],
-            link: nil),
-        Post(
-            title: "The Title of a Post",
-            subtitle: "The subtitle for this post",
-            body: "The body of this post",
-            creator: UserAccount(userName: "Hamlin"),
-            tags: [
-                Tag(name: "Dog"),
-                Tag(name: "Cat"),
-                Tag(name: "Mouse"),
-                Tag(name: "Horse"),
-                Tag(name: "Elephant"),
-                Tag(name: "Zebra"),
-                Tag(name: "Donkey"),
-                Tag(name: "Chicken")
-            ],
-            link: nil),
-        Post(
-            title: "The Title of a Post",
-            subtitle: "The subtitle for this post",
-            body: "The body of this post",
-            creator: UserAccount(userName: "Hamlin"),
-            tags: [
-                Tag(name: "Dog"),
-                Tag(name: "Cat"),
-                Tag(name: "Mouse"),
-                Tag(name: "Horse"),
-                Tag(name: "Elephant"),
-                Tag(name: "Zebra"),
-                Tag(name: "Donkey"),
-                Tag(name: "Chicken")
-            ],
-            link: nil)
+    static let previewArray: [Post] = {
+        var postArray: [Post] = []
+        for _ in 0...25 {
+            postArray.append(Post(
+                title: "The Title of a Post",
+                body: "The body of this post",
+                creator: User.preview,
+                tags: [
+                    Tag(name: "Dog"),
+                    Tag(name: "Cat"),
+                    Tag(name: "Mouse"),
+                    Tag(name: "Horse"),
+                    Tag(name: "Elephant"),
+                    Tag(name: "Zebra"),
+                    Tag(name: "Donkey"),
+                    Tag(name: "Chicken")
+                ])
+            )
+        }
+        return postArray
+    }()
     
-    ]
 }

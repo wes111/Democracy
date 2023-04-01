@@ -16,12 +16,12 @@ struct Post: Identifiable {
     var comments: [Comment]?
     var likeCount: Int = 0
     var superLikeCount: Int = 0
-    let creator: Comrade
+    let creator: User
     let community: Community = Community.preview
     let tags: [Tag]
     let link: Link?
     
-    init(title: String, subtitle: String? = nil, body: String, creator: Comrade, tags: [Tag], link: Link? = nil) {
+    init(title: String, subtitle: String? = nil, body: String, creator: User, tags: [Tag], link: Link? = nil) {
         self.title = title
         self.subtitle = subtitle
         self.body = body

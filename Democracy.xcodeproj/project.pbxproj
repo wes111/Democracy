@@ -70,6 +70,7 @@
 		EE80D93529D286240000F8EF /* CreateCandidateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D93429D286240000F8EF /* CreateCandidateViewModel.swift */; };
 		EE80D93729D289BB0000F8EF /* CreateCandidateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D93629D289BB0000F8EF /* CreateCandidateAlert.swift */; };
 		EE80D93929D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D93829D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift */; };
+		EE80D93D29D882F70000F8EF /* User+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D93C29D882F70000F8EF /* User+Preview.swift */; };
 		EED47ECD299F167100FEFC6E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECC299F167100FEFC6E /* MainCoordinator.swift */; };
 		EED47ECF299F167B00FEFC6E /* B.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECE299F167B00FEFC6E /* B.swift */; };
 		EED47ED1299F168200FEFC6E /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED0299F168200FEFC6E /* C.swift */; };
@@ -184,6 +185,7 @@
 		EE80D93429D286240000F8EF /* CreateCandidateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCandidateViewModel.swift; sourceTree = "<group>"; };
 		EE80D93629D289BB0000F8EF /* CreateCandidateAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCandidateAlert.swift; sourceTree = "<group>"; };
 		EE80D93829D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateCandidateViewModel+Preview.swift"; sourceTree = "<group>"; };
+		EE80D93C29D882F70000F8EF /* User+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Preview.swift"; sourceTree = "<group>"; };
 		EED47ECC299F167100FEFC6E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		EED47ECE299F167B00FEFC6E /* B.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B.swift; sourceTree = "<group>"; };
 		EED47ED0299F168200FEFC6E /* C.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				EE80D8B029BAE4A80000F8EF /* Post+Preview.swift */,
 				EE80D8B329BAE6410000F8EF /* Community+Preview.swift */,
 				EE80D91429C92DC70000F8EF /* Candidate+Preview.swift */,
+				EE80D93C29D882F70000F8EF /* User+Preview.swift */,
 			);
 			path = "Domain Models";
 			sourceTree = "<group>";
@@ -847,6 +850,7 @@
 				EE80D92D29D0D4DC0000F8EF /* GRDBService.swift in Sources */,
 				EED47ED3299F168800FEFC6E /* D.swift in Sources */,
 				EE54ADE729A40101007C3E3F /* AuthenticationCoordinator.swift in Sources */,
+				EE80D93D29D882F70000F8EF /* User+Preview.swift in Sources */,
 				EED47ED9299F185700FEFC6E /* ViewModelB.swift in Sources */,
 				EED4A52A29B8187D00DDCCDA /* PostCoordinator.swift in Sources */,
 				EE80D8E029BC1A080000F8EF /* HistoryTabMainViewModel+Preview.swift in Sources */,
