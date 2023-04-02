@@ -24,6 +24,18 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
             } label: {
                 Text("Login")
             }
+            Button {
+                viewModel.createAccount()
+            } label: {
+                Text("Create a static accountl")
+            }
+            Button {
+                viewModel.signOut()
+            } label: {
+                Text("Sign Out")
+            }
+
+
 
         }
     }

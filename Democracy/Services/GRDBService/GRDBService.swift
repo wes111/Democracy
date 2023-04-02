@@ -9,12 +9,22 @@ import Foundation
 import GRDB
 
 protocol GRDBServiceProtocol {
-    var database: DatabaseQueue? { get }
+    
+    func getDatabaseConnection() throws -> DatabaseQueue
 }
 
 class GRDBService: GRDBServiceProtocol {
     
-    lazy var database: DatabaseQueue? = {
+    func getDatabaseConnection() throws -> DatabaseQueue {
+        
+        guard let database else {
+            throw GRDBServiceError.unexpected
+        }
+        
+        return database
+    }
+    
+    private lazy var database: DatabaseQueue? = {
         do {
             // Create the "Application Support/MyDatabase" directory if needed
             let appSupportURL = URL.applicationSupportDirectory
@@ -23,7 +33,7 @@ class GRDBService: GRDBServiceProtocol {
 
             // Open or create the database
             let databaseURL = directoryURL.appendingPathComponent("db.sqlite")
-            let dbQueue = try DatabaseQueue(path: databaseURL.path)
+            let dbQueue = try! DatabaseQueue(path: databaseURL.path)
             try migrator.migrate(dbQueue)
             return dbQueue
         } catch {
@@ -35,23 +45,32 @@ class GRDBService: GRDBServiceProtocol {
     private var migrator: DatabaseMigrator {
         var migrator = DatabaseMigrator()
         
-        migrator.registerMigration("firstMigration") { db in
+        migrator.registerMigration("firstMigration") { database in
             // Create a table
             // See <https://swiftpackageindex.com/groue/grdb.swift/documentation/grdb/databaseschema>
-            try db.create(table: "candidate") { t in
+            try database.create(table: "candidate") { table in
                 
-                t.column("id", .text).primaryKey()
-                t.column("userName", .text).notNull()
-                t.column("firstName", .text)
-                t.column("lastName", .text)
-                t.column("imageName", .text)
-                t.column("upVotes", .integer).notNull()
-                t.column("downVotes", .integer).notNull()
-                t.column("communityId", .text).notNull()
-                t.column("isRepresentative", .boolean).notNull()
-                t.column("summary", .text).notNull()
-                t.column("externalLink", .text)
+                table.column("id", .text).primaryKey()
+                table.column("userName", .text).notNull()
+                table.column("firstName", .text)
+                table.column("lastName", .text)
+                table.column("imageName", .text)
+                table.column("upVotes", .integer).notNull()
+                table.column("downVotes", .integer).notNull()
+                table.column("communityId", .text).notNull()
+                table.column("isRepresentative", .boolean).notNull()
+                table.column("summary", .text).notNull()
+                table.column("externalLink", .text)
             }
+            
+            try database.create(table: "user", body: { table in
+                table.column("id", .text).primaryKey()
+                table.column("userName", .text).notNull()
+                table.column("firstName", .text)
+                table.column("lastName", .text)
+            })
+            
+            
         }
         
         
@@ -64,3 +83,8 @@ class GRDBService: GRDBServiceProtocol {
     }
     
 }
+
+enum GRDBServiceError: Error {
+    case unexpected
+}
+

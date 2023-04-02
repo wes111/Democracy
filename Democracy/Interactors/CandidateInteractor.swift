@@ -15,14 +15,17 @@ protocol CandidateInteractorProtocol {
     func upVoteCandidate(_ candidate: Candidate) async throws
     func downVoteCandidate(_ candidate: Candidate) async throws
     func getCandidate(id: UUID) async throws -> Candidate?
-    func addCandidate(_ candidate: Candidate) async throws
-    func submitCandidate() async throws
+    func addCandidate(summary: String, link: String?) async throws
 }
 
 struct CandidateInteractor: CandidateInteractorProtocol {
 
+    // Repositories:
     @Injected(\.candidateLocalRepository) var localRepository
     @Injected(\.candidateRemoteRepository) var remoteRepository
+    
+    // Interactors:
+    @Injected(\.userInteractor) var userInteractor
     
     private var candidatesPublisher = PassthroughSubject<[Candidate], Never>()
     
@@ -64,13 +67,24 @@ struct CandidateInteractor: CandidateInteractorProtocol {
         try await localRepository.getCandidate(id: id)
     }
     
-    func addCandidate(_ candidate: Candidate) async throws {
+    func addCandidate(summary: String, link: String?) async throws {
+        
+        let user = try await userInteractor.getUser()
+        let candidate = Candidate(
+            id: user.id,
+            userName: user.userName,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            imageName: nil,
+            upVotes: 0,
+            downVotes: 0,
+            communityId: UUID(),
+            isRepresentative: false,
+            summary: summary,
+            externalLink: link)
+        
         try await localRepository.addCandidate(candidate)
         updateCandidates()
-    }
-    
-    func submitCandidate() async throws {
-        
     }
     
 }

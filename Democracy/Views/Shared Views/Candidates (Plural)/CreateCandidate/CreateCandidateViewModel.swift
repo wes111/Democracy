@@ -47,7 +47,10 @@ final class CreateCandidateViewModel: CreateCandidateViewModelProtocol {
         isLoading = true
         Task {
             do {
-                try await candidateInteractor.submitCandidate()
+                try await candidateInteractor.addCandidate(summary: summary, link: link)
+                await MainActor.run {
+                    close()
+                }
             } catch {
                 await MainActor.run {
                     alert = CreateCandidateAlert.missingBody
@@ -56,7 +59,6 @@ final class CreateCandidateViewModel: CreateCandidateViewModelProtocol {
             }
             await MainActor.run {
                 isLoading = false
-                close()
             }
             
         }

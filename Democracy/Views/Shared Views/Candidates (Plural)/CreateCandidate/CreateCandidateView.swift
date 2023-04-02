@@ -42,6 +42,7 @@ struct CreateCandidateView<ViewModel: CreateCandidateViewModelProtocol>: View {
                             .submitLabel(.next)
                         
                         Button {
+                            focusedField = nil
                             viewModel.submitCandidate()
                         } label: {
                             Text("Submit")

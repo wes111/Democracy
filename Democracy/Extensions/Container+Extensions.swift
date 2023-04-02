@@ -20,6 +20,9 @@ extension Container {
     var communityInteractor: Factory<CommunityInteractorProtocol> {
         self { CommunityInteractor() }
     }
+    var userInteractor: Factory<UserInteractorProtocol> {
+        self { UserInteractor() }
+    }
     
     // MARK: - Repositories
     
