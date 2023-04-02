@@ -71,6 +71,7 @@
 		EE80D93729D289BB0000F8EF /* CreateCandidateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D93629D289BB0000F8EF /* CreateCandidateAlert.swift */; };
 		EE80D93929D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D93829D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift */; };
 		EE80D93D29D882F70000F8EF /* User+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D93C29D882F70000F8EF /* User+Preview.swift */; };
+		EE80D94829D9DC040000F8EF /* CommunityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D94729D9DC040000F8EF /* CommunityCard.swift */; };
 		EED47ECD299F167100FEFC6E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECC299F167100FEFC6E /* MainCoordinator.swift */; };
 		EED47ECF299F167B00FEFC6E /* B.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECE299F167B00FEFC6E /* B.swift */; };
 		EED47ED1299F168200FEFC6E /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED0299F168200FEFC6E /* C.swift */; };
@@ -186,7 +187,8 @@
 		EE80D93629D289BB0000F8EF /* CreateCandidateAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCandidateAlert.swift; sourceTree = "<group>"; };
 		EE80D93829D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateCandidateViewModel+Preview.swift"; sourceTree = "<group>"; };
 		EE80D93C29D882F70000F8EF /* User+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Preview.swift"; sourceTree = "<group>"; };
-		EE80D93E29D9C7060000F8EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		EE80D93E29D9C7060000F8EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE80D94729D9DC040000F8EF /* CommunityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCard.swift; sourceTree = "<group>"; };
 		EED47ECC299F167100FEFC6E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		EED47ECE299F167B00FEFC6E /* B.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B.swift; sourceTree = "<group>"; };
 		EED47ED0299F168200FEFC6E /* C.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
@@ -443,6 +445,22 @@
 			path = CreateCandidate;
 			sourceTree = "<group>";
 		};
+		EE80D94529D9DA5B0000F8EF /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				EE80D94629D9DA6B0000F8EF /* CommunityCard */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		EE80D94629D9DA6B0000F8EF /* CommunityCard */ = {
+			isa = PBXGroup;
+			children = (
+				EE80D94729D9DC040000F8EF /* CommunityCard.swift */,
+			);
+			path = CommunityCard;
+			sourceTree = "<group>";
+		};
 		EED47ECB299F166300FEFC6E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -599,6 +617,7 @@
 		EED4A52729B8185600DDCCDA /* Shared Views */ = {
 			isa = PBXGroup;
 			children = (
+				EE80D94529D9DA5B0000F8EF /* Community */,
 				EE80D90629C926490000F8EF /* Candidates (Plural) */,
 				EED4A52829B8186F00DDCCDA /* Post */,
 			);
@@ -798,6 +817,7 @@
 				EE80D91A29C9306A0000F8EF /* CandidateViewModel.swift in Sources */,
 				EED4A52129ABC86D00DDCCDA /* CommunityViewPicker.swift in Sources */,
 				EE80D93729D289BB0000F8EF /* CreateCandidateAlert.swift in Sources */,
+				EE80D94829D9DC040000F8EF /* CommunityCard.swift in Sources */,
 				EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */,
 				EE80D92429C955C30000F8EF /* CandidateLocalRepository.swift in Sources */,
 				EE80D8F029BD37860000F8EF /* AddPostView.swift in Sources */,

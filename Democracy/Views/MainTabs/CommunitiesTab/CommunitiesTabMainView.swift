@@ -11,31 +11,42 @@ struct CommunitiesTabMainView<ViewModel: CommunitiesTabMainViewModelProtocol>: V
     
     @StateObject var viewModel: ViewModel
     @State private var multiSelection = Set<UUID>()
+    @State private var bob = "" //TODO: ...
     
     init(viewModel: ViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
-        List(viewModel.communities, selection: $multiSelection) { community in
-            HStack {
-                Text(community.name)
-                Spacer()
-                Image(systemName: "chevron.right")
-            }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                viewModel.goToCommunity(community)
-            }
-            .listRowBackground(EmptyView()) // <-- Make rows "non-selectable."
+        
+        ScrollView(.vertical) {
+            
+            CommunityScrollView(
+                title: "My Communities",
+                communities: viewModel.communities,
+                onTapAction: viewModel.goToCommunity
+            )
+            .padding(.bottom)
+            
+            CommunityScrollView(
+                title: "Recommended Communities",
+                communities: viewModel.communities,
+                onTapAction: viewModel.goToCommunity
+            )
+            .padding(.bottom)
+            
+            CommunityScrollView(
+                title: "Top Communities",
+                communities: viewModel.communities,
+                onTapAction: viewModel.goToCommunity
+            )
             
         }
         .navigationTitle("Communities")
         .refreshable {
             viewModel.refreshCommunities()
         }
-        .listStyle(.plain)
-        .listSectionSeparator(.hidden, edges: .all)
+        .searchable(text: $bob)
         //.toolbar { EditButton() }
     }
 }
@@ -44,4 +55,31 @@ struct CommunitiesTabMainView_Previews: PreviewProvider {
     static var previews: some View {
         CommunitiesTabMainView(viewModel: CommunitiesTabMainViewModel.preview)
     }
+}
+
+struct CommunityScrollView: View {
+    
+    let title: String
+    var communities: [Community]
+    let onTapAction: (Community) -> Void
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text(title)
+                .font(.title2)
+                .padding(.leading)
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack {
+                    ForEach(communities) { community in
+                        CommunityCard(community: community)
+                            .padding(.leading)
+                            .onTapGesture {
+                                onTapAction(community)
+                            }
+                    }
+                }
+            }
+        }
+    }
+    
 }
