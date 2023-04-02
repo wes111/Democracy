@@ -17,4 +17,8 @@ extension Community {
         }
         return array
     }
+    
+    static let communityCardTapAction: (Community) -> Void = { _ in
+        print("Community Card tapped.")
+    }
 }

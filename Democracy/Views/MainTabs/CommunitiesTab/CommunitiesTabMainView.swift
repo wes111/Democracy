@@ -21,21 +21,21 @@ struct CommunitiesTabMainView<ViewModel: CommunitiesTabMainViewModelProtocol>: V
         
         ScrollView(.vertical) {
             
-            CommunityScrollView(
+            CommunitiesScrollView(
                 title: "My Communities",
                 communities: viewModel.communities,
                 onTapAction: viewModel.goToCommunity
             )
             .padding(.bottom)
             
-            CommunityScrollView(
+            CommunitiesScrollView(
                 title: "Recommended Communities",
                 communities: viewModel.communities,
                 onTapAction: viewModel.goToCommunity
             )
             .padding(.bottom)
             
-            CommunityScrollView(
+            CommunitiesScrollView(
                 title: "Top Communities",
                 communities: viewModel.communities,
                 onTapAction: viewModel.goToCommunity
@@ -55,31 +55,4 @@ struct CommunitiesTabMainView_Previews: PreviewProvider {
     static var previews: some View {
         CommunitiesTabMainView(viewModel: CommunitiesTabMainViewModel.preview)
     }
-}
-
-struct CommunityScrollView: View {
-    
-    let title: String
-    var communities: [Community]
-    let onTapAction: (Community) -> Void
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text(title)
-                .font(.title2)
-                .padding(.leading)
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack {
-                    ForEach(communities) { community in
-                        CommunityCard(community: community)
-                            .padding(.leading)
-                            .onTapGesture {
-                                onTapAction(community)
-                            }
-                    }
-                }
-            }
-        }
-    }
-    
 }

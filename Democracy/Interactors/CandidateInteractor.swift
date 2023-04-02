@@ -39,7 +39,8 @@ struct CandidateInteractor: CandidateInteractorProtocol {
     }
     
     func refreshCandidates() {
-        //feches from remote repository and then updates local.
+        //TODO: ...
+        updateCandidates()
     }
     
     private func updateCandidates() {
