@@ -11,8 +11,14 @@ import Factory
 protocol CommunityInteractorProtocol {
     func subscribeToRepresentatives() -> AnyPublisher<[Candidate], Never>
     func refreshRepresentatives()
-    func subscribeToCommunities() -> AnyPublisher<[Community], Never>
-    func refreshCommunities()
+    
+    func subscribeToMyCommunities() -> AnyPublisher<[Community], Never>
+    func subscribeToRecommendedCommunities() -> AnyPublisher<[Community], Never>
+    func subscribeToTopCommunities() -> AnyPublisher<[Community], Never>
+    
+    func refreshMyCommunities()
+    func refreshRecommendedCommunities()
+    func refreshTopCommunities()
 }
 
 struct CommunityInteractor: CommunityInteractorProtocol {
@@ -20,8 +26,12 @@ struct CommunityInteractor: CommunityInteractorProtocol {
     @Injected(\.communityLocalRepository) var localRepository
     @Injected(\.communityRemoteRepository) var remoteRepository
     
+    // TODO: Move this out of communityInteractor?
     private let representativesPublisher = PassthroughSubject<[Candidate], Never>()
-    private let communitiesPublisher = PassthroughSubject<[Community], Never>()
+    
+    private let myCommunitiesPublisher = PassthroughSubject<[Community], Never>()
+    private let recommendedCommunitiesPublisher = PassthroughSubject<[Community], Never>()
+    private let topCommunitiesPublisher = PassthroughSubject<[Community], Never>()
     
     init() {
         
@@ -35,14 +45,28 @@ struct CommunityInteractor: CommunityInteractorProtocol {
         representativesPublisher.send(Candidate.representativePreviewArray)
     }
     
-    
-    //TODO: Move these, not the responsibility of communityInteractor.
-    func subscribeToCommunities() -> AnyPublisher<[Community], Never> {
-        communitiesPublisher.eraseToAnyPublisher()
+    func subscribeToMyCommunities() -> AnyPublisher<[Community], Never> {
+        myCommunitiesPublisher.eraseToAnyPublisher()
     }
     
-    func refreshCommunities() {
-        communitiesPublisher.send(Community.previewArray)
+    func subscribeToRecommendedCommunities() -> AnyPublisher<[Community], Never> {
+        recommendedCommunitiesPublisher.eraseToAnyPublisher()
+    }
+    
+    func subscribeToTopCommunities() -> AnyPublisher<[Community], Never> {
+        topCommunitiesPublisher.eraseToAnyPublisher()
+    }
+    
+    func refreshMyCommunities() {
+        myCommunitiesPublisher.send(Community.myCommunitiesPreviewArray)
+    }
+    
+    func refreshRecommendedCommunities() {
+        recommendedCommunitiesPublisher.send(Community.recommendedCommunitiesPreviewArray)
+    }
+    
+    func refreshTopCommunities() {
+        topCommunitiesPublisher.send(Community.topCommunitiesPreviewArray)
     }
     
 }

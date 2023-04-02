@@ -13,30 +13,52 @@ protocol CommunitiesTabMainCoordinatorDelegate {
 }
 
 protocol CommunitiesTabMainViewModelProtocol: ObservableObject {
-    var communities: [Community] { get }
+    var myCommunities: [Community] { get }
+    var recommendedCommunities: [Community] { get }
+    var topCommunities: [Community] { get }
+    
     func goToCommunity(_ community: Community)
-    func refreshCommunities()
+    func refreshMyCommunities()
+    func refreshRecommendedCommunities()
+    func refreshTopCommunities()
 }
 
 final class CommunitiesTabMainViewModel: CommunitiesTabMainViewModelProtocol {
-    
+
     @Injected(\.communityInteractor) var communityInteractor
-    @Published var communities: [Community] = []
+    
+    @Published var myCommunities: [Community] = []
+    @Published var recommendedCommunities: [Community] = []
+    @Published var topCommunities: [Community] = []
+    
     let coordinator: CommunitiesTabMainCoordinatorDelegate
     
     init(coordinator: CommunitiesTabMainCoordinatorDelegate) {
         self.coordinator = coordinator
         
-        communityInteractor.subscribeToCommunities().assign(to: &$communities)
-        communityInteractor.refreshCommunities()
+        communityInteractor.subscribeToMyCommunities().assign(to: &$myCommunities)
+        communityInteractor.subscribeToRecommendedCommunities().assign(to: &$recommendedCommunities)
+        communityInteractor.subscribeToTopCommunities().assign(to: &$topCommunities)
+        
+        communityInteractor.refreshMyCommunities()
+        communityInteractor.refreshRecommendedCommunities()
+        communityInteractor.refreshTopCommunities()
     }
     
     func goToCommunity(_ community: Community) {
         coordinator.goToCommunity(community)
     }
+
+    func refreshMyCommunities() {
+        communityInteractor.refreshMyCommunities()
+    }
     
-    func refreshCommunities() {
-        communityInteractor.refreshCommunities()
+    func refreshRecommendedCommunities() {
+        communityInteractor.refreshRecommendedCommunities()
+    }
+    
+    func refreshTopCommunities() {
+        communityInteractor.refreshTopCommunities()
     }
     
 }

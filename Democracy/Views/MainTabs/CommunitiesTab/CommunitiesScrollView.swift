@@ -38,7 +38,7 @@ struct CommunitiesScrollView_Previews: PreviewProvider {
     static var previews: some View {
         CommunitiesScrollView(
             title: "Test Communities Scroll View",
-            communities: Community.previewArray,
+            communities: Community.myCommunitiesPreviewArray,
             onTapAction: Community.communityCardTapAction
         )
     }

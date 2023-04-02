@@ -23,28 +23,28 @@ struct CommunitiesTabMainView<ViewModel: CommunitiesTabMainViewModelProtocol>: V
             
             CommunitiesScrollView(
                 title: "My Communities",
-                communities: viewModel.communities,
+                communities: viewModel.myCommunities,
                 onTapAction: viewModel.goToCommunity
             )
             .padding(.bottom)
             
             CommunitiesScrollView(
                 title: "Recommended Communities",
-                communities: viewModel.communities,
+                communities: viewModel.recommendedCommunities,
                 onTapAction: viewModel.goToCommunity
             )
             .padding(.bottom)
             
             CommunitiesScrollView(
                 title: "Top Communities",
-                communities: viewModel.communities,
+                communities: viewModel.topCommunities,
                 onTapAction: viewModel.goToCommunity
             )
             
         }
         .navigationTitle("Communities")
         .refreshable {
-            viewModel.refreshCommunities()
+            viewModel.refreshMyCommunities()
         }
         .searchable(text: $bob)
         //.toolbar { EditButton() }
