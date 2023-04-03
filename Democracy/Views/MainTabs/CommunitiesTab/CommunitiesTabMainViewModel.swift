@@ -10,6 +10,7 @@ import Factory
 
 protocol CommunitiesTabMainCoordinatorDelegate {
     func goToCommunity(_ community: Community)
+    func showCreateCommunityView()
 }
 
 protocol CommunitiesTabMainViewModelProtocol: ObservableObject {
@@ -21,6 +22,7 @@ protocol CommunitiesTabMainViewModelProtocol: ObservableObject {
     func refreshMyCommunities()
     func refreshRecommendedCommunities()
     func refreshTopCommunities()
+    func showCreateCommunityView()
 }
 
 final class CommunitiesTabMainViewModel: CommunitiesTabMainViewModelProtocol {
@@ -59,6 +61,10 @@ final class CommunitiesTabMainViewModel: CommunitiesTabMainViewModelProtocol {
     
     func refreshTopCommunities() {
         communityInteractor.refreshTopCommunities()
+    }
+    
+    func showCreateCommunityView() {
+        coordinator.showCreateCommunityView()
     }
     
 }

@@ -19,10 +19,12 @@ protocol CommunityInteractorProtocol {
     func refreshMyCommunities()
     func refreshRecommendedCommunities()
     func refreshTopCommunities()
+    
+    func submitCommunity(title: String) async throws
 }
 
 struct CommunityInteractor: CommunityInteractorProtocol {
-    
+
     @Injected(\.communityLocalRepository) var localRepository
     @Injected(\.communityRemoteRepository) var remoteRepository
     
@@ -67,6 +69,10 @@ struct CommunityInteractor: CommunityInteractorProtocol {
     
     func refreshTopCommunities() {
         topCommunitiesPublisher.send(Community.topCommunitiesPreviewArray)
+    }
+    
+    func submitCommunity(title: String) async throws {
+        print("Submit Community")
     }
     
 }

@@ -47,8 +47,17 @@ struct CommunitiesTabMainView<ViewModel: CommunitiesTabMainViewModelProtocol>: V
             viewModel.refreshMyCommunities()
         }
         .searchable(text: $bob)
-        //.toolbar { EditButton() }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    viewModel.showCreateCommunityView()
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
+        }
     }
+    
 }
 
 struct CommunitiesTabMainView_Previews: PreviewProvider {
