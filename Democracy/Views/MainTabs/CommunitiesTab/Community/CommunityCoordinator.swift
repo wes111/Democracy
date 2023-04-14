@@ -12,6 +12,7 @@ enum CommunityPath: Hashable {
     case postView(Post)
     case candidates
     case singleCandidate(Candidate)
+    case goToCommunity(Community)
 }
 
 struct CommunityCoordinator: View {
@@ -29,7 +30,7 @@ struct CommunityCoordinator: View {
     }
     
     var body: some View {
-        createCommunityView()
+        createCommunityView(community)
             .navigationDestination(for: CommunityPath.self) { path in
                 createViewFromPath(path)
             }
@@ -45,10 +46,11 @@ struct CommunityCoordinator: View {
         case .postView(let post): createPostView(post: post)
         case .candidates: createCandidatesView()
         case .singleCandidate(let candidate): createCandidateView(candidate)
+        case .goToCommunity(let community): createCommunityView(community)
         }
     }
     
-    func createCommunityView() -> CommunityViewPicker<CommunityViewModel> {
+    func createCommunityView(_ community: Community) -> CommunityViewPicker<CommunityViewModel> {
         let viewModel = CommunityViewModel(coordinator: self, community: community)
         return CommunityViewPicker(viewModel: viewModel)
     }
@@ -103,6 +105,10 @@ extension CommunityCoordinator: AddPostCoordinatorDelegate {
 }
 
 extension CommunityCoordinator: CommunityInfoCoordinatorDelegate {
+    
+    func goToCommunity(_ community: Community) {
+        router.push(CommunityPath.goToCommunity(community))
+    }
     
     func showCandidates() {
         router.push(CommunityPath.candidates)

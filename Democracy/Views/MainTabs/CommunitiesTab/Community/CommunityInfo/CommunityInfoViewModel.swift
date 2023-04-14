@@ -10,6 +10,7 @@ import Foundation
 
 protocol CommunityInfoCoordinatorDelegate: CandidateCardCoordinatorDelegate {
     func showCandidates()
+    func goToCommunity(_ community: Community)
 }
 
 protocol CommunityInfoViewModelProtocol: ObservableObject {
@@ -48,7 +49,7 @@ final class CommunityInfoViewModel: CommunityInfoViewModelProtocol {
     }
     
     func onTapCommunityCard(_ community: Community) {
-        print("Tapped Community card") // TODO: Add navigation to community.
+        coordinator.goToCommunity(community)
     }
     
 }
