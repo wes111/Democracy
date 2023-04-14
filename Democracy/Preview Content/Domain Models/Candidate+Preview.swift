@@ -20,7 +20,8 @@ extension Candidate {
         communityId: UUID(),
         isRepresentative: true,
         summary: "Enter the candidate's summary here",
-        externalLink: "www.externalLink.com"
+        externalLink: "www.externalLink.com",
+        repType: .legislator
     )
     
     static let representativePreview = Candidate.preview

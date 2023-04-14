@@ -77,6 +77,7 @@
 		EE80D94F29DB90AD0000F8EF /* CreateCommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D94E29DB90AD0000F8EF /* CreateCommunityViewModel.swift */; };
 		EE80D95129DB94AF0000F8EF /* CreateCommunityAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D95029DB94AF0000F8EF /* CreateCommunityAlert.swift */; };
 		EE80D95329DB96F50000F8EF /* CreateCommunityViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D95229DB96F50000F8EF /* CreateCommunityViewModel+Preview.swift */; };
+		EE80D95629E0B6D10000F8EF /* ReversedLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */; };
 		EED47ECD299F167100FEFC6E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECC299F167100FEFC6E /* MainCoordinator.swift */; };
 		EED47ECF299F167B00FEFC6E /* B.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECE299F167B00FEFC6E /* B.swift */; };
 		EED47ED1299F168200FEFC6E /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED0299F168200FEFC6E /* C.swift */; };
@@ -199,6 +200,7 @@
 		EE80D94E29DB90AD0000F8EF /* CreateCommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommunityViewModel.swift; sourceTree = "<group>"; };
 		EE80D95029DB94AF0000F8EF /* CreateCommunityAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommunityAlert.swift; sourceTree = "<group>"; };
 		EE80D95229DB96F50000F8EF /* CreateCommunityViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateCommunityViewModel+Preview.swift"; sourceTree = "<group>"; };
+		EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversedLabelStyle.swift; sourceTree = "<group>"; };
 		EED47ECC299F167100FEFC6E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		EED47ECE299F167B00FEFC6E /* B.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B.swift; sourceTree = "<group>"; };
 		EED47ED0299F168200FEFC6E /* C.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
@@ -483,6 +485,14 @@
 			path = CreateCommunity;
 			sourceTree = "<group>";
 		};
+		EE80D95429E0B6B90000F8EF /* Reusable SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */,
+			);
+			path = "Reusable SwiftUI";
+			sourceTree = "<group>";
+		};
 		EED47ECB299F166300FEFC6E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,6 +650,7 @@
 		EED4A52729B8185600DDCCDA /* Shared Views */ = {
 			isa = PBXGroup;
 			children = (
+				EE80D95429E0B6B90000F8EF /* Reusable SwiftUI */,
 				EE80D94529D9DA5B0000F8EF /* Community */,
 				EE80D90629C926490000F8EF /* Candidates (Plural) */,
 				EED4A52829B8186F00DDCCDA /* Post */,
@@ -904,6 +915,7 @@
 				EE80D8CA29BC13C00000F8EF /* PostViewModel+Preview.swift in Sources */,
 				EED4A51129AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift in Sources */,
 				EED47EDB299F185E00FEFC6E /* ViewModelC.swift in Sources */,
+				EE80D95629E0B6D10000F8EF /* ReversedLabelStyle.swift in Sources */,
 				EE80D94D29DB90440000F8EF /* CreateCommunityView.swift in Sources */,
 				EE80D8DC29BC18EE0000F8EF /* CommunityHomeFeedViewModel+Preview.swift in Sources */,
 				EE80D90429C923960000F8EF /* CommunityInfoViewModel.swift in Sources */,

@@ -25,15 +25,18 @@ struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
     
     var body: some View {
         VStack {
+            
             Picker(selection: $tabSelection, label: Text("Picker")) {
                 Text(CommunityTab.info.rawValue).tag(CommunityTab.info)
                 Text(CommunityTab.feed.rawValue).tag(CommunityTab.feed)
                 Text(CommunityTab.archive.rawValue).tag(CommunityTab.archive)
             }
             .pickerStyle(.segmented)
+            .padding()
             
             TabView(selection: $tabSelection) {
-                createCommunityInfoView()
+                
+                createCommunityInfoView(viewModel.community)
                     .tabItem {
                         Text(CommunityTab.info.rawValue)
                     }
@@ -72,8 +75,8 @@ struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
         return CommunityHomeFeedView(viewModel: viewModel)
     }
     
-    func createCommunityInfoView() -> CommunityInfoView<CommunityInfoViewModel> {
-        let viewModel = CommunityInfoViewModel(coordinator: viewModel.coordinator)
+    func createCommunityInfoView(_ community: Community) -> CommunityInfoView<CommunityInfoViewModel> {
+        let viewModel = CommunityInfoViewModel(coordinator: viewModel.coordinator, community: community)
         return CommunityInfoView(viewModel: viewModel)
     }
     

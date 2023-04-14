@@ -48,6 +48,13 @@ struct CreateCandidateView<ViewModel: CreateCandidateViewModelProtocol>: View {
                             Text("Submit")
                         }
                         .disabled(viewModel.isLoading)
+                        
+                        Picker("Choose a rep type", selection: $viewModel.repType) {
+                            ForEach(RepresentativeType.allCases, id: \.self) {
+                                Text($0.rawValue)
+                            }
+                        }
+                        .pickerStyle(.menu)
                     }
                 }
                 

@@ -23,6 +23,7 @@ struct Candidate: Hashable, Identifiable, Codable {
     let isRepresentative: Bool // This will be determined by server?
     let summary: String
     let externalLink: String?
+    let repType: RepresentativeType
 }
 
 extension Candidate: FetchableRecord, PersistableRecord {

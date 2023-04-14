@@ -15,6 +15,7 @@ protocol CreateCandidateCoordinatorDelegate {
 protocol CreateCandidateViewModelProtocol: ObservableObject {
     var summary: String { get set }
     var link: String { get set }
+    var repType: RepresentativeType { get set }
     
     var alert: CreateCandidateAlert? { get set }
     var isLoading: Bool { get set }
@@ -27,6 +28,7 @@ final class CreateCandidateViewModel: CreateCandidateViewModelProtocol {
     
     @Published var summary = ""
     @Published var link = ""
+    @Published var repType: RepresentativeType = .legislator
     
     @Published var alert: CreateCandidateAlert?
     @Published var isLoading: Bool = false
@@ -47,7 +49,7 @@ final class CreateCandidateViewModel: CreateCandidateViewModelProtocol {
         isLoading = true
         Task {
             do {
-                try await candidateInteractor.addCandidate(summary: summary, link: link)
+                try await candidateInteractor.addCandidate(summary: summary, link: link, repType: repType)
                 await MainActor.run {
                     close()
                 }

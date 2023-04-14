@@ -15,7 +15,7 @@ protocol CandidateInteractorProtocol {
     func upVoteCandidate(_ candidate: Candidate) async throws
     func downVoteCandidate(_ candidate: Candidate) async throws
     func getCandidate(id: UUID) async throws -> Candidate?
-    func addCandidate(summary: String, link: String?) async throws
+    func addCandidate(summary: String, link: String?, repType: RepresentativeType) async throws
 }
 
 struct CandidateInteractor: CandidateInteractorProtocol {
@@ -68,7 +68,7 @@ struct CandidateInteractor: CandidateInteractorProtocol {
         try await localRepository.getCandidate(id: id)
     }
     
-    func addCandidate(summary: String, link: String?) async throws {
+    func addCandidate(summary: String, link: String?, repType: RepresentativeType) async throws {
         
         let user = try await userInteractor.getUser()
         let candidate = Candidate(
@@ -82,7 +82,9 @@ struct CandidateInteractor: CandidateInteractorProtocol {
             communityId: UUID(),
             isRepresentative: false,
             summary: summary,
-            externalLink: link)
+            externalLink: link,
+            repType: repType
+        )
         
         try await localRepository.addCandidate(candidate)
         updateCandidates()

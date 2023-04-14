@@ -25,7 +25,11 @@ struct CandidateCardView<ViewModel: CandidateCardViewModel>: View {
             }
             
             HStack {
-                Text(viewModel.candidate.userName)
+                VStack {
+                    Text(viewModel.candidate.userName)
+                    Text(viewModel.candidate.repType.rawValue)
+                }
+                
                 VStack {
                     Button {
                         viewModel.downVoteCandidate()
@@ -42,12 +46,6 @@ struct CandidateCardView<ViewModel: CandidateCardViewModel>: View {
                     }
                     Text("\(viewModel.candidate.upVotes)")
                 }
-                
-
-
-
-                
-                
             }
             
         }

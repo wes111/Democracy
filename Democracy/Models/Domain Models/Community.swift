@@ -12,4 +12,6 @@ struct Community: Hashable, Identifiable, Codable {
     let name: String
     let foundedDate: Date
     let representatives: [Candidate]
+    let rules: [String]
+    let resources: [String]
 }
