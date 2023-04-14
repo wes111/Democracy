@@ -21,16 +21,16 @@ extension Community {
             "There are no rules."
         ],
         resources: [
-            "Resource One",
-            "Resource Two",
-            "Resource Three",
-            "Resource Four",
-            "Resource Five",
-            "Resource Six",
-            "Resource Seven",
-            "Resource Eight",
-            "Resource Nine",
-            "Resource Ten"
+            "https://www.google.com",
+            "https://www.amazon.com",
+            "https://www.walmart.com",
+            "https://www.apple.com",
+            "https://www.google.com",
+            "https://www.google.com",
+            "https://www.google.com",
+            "https://www.google.com",
+            "https://www.google.com",
+            "https://www.google.com"
         ]
     )
     

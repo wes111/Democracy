@@ -78,6 +78,7 @@
 		EE80D95129DB94AF0000F8EF /* CreateCommunityAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D95029DB94AF0000F8EF /* CreateCommunityAlert.swift */; };
 		EE80D95329DB96F50000F8EF /* CreateCommunityViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D95229DB96F50000F8EF /* CreateCommunityViewModel+Preview.swift */; };
 		EE80D95629E0B6D10000F8EF /* ReversedLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */; };
+		EE80D95B29E8EBD10000F8EF /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D95A29E8EBD10000F8EF /* WebView.swift */; };
 		EED47ECD299F167100FEFC6E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECC299F167100FEFC6E /* MainCoordinator.swift */; };
 		EED47ECF299F167B00FEFC6E /* B.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECE299F167B00FEFC6E /* B.swift */; };
 		EED47ED1299F168200FEFC6E /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED0299F168200FEFC6E /* C.swift */; };
@@ -201,6 +202,7 @@
 		EE80D95029DB94AF0000F8EF /* CreateCommunityAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommunityAlert.swift; sourceTree = "<group>"; };
 		EE80D95229DB96F50000F8EF /* CreateCommunityViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateCommunityViewModel+Preview.swift"; sourceTree = "<group>"; };
 		EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversedLabelStyle.swift; sourceTree = "<group>"; };
+		EE80D95A29E8EBD10000F8EF /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		EED47ECC299F167100FEFC6E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		EED47ECE299F167B00FEFC6E /* B.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B.swift; sourceTree = "<group>"; };
 		EED47ED0299F168200FEFC6E /* C.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
@@ -489,8 +491,17 @@
 			isa = PBXGroup;
 			children = (
 				EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */,
+				EE80D95929E8EBB70000F8EF /* UIViewRepresentable */,
 			);
 			path = "Reusable SwiftUI";
+			sourceTree = "<group>";
+		};
+		EE80D95929E8EBB70000F8EF /* UIViewRepresentable */ = {
+			isa = PBXGroup;
+			children = (
+				EE80D95A29E8EBD10000F8EF /* WebView.swift */,
+			);
+			path = UIViewRepresentable;
 			sourceTree = "<group>";
 		};
 		EED47ECB299F166300FEFC6E /* Views */ = {
@@ -853,6 +864,7 @@
 				EE80D93729D289BB0000F8EF /* CreateCandidateAlert.swift in Sources */,
 				EE80D94829D9DC040000F8EF /* CommunityCard.swift in Sources */,
 				EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */,
+				EE80D95B29E8EBD10000F8EF /* WebView.swift in Sources */,
 				EE80D92429C955C30000F8EF /* CandidateLocalRepository.swift in Sources */,
 				EE80D8F029BD37860000F8EF /* AddPostView.swift in Sources */,
 				EE80D8DE29BC19ED0000F8EF /* HistoryTabCoordinator+Preview.swift in Sources */,

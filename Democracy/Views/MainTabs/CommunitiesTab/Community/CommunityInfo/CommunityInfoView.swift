@@ -39,7 +39,8 @@ struct CommunityInfoView<ViewModel: CommunityInfoViewModelProtocol>: View {
                     
                     ListSection(
                         items: viewModel.community.resources,
-                        sectionTitle: "Resources"
+                        sectionTitle: "Resources",
+                        onItemTap: viewModel.openResourceURL
                     )
                 }
                 .listRowInsets(EdgeInsets())
@@ -158,6 +159,13 @@ struct ListSection: View {
     let items: [String]
     let sectionTitle: String
     private let unexpandedCount = 3
+    private let onItemTap: ((String) -> Void)?
+    
+    init(items: [String], sectionTitle: String, onItemTap: ( (String) -> Void)? = nil) {
+        self.items = items
+        self.sectionTitle = sectionTitle
+        self.onItemTap = onItemTap
+    }
     
     var body: some View {
         Section {
@@ -168,6 +176,11 @@ struct ListSection: View {
             VStack(alignment: .leading, spacing: 5) {
                 ForEach(visibleIndices, id: \.self) { index in
                     Text("\(index + 1).) \(items[index])")
+                        .onTapGesture {
+                            if let onItemTap {
+                                onItemTap(items[index])
+                            }
+                        }
                 }
             }
 

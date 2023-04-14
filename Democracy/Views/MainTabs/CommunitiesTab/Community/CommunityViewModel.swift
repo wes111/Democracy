@@ -9,7 +9,6 @@ import Factory
 import Foundation
 
 protocol CommunityCoordinatorDelegate: CommunityHomeFeedCoordinatorDelegate, CommunityInfoCoordinatorDelegate {
-    func go()
     func showCreatePostView()
 }
 
@@ -18,7 +17,6 @@ protocol CommunityViewModelProtocol: ObservableObject {
     var coordinator: CommunityCoordinatorDelegate { get }
     var canCreatePost: Bool { get }
     
-    func go()
     func showCreatePostView()
 }
 
@@ -36,10 +34,6 @@ final class CommunityViewModel: CommunityViewModelProtocol {
     ) {
         self.coordinator = coordinator
         self.community = community
-    }
-    
-    func go() {
-        coordinator.go()
     }
     
     func showCreatePostView() {

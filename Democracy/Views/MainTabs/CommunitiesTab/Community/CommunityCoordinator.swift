@@ -5,6 +5,7 @@
 //  Created by Wesley Luntsford on 2/26/23.
 //
 
+import Combine
 import SwiftUI
 
 enum CommunityPath: Hashable {
@@ -18,9 +19,11 @@ enum CommunityPath: Hashable {
 struct CommunityCoordinator: View {
     
     @State private var isShowingCreatePostView = false
+    @State private var isShowingWebView = false
+    @State private var url: URL = URL(string: "https://www.google.com")!
+    
     let community: Community
     private let router: Router
-    
     
     init(_ community: Community,
          _ router: Router
@@ -36,6 +39,9 @@ struct CommunityCoordinator: View {
             }
             .fullScreenCover(isPresented: $isShowingCreatePostView) {
                 createAddPostView()
+            }
+            .sheet(isPresented: $isShowingWebView) {
+                WebView(url: $url)
             }
     }
     
@@ -80,12 +86,7 @@ struct CommunityCoordinator: View {
 extension CommunityCoordinator: CommunityCoordinatorDelegate {
     
     func showCreatePostView() {
-        //TODO: Causes 'Update NavigationAuthority bound path tried to update multiple times per frame.'
         isShowingCreatePostView = true
-    }
-
-    func go() {
-        print("go")
     }
     
 }
@@ -105,7 +106,7 @@ extension CommunityCoordinator: AddPostCoordinatorDelegate {
 }
 
 extension CommunityCoordinator: CommunityInfoCoordinatorDelegate {
-    
+
     func goToCommunity(_ community: Community) {
         router.push(CommunityPath.goToCommunity(community))
     }
@@ -113,6 +114,12 @@ extension CommunityCoordinator: CommunityInfoCoordinatorDelegate {
     func showCandidates() {
         router.push(CommunityPath.candidates)
     }
+    
+    func openResourceURL(_ url: URL) {
+        self.url = url
+        isShowingWebView = true
+    }
+    
 }
 
 extension CommunityCoordinator: CandidateCardCoordinatorDelegate {
