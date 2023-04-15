@@ -19,18 +19,13 @@ struct CommunityHomeFeedView<ViewModel: CommunityHomeFeedViewModelProtocol>: Vie
         ScrollView {
             LazyVStack {
                 ForEach(viewModel.posts) { post in
-                    createPostCardView(post)
+                    PostCardView(viewModel: viewModel.getPostCardViewModel(post: post))
                 }
             }
         }
         .refreshable {
             viewModel.refreshPosts()
         }
-    }
-    
-    func createPostCardView(_ post: Post) -> PostCardView<PostCardViewModel> {
-        let viewModel = PostCardViewModel(coordinator: viewModel.coordinator, post: post)
-        return PostCardView(viewModel: viewModel)
     }
 }
 

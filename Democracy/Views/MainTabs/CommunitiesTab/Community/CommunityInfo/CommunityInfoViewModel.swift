@@ -22,7 +22,6 @@ protocol CommunityInfoViewModelProtocol: ObservableObject {
     var community: Community { get }
 
     func showCandidates()
-    func updateIsShowingPicker(_ newState: Bool)
     func onTapCommunityCard(_ community: Community)
     func openResourceURL(urlString: String)
 }
@@ -44,10 +43,6 @@ final class CommunityInfoViewModel: CommunityInfoViewModelProtocol {
     
     func showCandidates() {
         coordinator.showCandidates()
-    }
-    
-    func updateIsShowingPicker(_ newState: Bool) {
-        //communityViewController.updateIsShowingPickerView(newState)
     }
     
     func onTapCommunityCard(_ community: Community) {

@@ -18,6 +18,8 @@ protocol CommunityViewModelProtocol: ObservableObject {
     var canCreatePost: Bool { get }
     
     func showCreatePostView()
+    func getCommunityHomeFeedViewModel() -> CommunityHomeFeedViewModel
+    func getCommunityInfoViewModel() -> CommunityInfoViewModel
 }
 
 final class CommunityViewModel: CommunityViewModelProtocol {
@@ -38,6 +40,14 @@ final class CommunityViewModel: CommunityViewModelProtocol {
     
     func showCreatePostView() {
         coordinator.showCreatePostView()
+    }
+    
+    func getCommunityHomeFeedViewModel() -> CommunityHomeFeedViewModel {
+        CommunityHomeFeedViewModel(coordinator: coordinator)
+    }
+    
+    func getCommunityInfoViewModel() -> CommunityInfoViewModel {
+        CommunityInfoViewModel(coordinator: coordinator, community: community)
     }
     
 }

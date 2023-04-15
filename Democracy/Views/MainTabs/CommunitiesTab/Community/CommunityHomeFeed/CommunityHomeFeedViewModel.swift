@@ -18,6 +18,7 @@ protocol CommunityHomeFeedViewModelProtocol: ObservableObject {
     
     func goToPost()
     func refreshPosts()
+    func getPostCardViewModel(post: Post) -> PostCardViewModel
 }
 
 final class CommunityHomeFeedViewModel: CommunityHomeFeedViewModelProtocol {
@@ -27,6 +28,10 @@ final class CommunityHomeFeedViewModel: CommunityHomeFeedViewModelProtocol {
     @Published var posts: [Post] = []
     
     let coordinator: CommunityHomeFeedCoordinatorDelegate
+    
+    func getPostCardViewModel(post: Post) -> PostCardViewModel {
+        PostCardViewModel(coordinator: coordinator, post: post)
+    }
     
     init(coordinator: CommunityHomeFeedCoordinatorDelegate
     ) {

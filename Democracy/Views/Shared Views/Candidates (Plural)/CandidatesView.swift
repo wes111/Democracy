@@ -41,7 +41,9 @@ struct CandidatesView<ViewModel: CandidatesViewModelProtocol>: View {
                 
                 LazyVGrid(columns: columns) {
                     ForEach(viewModel.candidates) { candidate in
-                        createCandidateCardView(candidate)
+                        CandidateCardView(
+                            viewModel: viewModel.getCandidateCardViewModel(candidate)
+                        )
                     }
                 }
             }
@@ -55,11 +57,6 @@ struct CandidatesView<ViewModel: CandidatesViewModelProtocol>: View {
         .fullScreenCover(isPresented: $viewModel.isShowingCreateCandidateView) {
             createCreateCandidateView()
         }
-    }
-    
-    func createCandidateCardView(_ candidate: Candidate) -> CandidateCardView<CandidateCardViewModel> {
-        let viewModel = CandidateCardViewModel(coordinator: viewModel.coordinator, candidate: candidate)
-        return CandidateCardView(viewModel: viewModel)
     }
     
     func createCreateCandidateView() -> CreateCandidateView<CreateCandidateViewModel> {

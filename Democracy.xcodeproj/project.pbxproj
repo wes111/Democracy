@@ -387,13 +387,6 @@
 			path = AddPost;
 			sourceTree = "<group>";
 		};
-		EE80D90529C924F00000F8EF /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		EE80D90629C926490000F8EF /* Candidates (Plural) */ = {
 			isa = PBXGroup;
 			children = (
@@ -701,7 +694,6 @@
 		EED4A53129B81D3E00DDCCDA /* CommunityInfo */ = {
 			isa = PBXGroup;
 			children = (
-				EE80D90529C924F00000F8EF /* New Group */,
 				EED4A53429B81D8000DDCCDA /* CommunityInfoView.swift */,
 				EE80D90329C923960000F8EF /* CommunityInfoViewModel.swift */,
 			);

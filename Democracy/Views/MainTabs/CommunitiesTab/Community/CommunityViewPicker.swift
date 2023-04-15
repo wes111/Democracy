@@ -36,22 +36,23 @@ struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
             
             TabView(selection: $tabSelection) {
                 
-                createCommunityInfoView(viewModel.community)
+                CommunityInfoView(viewModel: viewModel.getCommunityInfoViewModel())
                     .tabItem {
                         Text(CommunityTab.info.rawValue)
                     }
                     .tag(CommunityTab.info)
                 
-                createCommunityHomeFeedView()
+                CommunityHomeFeedView(viewModel: viewModel.getCommunityHomeFeedViewModel())
                     .tabItem {
                         Text(CommunityTab.feed.rawValue)
                     }
                     .tag(CommunityTab.feed)
                 
-                CommunityArchiveFeedView().tabItem {
-                    Text(CommunityTab.archive.rawValue)
-                }
-                .tag(CommunityTab.archive)
+                CommunityArchiveFeedView()
+                    .tabItem {
+                        Text(CommunityTab.archive.rawValue)
+                    }
+                    .tag(CommunityTab.archive)
             }
             .tabViewStyle(.page)
         }
@@ -69,17 +70,6 @@ struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
             }
         }
     }
-    
-    func createCommunityHomeFeedView() -> CommunityHomeFeedView<CommunityHomeFeedViewModel> {
-        let viewModel = CommunityHomeFeedViewModel(coordinator: viewModel.coordinator)
-        return CommunityHomeFeedView(viewModel: viewModel)
-    }
-    
-    func createCommunityInfoView(_ community: Community) -> CommunityInfoView<CommunityInfoViewModel> {
-        let viewModel = CommunityInfoViewModel(coordinator: viewModel.coordinator, community: community)
-        return CommunityInfoView(viewModel: viewModel)
-    }
-    
 }
 
 struct CommunityView_Previews: PreviewProvider {

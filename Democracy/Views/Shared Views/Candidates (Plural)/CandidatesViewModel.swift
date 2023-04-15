@@ -21,6 +21,7 @@ protocol CandidatesViewModelProtocol: ObservableObject {
     func refreshCandidates()
     func refreshRepresentatives()
     func showCreateCandidateView()
+    func getCandidateCardViewModel(_ candidate: Candidate) -> CandidateCardViewModel 
 }
 
 final class CandidatesViewModel: CandidatesViewModelProtocol {
@@ -54,6 +55,10 @@ final class CandidatesViewModel: CandidatesViewModelProtocol {
     
     func showCreateCandidateView() {
         isShowingCreateCandidateView = true
+    }
+    
+    func getCandidateCardViewModel(_ candidate: Candidate) -> CandidateCardViewModel {
+        CandidateCardViewModel(coordinator: coordinator, candidate: candidate)
     }
     
     
