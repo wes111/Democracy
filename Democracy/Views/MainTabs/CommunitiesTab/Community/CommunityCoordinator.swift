@@ -19,6 +19,7 @@ enum CommunityPath: Hashable {
 struct CommunityCoordinator: View {
     
     @State private var isShowingCreatePostView = false
+    @State private var isShowingCreateCandidateView = false
     @State private var isShowingWebView = false
     @State private var url: URL = URL(string: "https://www.google.com")!
     
@@ -42,6 +43,9 @@ struct CommunityCoordinator: View {
             }
             .sheet(isPresented: $isShowingWebView) {
                 WebView(url: $url)
+            }
+            .fullScreenCover(isPresented: $isShowingCreateCandidateView) {
+                createCreateCandidateView()
             }
     }
     
@@ -80,6 +84,11 @@ struct CommunityCoordinator: View {
     func createCandidateView(_ candidate: Candidate) -> CandidateView<CandidateViewModel> {
         let viewModel = CandidateViewModel(coordinator: self, candidate: candidate)
         return CandidateView(viewModel: viewModel)
+    }
+    
+    func createCreateCandidateView() -> CreateCandidateView<CreateCandidateViewModel> {
+        let viewModel = CreateCandidateViewModel(coordinator: self)
+        return CreateCandidateView(viewModel: viewModel)
     }
 }
 
@@ -134,6 +143,18 @@ extension CommunityCoordinator: CandidateCoordinatorDelegate {
 }
 
 extension CommunityCoordinator: CandidatesCoordinatorDelegate {
+    
+    func showCreateCandidateView() {
+        isShowingCreateCandidateView = true
+    }
+    
+    func closeCreateCandidateView() {
+        isShowingCreateCandidateView = false
+    }
+    
+}
+
+extension CommunityCoordinator: CreateCandidateCoordinatorDelegate  {
     
 }
 

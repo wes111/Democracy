@@ -10,17 +10,21 @@ import Combine
 import Factory
 
 protocol CandidatesCoordinatorDelegate: CandidateCardCoordinatorDelegate {
+    
+    func showCreateCandidateView()
+    func closeCreateCandidateView()
 }
 
 protocol CandidatesViewModelProtocol: ObservableObject {
     var coordinator: CandidatesCoordinatorDelegate { get }
     var candidates: [Candidate] { get }
     var representatives: [Candidate] { get }
-    var isShowingCreateCandidateView: Bool { get set }
+    //var isShowingCreateCandidateView: Bool { get set }
     
     func refreshCandidates()
     func refreshRepresentatives()
-    func showCreateCandidateView()
+    func openCreateCandidateView()
+    func closeCreateCandidateView()
     func getCandidateCardViewModel(_ candidate: Candidate) -> CandidateCardViewModel 
 }
 
@@ -30,7 +34,7 @@ final class CandidatesViewModel: CandidatesViewModelProtocol {
     @Injected(\.communityInteractor) var communityInteractor
     @Published var candidates: [Candidate] = []
     @Published var representatives: [Candidate] = []
-    @Published var isShowingCreateCandidateView = false
+    //@Published var isShowingCreateCandidateView = false
 
     let coordinator: CandidatesCoordinatorDelegate
     private var cancellables = Set<AnyCancellable>()
@@ -53,8 +57,13 @@ final class CandidatesViewModel: CandidatesViewModelProtocol {
         communityInteractor.refreshRepresentatives()
     }
     
-    func showCreateCandidateView() {
-        isShowingCreateCandidateView = true
+    func openCreateCandidateView() {
+        coordinator.showCreateCandidateView()
+        //isShowingCreateCandidateView = true
+    }
+    
+    func closeCreateCandidateView() {
+        coordinator.closeCreateCandidateView()
     }
     
     func getCandidateCardViewModel(_ candidate: Candidate) -> CandidateCardViewModel {
