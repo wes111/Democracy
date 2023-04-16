@@ -61,6 +61,7 @@ class GRDBService: GRDBServiceProtocol {
                 table.column("isRepresentative", .boolean).notNull()
                 table.column("summary", .text).notNull()
                 table.column("externalLink", .text)
+                table.column("repType", .text)
             }
             
             try database.create(table: "user", body: { table in

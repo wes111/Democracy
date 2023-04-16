@@ -32,7 +32,7 @@ struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
                 Text(CommunityTab.archive.rawValue).tag(CommunityTab.archive)
             }
             .pickerStyle(.segmented)
-            .padding()
+            .padding(.horizontal)
             
             TabView(selection: $tabSelection) {
                 
