@@ -9,8 +9,6 @@ import Combine
 import Factory
 
 protocol CommunityInteractorProtocol {
-    func subscribeToRepresentatives() -> AnyPublisher<[Candidate], Never>
-    func refreshRepresentatives()
     
     func subscribeToMyCommunities() -> AnyPublisher<[Community], Never>
     func subscribeToRecommendedCommunities() -> AnyPublisher<[Community], Never>
@@ -27,24 +25,13 @@ struct CommunityInteractor: CommunityInteractorProtocol {
 
     @Injected(\.communityLocalRepository) var localRepository
     @Injected(\.communityRemoteRepository) var remoteRepository
-    
-    // TODO: Move this out of communityInteractor?
-    private let representativesPublisher = PassthroughSubject<[Candidate], Never>()
-    
+
     private let myCommunitiesPublisher = PassthroughSubject<[Community], Never>()
     private let recommendedCommunitiesPublisher = PassthroughSubject<[Community], Never>()
     private let topCommunitiesPublisher = PassthroughSubject<[Community], Never>()
     
     init() {
         
-    }
-    
-    func subscribeToRepresentatives() -> AnyPublisher<[Candidate], Never> {
-        representativesPublisher.eraseToAnyPublisher()
-    }
-    
-    func refreshRepresentatives() {
-        representativesPublisher.send(Candidate.representativePreviewArray)
     }
     
     func subscribeToMyCommunities() -> AnyPublisher<[Community], Never> {

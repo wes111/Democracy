@@ -15,44 +15,54 @@ struct CandidatesView<ViewModel: CandidatesViewModelProtocol>: View {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
-    let columns = [
-        GridItem(.flexible(), spacing: 10),
-        GridItem(.flexible(), spacing: 10)
-    ]
-    
     var body: some View {
-        VStack {
-            Button {
-                viewModel.openCreateCandidateView()
-            } label: {
-                Image(systemName: "plus")
-            }
-
-            ScrollView {
-                
-    //            LazyVGrid(columns: columns) {
-    //                ForEach(viewModel.representatives) { representative in
-    //                    // TODO: Create slightly different card for reps.
-    //                    createCandidateCardView(representative)
-    //                }
-    //            }
-                
-                Divider().padding(.top, 200)
-                
-                LazyVGrid(columns: columns) {
-                    ForEach(viewModel.candidates) { candidate in
+        List {
+            Group {
+                Section {
+                    ForEach(viewModel.representatives) { candidate in
                         CandidateCardView(
                             viewModel: viewModel.getCandidateCardViewModel(candidate)
                         )
                     }
+                } header: {
+                    HeaderWithDropDownFilter(
+                        title: "Representatives",
+                        menuItems: RepresentativeType.allCases,
+                        selectedItem: $viewModel.representativesFilter
+                    )
+                }
+                
+                Section {
+                    ForEach(viewModel.candidates) { representative in
+                        CandidateCardView(
+                            viewModel: viewModel.getCandidateCardViewModel(representative)
+                        )
+                    }
+                } header: {
+                    HeaderWithDropDownFilter(
+                        title: "Candidates",
+                        menuItems: RepresentativeType.allCases,
+                        selectedItem: $viewModel.candidatesFilter
+                    )
                 }
             }
+            .listRowInsets(EdgeInsets())
+            .listRowSeparator(.hidden)
+
         }
-        
-        .padding()
+        .headerProminence(.increased)
+        .listStyle(PlainListStyle())
         .refreshable {
-            viewModel.refreshRepresentatives()
             viewModel.refreshCandidates()
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    viewModel.openCreateCandidateView()
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
         }
     }
 }

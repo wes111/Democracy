@@ -19,10 +19,11 @@ protocol CandidatesViewModelProtocol: ObservableObject {
     var coordinator: CandidatesCoordinatorDelegate { get }
     var candidates: [Candidate] { get }
     var representatives: [Candidate] { get }
+    var candidatesFilter: RepresentativeType { get set }
+    var representativesFilter: RepresentativeType { get set }
     //var isShowingCreateCandidateView: Bool { get set }
     
     func refreshCandidates()
-    func refreshRepresentatives()
     func openCreateCandidateView()
     func closeCreateCandidateView()
     func getCandidateCardViewModel(_ candidate: Candidate) -> CandidateCardViewModel 
@@ -31,30 +32,33 @@ protocol CandidatesViewModelProtocol: ObservableObject {
 final class CandidatesViewModel: CandidatesViewModelProtocol {
     
     @Injected(\.candidateInteractor) var candidateInteractor
-    @Injected(\.communityInteractor) var communityInteractor
-    @Published var candidates: [Candidate] = []
-    @Published var representatives: [Candidate] = []
+    @Published var allCandidates: [Candidate] = []
+    @Published var candidatesFilter: RepresentativeType = .legislator
+    @Published var representativesFilter: RepresentativeType = .legislator
     //@Published var isShowingCreateCandidateView = false
-
+    
     let coordinator: CandidatesCoordinatorDelegate
     private var cancellables = Set<AnyCancellable>()
+    
+    var candidates: [Candidate] {
+        allCandidates.filter({ $0.repType == candidatesFilter })
+    }
+    
+    var representatives: [Candidate] {
+        allCandidates.filter({ $0.isRepresentative && $0.repType == representativesFilter })
+    }
     
     init(coordinator: CandidatesCoordinatorDelegate
     ) {
         self.coordinator = coordinator
-        candidateInteractor.subscribeToCandidates()
+        candidateInteractor
+            .subscribeToCandidates()
             .receive(on: DispatchQueue.main)
-            .assign(to: &$candidates)
-        
-        communityInteractor.subscribeToRepresentatives().assign(to: &$representatives)
+            .assign(to: &$allCandidates)
     }
     
     func refreshCandidates() {
         candidateInteractor.refreshCandidates()
-    }
-    
-    func refreshRepresentatives() {
-        communityInteractor.refreshRepresentatives()
     }
     
     func openCreateCandidateView() {

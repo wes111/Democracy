@@ -6,10 +6,6 @@
 //
 
 import SwiftUI
-
-enum RepresentativeType: String, Codable, CaseIterable {
-    case mod, legislator, creator
-}
     
 struct CommunityInfoView<ViewModel: CommunityInfoViewModelProtocol>: View {
     

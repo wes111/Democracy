@@ -16,6 +16,7 @@ protocol CandidateInteractorProtocol {
     func downVoteCandidate(_ candidate: Candidate) async throws
     func getCandidate(id: UUID) async throws -> Candidate?
     func addCandidate(summary: String, link: String?, repType: RepresentativeType) async throws
+    
 }
 
 struct CandidateInteractor: CandidateInteractorProtocol {
@@ -27,19 +28,18 @@ struct CandidateInteractor: CandidateInteractorProtocol {
     // Interactors:
     @Injected(\.userInteractor) var userInteractor
     
-    private var candidatesPublisher = PassthroughSubject<[Candidate], Never>()
+    private let candidatesPublisher = PassthroughSubject<[Candidate], Never>()
+
     
-    init() {}
+    init() {
+        updateCandidates()
+    }
     
     func subscribeToCandidates() -> AnyPublisher<[Candidate], Never> {
-        defer {
-            updateCandidates()
-        }
-        return candidatesPublisher.eraseToAnyPublisher()
+        candidatesPublisher.eraseToAnyPublisher()
     }
     
     func refreshCandidates() {
-        //TODO: ...
         updateCandidates()
     }
     
@@ -76,7 +76,7 @@ struct CandidateInteractor: CandidateInteractorProtocol {
             userName: user.userName,
             firstName: user.firstName,
             lastName: user.lastName,
-            imageName: nil,
+            imageName: "bernie", //TODO: ...
             upVotes: 0,
             downVotes: 0,
             communityId: UUID(),

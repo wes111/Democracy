@@ -7,6 +7,7 @@
 
 import Combine
 import Factory
+import Foundation
 
 protocol CandidateCardCoordinatorDelegate {
     func goToCandidateView(_ candidate: Candidate)
@@ -38,12 +39,15 @@ final class CandidateCardViewModel: CandidateCardViewModelProtocol {
     
     /// Subscribe to updates to the card's candidate.
     private func subscribeToCandidates() {
-        candidateInteractor.subscribeToCandidates().sink { [weak self] candidates in
-            guard let self = self, let cardCandidate = candidates.first(where: { $0.id == self.candidate.id }) else {
-                return print("Candidate for card went missing from local database.")
+        candidateInteractor
+            .subscribeToCandidates()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] candidates in
+                guard let self = self, let cardCandidate = candidates.first(where: { $0.id == self.candidate.id }) else {
+                    return print("Candidate for card went missing from local database.")
+                }
+                self.updateCandidate(newCandidate: cardCandidate)
             }
-            self.updateCandidate(newCandidate: cardCandidate)
-        }
         .store(in: &cancellables)
     }
     
