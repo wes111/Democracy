@@ -7,8 +7,13 @@
 
 import SwiftUI
 
-enum TimeGranularity: String, CaseIterable {
+enum TimeGranularity: String, CaseIterable, CustomStringConvertible {
+    
     case day, month, year // A user selects one to determine granularity of posts.
+    
+    var description: String {
+        self.rawValue
+    }
 }
 
 struct CommunityArchiveFeedView<ViewModel: CommunityArchiveFeedViewModelProtocol>: View {

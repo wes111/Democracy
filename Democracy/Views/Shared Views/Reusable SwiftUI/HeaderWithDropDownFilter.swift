@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HeaderWithDropDownFilter<T: Hashable>: View where T: RawRepresentable, T.RawValue == String {
+struct HeaderWithDropDownFilter<T: Hashable>: View where T: CustomStringConvertible {
     
     let title: String
     let menuItems: [T]

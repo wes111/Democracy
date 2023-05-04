@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BoundMenu<T: Hashable>: View where T: RawRepresentable, T.RawValue == String {
+struct BoundMenu<T: Hashable & CustomStringConvertible>: View {
     
     let menuItems: [T]
     @Binding var selectedItem: T
@@ -15,14 +15,14 @@ struct BoundMenu<T: Hashable>: View where T: RawRepresentable, T.RawValue == Str
     var body: some View {
         
         Menu {
-            ForEach(menuItems, id: \.self) { repType in
-                Button(repType.rawValue.capitalized) {
-                    selectedItem = repType
+            ForEach(menuItems, id: \.self) { item in
+                Button(item.description.capitalized) {
+                    selectedItem = item
                 }
             }
         } label: {
             HStack() {
-                Text(selectedItem.rawValue.capitalized)
+                Text(selectedItem.description.capitalized)
                 Image(systemName: "chevron.down")
                 Spacer()
             }

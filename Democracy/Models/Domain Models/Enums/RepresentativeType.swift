@@ -7,6 +7,11 @@
 
 import Foundation
 
-enum RepresentativeType: String, Codable, CaseIterable {
+enum RepresentativeType: String, Codable, CaseIterable, CustomStringConvertible {
+
     case mod, legislator, creator
+    
+    var description: String {
+        self.rawValue
+    }
 }
