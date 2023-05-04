@@ -7,14 +7,48 @@
 
 import SwiftUI
 
-struct CommunityArchiveFeedView: View {
+enum TimeGranularity: String, CaseIterable {
+    case day, month, year // A user selects one to determine granularity of posts.
+}
+
+struct CommunityArchiveFeedView<ViewModel: CommunityArchiveFeedViewModelProtocol>: View {
+    
+    @StateObject private var viewModel: ViewModel
+    @State private var date = Date()
+    
+    init(viewModel: ViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+    
     var body: some View {
-        Text("Community archive feed view")
+        
+        VStack {
+            HStack {
+                Text("Time Granularity:")
+                BoundMenu(
+                    menuItems: TimeGranularity.allCases,
+                    selectedItem: $viewModel.timeGranularity
+                )
+            }
+
+            
+            DatePicker(
+                "Start Date",
+                selection: $date,
+                displayedComponents: [.date]
+            )
+            .datePickerStyle(.graphical)
+        }
+        
+
+        // Calendar view
+        // Top of all time
+        // Bookmarked (by mods)
     }
 }
 
 struct CommunityArchiveFeedView_Previews: PreviewProvider {
     static var previews: some View {
-        CommunityArchiveFeedView()
+        CommunityArchiveFeedView(viewModel: CommunityArchiveFeedViewModel.preview)
     }
 }

@@ -13,6 +13,10 @@
 		EE54ADEC29A714E8007C3E3F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADEB29A714E8007C3E3F /* LoginViewModel.swift */; };
 		EE5B938329F747DD00B43381 /* RepresentativeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5B938229F747DD00B43381 /* RepresentativeType.swift */; };
 		EE5B938529F7652800B43381 /* HeaderWithDropDownFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5B938429F7652800B43381 /* HeaderWithDropDownFilter.swift */; };
+		EE5B938729F76EF800B43381 /* CommunityArchiveFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5B938629F76EF800B43381 /* CommunityArchiveFeedViewModel.swift */; };
+		EE5B938929F76FDA00B43381 /* CommunityArchiveFeedViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5B938829F76FDA00B43381 /* CommunityArchiveFeedViewModel+Preview.swift */; };
+		EE5B938B29F7764E00B43381 /* BoundMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5B938A29F7764E00B43381 /* BoundMenu.swift */; };
+		EE5B938E2A03346C00B43381 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5B938D2A03346C00B43381 /* Date+Extensions.swift */; };
 		EE80D8B129BAE4A80000F8EF /* Post+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B029BAE4A80000F8EF /* Post+Preview.swift */; };
 		EE80D8B429BAE6410000F8EF /* Community+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B329BAE6410000F8EF /* Community+Preview.swift */; };
 		EE80D8B629BAECCE0000F8EF /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B529BAECCE0000F8EF /* Link.swift */; };
@@ -140,6 +144,10 @@
 		EE54ADEB29A714E8007C3E3F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		EE5B938229F747DD00B43381 /* RepresentativeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentativeType.swift; sourceTree = "<group>"; };
 		EE5B938429F7652800B43381 /* HeaderWithDropDownFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderWithDropDownFilter.swift; sourceTree = "<group>"; };
+		EE5B938629F76EF800B43381 /* CommunityArchiveFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityArchiveFeedViewModel.swift; sourceTree = "<group>"; };
+		EE5B938829F76FDA00B43381 /* CommunityArchiveFeedViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunityArchiveFeedViewModel+Preview.swift"; sourceTree = "<group>"; };
+		EE5B938A29F7764E00B43381 /* BoundMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundMenu.swift; sourceTree = "<group>"; };
+		EE5B938D2A03346C00B43381 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		EE80D8B029BAE4A80000F8EF /* Post+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8B329BAE6410000F8EF /* Community+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Community+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8B529BAECCE0000F8EF /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -283,6 +291,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		EE5B938C29F776A400B43381 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				EE5B938229F747DD00B43381 /* RepresentativeType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		EE80D8B229BAE60F0000F8EF /* Domain Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -377,6 +393,7 @@
 				EE80D91F29C938320000F8EF /* CandidatesViewModel+Preview.swift */,
 				EE80D93829D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift */,
 				EE80D95229DB96F50000F8EF /* CreateCommunityViewModel+Preview.swift */,
+				EE5B938829F76FDA00B43381 /* CommunityArchiveFeedViewModel+Preview.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -488,8 +505,9 @@
 			isa = PBXGroup;
 			children = (
 				EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */,
-				EE80D95929E8EBB70000F8EF /* UIViewRepresentable */,
 				EE5B938429F7652800B43381 /* HeaderWithDropDownFilter.swift */,
+				EE80D95929E8EBB70000F8EF /* UIViewRepresentable */,
+				EE5B938A29F7764E00B43381 /* BoundMenu.swift */,
 			);
 			path = "Reusable SwiftUI";
 			sourceTree = "<group>";
@@ -624,6 +642,7 @@
 		EED4A51829ABC2B800DDCCDA /* Domain Models */ = {
 			isa = PBXGroup;
 			children = (
+				EE5B938C29F776A400B43381 /* Enums */,
 				EED4A51929ABC2D400DDCCDA /* Community.swift */,
 				EED4A51B29ABC2FE00DDCCDA /* User.swift */,
 				EED4A52529B810FF00DDCCDA /* Post.swift */,
@@ -631,7 +650,6 @@
 				EED4A54429BAE16700DDCCDA /* Tag.swift */,
 				EE80D8B529BAECCE0000F8EF /* Link.swift */,
 				EE80D91029C92C670000F8EF /* Candidate.swift */,
-				EE5B938229F747DD00B43381 /* RepresentativeType.swift */,
 			);
 			path = "Domain Models";
 			sourceTree = "<group>";
@@ -693,6 +711,7 @@
 			isa = PBXGroup;
 			children = (
 				EED4A53629B81D9500DDCCDA /* CommunityArchiveFeedView.swift */,
+				EE5B938629F76EF800B43381 /* CommunityArchiveFeedViewModel.swift */,
 			);
 			path = CommunityArchivedFeed;
 			sourceTree = "<group>";
@@ -720,6 +739,7 @@
 			children = (
 				EED4A54229BAB60100DDCCDA /* Hashable+Extensions.swift */,
 				EE80D8EC29BD180E0000F8EF /* Container+Extensions.swift */,
+				EE5B938D2A03346C00B43381 /* Date+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -859,12 +879,14 @@
 			files = (
 				EE80D91A29C9306A0000F8EF /* CandidateViewModel.swift in Sources */,
 				EED4A52129ABC86D00DDCCDA /* CommunityViewPicker.swift in Sources */,
+				EE5B938B29F7764E00B43381 /* BoundMenu.swift in Sources */,
 				EE80D93729D289BB0000F8EF /* CreateCandidateAlert.swift in Sources */,
 				EE80D94829D9DC040000F8EF /* CommunityCard.swift in Sources */,
 				EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */,
 				EE80D95B29E8EBD10000F8EF /* WebView.swift in Sources */,
 				EE80D92429C955C30000F8EF /* CandidateLocalRepository.swift in Sources */,
 				EE80D8F029BD37860000F8EF /* AddPostView.swift in Sources */,
+				EE5B938E2A03346C00B43381 /* Date+Extensions.swift in Sources */,
 				EE80D8DE29BC19ED0000F8EF /* HistoryTabCoordinator+Preview.swift in Sources */,
 				EED4A53529B81D8000DDCCDA /* CommunityInfoView.swift in Sources */,
 				EED4A52E29B81A2E00DDCCDA /* PostViewModel.swift in Sources */,
@@ -961,6 +983,7 @@
 				EED47EDD299F186600FEFC6E /* ViewModelD.swift in Sources */,
 				EE80D94F29DB90AD0000F8EF /* CreateCommunityViewModel.swift in Sources */,
 				EED4A53E29B971B700DDCCDA /* CommunityHomeFeedViewModel.swift in Sources */,
+				EE5B938929F76FDA00B43381 /* CommunityArchiveFeedViewModel+Preview.swift in Sources */,
 				EE80D8C129BC120A0000F8EF /* Router+Preview.swift in Sources */,
 				EE80D90D29C92C0B0000F8EF /* CandidateCardView.swift in Sources */,
 				EE80D8CC29BC14560000F8EF /* PostCardViewModel+Preview.swift in Sources */,
@@ -970,6 +993,7 @@
 				EED4A50729AA8BAE00DDCCDA /* EventsTabMainView.swift in Sources */,
 				EE80D8ED29BD180E0000F8EF /* Container+Extensions.swift in Sources */,
 				EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */,
+				EE5B938729F76EF800B43381 /* CommunityArchiveFeedViewModel.swift in Sources */,
 				EE80D92029C938320000F8EF /* CandidatesViewModel+Preview.swift in Sources */,
 				EED4A53C29B965AF00DDCCDA /* PostCardViewModel.swift in Sources */,
 				EE80D95329DB96F50000F8EF /* CreateCommunityViewModel+Preview.swift in Sources */,

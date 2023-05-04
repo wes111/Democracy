@@ -158,6 +158,10 @@ extension CommunityCoordinator: CreateCandidateCoordinatorDelegate  {
     
 }
 
+extension CommunityCoordinator: CommunityArchiveFeedCoordinatorDelegate {
+    
+}
+
 struct CommunityCoordinator_Previews: PreviewProvider {
     
     static var previews: some View {

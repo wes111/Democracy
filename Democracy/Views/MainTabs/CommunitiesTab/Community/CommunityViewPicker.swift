@@ -48,7 +48,7 @@ struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
                     }
                     .tag(CommunityTab.feed)
                 
-                CommunityArchiveFeedView()
+                CommunityArchiveFeedView(viewModel: viewModel.getCommunityArchiveFeedViewModel())
                     .tabItem {
                         Text(CommunityTab.archive.rawValue)
                     }

@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-protocol CommunityCoordinatorDelegate: CommunityHomeFeedCoordinatorDelegate, CommunityInfoCoordinatorDelegate {
+protocol CommunityCoordinatorDelegate: CommunityHomeFeedCoordinatorDelegate, CommunityInfoCoordinatorDelegate, CommunityArchiveFeedCoordinatorDelegate {
     func showCreatePostView()
 }
 
@@ -20,6 +20,7 @@ protocol CommunityViewModelProtocol: ObservableObject {
     func showCreatePostView()
     func getCommunityHomeFeedViewModel() -> CommunityHomeFeedViewModel
     func getCommunityInfoViewModel() -> CommunityInfoViewModel
+    func getCommunityArchiveFeedViewModel() -> CommunityArchiveFeedViewModel
 }
 
 final class CommunityViewModel: CommunityViewModelProtocol {
@@ -48,6 +49,10 @@ final class CommunityViewModel: CommunityViewModelProtocol {
     
     func getCommunityInfoViewModel() -> CommunityInfoViewModel {
         CommunityInfoViewModel(coordinator: coordinator, community: community)
+    }
+    
+    func getCommunityArchiveFeedViewModel() -> CommunityArchiveFeedViewModel {
+        CommunityArchiveFeedViewModel(coordinator: coordinator, community: community)
     }
     
 }

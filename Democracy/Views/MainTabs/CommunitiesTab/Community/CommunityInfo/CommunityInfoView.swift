@@ -46,12 +46,6 @@ struct CommunityInfoView<ViewModel: CommunityInfoViewModelProtocol>: View {
         }
 }
 
-struct CommunityInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        CommunityInfoView(viewModel: CommunityInfoViewModel.preview)
-    }
-}
-
 // MARK: - About Section
 
 struct AboutSection: View {
@@ -193,5 +187,11 @@ struct ListSection: View {
         }
         .headerProminence(.increased)
         .padding(.horizontal)
+    }
+}
+
+struct CommunityInfoView_Previews: PreviewProvider {
+    static var previews: some View {
+        CommunityInfoView(viewModel: CommunityInfoViewModel.preview)
     }
 }

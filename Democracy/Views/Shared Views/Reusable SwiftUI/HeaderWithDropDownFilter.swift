@@ -19,22 +19,13 @@ struct HeaderWithDropDownFilter<T: Hashable>: View where T: RawRepresentable, T.
                 .font(.title)
                 .padding(.trailing)
                 .lineLimit(1)
+                .layoutPriority(1.0)
                 .minimumScaleFactor(0.5)
             
-            Menu {
-                ForEach(menuItems, id: \.self) { repType in
-                    Button(repType.rawValue.capitalized) {
-                        selectedItem = repType
-                    }
-                }
-            } label: {
-                HStack {
-                    Text(selectedItem.rawValue.capitalized)
-                    Image(systemName: "chevron.down")
-                }
-                .frame(maxWidth: 125)
-                .border(Color.red)
-            }
+            BoundMenu(
+                menuItems: menuItems,
+                selectedItem: $selectedItem
+            )
         }
     }
     
