@@ -18,10 +18,9 @@ protocol CommunityArchiveFeedViewModelProtocol: ObservableObject {
 //    var selectedDate: Date { get set }
 //    var selectedYear: Int { get set }
     
-    var initialDates: [Date] { get }
     var community: Community { get }
-    func topPostsForDate(_ date: Date) -> [PostCardViewModel]
     func goToCommunityPostCategory(_ category: String)
+    var categoryViewModels: [CategoryCardViewModel] { get }
 }
 
 final class CommunityArchiveFeedViewModel: CommunityArchiveFeedViewModelProtocol {
@@ -41,24 +40,12 @@ final class CommunityArchiveFeedViewModel: CommunityArchiveFeedViewModelProtocol
         self.community = community
     }
     
-    // Returns an array of dates the user initially sees on this tab, currently last 7 days.
-    lazy var initialDates: [Date] = {
-        var days: [Date] = []
-        for dayOfWeekCount in 0...6 {
-            let date = Date.previousDay(offset: dayOfWeekCount)
-            days.append(date)
-        }
-        return days
-    }()
-    
-    // TODO: ...
-    func topPostsForDate(_ date: Date) -> [PostCardViewModel] {
-        // Tapping a post card doesn't do anything currently because we're using this privew here. TODO: ...
-        PostCardViewModel.previewArray
-    }
-    
     func goToCommunityPostCategory(_ category: String) {
         coordinator.goToCommunityPostCategory(category)
+    }
+    
+    var categoryViewModels: [CategoryCardViewModel] {
+        CategoryCardViewModel.previewArray
     }
     
 }

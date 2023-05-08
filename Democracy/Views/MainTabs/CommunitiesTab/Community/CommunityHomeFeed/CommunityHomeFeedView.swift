@@ -16,15 +16,55 @@ struct CommunityHomeFeedView<ViewModel: CommunityHomeFeedViewModelProtocol>: Vie
     }
     
     var body: some View {
-        ScrollView {
-            LazyVStack {
-                ForEach(viewModel.posts) { post in
-                    PostCardView(viewModel: viewModel.getPostCardViewModel(post: post))
+        
+        List {
+            Group {
+                
+                pinnedPosts(pinnedPosts: viewModel.pinnedPosts)
+                
+                ForEach(viewModel.initialDates, id: \.self) { date in
+                    topPostsForDateSection(
+                        date: date,
+                        topPosts: viewModel.topPostsForDate(date)
+                    )
                 }
             }
+            .listRowInsets(EdgeInsets())
+            .listRowSeparator(.hidden)
         }
+        .listStyle(PlainListStyle())
         .refreshable {
             viewModel.refreshPosts()
+        }
+    }
+    
+    func topPostsForDateSection(date: Date, topPosts: [PostCardViewModel]) -> some View {
+        
+        Section {
+            VStack(spacing: 10) {
+                ForEach(topPosts, id: \.post) { postCardViewModel in
+                    PostCardView(viewModel: postCardViewModel)
+                }
+            }
+            
+        } header: {
+            Text(date.getFormattedDate(format: "MMMM dd"))
+                .font(.title)
+                .padding(.horizontal)
+        }
+    }
+    
+    func pinnedPosts(pinnedPosts: [PostCardViewModel]) -> some View {
+        Section {
+            VStack(spacing: 10) {
+                ForEach(pinnedPosts, id: \.post) { postCardViewModel in
+                    PostCardView(viewModel: postCardViewModel)
+                }
+            }
+        } header: {
+            Text("Pinned")
+                .font(.title)
+                .padding(.horizontal)
         }
     }
 }

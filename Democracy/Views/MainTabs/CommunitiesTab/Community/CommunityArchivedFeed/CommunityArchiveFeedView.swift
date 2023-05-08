@@ -12,28 +12,37 @@ import SwiftUI
 struct CommunityArchiveFeedView<ViewModel: CommunityArchiveFeedViewModelProtocol>: View {
     
     @StateObject private var viewModel: ViewModel
+    @State var size: CGSize = CGSize()
     
     init(viewModel: ViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
+    private var gridItemLayout: [GridItem] = Array(repeating: .init(.flexible(), spacing: 0), count: 3)
+    
     var body: some View {
-        List {
-            Group {
-                
-                categoriesStack(viewModel.community.postCategories)
-                
-                ForEach(viewModel.initialDates, id: \.self) { date in
-                    topPostsForDateSection(
-                        date: date,
-                        topPosts: viewModel.topPostsForDate(date)
-                    )
+        ScrollView(.vertical) {
+            ScrollView(.horizontal) {
+                LazyHGrid(rows: gridItemLayout, alignment: .center, spacing: 0) {
+                    ForEach(viewModel.categoryViewModels, id: \.category) { categoryViewModel in
+                        CategoryCardView(viewModel: categoryViewModel)
+                            .onTapGesture {
+                                viewModel.goToCommunityPostCategory(categoryViewModel.category)
+                            }
+                            .background(
+                                GeometryReader { proxy in
+                                    Color.clear
+                                        .preference(key: SizePreferenceKey.self, value: proxy.size)
+                                }
+                            )
+                    }
                 }
             }
-            .listRowInsets(EdgeInsets())
-            .listRowSeparator(.hidden)
+            .onPreferenceChange(SizePreferenceKey.self) { preferences in
+                self.size = preferences
+            }
+            .frame(minHeight: size.height * 3)
         }
-        .listStyle(PlainListStyle())
     }
     
 //    var body: some View {
@@ -86,23 +95,6 @@ struct CommunityArchiveFeedView<ViewModel: CommunityArchiveFeedViewModelProtocol
 //            selectedItem: $viewModel.selectedYear)
 //    }
     
-    func topPostsForDateSection(date: Date, topPosts: [PostCardViewModel]) -> some View {
-        
-        Section {
-            VStack(spacing: 10) {
-                ForEach(topPosts, id: \.post) { postCardViewModel in
-                    PostCardView(viewModel: postCardViewModel)
-                }
-            }
-            
-        } header: {
-            Text(date.getFormattedDate(format: "MMMM dd"))
-                .font(.title)
-                .padding(.horizontal)
-        }
-        //.headerProminence(.increased)
-    }
-    
     func categoriesStack(_ categories: [String]) -> some View {
         
         Section {
@@ -131,5 +123,14 @@ struct CommunityArchiveFeedView<ViewModel: CommunityArchiveFeedViewModelProtocol
 struct CommunityArchiveFeedView_Previews: PreviewProvider {
     static var previews: some View {
         CommunityArchiveFeedView(viewModel: CommunityArchiveFeedViewModel.preview)
+    }
+}
+
+struct SizePreferenceKey: PreferenceKey {
+    typealias Value = CGSize
+    static var defaultValue: Value = .zero
+
+    static func reduce(value _: inout Value, nextValue: () -> Value) {
+        _ = nextValue()
     }
 }
