@@ -42,10 +42,7 @@ struct PostCoordinator: View {
 }
 
 extension PostCoordinator: PostCoordinatorDelegate {
-    
-    func go() {
-        print("go")
-    }
+
     
 }
 

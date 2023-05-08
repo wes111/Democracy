@@ -31,6 +31,12 @@ extension Community {
             "https://www.google.com",
             "https://www.google.com",
             "https://www.google.com"
+        ],
+        postCategories: [
+            "Cars",
+            "Boats",
+            "Hockey",
+            "Baseball"
         ]
     )
     
@@ -44,7 +50,13 @@ extension Community {
                     foundedDate: Community.preview.foundedDate,
                     representatives: Community.preview.representatives,
                     rules: Community.preview.rules,
-                    resources: Community.preview.resources
+                    resources: Community.preview.resources,
+                    postCategories: [
+                        "Cars",
+                        "Boats",
+                        "Hockey",
+                        "Baseball"
+                    ]
                 ))
         }
         return array
@@ -60,7 +72,13 @@ extension Community {
                     foundedDate: Community.preview.foundedDate,
                     representatives: Community.preview.representatives,
                     rules: Community.preview.rules,
-                    resources: Community.preview.resources
+                    resources: Community.preview.resources,
+                    postCategories: [
+                        "Cars",
+                        "Boats",
+                        "Hockey",
+                        "Baseball"
+                    ]
                 ))
         }
         return array
@@ -76,7 +94,13 @@ extension Community {
                     foundedDate: Community.preview.foundedDate,
                     representatives: Community.preview.representatives,
                     rules: Community.preview.rules,
-                    resources: Community.preview.resources
+                    resources: Community.preview.resources,
+                    postCategories: [
+                        "Cars",
+                        "Boats",
+                        "Hockey",
+                        "Baseball"
+                    ]
                 ))
         }
         return array

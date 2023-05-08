@@ -8,12 +8,10 @@
 import Foundation
 
 protocol PostCoordinatorDelegate {
-    func go()
 }
 
 protocol PostViewModelProtocol: ObservableObject {
     var post: Post { get }
-    func go()
 }
 
 final class PostViewModel: PostViewModelProtocol {
@@ -26,10 +24,6 @@ final class PostViewModel: PostViewModelProtocol {
     ) {
         self.coordinator = coordinator
         self.post = post
-    }
-    
-    func go() {
-        coordinator.go()
     }
     
 }

@@ -14,4 +14,5 @@ struct Community: Hashable, Identifiable, Codable {
     let representatives: [Candidate]
     let rules: [String]
     let resources: [String]
+    let postCategories: [String] // Categories defined by community, cannot be enum.
 }

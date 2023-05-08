@@ -13,7 +13,7 @@ protocol PostCardCoordinatorDelegate {
 
 protocol PostCardViewModelProtocol: ObservableObject {
     var post: Post { get }
-    func goToPostView(_ post: Post)
+    func goToPostView()
     func noAction()
 }
 
@@ -29,7 +29,7 @@ final class PostCardViewModel: PostCardViewModelProtocol {
         self.post = post
     }
     
-    func goToPostView(_ post: Post) {
+    func goToPostView() {
         coordinator.goToPostView(post)
     }
     

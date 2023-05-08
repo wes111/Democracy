@@ -6,3 +6,5 @@
 //
 
 // ViewModels are the only stateful objects. Interactors and Repositories should not be stateful.
+
+// Community tags are different than community categories. A post can only have 1 category. But multiple tags.

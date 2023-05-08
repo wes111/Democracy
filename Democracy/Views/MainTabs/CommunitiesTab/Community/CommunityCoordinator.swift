@@ -14,6 +14,7 @@ enum CommunityPath: Hashable {
     case candidates
     case singleCandidate(Candidate)
     case goToCommunity(Community)
+    case goToCommunityPostCategory(category: String)
 }
 
 struct CommunityCoordinator: View {
@@ -57,6 +58,7 @@ struct CommunityCoordinator: View {
         case .candidates: createCandidatesView()
         case .singleCandidate(let candidate): createCandidateView(candidate)
         case .goToCommunity(let community): createCommunityView(community)
+        case .goToCommunityPostCategory(let category): createCommunityPostCategoryView(category: category)
         }
     }
     
@@ -89,6 +91,14 @@ struct CommunityCoordinator: View {
     func createCreateCandidateView() -> CreateCandidateView<CreateCandidateViewModel> {
         let viewModel = CreateCandidateViewModel(coordinator: self)
         return CreateCandidateView(viewModel: viewModel)
+    }
+    
+    func createCommunityPostCategoryView(category: String) -> CommunityPostCategoryView<CommunityPostCategoryViewModel> {
+        let viewModel = CommunityPostCategoryViewModel(
+            community: community,
+            category: category
+        )
+        return CommunityPostCategoryView(viewModel: viewModel)
     }
 }
 
@@ -159,6 +169,11 @@ extension CommunityCoordinator: CreateCandidateCoordinatorDelegate  {
 }
 
 extension CommunityCoordinator: CommunityArchiveFeedCoordinatorDelegate {
+    
+    func goToCommunityPostCategory(_ category: String) {
+        router.push(CommunityPath.goToCommunityPostCategory(category: category))
+    }
+    
     
 }
 

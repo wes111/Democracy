@@ -53,7 +53,7 @@ struct PostCardView<ViewModel: PostCardViewModelProtocol>: View {
             }
         }
         .onTapGesture {
-            viewModel.goToPostView(viewModel.post)
+            viewModel.goToPostView()
         }
 
         .foregroundColor(.white)
