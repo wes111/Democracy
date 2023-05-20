@@ -17,8 +17,8 @@ extension CategoryCardViewModel {
         CategoryCardViewModel(category: "Preview Category 3"),
         CategoryCardViewModel(category: "Preview Category 4"),
         CategoryCardViewModel(category: "Preview Category 5"),
-        CategoryCardViewModel(category: "Preview Category 6"),
-        CategoryCardViewModel(category: "Preview Category 7"),
+        CategoryCardViewModel(category: "Preview Category Longer Title"),
+        CategoryCardViewModel(category: "Preview Category Very Very Very Longer Title"),
         CategoryCardViewModel(category: "Preview Category 8"),
         CategoryCardViewModel(category: "Preview Category 9")
     ]

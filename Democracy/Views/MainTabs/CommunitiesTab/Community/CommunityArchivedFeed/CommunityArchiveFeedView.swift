@@ -7,25 +7,43 @@
 
 import SwiftUI
 
+// TODO: Tappable area to show calendar is not expanding/contracting correctly.
+
 // Archive should be sortable by topic and date. Date is more iportant?
-// Show past 7 days and then user has to navigate for more date granularity or topics. top 5 per day?
 struct CommunityArchiveFeedView<ViewModel: CommunityArchiveFeedViewModelProtocol>: View {
     
     @StateObject private var viewModel: ViewModel
-    @State var size: CGSize = CGSize()
+    @State var categoryCardSize = CGSize()
+    @State var calendarPickerSize = CGSize()
+    @State var date = Date()
+    @State var isShowingCalendar = false
     
     init(viewModel: ViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
-    private var gridItemLayout: [GridItem] = Array(repeating: .init(.flexible(), spacing: 0), count: 3)
+    private var gridItemLayout: [GridItem] = Array(repeating: .init(.flexible(), spacing: 10), count: 3)
     
     var body: some View {
-        ScrollView(.vertical) {
-            ScrollView(.horizontal) {
+        ScrollView(.vertical, showsIndicators: true) {
+            communityCategories
+            communityDates
+        }
+    }
+    
+    var communityCategories: some View {
+        
+        VStack(alignment: .leading, spacing: 0) {
+            
+            Text("Categories")
+                .font(.title)
+                .padding(.horizontal)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
                 LazyHGrid(rows: gridItemLayout, alignment: .center, spacing: 0) {
                     ForEach(viewModel.categoryViewModels, id: \.category) { categoryViewModel in
                         CategoryCardView(viewModel: categoryViewModel)
+                            .padding(.leading)
                             .onTapGesture {
                                 viewModel.goToCommunityPostCategory(categoryViewModel.category)
                             }
@@ -39,61 +57,81 @@ struct CommunityArchiveFeedView<ViewModel: CommunityArchiveFeedViewModelProtocol
                 }
             }
             .onPreferenceChange(SizePreferenceKey.self) { preferences in
-                self.size = preferences
+                self.categoryCardSize = preferences
             }
-            .frame(minHeight: size.height * 3)
+            .frame(minHeight: categoryCardSize.height * 3 + 10 * 2)
         }
     }
     
-//    var body: some View {
-//
-//        VStack {
-//
-//            HStack {
-//                Text("Time Granularity:")
-//                    .lineLimit(1)
-//
-//                BoundMenu(
-//                    menuItems: TimeGranularity.allCases,
-//                    selectedItem: $viewModel.timeGranularity
-//                )
-//
-//                switch viewModel.timeGranularity {
-//                case .year:
-//                    yearPicker
-//                case .month:
-//                    monthPicker
-//                case .day:
-//                    datePicker
-//                }
-//            }
-//
-//            Spacer()
-//        }
-//    }
-//
-//    var datePicker: some View { // TODO: Set the date bounds on this.
-//        DatePicker(
-//            "Start Date",
-//            selection: $date,
-//            displayedComponents: [.date]
-//        )
-//        .datePickerStyle(.compact)
-//        .labelsHidden()
-//    }
-//
-//    var monthPicker: some View {
-//        BoundMenu(
-//            menuItems: Month.allCases,
-//            selectedItem: $viewModel.selectedMonth
-//        )
-//    }
-//
-//    var yearPicker: some View {
-//        BoundMenu(
-//            menuItems: Date.yearsArraySinceCreation,
-//            selectedItem: $viewModel.selectedYear)
-//    }
+    var communityDates: some View {
+        
+        VStack(alignment: .leading, spacing: 10) {
+            
+            Text("Date")
+                .font(.title)
+            
+            HStack {
+                Text("Time Granularity:")
+                    .lineLimit(1)
+                
+                BoundMenu(
+                    menuItems: TimeGranularity.allCases,
+                    selectedItem: $viewModel.timeGranularity
+                )
+                
+                Spacer()
+            }
+            
+            HStack {
+                
+                Button {
+                    print("Button tapped.")
+                } label: {
+                    Text("Show posts for:")
+                }
+                
+                ZStack {
+                    
+                    DatePicker(
+                        "Show posts date",
+                        selection: $date,
+                        displayedComponents: [.date]
+                    )
+                    .datePickerStyle(.compact)
+                    .labelsHidden()
+                    .frame(width: calendarPickerSize.width, height: calendarPickerSize.height)
+                    .clipped()
+                    
+                    Group {
+                        switch viewModel.timeGranularity {
+                        case .day:
+                            Text("\(date.getFormattedDate(format: "MMMM dd, YYYY"))")
+                        case .month:
+                            Text("\(date.getFormattedDate(format: "MMMM, YYYY"))")
+                        case .year:
+                            Text("\(date.getFormattedDate(format: "YYYY"))")
+                        }
+                    }
+                    .background(
+                        GeometryReader { proxy in
+                            Color.clear
+                                .preference(key: SizePreferenceKey2.self, value: proxy.size)
+                        }
+                    )
+                    .background {
+                        Color.white
+                    }
+                    .allowsHitTesting(false)
+                    .onPreferenceChange(SizePreferenceKey2.self) { preferences in
+                        self.calendarPickerSize = preferences
+                    }
+
+                }
+            }
+        
+        }
+        .padding(.horizontal)
+    }
     
     func categoriesStack(_ categories: [String]) -> some View {
         
@@ -113,9 +151,6 @@ struct CommunityArchiveFeedView<ViewModel: CommunityArchiveFeedViewModelProtocol
                 .padding(.horizontal)
         }
         .headerProminence(.increased)
-        
-
-        
     }
     
 }
@@ -127,6 +162,15 @@ struct CommunityArchiveFeedView_Previews: PreviewProvider {
 }
 
 struct SizePreferenceKey: PreferenceKey {
+    typealias Value = CGSize
+    static var defaultValue: Value = .zero
+
+    static func reduce(value _: inout Value, nextValue: () -> Value) {
+        _ = nextValue()
+    }
+}
+
+struct SizePreferenceKey2: PreferenceKey {
     typealias Value = CGSize
     static var defaultValue: Value = .zero
 

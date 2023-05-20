@@ -13,7 +13,7 @@ protocol CommunityArchiveFeedCoordinatorDelegate: PostCardCoordinatorDelegate {
 }
 
 protocol CommunityArchiveFeedViewModelProtocol: ObservableObject {
-//    var timeGranularity: TimeGranularity { get set }
+    var timeGranularity: TimeGranularity { get set }
 //    var selectedMonth: Month { get set }
 //    var selectedDate: Date { get set }
 //    var selectedYear: Int { get set }
@@ -25,7 +25,7 @@ protocol CommunityArchiveFeedViewModelProtocol: ObservableObject {
 
 final class CommunityArchiveFeedViewModel: CommunityArchiveFeedViewModelProtocol {
     
-//    @Published var timeGranularity: TimeGranularity = .month
+    @Published var timeGranularity: TimeGranularity = .month
 //    @Published var selectedMonth = Date().month
 //    @Published var selectedDate = Date()
 //    @Published var selectedYear = Date().yearInt

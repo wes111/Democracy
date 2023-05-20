@@ -16,12 +16,21 @@ struct CategoryCardView<ViewModel: CategoryCardViewModelProtocol>: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
+            
             Text(viewModel.category)
-                .font(.headline)
-            Text("\(viewModel.postCount)")
+                .font(.caption)
+            
+            Spacer()
+            
+            HStack {
+                Spacer()
+                Label("\(viewModel.postCount)", systemImage: "book.closed.fill")
+                    .font(.caption)
+            }
+            
         }
-        .frame(width: 100, height: 75, alignment: .center)
+        .frame(width: 100, height: 60)
         .padding(10)
         .background(
             RoundedRectangle(cornerRadius: 10)
