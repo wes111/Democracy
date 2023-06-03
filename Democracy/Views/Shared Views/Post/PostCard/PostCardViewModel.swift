@@ -11,15 +11,7 @@ protocol PostCardCoordinatorDelegate {
     func goToPostView(_ post: Post)
 }
 
-protocol PostCardViewModelProtocol: ObservableObject {
-    var post: Post { get }
-    var imageName: String { get }
-    var dateTitle: String { get }
-    func goToPostView()
-    func noAction()
-}
-
-final class PostCardViewModel: PostCardViewModelProtocol {
+final class PostCardViewModel: ObservableObject {
     
     private let coordinator: PostCardCoordinatorDelegate
     let post: Post
@@ -27,6 +19,11 @@ final class PostCardViewModel: PostCardViewModelProtocol {
     var imageName: String {
         // if postLocationInApp == global vs in community
         return post.creator.imageName ?? "bernie" // default image.
+    }
+    
+    var postNameOrCommunity: String {
+        // if postLocationInApp == global vs in community
+        return "Bernie Sanders"
     }
     
     var dateTitle: String {

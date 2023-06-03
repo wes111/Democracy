@@ -7,24 +7,32 @@
 
 import SwiftUI
 
-//TODO: Add share button.
-//  Add profile picture
-// Add upload button.
-// Differnt images for community post vs global post.
-
-struct PostCardView<ViewModel: PostCardViewModelProtocol>: View {
+struct PostCardView: View {
     
-    @StateObject private var viewModel: ViewModel
+    @StateObject private var viewModel: PostCardViewModel
     
-    init(viewModel: ViewModel) {
+    init(viewModel: PostCardViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                Text("\(viewModel.dateTitle)")
+        VStack(spacing: 10) {
+            
+            HStack(alignment: .top) {
+                Image(viewModel.imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(Circle())
+                    .frame(height: 50)
+                
+                VStack(alignment: .leading) {
+                    Text(viewModel.postNameOrCommunity)
+                    Text(viewModel.dateTitle)
+                        .font(.caption)
+                }
+                
                 Spacer()
+                
                 Menu {
                     Button("Order Now", action: viewModel.noAction)
                     Button("Adjust Order", action: viewModel.noAction)
@@ -37,54 +45,47 @@ struct PostCardView<ViewModel: PostCardViewModelProtocol>: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text(viewModel.post.title)
+                        .font(.title)
                     Text(viewModel.post.subtitle ?? "")
+                        .lineLimit(3)
                 }
                 Spacer()
             }
-            Spacer()
             
-            HStack {
+            HStack(spacing: 15) {
                 
-                Text("Tags: ")
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(viewModel.post.tags) { tag in
-                            Text(tag.name)
-                        }
-                    }
-                }
-            }
-            
-            HStack {
-                
-                
-                Spacer()
+                Label("\(viewModel.post.superLikeCount)", systemImage: "heart")
                 Image(systemName: "square.and.arrow.up")
-                Image(systemName: "arrow.down")
-                Text("\(viewModel.post.dislikeCount)")
-                Image(systemName: "arrow.up")
-                Text("\(viewModel.post.likeCount)")
-                Image(systemName: "heart")
-                Text("\(viewModel.post.superLikeCount)")
+                
+                Spacer()
+                Label("\(viewModel.post.dislikeCount)", systemImage: "arrow.down")
+                Label("\(viewModel.post.likeCount)", systemImage: "arrow.up")
+                
             }
+            .labelStyle(TightLabelStyle())
         }
         .onTapGesture {
             viewModel.goToPostView()
         }
-
+        
         .foregroundColor(.white)
-        .padding(15)
+        .padding(20)
         .background(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
-        .frame(maxHeight: 125)
+        .font(.body)
+        .lineLimit(1)
     }
+        
 }
 
 struct PostCardView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.gray
-            PostCardView(viewModel: PostCardViewModel.preview)
+            ScrollView {
+                Spacer()
+                    .frame(height: 25)
+                PostCardView(viewModel: PostCardViewModel.preview)
+            }
         }
-        
     }
 }
