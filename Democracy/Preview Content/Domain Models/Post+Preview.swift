@@ -23,7 +23,8 @@ extension Post {
             Tag(name: "Zebra"),
             Tag(name: "Donkey"),
             Tag(name: "Chicken")
-        ]
+        ],
+        link: Link(url: URL(string: "https://www.wired.com/story/seagrass-humble-ocean-plant-worth-trillions/")!)
     )
     
     static let previewArray: [Post] = {
@@ -42,7 +43,9 @@ extension Post {
                     Tag(name: "Zebra"),
                     Tag(name: "Donkey"),
                     Tag(name: "Chicken")
-                ])
+                ],
+                link: Link(url: URL(string: "https://www.wired.com/story/seagrass-humble-ocean-plant-worth-trillions/")!)
+            )
             )
         }
         return postArray

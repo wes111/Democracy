@@ -8,5 +8,5 @@
 import Foundation
 
 struct Link {
-    
+    let url: URL
 }

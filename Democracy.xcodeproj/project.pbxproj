@@ -27,6 +27,8 @@
 		EE5B93A22A088C1F00B43381 /* CategoryCardViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5B93A12A088C1F00B43381 /* CategoryCardViewModel+Preview.swift */; };
 		EE5B93A52A088E7B00B43381 /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5B93A42A088E7B00B43381 /* Color+Extensions.swift */; };
 		EE5D39EF2A2B9B4B00D0E312 /* TightLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39EE2A2B9B4B00D0E312 /* TightLabelStyle.swift */; };
+		EE5D39F12A2BB5DC00D0E312 /* RichLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39F02A2BB5DC00D0E312 /* RichLinkService.swift */; };
+		EE5D39F32A2BDA1E00D0E312 /* LPLinkViewRepresented.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39F22A2BDA1E00D0E312 /* LPLinkViewRepresented.swift */; };
 		EE80D8B129BAE4A80000F8EF /* Post+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B029BAE4A80000F8EF /* Post+Preview.swift */; };
 		EE80D8B429BAE6410000F8EF /* Community+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B329BAE6410000F8EF /* Community+Preview.swift */; };
 		EE80D8B629BAECCE0000F8EF /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B529BAECCE0000F8EF /* Link.swift */; };
@@ -168,6 +170,8 @@
 		EE5B93A12A088C1F00B43381 /* CategoryCardViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryCardViewModel+Preview.swift"; sourceTree = "<group>"; };
 		EE5B93A42A088E7B00B43381 /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		EE5D39EE2A2B9B4B00D0E312 /* TightLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TightLabelStyle.swift; sourceTree = "<group>"; };
+		EE5D39F02A2BB5DC00D0E312 /* RichLinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichLinkService.swift; sourceTree = "<group>"; };
+		EE5D39F22A2BDA1E00D0E312 /* LPLinkViewRepresented.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPLinkViewRepresented.swift; sourceTree = "<group>"; };
 		EE80D8B029BAE4A80000F8EF /* Post+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8B329BAE6410000F8EF /* Community+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Community+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8B529BAECCE0000F8EF /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -347,6 +351,14 @@
 			path = "SwiftUI Extensions";
 			sourceTree = "<group>";
 		};
+		EE5D39F42A2BDAD100D0E312 /* RichLinkService */ = {
+			isa = PBXGroup;
+			children = (
+				EE5D39F02A2BB5DC00D0E312 /* RichLinkService.swift */,
+			);
+			path = RichLinkService;
+			sourceTree = "<group>";
+		};
 		EE80D8B229BAE60F0000F8EF /* Domain Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,6 +503,7 @@
 		EE80D92A29D0D48D0000F8EF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				EE5D39F42A2BDAD100D0E312 /* RichLinkService */,
 				EE80D92B29D0D4A40000F8EF /* GRDBService */,
 			);
 			path = Services;
@@ -555,11 +568,11 @@
 		EE80D95429E0B6B90000F8EF /* Reusable SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				EE5B938A29F7764E00B43381 /* BoundMenu.swift */,
 				EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */,
 				EE5B938429F7652800B43381 /* HeaderWithDropDownFilter.swift */,
 				EE5D39EE2A2B9B4B00D0E312 /* TightLabelStyle.swift */,
 				EE80D95929E8EBB70000F8EF /* UIViewRepresentable */,
-				EE5B938A29F7764E00B43381 /* BoundMenu.swift */,
 			);
 			path = "Reusable SwiftUI";
 			sourceTree = "<group>";
@@ -568,6 +581,7 @@
 			isa = PBXGroup;
 			children = (
 				EE80D95A29E8EBD10000F8EF /* WebView.swift */,
+				EE5D39F22A2BDA1E00D0E312 /* LPLinkViewRepresented.swift */,
 			);
 			path = UIViewRepresentable;
 			sourceTree = "<group>";
@@ -991,6 +1005,7 @@
 				EED4A52629B810FF00DDCCDA /* Post.swift in Sources */,
 				EE80D8D829BC17020000F8EF /* UpdatesTabMainViewModel+Preview.swift in Sources */,
 				EE80D8B129BAE4A80000F8EF /* Post+Preview.swift in Sources */,
+				EE5D39F32A2BDA1E00D0E312 /* LPLinkViewRepresented.swift in Sources */,
 				EE80D8F829C01F1D0000F8EF /* UserLocalRepository.swift in Sources */,
 				EED47ED1299F168200FEFC6E /* C.swift in Sources */,
 				EE80D8E429BC1E2F0000F8EF /* PostLocalRepository.swift in Sources */,
@@ -1046,6 +1061,7 @@
 				EE80D94F29DB90AD0000F8EF /* CreateCommunityViewModel.swift in Sources */,
 				EED4A53E29B971B700DDCCDA /* CommunityHomeFeedViewModel.swift in Sources */,
 				EE5B938929F76FDA00B43381 /* CommunityArchiveFeedViewModel+Preview.swift in Sources */,
+				EE5D39F12A2BB5DC00D0E312 /* RichLinkService.swift in Sources */,
 				EE80D8C129BC120A0000F8EF /* Router+Preview.swift in Sources */,
 				EE80D90D29C92C0B0000F8EF /* CandidateCardView.swift in Sources */,
 				EE80D8CC29BC14560000F8EF /* PostCardViewModel+Preview.swift in Sources */,

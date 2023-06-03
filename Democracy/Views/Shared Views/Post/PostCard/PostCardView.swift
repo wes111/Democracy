@@ -41,36 +41,47 @@ struct PostCardView: View {
                     Image(systemName: "ellipsis")
                 }
             }
+            .padding(.horizontal, 10)
             
             HStack {
                 VStack(alignment: .leading) {
-                    Text(viewModel.post.title)
+                    Text(viewModel.postTitle)
                         .font(.title)
-                    Text(viewModel.post.subtitle ?? "")
-                        .lineLimit(3)
+                    if let subtitle = viewModel.postSubtitle {
+                        Text(subtitle)
+                            .lineLimit(3)
+                    }
+                    
                 }
                 Spacer()
+            }
+            .padding(.horizontal, 10)
+            
+            if let metadata = viewModel.linkMetadata {
+                LPLinkViewRepresented(metadata: metadata)
             }
             
             HStack(spacing: 15) {
                 
-                Label("\(viewModel.post.superLikeCount)", systemImage: "heart")
+                Label(viewModel.postSuperLikeCountString, systemImage: "heart")
                 Image(systemName: "square.and.arrow.up")
                 
                 Spacer()
-                Label("\(viewModel.post.dislikeCount)", systemImage: "arrow.down")
-                Label("\(viewModel.post.likeCount)", systemImage: "arrow.up")
+                Label(viewModel.postDislikeCountString, systemImage: "arrow.down")
+                Label(viewModel.postLikeCountString, systemImage: "arrow.up")
                 
             }
             .labelStyle(TightLabelStyle())
+            .padding(.horizontal, 10)
+            
         }
         .onTapGesture {
             viewModel.goToPostView()
         }
-        
         .foregroundColor(.white)
-        .padding(20)
-        .background(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
+        .padding(.vertical, 20)
+        //.padding(20)
+        .background(Rectangle())
         .font(.body)
         .lineLimit(1)
     }

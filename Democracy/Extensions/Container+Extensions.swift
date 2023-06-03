@@ -55,4 +55,8 @@ extension Container {
     var grdbService: Factory<GRDBServiceProtocol> {
          self { GRDBService() }
     }
+    
+    var richLinkService: Factory<RichLinkServiceProtocol> {
+        self { RichLinkService() } 
+    }
 }

@@ -5,7 +5,9 @@
 //  Created by Wesley Luntsford on 3/8/23.
 //
 
+import Factory
 import Foundation
+import LinkPresentation
 
 protocol PostCardCoordinatorDelegate {
     func goToPostView(_ post: Post)
@@ -13,9 +15,14 @@ protocol PostCardCoordinatorDelegate {
 
 final class PostCardViewModel: ObservableObject {
     
+    //MARK: - Private Variables
+    @Injected(\.richLinkService) private var richLinkService
     private let coordinator: PostCardCoordinatorDelegate
-    let post: Post
+    let post: Post //TODO: Make this private?
     
+    // MARK: - Protocol Variables
+    @Published var linkMetadata: LPLinkMetadata?
+
     var imageName: String {
         // if postLocationInApp == global vs in community
         return post.creator.imageName ?? "bernie" // default image.
@@ -37,19 +44,64 @@ final class PostCardViewModel: ObservableObject {
         
     }
     
+    var postTitle: String {
+        post.title
+    }
+    
+    var postSubtitle: String? {
+        post.subtitle
+    }
+    
+    var postSuperLikeCountString: String {
+        "\(post.superLikeCount)"
+    }
+    
+    var postLikeCountString: String {
+        "\(post.likeCount)"
+    }
+    
+    var postDislikeCountString: String {
+        "\(post.dislikeCount)"
+    }
+    
+    // MARK: - Init
+    
     init(coordinator: PostCardCoordinatorDelegate,
          post: Post
     ) {
         self.coordinator = coordinator
         self.post = post
+        
+        loadLinkMetadata()
     }
+    
+    // MARK: - Protocol Methods
     
     func goToPostView() {
         coordinator.goToPostView(post)
     }
     
     func noAction() {
-        print("No Action.")
+        
+    }
+    
+    // MARK: - Private methods
+    
+    private func loadLinkMetadata() {
+        
+        Task {
+            guard let url = post.link?.url else { return }
+            
+            do {
+                let metadata = try await richLinkService.getMetadata(for: url)
+                
+                await MainActor.run {
+                    self.linkMetadata = metadata
+                }
+            } catch {
+                print("Error occurred fetching rich link metadata: \(error).")
+            }
+        }
     }
     
 }
