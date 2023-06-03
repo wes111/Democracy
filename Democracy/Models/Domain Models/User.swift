@@ -14,6 +14,7 @@ struct User: Codable {
     var userName: String
     var firstName: String?
     var lastName: String?
+    let imageName: String?
 }
 
 extension User: FetchableRecord, PersistableRecord {

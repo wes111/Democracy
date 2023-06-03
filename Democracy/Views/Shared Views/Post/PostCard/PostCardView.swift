@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+//TODO: Add share button.
+//  Add profile picture
+// Add upload button.
+// Differnt images for community post vs global post.
+
 struct PostCardView<ViewModel: PostCardViewModelProtocol>: View {
     
     @StateObject private var viewModel: ViewModel
@@ -18,7 +23,7 @@ struct PostCardView<ViewModel: PostCardViewModelProtocol>: View {
     var body: some View {
         VStack {
             HStack {
-                Text("\(viewModel.post.creationDate)")
+                Text("\(viewModel.dateTitle)")
                 Spacer()
                 Menu {
                     Button("Order Now", action: viewModel.noAction)
@@ -37,7 +42,10 @@ struct PostCardView<ViewModel: PostCardViewModelProtocol>: View {
                 Spacer()
             }
             Spacer()
+            
             HStack {
+                
+                Text("Tags: ")
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(viewModel.post.tags) { tag in
@@ -45,11 +53,19 @@ struct PostCardView<ViewModel: PostCardViewModelProtocol>: View {
                         }
                     }
                 }
-                .frame(maxWidth: 250)
+            }
+            
+            HStack {
+                
                 
                 Spacer()
+                Image(systemName: "square.and.arrow.up")
                 Image(systemName: "arrow.down")
+                Text("\(viewModel.post.dislikeCount)")
                 Image(systemName: "arrow.up")
+                Text("\(viewModel.post.likeCount)")
+                Image(systemName: "heart")
+                Text("\(viewModel.post.superLikeCount)")
             }
         }
         .onTapGesture {
@@ -65,6 +81,10 @@ struct PostCardView<ViewModel: PostCardViewModelProtocol>: View {
 
 struct PostCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PostCardView(viewModel: PostCardViewModel.preview)
+        ZStack {
+            Color.gray
+            PostCardView(viewModel: PostCardViewModel.preview)
+        }
+        
     }
 }

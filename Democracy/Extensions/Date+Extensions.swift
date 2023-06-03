@@ -29,6 +29,15 @@ extension Date {
         Calendar.current.date(byAdding: .day, value: -offset, to: Date())!
     }
     
+    func isToday() -> Bool {
+        Calendar.current.isDateInToday(self)
+        
+    }
+    
+    func isYesterday() -> Bool {
+        Calendar.current.isDateInYesterday(self)
+    }
+    
 }
 
 // Democracy related dates.

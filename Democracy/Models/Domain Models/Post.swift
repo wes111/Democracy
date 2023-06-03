@@ -13,13 +13,15 @@ struct Post: Identifiable {
     let title: String
     let subtitle: String?
     let body: String
+    let link: Link?
     var comments: [Comment]?
     var likeCount: Int = 0
+    var dislikeCount: Int = 0
     var superLikeCount: Int = 0
     let creator: User
     let community: Community = Community.preview
-    let tags: [Tag]
-    let link: Link?
+    var tags: [Tag]
+
     
     init(title: String, subtitle: String? = nil, body: String, creator: User, tags: [Tag], link: Link? = nil) {
         self.title = title

@@ -8,5 +8,5 @@
 import Foundation
 
 extension User {
-    static let preview = User(userName: "Hamlin")
+    static let preview = User(userName: "Hamlin", imageName: "bernie")
 }
