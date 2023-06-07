@@ -8,5 +8,5 @@
 import Foundation
 
 extension CommunityCoordinator {
-    static let preview = CommunityCoordinator(Community.preview, Router.preview)
+    static let preview = CommunityCoordinator(viewModel: CommunityCoordinatorViewModel.preview)
 }

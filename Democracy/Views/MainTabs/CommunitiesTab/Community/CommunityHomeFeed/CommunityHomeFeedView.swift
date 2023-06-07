@@ -7,70 +7,57 @@
 
 import SwiftUI
 
-struct CommunityHomeFeedView<ViewModel: CommunityHomeFeedViewModelProtocol>: View {
+struct CommunityHomeFeedView: View {
     
-    @StateObject var viewModel: ViewModel
+    @StateObject var viewModel: CommunityHomeFeedViewModel
+    private let postSpacing: CGFloat = 10
     
-    init(viewModel: ViewModel) {
+    init(viewModel: CommunityHomeFeedViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
-        
-        List {
-            Group {
-                
+        OffsetObservingScrollView(offset: $viewModel.scrollOffset) {
+            VStack(spacing: postSpacing) {
                 pinnedPosts(pinnedPosts: viewModel.pinnedPosts)
                 
                 ForEach(viewModel.initialDates, id: \.self) { date in
-                    topPostsForDateSection(
-                        date: date,
-                        topPosts: viewModel.topPostsForDate(date)
-                    )
+                    VStack(spacing: postSpacing) {
+                        topPostsForDateSection(
+                            date: date,
+                            topPosts: viewModel.topPostsForDate(date)
+                        )
+                    }
                 }
             }
-            .listRowInsets(EdgeInsets())
-            .listRowSeparator(.hidden)
         }
-        .listStyle(PlainListStyle())
+        .background(
+            Color.primaryBackground
+        )
         .refreshable {
             viewModel.refreshPosts()
         }
     }
     
     func topPostsForDateSection(date: Date, topPosts: [PostCardViewModel]) -> some View {
-        
-        Section {
-            VStack(spacing: 10) {
-                ForEach(topPosts, id: \.post) { postCardViewModel in
-                    PostCardView(viewModel: postCardViewModel)
-                }
+        VStack(spacing: postSpacing) {
+            ForEach(topPosts, id: \.post) { postCardViewModel in
+                PostCardView(viewModel: postCardViewModel)
             }
-            
-        } header: {
-            Text(date.getFormattedDate(format: "MMMM dd"))
-                .font(.title)
-                .padding(.horizontal)
         }
     }
     
     func pinnedPosts(pinnedPosts: [PostCardViewModel]) -> some View {
-        Section {
-            VStack(spacing: 10) {
-                ForEach(pinnedPosts, id: \.post) { postCardViewModel in
-                    PostCardView(viewModel: postCardViewModel)
-                }
+        VStack(spacing: postSpacing) {
+            ForEach(pinnedPosts, id: \.post) { postCardViewModel in
+                PostCardView(viewModel: postCardViewModel)
             }
-        } header: {
-            Text("Pinned")
-                .font(.title)
-                .padding(.horizontal)
         }
     }
 }
 
 struct CommunityHomeFeedView_Previews: PreviewProvider {
     static var previews: some View {
-        CommunityHomeFeedView(viewModel: CommunityHomeFeedViewModel.preview)
+            CommunityHomeFeedView(viewModel: CommunityHomeFeedViewModel.preview)
     }
 }

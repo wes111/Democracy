@@ -21,18 +21,25 @@ struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
     init(viewModel: ViewModel
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor.init(.otherRed)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.init(.primaryText)], for: .normal)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.init(.primaryText)], for: .selected)
+        UISegmentedControl.appearance().backgroundColor = UIColor.init(.secondaryBackground)
     }
     
     var body: some View {
         VStack {
             
-            Picker(selection: $tabSelection, label: Text("Picker")) {
-                Text(CommunityTab.info.rawValue).tag(CommunityTab.info)
-                Text(CommunityTab.feed.rawValue).tag(CommunityTab.feed)
-                Text(CommunityTab.archive.rawValue).tag(CommunityTab.archive)
+            if viewModel.isShowingNavigationBar {
+                Picker(selection: $tabSelection, label: Text("Picker")) {
+                    Text(CommunityTab.info.rawValue).tag(CommunityTab.info)
+                    Text(CommunityTab.feed.rawValue).tag(CommunityTab.feed)
+                    Text(CommunityTab.archive.rawValue).tag(CommunityTab.archive)
+                }
+                .pickerStyle(.segmented)
+                .padding()
             }
-            .pickerStyle(.segmented)
-            .padding(.horizontal)
             
             TabView(selection: $tabSelection) {
                 
@@ -56,8 +63,9 @@ struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
             }
             .tabViewStyle(.page)
         }
-        .navigationTitle(viewModel.community.name)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(!viewModel.isShowingNavigationBar)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 if tabSelection == .feed {
@@ -65,10 +73,33 @@ struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
                         viewModel.showCreatePostView()
                     } label: {
                         Image(systemName: "plus")
+                            .foregroundColor(.tertiaryText)
                     }
                 }
             }
+            
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Text(viewModel.community.name)
+                        .font(.headline)
+                        .foregroundColor(.tertiaryText)
+                }
+            }
+            
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    viewModel.goBack()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.tertiaryText)
+                }
+                
+            }
         }
+        .background(
+            Color.primaryBackground
+        )
+
     }
 }
 

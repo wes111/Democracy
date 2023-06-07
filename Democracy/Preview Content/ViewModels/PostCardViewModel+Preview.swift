@@ -8,7 +8,7 @@
 import Foundation
 
 extension PostCardViewModel {
-    static let preview = PostCardViewModel(coordinator: CommunityCoordinator.preview, post: Post.preview)
+    static let preview = PostCardViewModel(coordinator: CommunityCoordinatorViewModel.preview, post: Post.preview)
     
     static let previewArray: [PostCardViewModel] = [
         preview, preview, preview, preview, preview

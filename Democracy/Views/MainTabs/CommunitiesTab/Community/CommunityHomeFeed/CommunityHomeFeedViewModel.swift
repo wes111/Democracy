@@ -5,6 +5,7 @@
 //  Created by Wesley Luntsford on 3/8/23.
 //
 
+import Combine
 import Foundation
 import Factory
 
@@ -12,24 +13,16 @@ protocol CommunityHomeFeedCoordinatorDelegate: PostCardCoordinatorDelegate {
     var community: Community { get }
 }
 
-protocol CommunityHomeFeedViewModelProtocol: ObservableObject {
-    var posts: [Post] { get }
-    var coordinator: CommunityHomeFeedCoordinatorDelegate { get }
-    
-    func goToPost()
-    func refreshPosts()
-    func getPostCardViewModel(post: Post) -> PostCardViewModel
-    
-    func topPostsForDate(_ date: Date) -> [PostCardViewModel]
-    var pinnedPosts: [PostCardViewModel] { get }
-    var initialDates: [Date] { get }
-}
-
-final class CommunityHomeFeedViewModel: CommunityHomeFeedViewModelProtocol {
+final class CommunityHomeFeedViewModel: ObservableObject {
     
     @Injected(\.postInteractor) var postInteractor
+    @Injected(\.scrollLocationService) var scrollLocationService
     
     @Published var posts: [Post] = []
+    @Published var scrollOffset = CGPoint(x: 0, y: 0)
+    private var previousOffset = CGPoint(x: 0, y: 0)
+    
+    private var cancellables = Set<AnyCancellable>()
     
     let coordinator: CommunityHomeFeedCoordinatorDelegate
     
@@ -37,10 +30,25 @@ final class CommunityHomeFeedViewModel: CommunityHomeFeedViewModelProtocol {
         PostCardViewModel(coordinator: coordinator, post: post)
     }
     
+    private func updateScrollViewOffSetService() {
+        $scrollOffset
+            .sink { [weak self] offset in
+                guard let self else { return }
+                if !offset.equalTo(self.previousOffset) {
+                    self.scrollLocationService.updateScrollLocation(offset)
+                    self.previousOffset = offset
+                }
+                
+            }
+            .store(in: &cancellables)
+    }
+    
     init(coordinator: CommunityHomeFeedCoordinatorDelegate
     ) {
         self.coordinator = coordinator
         postInteractor.subscribeToPosts().assign(to: &$posts)
+        
+        updateScrollViewOffSetService()
     }
     
     func goToPost() {

@@ -12,18 +12,23 @@ enum CommunitiesTabPath: Hashable {
 }
 
 struct CommunitiesTabCoordinator: View {
-
-    @StateObject private var router = Router()
-    @State private var isShowingCreateCommunityView = false
     
+    @StateObject private var viewModel: CommunitiesTabCoordinatorViewModel
+    @ObservedObject private var router: Router
+    
+    init(viewModel: CommunitiesTabCoordinatorViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+        router = viewModel.router
+    }
+
     var body: some View {
-        NavigationStack(path: $router.navigationPath) {
-            createCommunitiesTabMainView()
+        NavigationStack(path: $viewModel.router.navigationPath) {
+            CommunitiesTabMainView(viewModel: viewModel.communitiesTabMainViewModel)
                 .navigationDestination(for: CommunitiesTabPath.self) { path in
                     createViewFromPath(path)
                 }
-                .fullScreenCover(isPresented: $isShowingCreateCommunityView) {
-                    createCreateCommunityView()
+                .fullScreenCover(isPresented: $viewModel.isShowingCreateCommunityView) {
+                    CreateCommunityView(viewModel: viewModel.createCommunityViewModel)
                 }
         }
     }
@@ -31,48 +36,14 @@ struct CommunitiesTabCoordinator: View {
     @ViewBuilder
     func createViewFromPath(_ path: CommunitiesTabPath) -> some View {
         switch path {
-        case .goToCommunity(let community): createCommunityView(community)
+        case .goToCommunity(let community): CommunityCoordinator(viewModel: viewModel.communityCoordinatorViewModel(community: community))
         }
     }
     
-    func createCommunitiesTabMainView() -> CommunitiesTabMainView<CommunitiesTabMainViewModel> {
-        let viewModel = CommunitiesTabMainViewModel(coordinator: self)
-        return CommunitiesTabMainView(viewModel: viewModel)
-    }
-    
-    func createCommunityView(_ community: Community) -> CommunityCoordinator {
-        CommunityCoordinator(community, router)
-    }
-    
-    func createCreateCommunityView() -> CreateCommunityView<CreateCommunityViewModel> {
-        let viewModel = CreateCommunityViewModel(coordinator: self)
-        return CreateCommunityView(viewModel: viewModel)
-    }
-    
-}
-
-extension CommunitiesTabCoordinator: CommunitiesTabMainCoordinatorDelegate {
-    
-    func showCreateCommunityView() {
-        isShowingCreateCommunityView = true
-    }
-    
-    
-    func goToCommunity(_ community: Community) {
-        router.push(CommunitiesTabPath.goToCommunity(community))
-    }
-    
-}
-
-extension CommunitiesTabCoordinator: CreateCommunityCoordinatorDelegate {
-    
-    func close() {
-        isShowingCreateCommunityView = false
-    }
 }
 
 struct CommunitiesTabCoordinator_Previews: PreviewProvider {
     static var previews: some View {
-        CommunitiesTabCoordinator()
+        CommunitiesTabCoordinator(viewModel: .preview)
     }
 }

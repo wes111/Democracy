@@ -59,4 +59,8 @@ extension Container {
     var richLinkService: Factory<RichLinkServiceProtocol> {
         self { RichLinkService() } 
     }
+    
+    var scrollLocationService: Factory<ScrollLocationServiceProtocol> {
+        self { ScrollLocationService() }.scope(.singleton)
+    }
 }

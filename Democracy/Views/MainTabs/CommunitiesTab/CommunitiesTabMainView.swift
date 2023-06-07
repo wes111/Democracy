@@ -42,6 +42,9 @@ struct CommunitiesTabMainView<ViewModel: CommunitiesTabMainViewModelProtocol>: V
             )
             
         }
+        .background(
+            Color.primaryBackground
+        )
         .navigationTitle("Communities")
         .refreshable {
             viewModel.refreshMyCommunities()
@@ -61,7 +64,10 @@ struct CommunitiesTabMainView<ViewModel: CommunitiesTabMainViewModelProtocol>: V
 }
 
 struct CommunitiesTabMainView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        CommunitiesTabMainView(viewModel: CommunitiesTabMainViewModel.preview)
+        NavigationStack {
+            CommunitiesTabMainView(viewModel: CommunitiesTabMainViewModel.preview)
+        }
     }
 }

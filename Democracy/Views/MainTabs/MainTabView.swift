@@ -35,7 +35,8 @@ struct MainTabView: View {
                 }
                 .tag(MainTab.updates)
             
-            CommunitiesTabCoordinator()
+            // TODO: Should not create view models in view.
+            CommunitiesTabCoordinator(viewModel: .init())
                 .tabItem {
                     Label("Communities", systemImage: "person.3.fill")
                 }

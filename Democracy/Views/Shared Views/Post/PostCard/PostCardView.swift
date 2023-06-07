@@ -18,41 +18,68 @@ struct PostCardView: View {
     var body: some View {
         VStack(spacing: 10) {
             
-            HStack(alignment: .top) {
-                Image(viewModel.imageName)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .clipShape(Circle())
-                    .frame(height: 50)
-                
-                VStack(alignment: .leading) {
-                    Text(viewModel.postNameOrCommunity)
-                    Text(viewModel.dateTitle)
-                        .font(.caption)
-                }
-                
-                Spacer()
-                
-                Menu {
-                    Button("Order Now", action: viewModel.noAction)
-                    Button("Adjust Order", action: viewModel.noAction)
-                    Button("Cancel", action: viewModel.noAction)
-                } label: {
-                    Image(systemName: "ellipsis")
-                }
-            }
-            .padding(.horizontal, 10)
+            header
+                .padding(.horizontal, 10)
             
+            content
+            
+            footer
+            
+        }
+        .onTapGesture {
+            viewModel.goToPostView()
+        }
+        .foregroundColor(.primaryText)
+        .padding(.vertical, 20)
+        .background(Color.secondaryBackground)
+        .background(Rectangle())
+        .font(.body)
+        .lineLimit(1)
+    }
+    
+    var header: some View {
+        HStack(alignment: .top) {
+            
+            Image(viewModel.imageName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .clipShape(Circle())
+                .frame(height: 50)
+            
+            VStack(alignment: .leading) {
+                Text(viewModel.postNameOrCommunity)
+                Text(viewModel.dateTitle)
+                    .font(.caption)
+                    .foregroundColor(.secondaryText)
+            }
+            
+            Spacer()
+            
+            Menu {
+                Button("Order Now", action: viewModel.noAction)
+                Button("Adjust Order", action: viewModel.noAction)
+                Button("Cancel", action: viewModel.noAction)
+            } label: {
+                Image(systemName: "ellipsis")
+            }
+        }
+    }
+    
+    var content: some View {
+        VStack(spacing: 10) {
             HStack {
                 VStack(alignment: .leading) {
+                    
                     Text(viewModel.postTitle)
                         .font(.title)
+                    
                     if let subtitle = viewModel.postSubtitle {
                         Text(subtitle)
                             .lineLimit(3)
+                            .foregroundColor(.secondaryText)
                     }
-                    
                 }
+                
                 Spacer()
             }
             .padding(.horizontal, 10)
@@ -60,43 +87,32 @@ struct PostCardView: View {
             if let metadata = viewModel.linkMetadata {
                 LPLinkViewRepresented(metadata: metadata)
             }
-            
-            HStack(spacing: 15) {
-                
-                Label(viewModel.postSuperLikeCountString, systemImage: "heart")
-                Image(systemName: "square.and.arrow.up")
-                
-                Spacer()
-                Label(viewModel.postDislikeCountString, systemImage: "arrow.down")
-                Label(viewModel.postLikeCountString, systemImage: "arrow.up")
-                
-            }
-            .labelStyle(TightLabelStyle())
-            .padding(.horizontal, 10)
-            
         }
-        .onTapGesture {
-            viewModel.goToPostView()
+    }
+    
+    var footer: some View {
+        HStack(spacing: 15) {
+            
+            Label(viewModel.postSuperLikeCountString, systemImage: "heart")
+            Image(systemName: "square.and.arrow.up")
+            Spacer()
+            Label(viewModel.postDislikeCountString, systemImage: "arrow.down")
+            Label(viewModel.postLikeCountString, systemImage: "arrow.up")
         }
-        .foregroundColor(.white)
-        .padding(.vertical, 20)
-        //.padding(20)
-        .background(Rectangle())
-        .font(.body)
-        .lineLimit(1)
+        .labelStyle(TightLabelStyle())
+        .padding(.horizontal, 10)
     }
         
 }
 
 struct PostCardView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        ZStack {
-            Color.gray
-            ScrollView {
-                Spacer()
-                    .frame(height: 25)
-                PostCardView(viewModel: PostCardViewModel.preview)
-            }
-        }
+        
+        ScrollView {
+            PostCardView(viewModel: PostCardViewModel.preview)
+        }.background(
+            Color.primaryBackground
+        )
     }
 }
