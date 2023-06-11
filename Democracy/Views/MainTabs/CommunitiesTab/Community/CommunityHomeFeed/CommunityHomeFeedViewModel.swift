@@ -16,12 +16,10 @@ protocol CommunityHomeFeedCoordinatorDelegate: PostCardCoordinatorDelegate {
 final class CommunityHomeFeedViewModel: ObservableObject {
     
     @Injected(\.postInteractor) var postInteractor
-    @Injected(\.scrollLocationService) var scrollLocationService
     
     @Published var posts: [Post] = []
     @Published var scrollOffset = CGPoint(x: 0, y: 0)
-    private var previousOffset = CGPoint(x: 0, y: 0)
-    
+
     private var cancellables = Set<AnyCancellable>()
     
     let coordinator: CommunityHomeFeedCoordinatorDelegate
@@ -29,26 +27,11 @@ final class CommunityHomeFeedViewModel: ObservableObject {
     func getPostCardViewModel(post: Post) -> PostCardViewModel {
         PostCardViewModel(coordinator: coordinator, post: post)
     }
-    
-    private func updateScrollViewOffSetService() {
-        $scrollOffset
-            .sink { [weak self] offset in
-                guard let self else { return }
-                if !offset.equalTo(self.previousOffset) {
-                    self.scrollLocationService.updateScrollLocation(offset)
-                    self.previousOffset = offset
-                }
-                
-            }
-            .store(in: &cancellables)
-    }
-    
+
     init(coordinator: CommunityHomeFeedCoordinatorDelegate
     ) {
         self.coordinator = coordinator
         postInteractor.subscribeToPosts().assign(to: &$posts)
-        
-        updateScrollViewOffSetService()
     }
     
     func goToPost() {

@@ -31,7 +31,6 @@
 		EE5D39F32A2BDA1E00D0E312 /* LPLinkViewRepresented.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39F22A2BDA1E00D0E312 /* LPLinkViewRepresented.swift */; };
 		EE5D39F72A2D077D00D0E312 /* PositionObservingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39F62A2D077D00D0E312 /* PositionObservingView.swift */; };
 		EE5D39F92A2D085900D0E312 /* OffsetObservingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39F82A2D085900D0E312 /* OffsetObservingScrollView.swift */; };
-		EE5D39FB2A2D0E4600D0E312 /* ScrollLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39FA2A2D0E4600D0E312 /* ScrollLocationService.swift */; };
 		EE5D39FD2A2ECB2A00D0E312 /* CommunityCoordinatorViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39FC2A2ECB2A00D0E312 /* CommunityCoordinatorViewModel+Preview.swift */; };
 		EE5D39FF2A2ED43A00D0E312 /* CommunityCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39FE2A2ED43A00D0E312 /* CommunityCoordinatorViewModel.swift */; };
 		EE5D3A012A2EE0ED00D0E312 /* CommunitiesTabCoordinatorViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A002A2EE0ED00D0E312 /* CommunitiesTabCoordinatorViewModel+Preview.swift */; };
@@ -181,7 +180,6 @@
 		EE5D39F22A2BDA1E00D0E312 /* LPLinkViewRepresented.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPLinkViewRepresented.swift; sourceTree = "<group>"; };
 		EE5D39F62A2D077D00D0E312 /* PositionObservingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionObservingView.swift; sourceTree = "<group>"; };
 		EE5D39F82A2D085900D0E312 /* OffsetObservingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetObservingScrollView.swift; sourceTree = "<group>"; };
-		EE5D39FA2A2D0E4600D0E312 /* ScrollLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollLocationService.swift; sourceTree = "<group>"; };
 		EE5D39FC2A2ECB2A00D0E312 /* CommunityCoordinatorViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunityCoordinatorViewModel+Preview.swift"; sourceTree = "<group>"; };
 		EE5D39FE2A2ED43A00D0E312 /* CommunityCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		EE5D3A002A2EE0ED00D0E312 /* CommunitiesTabCoordinatorViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunitiesTabCoordinatorViewModel+Preview.swift"; sourceTree = "<group>"; };
@@ -530,7 +528,6 @@
 			children = (
 				EE5D39F42A2BDAD100D0E312 /* RichLinkService */,
 				EE80D92B29D0D4A40000F8EF /* GRDBService */,
-				EE5D39FA2A2D0E4600D0E312 /* ScrollLocationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1041,7 +1038,6 @@
 				EE5D39F32A2BDA1E00D0E312 /* LPLinkViewRepresented.swift in Sources */,
 				EE80D8F829C01F1D0000F8EF /* UserLocalRepository.swift in Sources */,
 				EED47ED1299F168200FEFC6E /* C.swift in Sources */,
-				EE5D39FB2A2D0E4600D0E312 /* ScrollLocationService.swift in Sources */,
 				EE80D8E429BC1E2F0000F8EF /* PostLocalRepository.swift in Sources */,
 				EE80D91529C92DC70000F8EF /* Candidate+Preview.swift in Sources */,
 				EE5B939E2A088B5400B43381 /* CategoryCardView.swift in Sources */,

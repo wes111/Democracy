@@ -18,7 +18,6 @@ protocol CommunityViewModelProtocol: ObservableObject {
     var community: Community { get }
     var coordinator: CommunityCoordinatorDelegate { get }
     var canCreatePost: Bool { get }
-    //var scrollOffset: CGPoint { get }
     var isShowingNavigationBar: Bool { get }
     
     func showCreatePostView()
@@ -30,11 +29,8 @@ protocol CommunityViewModelProtocol: ObservableObject {
 
 final class CommunityViewModel: CommunityViewModelProtocol {
     
-    @Injected(\.scrollLocationService) private var scrollLocationService
-    
     @Published var isShowingNavigationBar = true
 
-    private var cancellables = Set<AnyCancellable>()
     let coordinator: CommunityCoordinatorDelegate
     let community: Community
     var canCreatePost: Bool {
@@ -47,33 +43,6 @@ final class CommunityViewModel: CommunityViewModelProtocol {
     ) {
         self.coordinator = coordinator
         self.community = community
-        subscribeToScrollOffset()
-    }
-    
-    private func subscribeToScrollOffset() {
-        scrollLocationService
-            .subscribeToLocations()
-            .sink { offset in
-                print("New offset: \(offset)")
-                if offset.y <= 10 {
-                    Task {
-                        await MainActor.run  {
-                            if !self.isShowingNavigationBar {
-                                self.isShowingNavigationBar = true
-                            }
-                        }
-                    }
-                } else {
-                    Task {
-                        await MainActor.run {
-                            if self.isShowingNavigationBar {
-                                self.isShowingNavigationBar = false
-                            }
-                        }
-                    }
-                }
-            }
-            .store(in: &cancellables)
     }
     
     func showCreatePostView() {
