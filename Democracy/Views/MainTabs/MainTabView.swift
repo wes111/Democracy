@@ -15,11 +15,16 @@ struct MainTabView: View {
     
     @State private var selectedTab: MainTab = .updates
     
+    init() {
+        UITabBar.appearance().unselectedItemTintColor = UIColor(Color.tertiaryBackground)
+    }
+    
     var body: some View {
         TabView(selection: $selectedTab) {
             VotingTabCoordinator()
                 .tabItem {
                     Label("Voting", systemImage: "checklist")
+                        .foregroundColor(.primaryText)
                 }
                 .tag(MainTab.voting)
             
@@ -49,6 +54,7 @@ struct MainTabView: View {
                 .tag(MainTab.history)
         }
         .navigationBarBackButtonHidden()
+        .accentColor(.secondaryText)
     }
     
 }

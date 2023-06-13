@@ -38,7 +38,8 @@ struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
                     Text(CommunityTab.archive.rawValue).tag(CommunityTab.archive)
                 }
                 .pickerStyle(.segmented)
-                .padding()
+                .padding(.horizontal)
+                .padding(.bottom, 10)
             }
             
             TabView(selection: $tabSelection) {
@@ -67,13 +68,37 @@ struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(!viewModel.isShowingNavigationBar)
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                if tabSelection == .feed {
+            
+            if tabSelection == .feed {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         viewModel.showCreatePostView()
                     } label: {
                         Image(systemName: "plus")
                             .foregroundColor(.tertiaryText)
+                    }
+                }
+            }
+            
+            if tabSelection == .archive {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    
+                    
+                    Menu {
+                        Button("Category") {
+                            viewModel.updateCommunityArchiveType(.category)
+                        }
+                        Button("Time") {
+                            viewModel.updateCommunityArchiveType(.time)
+                        }
+                    } label: {
+                        VStack(alignment: .center) {
+                            Text("\(viewModel.selectedCommunityArchiveType)")
+                                .font(.caption)
+                        }
+                        .frame(width: 85)
+                        .padding(.vertical, 5)
+                        .background( RoundedRectangle(cornerRadius: 10.0).fill(Color.secondaryBackground))
                     }
                 }
             }
@@ -93,7 +118,6 @@ struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
                     Image(systemName: "chevron.left")
                         .foregroundColor(.tertiaryText)
                 }
-                
             }
         }
         .background(
@@ -107,6 +131,7 @@ struct CommunityView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
             CommunityViewPicker(viewModel: CommunityViewModel.preview)
+                .accentColor(.secondaryText)
         }
         
     }

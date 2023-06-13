@@ -12,20 +12,11 @@ protocol CommunityArchiveFeedCoordinatorDelegate: PostCardCoordinatorDelegate {
     func goToCommunityPostCategory(_ category: String)
 }
 
-protocol CommunityArchiveFeedViewModelProtocol: ObservableObject {
-    var timeGranularity: TimeGranularity { get set }
-//    var selectedMonth: Month { get set }
-//    var selectedDate: Date { get set }
-//    var selectedYear: Int { get set }
-    
-    var community: Community { get }
-    func goToCommunityPostCategory(_ category: String)
-    var categoryViewModels: [CategoryCardViewModel] { get }
-}
-
-final class CommunityArchiveFeedViewModel: CommunityArchiveFeedViewModelProtocol {
+final class CommunityArchiveFeedViewModel: ObservableObject {
     
     @Published var timeGranularity: TimeGranularity = .month
+    @Published var communityArchiveType: CommunityArchiveType = .category
+    @Injected(\.communityService) private var communityService
 //    @Published var selectedMonth = Date().month
 //    @Published var selectedDate = Date()
 //    @Published var selectedYear = Date().yearInt
@@ -38,6 +29,8 @@ final class CommunityArchiveFeedViewModel: CommunityArchiveFeedViewModelProtocol
     ) {
         self.coordinator = coordinator
         self.community = community
+        
+        communityService.communityArchiveType.assign(to: &$communityArchiveType)
     }
     
     func goToCommunityPostCategory(_ category: String) {

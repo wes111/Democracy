@@ -35,6 +35,7 @@
 		EE5D39FF2A2ED43A00D0E312 /* CommunityCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39FE2A2ED43A00D0E312 /* CommunityCoordinatorViewModel.swift */; };
 		EE5D3A012A2EE0ED00D0E312 /* CommunitiesTabCoordinatorViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A002A2EE0ED00D0E312 /* CommunitiesTabCoordinatorViewModel+Preview.swift */; };
 		EE5D3A032A30204D00D0E312 /* CommunitiesTabCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A022A30204D00D0E312 /* CommunitiesTabCoordinatorViewModel.swift */; };
+		EE5D3A052A36564A00D0E312 /* CommunityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A042A36564A00D0E312 /* CommunityService.swift */; };
 		EE80D8B129BAE4A80000F8EF /* Post+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B029BAE4A80000F8EF /* Post+Preview.swift */; };
 		EE80D8B429BAE6410000F8EF /* Community+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B329BAE6410000F8EF /* Community+Preview.swift */; };
 		EE80D8B629BAECCE0000F8EF /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B529BAECCE0000F8EF /* Link.swift */; };
@@ -184,6 +185,7 @@
 		EE5D39FE2A2ED43A00D0E312 /* CommunityCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		EE5D3A002A2EE0ED00D0E312 /* CommunitiesTabCoordinatorViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunitiesTabCoordinatorViewModel+Preview.swift"; sourceTree = "<group>"; };
 		EE5D3A022A30204D00D0E312 /* CommunitiesTabCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesTabCoordinatorViewModel.swift; sourceTree = "<group>"; };
+		EE5D3A042A36564A00D0E312 /* CommunityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityService.swift; sourceTree = "<group>"; };
 		EE80D8B029BAE4A80000F8EF /* Post+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8B329BAE6410000F8EF /* Community+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Community+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8B529BAECCE0000F8EF /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 			children = (
 				EE5D39F42A2BDAD100D0E312 /* RichLinkService */,
 				EE80D92B29D0D4A40000F8EF /* GRDBService */,
+				EE5D3A042A36564A00D0E312 /* CommunityService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1018,6 +1021,7 @@
 				EED4A52329ABC87B00DDCCDA /* CommunityViewModel.swift in Sources */,
 				EE80D8D229BC15DF0000F8EF /* EventsTabCoordinator+Preview.swift in Sources */,
 				EEF83463299C6824001EEA5E /* ContentView.swift in Sources */,
+				EE5D3A052A36564A00D0E312 /* CommunityService.swift in Sources */,
 				EED4A53329B81D6800DDCCDA /* CommunityHomeFeedView.swift in Sources */,
 				EED4A50529AA870000DDCCDA /* VotingTabMainViewModel.swift in Sources */,
 				EE80D90829C926600000F8EF /* CandidatesView.swift in Sources */,

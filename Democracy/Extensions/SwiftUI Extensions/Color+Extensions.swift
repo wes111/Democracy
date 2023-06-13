@@ -36,7 +36,7 @@ extension Color {
     
     /// Medicum dark gray.
     static var tertiaryBackground: Color {
-        .init(red: 51 / 255, green: 51 / 255, blue: 51 / 255)
+        .init(red: 93 / 255, green: 93 / 255, blue: 93 / 255)
     }
     
     // MARK: - Label Colors

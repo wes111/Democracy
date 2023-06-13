@@ -10,57 +10,39 @@ import SwiftUI
 // TODO: Tappable area to show calendar is not expanding/contracting correctly.
 
 // Archive should be sortable by topic and date. Date is more iportant?
-struct CommunityArchiveFeedView<ViewModel: CommunityArchiveFeedViewModelProtocol>: View {
+struct CommunityArchiveFeedView: View {
     
-    @StateObject private var viewModel: ViewModel
+    @StateObject private var viewModel: CommunityArchiveFeedViewModel
     @State var categoryCardSize = CGSize()
     @State var calendarPickerSize = CGSize()
     @State var date = Date()
     @State var isShowingCalendar = false
     
-    init(viewModel: ViewModel) {
+    init(viewModel: CommunityArchiveFeedViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
-    private var gridItemLayout: [GridItem] = Array(repeating: .init(.flexible(), spacing: 10), count: 3)
+    private var gridItemLayout: [GridItem] = Array(repeating: .init(.flexible(), spacing: 20), count: 2)
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
-            communityCategories
-            communityDates
+            switch viewModel.communityArchiveType {
+            case .category: communityCategories
+            case .time: communityDates
+            }
         }
     }
     
     var communityCategories: some View {
-        
-        VStack(alignment: .leading, spacing: 0) {
-            
-            Text("Categories")
-                .font(.title)
-                .padding(.horizontal)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHGrid(rows: gridItemLayout, alignment: .center, spacing: 0) {
-                    ForEach(viewModel.categoryViewModels, id: \.category) { categoryViewModel in
-                        CategoryCardView(viewModel: categoryViewModel)
-                            .padding(.leading)
-                            .onTapGesture {
-                                viewModel.goToCommunityPostCategory(categoryViewModel.category)
-                            }
-                            .background(
-                                GeometryReader { proxy in
-                                    Color.clear
-                                        .preference(key: SizePreferenceKey.self, value: proxy.size)
-                                }
-                            )
+        LazyVGrid(columns: gridItemLayout, alignment: .center, spacing: 15) {
+            ForEach(viewModel.categoryViewModels, id: \.category) { categoryViewModel in
+                CategoryCardView(viewModel: categoryViewModel)
+                    .onTapGesture {
+                        viewModel.goToCommunityPostCategory(categoryViewModel.category)
                     }
-                }
             }
-            .onPreferenceChange(SizePreferenceKey.self) { preferences in
-                self.categoryCardSize = preferences
-            }
-            .frame(minHeight: categoryCardSize.height * 3 + 10 * 2)
         }
+        .padding(20)
     }
     
     var communityDates: some View {

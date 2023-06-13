@@ -30,7 +30,7 @@ struct CategoryCardView<ViewModel: CategoryCardViewModelProtocol>: View {
             }
             
         }
-        .frame(width: 100, height: 60)
+        .frame(height: 80)
         .padding(10)
         .background(
             RoundedRectangle(cornerRadius: 10)
@@ -43,5 +43,6 @@ struct CategoryCardView<ViewModel: CategoryCardViewModelProtocol>: View {
 struct CategoryCardView_Previews: PreviewProvider {
     static var previews: some View {
         CategoryCardView(viewModel: CategoryCardViewModel.preview)
+            .frame(width: 120)
     }
 }
