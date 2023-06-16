@@ -28,7 +28,7 @@ struct CommunityPostCategoryView<ViewModel: CommunityPostCategoryViewModelProtoc
             ToolbarItem(placement: .principal) {
                 VStack {
                     Text(viewModel.community.name)
-                    Text(viewModel.category)
+                    Text(viewModel.category.name)
                 }
             }
         }

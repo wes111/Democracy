@@ -32,12 +32,7 @@ extension Community {
             "https://www.google.com",
             "https://www.google.com"
         ],
-        postCategories: [
-            "Cars",
-            "Boats",
-            "Hockey",
-            "Baseball"
-        ]
+        postCategories: CommunityCategory.previewArray
     )
     
     static var myCommunitiesPreviewArray: [Community] {
@@ -51,12 +46,7 @@ extension Community {
                     representatives: Community.preview.representatives,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
-                    postCategories: [
-                        "Cars",
-                        "Boats",
-                        "Hockey",
-                        "Baseball"
-                    ]
+                    postCategories: CommunityCategory.previewArray
                 ))
         }
         return array
@@ -73,12 +63,7 @@ extension Community {
                     representatives: Community.preview.representatives,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
-                    postCategories: [
-                        "Cars",
-                        "Boats",
-                        "Hockey",
-                        "Baseball"
-                    ]
+                    postCategories: CommunityCategory.previewArray
                 ))
         }
         return array
@@ -95,12 +80,7 @@ extension Community {
                     representatives: Community.preview.representatives,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
-                    postCategories: [
-                        "Cars",
-                        "Boats",
-                        "Hockey",
-                        "Baseball"
-                    ]
+                    postCategories: CommunityCategory.previewArray
                 ))
         }
         return array

@@ -47,7 +47,7 @@ class CommunityCoordinatorViewModel: ObservableObject, CommunityCoordinatorDeleg
         PostViewModel(coordinator: self, post: post)
     }
     
-    func communityPostCategoryViewModel(category: String) -> CommunityPostCategoryViewModel {
+    func communityPostCategoryViewModel(category: CommunityCategory) -> CommunityPostCategoryViewModel {
         CommunityPostCategoryViewModel(community: community, category: category)
     }
     
@@ -64,7 +64,7 @@ class CommunityCoordinatorViewModel: ObservableObject, CommunityCoordinatorDeleg
         isShowingWebView = true
     }
     
-    func goToCommunityPostCategory(_ category: String) {
+    func goToCommunityPostCategory(_ category: CommunityCategory) {
         router.push(CommunityPath.goToCommunityPostCategory(category: category))
     }
     

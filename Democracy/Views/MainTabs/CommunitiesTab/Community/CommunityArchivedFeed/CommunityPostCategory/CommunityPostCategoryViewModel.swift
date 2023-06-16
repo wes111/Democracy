@@ -13,7 +13,7 @@ protocol CommunityPostCategoryCoordinatorDelegate: PostCardCoordinatorDelegate {
 
 protocol CommunityPostCategoryViewModelProtocol: ObservableObject {
     var community: Community { get }
-    var category: String { get }
+    var category: CommunityCategory { get }
     var posts: [PostCardViewModel] { get }
     func refresh() 
 }
@@ -21,9 +21,9 @@ protocol CommunityPostCategoryViewModelProtocol: ObservableObject {
 class CommunityPostCategoryViewModel: CommunityPostCategoryViewModelProtocol {
     
     let community: Community
-    let category: String
+    let category: CommunityCategory
     
-    init(community: Community, category: String) {
+    init(community: Community, category: CommunityCategory) {
         self.community = community
         self.category = category
     }

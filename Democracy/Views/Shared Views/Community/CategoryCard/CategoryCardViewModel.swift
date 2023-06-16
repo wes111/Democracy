@@ -10,22 +10,20 @@ import Foundation
 protocol CategoryCardCoordinatorDelegate {
 }
 
-protocol CategoryCardViewModelProtocol: ObservableObject {
+class CategoryCardViewModel: ObservableObject {
     
-    var category: String { get }
-    var postCount: Int { get }
-}
-
-class CategoryCardViewModel: CategoryCardViewModelProtocol {
+    let category: CommunityCategory
     
-    let category: String
-    
-    init(category: String) {
+    init(category: CommunityCategory) {
         self.category = category
     }
     
     var postCount: Int {
         return 50 // TODO: ...
+    }
+    
+    var imageName: String {
+        category.imageName
     }
     
 }

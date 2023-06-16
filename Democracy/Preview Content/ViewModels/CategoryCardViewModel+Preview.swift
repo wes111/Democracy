@@ -8,18 +8,15 @@
 import Foundation
 
 extension CategoryCardViewModel {
-    static let preview = CategoryCardViewModel(category: "Preview Category")
+    static let preview = CategoryCardViewModel(category: CommunityCategory.preview)
     
-    static let previewArray: [CategoryCardViewModel] = [
-        CategoryCardViewModel(category: "Preview Category"),
-        CategoryCardViewModel(category: "Preview Category 1"),
-        CategoryCardViewModel(category: "Preview Category 2"),
-        CategoryCardViewModel(category: "Preview Category 3"),
-        CategoryCardViewModel(category: "Preview Category 4"),
-        CategoryCardViewModel(category: "Preview Category 5"),
-        CategoryCardViewModel(category: "Preview Category Longer Title"),
-        CategoryCardViewModel(category: "Preview Category Very Very Very Longer Title"),
-        CategoryCardViewModel(category: "Preview Category 8"),
-        CategoryCardViewModel(category: "Preview Category 9")
-    ]
+    static let previewArray: [CategoryCardViewModel] = {
+        var array: [CategoryCardViewModel] = []
+        CommunityCategory.previewArray.forEach({ category in
+            array.append(.init(category: category))
+            print(category)
+        })
+        return array
+    }()
+    
 }

@@ -7,42 +7,58 @@
 
 import SwiftUI
 
-struct CategoryCardView<ViewModel: CategoryCardViewModelProtocol>: View {
+struct CategoryCardView: View {
     
-    @StateObject private var viewModel: ViewModel
+    @StateObject private var viewModel: CategoryCardViewModel
     
-    init(viewModel: ViewModel) {
+    init(viewModel: CategoryCardViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
+        ZStack(alignment: .topTrailing) {
             
-            Text(viewModel.category)
-                .font(.caption)
-            
-            Spacer()
-            
-            HStack {
-                Spacer()
-                Label("\(viewModel.postCount)", systemImage: "book.closed.fill")
-                    .font(.caption)
+            VStack(spacing: 0) {
+                
+                Image(viewModel.category.imageName)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 175)
+                
+                HStack {
+                    Text(viewModel.category.name)
+                        .font(.caption)
+                        .padding(4)
+                        .frame(width: 175)
+                }
+                .background(
+                    Rectangle()
+                        .foregroundColor(Color.secondaryBackground)
+                )
             }
+            .background(Color.blue)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
             
+            Label("\(viewModel.postCount)",
+                  systemImage: "book.closed.fill"
+            )
+            .labelStyle(ReversedLabelStyle())
+            .font(.caption)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 5)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(.secondaryBackground)
+            )
+            .padding(10)
         }
-        .frame(height: 80)
-        .padding(10)
-        .background(
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color.random())
-        )
+        .foregroundColor(Color.primaryText)
     }
-    
 }
 
 struct CategoryCardView_Previews: PreviewProvider {
     static var previews: some View {
         CategoryCardView(viewModel: CategoryCardViewModel.preview)
-            .frame(width: 120)
+            .frame(height: 100)
     }
 }

@@ -14,7 +14,7 @@ enum CommunityPath: Hashable {
     case candidates
     case singleCandidate(Candidate)
     case goToCommunity(Community)
-    case goToCommunityPostCategory(category: String)
+    case goToCommunityPostCategory(category: CommunityCategory)
 }
 
 struct CommunityCoordinator: View {

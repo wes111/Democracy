@@ -34,15 +34,16 @@ struct CommunityArchiveFeedView: View {
     }
     
     var communityCategories: some View {
-        LazyVGrid(columns: gridItemLayout, alignment: .center, spacing: 15) {
+        LazyVGrid(columns: gridItemLayout, alignment: .center) {
             ForEach(viewModel.categoryViewModels, id: \.category) { categoryViewModel in
                 CategoryCardView(viewModel: categoryViewModel)
                     .onTapGesture {
                         viewModel.goToCommunityPostCategory(categoryViewModel.category)
                     }
+                    .padding(.vertical, 5)
             }
         }
-        .padding(20)
+        .padding([.bottom, .horizontal], 20)
     }
     
     var communityDates: some View {
@@ -115,12 +116,12 @@ struct CommunityArchiveFeedView: View {
         .padding(.horizontal)
     }
     
-    func categoriesStack(_ categories: [String]) -> some View {
+    func categoriesStack(_ categories: [CommunityCategory]) -> some View {
         
         Section {
             VStack(alignment: .leading, spacing: 10) {
                 ForEach(categories, id: \.self) { category in
-                    Text(category)
+                    Text(category.name)
                         .onTapGesture {
                             viewModel.goToCommunityPostCategory(category)
                         }
