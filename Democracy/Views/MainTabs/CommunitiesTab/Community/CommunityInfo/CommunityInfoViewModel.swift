@@ -14,19 +14,7 @@ protocol CommunityInfoCoordinatorDelegate: CandidateCardCoordinatorDelegate {
     func openResourceURL(_ url: URL)
 }
 
-protocol CommunityInfoViewModelProtocol: ObservableObject {
-    
-    var representatives: [Candidate] { get }
-    var alliedCommunities: [Community] { get }
-    var coordinator: CommunityInfoCoordinatorDelegate { get }
-    var community: Community { get }
-
-    func showCandidates()
-    func onTapCommunityCard(_ community: Community)
-    func openResourceURL(urlString: String)
-}
-
-final class CommunityInfoViewModel: CommunityInfoViewModelProtocol {
+final class CommunityInfoViewModel: ObservableObject {
 
     @Published var representatives: [Candidate] = Candidate.previewArray
     @Published var alliedCommunities: [Community] = Community.myCommunitiesPreviewArray

@@ -13,19 +13,7 @@ protocol CommunitiesTabMainCoordinatorDelegate {
     func showCreateCommunityView()
 }
 
-protocol CommunitiesTabMainViewModelProtocol: ObservableObject {
-    var myCommunities: [Community] { get }
-    var recommendedCommunities: [Community] { get }
-    var topCommunities: [Community] { get }
-    
-    func goToCommunity(_ community: Community)
-    func refreshMyCommunities()
-    func refreshRecommendedCommunities()
-    func refreshTopCommunities()
-    func showCreateCommunityView()
-}
-
-final class CommunitiesTabMainViewModel: CommunitiesTabMainViewModelProtocol {
+final class CommunitiesTabMainViewModel: ObservableObject {
 
     @Injected(\.communityInteractor) var communityInteractor
     

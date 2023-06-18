@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct CommunitiesTabMainView<ViewModel: CommunitiesTabMainViewModelProtocol>: View {
+struct CommunitiesTabMainView: View {
     
-    @StateObject var viewModel: ViewModel
+    @StateObject var viewModel: CommunitiesTabMainViewModel
     @State private var multiSelection = Set<UUID>()
     @State private var bob = "" //TODO: ...
     
-    init(viewModel: ViewModel) {
+    init(viewModel: CommunitiesTabMainViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     

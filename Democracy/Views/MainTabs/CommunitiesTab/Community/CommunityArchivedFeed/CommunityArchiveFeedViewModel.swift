@@ -37,9 +37,8 @@ final class CommunityArchiveFeedViewModel: ObservableObject {
         coordinator.goToCommunityPostCategory(category)
     }
     
-    var categoryViewModels: [CategoryCardViewModel] {
-        print(CategoryCardViewModel.preview)
-        return CategoryCardViewModel.previewArray
+    var categories: [CommunityCategory] {
+        CommunityCategory.previewArray
     }
     
 }

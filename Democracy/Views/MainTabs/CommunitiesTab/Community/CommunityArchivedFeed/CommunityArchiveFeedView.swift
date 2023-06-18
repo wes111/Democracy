@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-// TODO: Tappable area to show calendar is not expanding/contracting correctly.
-
-// Archive should be sortable by topic and date. Date is more iportant?
 struct CommunityArchiveFeedView: View {
     
     @StateObject private var viewModel: CommunityArchiveFeedViewModel
@@ -35,10 +32,10 @@ struct CommunityArchiveFeedView: View {
     
     var communityCategories: some View {
         LazyVGrid(columns: gridItemLayout, alignment: .center) {
-            ForEach(viewModel.categoryViewModels, id: \.category) { categoryViewModel in
-                CategoryCardView(viewModel: categoryViewModel)
+            ForEach(viewModel.categories) { category in
+                CategoryCardView(category: category)
                     .onTapGesture {
-                        viewModel.goToCommunityPostCategory(categoryViewModel.category)
+                        viewModel.goToCommunityPostCategory(category)
                     }
                     .padding(.vertical, 5)
             }

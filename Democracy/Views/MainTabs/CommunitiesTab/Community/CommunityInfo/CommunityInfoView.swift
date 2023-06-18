@@ -7,11 +7,11 @@
 
 import SwiftUI
     
-struct CommunityInfoView<ViewModel: CommunityInfoViewModelProtocol>: View {
+struct CommunityInfoView: View {
     
-    @StateObject private var viewModel: ViewModel
+    @StateObject private var viewModel: CommunityInfoViewModel
     
-    init(viewModel: ViewModel) {
+    init(viewModel: CommunityInfoViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
@@ -96,11 +96,11 @@ struct AlliedCommunitiesSection: View {
 
 // MARK: - Representatives Section
 
-struct LeadershipSection<ViewModel: CommunityInfoViewModelProtocol>: View {
+struct LeadershipSection: View {
     
-    @StateObject var viewModel: ViewModel
+    @StateObject var viewModel: CommunityInfoViewModel
     
-    init(viewModel: ViewModel) {
+    init(viewModel: CommunityInfoViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     

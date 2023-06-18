@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct CommunityPostCategoryView<ViewModel: CommunityPostCategoryViewModelProtocol>: View {
+struct CommunityPostCategoryView: View {
     
-    @StateObject private var viewModel: ViewModel
+    @StateObject private var viewModel: CommunityPostCategoryViewModel
     
     @State private var searchText = ""
     
-    init(viewModel: ViewModel) {
+    init(viewModel: CommunityPostCategoryViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     

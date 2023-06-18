@@ -14,22 +14,7 @@ protocol CommunityCoordinatorDelegate: CommunityHomeFeedCoordinatorDelegate, Com
     func goBack()
 }
 
-protocol CommunityViewModelProtocol: ObservableObject {
-    var community: Community { get }
-    var coordinator: CommunityCoordinatorDelegate { get }
-    var canCreatePost: Bool { get }
-    var isShowingNavigationBar: Bool { get }
-    var selectedCommunityArchiveType: String { get }
-    
-    func showCreatePostView()
-    func getCommunityHomeFeedViewModel() -> CommunityHomeFeedViewModel
-    func getCommunityInfoViewModel() -> CommunityInfoViewModel
-    func getCommunityArchiveFeedViewModel() -> CommunityArchiveFeedViewModel
-    func goBack()
-    func updateCommunityArchiveType(_ type: CommunityArchiveType)
-}
-
-final class CommunityViewModel: CommunityViewModelProtocol {
+final class CommunityViewModel: ObservableObject {
     
     @Published var isShowingNavigationBar = true
     @Published var selectedCommunityArchiveType = CommunityArchiveType.category.title

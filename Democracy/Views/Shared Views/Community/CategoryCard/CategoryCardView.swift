@@ -11,8 +11,8 @@ struct CategoryCardView: View {
     
     @StateObject private var viewModel: CategoryCardViewModel
     
-    init(viewModel: CategoryCardViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+    init(category: CommunityCategory) {
+        _viewModel = StateObject(wrappedValue: CategoryCardViewModel(category: category))
     }
     
     var body: some View {
@@ -58,7 +58,7 @@ struct CategoryCardView: View {
 
 struct CategoryCardView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryCardView(viewModel: CategoryCardViewModel.preview)
+        CategoryCardView(category: CommunityCategory.preview)
             .frame(height: 100)
     }
 }

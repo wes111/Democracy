@@ -13,12 +13,12 @@ enum CommunityTab: String {
     case archive = "Archive"
 }
 
-struct CommunityViewPicker<ViewModel: CommunityViewModelProtocol>: View {
+struct CommunityViewPicker: View {
     
-    @StateObject private var viewModel: ViewModel
+    @StateObject private var viewModel: CommunityViewModel
     @State private var tabSelection: CommunityTab = .feed
     
-    init(viewModel: ViewModel
+    init(viewModel: CommunityViewModel
     ) {
         _viewModel = StateObject(wrappedValue: viewModel)
         

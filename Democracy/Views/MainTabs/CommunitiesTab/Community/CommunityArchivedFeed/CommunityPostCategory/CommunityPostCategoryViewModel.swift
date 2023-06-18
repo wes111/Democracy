@@ -11,14 +11,7 @@ protocol CommunityPostCategoryCoordinatorDelegate: PostCardCoordinatorDelegate {
     
 }
 
-protocol CommunityPostCategoryViewModelProtocol: ObservableObject {
-    var community: Community { get }
-    var category: CommunityCategory { get }
-    var posts: [PostCardViewModel] { get }
-    func refresh() 
-}
-
-class CommunityPostCategoryViewModel: CommunityPostCategoryViewModelProtocol {
+class CommunityPostCategoryViewModel: ObservableObject  {
     
     let community: Community
     let category: CommunityCategory
