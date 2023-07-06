@@ -12,7 +12,25 @@ struct Community: Hashable, Identifiable, Codable {
     let name: String
     let foundedDate: Date
     var representatives: [Candidate]
-    var rules: [String]
-    var resources: [String]
+    var rules: [Rule]
+    var resources: [Resource]
     var postCategories: [CommunityCategory] // Categories defined by community, cannot be enum.
+}
+
+struct Rule: Codable, ListItem {
+    let id: UUID
+    let title: String
+    let description: String
+}
+
+struct Resource: Codable, ListItem {
+    let id: UUID
+    let title: String
+    let description: String
+    let url: URL
+}
+
+protocol ListItem: Identifiable, Hashable {
+    var title: String { get }
+    var description: String { get }
 }

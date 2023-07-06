@@ -10,28 +10,29 @@ import Factory
 import Foundation
 
 protocol CandidateCardCoordinatorDelegate {
-    func goToCandidateView(_ candidate: Candidate)
+    //func goToCandidateView(_ candidate: Candidate)
 }
 
-protocol CandidateCardViewModelProtocol: ObservableObject {
-    func goToCandidateView()
-    
-    func upVoteCandidate()
-    func downVoteCandidate()
-}
-
-final class CandidateCardViewModel: CandidateCardViewModelProtocol {
+final class CandidateCardViewModel: ObservableObject {
     
     @Injected(\.candidateInteractor) var candidateInteractor
 
-    private let coordinator: CandidateCardCoordinatorDelegate
+    //private let coordinator: CandidateCardCoordinatorDelegate
     @Published var candidate: Candidate
     private var cancellables = Set<AnyCancellable>()
     
-    init(coordinator: CandidateCardCoordinatorDelegate,
+    var imageName: String {
+        candidate.imageName ?? ""
+    }
+    
+    var candidateName: String {
+        candidate.userName
+    }
+    
+    init(
          candidate: Candidate
     ) {
-        self.coordinator = coordinator
+        //self.coordinator = coordinator
         self.candidate = candidate
         
         subscribeToCandidates()
@@ -60,9 +61,9 @@ final class CandidateCardViewModel: CandidateCardViewModelProtocol {
         }
     }
     
-    func goToCandidateView() {
-        coordinator.goToCandidateView(candidate)
-    }
+//    func goToCandidateView() {
+//        coordinator.goToCandidateView(candidate)
+//    }
     
     func upVoteCandidate() {
         Task {

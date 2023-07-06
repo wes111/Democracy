@@ -16,49 +16,227 @@ struct CommunityInfoView: View {
     }
     
     var body: some View {
-            // TODO: This might need to be a scrollView so we can get the content offset to hide the picker.
-            List {
-                Group {
-                    AboutSection()
-                    
-                    LeadershipSection(viewModel: viewModel)
-                    
-                    AlliedCommunitiesSection(
-                        communities: viewModel.alliedCommunities,
-                        onTapAction: viewModel.onTapCommunityCard
-                    )
-                    
-                    ListSection(
-                        items: viewModel.community.rules,
-                        sectionTitle: "Rules"
-                    )
-                    
-                    ListSection(
-                        items: viewModel.community.resources,
-                        sectionTitle: "Resources",
-                        onItemTap: viewModel.openResourceURL
-                    )
-                }
-                .listRowInsets(EdgeInsets())
-                .listRowSeparator(.hidden)
+        ScrollView(.vertical) {
+            VStack(alignment: .leading, spacing: 25) {
+                
+                AboutSection(
+                    summary: viewModel.summary,
+                    memberCount: 19515,
+                    foundedDateString: "January 5th 2023"
+                )
+                .padding(.horizontal)
+                
+                LeadershipSection(viewModel: viewModel.leadershipSectionViewModel)
+                
+//                AlliedCommunitiesSection(
+//                    communities: viewModel.alliedCommunities,
+//                    onTapAction: viewModel.onTapCommunityCard
+//                )
+            
+                ListItemSection(
+                    title: "Rules",
+                    items: viewModel.community.rules
+                )
+                .padding(.horizontal)
+                
+                ListItemSection(
+                    title: "Resources",
+                    items: viewModel.community.resources
+                )
+                .padding(.horizontal)
             }
-            .listStyle(PlainListStyle())
         }
+        .foregroundColor(.primaryText)
+    }
 }
 
 // MARK: - About Section
 
 struct AboutSection: View {
     
+    let summary: String
+    let memberCount: Int
+    let foundedDateString: String
+    
     var body: some View {
-        Section {
-            Text("Welcome to the Community, blah, blah, blah")
-        } header: {
-            Text("About")
-                .font(.title)
+        
+        VStack(alignment: .leading, spacing: 10) {
+            
+            HStack {
+                
+                Text("About")
+                    .font(.title)
+                
+                Spacer()
+                
+                Button {
+                    print()
+                } label: {
+                    Text("Join")
+                        .font(.title3)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 3)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundColor(.otherRed)
+                        )
+                }
+            }
+
+            HStack(spacing: 10) {
+                Text("\(memberCount) Members")
+                
+                Divider()
+                    .overlay(Color.tertiaryText)
+                
+                Text("Founded \(foundedDateString)")
+            }
+            .font(.footnote)
+                
+            Text(summary)
+                .font(.caption)
+                .foregroundColor(.secondaryText)
         }
-        .padding(.horizontal)
-        .headerProminence(.increased)
+    }
+}
+
+// MARK: - Representatives Section
+
+struct LeadershipSection: View {
+    
+    let viewModel: LeadershipSectionViewModel
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            HStack {
+                
+                Text("Representatives")
+                    .font(.title)
+                
+                Spacer()
+                
+                Button {
+                    print()
+                } label: {
+                    Text("Vote")
+                        .font(.title3)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 3)
+                        .background(
+                            RoundedRectangle(cornerRadius: 10)
+                                .foregroundColor(.otherRed)
+                        )
+                }
+            }
+            .padding(.horizontal)
+
+            LeadersScrollView(
+                title: viewModel.sectionTitle(repType: .creator),
+                candidates: viewModel.creators,
+                tapCandidateAction: viewModel.onTapCandidateCard
+            )
+            
+            LeadersScrollView(
+                title: viewModel.sectionTitle(repType: .mod),
+                candidates: viewModel.mods,
+                tapCandidateAction: viewModel.onTapCandidateCard
+            )
+            
+            LeadersScrollView(
+                title: viewModel.sectionTitle(repType: .legislator),
+                candidates: viewModel.legislators,
+                tapCandidateAction: viewModel.onTapCandidateCard
+            )
+        }
+    }
+}
+
+struct LeadersScrollView: View {
+    
+    let title: String
+    let candidates: [Candidate]
+    let tapCandidateAction: (Candidate) -> Void
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            
+            Text(title)
+                .font(.callout)
+                .foregroundColor(.secondaryText)
+                .padding(.horizontal)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(candidates, id: \.self) { candidate in
+                        CandidateCardView(candidate: candidate)
+                            .onTapGesture {
+                                tapCandidateAction(candidate)
+                            }
+                            .padding(.leading)
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Rules
+
+struct ListItemSection<T: ListItem>: View {
+    
+    let title: String
+    let items: [T]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(title)
+                .font(.title)
+            
+            ForEach(Array(items.enumerated()), id: \.element) { index, item in
+                VStack {
+                    ListItemView(
+                        title: item.title,
+                        description: item.description,
+                        index: index
+                    )
+                    Divider()
+                        .overlay(Color.tertiaryBackground)
+                }
+            }
+        }
+    }
+}
+
+struct ListItemView: View {
+    
+    let title: String
+    let description: String
+    let index: Int
+    
+    var body: some View {
+        HStack(alignment: .top) {
+            Text("\(index)")
+                .font(.title2)
+                .padding(.trailing, 5)
+                .foregroundColor(.otherRed)
+            
+            VStack(alignment: .leading, spacing: 5) {
+                Text(title)
+                    .font(.bold(.body)())
+                Text(description)
+                    .font(.caption)
+                    .foregroundColor(.tertiaryText)
+            }
+        }
+    }
+}
+
+// MARK: - Resources Section
+
+struct ResourcesSection: View {
+    
+    var body: some View {
+        EmptyView()
     }
 }
 
@@ -72,7 +250,7 @@ struct AlliedCommunitiesSection: View {
     var body: some View {
         
         Section {
-            ScrollView(.horizontal) {
+            ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(communities, id: \.self) { community in
                         CommunityCard(community: community)
@@ -94,104 +272,9 @@ struct AlliedCommunitiesSection: View {
     }
 }
 
-// MARK: - Representatives Section
-
-struct LeadershipSection: View {
-    
-    @StateObject var viewModel: CommunityInfoViewModel
-    
-    init(viewModel: CommunityInfoViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
-    }
-    
-    var body: some View {
-        
-        Section {
-            
-            ScrollView(.horizontal) {
-                HStack {
-                    ForEach(viewModel.representatives, id: \.self) { representative in
-                        createCandidateCardView(representative)
-                            .padding(.leading)
-                    }
-                }
-            }
-            
-        } header: {
-            VStack(alignment: .leading) {
-                Text("Representatives")
-                    .font(.title)
-                Button {
-                    viewModel.showCandidates()
-                } label: {
-                    Label("Go to Candidates", systemImage: "chevron.right")
-                        .labelStyle(ReversedLabelStyle())
-                }
-            }
-            .padding(.horizontal)
-            
-        }
-        .headerProminence(.increased)
-    }
-    
-    // This method is a duplicate. Refactor
-    private func createCandidateCardView(_ candidate: Candidate) -> CandidateCardView<CandidateCardViewModel> {
-        let viewModel = CandidateCardViewModel(coordinator: viewModel.coordinator, candidate: candidate)
-        return CandidateCardView(viewModel: viewModel)
-    }
-}
-
-// MARK: - List Section
-
-struct ListSection: View {
-    
-    @State private var isExpanded = false
-    let items: [String]
-    let sectionTitle: String
-    private let unexpandedCount = 3
-    private let onItemTap: ((String) -> Void)?
-    
-    init(items: [String], sectionTitle: String, onItemTap: ( (String) -> Void)? = nil) {
-        self.items = items
-        self.sectionTitle = sectionTitle
-        self.onItemTap = onItemTap
-    }
-    
-    var body: some View {
-        Section {
-            let shouldShowAllItems = isExpanded || items.count <= unexpandedCount
-            let partialIndices = items.indices.clamped(to: Range(uncheckedBounds: (0, unexpandedCount)))
-            let visibleIndices = shouldShowAllItems ? items.indices : partialIndices
-            
-            VStack(alignment: .leading, spacing: 5) {
-                ForEach(visibleIndices, id: \.self) { index in
-                    Text("\(index + 1).) \(items[index])")
-                        .onTapGesture {
-                            if let onItemTap {
-                                onItemTap(items[index])
-                            }
-                        }
-                }
-            }
-
-            Button {
-                isExpanded.toggle()
-            } label: {
-                Text(isExpanded ? "Collapse" : "Expand")
-            }
-
-            
-        } header: {
-            Text(sectionTitle)
-                .font(.title)
-        }
-        .headerProminence(.increased)
-        .padding(.horizontal)
-    }
-}
-
 struct CommunityInfoView_Previews: PreviewProvider {
     static var previews: some View {
         CommunityInfoView(viewModel: CommunityInfoViewModel.preview)
+            .background(Color.primaryBackground)
     }
 }

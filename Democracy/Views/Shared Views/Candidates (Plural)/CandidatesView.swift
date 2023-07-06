@@ -21,7 +21,7 @@ struct CandidatesView<ViewModel: CandidatesViewModelProtocol>: View {
                 Section {
                     ForEach(viewModel.representatives) { candidate in
                         CandidateCardView(
-                            viewModel: viewModel.getCandidateCardViewModel(candidate)
+                            candidate: candidate
                         )
                     }
                 } header: {
@@ -33,9 +33,9 @@ struct CandidatesView<ViewModel: CandidatesViewModelProtocol>: View {
                 }
                 
                 Section {
-                    ForEach(viewModel.candidates) { representative in
+                    ForEach(viewModel.candidates) { candidate in
                         CandidateCardView(
-                            viewModel: viewModel.getCandidateCardViewModel(representative)
+                            candidate: candidate
                         )
                     }
                 } header: {

@@ -38,6 +38,8 @@
 		EE5D3A052A36564A00D0E312 /* CommunityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A042A36564A00D0E312 /* CommunityService.swift */; };
 		EE5D3A072A38041500D0E312 /* CommunityCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A062A38041500D0E312 /* CommunityCategory.swift */; };
 		EE5D3A092A3804D100D0E312 /* PostCategory+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A082A3804D100D0E312 /* PostCategory+Extension.swift */; };
+		EE5D3A0D2A45241200D0E312 /* Resource+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A0C2A45241200D0E312 /* Resource+Preview.swift */; };
+		EE5D3A0F2A45246400D0E312 /* Rule+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A0E2A45246400D0E312 /* Rule+Preview.swift */; };
 		EE80D8B129BAE4A80000F8EF /* Post+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B029BAE4A80000F8EF /* Post+Preview.swift */; };
 		EE80D8B429BAE6410000F8EF /* Community+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B329BAE6410000F8EF /* Community+Preview.swift */; };
 		EE80D8B629BAECCE0000F8EF /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B529BAECCE0000F8EF /* Link.swift */; };
@@ -190,6 +192,8 @@
 		EE5D3A042A36564A00D0E312 /* CommunityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityService.swift; sourceTree = "<group>"; };
 		EE5D3A062A38041500D0E312 /* CommunityCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCategory.swift; sourceTree = "<group>"; };
 		EE5D3A082A3804D100D0E312 /* PostCategory+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostCategory+Extension.swift"; sourceTree = "<group>"; };
+		EE5D3A0C2A45241200D0E312 /* Resource+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resource+Preview.swift"; sourceTree = "<group>"; };
+		EE5D3A0E2A45246400D0E312 /* Rule+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rule+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8B029BAE4A80000F8EF /* Post+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8B329BAE6410000F8EF /* Community+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Community+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8B529BAECCE0000F8EF /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -394,6 +398,8 @@
 				EE80D91429C92DC70000F8EF /* Candidate+Preview.swift */,
 				EE80D93C29D882F70000F8EF /* User+Preview.swift */,
 				EE5D3A082A3804D100D0E312 /* PostCategory+Extension.swift */,
+				EE5D3A0C2A45241200D0E312 /* Resource+Preview.swift */,
+				EE5D3A0E2A45246400D0E312 /* Rule+Preview.swift */,
 			);
 			path = "Domain Models";
 			sourceTree = "<group>";
@@ -1079,9 +1085,11 @@
 				EE80D90029C020960000F8EF /* CommunityRemoteRepositoryProtocol.swift in Sources */,
 				EE80D8B429BAE6410000F8EF /* Community+Preview.swift in Sources */,
 				EE80D8E629BC1F030000F8EF /* PostRemoteRepository.swift in Sources */,
+				EE5D3A0F2A45246400D0E312 /* Rule+Preview.swift in Sources */,
 				EED4A50329AA86C900DDCCDA /* VotingTabMainView.swift in Sources */,
 				EE5B93A02A088B5E00B43381 /* CategoryCardViewModel.swift in Sources */,
 				EE80D8FA29C01F360000F8EF /* UserRemoteRepository.swift in Sources */,
+				EE5D3A0D2A45241200D0E312 /* Resource+Preview.swift in Sources */,
 				EE80D93929D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift in Sources */,
 				EE80D8BE29BC11240000F8EF /* CommunityCoordinator+Preview.swift in Sources */,
 				EED4A50929AA8BC100DDCCDA /* EventsTabMainViewModel.swift in Sources */,

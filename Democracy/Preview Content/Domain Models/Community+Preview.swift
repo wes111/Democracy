@@ -13,25 +13,8 @@ extension Community {
         name: "Test Community",
         foundedDate: Date(),
         representatives: Candidate.representativePreviewArray,
-        rules: [
-            "Do not violate the rules.",
-            "Do not speak about the rules.",
-            "Do not take the rules lightly.",
-            "Read all of the rules.",
-            "There are no rules."
-        ],
-        resources: [
-            "https://www.google.com",
-            "https://www.amazon.com",
-            "https://www.walmart.com",
-            "https://www.apple.com",
-            "https://www.google.com",
-            "https://www.google.com",
-            "https://www.google.com",
-            "https://www.google.com",
-            "https://www.google.com",
-            "https://www.google.com"
-        ],
+        rules: Rule.previewArray,
+        resources: Resource.previewArray,
         postCategories: CommunityCategory.previewArray
     )
     

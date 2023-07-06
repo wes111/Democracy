@@ -8,7 +8,7 @@
 import Foundation
 
 class CommunityCoordinatorViewModel: ObservableObject, CommunityCoordinatorDelegate {
-    
+
     @Published var url: URL = URL(string: "https://www.google.com")!
     @Published var isShowingWebView = false
     @Published var isShowingCreatePostView = false

@@ -7,56 +7,78 @@
 
 import SwiftUI
 
-struct CandidateCardView<ViewModel: CandidateCardViewModel>: View {
+struct CandidateCardView: View {
     
-    @StateObject private var viewModel: ViewModel
+    @StateObject private var viewModel: CandidateCardViewModel
     
-    init(viewModel: ViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+    init(candidate: Candidate) {
+        _viewModel = StateObject(wrappedValue: CandidateCardViewModel(candidate: candidate))
     }
     
     var body: some View {
-        VStack {
-            if let imageName = viewModel.candidate.imageName {
-                Image(imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxHeight: 150)
-            }
+        
+        VStack(spacing: 0) {
+            
+            Image(viewModel.imageName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100, height: 100)
             
             HStack {
-                VStack {
-                    Text(viewModel.candidate.userName)
-                    Text(viewModel.candidate.repType.rawValue)
-                }
-                
-                VStack {
-                    Button {
-                        viewModel.downVoteCandidate()
-                    } label: {
-                        Image(systemName: "arrow.down")
-                    }
-                    Text("\(viewModel.candidate.downVotes)")
-                }
-                VStack {
-                    Button {
-                        viewModel.upVoteCandidate()
-                    } label: {
-                        Image(systemName: "arrow.up")
-                    }
-                    Text("\(viewModel.candidate.upVotes)")
-                }
+                Text(viewModel.candidateName)
+                    .font(.caption)
+                    .padding(4)
+                    .frame(width: 100)
             }
-            
+            .background(
+                Rectangle()
+                    .foregroundColor(Color.secondaryBackground)
+            )
         }
-        .onTapGesture {
-            viewModel.goToCandidateView()
-        }
+        .background(Color.blue)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        
+        
+//        VStack {
+//            if let imageName = viewModel.candidate.imageName {
+//                Image(imageName)
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(maxHeight: 150)
+//            }
+//
+//            HStack {
+//                VStack {
+//                    Text(viewModel.candidate.userName)
+//                    Text(viewModel.candidate.repType.rawValue)
+//                }
+//
+//                VStack {
+//                    Button {
+//                        viewModel.downVoteCandidate()
+//                    } label: {
+//                        Image(systemName: "arrow.down")
+//                    }
+//                    Text("\(viewModel.candidate.downVotes)")
+//                }
+//                VStack {
+//                    Button {
+//                        viewModel.upVoteCandidate()
+//                    } label: {
+//                        Image(systemName: "arrow.up")
+//                    }
+//                    Text("\(viewModel.candidate.upVotes)")
+//                }
+//            }
+//        }
+//        .onTapGesture {
+//            viewModel.goToCandidateView()
+//        }
     }
 }
 
 struct CandidateCardView_Previews: PreviewProvider {
     static var previews: some View {
-        CandidateCardView(viewModel: CandidateCardViewModel.preview)
+        CandidateCardView(candidate: Candidate.preview)
     }
 }

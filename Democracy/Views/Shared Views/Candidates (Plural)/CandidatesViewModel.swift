@@ -71,7 +71,7 @@ final class CandidatesViewModel: CandidatesViewModelProtocol {
     }
     
     func getCandidateCardViewModel(_ candidate: Candidate) -> CandidateCardViewModel {
-        CandidateCardViewModel(coordinator: coordinator, candidate: candidate)
+        CandidateCardViewModel(candidate: candidate)
     }
     
     

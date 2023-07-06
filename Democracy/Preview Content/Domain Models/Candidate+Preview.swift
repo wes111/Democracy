@@ -28,7 +28,7 @@ extension Candidate {
     
     static var previewArray: [Candidate] {
         var array: [Candidate] = []
-        for _ in 0...100 {
+        for _ in 0...20 {
             array.append(
                 Candidate(
                     id: UUID(),
@@ -43,6 +43,44 @@ extension Candidate {
                     summary: Candidate.preview.summary,
                     externalLink: Candidate.preview.externalLink,
                     repType: Candidate.preview.repType
+                )
+            )
+        }
+        
+        for _ in 0...20 {
+            array.append(
+                Candidate(
+                    id: UUID(),
+                    userName: Candidate.preview.userName,
+                    firstName: Candidate.preview.firstName,
+                    lastName: Candidate.preview.lastName,
+                    imageName: Candidate.preview.imageName,
+                    upVotes: Candidate.preview.upVotes,
+                    downVotes: Candidate.preview.downVotes,
+                    communityId: Candidate.preview.communityId,
+                    isRepresentative: Candidate.preview.isRepresentative,
+                    summary: Candidate.preview.summary,
+                    externalLink: Candidate.preview.externalLink,
+                    repType: .mod
+                )
+            )
+        }
+        
+        for _ in 0...20 {
+            array.append(
+                Candidate(
+                    id: UUID(),
+                    userName: Candidate.preview.userName,
+                    firstName: Candidate.preview.firstName,
+                    lastName: Candidate.preview.lastName,
+                    imageName: Candidate.preview.imageName,
+                    upVotes: Candidate.preview.upVotes,
+                    downVotes: Candidate.preview.downVotes,
+                    communityId: Candidate.preview.communityId,
+                    isRepresentative: Candidate.preview.isRepresentative,
+                    summary: Candidate.preview.summary,
+                    externalLink: Candidate.preview.externalLink,
+                    repType: .creator
                 )
             )
         }
