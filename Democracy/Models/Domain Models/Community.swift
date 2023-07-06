@@ -17,20 +17,15 @@ struct Community: Hashable, Identifiable, Codable {
     var postCategories: [CommunityCategory] // Categories defined by community, cannot be enum.
 }
 
-struct Rule: Codable, ListItem {
+struct Rule: Codable, Hashable {
     let id: UUID
     let title: String
     let description: String
 }
 
-struct Resource: Codable, ListItem {
+struct Resource: Codable, Hashable {
     let id: UUID
     let title: String
     let description: String
     let url: URL
-}
-
-protocol ListItem: Identifiable, Hashable {
-    var title: String { get }
-    var description: String { get }
 }

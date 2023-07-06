@@ -32,16 +32,16 @@ struct CommunityInfoView: View {
 //                    communities: viewModel.alliedCommunities,
 //                    onTapAction: viewModel.onTapCommunityCard
 //                )
-            
-                ListItemSection(
+                
+                RulesSection(
                     title: "Rules",
-                    items: viewModel.community.rules
+                    rules: viewModel.community.rules
                 )
                 .padding(.horizontal)
                 
-                ListItemSection(
+                ResourcesSection(
                     title: "Resources",
-                    items: viewModel.community.resources
+                    resources: viewModel.community.resources
                 )
                 .padding(.horizontal)
             }
@@ -182,21 +182,21 @@ struct LeadersScrollView: View {
 
 // MARK: - Rules
 
-struct ListItemSection<T: ListItem>: View {
+struct RulesSection: View {
     
     let title: String
-    let items: [T]
+    let rules: [Rule]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
                 .font(.title)
             
-            ForEach(Array(items.enumerated()), id: \.element) { index, item in
+            ForEach(Array(rules.enumerated()), id: \.element) { index, rule in
                 VStack {
-                    ListItemView(
-                        title: item.title,
-                        description: item.description,
+                    RuleView(
+                        title: rule.title,
+                        description: rule.description,
                         index: index
                     )
                     Divider()
@@ -207,7 +207,7 @@ struct ListItemSection<T: ListItem>: View {
     }
 }
 
-struct ListItemView: View {
+struct RuleView: View {
     
     let title: String
     let description: String
@@ -218,7 +218,7 @@ struct ListItemView: View {
             Text("\(index)")
                 .font(.title2)
                 .padding(.trailing, 5)
-                .foregroundColor(.otherRed)
+                .foregroundColor(.tertiaryText)
             
             VStack(alignment: .leading, spacing: 5) {
                 Text(title)
@@ -235,8 +235,64 @@ struct ListItemView: View {
 
 struct ResourcesSection: View {
     
+    let title: String
+    let resources: [Resource]
+    
     var body: some View {
-        EmptyView()
+        VStack(alignment: .leading, spacing: 10) {
+            Text(title)
+                .font(.title)
+            
+            ForEach(Array(resources.enumerated()), id: \.element) { index, resource in
+                VStack {
+                    ResourceView(
+                        title: resource.title,
+                        description: resource.description,
+                        index: index,
+                        hyperlink: resource.url)
+                    Divider()
+                        .overlay(Color.tertiaryBackground)
+                }
+            }
+        }
+    }
+}
+
+struct ResourceView: View {
+    
+    let title: String
+    let description: String
+    let index: Int
+    let hyperlink: URL?
+    
+    var link: String?
+    
+    init(title: String, description: String, index: Int, hyperlink: URL?) {
+        self.title = title
+        self.description = description
+        self.index = index
+        self.hyperlink = hyperlink
+        
+        if let hyperlink {
+            link = "[\(title)](\(hyperlink.absoluteString))"
+        }
+    }
+    
+    var body: some View {
+        HStack(alignment: .top) {
+            Text("\(index)")
+                .font(.title2)
+                .padding(.trailing, 5)
+                .foregroundColor(.tertiaryText)
+            
+            VStack(alignment: .leading, spacing: 5) {
+                Text(.init(link ?? title))
+                    .font(.bold(.body)())
+                Text(description)
+                    .font(.caption)
+                    .foregroundColor(.tertiaryText)
+            }
+        }
     }
 }
 
