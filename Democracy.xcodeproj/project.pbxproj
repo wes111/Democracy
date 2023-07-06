@@ -11,6 +11,8 @@
 		EE45248F2A5651FB00C7A2DD /* ResourcesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45248E2A5651FB00C7A2DD /* ResourcesSection.swift */; };
 		EE4524912A56597400C7A2DD /* ResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524902A56597400C7A2DD /* ResourceView.swift */; };
 		EE4524942A565CA400C7A2DD /* ResourceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524932A565CA400C7A2DD /* ResourceViewModel.swift */; };
+		EE4524972A56655900C7A2DD /* AboutSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524962A56655900C7A2DD /* AboutSectionViewModel.swift */; };
+		EE4524992A56656B00C7A2DD /* AboutSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524982A56656B00C7A2DD /* AboutSection.swift */; };
 		EE54ADDF29A329C9007C3E3F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADDE29A329C9007C3E3F /* MainTabView.swift */; };
 		EE54ADE729A40101007C3E3F /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADE629A40101007C3E3F /* AuthenticationCoordinator.swift */; };
 		EE54ADEA29A712AE007C3E3F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADE929A712AD007C3E3F /* LoginView.swift */; };
@@ -169,6 +171,8 @@
 		EE45248E2A5651FB00C7A2DD /* ResourcesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesSection.swift; sourceTree = "<group>"; };
 		EE4524902A56597400C7A2DD /* ResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceView.swift; sourceTree = "<group>"; };
 		EE4524932A565CA400C7A2DD /* ResourceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceViewModel.swift; sourceTree = "<group>"; };
+		EE4524962A56655900C7A2DD /* AboutSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSectionViewModel.swift; sourceTree = "<group>"; };
+		EE4524982A56656B00C7A2DD /* AboutSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutSection.swift; sourceTree = "<group>"; };
 		EE54ADDE29A329C9007C3E3F /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		EE54ADE629A40101007C3E3F /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		EE54ADE929A712AD007C3E3F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -352,6 +356,15 @@
 				EE4524932A565CA400C7A2DD /* ResourceViewModel.swift */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		EE4524952A56654700C7A2DD /* AboutSection */ = {
+			isa = PBXGroup;
+			children = (
+				EE4524962A56655900C7A2DD /* AboutSectionViewModel.swift */,
+				EE4524982A56656B00C7A2DD /* AboutSection.swift */,
+			);
+			path = AboutSection;
 			sourceTree = "<group>";
 		};
 		EE54ADE829A7128E007C3E3F /* Login */ = {
@@ -856,6 +869,7 @@
 			children = (
 				EED4A53429B81D8000DDCCDA /* CommunityInfoView.swift */,
 				EE80D90329C923960000F8EF /* CommunityInfoViewModel.swift */,
+				EE4524952A56654700C7A2DD /* AboutSection */,
 				EE45248B2A5651B600C7A2DD /* ResourceSection */,
 			);
 			path = CommunityInfo;
@@ -1025,6 +1039,7 @@
 				EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */,
 				EE80D95B29E8EBD10000F8EF /* WebView.swift in Sources */,
 				EE80D92429C955C30000F8EF /* CandidateLocalRepository.swift in Sources */,
+				EE4524992A56656B00C7A2DD /* AboutSection.swift in Sources */,
 				EE80D8F029BD37860000F8EF /* AddPostView.swift in Sources */,
 				EE5B938E2A03346C00B43381 /* Date+Extensions.swift in Sources */,
 				EE5B93A22A088C1F00B43381 /* CategoryCardViewModel+Preview.swift in Sources */,
@@ -1088,6 +1103,7 @@
 				EED47ED1299F168200FEFC6E /* C.swift in Sources */,
 				EE80D8E429BC1E2F0000F8EF /* PostLocalRepository.swift in Sources */,
 				EE80D91529C92DC70000F8EF /* Candidate+Preview.swift in Sources */,
+				EE4524972A56655900C7A2DD /* AboutSectionViewModel.swift in Sources */,
 				EE5B939E2A088B5400B43381 /* CategoryCardView.swift in Sources */,
 				EE80D92D29D0D4DC0000F8EF /* GRDBService.swift in Sources */,
 				EED47ED3299F168800FEFC6E /* D.swift in Sources */,

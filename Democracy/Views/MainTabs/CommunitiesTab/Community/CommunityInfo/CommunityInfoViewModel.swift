@@ -35,6 +35,7 @@ final class CommunityInfoViewModel: ObservableObject {
     let community: Community
     
     let resourcesSectionViewModel: ResourcesSectionViewModel
+    let aboutSectionViewModel: AboutSectionViewModel
     
     var leadershipSectionViewModel: LeadershipSectionViewModel {
         .init(
@@ -45,17 +46,22 @@ final class CommunityInfoViewModel: ObservableObject {
         )
     }
     
-    var summary: String {
-        "Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah"
-    }
-    
     init(coordinator: CommunityInfoCoordinatorDelegate,
          community: Community
     ) {
         self.coordinator = coordinator
         self.community = community
         
-        resourcesSectionViewModel = .init(title: "Resources", resources: community.resources)
+        resourcesSectionViewModel = .init(
+            title: "Resources",
+            resources: community.resources
+        )
+        
+        aboutSectionViewModel = .init(
+            summary: community.summary,
+            memberCount: community.memberCount,
+            foundedDate: community.foundedDate
+        )
     }
     
     func showCandidates() {

@@ -10,8 +10,10 @@ import Foundation
 struct Community: Hashable, Identifiable, Codable {
     let id: UUID // TODO: Change where id is assigned value.
     let name: String
+    let summary: String
     let foundedDate: Date
     var representatives: [Candidate]
+    let memberCount: Int
     var rules: [Rule]
     var resources: [Resource]
     var postCategories: [CommunityCategory] // Categories defined by community, cannot be enum.

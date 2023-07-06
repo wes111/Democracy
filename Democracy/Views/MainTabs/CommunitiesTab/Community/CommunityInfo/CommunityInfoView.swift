@@ -19,11 +19,7 @@ struct CommunityInfoView: View {
         ScrollView(.vertical) {
             VStack(alignment: .leading, spacing: 25) {
                 
-                AboutSection(
-                    summary: viewModel.summary,
-                    memberCount: 19515,
-                    foundedDateString: "January 5th 2023"
-                )
+                AboutSection(viewModel: viewModel.aboutSectionViewModel)
                 .padding(.horizontal)
                 
                 LeadershipSection(viewModel: viewModel.leadershipSectionViewModel)
@@ -48,54 +44,6 @@ struct CommunityInfoView: View {
 }
 
 // MARK: - About Section
-
-struct AboutSection: View {
-    
-    let summary: String
-    let memberCount: Int
-    let foundedDateString: String
-    
-    var body: some View {
-        
-        VStack(alignment: .leading, spacing: 10) {
-            
-            HStack {
-                
-                Text("About")
-                    .font(.title)
-                
-                Spacer()
-                
-                Button {
-                    print()
-                } label: {
-                    Text("Join")
-                        .font(.title3)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 3)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(.otherRed)
-                        )
-                }
-            }
-
-            HStack(spacing: 10) {
-                Text("\(memberCount) Members")
-                
-                Divider()
-                    .overlay(Color.tertiaryText)
-                
-                Text("Founded \(foundedDateString)")
-            }
-            .font(.footnote)
-                
-            Text(summary)
-                .font(.caption)
-                .foregroundColor(.secondaryText)
-        }
-    }
-}
 
 // MARK: - Representatives Section
 

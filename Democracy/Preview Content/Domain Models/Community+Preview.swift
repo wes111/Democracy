@@ -11,8 +11,10 @@ extension Community {
     static let preview = Community(
         id: UUID(),
         name: "Test Community",
+        summary: "Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah",
         foundedDate: Date(),
         representatives: Candidate.representativePreviewArray,
+        memberCount: 255,
         rules: Rule.previewArray,
         resources: Resource.previewArray,
         postCategories: CommunityCategory.previewArray
@@ -25,8 +27,10 @@ extension Community {
                 Community(
                     id: UUID(),
                     name: "My Community \(index)",
+                    summary: "Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah",
                     foundedDate: Community.preview.foundedDate,
                     representatives: Community.preview.representatives,
+                    memberCount: 255,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
                     postCategories: CommunityCategory.previewArray
@@ -42,8 +46,10 @@ extension Community {
                 Community(
                     id: UUID(),
                     name: "Recommended Community \(index)",
+                    summary: "Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah",
                     foundedDate: Community.preview.foundedDate,
                     representatives: Community.preview.representatives,
+                    memberCount: 255,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
                     postCategories: CommunityCategory.previewArray
@@ -59,8 +65,10 @@ extension Community {
                 Community(
                     id: UUID(),
                     name: "Top Community \(index)",
+                    summary: "Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah",
                     foundedDate: Community.preview.foundedDate,
                     representatives: Community.preview.representatives,
+                    memberCount: 255,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
                     postCategories: CommunityCategory.previewArray
