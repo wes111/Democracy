@@ -39,10 +39,7 @@ struct CommunityInfoView: View {
                 )
                 .padding(.horizontal)
                 
-                ResourcesSection(
-                    title: "Resources",
-                    resources: viewModel.community.resources
-                )
+                ResourcesSection(viewModel: viewModel.resourcesSectionViewModel)
                 .padding(.horizontal)
             }
         }
@@ -232,69 +229,6 @@ struct RuleView: View {
 }
 
 // MARK: - Resources Section
-
-struct ResourcesSection: View {
-    
-    let title: String
-    let resources: [Resource]
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(title)
-                .font(.title)
-            
-            ForEach(Array(resources.enumerated()), id: \.element) { index, resource in
-                VStack {
-                    ResourceView(
-                        title: resource.title,
-                        description: resource.description,
-                        index: index,
-                        hyperlink: resource.url)
-                    Divider()
-                        .overlay(Color.tertiaryBackground)
-                }
-            }
-        }
-    }
-}
-
-struct ResourceView: View {
-    
-    let title: String
-    let description: String
-    let index: Int
-    let hyperlink: URL?
-    
-    var link: String?
-    
-    init(title: String, description: String, index: Int, hyperlink: URL?) {
-        self.title = title
-        self.description = description
-        self.index = index
-        self.hyperlink = hyperlink
-        
-        if let hyperlink {
-            link = "[\(title)](\(hyperlink.absoluteString))"
-        }
-    }
-    
-    var body: some View {
-        HStack(alignment: .top) {
-            Text("\(index)")
-                .font(.title2)
-                .padding(.trailing, 5)
-                .foregroundColor(.tertiaryText)
-            
-            VStack(alignment: .leading, spacing: 5) {
-                Text(.init(link ?? title))
-                    .font(.bold(.body)())
-                Text(description)
-                    .font(.caption)
-                    .foregroundColor(.tertiaryText)
-            }
-        }
-    }
-}
 
 // MARK: - Allied Communities Section
 

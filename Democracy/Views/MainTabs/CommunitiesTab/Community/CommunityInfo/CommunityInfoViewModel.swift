@@ -34,6 +34,8 @@ final class CommunityInfoViewModel: ObservableObject {
     let coordinator: CommunityInfoCoordinatorDelegate
     let community: Community
     
+    let resourcesSectionViewModel: ResourcesSectionViewModel
+    
     var leadershipSectionViewModel: LeadershipSectionViewModel {
         .init(
             creators: Candidate.previewArray.filter { $0.repType == .creator },
@@ -52,6 +54,8 @@ final class CommunityInfoViewModel: ObservableObject {
     ) {
         self.coordinator = coordinator
         self.community = community
+        
+        resourcesSectionViewModel = .init(title: "Resources", resources: community.resources)
     }
     
     func showCandidates() {

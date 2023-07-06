@@ -28,4 +28,13 @@ struct Resource: Codable, Hashable {
     let title: String
     let description: String
     let url: URL
+    
+    func viewModel(index: Int) -> ResourceViewModel {
+        .init(
+            title: title,
+            description: description,
+            index: index,
+            url: url
+        )
+    }
 }
