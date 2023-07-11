@@ -23,6 +23,14 @@ struct Rule: Codable, Hashable {
     let id: UUID
     let title: String
     let description: String
+    
+    func viewModel(index: Int) -> RuleViewModel {
+        .init(
+            title: title,
+            description: description,
+            index: index
+        )
+    }
 }
 
 struct Resource: Codable, Hashable {

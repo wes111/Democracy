@@ -29,10 +29,7 @@ struct CommunityInfoView: View {
 //                    onTapAction: viewModel.onTapCommunityCard
 //                )
                 
-                RulesSection(
-                    title: "Rules",
-                    rules: viewModel.community.rules
-                )
+                RulesSection(viewModel: viewModel.rulesSectionViewModel)
                 .padding(.horizontal)
                 
                 ResourcesSection(viewModel: viewModel.resourcesSectionViewModel)
@@ -120,57 +117,6 @@ struct LeadersScrollView: View {
                             .padding(.leading)
                     }
                 }
-            }
-        }
-    }
-}
-
-// MARK: - Rules
-
-struct RulesSection: View {
-    
-    let title: String
-    let rules: [Rule]
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(title)
-                .font(.title)
-            
-            ForEach(Array(rules.enumerated()), id: \.element) { index, rule in
-                VStack {
-                    RuleView(
-                        title: rule.title,
-                        description: rule.description,
-                        index: index
-                    )
-                    Divider()
-                        .overlay(Color.tertiaryBackground)
-                }
-            }
-        }
-    }
-}
-
-struct RuleView: View {
-    
-    let title: String
-    let description: String
-    let index: Int
-    
-    var body: some View {
-        HStack(alignment: .top) {
-            Text("\(index)")
-                .font(.title2)
-                .padding(.trailing, 5)
-                .foregroundColor(.tertiaryText)
-            
-            VStack(alignment: .leading, spacing: 5) {
-                Text(title)
-                    .font(.bold(.body)())
-                Text(description)
-                    .font(.caption)
-                    .foregroundColor(.tertiaryText)
             }
         }
     }

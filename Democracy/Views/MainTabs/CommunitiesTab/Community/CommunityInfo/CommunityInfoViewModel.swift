@@ -36,6 +36,7 @@ final class CommunityInfoViewModel: ObservableObject {
     
     let resourcesSectionViewModel: ResourcesSectionViewModel
     let aboutSectionViewModel: AboutSectionViewModel
+    let rulesSectionViewModel: RulesSectionViewModel
     
     var leadershipSectionViewModel: LeadershipSectionViewModel {
         .init(
@@ -61,6 +62,11 @@ final class CommunityInfoViewModel: ObservableObject {
             summary: community.summary,
             memberCount: community.memberCount,
             foundedDate: community.foundedDate
+        )
+        
+        rulesSectionViewModel = .init(
+            rules: community.rules,
+            title: "Rules"
         )
     }
     
