@@ -8,21 +8,9 @@
 import Factory
 import Foundation
 
-struct LeadershipSectionViewModel {
-    let creators: [Candidate]
-    let mods: [Candidate]
-    let legislators: [Candidate]
-    let onTapCandidateCard: (Candidate) -> Void
-    
-    func sectionTitle(repType: RepresentativeType) -> String {
-        repType.description.capitalized
-    }
-}
-
-protocol CommunityInfoCoordinatorDelegate: CandidateCardCoordinatorDelegate {
+protocol CommunityInfoCoordinatorDelegate: CandidateCardCoordinatorDelegate, LeadersScrollViewModelCoordinatorDelegate {
     func showCandidates()
     func goToCommunity(_ community: Community)
-    func goToCandidateView(_ candidate: Candidate)
     func openResourceURL(_ url: URL)
 }
 
@@ -38,12 +26,12 @@ final class CommunityInfoViewModel: ObservableObject {
     let aboutSectionViewModel: AboutSectionViewModel
     let rulesSectionViewModel: RulesSectionViewModel
     
-    var leadershipSectionViewModel: LeadershipSectionViewModel {
+    var leadershipSectionViewModel: LeadersSectionViewModel {
         .init(
             creators: Candidate.previewArray.filter { $0.repType == .creator },
             mods: Candidate.previewArray.filter { $0.repType == .mod },
             legislators: Candidate.previewArray.filter { $0.repType == .legislator },
-            onTapCandidateCard: onTapCandidateCard
+            coordinator: coordinator
         )
     }
     
@@ -78,8 +66,8 @@ final class CommunityInfoViewModel: ObservableObject {
         coordinator.goToCommunity(community)
     }
     
-    func onTapCandidateCard(_ candidate: Candidate) {
-        coordinator.goToCandidateView(candidate)
+    func onTapCandidateCard(candidateID: UUID) {
+        coordinator.goToCandidateView(candidateId: candidateID)
     }
     
     func openResourceURL(urlString: String) {

@@ -8,7 +8,7 @@
 import Foundation
 
 class CommunityCoordinatorViewModel: ObservableObject, CommunityCoordinatorDelegate {
-
+    
     @Published var url: URL = URL(string: "https://www.google.com")!
     @Published var isShowingWebView = false
     @Published var isShowingCreatePostView = false
@@ -72,8 +72,9 @@ class CommunityCoordinatorViewModel: ObservableObject, CommunityCoordinatorDeleg
         router.push(CommunityPath.postView(post))
     }
     
-    func goToCandidateView(_ candidate: Candidate) {
-        router.push(CommunityPath.singleCandidate(candidate))
+    func goToCandidateView(candidateId: UUID) {
+        // TODO: Get the actual candidate.
+        router.push(CommunityPath.singleCandidate(.preview))
     }
     
     func showCreatePostView() {

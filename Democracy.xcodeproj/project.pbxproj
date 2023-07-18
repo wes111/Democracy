@@ -17,6 +17,12 @@
 		EE45249F2A5CE39400C7A2DD /* RulesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45249E2A5CE39400C7A2DD /* RulesSection.swift */; };
 		EE4524A12A5CE46500C7A2DD /* RuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524A02A5CE46500C7A2DD /* RuleViewModel.swift */; };
 		EE4524A32A5CE85200C7A2DD /* RuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524A22A5CE85200C7A2DD /* RuleView.swift */; };
+		EE4524A72A5CED1000C7A2DD /* LeadersSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524A62A5CED1000C7A2DD /* LeadersSection.swift */; };
+		EE4524A92A5CED2100C7A2DD /* LeadersSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524A82A5CED2100C7A2DD /* LeadersSectionViewModel.swift */; };
+		EE4524AC2A5CED5100C7A2DD /* LeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524AB2A5CED5100C7A2DD /* LeaderView.swift */; };
+		EE4524AE2A5CED6900C7A2DD /* LeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524AD2A5CED6900C7A2DD /* LeaderViewModel.swift */; };
+		EE4524B12A5CF0A000C7A2DD /* LeadersScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524B02A5CF0A000C7A2DD /* LeadersScrollView.swift */; };
+		EE4524B32A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524B22A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift */; };
 		EE54ADDF29A329C9007C3E3F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADDE29A329C9007C3E3F /* MainTabView.swift */; };
 		EE54ADE729A40101007C3E3F /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADE629A40101007C3E3F /* AuthenticationCoordinator.swift */; };
 		EE54ADEA29A712AE007C3E3F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADE929A712AD007C3E3F /* LoginView.swift */; };
@@ -181,6 +187,12 @@
 		EE45249E2A5CE39400C7A2DD /* RulesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesSection.swift; sourceTree = "<group>"; };
 		EE4524A02A5CE46500C7A2DD /* RuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleViewModel.swift; sourceTree = "<group>"; };
 		EE4524A22A5CE85200C7A2DD /* RuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleView.swift; sourceTree = "<group>"; };
+		EE4524A62A5CED1000C7A2DD /* LeadersSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersSection.swift; sourceTree = "<group>"; };
+		EE4524A82A5CED2100C7A2DD /* LeadersSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersSectionViewModel.swift; sourceTree = "<group>"; };
+		EE4524AB2A5CED5100C7A2DD /* LeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderView.swift; sourceTree = "<group>"; };
+		EE4524AD2A5CED6900C7A2DD /* LeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderViewModel.swift; sourceTree = "<group>"; };
+		EE4524B02A5CF0A000C7A2DD /* LeadersScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersScrollView.swift; sourceTree = "<group>"; };
+		EE4524B22A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersScrollViewModel.swift; sourceTree = "<group>"; };
 		EE54ADDE29A329C9007C3E3F /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		EE54ADE629A40101007C3E3F /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		EE54ADE929A712AD007C3E3F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -392,6 +404,35 @@
 				EE4524A22A5CE85200C7A2DD /* RuleView.swift */,
 			);
 			path = Rule;
+			sourceTree = "<group>";
+		};
+		EE4524A42A5CECAD00C7A2DD /* LeadersSection */ = {
+			isa = PBXGroup;
+			children = (
+				EE4524A62A5CED1000C7A2DD /* LeadersSection.swift */,
+				EE4524A82A5CED2100C7A2DD /* LeadersSectionViewModel.swift */,
+				EE4524AF2A5CF08500C7A2DD /* LeadersScrollView */,
+				EE4524A52A5CECCB00C7A2DD /* Leader */,
+			);
+			path = LeadersSection;
+			sourceTree = "<group>";
+		};
+		EE4524A52A5CECCB00C7A2DD /* Leader */ = {
+			isa = PBXGroup;
+			children = (
+				EE4524AB2A5CED5100C7A2DD /* LeaderView.swift */,
+				EE4524AD2A5CED6900C7A2DD /* LeaderViewModel.swift */,
+			);
+			path = Leader;
+			sourceTree = "<group>";
+		};
+		EE4524AF2A5CF08500C7A2DD /* LeadersScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				EE4524B02A5CF0A000C7A2DD /* LeadersScrollView.swift */,
+				EE4524B22A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift */,
+			);
+			path = LeadersScrollView;
 			sourceTree = "<group>";
 		};
 		EE54ADE829A7128E007C3E3F /* Login */ = {
@@ -894,9 +935,10 @@
 		EED4A53129B81D3E00DDCCDA /* CommunityInfo */ = {
 			isa = PBXGroup;
 			children = (
-				EE45249A2A5CE34B00C7A2DD /* RulesSection */,
 				EED4A53429B81D8000DDCCDA /* CommunityInfoView.swift */,
 				EE80D90329C923960000F8EF /* CommunityInfoViewModel.swift */,
+				EE4524A42A5CECAD00C7A2DD /* LeadersSection */,
+				EE45249A2A5CE34B00C7A2DD /* RulesSection */,
 				EE4524952A56654700C7A2DD /* AboutSection */,
 				EE45248B2A5651B600C7A2DD /* ResourceSection */,
 			);
@@ -1075,6 +1117,7 @@
 				EED4A53529B81D8000DDCCDA /* CommunityInfoView.swift in Sources */,
 				EED4A52E29B81A2E00DDCCDA /* PostViewModel.swift in Sources */,
 				EE4524A12A5CE46500C7A2DD /* RuleViewModel.swift in Sources */,
+				EE4524AC2A5CED5100C7A2DD /* LeaderView.swift in Sources */,
 				EE80D91E29C932180000F8EF /* CandidatesViewModel.swift in Sources */,
 				EE80D91829C930210000F8EF /* CandidateView.swift in Sources */,
 				EE80D90F29C92C190000F8EF /* CandidateCardViewModel.swift in Sources */,
@@ -1090,6 +1133,7 @@
 				EE80D94A29D9FDA20000F8EF /* CommunitiesScrollView.swift in Sources */,
 				EE80D8F629C01EBA0000F8EF /* UserInteractor.swift in Sources */,
 				EE80D93029D0D7970000F8EF /* AppDelegate.swift in Sources */,
+				EE4524A72A5CED1000C7A2DD /* LeadersSection.swift in Sources */,
 				EE54ADEA29A712AE007C3E3F /* LoginView.swift in Sources */,
 				EED4A51A29ABC2D400DDCCDA /* Community.swift in Sources */,
 				EED4A4F129AA7ED700DDCCDA /* RootViewModel.swift in Sources */,
@@ -1143,6 +1187,7 @@
 				EE5D3A032A30204D00D0E312 /* CommunitiesTabCoordinatorViewModel.swift in Sources */,
 				EED4A52A29B8187D00DDCCDA /* PostCoordinator.swift in Sources */,
 				EE80D8E029BC1A080000F8EF /* HistoryTabMainViewModel+Preview.swift in Sources */,
+				EE4524B32A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift in Sources */,
 				EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */,
 				EE80D8CA29BC13C00000F8EF /* PostViewModel+Preview.swift in Sources */,
 				EED4A51129AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift in Sources */,
@@ -1180,11 +1225,13 @@
 				EE80D8E229BC1DD80000F8EF /* PostInteractor.swift in Sources */,
 				EE80D92229C9557D0000F8EF /* CandidateInteractor.swift in Sources */,
 				EED4A50F29AB1A5A00DDCCDA /* CommunitiesTabMainView.swift in Sources */,
+				EE4524B12A5CF0A000C7A2DD /* LeadersScrollView.swift in Sources */,
 				EED4A4EF29AA7E9600DDCCDA /* RootView.swift in Sources */,
 				EE54ADDF29A329C9007C3E3F /* MainTabView.swift in Sources */,
 				EED4A51F29ABC86300DDCCDA /* CommunityCoordinator.swift in Sources */,
 				EE80D93529D286240000F8EF /* CreateCandidateViewModel.swift in Sources */,
 				EED4A50B29AB18D400DDCCDA /* UpdatesTabMainView.swift in Sources */,
+				EE4524AE2A5CED6900C7A2DD /* LeaderViewModel.swift in Sources */,
 				EED4A4FB29AA857000DDCCDA /* VotingTabCoordinator.swift in Sources */,
 				EE80D8D429BC15FC0000F8EF /* EventsTabMainViewModel+Preview.swift in Sources */,
 				EE80D92629C955DB0000F8EF /* CandidateRemoteRepository.swift in Sources */,
@@ -1203,6 +1250,7 @@
 				EE5B93972A0864E700B43381 /* CommunityPostCategoryViewModel.swift in Sources */,
 				EED4A50729AA8BAE00DDCCDA /* EventsTabMainView.swift in Sources */,
 				EE80D8ED29BD180E0000F8EF /* Container+Extensions.swift in Sources */,
+				EE4524A92A5CED2100C7A2DD /* LeadersSectionViewModel.swift in Sources */,
 				EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */,
 				EE5B938729F76EF800B43381 /* CommunityArchiveFeedViewModel.swift in Sources */,
 				EE80D92029C938320000F8EF /* CandidatesViewModel+Preview.swift in Sources */,

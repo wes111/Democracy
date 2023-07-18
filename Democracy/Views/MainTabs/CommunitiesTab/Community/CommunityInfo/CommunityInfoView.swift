@@ -22,7 +22,7 @@ struct CommunityInfoView: View {
                 AboutSection(viewModel: viewModel.aboutSectionViewModel)
                 .padding(.horizontal)
                 
-                LeadershipSection(viewModel: viewModel.leadershipSectionViewModel)
+                LeadersSection(viewModel: viewModel.leadershipSectionViewModel)
                 
 //                AlliedCommunitiesSection(
 //                    communities: viewModel.alliedCommunities,
@@ -39,90 +39,6 @@ struct CommunityInfoView: View {
         .foregroundColor(.primaryText)
     }
 }
-
-// MARK: - About Section
-
-// MARK: - Representatives Section
-
-struct LeadershipSection: View {
-    
-    let viewModel: LeadershipSectionViewModel
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            HStack {
-                
-                Text("Representatives")
-                    .font(.title)
-                
-                Spacer()
-                
-                Button {
-                    print()
-                } label: {
-                    Text("Vote")
-                        .font(.title3)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 3)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .foregroundColor(.otherRed)
-                        )
-                }
-            }
-            .padding(.horizontal)
-
-            LeadersScrollView(
-                title: viewModel.sectionTitle(repType: .creator),
-                candidates: viewModel.creators,
-                tapCandidateAction: viewModel.onTapCandidateCard
-            )
-            
-            LeadersScrollView(
-                title: viewModel.sectionTitle(repType: .mod),
-                candidates: viewModel.mods,
-                tapCandidateAction: viewModel.onTapCandidateCard
-            )
-            
-            LeadersScrollView(
-                title: viewModel.sectionTitle(repType: .legislator),
-                candidates: viewModel.legislators,
-                tapCandidateAction: viewModel.onTapCandidateCard
-            )
-        }
-    }
-}
-
-struct LeadersScrollView: View {
-    
-    let title: String
-    let candidates: [Candidate]
-    let tapCandidateAction: (Candidate) -> Void
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            
-            Text(title)
-                .font(.callout)
-                .foregroundColor(.secondaryText)
-                .padding(.horizontal)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(candidates, id: \.self) { candidate in
-                        CandidateCardView(candidate: candidate)
-                            .onTapGesture {
-                                tapCandidateAction(candidate)
-                            }
-                            .padding(.leading)
-                    }
-                }
-            }
-        }
-    }
-}
-
-// MARK: - Resources Section
 
 // MARK: - Allied Communities Section
 
