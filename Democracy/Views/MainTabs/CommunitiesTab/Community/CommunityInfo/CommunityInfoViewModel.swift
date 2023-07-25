@@ -8,9 +8,9 @@
 import Factory
 import Foundation
 
-protocol CommunityInfoCoordinatorDelegate: CandidateCardCoordinatorDelegate, LeadersScrollViewModelCoordinatorDelegate {
+protocol CommunityInfoCoordinatorDelegate: CandidateCardCoordinatorDelegate, LeadersScrollViewModelCoordinatorDelegate, AlliedCommunitiesSectionViewModelCoordinatorDelegate {
     func showCandidates()
-    func goToCommunity(_ community: Community)
+    func goToCommunityView(id: UUID)
     func openResourceURL(_ url: URL)
 }
 
@@ -25,6 +25,7 @@ final class CommunityInfoViewModel: ObservableObject {
     let resourcesSectionViewModel: ResourcesSectionViewModel
     let aboutSectionViewModel: AboutSectionViewModel
     let rulesSectionViewModel: RulesSectionViewModel
+    let alliedCommunitiesSectionViewModel: AlliedCommunitiesSectionViewModel
     
     var leadershipSectionViewModel: LeadersSectionViewModel {
         .init(
@@ -56,6 +57,11 @@ final class CommunityInfoViewModel: ObservableObject {
             rules: community.rules,
             title: "Rules"
         )
+        
+        alliedCommunitiesSectionViewModel = .init(
+            alliedCommunities: Community.myCommunitiesPreviewArray,
+            coordinator: coordinator
+        )
     }
     
     func showCandidates() {
@@ -63,7 +69,7 @@ final class CommunityInfoViewModel: ObservableObject {
     }
     
     func onTapCommunityCard(_ community: Community) {
-        coordinator.goToCommunity(community)
+        coordinator.goToCommunityView(id: community.id)
     }
     
     func onTapCandidateCard(candidateID: UUID) {

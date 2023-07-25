@@ -17,7 +17,8 @@ extension Community {
         memberCount: 255,
         rules: Rule.previewArray,
         resources: Resource.previewArray,
-        postCategories: CommunityCategory.previewArray
+        postCategories: CommunityCategory.previewArray,
+        alliedCommunities: []
     )
     
     static var myCommunitiesPreviewArray: [Community] {
@@ -33,7 +34,8 @@ extension Community {
                     memberCount: 255,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
-                    postCategories: CommunityCategory.previewArray
+                    postCategories: CommunityCategory.previewArray,
+                    alliedCommunities: []
                 ))
         }
         return array
@@ -52,7 +54,8 @@ extension Community {
                     memberCount: 255,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
-                    postCategories: CommunityCategory.previewArray
+                    postCategories: CommunityCategory.previewArray,
+                    alliedCommunities: []
                 ))
         }
         return array
@@ -71,7 +74,8 @@ extension Community {
                     memberCount: 255,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
-                    postCategories: CommunityCategory.previewArray
+                    postCategories: CommunityCategory.previewArray,
+                    alliedCommunities: []
                 ))
         }
         return array

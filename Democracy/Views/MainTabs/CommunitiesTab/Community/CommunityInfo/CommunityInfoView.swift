@@ -24,10 +24,7 @@ struct CommunityInfoView: View {
                 
                 LeadersSection(viewModel: viewModel.leadershipSectionViewModel)
                 
-//                AlliedCommunitiesSection(
-//                    communities: viewModel.alliedCommunities,
-//                    onTapAction: viewModel.onTapCommunityCard
-//                )
+                AlliedCommunitiesSection(viewModel: viewModel.alliedCommunitiesSectionViewModel)
                 
                 RulesSection(viewModel: viewModel.rulesSectionViewModel)
                 .padding(.horizontal)
@@ -37,38 +34,6 @@ struct CommunityInfoView: View {
             }
         }
         .foregroundColor(.primaryText)
-    }
-}
-
-// MARK: - Allied Communities Section
-
-struct AlliedCommunitiesSection: View {
-    
-    let communities: [Community]
-    let onTapAction: (Community) -> Void
-    
-    var body: some View {
-        
-        Section {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(communities, id: \.self) { community in
-                        CommunityCard(community: community)
-                            .onTapGesture {
-                                onTapAction(community)
-                            }
-                            .padding(.leading)
-                    }
-                }
-            }
-            
-        } header: {
-            Text("Allied Communities")
-                .font(.title)
-                .padding(.horizontal)
-            
-        }
-        .headerProminence(.increased)
     }
 }
 

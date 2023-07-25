@@ -17,6 +17,7 @@ struct Community: Hashable, Identifiable, Codable {
     var rules: [Rule]
     var resources: [Resource]
     var postCategories: [CommunityCategory] // Categories defined by community, cannot be enum.
+    var alliedCommunities: [Community]
 }
 
 struct Rule: Codable, Hashable {

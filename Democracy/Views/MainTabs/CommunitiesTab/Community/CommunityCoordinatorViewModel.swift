@@ -55,10 +55,6 @@ class CommunityCoordinatorViewModel: ObservableObject, CommunityCoordinatorDeleg
         router.push(CommunityPath.candidates)
     }
     
-    func goToCommunity(_ community: Community) {
-        router.push(CommunityPath.goToCommunity(community))
-    }
-    
     func openResourceURL(_ url: URL) {
         self.url = url
         isShowingWebView = true
@@ -109,3 +105,11 @@ extension CommunityCoordinatorViewModel: CandidateCoordinatorDelegate {}
 extension CommunityCoordinatorViewModel: CreateCandidateCoordinatorDelegate {}
 
 extension CommunityCoordinatorViewModel: PostCoordinatorDelegate {}
+
+extension CommunityCoordinatorViewModel: AlliedCommunitiesSectionViewModelCoordinatorDelegate {
+    
+    func goToCommunityView(id: UUID) {
+        // TODO: Get the actual community.
+        router.push(CommunityPath.goToCommunity(.preview))
+    }
+}
