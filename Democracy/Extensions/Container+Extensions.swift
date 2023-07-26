@@ -59,8 +59,4 @@ extension Container {
     var richLinkService: Factory<RichLinkServiceProtocol> {
         self { RichLinkService() } 
     }
-    
-    var communityService: Factory<CommunityServiceProtocol> {
-        self { CommunityService() }.shared
-    }
 }

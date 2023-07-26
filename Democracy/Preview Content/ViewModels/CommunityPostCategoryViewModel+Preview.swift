@@ -7,8 +7,8 @@
 
 import Foundation
 
-extension CommunityPostCategoryViewModel {
-    static let preview = CommunityPostCategoryViewModel(
+extension CommunityCategoryPostsViewModel {
+    static let preview = CommunityCategoryPostsViewModel(
         community: Community.preview,
         category: CommunityCategory.preview
     )

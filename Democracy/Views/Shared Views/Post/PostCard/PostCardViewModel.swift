@@ -13,7 +13,7 @@ protocol PostCardCoordinatorDelegate {
     func goToPostView(_ post: Post)
 }
 
-final class PostCardViewModel: ObservableObject {
+final class PostCardViewModel: ObservableObject, Hashable {
     
     //MARK: - Private Variables
     @Injected(\.richLinkService) private var richLinkService

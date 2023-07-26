@@ -10,10 +10,6 @@ import SwiftUI
 struct CommunityArchiveFeedView: View {
     
     @StateObject private var viewModel: CommunityArchiveFeedViewModel
-    @State var categoryCardSize = CGSize()
-    @State var calendarPickerSize = CGSize()
-    @State var date = Date()
-    @State var isShowingCalendar = false
     
     init(viewModel: CommunityArchiveFeedViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -23,138 +19,22 @@ struct CommunityArchiveFeedView: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
-            switch viewModel.communityArchiveType {
-            case .category: communityCategories
-            case .time: communityDates
-            }
-        }
-    }
-    
-    var communityCategories: some View {
-        LazyVGrid(columns: gridItemLayout, alignment: .center) {
-            ForEach(viewModel.categories) { category in
-                CategoryCardView(category: category)
-                    .onTapGesture {
-                        viewModel.goToCommunityPostCategory(category)
-                    }
-                    .padding(.vertical, 5)
-            }
-        }
-        .padding([.bottom, .horizontal], 20)
-    }
-    
-    var communityDates: some View {
-        
-        VStack(alignment: .leading, spacing: 10) {
-            
-            Text("Date")
-                .font(.title)
-            
-            HStack {
-                Text("Time Granularity:")
-                    .lineLimit(1)
-                
-                BoundMenu(
-                    menuItems: TimeGranularity.allCases,
-                    selectedItem: $viewModel.timeGranularity
-                )
-                
-                Spacer()
-            }
-            
-            HStack {
-                
-                Button {
-                    print("Button tapped.")
-                } label: {
-                    Text("Show posts for:")
-                }
-                
-                ZStack {
-                    
-                    DatePicker(
-                        "Show posts date",
-                        selection: $date,
-                        displayedComponents: [.date]
-                    )
-                    .datePickerStyle(.compact)
-                    .labelsHidden()
-                    .frame(width: calendarPickerSize.width, height: calendarPickerSize.height)
-                    .clipped()
-                    
-                    Group {
-                        switch viewModel.timeGranularity {
-                        case .day:
-                            Text("\(date.getFormattedDate(format: "MMMM dd, YYYY"))")
-                        case .month:
-                            Text("\(date.getFormattedDate(format: "MMMM, YYYY"))")
-                        case .year:
-                            Text("\(date.getFormattedDate(format: "YYYY"))")
-                        }
-                    }
-                    .background(
-                        GeometryReader { proxy in
-                            Color.clear
-                                .preference(key: SizePreferenceKey2.self, value: proxy.size)
-                        }
-                    )
-                    .background {
-                        Color.white
-                    }
-                    .allowsHitTesting(false)
-                    .onPreferenceChange(SizePreferenceKey2.self) { preferences in
-                        self.calendarPickerSize = preferences
-                    }
-
-                }
-            }
-        
-        }
-        .padding(.horizontal)
-    }
-    
-    func categoriesStack(_ categories: [CommunityCategory]) -> some View {
-        
-        Section {
-            VStack(alignment: .leading, spacing: 10) {
-                ForEach(categories, id: \.self) { category in
-                    Text(category.name)
+            LazyVGrid(columns: gridItemLayout, alignment: .center) {
+                ForEach(viewModel.categories) { category in
+                    CommunityCategoryView(viewModel: category)
                         .onTapGesture {
-                            viewModel.goToCommunityPostCategory(category)
+                            viewModel.goToCommunityPostCategory(category: category)
                         }
+                        .padding(.vertical, 5)
                 }
             }
-            
-        } header: {
-            Text("Post Categories")
-                .font(.title)
-                .padding(.horizontal)
+            .padding([.bottom, .horizontal], 20)
         }
-        .headerProminence(.increased)
     }
-    
 }
 
 struct CommunityArchiveFeedView_Previews: PreviewProvider {
     static var previews: some View {
         CommunityArchiveFeedView(viewModel: CommunityArchiveFeedViewModel.preview)
-    }
-}
-
-struct SizePreferenceKey: PreferenceKey {
-    typealias Value = CGSize
-    static var defaultValue: Value = .zero
-
-    static func reduce(value _: inout Value, nextValue: () -> Value) {
-        _ = nextValue()
-    }
-}
-
-struct SizePreferenceKey2: PreferenceKey {
-    typealias Value = CGSize
-    static var defaultValue: Value = .zero
-
-    static func reduce(value _: inout Value, nextValue: () -> Value) {
-        _ = nextValue()
     }
 }

@@ -7,26 +7,22 @@
 
 import SwiftUI
 
-struct CategoryCardView: View {
+struct CommunityCategoryView: View {
     
-    @StateObject private var viewModel: CategoryCardViewModel
-    
-    init(category: CommunityCategory) {
-        _viewModel = StateObject(wrappedValue: CategoryCardViewModel(category: category))
-    }
+    let viewModel: CommunityCategoryViewModel
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
             
             VStack(spacing: 0) {
                 
-                Image(viewModel.category.imageName)
+                Image(viewModel.imageName)
                     .resizable()
                     .scaledToFill()
                     .frame(width: 175)
                 
                 HStack {
-                    Text(viewModel.category.name)
+                    Text(viewModel.name)
                         .font(.caption)
                         .padding(4)
                         .frame(width: 175)
@@ -58,7 +54,7 @@ struct CategoryCardView: View {
 
 struct CategoryCardView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryCardView(category: CommunityCategory.preview)
+        CommunityCategoryView(viewModel: CommunityCategory.preview.toCommunityCategoryViewModel())
             .frame(height: 100)
     }
 }

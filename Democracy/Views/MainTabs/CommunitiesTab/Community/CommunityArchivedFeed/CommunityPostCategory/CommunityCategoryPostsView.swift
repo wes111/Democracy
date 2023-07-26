@@ -7,20 +7,18 @@
 
 import SwiftUI
 
-struct CommunityPostCategoryView: View {
+struct CommunityCategoryPostsView: View {
     
-    @StateObject private var viewModel: CommunityPostCategoryViewModel
+    @StateObject private var viewModel: CommunityCategoryPostsViewModel
     
-    @State private var searchText = ""
-    
-    init(viewModel: CommunityPostCategoryViewModel) {
+    init(viewModel: CommunityCategoryPostsViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
         
         ScrollView(.vertical, showsIndicators: false) {
-            ForEach(viewModel.posts, id: \.post) { postCardViewModel in
+            ForEach(viewModel.posts, id: \.self) { postCardViewModel in
                 PostCardView(viewModel: postCardViewModel)
             }
         }
@@ -32,17 +30,15 @@ struct CommunityPostCategoryView: View {
                 }
             }
         }
-        .searchable(text: $searchText)
+        .searchable(text: $viewModel.searchText)
         .refreshable {
             viewModel.refresh()
         }
-            
     }
-    
 }
 
 struct CommunityPostCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        CommunityPostCategoryView(viewModel: CommunityPostCategoryViewModel.preview)
+        CommunityCategoryPostsView(viewModel: CommunityCategoryPostsViewModel.preview)
     }
 }

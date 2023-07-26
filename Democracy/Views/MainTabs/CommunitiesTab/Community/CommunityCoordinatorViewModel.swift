@@ -47,8 +47,8 @@ class CommunityCoordinatorViewModel: ObservableObject, CommunityCoordinatorDeleg
         PostViewModel(coordinator: self, post: post)
     }
     
-    func communityPostCategoryViewModel(category: CommunityCategory) -> CommunityPostCategoryViewModel {
-        CommunityPostCategoryViewModel(community: community, category: category)
+    func communityPostCategoryViewModel(category: CommunityCategory) -> CommunityCategoryPostsViewModel {
+        CommunityCategoryPostsViewModel(community: community, category: category)
     }
     
     func showCandidates() {
@@ -60,8 +60,9 @@ class CommunityCoordinatorViewModel: ObservableObject, CommunityCoordinatorDeleg
         isShowingWebView = true
     }
     
-    func goToCommunityPostCategory(_ category: CommunityCategory) {
-        router.push(CommunityPath.goToCommunityPostCategory(category: category))
+    func goToCommunityPostCategory(categoryId: UUID) {
+        // TODO: Get the actual post category.
+        router.push(CommunityPath.goToCommunityPostCategory(category: .preview))
     }
     
     func goToPostView(_ post: Post) {

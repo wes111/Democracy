@@ -7,11 +7,13 @@
 
 import Foundation
 
-protocol CommunityPostCategoryCoordinatorDelegate: PostCardCoordinatorDelegate {
+protocol CommunityCategoryPostsCoordinatorDelegate: PostCardCoordinatorDelegate {
     
 }
 
-class CommunityPostCategoryViewModel: ObservableObject  {
+class CommunityCategoryPostsViewModel: ObservableObject  {
+    
+    @Published var searchText = ""
     
     let community: Community
     let category: CommunityCategory

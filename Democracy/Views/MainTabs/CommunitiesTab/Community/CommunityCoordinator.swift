@@ -61,7 +61,7 @@ struct CommunityCoordinator: View {
         case .goToCommunity:
             CommunityViewPicker(viewModel: viewModel.communityViewModel)
             
-        case .goToCommunityPostCategory(let category): CommunityPostCategoryView(viewModel: viewModel.communityPostCategoryViewModel(category: category))
+        case .goToCommunityPostCategory(let category): CommunityCategoryPostsView(viewModel: viewModel.communityPostCategoryViewModel(category: category))
         }
     }
 }

@@ -12,4 +12,13 @@ struct CommunityCategory: Codable, Identifiable, Hashable {
     let name: String
     let imageName: String
     var postCount: Int
+    
+    func toCommunityCategoryViewModel() -> CommunityCategoryViewModel {
+        .init(
+            id: id,
+            name: name,
+            imageName: imageName,
+            postCount: postCount
+        )
+    }
 }

@@ -80,29 +80,6 @@ struct CommunityViewPicker: View {
                 }
             }
             
-            if tabSelection == .archive {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    
-                    
-                    Menu {
-                        Button("Category") {
-                            viewModel.updateCommunityArchiveType(.category)
-                        }
-                        Button("Time") {
-                            viewModel.updateCommunityArchiveType(.time)
-                        }
-                    } label: {
-                        VStack(alignment: .center) {
-                            Text("\(viewModel.selectedCommunityArchiveType)")
-                                .font(.caption)
-                        }
-                        .frame(width: 85)
-                        .padding(.vertical, 5)
-                        .background( RoundedRectangle(cornerRadius: 10.0).fill(Color.secondaryBackground))
-                    }
-                }
-            }
-            
             ToolbarItem(placement: .principal) {
                 HStack {
                     Text(viewModel.community.name)

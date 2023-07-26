@@ -17,8 +17,6 @@ protocol CommunityCoordinatorDelegate: CommunityHomeFeedCoordinatorDelegate, Com
 final class CommunityViewModel: ObservableObject {
     
     @Published var isShowingNavigationBar = true
-    @Published var selectedCommunityArchiveType = CommunityArchiveType.category.title
-    @Injected(\.communityService) private var communityService
     private var cancellables = Set<AnyCancellable>()
 
     let coordinator: CommunityCoordinatorDelegate
@@ -33,28 +31,6 @@ final class CommunityViewModel: ObservableObject {
     ) {
         self.coordinator = coordinator
         self.community = community
-        
-        subscribeToCommunityArchiveType()
-    }
-    
-    private func subscribeToCommunityArchiveType() {
-        communityService.communityArchiveType
-            .sink { [weak self] type in
-                self?.newCommunityArchiveType(type)
-            }
-            .store(in: &cancellables)
-    }
-    
-    private func newCommunityArchiveType(_ type: CommunityArchiveType) {
-        Task {
-            await MainActor.run {
-                selectedCommunityArchiveType = type.title
-            }
-        }
-    }
-    
-    func updateCommunityArchiveType(_ type: CommunityArchiveType) {
-        communityService.updateCommunityArchiveType(type)
     }
     
     func showCreatePostView() {
