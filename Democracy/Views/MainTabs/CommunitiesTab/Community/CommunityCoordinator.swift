@@ -30,7 +30,10 @@ struct CommunityCoordinator: View {
     var body: some View {
         CommunityViewPicker(viewModel: viewModel.communityViewModel)
             .navigationDestination(for: CommunityPath.self) { path in
-                createViewFromPath(path)
+                ZStack {
+                    Color.primaryBackground.ignoresSafeArea()
+                    createViewFromPath(path)
+                }
             }
             .fullScreenCover(isPresented: $viewModel.isShowingCreatePostView) {
                 AddPostView(viewModel: viewModel.addPostViewModel)

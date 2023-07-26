@@ -23,13 +23,16 @@ struct CommunitiesTabCoordinator: View {
 
     var body: some View {
         NavigationStack(path: $viewModel.router.navigationPath) {
-            CommunitiesTabMainView(viewModel: viewModel.communitiesTabMainViewModel)
-                .navigationDestination(for: CommunitiesTabPath.self) { path in
-                    createViewFromPath(path)
-                }
-                .fullScreenCover(isPresented: $viewModel.isShowingCreateCommunityView) {
-                    CreateCommunityView(viewModel: viewModel.createCommunityViewModel)
-                }
+            ZStack {
+                Color.primaryBackground.ignoresSafeArea()
+                CommunitiesTabMainView(viewModel: viewModel.communitiesTabMainViewModel)
+                    .navigationDestination(for: CommunitiesTabPath.self) { path in
+                        createViewFromPath(path)
+                    }
+                    .fullScreenCover(isPresented: $viewModel.isShowingCreateCommunityView) {
+                        CreateCommunityView(viewModel: viewModel.createCommunityViewModel)
+                    }
+            }
         }
     }
     

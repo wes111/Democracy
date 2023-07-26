@@ -42,9 +42,6 @@ struct CommunitiesTabMainView: View {
             )
             
         }
-        .background(
-            Color.primaryBackground
-        )
         .navigationTitle("Communities")
         .refreshable {
             viewModel.refreshMyCommunities()

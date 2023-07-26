@@ -31,9 +31,6 @@ struct CommunityHomeFeedView: View {
                 }
             }
         }
-        .background(
-            Color.primaryBackground
-        )
         .refreshable {
             viewModel.refreshPosts()
         }
