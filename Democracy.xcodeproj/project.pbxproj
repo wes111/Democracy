@@ -119,7 +119,6 @@
 		EE80D93929D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D93829D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift */; };
 		EE80D93D29D882F70000F8EF /* User+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D93C29D882F70000F8EF /* User+Preview.swift */; };
 		EE80D94829D9DC040000F8EF /* CommunityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D94729D9DC040000F8EF /* CommunityCard.swift */; };
-		EE80D94A29D9FDA20000F8EF /* CommunitiesScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D94929D9FDA20000F8EF /* CommunitiesScrollView.swift */; };
 		EE80D94D29DB90440000F8EF /* CreateCommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D94C29DB90440000F8EF /* CreateCommunityView.swift */; };
 		EE80D94F29DB90AD0000F8EF /* CreateCommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D94E29DB90AD0000F8EF /* CreateCommunityViewModel.swift */; };
 		EE80D95129DB94AF0000F8EF /* CreateCommunityAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D95029DB94AF0000F8EF /* CreateCommunityAlert.swift */; };
@@ -290,7 +289,6 @@
 		EE80D93C29D882F70000F8EF /* User+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+Preview.swift"; sourceTree = "<group>"; };
 		EE80D93E29D9C7060000F8EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE80D94729D9DC040000F8EF /* CommunityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCard.swift; sourceTree = "<group>"; };
-		EE80D94929D9FDA20000F8EF /* CommunitiesScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesScrollView.swift; sourceTree = "<group>"; };
 		EE80D94C29DB90440000F8EF /* CreateCommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommunityView.swift; sourceTree = "<group>"; };
 		EE80D94E29DB90AD0000F8EF /* CreateCommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommunityViewModel.swift; sourceTree = "<group>"; };
 		EE80D95029DB94AF0000F8EF /* CreateCommunityAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCommunityAlert.swift; sourceTree = "<group>"; };
@@ -825,7 +823,6 @@
 				EED4A4FC29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift */,
 				EED4A50E29AB1A5A00DDCCDA /* CommunitiesTabMainView.swift */,
 				EED4A51029AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift */,
-				EE80D94929D9FDA20000F8EF /* CommunitiesScrollView.swift */,
 				EED4A51D29ABC80A00DDCCDA /* Community */,
 			);
 			path = CommunitiesTab;
@@ -1152,7 +1149,6 @@
 				EE80D90229C2BB0C0000F8EF /* AddPostAlert.swift in Sources */,
 				EEF83473299C6A11001EEA5E /* Router.swift in Sources */,
 				EE5D39FF2A2ED43A00D0E312 /* CommunityCoordinatorViewModel.swift in Sources */,
-				EE80D94A29D9FDA20000F8EF /* CommunitiesScrollView.swift in Sources */,
 				EE80D8F629C01EBA0000F8EF /* UserInteractor.swift in Sources */,
 				EE80D93029D0D7970000F8EF /* AppDelegate.swift in Sources */,
 				EE4524A72A5CED1000C7A2DD /* LeadersSection.swift in Sources */,

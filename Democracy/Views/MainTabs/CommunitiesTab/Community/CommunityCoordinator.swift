@@ -9,7 +9,6 @@ import Combine
 import SwiftUI
 
 enum CommunityPath: Hashable {
-    case one
     case postView(Post)
     case candidates
     case singleCandidate(Candidate)
@@ -49,8 +48,6 @@ struct CommunityCoordinator: View {
     @ViewBuilder
     func createViewFromPath(_ path: CommunityPath) -> some View {
         switch path {
-            
-        case .one: Text("")
             
         case .postView(let post):
             PostView(viewModel: viewModel.postViewModel(post: post))
