@@ -12,7 +12,7 @@ enum CommunityPath: Hashable {
     case postView(Post)
     case candidates
     case singleCandidate(Candidate)
-    case goToCommunity(Community)
+//    case goToCommunity(Community)
     case goToCommunityPostCategory(category: CommunityCategory)
 }
 
@@ -57,9 +57,6 @@ struct CommunityCoordinator: View {
             
         case .singleCandidate(let candidate):
             CandidateView(viewModel: viewModel.candidateViewModel(candidate: candidate))
-            
-        case .goToCommunity:
-            CommunityViewPicker(viewModel: viewModel.communityViewModel)
             
         case .goToCommunityPostCategory(let category): CommunityCategoryPostsView(viewModel: viewModel.communityPostCategoryViewModel(category: category))
         }

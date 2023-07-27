@@ -6,10 +6,11 @@
 //
 
 import Combine
+import Foundation
 import Factory
 
 protocol CommunitiesTabMainCoordinatorDelegate {
-    func goToCommunity(_ community: Community)
+    func goToCommunity(communityId: UUID)
     func showCreateCommunityView()
 }
 
@@ -36,7 +37,7 @@ final class CommunitiesTabMainViewModel: ObservableObject {
     }
     
     func goToCommunity(_ community: Community) {
-        coordinator.goToCommunity(community)
+        coordinator.goToCommunity(communityId: community.id)
     }
 
     func refreshMyCommunities() {

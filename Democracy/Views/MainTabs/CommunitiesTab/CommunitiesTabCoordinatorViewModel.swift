@@ -27,7 +27,11 @@ class CommunitiesTabCoordinatorViewModel: ObservableObject {
     init() {}
     
     func communityCoordinatorViewModel(community: Community) -> CommunityCoordinatorViewModel {
-        .init(community: community, router: router)
+        .init(
+            community: community,
+            router: router,
+            parentCoordinator: self
+        )
     }
     
 }
@@ -38,8 +42,9 @@ extension CommunitiesTabCoordinatorViewModel: CommunitiesTabMainCoordinatorDeleg
         isShowingCreateCommunityView = true
     }
     
-    func goToCommunity(_ community: Community) {
-        router.push(CommunitiesTabPath.goToCommunity(community))
+    func goToCommunity(communityId: UUID) {
+        // TODO: Add actual community.
+        router.push(CommunitiesTabPath.goToCommunity(.preview))
     }
 }
 
@@ -49,3 +54,5 @@ extension CommunitiesTabCoordinatorViewModel: CreateCommunityCoordinatorDelegate
         isShowingCreateCommunityView = false
     }
 }
+
+extension CommunitiesTabCoordinatorViewModel: CommunityCoordinatorParent {}

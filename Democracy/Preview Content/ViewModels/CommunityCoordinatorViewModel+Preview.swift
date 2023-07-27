@@ -8,5 +8,9 @@
 import Foundation
 
 extension CommunityCoordinatorViewModel {
-    static let preview = CommunityCoordinatorViewModel(community: Community.preview, router: .preview)
+    static let preview = CommunityCoordinatorViewModel(
+        community: Community.preview,
+        router: .preview,
+        parentCoordinator: CommunitiesTabCoordinatorViewModel.preview
+    )
 }

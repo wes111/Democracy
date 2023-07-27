@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol CommunityCoordinatorParent {
+    func goToCommunity(communityId: UUID)
+}
+
 class CommunityCoordinatorViewModel: ObservableObject, CommunityCoordinatorDelegate {
     
     @Published var url: URL = URL(string: "https://www.google.com")!
@@ -16,6 +20,7 @@ class CommunityCoordinatorViewModel: ObservableObject, CommunityCoordinatorDeleg
     
     var router: Router
     let community: Community
+    let parentCoordinator: CommunityCoordinatorParent
     
     // TODO: Determine if these view models should be lazy or funcs.
     lazy var communityViewModel: CommunityViewModel = {
@@ -34,9 +39,14 @@ class CommunityCoordinatorViewModel: ObservableObject, CommunityCoordinatorDeleg
        CreateCandidateViewModel(coordinator: self)
     }()
     
-    init(community: Community, router: Router) {
+    init(
+        community: Community,
+        router: Router,
+        parentCoordinator: CommunityCoordinatorParent
+    ) {
         self.community = community
         self.router = router
+        self.parentCoordinator = parentCoordinator
     }
     
     func candidateViewModel(candidate: Candidate) -> CandidateViewModel {
@@ -110,7 +120,6 @@ extension CommunityCoordinatorViewModel: PostCoordinatorDelegate {}
 extension CommunityCoordinatorViewModel: AlliedCommunitiesSectionViewModelCoordinatorDelegate {
     
     func goToCommunityView(id: UUID) {
-        // TODO: Get the actual community.
-        router.push(CommunityPath.goToCommunity(.preview))
+        parentCoordinator.goToCommunity(communityId: id)
     }
 }
