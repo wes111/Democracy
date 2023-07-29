@@ -20,5 +20,101 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2332ED15-CDC0-4B2E-94F9-A4F07403D681"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Democracy/Preview Content/ViewModels/CommunitiesTabCoordinatorViewModel+Preview.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "CommunitiesTabCoordinatorViewModel"
+            landmarkType = "21">
+            <Locations>
+               <Location
+                  uuid = "2332ED15-CDC0-4B2E-94F9-A4F07403D681 - d5cea0541a85bf52"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "one-time initialization function for preview"
+                  moduleName = "Democracy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Preview%20Content/ViewModels/CommunitiesTabCoordinatorViewModel+Preview.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "2332ED15-CDC0-4B2E-94F9-A4F07403D681 - 1301e01ec97f32a2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Democracy.CommunitiesTabCoordinatorViewModel.preview.unsafeMutableAddressor : Democracy.CommunitiesTabCoordinatorViewModel"
+                  moduleName = "Democracy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Preview%20Content/ViewModels/CommunitiesTabCoordinatorViewModel+Preview.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "00AD01BA-FD65-4953-BD86-E7928A57811B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Democracy/Preview Content/Coordinators/CommunitiesTabCoordinator+Preview.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "CommunitiesTabCoordinator"
+            landmarkType = "21">
+            <Locations>
+               <Location
+                  uuid = "00AD01BA-FD65-4953-BD86-E7928A57811B - f1aef3f94fda65c5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "one-time initialization function for preview"
+                  moduleName = "Democracy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Preview%20Content/Coordinators/CommunitiesTabCoordinator+Preview.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "00AD01BA-FD65-4953-BD86-E7928A57811B - d2843448b91463f0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Democracy.CommunitiesTabCoordinator.preview.unsafeMutableAddressor : Democracy.CommunitiesTabCoordinator"
+                  moduleName = "Democracy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Preview%20Content/Coordinators/CommunitiesTabCoordinator+Preview.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

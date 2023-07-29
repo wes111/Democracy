@@ -22,7 +22,7 @@ struct CommunitiesTabCoordinator: View {
     }
 
     var body: some View {
-        NavigationStack(path: $viewModel.router.navigationPath) {
+        NavigationStack(path: $router.navigationPath) {
             ZStack {
                 Color.primaryBackground.ignoresSafeArea()
                 CommunitiesTabMainView(viewModel: viewModel.communitiesTabMainViewModel)

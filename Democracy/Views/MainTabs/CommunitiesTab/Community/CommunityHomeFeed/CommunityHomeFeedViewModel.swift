@@ -53,13 +53,15 @@ final class CommunityHomeFeedViewModel: ObservableObject {
     }()
     
     lazy var pinnedPosts: [PostCardViewModel] = {
-        PostCardViewModel.previewArray
+        []
+        //PostCardViewModel.previewArray
     }()
     
     // TODO: ...
     func topPostsForDate(_ date: Date) -> [PostCardViewModel] {
         // Tapping a post card doesn't do anything currently because we're using this privew here. TODO: ...
-        PostCardViewModel.previewArray
+        //PostCardViewModel.previewArray
+        []
     }
     
 }

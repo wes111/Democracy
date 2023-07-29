@@ -15,10 +15,6 @@ class MainTabViewModel: ObservableObject {
     @Published var selectedTab: MainTab = .updates
     
     let tempViewModel = CommunitiesTabCoordinatorViewModel()
-    
-    init() {
-        print("Initing MainTabViewModel.")
-    }
 }
 
 struct MainTabView: View {
