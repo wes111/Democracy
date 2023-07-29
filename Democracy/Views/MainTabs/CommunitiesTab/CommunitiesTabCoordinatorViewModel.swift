@@ -10,11 +10,7 @@ import Foundation
 class CommunitiesTabCoordinatorViewModel: ObservableObject {
     
     @Published var isShowingCreateCommunityView = false
-    
-    /// We only want one router for the Community Tab.
-    lazy var router: Router = {
-        Router()
-    }()
+    @Published var router = Router()
     
     lazy var createCommunityViewModel: CreateCommunityViewModel = {
         CreateCommunityViewModel(coordinator: self)

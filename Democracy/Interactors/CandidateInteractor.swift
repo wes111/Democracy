@@ -49,7 +49,7 @@ struct CandidateInteractor: CandidateInteractorProtocol {
                 let candidates = try await localRepository.getCandidates()
                 candidatesPublisher.send(candidates)
             } catch {
-                print("Failed to update candidates from local repository, error: \(error)")
+                //print("Failed to update candidates from local repository, error: \(error)")
             }
         }
     }

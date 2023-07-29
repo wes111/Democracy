@@ -37,7 +37,7 @@ class GRDBService: GRDBServiceProtocol {
             try migrator.migrate(dbQueue)
             return dbQueue
         } catch {
-            print("\(error)")
+            //print("\(error)")
             return nil
         }
     }()

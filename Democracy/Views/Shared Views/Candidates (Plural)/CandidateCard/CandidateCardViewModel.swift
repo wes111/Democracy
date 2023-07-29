@@ -45,7 +45,7 @@ final class CandidateCardViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] candidates in
                 guard let self = self, let cardCandidate = candidates.first(where: { $0.id == self.candidate.id }) else {
-                    return print("Candidate for card went missing from local database.")
+                    return // print("Candidate for card went missing from local database.")
                 }
                 self.updateCandidate(newCandidate: cardCandidate)
             }
