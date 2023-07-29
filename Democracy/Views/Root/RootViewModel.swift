@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol RootViewModelProtocol: ObservableObject {
-    var isAuthenticated: Bool { get }
-}
-
-class RootViewModel: RootViewModelProtocol {
+class RootViewModel: ObservableObject {
     @Published var isAuthenticated: Bool = false
     
+    let mainTabViewModel = MainTabViewModel()
+    let authenticationCoordinatorViewModel: AuthenticationCoordinatorViewModel
+    
     init() {
+        authenticationCoordinatorViewModel = AuthenticationCoordinatorViewModel(mainTabViewModel: mainTabViewModel)
         temp_authPublisher.assign(to: &$isAuthenticated)
     }
 }

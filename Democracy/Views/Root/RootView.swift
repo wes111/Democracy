@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-struct RootView<ViewModel: RootViewModelProtocol>: View {
+struct RootView: View {
     
-    @StateObject var viewModel: ViewModel
+    @StateObject var viewModel: RootViewModel
     
-    init(viewModel: ViewModel) {
+    init(viewModel: RootViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
         if viewModel.isAuthenticated {
-            MainTabView()
+            MainTabView(viewModel: viewModel.mainTabViewModel)
         } else {
-            AuthenticationCoordinator()
+            AuthenticationCoordinator(viewModel: viewModel.authenticationCoordinatorViewModel)
         }
     }
 }

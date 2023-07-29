@@ -43,7 +43,9 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        let coordinator = AuthenticationCoordinator()
+        let mainTabViewModel = MainTabViewModel()
+        let authenticationCoordinatorViewModel = AuthenticationCoordinatorViewModel(mainTabViewModel: mainTabViewModel)
+        let coordinator = AuthenticationCoordinator(viewModel: authenticationCoordinatorViewModel)
         let viewModel = LoginViewModel(coordinator: coordinator)
         LoginView(viewModel: viewModel)
     }

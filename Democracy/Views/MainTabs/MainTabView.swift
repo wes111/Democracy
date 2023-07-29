@@ -11,11 +11,23 @@ enum MainTab {
     case voting, events, updates, communities, history
 }
 
-struct MainTabView: View {
+class MainTabViewModel: ObservableObject {
+    @Published var selectedTab: MainTab = .updates
     
-    @State private var selectedTab: MainTab = .updates
+    let tempViewModel = CommunitiesTabCoordinatorViewModel()
     
     init() {
+        print("Initing MainTabViewModel.")
+    }
+}
+
+struct MainTabView: View {
+    
+    @StateObject private var viewModel: MainTabViewModel
+    
+    init(viewModel: MainTabViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+        
         UITabBar.appearance().unselectedItemTintColor = UIColor(Color.tertiaryBackground)
         
         let navigationBarAppearance = UINavigationBarAppearance()
@@ -36,7 +48,7 @@ struct MainTabView: View {
     }
     
     var body: some View {
-        TabView(selection: $selectedTab) {
+        TabView(selection: $viewModel.selectedTab) {
             VotingTabCoordinator()
                 .tabItem {
                     Label("Voting", systemImage: "checklist")
@@ -57,7 +69,7 @@ struct MainTabView: View {
                 .tag(MainTab.updates)
             
             // TODO: Should not create view models in view.
-            CommunitiesTabCoordinator(viewModel: .init())
+            CommunitiesTabCoordinator(viewModel: viewModel.tempViewModel)
                 .tabItem {
                     Label("Communities", systemImage: "person.3.fill")
                 }
@@ -77,6 +89,7 @@ struct MainTabView: View {
 
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
-        MainTabView()
+        let viewModel = MainTabViewModel()
+        MainTabView(viewModel: viewModel)
     }
 }

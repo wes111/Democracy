@@ -20,7 +20,9 @@ class CommunitiesTabCoordinatorViewModel: ObservableObject {
         CommunitiesTabMainViewModel(coordinator: self)
     }()
     
-    init() {}
+    init() {
+        //print("Wes initing Main communities tab coordinator")
+    }
     
     func communityCoordinatorViewModel(community: Community) -> CommunityCoordinatorViewModel {
         .init(

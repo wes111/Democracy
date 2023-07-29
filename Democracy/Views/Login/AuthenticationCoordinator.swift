@@ -12,9 +12,22 @@ enum AuthenticationPath {
     case createAccount
 }
 
+class AuthenticationCoordinatorViewModel: ObservableObject {
+    let mainTabViewModel: MainTabViewModel
+    
+    init(mainTabViewModel: MainTabViewModel) {
+        self.mainTabViewModel = mainTabViewModel
+    }
+}
+
 struct AuthenticationCoordinator: View {
     
     @StateObject private var router = Router()
+    @StateObject private var viewModel: AuthenticationCoordinatorViewModel
+    
+    init(viewModel: AuthenticationCoordinatorViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     func start() {
         print("Start Authentication coordinator.")
@@ -32,8 +45,8 @@ struct AuthenticationCoordinator: View {
     @ViewBuilder
     func createViewFromPath(_ path: AuthenticationPath) -> some View {
         switch path {
-        case .signIn: MainTabView()
-        case .createAccount: MainTabView()
+        case .signIn: MainTabView(viewModel: viewModel.mainTabViewModel)
+        case .createAccount: MainTabView(viewModel: viewModel.mainTabViewModel)
         }
     }
     
