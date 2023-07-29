@@ -750,6 +750,24 @@
 			path = CommunityCategoryView;
 			sourceTree = "<group>";
 		};
+		EE936C9B2A75C18A00D49271 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				EED4A51E29ABC86300DDCCDA /* CommunityCoordinator.swift */,
+				EE5D39FE2A2ED43A00D0E312 /* CommunityCoordinatorViewModel.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		EE936C9C2A75C19C00D49271 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				EED4A4FC29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift */,
+				EE5D3A022A30204D00D0E312 /* CommunitiesTabCoordinatorViewModel.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		EED47ECB299F166300FEFC6E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -819,10 +837,9 @@
 		EED4A4F529AA842100DDCCDA /* CommunitiesTab */ = {
 			isa = PBXGroup;
 			children = (
-				EE5D3A022A30204D00D0E312 /* CommunitiesTabCoordinatorViewModel.swift */,
-				EED4A4FC29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift */,
 				EED4A50E29AB1A5A00DDCCDA /* CommunitiesTabMainView.swift */,
 				EED4A51029AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift */,
+				EE936C9C2A75C19C00D49271 /* Navigation */,
 				EED4A51D29ABC80A00DDCCDA /* Community */,
 			);
 			path = CommunitiesTab;
@@ -888,10 +905,9 @@
 		EED4A51D29ABC80A00DDCCDA /* Community */ = {
 			isa = PBXGroup;
 			children = (
-				EE5D39FE2A2ED43A00D0E312 /* CommunityCoordinatorViewModel.swift */,
-				EED4A51E29ABC86300DDCCDA /* CommunityCoordinator.swift */,
 				EED4A52029ABC86D00DDCCDA /* CommunityViewPicker.swift */,
 				EED4A52229ABC87B00DDCCDA /* CommunityViewModel.swift */,
+				EE936C9B2A75C18A00D49271 /* Navigation */,
 				EED4A52F29B81CFA00DDCCDA /* CommunityHomeFeed */,
 				EED4A53129B81D3E00DDCCDA /* CommunityInfo */,
 				EED4A53029B81D2200DDCCDA /* CommunityArchivedFeed */,
