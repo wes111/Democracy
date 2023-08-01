@@ -11,14 +11,13 @@ protocol CommunityCoordinatorParent {
     func goToCommunity(communityId: UUID)
 }
 
-class CommunityCoordinatorViewModel: ObservableObject, CommunityCoordinatorDelegate {
+class CommunityCoordinatorViewModel: Coordinator, CommunityCoordinatorDelegate {
     
     @Published var url: URL = URL(string: "https://www.google.com")!
     @Published var isShowingWebView = false
     @Published var isShowingCreatePostView = false
     @Published var isShowingCreateCandidateView = false
     
-    var router: Router
     let community: Community
     let parentCoordinator: CommunityCoordinatorParent
     
@@ -45,8 +44,9 @@ class CommunityCoordinatorViewModel: ObservableObject, CommunityCoordinatorDeleg
         parentCoordinator: CommunityCoordinatorParent
     ) {
         self.community = community
-        self.router = router
         self.parentCoordinator = parentCoordinator
+        
+        super.init(router: router)
     }
     
     func candidateViewModel(candidate: Candidate) -> CandidateViewModel {

@@ -14,15 +14,13 @@ enum CommunitiesTabPath: Hashable {
 struct CommunitiesTabCoordinator: View {
     
     @StateObject private var viewModel: CommunitiesTabCoordinatorViewModel
-    @ObservedObject private var router: Router
     
     init(viewModel: CommunitiesTabCoordinatorViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        router = viewModel.router
     }
 
     var body: some View {
-        NavigationStack(path: $router.navigationPath) {
+        NavigationStack(path: $viewModel.router.navigationPath) {
             ZStack {
                 Color.primaryBackground.ignoresSafeArea()
                 CommunitiesTabMainView(viewModel: viewModel.communitiesTabMainViewModel)

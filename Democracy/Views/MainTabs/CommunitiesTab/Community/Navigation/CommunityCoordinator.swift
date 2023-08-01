@@ -18,11 +18,9 @@ enum CommunityPath: Hashable {
 struct CommunityCoordinator: View {
     
     @StateObject private var viewModel: CommunityCoordinatorViewModel
-    @ObservedObject private var router: Router
     
     init(viewModel: CommunityCoordinatorViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
-        router = viewModel.router
     }
     
     var body: some View {

@@ -7,10 +7,9 @@
 
 import Foundation
 
-class CommunitiesTabCoordinatorViewModel: ObservableObject {
+final class CommunitiesTabCoordinatorViewModel: Coordinator {
     
     @Published var isShowingCreateCommunityView = false
-    @Published var router = Router()
     
     lazy var createCommunityViewModel: CreateCommunityViewModel = {
         CreateCommunityViewModel(coordinator: self)
