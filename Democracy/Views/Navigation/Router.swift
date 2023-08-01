@@ -25,7 +25,6 @@ final class Router: RouterProtocol {
     init() {}
     
     func push(_ path: any Hashable) {
-        print("Wes pushing, full router: \(navigationPath.count)")
         navigationPath.append(path)
     }
     

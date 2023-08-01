@@ -11,13 +11,18 @@ final class CommunitiesTabCoordinatorViewModel: Coordinator {
     
     @Published var isShowingCreateCommunityView = false
     
-    lazy var createCommunityViewModel: CreateCommunityViewModel = {
-        CreateCommunityViewModel(coordinator: self)
-    }()
+}
+
+// MARK: - Child ViewModels
+extension CommunitiesTabCoordinatorViewModel {
     
-    lazy var communitiesTabMainViewModel: CommunitiesTabMainViewModel = {
+    func createCommunityViewModel() -> CreateCommunityViewModel {
+        CreateCommunityViewModel(coordinator: self)
+    }
+    
+    func communitiesTabMainViewModel() -> CommunitiesTabMainViewModel {
         CommunitiesTabMainViewModel(coordinator: self)
-    }()
+    }
     
     func communityCoordinatorViewModel(community: Community) -> CommunityCoordinatorViewModel {
         .init(
@@ -29,6 +34,7 @@ final class CommunitiesTabCoordinatorViewModel: Coordinator {
     
 }
 
+// MARK: - Protocols
 extension CommunitiesTabCoordinatorViewModel: CommunitiesTabMainCoordinatorDelegate {
     
     func showCreateCommunityView() {

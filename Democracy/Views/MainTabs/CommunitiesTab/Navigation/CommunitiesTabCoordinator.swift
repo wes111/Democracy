@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-enum CommunitiesTabPath: Hashable {
-    case goToCommunity(Community)
-}
-
 struct CommunitiesTabCoordinator: View {
     
     @StateObject private var viewModel: CommunitiesTabCoordinatorViewModel
@@ -23,12 +19,12 @@ struct CommunitiesTabCoordinator: View {
         NavigationStack(path: $viewModel.router.navigationPath) {
             ZStack {
                 Color.primaryBackground.ignoresSafeArea()
-                CommunitiesTabMainView(viewModel: viewModel.communitiesTabMainViewModel)
+                CommunitiesTabMainView(viewModel: viewModel.communitiesTabMainViewModel())
                     .navigationDestination(for: CommunitiesTabPath.self) { path in
                         createViewFromPath(path)
                     }
                     .fullScreenCover(isPresented: $viewModel.isShowingCreateCommunityView) {
-                        CreateCommunityView(viewModel: viewModel.createCommunityViewModel)
+                        CreateCommunityView(viewModel: viewModel.createCommunityViewModel())
                     }
             }
         }
@@ -43,6 +39,7 @@ struct CommunitiesTabCoordinator: View {
     
 }
 
+// MARK: - Preview
 struct CommunitiesTabCoordinator_Previews: PreviewProvider {
     static var previews: some View {
         CommunitiesTabCoordinator(viewModel: .preview)

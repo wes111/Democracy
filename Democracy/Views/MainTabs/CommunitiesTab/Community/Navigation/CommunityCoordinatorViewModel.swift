@@ -21,23 +21,6 @@ class CommunityCoordinatorViewModel: Coordinator, CommunityCoordinatorDelegate {
     let community: Community
     let parentCoordinator: CommunityCoordinatorParent
     
-    // TODO: Determine if these view models should be lazy or funcs.
-    lazy var communityViewModel: CommunityViewModel = {
-        CommunityViewModel(coordinator: self, community: community)
-    }()
-    
-    lazy var addPostViewModel: AddPostViewModel = {
-        AddPostViewModel(coordinator: self)
-    }()
-    
-    lazy var candidatesViewModel: CandidatesViewModel = {
-        CandidatesViewModel(coordinator: self)
-    }()
-    
-    lazy var createCandidateViewModel: CreateCandidateViewModel = {
-       CreateCandidateViewModel(coordinator: self)
-    }()
-    
     init(
         community: Community,
         router: Router,
@@ -49,17 +32,10 @@ class CommunityCoordinatorViewModel: Coordinator, CommunityCoordinatorDelegate {
         super.init(router: router)
     }
     
-    func candidateViewModel(candidate: Candidate) -> CandidateViewModel {
-        CandidateViewModel(coordinator: self, candidate: candidate)
-    }
-    
-    func postViewModel(post: Post) -> PostViewModel {
-        PostViewModel(coordinator: self, post: post)
-    }
-    
-    func communityPostCategoryViewModel(category: CommunityCategory) -> CommunityCategoryPostsViewModel {
-        CommunityCategoryPostsViewModel(community: community, category: category)
-    }
+}
+
+// MARK: - Coordinating functions
+extension CommunityCoordinatorViewModel {
     
     func showCandidates() {
         router.push(CommunityPath.candidates)
@@ -91,8 +67,42 @@ class CommunityCoordinatorViewModel: Coordinator, CommunityCoordinatorDelegate {
     func goBack() {
         router.pop()
     }
+    
 }
 
+// MARK: - Child ViewModels
+extension CommunityCoordinatorViewModel {
+    
+    func candidateViewModel(candidate: Candidate) -> CandidateViewModel {
+        CandidateViewModel(coordinator: self, candidate: candidate)
+    }
+    
+    func postViewModel(post: Post) -> PostViewModel {
+        PostViewModel(coordinator: self, post: post)
+    }
+    
+    func communityPostCategoryViewModel(category: CommunityCategory) -> CommunityCategoryPostsViewModel {
+        CommunityCategoryPostsViewModel(community: community, category: category)
+    }
+    
+    func communityViewModel() -> CommunityViewModel {
+        CommunityViewModel(coordinator: self, community: community)
+    }
+    
+    func addPostViewModel() -> AddPostViewModel {
+        AddPostViewModel(coordinator: self)
+    }
+    
+    func candidatesViewModel() -> CandidatesViewModel {
+        CandidatesViewModel(coordinator: self)
+    }
+    
+    func createCandidateViewModel() -> CreateCandidateViewModel {
+        CreateCandidateViewModel(coordinator: self)
+    }
+}
+
+// MARK: - Protocols
 extension CommunityCoordinatorViewModel: AddPostCoordinatorDelegate {
     
     func close() {

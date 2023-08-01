@@ -126,6 +126,8 @@
 		EE80D95629E0B6D10000F8EF /* ReversedLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */; };
 		EE80D95B29E8EBD10000F8EF /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D95A29E8EBD10000F8EF /* WebView.swift */; };
 		EE936C9E2A78930800D49271 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE936C9D2A78930800D49271 /* Coordinator.swift */; };
+		EE936CA02A7895B700D49271 /* CommunityPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE936C9F2A7895B700D49271 /* CommunityPath.swift */; };
+		EE936CA22A789B8F00D49271 /* CommunitiesTabPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE936CA12A789B8F00D49271 /* CommunitiesTabPath.swift */; };
 		EED47ECD299F167100FEFC6E /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECC299F167100FEFC6E /* MainCoordinator.swift */; };
 		EED47ECF299F167B00FEFC6E /* B.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ECE299F167B00FEFC6E /* B.swift */; };
 		EED47ED1299F168200FEFC6E /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED0299F168200FEFC6E /* C.swift */; };
@@ -297,6 +299,8 @@
 		EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversedLabelStyle.swift; sourceTree = "<group>"; };
 		EE80D95A29E8EBD10000F8EF /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		EE936C9D2A78930800D49271 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		EE936C9F2A7895B700D49271 /* CommunityPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityPath.swift; sourceTree = "<group>"; };
+		EE936CA12A789B8F00D49271 /* CommunitiesTabPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesTabPath.swift; sourceTree = "<group>"; };
 		EED47ECC299F167100FEFC6E /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		EED47ECE299F167B00FEFC6E /* B.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = B.swift; sourceTree = "<group>"; };
 		EED47ED0299F168200FEFC6E /* C.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
@@ -757,6 +761,7 @@
 			children = (
 				EED4A51E29ABC86300DDCCDA /* CommunityCoordinator.swift */,
 				EE5D39FE2A2ED43A00D0E312 /* CommunityCoordinatorViewModel.swift */,
+				EE936C9F2A7895B700D49271 /* CommunityPath.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -766,6 +771,7 @@
 			children = (
 				EED4A4FC29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift */,
 				EE5D3A022A30204D00D0E312 /* CommunitiesTabCoordinatorViewModel.swift */,
+				EE936CA12A789B8F00D49271 /* CommunitiesTabPath.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -1198,6 +1204,7 @@
 				EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */,
 				EE4524942A565CA400C7A2DD /* ResourceViewModel.swift in Sources */,
 				EE1172962A6F3C5C00E529AF /* AlliedCommunitiesSection.swift in Sources */,
+				EE936CA22A789B8F00D49271 /* CommunitiesTabPath.swift in Sources */,
 				EE80D8CE29BC15550000F8EF /* VotingTabCoordinator+Preview.swift in Sources */,
 				EED4A4FF29AA858600DDCCDA /* HistoryTabCoordinator.swift in Sources */,
 				EE5D3A092A3804D100D0E312 /* PostCategory+Extension.swift in Sources */,
@@ -1260,6 +1267,7 @@
 				EE80D8C629BC12C70000F8EF /* CommunitiesTabMainViewModel+Preview.swift in Sources */,
 				EE80D8C329BC12720000F8EF /* CommunitiesTabCoordinator+Preview.swift in Sources */,
 				EED4A54029BAB3E800DDCCDA /* Comment.swift in Sources */,
+				EE936CA02A7895B700D49271 /* CommunityPath.swift in Sources */,
 				EE5B938529F7652800B43381 /* HeaderWithDropDownFilter.swift in Sources */,
 				EE80D8E229BC1DD80000F8EF /* PostInteractor.swift in Sources */,
 				EE80D92229C9557D0000F8EF /* CandidateInteractor.swift in Sources */,

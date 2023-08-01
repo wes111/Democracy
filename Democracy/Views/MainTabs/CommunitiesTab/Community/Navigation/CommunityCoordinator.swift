@@ -8,13 +8,6 @@
 import Combine
 import SwiftUI
 
-enum CommunityPath: Hashable {
-    case postView(Post)
-    case candidates
-    case singleCandidate(Candidate)
-    case goToCommunityPostCategory(category: CommunityCategory)
-}
-
 struct CommunityCoordinator: View {
     
     @StateObject private var viewModel: CommunityCoordinatorViewModel
@@ -24,7 +17,7 @@ struct CommunityCoordinator: View {
     }
     
     var body: some View {
-        CommunityViewPicker(viewModel: viewModel.communityViewModel)
+        CommunityViewPicker(viewModel: viewModel.communityViewModel())
             .navigationDestination(for: CommunityPath.self) { path in
                 ZStack {
                     Color.primaryBackground.ignoresSafeArea()
@@ -32,13 +25,13 @@ struct CommunityCoordinator: View {
                 }
             }
             .fullScreenCover(isPresented: $viewModel.isShowingCreatePostView) {
-                AddPostView(viewModel: viewModel.addPostViewModel)
+                AddPostView(viewModel: viewModel.addPostViewModel())
             }
             .sheet(isPresented: $viewModel.isShowingWebView) {
                 WebView(url: $viewModel.url)
             }
             .fullScreenCover(isPresented: $viewModel.isShowingCreateCandidateView) {
-                CreateCandidateView(viewModel: viewModel.createCandidateViewModel)
+                CreateCandidateView(viewModel: viewModel.createCandidateViewModel())
             }
     }
     
@@ -50,7 +43,7 @@ struct CommunityCoordinator: View {
             PostView(viewModel: viewModel.postViewModel(post: post))
             
         case .candidates:
-            CandidatesView(viewModel: viewModel.candidatesViewModel)
+            CandidatesView(viewModel: viewModel.candidatesViewModel())
             
         case .singleCandidate(let candidate):
             CandidateView(viewModel: viewModel.candidateViewModel(candidate: candidate))
@@ -60,6 +53,7 @@ struct CommunityCoordinator: View {
     }
 }
 
+// MARK: - Preview
 struct CommunityCoordinator_Previews: PreviewProvider {
     
     static var previews: some View {
