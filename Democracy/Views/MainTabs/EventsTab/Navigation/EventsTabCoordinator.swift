@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-enum EventsTabPath {
-    case one
-}
-
 struct EventsTabCoordinator: View {
     
     @StateObject private var router = Router()

@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-enum UpdatesTabPath {
-    case one
-}
-
 struct UpdatesTabCoordinator: View {
     
     @StateObject private var router = Router()

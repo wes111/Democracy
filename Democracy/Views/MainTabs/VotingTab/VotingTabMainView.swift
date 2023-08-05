@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct VotingTabMainView<ViewModel: VotingTabMainViewModelProtocol>: View {
+struct VotingTabMainView: View {
     
-    @StateObject var viewModel: ViewModel
+    @StateObject var viewModel: VotingTabMainViewModel
     
-    init(viewModel: ViewModel) {
+    init(viewModel: VotingTabMainViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
@@ -20,6 +20,7 @@ struct VotingTabMainView<ViewModel: VotingTabMainViewModelProtocol>: View {
     }
 }
 
+// MARK: - Preview
 struct VotingTabMainView_Previews: PreviewProvider {
     static var previews: some View {
         VotingTabMainView(viewModel: VotingTabMainViewModel.preview)

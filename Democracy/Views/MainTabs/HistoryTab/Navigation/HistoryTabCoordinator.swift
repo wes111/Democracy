@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-enum HistoryTabPath {
-    case one
-}
-
 struct HistoryTabCoordinator: View {
     
     @StateObject private var router = Router()

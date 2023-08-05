@@ -14,7 +14,8 @@ enum MainTab {
 class MainTabViewModel: ObservableObject {
     @Published var selectedTab: MainTab = .updates
     
-    let tempViewModel = CommunitiesTabCoordinatorViewModel()
+    let communitiesViewModel = CommunitiesTabCoordinatorViewModel()
+    let votingViewModel = VotingTabCoordinatorViewModel()
 }
 
 struct MainTabView: View {
@@ -45,7 +46,7 @@ struct MainTabView: View {
     
     var body: some View {
         TabView(selection: $viewModel.selectedTab) {
-            VotingTabCoordinator()
+            VotingTabCoordinator(viewModel: viewModel.votingViewModel)
                 .tabItem {
                     Label("Voting", systemImage: "checklist")
                         .foregroundColor(.primaryText)
@@ -64,8 +65,7 @@ struct MainTabView: View {
                 }
                 .tag(MainTab.updates)
             
-            // TODO: Should not create view models in view.
-            CommunitiesTabCoordinator(viewModel: viewModel.tempViewModel)
+            CommunitiesTabCoordinator(viewModel: viewModel.communitiesViewModel)
                 .tabItem {
                     Label("Communities", systemImage: "person.3.fill")
                 }
