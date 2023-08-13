@@ -9,21 +9,25 @@ import SwiftUI
 
 struct UpdatesTabCoordinator: View {
     
-    @StateObject private var router = Router()
+    @StateObject private var viewModel: UpdatesTabCoordinatorViewModel
+    
+    init(viewModel: UpdatesTabCoordinatorViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
-        NavigationStack(path: $router.navigationPath) {
-            createUpdatesTabMainView()
-                .navigationDestination(for: UpdatesTabPath.self) { path in
-                    createViewFromPath(path)
-                }
+        CoordinatorView(router: $viewModel.router) {
+            UpdatesTabMainView(viewModel: viewModel.updatesTabMainViewModel())
+        } secondaryScreen: { (path: UpdatesTabPath) in
+            createViewFromPath(path)
         }
     }
     
     @ViewBuilder
     func createViewFromPath(_ path: UpdatesTabPath) -> some View {
         switch path {
-        case .one: Text("")
+        case .one:
+            EmptyView()
         }
     }
     
@@ -43,6 +47,6 @@ extension UpdatesTabCoordinator: UpdatesTabMainCoordinatorDelegate {
 
 struct UpdatesTabCoordinator_Previews: PreviewProvider {
     static var previews: some View {
-        UpdatesTabCoordinator()
+        UpdatesTabCoordinator(viewModel: .preview)
     }
 }

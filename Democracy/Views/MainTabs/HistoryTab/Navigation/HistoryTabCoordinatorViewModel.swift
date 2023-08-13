@@ -12,8 +12,17 @@ final class HistoryTabCoordinatorViewModel: Coordinator {
 }
 
 // MARK: - Child ViewModels
-extension CommunitiesTabCoordinatorViewModel {
+extension HistoryTabCoordinatorViewModel {
     
+    func historyTabMainViewModel() -> HistoryTabMainViewModel {
+        .init(coordinator: self)
+    }
 }
 
 // MARK: - Protocols
+extension HistoryTabCoordinatorViewModel: HistoryTabMainCoordinatorDelegate {
+    
+    func tappedNav() {
+        print()
+    }
+}

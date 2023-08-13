@@ -11,9 +11,18 @@ final class EventsTabCoordinatorViewModel: Coordinator {
     
 }
 
-// MARK: - Child ViewModels
-extension CommunitiesTabCoordinatorViewModel {
+//MARK: - Child ViewModels
+extension EventsTabCoordinatorViewModel {
     
+    func eventsTabMainViewModel() -> EventsTabMainViewModel {
+        .init(coordinator: self)
+    }
 }
 
 // MARK: - Protocols
+extension EventsTabCoordinatorViewModel: EventsTabMainCoordinatorDelegate {
+    
+    func tappedNav() {
+        print()
+    }
+}

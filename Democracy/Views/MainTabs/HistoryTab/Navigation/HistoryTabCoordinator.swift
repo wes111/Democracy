@@ -9,14 +9,17 @@ import SwiftUI
 
 struct HistoryTabCoordinator: View {
     
-    @StateObject private var router = Router()
+    @StateObject private var viewModel: HistoryTabCoordinatorViewModel
+    
+    init(viewModel: HistoryTabCoordinatorViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
-        NavigationStack(path: $router.navigationPath) {
-            createHistoryTabMainView()
-                .navigationDestination(for: HistoryTabPath.self) { path in
-                    createViewFromPath(path)
-                }
+        CoordinatorView(router: $viewModel.router) {
+            HistoryTabMainView(viewModel: viewModel.historyTabMainViewModel())
+        } secondaryScreen: { (path: HistoryTabPath) in
+            createViewFromPath(path)
         }
     }
     
@@ -43,6 +46,6 @@ extension HistoryTabCoordinator: HistoryTabMainCoordinatorDelegate {
 
 struct HistoryTabCoordinator_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryTabCoordinator()
+        HistoryTabCoordinator(viewModel: .preview)
     }
 }

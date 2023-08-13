@@ -7,23 +7,54 @@
 
 import SwiftUI
 
+//struct CommunitiesTabCoordinator: View {
+//    @StateObject private var viewModel: CommunitiesTabCoordinatorViewModel
+//
+//    init(viewModel: CommunitiesTabCoordinatorViewModel) {
+//        _viewModel = StateObject(wrappedValue: viewModel)
+//    }
+//
+//    var body: some View {
+//        CoordinatorView(router: $viewModel.router) {
+//            CommunitiesTabMainView(viewModel: viewModel.communitiesTabMainViewModel())
+//        } secondaryScreen: { (path: CommunitiesTabPath) in
+//            createViewFromPath(path)
+//        }
+//        .fullScreenCover(isPresented: $viewModel.isShowingCreateCommunityView) {
+//            CreateCommunityView(viewModel: viewModel.createCommunityViewModel())
+//        }
+//    }
+//
+//    @ViewBuilder
+//    func createViewFromPath(_ path: CommunitiesTabPath) -> some View {
+//        switch path {
+//        case .goToCommunity(let community): CommunityCoordinator(viewModel: viewModel.communityCoordinatorViewModel(community: community))
+//        }
+//    }
+//}
+
 struct EventsTabCoordinator: View {
     
-    @StateObject private var router = Router()
+    @StateObject private var viewModel: EventsTabCoordinatorViewModel
+    
+    init(viewModel: EventsTabCoordinatorViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
-        NavigationStack(path: $router.navigationPath) {
-            createEventsTabMainView()
-                .navigationDestination(for: EventsTabPath.self) { path in
-                    createViewFromPath(path)
-                }
+        CoordinatorView(router: $viewModel.router) {
+            EventsTabMainView(viewModel: viewModel.eventsTabMainViewModel())
+        } secondaryScreen: { (path: EventsTabPath) in
+            createViewFromPath(path)
         }
+        //.fullScreenCover(item: <#T##Binding<Identifiable?>#>, content: <#T##(Identifiable) -> View#>)
     }
     
     @ViewBuilder
     func createViewFromPath(_ path: EventsTabPath) -> some View {
         switch path {
-        case .one: Text("")
+        case .one:
+            EmptyView()
         }
     }
     
@@ -43,6 +74,7 @@ extension EventsTabCoordinator: EventsTabMainCoordinatorDelegate {
 
 struct EventsTabCoordinator_Previews: PreviewProvider {
     static var previews: some View {
-        EventsTabCoordinator()
+        let viewModel = EventsTabCoordinatorViewModel()
+        EventsTabCoordinator(viewModel: viewModel)
     }
 }

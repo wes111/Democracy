@@ -16,15 +16,12 @@ struct VotingTabCoordinator: View {
     }
     
     var body: some View {
-        NavigationStack(path: $viewModel.router.navigationPath) {
-            ZStack {
-                Color.primaryBackground.ignoresSafeArea()
-                VotingTabMainView(viewModel: viewModel.votingTabMainViewModel())
-                    .navigationDestination(for: VotingTabPath.self) { path in
-                        createViewFromPath(path)
-                    }
-            }
+        CoordinatorView(router: $viewModel.router) {
+            VotingTabMainView(viewModel: viewModel.votingTabMainViewModel())
+        } secondaryScreen: { (path: VotingTabPath) in
+            createViewFromPath(path)
         }
+        //.fullScreenCover(item: <#T##Binding<Identifiable?>#>, content: <#T##(Identifiable) -> View#>)
     }
     
     @ViewBuilder

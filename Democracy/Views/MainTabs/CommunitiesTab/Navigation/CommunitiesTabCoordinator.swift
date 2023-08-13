@@ -8,25 +8,20 @@
 import SwiftUI
 
 struct CommunitiesTabCoordinator: View {
-    
     @StateObject private var viewModel: CommunitiesTabCoordinatorViewModel
     
     init(viewModel: CommunitiesTabCoordinatorViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-
+    
     var body: some View {
-        NavigationStack(path: $viewModel.router.navigationPath) {
-            ZStack {
-                Color.primaryBackground.ignoresSafeArea()
-                CommunitiesTabMainView(viewModel: viewModel.communitiesTabMainViewModel())
-                    .navigationDestination(for: CommunitiesTabPath.self) { path in
-                        createViewFromPath(path)
-                    }
-                    .fullScreenCover(isPresented: $viewModel.isShowingCreateCommunityView) {
-                        CreateCommunityView(viewModel: viewModel.createCommunityViewModel())
-                    }
-            }
+        CoordinatorView(router: $viewModel.router) {
+            CommunitiesTabMainView(viewModel: viewModel.communitiesTabMainViewModel())
+        } secondaryScreen: { (path: CommunitiesTabPath) in
+            createViewFromPath(path)
+        }
+        .fullScreenCover(isPresented: $viewModel.isShowingCreateCommunityView) {
+            CreateCommunityView(viewModel: viewModel.createCommunityViewModel())
         }
     }
     
@@ -36,7 +31,6 @@ struct CommunitiesTabCoordinator: View {
         case .goToCommunity(let community): CommunityCoordinator(viewModel: viewModel.communityCoordinatorViewModel(community: community))
         }
     }
-    
 }
 
 // MARK: - Preview

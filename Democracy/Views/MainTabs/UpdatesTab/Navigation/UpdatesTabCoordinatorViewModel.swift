@@ -12,8 +12,17 @@ final class UpdatesTabCoordinatorViewModel: Coordinator {
 }
 
 // MARK: - Child ViewModels
-extension CommunitiesTabCoordinatorViewModel {
+extension UpdatesTabCoordinatorViewModel {
     
+    func updatesTabMainViewModel() -> UpdatesTabMainViewModel {
+        .init(coordinator: self)
+    }
 }
 
 // MARK: - Protocols
+extension UpdatesTabCoordinatorViewModel: UpdatesTabMainCoordinatorDelegate {
+    
+    func tappedNav() {
+        print()
+    }
+}

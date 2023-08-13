@@ -8,5 +8,9 @@
 import Foundation
 
 extension HistoryTabCoordinator {
-    static let preview = HistoryTabCoordinator()
+    static let preview = HistoryTabCoordinator(viewModel: .preview)
+}
+
+extension HistoryTabCoordinatorViewModel {
+    static let preview = HistoryTabCoordinatorViewModel()
 }

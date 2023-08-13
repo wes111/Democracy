@@ -16,6 +16,9 @@ class MainTabViewModel: ObservableObject {
     
     let communitiesViewModel = CommunitiesTabCoordinatorViewModel()
     let votingViewModel = VotingTabCoordinatorViewModel()
+    let eventsViewModel = EventsTabCoordinatorViewModel()
+    let updatesViewModel = UpdatesTabCoordinatorViewModel()
+    let historyViewModel = HistoryTabCoordinatorViewModel()
 }
 
 struct MainTabView: View {
@@ -53,13 +56,13 @@ struct MainTabView: View {
                 }
                 .tag(MainTab.voting)
             
-            EventsTabCoordinator()
+            EventsTabCoordinator(viewModel: viewModel.eventsViewModel)
                 .tabItem {
                     Label("Events", systemImage: "calendar")
                 }
                 .tag(MainTab.events)
             
-            UpdatesTabCoordinator()
+            UpdatesTabCoordinator(viewModel: viewModel.updatesViewModel)
                 .tabItem {
                     Label("Updates", systemImage: "newspaper.fill")
                 }
@@ -71,7 +74,7 @@ struct MainTabView: View {
                 }
                 .tag(MainTab.communities)
             
-            HistoryTabCoordinator()
+            HistoryTabCoordinator(viewModel: viewModel.historyViewModel)
                 .tabItem {
                     Label("History", systemImage: "books.vertical.fill")
                 }
