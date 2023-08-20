@@ -31,6 +31,10 @@ struct Post: Identifiable {
         self.tags = tags
         self.link = link
     }
+    
+    func toViewModel(coordinator: PostCardCoordinatorDelegate) -> PostCardViewModel {
+        .init(coordinator: coordinator, post: self)
+    }
 }
 
 extension Post: Hashable {

@@ -10,7 +10,7 @@ import Foundation
 protocol PostCoordinatorDelegate {
 }
 
-protocol PostViewModelProtocol: ObservableObject {
+protocol PostViewModelProtocol: ObservableObject, Identifiable {
     var post: Post { get }
 }
 

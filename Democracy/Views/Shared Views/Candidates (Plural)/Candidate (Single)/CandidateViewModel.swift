@@ -8,7 +8,21 @@
 
 import Foundation
 
-protocol CandidateCoordinatorDelegate {
+enum CandidateBadge: Codable, Identifiable {
+    var id: CandidateBadge {
+        self
+    }
+    
+    case currentRep
+    case pastRep
+    case founder
+    case candidate
+    case topContributer
+    case popular
+    case oneYearMember
+}
+
+protocol CandidateCoordinatorDelegate: PostCardCoordinatorDelegate {
 }
 
 protocol CandidateViewModelProtocol: ObservableObject {
@@ -19,6 +33,18 @@ final class CandidateViewModel: CandidateViewModelProtocol {
     
     let candidate: Candidate
     private let coordinator: CandidateCoordinatorDelegate
+    
+    lazy var candidateBadges: [CandidateBadge] = {
+        candidate.badges
+    }()
+    
+    lazy var memberSinceDate: String = {
+        Date.now.formatted(date: .long, time: .omitted)
+    }()
+    
+    lazy var candidatePosts: [PostCardViewModel] = {
+        Post.previewArray.map { $0.toViewModel(coordinator: self.coordinator) }
+    }()
     
     init(coordinator: CandidateCoordinatorDelegate,
          candidate: Candidate

@@ -83,7 +83,8 @@ struct CandidateInteractor: CandidateInteractorProtocol {
             isRepresentative: false,
             summary: summary,
             externalLink: link,
-            repType: repType
+            repType: repType,
+            badges: [.candidate, .currentRep, .popular]
         )
         
         try await localRepository.addCandidate(candidate)

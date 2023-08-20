@@ -9,16 +9,13 @@ import Foundation
 
 struct RulesSectionViewModel {
     
-    private let rules: [Rule]
     let ruleViewModels: [RuleViewModel]
-    
     let title: String
     
     init(
         rules: [Rule],
         title: String
     ) {
-        self.rules = rules
         self.title = title
         
         ruleViewModels = {

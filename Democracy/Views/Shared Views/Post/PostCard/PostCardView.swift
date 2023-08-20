@@ -26,15 +26,18 @@ struct PostCardView: View {
             footer
             
         }
-        .onTapGesture {
-            viewModel.goToPostView()
-        }
         .foregroundColor(.primaryText)
         .padding(.vertical, 20)
         .background(Color.secondaryBackground)
         .background(Rectangle())
         .font(.body)
         .lineLimit(1)
+        .onTapGesture {
+            viewModel.goToPostView()
+        }
+        .task {
+            await viewModel.loadLinkMetadata()
+        }
     }
     
     var header: some View {

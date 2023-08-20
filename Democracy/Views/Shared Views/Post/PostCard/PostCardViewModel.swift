@@ -13,7 +13,7 @@ protocol PostCardCoordinatorDelegate {
     func goToPostView(_ post: Post)
 }
 
-final class PostCardViewModel: ObservableObject, Hashable {
+final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
     
     //MARK: - Private Variables
     @Injected(\.richLinkService) private var richLinkService
@@ -71,8 +71,6 @@ final class PostCardViewModel: ObservableObject, Hashable {
     ) {
         self.coordinator = coordinator
         self.post = post
-        
-        loadLinkMetadata()
     }
     
     // MARK: - Protocol Methods
@@ -87,20 +85,16 @@ final class PostCardViewModel: ObservableObject, Hashable {
     
     // MARK: - Private methods
     
-    private func loadLinkMetadata() {
-        
-        Task {
-            guard let url = post.link?.url else { return }
+    func loadLinkMetadata() async {
+        guard let url = post.link?.url else { return }
+        do {
+            let metadata = try await richLinkService.getMetadata(for: url)
             
-            do {
-                let metadata = try await richLinkService.getMetadata(for: url)
-                
-                await MainActor.run {
-                    self.linkMetadata = metadata
-                }
-            } catch {
-                print("Error occurred fetching rich link metadata: \(error).")
+            await MainActor.run {
+                self.linkMetadata = metadata
             }
+        } catch {
+            print("Error occurred fetching rich link metadata: \(error).")
         }
     }
     

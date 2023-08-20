@@ -21,7 +21,8 @@ extension Candidate {
         isRepresentative: true,
         summary: "Enter the candidate's summary here",
         externalLink: "www.externalLink.com",
-        repType: .legislator
+        repType: .legislator,
+        badges: [.candidate, .currentRep, .popular]
     )
     
     static let representativePreview = Candidate.preview
@@ -42,7 +43,8 @@ extension Candidate {
                     isRepresentative: Candidate.preview.isRepresentative,
                     summary: Candidate.preview.summary,
                     externalLink: Candidate.preview.externalLink,
-                    repType: Candidate.preview.repType
+                    repType: Candidate.preview.repType,
+                    badges: [.candidate, .currentRep, .popular]
                 )
             )
         }
@@ -61,7 +63,8 @@ extension Candidate {
                     isRepresentative: Candidate.preview.isRepresentative,
                     summary: Candidate.preview.summary,
                     externalLink: Candidate.preview.externalLink,
-                    repType: .mod
+                    repType: .mod,
+                    badges: [.candidate, .currentRep, .popular]
                 )
             )
         }
@@ -80,7 +83,8 @@ extension Candidate {
                     isRepresentative: Candidate.preview.isRepresentative,
                     summary: Candidate.preview.summary,
                     externalLink: Candidate.preview.externalLink,
-                    repType: .creator
+                    repType: .creator,
+                    badges: [.candidate, .currentRep, .popular]
                 )
             )
         }
@@ -103,7 +107,8 @@ extension Candidate {
                     isRepresentative: Candidate.preview.isRepresentative,
                     summary: Candidate.preview.summary,
                     externalLink: Candidate.preview.externalLink,
-                    repType: Candidate.preview.repType
+                    repType: Candidate.preview.repType,
+                    badges: [.candidate, .currentRep, .popular]
                 )
             )
         }

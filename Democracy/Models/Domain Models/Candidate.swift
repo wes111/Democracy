@@ -24,6 +24,7 @@ struct Candidate: Hashable, Identifiable, Codable {
     let summary: String
     let externalLink: String?
     let repType: RepresentativeType
+    let badges: [CandidateBadge]
 }
 
 extension Candidate: FetchableRecord, PersistableRecord {
