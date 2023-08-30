@@ -10,7 +10,7 @@ import Foundation
 extension CommunityArchiveFeedViewModel {
     
     static let preview = CommunityArchiveFeedViewModel(
-        coordinator: CommunityCoordinatorViewModel.preview,
+        coordinator: CommunityCoordinator.preview,
         community: Community.preview
     )
 }

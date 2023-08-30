@@ -7,10 +7,10 @@
 
 import Foundation
 
-extension CommunityCoordinatorViewModel {
-    static let preview = CommunityCoordinatorViewModel(
+extension CommunityCoordinator {
+    static let preview = CommunityCoordinator(
         community: Community.preview,
         router: .preview,
-        parentCoordinator: CommunitiesTabCoordinatorViewModel.preview
+        parentCoordinator: CommunitiesTabCoordinator.preview
     )
 }

@@ -1,62 +1,135 @@
 //
-//  CommunityCoordinator.swift
+//  CommunityCoordinatorViewModel.swift
 //  Democracy
 //
-//  Created by Wesley Luntsford on 2/26/23.
+//  Created by Wesley Luntsford on 6/5/23.
 //
 
-import Combine
-import SwiftUI
+import Foundation
 
-struct CommunityCoordinator: View {
+protocol CommunityCoordinatorParent {
+    func goToCommunity(communityId: UUID)
+}
+
+class CommunityCoordinator: Coordinator, CommunityCoordinatorDelegate {
     
-    @StateObject private var viewModel: CommunityCoordinatorViewModel
+    @Published var url: URL = URL(string: "https://www.google.com")!
+    @Published var isShowingWebView = false
+    @Published var isShowingCreatePostView = false
+    @Published var isShowingCreateCandidateView = false
     
-    init(viewModel: CommunityCoordinatorViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+    let community: Community
+    let parentCoordinator: CommunityCoordinatorParent
+    
+    init(
+        community: Community,
+        router: Router,
+        parentCoordinator: CommunityCoordinatorParent
+    ) {
+        self.community = community
+        self.parentCoordinator = parentCoordinator
+        
+        super.init(router: router)
     }
     
-    var body: some View {
-        CommunityViewPicker(viewModel: viewModel.communityViewModel())
-            .navigationDestination(for: CommunityPath.self) { path in
-                ZStack {
-                    Color.primaryBackground.ignoresSafeArea()
-                    createViewFromPath(path)
-                }
-            }
-            .fullScreenCover(isPresented: $viewModel.isShowingCreatePostView) {
-                AddPostView(viewModel: viewModel.addPostViewModel())
-            }
-            .sheet(isPresented: $viewModel.isShowingWebView) {
-                WebView(url: $viewModel.url)
-            }
-            .fullScreenCover(isPresented: $viewModel.isShowingCreateCandidateView) {
-                CreateCandidateView(viewModel: viewModel.createCandidateViewModel())
-            }
+}
+
+// MARK: - Coordinating functions
+extension CommunityCoordinator {
+    
+    func showCandidates() {
+        router.push(CommunityPath.candidates)
     }
     
-    @ViewBuilder
-    func createViewFromPath(_ path: CommunityPath) -> some View {
-        switch path {
-            
-        case .postView(let post):
-            PostView(viewModel: viewModel.postViewModel(post: post))
-            
-        case .candidates:
-            CandidatesView(viewModel: viewModel.candidatesViewModel())
-            
-        case .singleCandidate(let candidate):
-            CandidateView(viewModel: viewModel.candidateViewModel(candidate: candidate))
-            
-        case .goToCommunityPostCategory(let category): CommunityCategoryPostsView(viewModel: viewModel.communityPostCategoryViewModel(category: category))
-        }
+    func openResourceURL(_ url: URL) {
+        self.url = url
+        isShowingWebView = true
+    }
+    
+    func goToCommunityPostCategory(categoryId: UUID) {
+        // TODO: Get the actual post category.
+        router.push(CommunityPath.goToCommunityPostCategory(category: .preview))
+    }
+    
+    func goToPostView(_ post: Post) {
+        router.push(CommunityPath.postView(post))
+    }
+    
+    func goToCandidateView(candidateId: UUID) {
+        // TODO: Get the actual candidate.
+        router.push(CommunityPath.singleCandidate(.preview))
+    }
+    
+    func showCreatePostView() {
+        isShowingCreatePostView = true
+    }
+    
+    func goBack() {
+        router.pop()
+    }
+    
+}
+
+// MARK: - Child ViewModels
+extension CommunityCoordinator {
+    
+    func candidateViewModel(candidate: Candidate) -> CandidateViewModel {
+        CandidateViewModel(coordinator: self, candidate: candidate)
+    }
+    
+    func postViewModel(post: Post) -> PostViewModel {
+        PostViewModel(coordinator: self, post: post)
+    }
+    
+    func communityPostCategoryViewModel(category: CommunityCategory) -> CommunityCategoryPostsViewModel {
+        CommunityCategoryPostsViewModel(community: community, category: category)
+    }
+    
+    func communityViewModel() -> CommunityViewModel {
+        CommunityViewModel(coordinator: self, community: community)
+    }
+    
+    func addPostViewModel() -> AddPostViewModel {
+        AddPostViewModel(coordinator: self)
+    }
+    
+    func candidatesViewModel() -> CandidatesViewModel {
+        CandidatesViewModel(coordinator: self)
+    }
+    
+    func createCandidateViewModel() -> CreateCandidateViewModel {
+        CreateCandidateViewModel(coordinator: self)
     }
 }
 
-// MARK: - Preview
-struct CommunityCoordinator_Previews: PreviewProvider {
+// MARK: - Protocols
+extension CommunityCoordinator: AddPostCoordinatorDelegate {
     
-    static var previews: some View {
-        CommunityCoordinator.preview
+    func close() {
+        isShowingCreatePostView = false
+    }
+}
+
+extension CommunityCoordinator: CandidatesCoordinatorDelegate {
+    
+    func showCreateCandidateView() {
+        isShowingCreateCandidateView = true
+    }
+    
+    func closeCreateCandidateView() {
+        isShowingCreateCandidateView = false
+    }
+}
+
+extension CommunityCoordinator: CandidateCoordinatorDelegate {}
+
+extension CommunityCoordinator: CreateCandidateCoordinatorDelegate {}
+
+extension CommunityCoordinator: PostCoordinatorDelegate {}
+
+extension CommunityCoordinator: AlliedCommunitiesSectionViewModelCoordinatorDelegate {
+    
+    func goToCommunityView(id: UUID) {
+        parentCoordinator.goToCommunity(communityId: id)
     }
 }

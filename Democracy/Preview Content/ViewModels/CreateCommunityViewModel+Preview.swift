@@ -9,5 +9,5 @@ import Foundation
 
 extension CreateCommunityViewModel {
     
-    static let preview = CreateCommunityViewModel(coordinator: CommunitiesTabCoordinatorViewModel.preview)
+    static let preview = CreateCommunityViewModel(coordinator: CommunitiesTabCoordinator.preview)
 }

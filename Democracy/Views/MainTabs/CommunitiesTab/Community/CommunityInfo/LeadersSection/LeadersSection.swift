@@ -49,7 +49,7 @@ struct LeadersSection_Previews: PreviewProvider {
         let viewModel = LeadersSectionViewModel(
             creators: Candidate.previewArray,
             mods: Candidate.previewArray,
-            legislators: Candidate.previewArray, coordinator: CommunityCoordinatorViewModel.preview
+            legislators: Candidate.previewArray, coordinator: CommunityCoordinator.preview
         )
         
         LeadersSection(viewModel: viewModel)

@@ -8,5 +8,5 @@
 import Foundation
 
 extension AddPostViewModel {
-    static let preview = AddPostViewModel(coordinator: CommunityCoordinatorViewModel.preview)
+    static let preview = AddPostViewModel(coordinator: CommunityCoordinator.preview)
 }

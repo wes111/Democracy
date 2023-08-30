@@ -38,7 +38,7 @@ struct AlliedCommunitiesSection_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = AlliedCommunitiesSectionViewModel(
             alliedCommunities: Community.myCommunitiesPreviewArray,
-            coordinator: CommunityCoordinatorViewModel.preview
+            coordinator: CommunityCoordinator.preview
         )
         AlliedCommunitiesSection(viewModel: viewModel)
     }

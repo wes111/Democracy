@@ -7,6 +7,6 @@
 
 import Foundation
 
-extension CommunitiesTabCoordinator {
-    static let preview = CommunitiesTabCoordinator(viewModel: .preview)
+extension CommunitiesTabCoordinatorView {
+    static let preview = CommunitiesTabCoordinatorView(viewModel: .preview)
 }

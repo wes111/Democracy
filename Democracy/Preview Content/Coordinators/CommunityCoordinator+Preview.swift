@@ -7,6 +7,6 @@
 
 import Foundation
 
-extension CommunityCoordinator {
-    static let preview = CommunityCoordinator(viewModel: CommunityCoordinatorViewModel.preview)
+extension CommunityCoordinatorView {
+    static let preview = CommunityCoordinatorView(viewModel: CommunityCoordinator.preview)
 }

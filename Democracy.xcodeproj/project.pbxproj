@@ -51,9 +51,9 @@
 		EE5D39F72A2D077D00D0E312 /* PositionObservingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39F62A2D077D00D0E312 /* PositionObservingView.swift */; };
 		EE5D39F92A2D085900D0E312 /* OffsetObservingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39F82A2D085900D0E312 /* OffsetObservingScrollView.swift */; };
 		EE5D39FD2A2ECB2A00D0E312 /* CommunityCoordinatorViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39FC2A2ECB2A00D0E312 /* CommunityCoordinatorViewModel+Preview.swift */; };
-		EE5D39FF2A2ED43A00D0E312 /* CommunityCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39FE2A2ED43A00D0E312 /* CommunityCoordinatorViewModel.swift */; };
+		EE5D39FF2A2ED43A00D0E312 /* CommunityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39FE2A2ED43A00D0E312 /* CommunityCoordinator.swift */; };
 		EE5D3A012A2EE0ED00D0E312 /* CommunitiesTabCoordinatorViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A002A2EE0ED00D0E312 /* CommunitiesTabCoordinatorViewModel+Preview.swift */; };
-		EE5D3A032A30204D00D0E312 /* CommunitiesTabCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A022A30204D00D0E312 /* CommunitiesTabCoordinatorViewModel.swift */; };
+		EE5D3A032A30204D00D0E312 /* CommunitiesTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A022A30204D00D0E312 /* CommunitiesTabCoordinator.swift */; };
 		EE5D3A072A38041500D0E312 /* CommunityCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A062A38041500D0E312 /* CommunityCategory.swift */; };
 		EE5D3A092A3804D100D0E312 /* PostCategory+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A082A3804D100D0E312 /* PostCategory+Extension.swift */; };
 		EE5D3A0D2A45241200D0E312 /* Resource+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A0C2A45241200D0E312 /* Resource+Preview.swift */; };
@@ -144,7 +144,7 @@
 		EED4A4F129AA7ED700DDCCDA /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4F029AA7ED700DDCCDA /* RootViewModel.swift */; };
 		EED4A4F929AA855900DDCCDA /* EventsTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4F829AA855900DDCCDA /* EventsTabCoordinator.swift */; };
 		EED4A4FB29AA857000DDCCDA /* VotingTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4FA29AA857000DDCCDA /* VotingTabCoordinator.swift */; };
-		EED4A4FD29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4FC29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift */; };
+		EED4A4FD29AA857B00DDCCDA /* CommunitiesTabCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4FC29AA857B00DDCCDA /* CommunitiesTabCoordinatorView.swift */; };
 		EED4A4FF29AA858600DDCCDA /* HistoryTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4FE29AA858600DDCCDA /* HistoryTabCoordinator.swift */; };
 		EED4A50129AA859500DDCCDA /* UpdatesTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A50029AA859500DDCCDA /* UpdatesTabCoordinator.swift */; };
 		EED4A50329AA86C900DDCCDA /* VotingTabMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A50229AA86C900DDCCDA /* VotingTabMainView.swift */; };
@@ -159,7 +159,7 @@
 		EED4A51529AB1C7900DDCCDA /* HistoryTabMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A51429AB1C7900DDCCDA /* HistoryTabMainViewModel.swift */; };
 		EED4A51A29ABC2D400DDCCDA /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A51929ABC2D400DDCCDA /* Community.swift */; };
 		EED4A51C29ABC2FE00DDCCDA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A51B29ABC2FE00DDCCDA /* User.swift */; };
-		EED4A51F29ABC86300DDCCDA /* CommunityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A51E29ABC86300DDCCDA /* CommunityCoordinator.swift */; };
+		EED4A51F29ABC86300DDCCDA /* CommunityCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A51E29ABC86300DDCCDA /* CommunityCoordinatorView.swift */; };
 		EED4A52129ABC86D00DDCCDA /* CommunityViewPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52029ABC86D00DDCCDA /* CommunityViewPicker.swift */; };
 		EED4A52329ABC87B00DDCCDA /* CommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52229ABC87B00DDCCDA /* CommunityViewModel.swift */; };
 		EED4A52629B810FF00DDCCDA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52529B810FF00DDCCDA /* Post.swift */; };
@@ -227,9 +227,9 @@
 		EE5D39F62A2D077D00D0E312 /* PositionObservingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionObservingView.swift; sourceTree = "<group>"; };
 		EE5D39F82A2D085900D0E312 /* OffsetObservingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetObservingScrollView.swift; sourceTree = "<group>"; };
 		EE5D39FC2A2ECB2A00D0E312 /* CommunityCoordinatorViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunityCoordinatorViewModel+Preview.swift"; sourceTree = "<group>"; };
-		EE5D39FE2A2ED43A00D0E312 /* CommunityCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCoordinatorViewModel.swift; sourceTree = "<group>"; };
+		EE5D39FE2A2ED43A00D0E312 /* CommunityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCoordinator.swift; sourceTree = "<group>"; };
 		EE5D3A002A2EE0ED00D0E312 /* CommunitiesTabCoordinatorViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunitiesTabCoordinatorViewModel+Preview.swift"; sourceTree = "<group>"; };
-		EE5D3A022A30204D00D0E312 /* CommunitiesTabCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesTabCoordinatorViewModel.swift; sourceTree = "<group>"; };
+		EE5D3A022A30204D00D0E312 /* CommunitiesTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesTabCoordinator.swift; sourceTree = "<group>"; };
 		EE5D3A062A38041500D0E312 /* CommunityCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCategory.swift; sourceTree = "<group>"; };
 		EE5D3A082A3804D100D0E312 /* PostCategory+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostCategory+Extension.swift"; sourceTree = "<group>"; };
 		EE5D3A0C2A45241200D0E312 /* Resource+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resource+Preview.swift"; sourceTree = "<group>"; };
@@ -319,7 +319,7 @@
 		EED4A4F029AA7ED700DDCCDA /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		EED4A4F829AA855900DDCCDA /* EventsTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsTabCoordinator.swift; sourceTree = "<group>"; };
 		EED4A4FA29AA857000DDCCDA /* VotingTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTabCoordinator.swift; sourceTree = "<group>"; };
-		EED4A4FC29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesTabCoordinator.swift; sourceTree = "<group>"; };
+		EED4A4FC29AA857B00DDCCDA /* CommunitiesTabCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesTabCoordinatorView.swift; sourceTree = "<group>"; };
 		EED4A4FE29AA858600DDCCDA /* HistoryTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabCoordinator.swift; sourceTree = "<group>"; };
 		EED4A50029AA859500DDCCDA /* UpdatesTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesTabCoordinator.swift; sourceTree = "<group>"; };
 		EED4A50229AA86C900DDCCDA /* VotingTabMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VotingTabMainView.swift; sourceTree = "<group>"; };
@@ -334,7 +334,7 @@
 		EED4A51429AB1C7900DDCCDA /* HistoryTabMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabMainViewModel.swift; sourceTree = "<group>"; };
 		EED4A51929ABC2D400DDCCDA /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
 		EED4A51B29ABC2FE00DDCCDA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		EED4A51E29ABC86300DDCCDA /* CommunityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCoordinator.swift; sourceTree = "<group>"; };
+		EED4A51E29ABC86300DDCCDA /* CommunityCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCoordinatorView.swift; sourceTree = "<group>"; };
 		EED4A52029ABC86D00DDCCDA /* CommunityViewPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewPicker.swift; sourceTree = "<group>"; };
 		EED4A52229ABC87B00DDCCDA /* CommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewModel.swift; sourceTree = "<group>"; };
 		EED4A52529B810FF00DDCCDA /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -763,8 +763,8 @@
 		EE936C9B2A75C18A00D49271 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				EED4A51E29ABC86300DDCCDA /* CommunityCoordinator.swift */,
-				EE5D39FE2A2ED43A00D0E312 /* CommunityCoordinatorViewModel.swift */,
+				EED4A51E29ABC86300DDCCDA /* CommunityCoordinatorView.swift */,
+				EE5D39FE2A2ED43A00D0E312 /* CommunityCoordinator.swift */,
 				EE936C9F2A7895B700D49271 /* CommunityPath.swift */,
 			);
 			path = Navigation;
@@ -773,8 +773,8 @@
 		EE936C9C2A75C19C00D49271 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				EED4A4FC29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift */,
-				EE5D3A022A30204D00D0E312 /* CommunitiesTabCoordinatorViewModel.swift */,
+				EED4A4FC29AA857B00DDCCDA /* CommunitiesTabCoordinatorView.swift */,
+				EE5D3A022A30204D00D0E312 /* CommunitiesTabCoordinator.swift */,
 				EE936CA12A789B8F00D49271 /* CommunitiesTabPath.swift */,
 			);
 			path = Navigation;
@@ -1207,7 +1207,7 @@
 				EED4A51529AB1C7900DDCCDA /* HistoryTabMainViewModel.swift in Sources */,
 				EE80D90229C2BB0C0000F8EF /* AddPostAlert.swift in Sources */,
 				EEF83473299C6A11001EEA5E /* Router.swift in Sources */,
-				EE5D39FF2A2ED43A00D0E312 /* CommunityCoordinatorViewModel.swift in Sources */,
+				EE5D39FF2A2ED43A00D0E312 /* CommunityCoordinator.swift in Sources */,
 				EE80D8F629C01EBA0000F8EF /* UserInteractor.swift in Sources */,
 				EE80D93029D0D7970000F8EF /* AppDelegate.swift in Sources */,
 				EE4524A72A5CED1000C7A2DD /* LeadersSection.swift in Sources */,
@@ -1231,7 +1231,7 @@
 				EED4A50529AA870000DDCCDA /* VotingTabMainViewModel.swift in Sources */,
 				EE80D90829C926600000F8EF /* CandidatesView.swift in Sources */,
 				EE5B93952A0864D400B43381 /* CommunityCategoryPostsView.swift in Sources */,
-				EED4A4FD29AA857B00DDCCDA /* CommunitiesTabCoordinator.swift in Sources */,
+				EED4A4FD29AA857B00DDCCDA /* CommunitiesTabCoordinatorView.swift in Sources */,
 				EE80D8F229BD39210000F8EF /* AddPostViewModel.swift in Sources */,
 				EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */,
 				EE4524942A565CA400C7A2DD /* ResourceViewModel.swift in Sources */,
@@ -1260,7 +1260,7 @@
 				EE80D92D29D0D4DC0000F8EF /* GRDBService.swift in Sources */,
 				EE54ADE729A40101007C3E3F /* AuthenticationCoordinator.swift in Sources */,
 				EE80D93D29D882F70000F8EF /* User+Preview.swift in Sources */,
-				EE5D3A032A30204D00D0E312 /* CommunitiesTabCoordinatorViewModel.swift in Sources */,
+				EE5D3A032A30204D00D0E312 /* CommunitiesTabCoordinator.swift in Sources */,
 				EED4A52A29B8187D00DDCCDA /* PostCoordinator.swift in Sources */,
 				EE80D8E029BC1A080000F8EF /* HistoryTabMainViewModel+Preview.swift in Sources */,
 				EE4524B32A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift in Sources */,
@@ -1308,7 +1308,7 @@
 				EED4A4EF29AA7E9600DDCCDA /* RootView.swift in Sources */,
 				EE936CAB2A789F8700D49271 /* VotingTabPath.swift in Sources */,
 				EE54ADDF29A329C9007C3E3F /* MainTabView.swift in Sources */,
-				EED4A51F29ABC86300DDCCDA /* CommunityCoordinator.swift in Sources */,
+				EED4A51F29ABC86300DDCCDA /* CommunityCoordinatorView.swift in Sources */,
 				EE80D93529D286240000F8EF /* CreateCandidateViewModel.swift in Sources */,
 				EED4A50B29AB18D400DDCCDA /* UpdatesTabMainView.swift in Sources */,
 				EE4524AE2A5CED6900C7A2DD /* LeaderViewModel.swift in Sources */,
