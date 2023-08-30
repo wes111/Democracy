@@ -11,8 +11,8 @@ import SwiftUI
 protocol RouterProtocol: ObservableObject {
     var navigationPath: NavigationPath { get }
     
-    func push(_ path: any Hashable)
-    func push(_ paths: [any Hashable])
+    func push<Path: Hashable>(_ path: Path)
+    func push<Path: Hashable>(_ paths: [Path])
     func pop()
     func pop(count: Int)
     func popToRoot()
@@ -27,13 +27,13 @@ final class Router: RouterProtocol {
     
     init() {}
     
-    func push(_ path: any Hashable) {
+    func push<Path: Hashable>(_ path: Path) {
         self.semaphore.wait()
         navigationPath.append(path)
         self.semaphore.signal()
     }
     
-    func push(_ paths: [any Hashable]) {
+    func push<Path: Hashable>(_ paths: [Path]) {
         self.semaphore.wait()
         paths.forEach { navigationPath.append($0) }
         self.semaphore.signal()
