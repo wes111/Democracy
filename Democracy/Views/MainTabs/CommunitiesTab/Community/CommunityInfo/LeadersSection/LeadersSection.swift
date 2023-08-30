@@ -21,7 +21,7 @@ struct LeadersSection: View {
                 Spacer()
                 
                 Button {
-                    print()
+                    viewModel.tappedVote()
                 } label: {
                     Text("Vote")
                         .font(.title3)

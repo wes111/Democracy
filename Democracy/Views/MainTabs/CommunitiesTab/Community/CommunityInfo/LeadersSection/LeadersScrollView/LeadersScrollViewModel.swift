@@ -10,6 +10,7 @@ import Foundation
 protocol LeadersScrollViewModelCoordinatorDelegate {
     
     func goToCandidateView(candidateId: UUID)
+    func goToVoteView()
 }
 
 struct LeadersScrollViewModel {

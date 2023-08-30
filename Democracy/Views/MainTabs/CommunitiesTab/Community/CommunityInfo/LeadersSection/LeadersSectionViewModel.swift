@@ -23,4 +23,8 @@ struct LeadersSectionViewModel {
         legislatorsScrollViewModel = .init(candidates: legislators, repType: .legislator, coordinator: coordinator)
     }
     
+    func tappedVote() {
+        coordinator.goToVoteView()
+    }
+    
 }

@@ -100,6 +100,10 @@ extension CommunityCoordinator {
     func createCandidateViewModel() -> CreateCandidateViewModel {
         CreateCandidateViewModel(coordinator: self)
     }
+    
+    func voteViewModel() -> VoteViewModel {
+        VoteViewModel(coordinator: self)
+    }
 }
 
 // MARK: - Protocols
@@ -133,3 +137,12 @@ extension CommunityCoordinator: AlliedCommunitiesSectionViewModelCoordinatorDele
         parentCoordinator.goToCommunity(communityId: id)
     }
 }
+
+extension CommunityCoordinator: LeadersScrollViewModelCoordinatorDelegate {
+    
+    func goToVoteView() {
+        router.push(CommunityPath.voteView)
+    }
+}
+
+extension CommunityCoordinator: VoteViewCoordinator {}

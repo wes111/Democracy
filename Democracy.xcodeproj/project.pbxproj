@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE0CC2012A9ED9C8003A10C3 /* VoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2002A9ED9C8003A10C3 /* VoteViewModel.swift */; };
+		EE0CC2032A9EDA00003A10C3 /* VoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2022A9EDA00003A10C3 /* VoteView.swift */; };
 		EE1172962A6F3C5C00E529AF /* AlliedCommunitiesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1172952A6F3C5C00E529AF /* AlliedCommunitiesSection.swift */; };
 		EE1172982A6F3C9100E529AF /* AlliedCommunitiesSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1172972A6F3C9100E529AF /* AlliedCommunitiesSectionViewModel.swift */; };
 		EE11729B2A6F3D0300E529AF /* AlliedCommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729A2A6F3D0300E529AF /* AlliedCommunityView.swift */; };
@@ -183,6 +185,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE0CC2002A9ED9C8003A10C3 /* VoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewModel.swift; sourceTree = "<group>"; };
+		EE0CC2022A9EDA00003A10C3 /* VoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteView.swift; sourceTree = "<group>"; };
 		EE1172952A6F3C5C00E529AF /* AlliedCommunitiesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlliedCommunitiesSection.swift; sourceTree = "<group>"; };
 		EE1172972A6F3C9100E529AF /* AlliedCommunitiesSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlliedCommunitiesSectionViewModel.swift; sourceTree = "<group>"; };
 		EE11729A2A6F3D0300E529AF /* AlliedCommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlliedCommunityView.swift; sourceTree = "<group>"; };
@@ -371,6 +375,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE0CC1FF2A9ED9A7003A10C3 /* VoteView */ = {
+			isa = PBXGroup;
+			children = (
+				EE0CC2002A9ED9C8003A10C3 /* VoteViewModel.swift */,
+				EE0CC2022A9EDA00003A10C3 /* VoteView.swift */,
+			);
+			path = VoteView;
+			sourceTree = "<group>";
+		};
 		EE1172942A6F3B6F00E529AF /* AlliedCommunitiesSection */ = {
 			isa = PBXGroup;
 			children = (
@@ -440,6 +453,7 @@
 		EE4524A42A5CECAD00C7A2DD /* LeadersSection */ = {
 			isa = PBXGroup;
 			children = (
+				EE0CC1FF2A9ED9A7003A10C3 /* VoteView */,
 				EE4524A62A5CED1000C7A2DD /* LeadersSection.swift */,
 				EE4524A82A5CED2100C7A2DD /* LeadersSectionViewModel.swift */,
 				EE4524AF2A5CF08500C7A2DD /* LeadersScrollView */,
@@ -1237,6 +1251,7 @@
 				EE4524942A565CA400C7A2DD /* ResourceViewModel.swift in Sources */,
 				EE1172962A6F3C5C00E529AF /* AlliedCommunitiesSection.swift in Sources */,
 				EE936CA22A789B8F00D49271 /* CommunitiesTabPath.swift in Sources */,
+				EE0CC2032A9EDA00003A10C3 /* VoteView.swift in Sources */,
 				EE80D8CE29BC15550000F8EF /* VotingTabCoordinator+Preview.swift in Sources */,
 				EED4A4FF29AA858600DDCCDA /* HistoryTabCoordinator.swift in Sources */,
 				EE5D3A092A3804D100D0E312 /* PostCategory+Extension.swift in Sources */,
@@ -1296,6 +1311,7 @@
 				EED4A50929AA8BC100DDCCDA /* EventsTabMainViewModel.swift in Sources */,
 				EE80D8C629BC12C70000F8EF /* CommunitiesTabMainViewModel+Preview.swift in Sources */,
 				EE80D8C329BC12720000F8EF /* CommunitiesTabCoordinator+Preview.swift in Sources */,
+				EE0CC2012A9ED9C8003A10C3 /* VoteViewModel.swift in Sources */,
 				EE936CB72A78A12F00D49271 /* UpdatesTabCoordinatorViewModel.swift in Sources */,
 				EED4A54029BAB3E800DDCCDA /* Comment.swift in Sources */,
 				EE936CB92A81DA2700D49271 /* CoordinatorView.swift in Sources */,

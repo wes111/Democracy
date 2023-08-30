@@ -12,4 +12,5 @@ enum CommunityPath: Hashable {
     case candidates
     case singleCandidate(Candidate)
     case goToCommunityPostCategory(category: CommunityCategory)
+    case voteView
 }
