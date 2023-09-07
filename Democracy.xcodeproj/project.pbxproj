@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EE0CC2012A9ED9C8003A10C3 /* VoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2002A9ED9C8003A10C3 /* VoteViewModel.swift */; };
 		EE0CC2032A9EDA00003A10C3 /* VoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2022A9EDA00003A10C3 /* VoteView.swift */; };
+		EE0CC2052AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2042AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift */; };
 		EE1172962A6F3C5C00E529AF /* AlliedCommunitiesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1172952A6F3C5C00E529AF /* AlliedCommunitiesSection.swift */; };
 		EE1172982A6F3C9100E529AF /* AlliedCommunitiesSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1172972A6F3C9100E529AF /* AlliedCommunitiesSectionViewModel.swift */; };
 		EE11729B2A6F3D0300E529AF /* AlliedCommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729A2A6F3D0300E529AF /* AlliedCommunityView.swift */; };
@@ -187,6 +188,7 @@
 /* Begin PBXFileReference section */
 		EE0CC2002A9ED9C8003A10C3 /* VoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewModel.swift; sourceTree = "<group>"; };
 		EE0CC2022A9EDA00003A10C3 /* VoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteView.swift; sourceTree = "<group>"; };
+		EE0CC2042AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CandidateListItemViewModel+Preview.swift"; sourceTree = "<group>"; };
 		EE1172952A6F3C5C00E529AF /* AlliedCommunitiesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlliedCommunitiesSection.swift; sourceTree = "<group>"; };
 		EE1172972A6F3C9100E529AF /* AlliedCommunitiesSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlliedCommunitiesSectionViewModel.swift; sourceTree = "<group>"; };
 		EE11729A2A6F3D0300E529AF /* AlliedCommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlliedCommunityView.swift; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 		EE80D8C429BC12A40000F8EF /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				EE0CC2042AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift */,
 				EE80D8C529BC12C70000F8EF /* CommunitiesTabMainViewModel+Preview.swift */,
 				EE80D8C929BC13C00000F8EF /* PostViewModel+Preview.swift */,
 				EE80D8CB29BC14560000F8EF /* PostCardViewModel+Preview.swift */,
@@ -1222,6 +1225,7 @@
 				EE80D90229C2BB0C0000F8EF /* AddPostAlert.swift in Sources */,
 				EEF83473299C6A11001EEA5E /* Router.swift in Sources */,
 				EE5D39FF2A2ED43A00D0E312 /* CommunityCoordinator.swift in Sources */,
+				EE0CC2052AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift in Sources */,
 				EE80D8F629C01EBA0000F8EF /* UserInteractor.swift in Sources */,
 				EE80D93029D0D7970000F8EF /* AppDelegate.swift in Sources */,
 				EE4524A72A5CED1000C7A2DD /* LeadersSection.swift in Sources */,

@@ -23,6 +23,18 @@ final class VoteViewModel: ObservableObject {
     
 }
 
+//MARK: Computed Properties
+extension VoteViewModel {
+    
+    var navigationTitle: String {
+        "\(role.description.capitalized) Candidates"
+    }
+    
+    var candidateViewModels: [CandidateListItemViewModel] {
+        CandidateListItemViewModel.previewArray
+    }
+}
+
 //MARK: - Methods
 extension VoteViewModel {
     
