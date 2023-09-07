@@ -58,9 +58,6 @@ struct CommunityCoordinatorView: View {
 }
 
 // MARK: - Preview
-struct CommunityCoordinator_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        CommunityCoordinatorView.preview
-    }
+#Preview {
+    CommunityCoordinatorView.preview
 }

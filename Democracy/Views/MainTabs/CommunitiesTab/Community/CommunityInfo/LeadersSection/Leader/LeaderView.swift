@@ -37,9 +37,8 @@ struct LeaderView: View {
     }
 }
 
-struct LeaderView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = LeaderViewModel(candidate: .preview)
-        LeaderView(viewModel: viewModel)
-    }
+//MARK: - Preview
+#Preview {
+    let viewModel = LeaderViewModel(candidate: .preview)
+    return LeaderView(viewModel: viewModel)
 }

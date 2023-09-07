@@ -77,8 +77,7 @@ struct CandidateCardView: View {
     }
 }
 
-struct CandidateCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CandidateCardView(candidate: Candidate.preview)
-    }
+//MARK: - Preview
+#Preview {
+    CandidateCardView(candidate: Candidate.preview)
 }

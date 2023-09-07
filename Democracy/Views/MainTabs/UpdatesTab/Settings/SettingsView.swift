@@ -31,10 +31,9 @@ struct SettingsView<ViewModel: SettingsViewModelProtocol>: View {
     }
 }
 
-struct Settings_Previews: PreviewProvider {
-    static var previews: some View {
-        let coordinator = SettingsCoordinator()
-        let viewModel = SettingsViewModel(coordinator: coordinator)
-        SettingsView(viewModel: viewModel)
-    }
+//MARK: - Preview
+#Preview {
+    let coordinator = SettingsCoordinator()
+    let viewModel = SettingsViewModel(coordinator: coordinator)
+    return SettingsView(viewModel: viewModel)
 }

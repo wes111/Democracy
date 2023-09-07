@@ -34,12 +34,11 @@ struct AlliedCommunitiesSection: View {
     }
 }
 
-struct AlliedCommunitiesSection_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = AlliedCommunitiesSectionViewModel(
-            alliedCommunities: Community.myCommunitiesPreviewArray,
-            coordinator: CommunityCoordinator.preview
-        )
-        AlliedCommunitiesSection(viewModel: viewModel)
-    }
+//MARK: - Preview
+#Preview {
+    let viewModel = AlliedCommunitiesSectionViewModel(
+        alliedCommunities: Community.myCommunitiesPreviewArray,
+        coordinator: CommunityCoordinator.preview
+    )
+    return AlliedCommunitiesSection(viewModel: viewModel)
 }

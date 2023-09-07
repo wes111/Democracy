@@ -44,14 +44,13 @@ struct LeadersSection: View {
     }
 }
 
-struct LeadersSection_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = LeadersSectionViewModel(
-            creators: Candidate.previewArray,
-            mods: Candidate.previewArray,
-            legislators: Candidate.previewArray, coordinator: CommunityCoordinator.preview
-        )
-        
-        LeadersSection(viewModel: viewModel)
-    }
+//MARK: - Preview
+#Preview {
+    let viewModel = LeadersSectionViewModel(
+        creators: Candidate.previewArray,
+        mods: Candidate.previewArray,
+        legislators: Candidate.previewArray, coordinator: CommunityCoordinator.preview
+    )
+    
+    return LeadersSection(viewModel: viewModel)
 }

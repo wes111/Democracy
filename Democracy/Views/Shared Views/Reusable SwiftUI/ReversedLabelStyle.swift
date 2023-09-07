@@ -16,9 +16,8 @@ struct ReversedLabelStyle: LabelStyle {
     }
 }
 
-struct ReversedLabelStyle_Previews: PreviewProvider {
-    static var previews: some View {
-        Label("Label Title", systemImage: "chevron.right")
-            .labelStyle(ReversedLabelStyle())
-    }
+//MARK: - Preview
+#Preview {
+    Label("Label Title", systemImage: "chevron.right")
+        .labelStyle(ReversedLabelStyle())
 }

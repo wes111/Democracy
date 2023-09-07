@@ -137,11 +137,9 @@ struct CandidateCard: View {
 
 
 //MARK: - Preview
-struct CandidateView_Previews: PreviewProvider {
-    static var previews: some View {
-        ZStack {
-            Color.primaryBackground.ignoresSafeArea()
-            CandidateView(viewModel: CandidateViewModel.preview)
-        }
+#Preview {
+    ZStack {
+        Color.primaryBackground.ignoresSafeArea()
+        CandidateView(viewModel: CandidateViewModel.preview)
     }
 }

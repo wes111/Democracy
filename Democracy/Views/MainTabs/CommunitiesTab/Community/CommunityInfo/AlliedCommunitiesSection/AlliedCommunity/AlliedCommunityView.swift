@@ -22,9 +22,8 @@ struct AlliedCommunityView: View {
     }
 }
 
-struct AlliedCommunityView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = AlliedCommunityViewModel(.preview)
-        AlliedCommunityView(viewModel: viewModel)
-    }
+//MARK: - Preview
+#Preview {
+    let viewModel = AlliedCommunityViewModel(.preview)
+    return AlliedCommunityView(viewModel: viewModel)
 }

@@ -108,14 +108,11 @@ struct PostCardView: View {
         
 }
 
-struct PostCardView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        
-        ScrollView {
-            PostCardView(viewModel: PostCardViewModel.preview)
-        }.background(
-            Color.primaryBackground
-        )
-    }
+//MARK: - Preview
+#Preview {
+    ScrollView {
+        PostCardView(viewModel: PostCardViewModel.preview)
+    }.background(
+        Color.primaryBackground
+    )
 }

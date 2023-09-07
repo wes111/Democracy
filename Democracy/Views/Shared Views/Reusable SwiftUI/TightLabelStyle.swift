@@ -16,9 +16,8 @@ struct TightLabelStyle: LabelStyle {
     }
 }
 
-struct TightLabelStyle_Previews: PreviewProvider {
-    static var previews: some View {
-        Label("11", systemImage: "arrow.down")
-            .labelStyle(TightLabelStyle())
-    }
+//MARK: - Preview
+#Preview {
+    Label("11", systemImage: "arrow.down")
+        .labelStyle(TightLabelStyle())
 }

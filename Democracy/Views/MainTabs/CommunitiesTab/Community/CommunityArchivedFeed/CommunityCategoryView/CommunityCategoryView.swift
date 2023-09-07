@@ -52,9 +52,8 @@ struct CommunityCategoryView: View {
     }
 }
 
-struct CategoryCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CommunityCategoryView(viewModel: CommunityCategory.preview.toCommunityCategoryViewModel())
-            .frame(height: 100)
-    }
+//MARK: - Preview
+#Preview {
+    CommunityCategoryView(viewModel: CommunityCategory.preview.toCommunityCategoryViewModel())
+        .frame(height: 100)
 }

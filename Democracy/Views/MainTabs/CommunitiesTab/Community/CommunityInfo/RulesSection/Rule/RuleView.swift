@@ -29,10 +29,8 @@ struct RuleView: View {
     }
 }
 
-
-struct RuleView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = Rule.previewArray.first!.viewModel(index: 0)
-        RuleView(viewModel: viewModel)
-    }
+//MARK: - Preview
+#Preview {
+    let viewModel = Rule.previewArray.first!.viewModel(index: 0)
+    return RuleView(viewModel: viewModel)
 }

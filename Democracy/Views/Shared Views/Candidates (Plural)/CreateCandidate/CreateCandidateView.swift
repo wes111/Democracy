@@ -86,8 +86,7 @@ struct CreateCandidateView<ViewModel: CreateCandidateViewModelProtocol>: View {
     
 }
 
-struct CreateCandidateView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateCandidateView(viewModel: CreateCandidateViewModel.preview)
-    }
+//MARK: - Preview
+#Preview {
+    CreateCandidateView(viewModel: CreateCandidateViewModel.preview)
 }

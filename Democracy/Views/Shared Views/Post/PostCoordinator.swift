@@ -46,8 +46,7 @@ extension PostCoordinator: PostCoordinatorDelegate {
     
 }
 
-struct PostCoordinator_Previews: PreviewProvider {
-    static var previews: some View {
-        PostCoordinator(Post.preview)
-    }
+//MARK: - Preview
+#Preview {
+    PostCoordinator(Post.preview)
 }

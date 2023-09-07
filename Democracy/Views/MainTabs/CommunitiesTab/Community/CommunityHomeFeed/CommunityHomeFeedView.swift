@@ -53,8 +53,7 @@ struct CommunityHomeFeedView: View {
     }
 }
 
-struct CommunityHomeFeedView_Previews: PreviewProvider {
-    static var previews: some View {
-            CommunityHomeFeedView(viewModel: CommunityHomeFeedViewModel.preview)
-    }
+//MARK: - Preview
+#Preview {
+    CommunityHomeFeedView(viewModel: CommunityHomeFeedViewModel.preview)
 }

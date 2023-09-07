@@ -86,12 +86,10 @@ struct CommunitiesScrollView: View {
     }
 }
 
-struct CommunitiesTabMainView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        NavigationStack {
-            CommunitiesTabMainView(viewModel: CommunitiesTabMainViewModel.preview)
-                .background(Color.primaryBackground)
-        }
+//MARK: - Preview
+#Preview {
+    NavigationStack {
+        CommunitiesTabMainView(viewModel: CommunitiesTabMainViewModel.preview)
+            .background(Color.primaryBackground)
     }
 }

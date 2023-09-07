@@ -23,8 +23,7 @@ struct PostView<ViewModel: PostViewModelProtocol>: View {
     
 }
 
-struct PostView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostView(viewModel: PostViewModel.preview)
-    }
+//MARK: - Preview
+#Preview {
+    PostView(viewModel: PostViewModel.preview)
 }

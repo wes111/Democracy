@@ -44,8 +44,7 @@ extension HistoryTabCoordinator: HistoryTabMainCoordinatorDelegate {
     
 }
 
-struct HistoryTabCoordinator_Previews: PreviewProvider {
-    static var previews: some View {
-        HistoryTabCoordinator(viewModel: .preview)
-    }
+//MARK: - Preview
+#Preview {
+    HistoryTabCoordinator(viewModel: .preview)
 }

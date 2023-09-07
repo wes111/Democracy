@@ -104,12 +104,10 @@ struct CommunityViewPicker: View {
     }
 }
 
-struct CommunityView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationStack {
-            CommunityViewPicker(viewModel: CommunityViewModel.preview)
-                .accentColor(.secondaryText)
-        }
-        
+//MARK: - Preview
+#Preview {
+    NavigationStack {
+        CommunityViewPicker(viewModel: CommunityViewModel.preview)
+            .accentColor(.secondaryText)
     }
 }

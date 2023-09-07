@@ -134,15 +134,12 @@ struct VoteView: View {
 }
 
 //MARK: - Preview
-struct VoteView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = VoteViewModel(coordinator: CommunityCoordinator.preview)
+#Preview {
+    let viewModel = VoteViewModel(coordinator: CommunityCoordinator.preview)
+    
+    return ZStack {
+        Color.primaryBackground.ignoresSafeArea()
         
-        ZStack {
-            Color.primaryBackground.ignoresSafeArea()
-            
-            VoteView(viewModel: viewModel)
-        }
-        
+        VoteView(viewModel: viewModel)
     }
 }

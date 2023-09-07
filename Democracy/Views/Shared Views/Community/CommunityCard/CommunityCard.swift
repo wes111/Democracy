@@ -22,8 +22,7 @@ struct CommunityCard: View {
     }
 }
 
-struct CommunityCard_Previews: PreviewProvider {
-    static var previews: some View {
-        CommunityCard(community: Community.preview)
-    }
+//MARK: - Preview
+#Preview {
+    CommunityCard(community: Community.preview)
 }

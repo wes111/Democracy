@@ -45,8 +45,7 @@ extension UpdatesTabCoordinator: UpdatesTabMainCoordinatorDelegate {
     
 }
 
-struct UpdatesTabCoordinator_Previews: PreviewProvider {
-    static var previews: some View {
-        UpdatesTabCoordinator(viewModel: .preview)
-    }
+//MARK: - Preview
+#Preview {
+    UpdatesTabCoordinator(viewModel: .preview)
 }

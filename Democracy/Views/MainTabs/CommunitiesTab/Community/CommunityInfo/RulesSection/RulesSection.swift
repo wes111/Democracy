@@ -29,13 +29,11 @@ struct RulesSection: View {
     }
 }
 
-struct RulesSection_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        let viewModel = RulesSectionViewModel(
-            rules: Rule.previewArray,
-            title: "Rules"
-        )
-        RulesSection(viewModel: viewModel)
-    }
+//MARK: - Preview
+#Preview {
+    let viewModel = RulesSectionViewModel(
+        rules: Rule.previewArray,
+        title: "Rules"
+    )
+    return RulesSection(viewModel: viewModel)
 }

@@ -27,13 +27,11 @@ struct ResourcesSection: View {
     }
 }
 
-struct ResourcesSection_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        let viewModel = ResourcesSectionViewModel(
-            title: "Resources",
-            resources: Resource.previewArray
-        )
-        ResourcesSection(viewModel: viewModel)
-    }
+//MARK: - Preview
+#Preview {
+    let viewModel = ResourcesSectionViewModel(
+        title: "Resources",
+        resources: Resource.previewArray
+    )
+    return ResourcesSection(viewModel: viewModel)
 }

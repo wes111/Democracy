@@ -34,13 +34,12 @@ struct LeadersScrollView: View {
     }
 }
 
-struct LeadersScrollView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = LeadersScrollViewModel(
-            candidates: Candidate.previewArray,
-            repType: .mod,
-            coordinator: CommunityCoordinator.preview
-        )
-        LeadersScrollView(viewModel: viewModel)
-    }
+//MARK: - Preview
+#Preview {
+    let viewModel = LeadersScrollViewModel(
+        candidates: Candidate.previewArray,
+        repType: .mod,
+        coordinator: CommunityCoordinator.preview
+    )
+    return LeadersScrollView(viewModel: viewModel)
 }

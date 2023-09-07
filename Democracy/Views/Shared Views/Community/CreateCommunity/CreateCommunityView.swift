@@ -77,8 +77,7 @@ struct CreateCommunityView<ViewModel: CreateCommunityViewModelProtocol>: View {
     }
 }
 
-struct CreateCommunityView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateCommunityView(viewModel: CreateCommunityViewModel.preview)
-    }
+//MARK: - Preview
+#Preview {
+    CreateCommunityView(viewModel: CreateCommunityViewModel.preview)
 }

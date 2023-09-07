@@ -31,13 +31,11 @@ struct HeaderWithDropDownFilter<T: Hashable>: View where T: CustomStringConverti
     
 }
 
-
-struct HeaderWithDropDownFilter_Previews: PreviewProvider {
-    static var previews: some View {
-        HeaderWithDropDownFilter(
-            title: "Filterable Results",
-            menuItems: RepresentativeType.allCases,
-            selectedItem: .constant(.legislator)
-        )
-    }
+//MARK: - Preview
+#Preview {
+    HeaderWithDropDownFilter(
+        title: "Filterable Results",
+        menuItems: RepresentativeType.allCases,
+        selectedItem: .constant(.legislator)
+    )
 }

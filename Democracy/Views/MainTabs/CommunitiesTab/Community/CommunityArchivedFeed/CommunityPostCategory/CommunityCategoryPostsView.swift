@@ -37,8 +37,7 @@ struct CommunityCategoryPostsView: View {
     }
 }
 
-struct CommunityPostCategoryView_Previews: PreviewProvider {
-    static var previews: some View {
-        CommunityCategoryPostsView(viewModel: CommunityCategoryPostsViewModel.preview)
-    }
+//MARK: - Preview
+#Preview {
+    CommunityCategoryPostsView(viewModel: CommunityCategoryPostsViewModel.preview)
 }

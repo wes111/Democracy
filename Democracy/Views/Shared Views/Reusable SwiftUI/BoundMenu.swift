@@ -32,11 +32,10 @@ struct BoundMenu<T: Hashable & CustomStringConvertible>: View {
     }
 }
 
-struct BoundMenu_Previews: PreviewProvider {
-    static var previews: some View {
-        BoundMenu(
-            menuItems: RepresentativeType.allCases,
-            selectedItem: .constant(.legislator)
-        )
-    }
+//MARK: - Preview
+#Preview {
+    BoundMenu(
+        menuItems: RepresentativeType.allCases,
+        selectedItem: .constant(.legislator)
+    )
 }

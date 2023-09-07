@@ -20,8 +20,7 @@ struct UpdatesTabMainView<ViewModel: UpdatesTabMainViewModelProtocol>: View {
     }
 }
 
-struct UpdatesTabMainView_Previews: PreviewProvider {
-    static var previews: some View {
-        UpdatesTabMainView(viewModel: UpdatesTabMainViewModel.preview)
-    }
+//MARK: - Preview
+#Preview {
+    UpdatesTabMainView(viewModel: UpdatesTabMainViewModel.preview)
 }

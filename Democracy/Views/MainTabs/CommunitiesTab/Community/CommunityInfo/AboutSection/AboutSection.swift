@@ -54,15 +54,12 @@ struct AboutSection: View {
     }
 }
 
-
-struct AboutSection_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        let viewModel = AboutSectionViewModel(
-            summary: "summary",
-            memberCount: 100,
-            foundedDate: Date())
-        
-        AboutSection(viewModel: viewModel)
-    }
+//MARK: - Preview
+#Preview {
+    let viewModel = AboutSectionViewModel(
+        summary: "summary",
+        memberCount: 100,
+        foundedDate: Date())
+    
+    return AboutSection(viewModel: viewModel)
 }

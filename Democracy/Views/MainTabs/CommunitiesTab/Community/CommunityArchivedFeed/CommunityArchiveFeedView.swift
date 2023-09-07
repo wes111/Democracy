@@ -33,8 +33,7 @@ struct CommunityArchiveFeedView: View {
     }
 }
 
-struct CommunityArchiveFeedView_Previews: PreviewProvider {
-    static var previews: some View {
-        CommunityArchiveFeedView(viewModel: CommunityArchiveFeedViewModel.preview)
-    }
+//MARK: - Preview
+#Preview {
+    CommunityArchiveFeedView(viewModel: CommunityArchiveFeedViewModel.preview)
 }

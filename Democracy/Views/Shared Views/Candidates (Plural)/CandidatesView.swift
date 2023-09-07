@@ -67,8 +67,7 @@ struct CandidatesView<ViewModel: CandidatesViewModelProtocol>: View {
     }
 }
 
-struct CandidatesView_Previews: PreviewProvider {
-    static var previews: some View {
-        CandidatesView(viewModel: CandidatesViewModel.preview)
-    }
+//MARK: - Preview
+#Preview {
+    CandidatesView(viewModel: CandidatesViewModel.preview)
 }

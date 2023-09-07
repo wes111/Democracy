@@ -29,9 +29,8 @@ struct ResourceView: View {
     }
 }
 
-struct ResourceView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = Resource.previewArray.first!.viewModel(index: 0)
-        ResourceView(viewModel: viewModel)
-    }
+//MARK: - Preview
+#Preview {
+    let viewModel = Resource.previewArray.first!.viewModel(index: 0)
+    return ResourceView(viewModel: viewModel)
 }

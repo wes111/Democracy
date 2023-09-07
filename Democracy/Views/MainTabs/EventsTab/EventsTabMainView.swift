@@ -20,8 +20,7 @@ struct EventsTabMainView<ViewModel: EventsTabMainViewModelProtocol>: View {
     }
 }
 
-struct EventsTabMainView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventsTabMainView(viewModel: EventsTabMainViewModel.preview)
-    }
+//MARK: - Preview
+#Preview {
+    EventsTabMainView(viewModel: EventsTabMainViewModel.preview)
 }

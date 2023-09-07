@@ -72,9 +72,8 @@ extension EventsTabCoordinator: EventsTabMainCoordinatorDelegate {
     
 }
 
-struct EventsTabCoordinator_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = EventsTabCoordinatorViewModel()
-        EventsTabCoordinator(viewModel: viewModel)
-    }
+//MARK: - Preview
+#Preview {
+    let viewModel = EventsTabCoordinatorViewModel()
+    return EventsTabCoordinator(viewModel: viewModel)
 }

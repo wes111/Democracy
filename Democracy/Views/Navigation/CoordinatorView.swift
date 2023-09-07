@@ -36,13 +36,10 @@ struct CoordinatorView<Path: Hashable, RootView: View, NavigationViewBuilder: Vi
 }
 
 //MARK: - Preview
-struct CoordinatorView_Previews: PreviewProvider {
-    static var previews: some View {
-        CoordinatorView(router: .constant(Router())) {
-            Text("Hello")
-        } secondaryScreen: { (path: CommunitiesTabPath) in
-            Text("World")
-        }
-
+#Preview {
+    CoordinatorView(router: .constant(Router())) {
+        Text("Hello")
+    } secondaryScreen: { (path: CommunitiesTabPath) in
+        Text("World")
     }
 }

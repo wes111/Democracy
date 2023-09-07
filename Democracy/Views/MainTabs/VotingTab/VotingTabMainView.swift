@@ -21,8 +21,6 @@ struct VotingTabMainView: View {
 }
 
 // MARK: - Preview
-struct VotingTabMainView_Previews: PreviewProvider {
-    static var previews: some View {
-        VotingTabMainView(viewModel: VotingTabMainViewModel.preview)
-    }
+#Preview {
+    VotingTabMainView(viewModel: VotingTabMainViewModel.preview)
 }

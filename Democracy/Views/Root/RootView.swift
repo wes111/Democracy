@@ -24,9 +24,8 @@ struct RootView: View {
     }
 }
 
-struct RootView_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = RootViewModel()
-        RootView(viewModel: viewModel)
-    }
+//MARK: - Preview
+#Preview {
+    let viewModel = RootViewModel()
+    return RootView(viewModel: viewModel)
 }

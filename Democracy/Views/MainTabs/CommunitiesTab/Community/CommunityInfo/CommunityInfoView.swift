@@ -37,9 +37,8 @@ struct CommunityInfoView: View {
     }
 }
 
-struct CommunityInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        CommunityInfoView(viewModel: CommunityInfoViewModel.preview)
-            .background(Color.primaryBackground)
-    }
+//MARK: - Preview
+#Preview {
+    CommunityInfoView(viewModel: CommunityInfoViewModel.preview)
+        .background(Color.primaryBackground)
 }

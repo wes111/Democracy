@@ -34,8 +34,6 @@ struct CommunitiesTabCoordinatorView: View {
 }
 
 // MARK: - Preview
-struct CommunitiesTabCoordinator_Previews: PreviewProvider {
-    static var previews: some View {
-        CommunitiesTabCoordinatorView(viewModel: .preview)
-    }
+#Preview {
+    CommunitiesTabCoordinatorView(viewModel: .preview)
 }

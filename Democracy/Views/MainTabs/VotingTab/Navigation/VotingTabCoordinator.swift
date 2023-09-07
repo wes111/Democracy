@@ -41,9 +41,7 @@ extension VotingTabCoordinator: VotingTabMainCoordinatorDelegate {
 }
 
 // MARK: - Preview
-struct VotingTabCoordinator_Previews: PreviewProvider {
-    static var previews: some View {
-        let viewModel = VotingTabCoordinatorViewModel()
-        VotingTabCoordinator(viewModel: viewModel)
-    }
+#Preview {
+    let viewModel = VotingTabCoordinatorViewModel()
+    return VotingTabCoordinator(viewModel: viewModel)
 }
