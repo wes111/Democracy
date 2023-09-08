@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import GRDB
 
 struct Candidate: Hashable, Identifiable, Codable {
     let id: UUID // <-- link to user.
@@ -25,8 +24,4 @@ struct Candidate: Hashable, Identifiable, Codable {
     let externalLink: String?
     let repType: RepresentativeType
     let badges: [CandidateBadge]
-}
-
-extension Candidate: FetchableRecord, PersistableRecord {
-    
 }

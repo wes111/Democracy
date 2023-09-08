@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import GRDB
 
 struct User: Codable {
     // TODO: Break into protocols so we can have different types of users (admins, leaders, regular, etc.)
@@ -15,7 +14,4 @@ struct User: Codable {
     var firstName: String?
     var lastName: String?
     let imageName: String?
-}
-
-extension User: FetchableRecord, PersistableRecord {
 }

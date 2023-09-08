@@ -7,7 +7,6 @@
 
 import Factory
 import Foundation
-import GRDB
 
 protocol CandidateLocalRepositoryProtocol {
     func getCandidates() async throws -> [Candidate]
@@ -24,51 +23,50 @@ enum CandidateLocalRepositoryError: Error {
 
 class CandidateLocalRepository: CandidateLocalRepositoryProtocol {
     
-    @Injected(\.grdbService) var databaseService
-    
     init() { }
     
     func getCandidates() async throws -> [Candidate] {
-
-        return try await databaseService.getDatabaseConnection().read { db in
-            try Candidate.fetchAll(db)
-        }
+    []
+//        return try await databaseService.getDatabaseConnection().read { db in
+//            try Candidate.fetchAll(db)
+//        }
     }
     
     func addCandidate(_ candidate: Candidate) async throws {
         
-        try await databaseService.getDatabaseConnection().write { db in
-            try candidate.insert(db)
-        }
+//        try await databaseService.getDatabaseConnection().write { db in
+//            try candidate.insert(db)
+//        }
     }
     
     private func deleteAllCandidates() async throws {
         
-        try await databaseService.getDatabaseConnection().write { db in
-            _ = try Candidate.deleteAll(db)
-        }
+//        try await databaseService.getDatabaseConnection().write { db in
+//            _ = try Candidate.deleteAll(db)
+//        }
     }
     
     func upVoteCandidate(_ candidate: Candidate) async throws {
 
-        try await databaseService.getDatabaseConnection().write { db in
-            var upvotedCandidate = candidate
-            upvotedCandidate.upVotes += 1
-            try upvotedCandidate.save(db)
-        }
+//        try await databaseService.getDatabaseConnection().write { db in
+//            var upvotedCandidate = candidate
+//            upvotedCandidate.upVotes += 1
+//            try upvotedCandidate.save(db)
+//        }
     }
     
     func downVoteCandidate(_ candidate: Candidate) async throws {
         
-        try await databaseService.getDatabaseConnection().write { db in
-            var downVotedCandidate = candidate
-            downVotedCandidate.downVotes -= 1
-            try downVotedCandidate.save(db)
-        }
+//        try await databaseService.getDatabaseConnection().write { db in
+//            var downVotedCandidate = candidate
+//            downVotedCandidate.downVotes -= 1
+//            try downVotedCandidate.save(db)
+//        }
     }
     
     func getCandidate(id: UUID) async throws -> Candidate? {
-        try await getCandidates().first(where: { $0.id == id })
+        //try await getCandidates().first(where: { $0.id == id })
+        return nil
     }
     
 }
