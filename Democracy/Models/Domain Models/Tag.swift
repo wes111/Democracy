@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Tag: Identifiable {
+struct Tag: Hashable, Identifiable, Codable {
     let id: UUID = UUID()
     let name: String
 }

@@ -17,7 +17,8 @@ extension Community {
         memberCount: 255,
         rules: Rule.previewArray,
         resources: Resource.previewArray,
-        postCategories: CommunityCategory.previewArray,
+        postCategories: CommunityCategory.previewArray, 
+        tags: [],
         alliedCommunities: []
     )
     
@@ -34,7 +35,8 @@ extension Community {
                     memberCount: 255,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
-                    postCategories: CommunityCategory.previewArray,
+                    postCategories: CommunityCategory.previewArray, 
+                    tags: [],
                     alliedCommunities: []
                 ))
         }
@@ -54,7 +56,8 @@ extension Community {
                     memberCount: 255,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
-                    postCategories: CommunityCategory.previewArray,
+                    postCategories: CommunityCategory.previewArray, 
+                    tags: [],
                     alliedCommunities: []
                 ))
         }
@@ -74,7 +77,8 @@ extension Community {
                     memberCount: 255,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
-                    postCategories: CommunityCategory.previewArray,
+                    postCategories: CommunityCategory.previewArray, 
+                    tags: [],
                     alliedCommunities: []
                 ))
         }
