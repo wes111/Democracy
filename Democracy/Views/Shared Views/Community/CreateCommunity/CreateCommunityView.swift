@@ -8,35 +8,89 @@
 import SwiftUI
 
 enum CreateCommunityField {
-    case title, subtitle, body, link, tags
+    case title, addCategory, body, link, tags
 }
 
-struct CreateCommunityView<ViewModel: CreateCommunityViewModelProtocol>: View {
+//TODO: Remove form since there are many customizations.
+struct CreateCommunityView: View {
     
-    @StateObject private var viewModel: ViewModel
+    @StateObject private var viewModel: CreateCommunityViewModel
     @FocusState private var focusedField: CreateCommunityField?
     
-    init(viewModel: ViewModel) {
+    init(viewModel: CreateCommunityViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
+    }
+    
+    var titleField: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text("Title")
+                .foregroundStyle(Color.secondaryText)
+            
+            TextField("", text: $viewModel.title, prompt: Text("Add a title").foregroundColor(.gray))
+                .focused($focusedField, equals: .title)
+                .submitLabel(.next)
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10, style: .circular).stroke(Color.primaryText, lineWidth: 1)
+                )
+                .foregroundStyle(Color.secondaryText)
+        }
+    }
+    
+    var categoriesField: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text("Categories")
+                .foregroundStyle(Color.secondaryText)
+            
+            VStack(alignment: .leading, spacing: 20) {
+                TextField("Add Category", text: $viewModel.categoryString)
+                    .focused($focusedField, equals: .addCategory)
+                    .onSubmit {
+                        Task {
+                            await viewModel.submitCategory()
+                        }
+                    }
+                    .foregroundStyle(Color.secondaryText)
+                
+                if !viewModel.categories.isEmpty {
+                    NewFlowLayout(alignment: .leading) {
+                        ForEach(viewModel.categories, id: \.self) { category in
+                            Text(category)
+                                .padding(10)
+                                .background(Color.secondaryBackground, in: RoundedRectangle(cornerRadius: 10))
+                                .foregroundStyle(Color.secondaryText)
+                        }
+                    }
+                }
+            }
+            .padding()
+            .overlay(
+                RoundedRectangle(cornerRadius: 10, style: .circular).stroke(Color.primaryText, lineWidth: 1)
+            )
+        }
     }
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
+            Color.primaryBackground
+                .ignoresSafeArea()
+            
             Button {
                 viewModel.close()
             } label: {
                 Image(systemName: "xmark")
             }
-            
-            ZStack {
-                VStack {
-                    Text("Create Community")
-                        .font(.title)
-                    Form {
+
+            VStack {
+                Text("Create Community")
+                    .font(.title)
+                    .foregroundColor(.secondaryText)
+                
+                ScrollView(.vertical, showsIndicators: false) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        titleField
                         
-                        TextField("Title", text: $viewModel.title)
-                            .focused($focusedField, equals: .title)
-                            .submitLabel(.next)
+                        categoriesField
                         
                         Button {
                             viewModel.submitCommunity()
@@ -44,12 +98,13 @@ struct CreateCommunityView<ViewModel: CreateCommunityViewModelProtocol>: View {
                             Text("Submit")
                         }
                         .disabled(viewModel.isLoading)
+                        .listRowBackground(Color.secondaryBackground)
                     }
                 }
-                
-                if viewModel.isLoading {
-                    ProgressView()
-                }
+            }
+            
+            if viewModel.isLoading {
+                ProgressView()
             }
         }
         .onAppear {
@@ -68,8 +123,8 @@ struct CreateCommunityView<ViewModel: CreateCommunityViewModelProtocol>: View {
             return nil
         }
         switch field {
-        case .title: return .subtitle
-        case .subtitle: return .body
+        case .title: return .addCategory
+        case .addCategory: return .addCategory
         case .body: return .link
         case .link: return nil
         case .tags: return nil

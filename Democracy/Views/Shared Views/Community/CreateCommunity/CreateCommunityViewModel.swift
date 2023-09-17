@@ -14,18 +14,11 @@ protocol CreateCommunityCoordinatorDelegate {
     func close()
 }
 
-protocol CreateCommunityViewModelProtocol: ObservableObject {
-    var title: String { get set }
-    var alert: CreateCommunityAlert? { get set }
-    var isLoading: Bool { get set }
-    
-    func close()
-    func submitCommunity()
-}
-
-final class CreateCommunityViewModel: CreateCommunityViewModelProtocol {
+final class CreateCommunityViewModel: ObservableObject {
     
     @Published var title = ""
+    @Published var categoryString = ""
+    @Published var categories: [String] = []
     @Published var alert: CreateCommunityAlert?
     @Published var isLoading: Bool = false
     
@@ -36,9 +29,22 @@ final class CreateCommunityViewModel: CreateCommunityViewModelProtocol {
     init(coordinator: CreateCommunityCoordinatorDelegate) {
         self.coordinator = coordinator
     }
+}
+
+//MARK: - Methods
+extension CreateCommunityViewModel {
     
     func close() {
         coordinator.close()
+    }
+    
+    func submitCategory() async {
+        guard !categoryString.isEmpty && !categories.contains(categoryString) else { return }
+        
+        await MainActor.run {
+            categories.append(categoryString)
+            categoryString = ""
+        }
     }
     
     func submitCommunity() {
@@ -59,5 +65,4 @@ final class CreateCommunityViewModel: CreateCommunityViewModelProtocol {
             
         }
     }
-    
 }

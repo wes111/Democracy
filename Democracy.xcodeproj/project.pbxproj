@@ -61,6 +61,7 @@
 		EE5D3A092A3804D100D0E312 /* PostCategory+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A082A3804D100D0E312 /* PostCategory+Extension.swift */; };
 		EE5D3A0D2A45241200D0E312 /* Resource+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A0C2A45241200D0E312 /* Resource+Preview.swift */; };
 		EE5D3A0F2A45246400D0E312 /* Rule+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A0E2A45246400D0E312 /* Rule+Preview.swift */; };
+		EE7856132AAE75620004B7E4 /* NewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856122AAE75620004B7E4 /* NewFlowLayout.swift */; };
 		EE80D8B129BAE4A80000F8EF /* Post+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B029BAE4A80000F8EF /* Post+Preview.swift */; };
 		EE80D8B429BAE6410000F8EF /* Community+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B329BAE6410000F8EF /* Community+Preview.swift */; };
 		EE80D8B629BAECCE0000F8EF /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B529BAECCE0000F8EF /* Link.swift */; };
@@ -238,6 +239,7 @@
 		EE5D3A082A3804D100D0E312 /* PostCategory+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostCategory+Extension.swift"; sourceTree = "<group>"; };
 		EE5D3A0C2A45241200D0E312 /* Resource+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resource+Preview.swift"; sourceTree = "<group>"; };
 		EE5D3A0E2A45246400D0E312 /* Rule+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rule+Preview.swift"; sourceTree = "<group>"; };
+		EE7856122AAE75620004B7E4 /* NewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFlowLayout.swift; sourceTree = "<group>"; };
 		EE80D8B029BAE4A80000F8EF /* Post+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8B329BAE6410000F8EF /* Community+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Community+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8B529BAECCE0000F8EF /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -742,6 +744,7 @@
 				EE5B938429F7652800B43381 /* HeaderWithDropDownFilter.swift */,
 				EE5D39EE2A2B9B4B00D0E312 /* TightLabelStyle.swift */,
 				EE80D95929E8EBB70000F8EF /* UIViewRepresentable */,
+				EE7856122AAE75620004B7E4 /* NewFlowLayout.swift */,
 			);
 			path = "Reusable SwiftUI";
 			sourceTree = "<group>";
@@ -1200,6 +1203,7 @@
 				EE80D91829C930210000F8EF /* CandidateView.swift in Sources */,
 				EE80D90F29C92C190000F8EF /* CandidateCardViewModel.swift in Sources */,
 				EE80D8B629BAECCE0000F8EF /* Link.swift in Sources */,
+				EE7856132AAE75620004B7E4 /* NewFlowLayout.swift in Sources */,
 				EE45248D2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift in Sources */,
 				EE80D91329C92DA60000F8EF /* CandidateCardViewModel+Preview.swift in Sources */,
 				EE11729B2A6F3D0300E529AF /* AlliedCommunityView.swift in Sources */,
