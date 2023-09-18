@@ -8,66 +8,16 @@
 import SwiftUI
 
 enum CreateCommunityField {
-    case title, addCategory, body, link, tags
+    case title, addCategory, summary
 }
 
-//TODO: Remove form since there are many customizations.
+//TODO: Add adult content checkbox.
 struct CreateCommunityView: View {
-    
     @StateObject private var viewModel: CreateCommunityViewModel
     @FocusState private var focusedField: CreateCommunityField?
     
     init(viewModel: CreateCommunityViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
-    }
-    
-    var titleField: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text("Title")
-                .foregroundStyle(Color.secondaryText)
-            
-            TextField("", text: $viewModel.title, prompt: Text("Add a title").foregroundColor(.gray))
-                .focused($focusedField, equals: .title)
-                .submitLabel(.next)
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10, style: .circular).stroke(Color.primaryText, lineWidth: 1)
-                )
-                .foregroundStyle(Color.secondaryText)
-        }
-    }
-    
-    var categoriesField: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text("Categories")
-                .foregroundStyle(Color.secondaryText)
-            
-            VStack(alignment: .leading, spacing: 20) {
-                TextField("Add Category", text: $viewModel.categoryString)
-                    .focused($focusedField, equals: .addCategory)
-                    .onSubmit {
-                        Task {
-                            await viewModel.submitCategory()
-                        }
-                    }
-                    .foregroundStyle(Color.secondaryText)
-                
-                if !viewModel.categories.isEmpty {
-                    NewFlowLayout(alignment: .leading) {
-                        ForEach(viewModel.categories, id: \.self) { category in
-                            Text(category)
-                                .padding(10)
-                                .background(Color.secondaryBackground, in: RoundedRectangle(cornerRadius: 10))
-                                .foregroundStyle(Color.secondaryText)
-                        }
-                    }
-                }
-            }
-            .padding()
-            .overlay(
-                RoundedRectangle(cornerRadius: 10, style: .circular).stroke(Color.primaryText, lineWidth: 1)
-            )
-        }
     }
     
     var body: some View {
@@ -87,21 +37,15 @@ struct CreateCommunityView: View {
                     .foregroundColor(.secondaryText)
                 
                 ScrollView(.vertical, showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 10) {
+                    VStack(alignment: .leading, spacing: 20) {
                         titleField
-                        
+                        summaryField
                         categoriesField
-                        
-                        Button {
-                            viewModel.submitCommunity()
-                        } label: {
-                            Text("Submit")
-                        }
-                        .disabled(viewModel.isLoading)
-                        .listRowBackground(Color.secondaryBackground)
+                        submitButton
                     }
                 }
             }
+            .padding()
             
             if viewModel.isLoading {
                 ProgressView()
@@ -117,17 +61,58 @@ struct CreateCommunityView: View {
             Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .cancel())
         }
     }
+}
+
+//MARK: - Subviews
+extension CreateCommunityView {
+    
+    var summaryField: some View {
+        TextField("Summary", text: $viewModel.summary, axis: .vertical)
+            .lineLimit(3...10)
+            .standardTextField(title: "Summary")
+    }
+    
+    var titleField: some View {
+        TextField("", text: $viewModel.title, prompt: Text("Add a title"), axis: .vertical)
+            .lineLimit(2)
+            .standardTextField(title: "Title")
+            .focused($focusedField, equals: .title)
+            .submitLabel(.next)
+    }
+    
+    var categoriesField: some View {
+        TextField("Add Category", text: $viewModel.categoryString)
+            .taggable(title: "Categories", tags: viewModel.categories)
+            .focused($focusedField, equals: .addCategory)
+            .onSubmit {
+                Task {
+                    await viewModel.submitCategory()
+                }
+            }
+    }
+    
+    var submitButton: some View {
+        Button {
+            viewModel.submitCommunity()
+        } label: {
+            Text("Submit")
+        }
+        .buttonStyle(PrimaryButtonStyle())
+        .disabled(viewModel.isLoading)
+    }
+}
+
+//MARK: - Helper Methods
+extension CreateCommunityView {
     
     func getNextField(after field: CreateCommunityField?) -> CreateCommunityField? {
         guard let field = field else {
             return nil
         }
         switch field {
-        case .title: return .addCategory
+        case .title: return .summary
+        case .summary: return .addCategory
         case .addCategory: return .addCategory
-        case .body: return .link
-        case .link: return nil
-        case .tags: return nil
         }
     }
 }

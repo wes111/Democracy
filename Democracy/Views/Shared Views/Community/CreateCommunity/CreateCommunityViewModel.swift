@@ -18,7 +18,10 @@ final class CreateCommunityViewModel: ObservableObject {
     
     @Published var title = ""
     @Published var categoryString = ""
+    @Published var postTagString = ""
+    @Published var summary = ""
     @Published var categories: [String] = []
+    @Published var postTags: [String] = []
     @Published var alert: CreateCommunityAlert?
     @Published var isLoading: Bool = false
     
@@ -44,6 +47,15 @@ extension CreateCommunityViewModel {
         await MainActor.run {
             categories.append(categoryString)
             categoryString = ""
+        }
+    }
+    
+    func submitPostTag() async {
+        guard !postTagString.isEmpty && !postTags.contains(postTagString) else { return }
+        
+        await MainActor.run {
+            postTags.append(postTagString)
+            postTagString = ""
         }
     }
     

@@ -62,4 +62,5 @@ struct AboutSection: View {
         foundedDate: Date())
     
     return AboutSection(viewModel: viewModel)
+        .frame(height: 100)
 }
