@@ -106,8 +106,7 @@ struct VoteView: View {
             }
         }
         .padding()
-        .navigationBarBackButtonHidden(true)
-        .navigationTitle(viewModel.navigationTitle)
+        .toolbarNavigation(title: viewModel.navigationTitle, close: viewModel.goBack)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu("Role") {
@@ -118,15 +117,6 @@ struct VoteView: View {
                             Text(type.rawValue)
                         }
                     }
-                }
-            }
-            
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    viewModel.goBack()
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(.tertiaryText)
                 }
             }
         }

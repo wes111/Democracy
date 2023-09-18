@@ -40,7 +40,6 @@ struct CreateCommunityView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
         .toolbarNavigation(title: "Create Community", close: viewModel.close)
         .onAppear {
             focusedField = .title
@@ -90,6 +89,12 @@ extension CreateCommunityView {
         }
         .buttonStyle(PrimaryButtonStyle())
         .disabled(viewModel.isLoading)
+    }
+    
+    var adultContentCheckBox: some View {
+        Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Is On@*/.constant(true)/*@END_MENU_TOKEN@*/) {
+            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
+        }
     }
 }
 

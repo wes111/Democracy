@@ -48,7 +48,6 @@ struct CandidatesView<ViewModel: CandidatesViewModelProtocol>: View {
             }
             .listRowInsets(EdgeInsets())
             .listRowSeparator(.hidden)
-
         }
         .headerProminence(.increased)
         .listStyle(PlainListStyle())

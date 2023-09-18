@@ -42,7 +42,6 @@ struct CommunityViewPicker: View {
             }
             
             TabView(selection: $tabSelection) {
-                
                 CommunityInfoView(viewModel: viewModel.getCommunityInfoViewModel())
                     .tabItem {
                         Text(CommunityTab.info.rawValue)
@@ -64,7 +63,6 @@ struct CommunityViewPicker: View {
             .tabViewStyle(.page)
         }
         .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
         .navigationBarHidden(!viewModel.isShowingNavigationBar)
         .toolbarNavigation(title: viewModel.community.name, close: viewModel.goBack)
         .toolbar {

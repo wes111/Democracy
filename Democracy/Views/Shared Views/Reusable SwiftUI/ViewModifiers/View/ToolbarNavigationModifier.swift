@@ -14,11 +14,13 @@ struct ToolbarNavigationModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         content
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
                         Text(title)
-                            .font(.headline)
+                            .font(.title2)
+                            .fontWeight(.semibold)
                             .foregroundColor(.tertiaryText)
                     }
                 }
