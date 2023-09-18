@@ -51,8 +51,6 @@
 		EE5D39EF2A2B9B4B00D0E312 /* TightLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39EE2A2B9B4B00D0E312 /* TightLabelStyle.swift */; };
 		EE5D39F12A2BB5DC00D0E312 /* RichLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39F02A2BB5DC00D0E312 /* RichLinkService.swift */; };
 		EE5D39F32A2BDA1E00D0E312 /* LPLinkViewRepresented.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39F22A2BDA1E00D0E312 /* LPLinkViewRepresented.swift */; };
-		EE5D39F72A2D077D00D0E312 /* PositionObservingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39F62A2D077D00D0E312 /* PositionObservingView.swift */; };
-		EE5D39F92A2D085900D0E312 /* OffsetObservingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39F82A2D085900D0E312 /* OffsetObservingScrollView.swift */; };
 		EE5D39FD2A2ECB2A00D0E312 /* CommunityCoordinatorViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39FC2A2ECB2A00D0E312 /* CommunityCoordinatorViewModel+Preview.swift */; };
 		EE5D39FF2A2ED43A00D0E312 /* CommunityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D39FE2A2ED43A00D0E312 /* CommunityCoordinator.swift */; };
 		EE5D3A012A2EE0ED00D0E312 /* CommunitiesTabCoordinatorViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A002A2EE0ED00D0E312 /* CommunitiesTabCoordinatorViewModel+Preview.swift */; };
@@ -65,6 +63,7 @@
 		EE7856182AB7BACB0004B7E4 /* TaggableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856172AB7BACB0004B7E4 /* TaggableModifier.swift */; };
 		EE78561B2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78561A2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift */; };
 		EE78561F2AB7E53A0004B7E4 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78561E2AB7E53A0004B7E4 /* PrimaryButtonStyle.swift */; };
+		EE7856212AB90E200004B7E4 /* ToolbarNavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856202AB90E200004B7E4 /* ToolbarNavigationModifier.swift */; };
 		EE80D8B129BAE4A80000F8EF /* Post+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B029BAE4A80000F8EF /* Post+Preview.swift */; };
 		EE80D8B429BAE6410000F8EF /* Community+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B329BAE6410000F8EF /* Community+Preview.swift */; };
 		EE80D8B629BAECCE0000F8EF /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B529BAECCE0000F8EF /* Link.swift */; };
@@ -232,8 +231,6 @@
 		EE5D39EE2A2B9B4B00D0E312 /* TightLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TightLabelStyle.swift; sourceTree = "<group>"; };
 		EE5D39F02A2BB5DC00D0E312 /* RichLinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichLinkService.swift; sourceTree = "<group>"; };
 		EE5D39F22A2BDA1E00D0E312 /* LPLinkViewRepresented.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LPLinkViewRepresented.swift; sourceTree = "<group>"; };
-		EE5D39F62A2D077D00D0E312 /* PositionObservingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionObservingView.swift; sourceTree = "<group>"; };
-		EE5D39F82A2D085900D0E312 /* OffsetObservingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetObservingScrollView.swift; sourceTree = "<group>"; };
 		EE5D39FC2A2ECB2A00D0E312 /* CommunityCoordinatorViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunityCoordinatorViewModel+Preview.swift"; sourceTree = "<group>"; };
 		EE5D39FE2A2ED43A00D0E312 /* CommunityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCoordinator.swift; sourceTree = "<group>"; };
 		EE5D3A002A2EE0ED00D0E312 /* CommunitiesTabCoordinatorViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunitiesTabCoordinatorViewModel+Preview.swift"; sourceTree = "<group>"; };
@@ -246,6 +243,7 @@
 		EE7856172AB7BACB0004B7E4 /* TaggableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggableModifier.swift; sourceTree = "<group>"; };
 		EE78561A2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardBorderedModifier.swift; sourceTree = "<group>"; };
 		EE78561E2AB7E53A0004B7E4 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		EE7856202AB90E200004B7E4 /* ToolbarNavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarNavigationModifier.swift; sourceTree = "<group>"; };
 		EE80D8B029BAE4A80000F8EF /* Post+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8B329BAE6410000F8EF /* Community+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Community+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8B529BAECCE0000F8EF /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -531,15 +529,6 @@
 			path = RichLinkService;
 			sourceTree = "<group>";
 		};
-		EE5D39F52A2D075100D0E312 /* OffsetObservingScrollView */ = {
-			isa = PBXGroup;
-			children = (
-				EE5D39F62A2D077D00D0E312 /* PositionObservingView.swift */,
-				EE5D39F82A2D085900D0E312 /* OffsetObservingScrollView.swift */,
-			);
-			path = OffsetObservingScrollView;
-			sourceTree = "<group>";
-		};
 		EE7856142AB7BA970004B7E4 /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
@@ -561,6 +550,7 @@
 			isa = PBXGroup;
 			children = (
 				EE78561A2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift */,
+				EE7856202AB90E200004B7E4 /* ToolbarNavigationModifier.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -787,7 +777,6 @@
 			children = (
 				EE78561C2AB7E51D0004B7E4 /* Styles */,
 				EE7856142AB7BA970004B7E4 /* ViewModifiers */,
-				EE5D39F52A2D075100D0E312 /* OffsetObservingScrollView */,
 				EE5B938A29F7764E00B43381 /* BoundMenu.swift */,
 				EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */,
 				EE5B938429F7652800B43381 /* HeaderWithDropDownFilter.swift */,
@@ -1227,7 +1216,6 @@
 				EE5D3A072A38041500D0E312 /* CommunityCategory.swift in Sources */,
 				EE936CAD2A789F9D00D49271 /* EventsTabPath.swift in Sources */,
 				EE80D94829D9DC040000F8EF /* CommunityCard.swift in Sources */,
-				EE5D39F92A2D085900D0E312 /* OffsetObservingScrollView.swift in Sources */,
 				EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */,
 				EE80D95B29E8EBD10000F8EF /* WebView.swift in Sources */,
 				EE80D92429C955C30000F8EF /* CandidateLocalRepository.swift in Sources */,
@@ -1264,7 +1252,6 @@
 				EED4A4F129AA7ED700DDCCDA /* RootViewModel.swift in Sources */,
 				EE54ADEC29A714E8007C3E3F /* LoginViewModel.swift in Sources */,
 				EED4A50D29AB18E400DDCCDA /* UpdatesTabMainViewModel.swift in Sources */,
-				EE5D39F72A2D077D00D0E312 /* PositionObservingView.swift in Sources */,
 				EED4A54529BAE16700DDCCDA /* Tag.swift in Sources */,
 				EED4A51329AB1C6F00DDCCDA /* HistoryTabMainView.swift in Sources */,
 				EE80D90A29C926BF0000F8EF /* CommunityInfoViewModel+Preview.swift in Sources */,
@@ -1340,6 +1327,7 @@
 				EE45249D2A5CE36B00C7A2DD /* RulesSectionViewModel.swift in Sources */,
 				EE80D8FA29C01F360000F8EF /* UserRemoteRepository.swift in Sources */,
 				EE5D3A0D2A45241200D0E312 /* Resource+Preview.swift in Sources */,
+				EE7856212AB90E200004B7E4 /* ToolbarNavigationModifier.swift in Sources */,
 				EE80D93929D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift in Sources */,
 				EE80D8BE29BC11240000F8EF /* CommunityCoordinator+Preview.swift in Sources */,
 				EE7856182AB7BACB0004B7E4 /* TaggableModifier.swift in Sources */,

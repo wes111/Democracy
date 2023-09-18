@@ -30,7 +30,6 @@ struct CommunityViewPicker: View {
     
     var body: some View {
         VStack {
-            
             if viewModel.isShowingNavigationBar {
                 Picker(selection: $tabSelection, label: Text("Picker")) {
                     Text(CommunityTab.info.rawValue).tag(CommunityTab.info)
@@ -67,8 +66,8 @@ struct CommunityViewPicker: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(!viewModel.isShowingNavigationBar)
+        .toolbarNavigation(title: viewModel.community.name, close: viewModel.goBack)
         .toolbar {
-            
             if tabSelection == .feed {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -79,28 +78,8 @@ struct CommunityViewPicker: View {
                     }
                 }
             }
-            
-            ToolbarItem(placement: .principal) {
-                HStack {
-                    Text(viewModel.community.name)
-                        .font(.headline)
-                        .foregroundColor(.tertiaryText)
-                }
-            }
-            
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    viewModel.goBack()
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(.tertiaryText)
-                }
-            }
         }
-        .background(
-            Color.primaryBackground
-        )
-
+        .background(Color.primaryBackground)
     }
 }
 

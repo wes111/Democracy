@@ -16,8 +16,7 @@ struct CommunityHomeFeedView: View {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
-    var body: some View {
-        OffsetObservingScrollView(offset: $viewModel.scrollOffset) {
+    var body: some View { //TODO: ....
             VStack(spacing: postSpacing) {
                 pinnedPosts(pinnedPosts: viewModel.pinnedPosts)
                 
@@ -30,7 +29,6 @@ struct CommunityHomeFeedView: View {
                     }
                 }
             }
-        }
         .refreshable {
             viewModel.refreshPosts()
         }

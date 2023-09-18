@@ -41,25 +41,7 @@ struct CreateCommunityView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                HStack {
-                    Text("Create Community")
-                        .font(.headline)
-                        .foregroundColor(.tertiaryText)
-                }
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button {
-                    viewModel.close()
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .foregroundColor(.tertiaryText)
-                }
-            }
-        }
+        .toolbarNavigation(title: "Create Community", close: viewModel.close)
         .onAppear {
             focusedField = .title
         }

@@ -16,6 +16,7 @@ struct StandardBorderedModifier: ViewModifier {
         VStack(alignment: .leading, spacing: 5) {
             if let title {
                 Text(title)
+                    .font(.callout)
                     .foregroundStyle(Color.secondaryText)
             }
             
@@ -23,7 +24,7 @@ struct StandardBorderedModifier: ViewModifier {
                 .foregroundStyle(Color.secondaryText)
                 .padding()
                 .overlay(
-                    RoundedRectangle(cornerRadius: 10, style: .circular).stroke(Color.primaryText, lineWidth: 1)
+                    RoundedRectangle(cornerRadius: 10, style: .circular).stroke(Color.tertiaryText, lineWidth: 1)
                 )
         }
     }
