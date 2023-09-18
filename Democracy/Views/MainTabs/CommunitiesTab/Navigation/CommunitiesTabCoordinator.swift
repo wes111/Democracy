@@ -9,8 +9,6 @@ import Foundation
 
 final class CommunitiesTabCoordinator: Coordinator {
     
-    @Published var isShowingCreateCommunityView = false
-    
 }
 
 // MARK: - Child ViewModels
@@ -38,7 +36,7 @@ extension CommunitiesTabCoordinator {
 extension CommunitiesTabCoordinator: CommunitiesTabMainCoordinatorDelegate {
     
     func showCreateCommunityView() {
-        isShowingCreateCommunityView = true
+        router.push(CommunitiesTabPath.goToCreateCommunity)
     }
     
     func goToCommunity(communityId: UUID) {
@@ -48,9 +46,8 @@ extension CommunitiesTabCoordinator: CommunitiesTabMainCoordinatorDelegate {
 }
 
 extension CommunitiesTabCoordinator: CreateCommunityCoordinatorDelegate {
-    
     func close() {
-        isShowingCreateCommunityView = false
+        router.pop()
     }
 }
 

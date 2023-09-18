@@ -21,7 +21,6 @@ struct VotingTabCoordinator: View {
         } secondaryScreen: { (path: VotingTabPath) in
             createViewFromPath(path)
         }
-        //.fullScreenCover(item: <#T##Binding<Identifiable?>#>, content: <#T##(Identifiable) -> View#>)
     }
     
     @ViewBuilder

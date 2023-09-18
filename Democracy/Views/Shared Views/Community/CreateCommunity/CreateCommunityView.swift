@@ -25,30 +25,39 @@ struct CreateCommunityView: View {
             Color.primaryBackground
                 .ignoresSafeArea()
             
-            Button {
-                viewModel.close()
-            } label: {
-                Image(systemName: "xmark")
-            }
-
-            VStack {
-                Text("Create Community")
-                    .font(.title)
-                    .foregroundColor(.secondaryText)
-                
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 20) {
-                        titleField
-                        summaryField
-                        categoriesField
-                        submitButton
-                    }
+            ScrollView(.vertical, showsIndicators: false) {
+                VStack(alignment: .leading, spacing: 20) {
+                    titleField
+                    summaryField
+                    categoriesField
+                    submitButton
                 }
             }
             .padding()
             
             if viewModel.isLoading {
                 ProgressView()
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                HStack {
+                    Text("Create Community")
+                        .font(.headline)
+                        .foregroundColor(.tertiaryText)
+                }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    viewModel.close()
+                } label: {
+                    Image(systemName: "chevron.left")
+                        .foregroundColor(.tertiaryText)
+                }
             }
         }
         .onAppear {
@@ -119,5 +128,8 @@ extension CreateCommunityView {
 
 //MARK: - Preview
 #Preview {
-    CreateCommunityView(viewModel: CreateCommunityViewModel.preview)
+    NavigationStack {
+        CreateCommunityView(viewModel: CreateCommunityViewModel.preview)
+    }
+    
 }

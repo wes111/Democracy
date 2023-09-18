@@ -9,4 +9,5 @@ import Foundation
 
 enum CommunitiesTabPath: Hashable {
     case goToCommunity(Community)
+    case goToCreateCommunity
 }

@@ -20,15 +20,14 @@ struct CommunitiesTabCoordinatorView: View {
         } secondaryScreen: { (path: CommunitiesTabPath) in
             createViewFromPath(path)
         }
-        .fullScreenCover(isPresented: $viewModel.isShowingCreateCommunityView) {
-            CreateCommunityView(viewModel: viewModel.createCommunityViewModel())
-        }
     }
     
     @ViewBuilder
     func createViewFromPath(_ path: CommunitiesTabPath) -> some View {
         switch path {
         case .goToCommunity(let community): CommunityCoordinatorView(viewModel: viewModel.communityCoordinatorViewModel(community: community))
+        case .goToCreateCommunity:
+            CreateCommunityView(viewModel: viewModel.createCommunityViewModel())
         }
     }
 }
