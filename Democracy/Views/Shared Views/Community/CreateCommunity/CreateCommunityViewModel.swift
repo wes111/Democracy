@@ -24,6 +24,7 @@ final class CreateCommunityViewModel: ObservableObject {
     @Published var postTags: [String] = []
     @Published var alert: CreateCommunityAlert?
     @Published var isLoading: Bool = false
+    @Published var hasAdultContent = false
     
     @Injected(\.communityInteractor) var communityInteractor
     

@@ -39,6 +39,7 @@ struct MainTabView: View {
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+        UINavigationBar.appearance().clipsToBounds = true
         
         let tabBarApperance = UITabBarAppearance()
         tabBarApperance.configureWithOpaqueBackground()

@@ -21,10 +21,11 @@ struct StandardBorderedModifier: ViewModifier {
             }
             
             content
-                .foregroundStyle(Color.secondaryText)
+                .foregroundStyle(Color.primaryText)
                 .padding()
                 .overlay(
-                    RoundedRectangle(cornerRadius: 10, style: .circular).stroke(Color.tertiaryText, lineWidth: 1)
+                    RoundedRectangle(cornerRadius: 10, style: .circular)
+                        .stroke(Color.tertiaryText, lineWidth: 1.5)
                 )
         }
     }

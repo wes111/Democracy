@@ -11,7 +11,6 @@ enum CreateCommunityField {
     case title, addCategory, summary
 }
 
-//TODO: Add adult content checkbox.
 struct CreateCommunityView: View {
     @StateObject private var viewModel: CreateCommunityViewModel
     @FocusState private var focusedField: CreateCommunityField?
@@ -26,10 +25,11 @@ struct CreateCommunityView: View {
                 .ignoresSafeArea()
             
             ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .leading, spacing: 25) {
                     titleField
                     summaryField
                     categoriesField
+                    adultContentCheckBox
                     submitButton
                 }
             }
@@ -57,22 +57,26 @@ struct CreateCommunityView: View {
 extension CreateCommunityView {
     
     var summaryField: some View {
-        TextField("Summary", text: $viewModel.summary, axis: .vertical)
+        TextField("Summary", text: $viewModel.summary, prompt: Text("Describe the community").foregroundColor(.secondaryBackground), axis: .vertical)
+            .limitCharacters(text: $viewModel.categoryString, count: 2_000)
             .lineLimit(3...10)
-            .standardTextField(title: "Summary")
+            .focused($focusedField, equals: .summary)
+            .standardTextField(title: "Description")
     }
     
     var titleField: some View {
-        TextField("", text: $viewModel.title, prompt: Text("Add a title"), axis: .vertical)
+        TextField("", text: $viewModel.title, prompt: Text("Add a title").foregroundColor(.secondaryBackground), axis: .vertical)
+            .limitCharacters(text: $viewModel.title, count: 75)
             .lineLimit(2)
-            .standardTextField(title: "Title")
             .focused($focusedField, equals: .title)
+            .standardTextField(title: "Title")
             .submitLabel(.next)
     }
     
     var categoriesField: some View {
-        TextField("Add Category", text: $viewModel.categoryString)
+        TextField("Add Category", text: $viewModel.categoryString, prompt: Text("Add a post category").foregroundColor(.secondaryBackground))
             .taggable(title: "Categories", tags: viewModel.categories)
+            .limitCharacters(text: $viewModel.categoryString, count: 25)
             .focused($focusedField, equals: .addCategory)
             .onSubmit {
                 Task {
@@ -92,9 +96,10 @@ extension CreateCommunityView {
     }
     
     var adultContentCheckBox: some View {
-        Toggle(isOn: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Is On@*/.constant(true)/*@END_MENU_TOKEN@*/) {
-            /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Label@*/Text("Label")/*@END_MENU_TOKEN@*/
+        Toggle(isOn: $viewModel.hasAdultContent) {
+            Text("Adult Content 18+")
         }
+        .toggleStyle(.iOSCheckbox)
     }
 }
 

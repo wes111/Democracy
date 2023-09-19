@@ -64,6 +64,9 @@
 		EE78561B2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78561A2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift */; };
 		EE78561F2AB7E53A0004B7E4 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78561E2AB7E53A0004B7E4 /* PrimaryButtonStyle.swift */; };
 		EE7856212AB90E200004B7E4 /* ToolbarNavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856202AB90E200004B7E4 /* ToolbarNavigationModifier.swift */; };
+		EE7856242AB917FA0004B7E4 /* CheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856232AB917FA0004B7E4 /* CheckboxToggleStyle.swift */; };
+		EE7856262AB948E50004B7E4 /* CharacterLimiterModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856252AB948E50004B7E4 /* CharacterLimiterModifier.swift */; };
+		EE7856282AB949C10004B7E4 /* PreviewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856272AB949C10004B7E4 /* PreviewModifier.swift */; };
 		EE80D8B129BAE4A80000F8EF /* Post+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B029BAE4A80000F8EF /* Post+Preview.swift */; };
 		EE80D8B429BAE6410000F8EF /* Community+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B329BAE6410000F8EF /* Community+Preview.swift */; };
 		EE80D8B629BAECCE0000F8EF /* Link.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8B529BAECCE0000F8EF /* Link.swift */; };
@@ -244,6 +247,9 @@
 		EE78561A2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardBorderedModifier.swift; sourceTree = "<group>"; };
 		EE78561E2AB7E53A0004B7E4 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		EE7856202AB90E200004B7E4 /* ToolbarNavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarNavigationModifier.swift; sourceTree = "<group>"; };
+		EE7856232AB917FA0004B7E4 /* CheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxToggleStyle.swift; sourceTree = "<group>"; };
+		EE7856252AB948E50004B7E4 /* CharacterLimiterModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterLimiterModifier.swift; sourceTree = "<group>"; };
+		EE7856272AB949C10004B7E4 /* PreviewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewModifier.swift; sourceTree = "<group>"; };
 		EE80D8B029BAE4A80000F8EF /* Post+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Post+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8B329BAE6410000F8EF /* Community+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Community+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8B529BAECCE0000F8EF /* Link.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Link.swift; sourceTree = "<group>"; };
@@ -551,6 +557,8 @@
 			children = (
 				EE78561A2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift */,
 				EE7856202AB90E200004B7E4 /* ToolbarNavigationModifier.swift */,
+				EE7856252AB948E50004B7E4 /* CharacterLimiterModifier.swift */,
+				EE7856272AB949C10004B7E4 /* PreviewModifier.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -558,6 +566,7 @@
 		EE78561C2AB7E51D0004B7E4 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				EE7856222AB917D30004B7E4 /* Toggle */,
 				EE78561D2AB7E5270004B7E4 /* Button */,
 			);
 			path = Styles;
@@ -569,6 +578,14 @@
 				EE78561E2AB7E53A0004B7E4 /* PrimaryButtonStyle.swift */,
 			);
 			path = Button;
+			sourceTree = "<group>";
+		};
+		EE7856222AB917D30004B7E4 /* Toggle */ = {
+			isa = PBXGroup;
+			children = (
+				EE7856232AB917FA0004B7E4 /* CheckboxToggleStyle.swift */,
+			);
+			path = Toggle;
 			sourceTree = "<group>";
 		};
 		EE80D8B229BAE60F0000F8EF /* Domain Models */ = {
@@ -1213,6 +1230,7 @@
 				EE5B93922A033A7D00B43381 /* Month.swift in Sources */,
 				EE5B938B29F7764E00B43381 /* BoundMenu.swift in Sources */,
 				EE80D93729D289BB0000F8EF /* CreateCandidateAlert.swift in Sources */,
+				EE7856242AB917FA0004B7E4 /* CheckboxToggleStyle.swift in Sources */,
 				EE5D3A072A38041500D0E312 /* CommunityCategory.swift in Sources */,
 				EE936CAD2A789F9D00D49271 /* EventsTabPath.swift in Sources */,
 				EE80D94829D9DC040000F8EF /* CommunityCard.swift in Sources */,
@@ -1313,6 +1331,7 @@
 				EE80D90429C923960000F8EF /* CommunityInfoViewModel.swift in Sources */,
 				EE936CB12A78A01200D49271 /* HistoryTabCoordinatorViewModel.swift in Sources */,
 				EE80D8F429BD3A940000F8EF /* AddPostViewModel+Preview.swift in Sources */,
+				EE7856262AB948E50004B7E4 /* CharacterLimiterModifier.swift in Sources */,
 				EE80D8FC29C01FF00000F8EF /* CommunityInteractor.swift in Sources */,
 				EE80D8DA29BC176E0000F8EF /* CommunityViewModel+Preview.swift in Sources */,
 				EE80D91C29C930C40000F8EF /* CandidateViewModel+Preview.swift in Sources */,
@@ -1338,6 +1357,7 @@
 				EE936CB72A78A12F00D49271 /* UpdatesTabCoordinatorViewModel.swift in Sources */,
 				EED4A54029BAB3E800DDCCDA /* Comment.swift in Sources */,
 				EE936CB92A81DA2700D49271 /* CoordinatorView.swift in Sources */,
+				EE7856282AB949C10004B7E4 /* PreviewModifier.swift in Sources */,
 				EE936CA02A7895B700D49271 /* CommunityPath.swift in Sources */,
 				EE5B938529F7652800B43381 /* HeaderWithDropDownFilter.swift in Sources */,
 				EE80D8E229BC1DD80000F8EF /* PostInteractor.swift in Sources */,
