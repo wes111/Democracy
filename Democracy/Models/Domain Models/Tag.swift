@@ -8,6 +8,6 @@
 import Foundation
 
 struct Tag: Hashable, Identifiable, Codable {
-    let id: UUID = UUID()
+    let id: String = UUID().uuidString
     let name: String
 }

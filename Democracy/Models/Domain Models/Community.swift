@@ -8,7 +8,7 @@
 import Foundation
 
 struct Community: Hashable, Identifiable, Codable {
-    let id: UUID // TODO: Change where id is assigned value.
+    let id: String // TODO: Change where id is assigned value.
     let name: String
     let summary: String
     let foundedDate: Date
@@ -22,7 +22,7 @@ struct Community: Hashable, Identifiable, Codable {
 }
 
 struct Rule: Codable, Hashable {
-    let id: UUID
+    let id: String
     let title: String
     let description: String
     
@@ -36,7 +36,7 @@ struct Rule: Codable, Hashable {
 }
 
 struct Resource: Codable, Hashable {
-    let id: UUID
+    let id: String
     let title: String
     let description: String
     let url: URL

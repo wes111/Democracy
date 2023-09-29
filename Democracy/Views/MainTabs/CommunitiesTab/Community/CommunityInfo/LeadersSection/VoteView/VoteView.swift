@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CandidateListItemViewModel: Identifiable {
     private let dateFormatter = DateFormatter()
-    let id = UUID()
+    let id = UUID().uuidString
     private var score: Int /// Upvotes - downvotes.
     var upVotes: Int
     var downVotes: Int

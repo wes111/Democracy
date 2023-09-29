@@ -10,14 +10,14 @@ import Foundation
 extension Candidate {
     
     static let preview = Candidate(
-        id: UUID(),
+        id: UUID().uuidString,
         userName: "Hamlin11",
         firstName: "Bernie",
         lastName: "Sanders",
         imageName: "bernie",
         upVotes: 5,
         downVotes: 4,
-        communityId: UUID(),
+        communityId: UUID().uuidString,
         isRepresentative: true,
         summary: "Enter the candidate's summary here",
         externalLink: "www.externalLink.com",
@@ -32,7 +32,7 @@ extension Candidate {
         for _ in 0...20 {
             array.append(
                 Candidate(
-                    id: UUID(),
+                    id: UUID().uuidString,
                     userName: Candidate.preview.userName,
                     firstName: Candidate.preview.firstName,
                     lastName: Candidate.preview.lastName,
@@ -52,7 +52,7 @@ extension Candidate {
         for _ in 0...20 {
             array.append(
                 Candidate(
-                    id: UUID(),
+                    id: UUID().uuidString,
                     userName: Candidate.preview.userName,
                     firstName: Candidate.preview.firstName,
                     lastName: Candidate.preview.lastName,
@@ -72,7 +72,7 @@ extension Candidate {
         for _ in 0...20 {
             array.append(
                 Candidate(
-                    id: UUID(),
+                    id: UUID().uuidString,
                     userName: Candidate.preview.userName,
                     firstName: Candidate.preview.firstName,
                     lastName: Candidate.preview.lastName,
@@ -96,7 +96,7 @@ extension Candidate {
         for _ in 0...10 {
             array.append(
                 Candidate(
-                    id: UUID(),
+                    id: UUID().uuidString,
                     userName: Candidate.preview.userName,
                     firstName: Candidate.preview.firstName,
                     lastName: Candidate.preview.lastName,

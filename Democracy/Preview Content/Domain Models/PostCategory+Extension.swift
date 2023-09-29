@@ -10,7 +10,7 @@ import Foundation
 extension CommunityCategory {
     
     static let preview = CommunityCategory(
-        id: UUID(),
+        id: UUID().uuidString,
         name: "Preview Category",
         imageName: "ben",
         postCount: 50
@@ -22,7 +22,7 @@ extension CommunityCategory {
         (1...25).forEach { int in
             array.append(
                 .init(
-                    id: UUID(),
+                    id: UUID().uuidString,
                     name: "Preview Category \(int)",
                     imageName: imageNames.randomElement()!,
                     postCount: int * 2)

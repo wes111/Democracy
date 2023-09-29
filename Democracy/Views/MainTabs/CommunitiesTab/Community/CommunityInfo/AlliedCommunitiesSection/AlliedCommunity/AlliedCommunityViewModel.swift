@@ -10,7 +10,7 @@ import Foundation
 struct AlliedCommunityViewModel: Identifiable, Hashable {
     
     private let community: Community
-    let id = UUID()
+    let id = UUID().uuidString
     let title: String
     
     init(_ community: Community) {

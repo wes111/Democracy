@@ -13,7 +13,7 @@ protocol CandidateLocalRepositoryProtocol {
     func addCandidate(_ candidate: Candidate) async throws
     func upVoteCandidate(_ candidate: Candidate) async throws
     func downVoteCandidate(_ candidate: Candidate) async throws
-    func getCandidate(id: UUID) async throws -> Candidate?
+    func getCandidate(id: String) async throws -> Candidate?
 }
 
 enum CandidateLocalRepositoryError: Error {
@@ -64,7 +64,7 @@ class CandidateLocalRepository: CandidateLocalRepositoryProtocol {
 //        }
     }
     
-    func getCandidate(id: UUID) async throws -> Candidate? {
+    func getCandidate(id: String) async throws -> Candidate? {
         //try await getCandidates().first(where: { $0.id == id })
         return nil
     }

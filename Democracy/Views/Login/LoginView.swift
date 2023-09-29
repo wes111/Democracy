@@ -17,10 +17,12 @@ struct LoginView<ViewModel: LoginViewModelProtocol>: View {
     
     var body: some View {
         VStack {
-            TextField("Username", text: $viewModel.userName)
+            TextField("Username", text: $viewModel.username)
             TextField("Password", text: $viewModel.password)
             Button {
-                viewModel.login()
+                Task {
+                    await viewModel.login()
+                }
             } label: {
                 Text("Login")
             }

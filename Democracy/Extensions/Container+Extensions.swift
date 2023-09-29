@@ -20,9 +20,6 @@ extension Container {
     var communityInteractor: Factory<CommunityInteractorProtocol> {
         self { CommunityInteractor() }
     }
-    var userInteractor: Factory<UserInteractorProtocol> {
-        self { UserInteractor() }
-    }
     
     // MARK: - Repositories
     
@@ -52,6 +49,14 @@ extension Container {
     }
     
     // MARK: - Services
+    
+    var accountService: Factory<AccountService> {
+        self { AccountServiceDefault() }
+    }
+    
+    var appwriteService: Factory<AppwriteService> {
+        self { AppwriteServiceDefault() }
+    }
     
     var richLinkService: Factory<RichLinkServiceProtocol> {
         self { RichLinkService() } 

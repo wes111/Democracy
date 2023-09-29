@@ -14,7 +14,7 @@ protocol CandidateInteractorProtocol {
     func refreshCandidates()
     func upVoteCandidate(_ candidate: Candidate) async throws
     func downVoteCandidate(_ candidate: Candidate) async throws
-    func getCandidate(id: UUID) async throws -> Candidate?
+    func getCandidate(id: String) async throws -> Candidate?
     func addCandidate(summary: String, link: String?, repType: RepresentativeType) async throws
     
 }
@@ -26,7 +26,7 @@ struct CandidateInteractor: CandidateInteractorProtocol {
     @Injected(\.candidateRemoteRepository) var remoteRepository
     
     // Interactors:
-    @Injected(\.userInteractor) var userInteractor
+    @Injected(\.accountService) var accountService
     
     private let candidatesPublisher = PassthroughSubject<[Candidate], Never>()
 
@@ -64,22 +64,22 @@ struct CandidateInteractor: CandidateInteractorProtocol {
         updateCandidates()
     }
     
-    func getCandidate(id: UUID) async throws -> Candidate? {
+    func getCandidate(id: String) async throws -> Candidate? {
         try await localRepository.getCandidate(id: id)
     }
     
     func addCandidate(summary: String, link: String?, repType: RepresentativeType) async throws {
         
-        let user = try await userInteractor.getUser()
+        let user = accountService.getUser()
         let candidate = Candidate(
             id: user.id,
-            userName: user.userName,
-            firstName: user.firstName,
-            lastName: user.lastName,
+            userName: user.name,
+            firstName: user.name,
+            lastName: user.name,
             imageName: "bernie", //TODO: ...
             upVotes: 0,
             downVotes: 0,
-            communityId: UUID(),
+            communityId: UUID().uuidString,
             isRepresentative: false,
             summary: summary,
             externalLink: link,

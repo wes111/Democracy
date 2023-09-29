@@ -10,7 +10,7 @@ import SwiftUI
 struct CommunitiesTabMainView: View {
     
     @StateObject var viewModel: CommunitiesTabMainViewModel
-    @State private var multiSelection = Set<UUID>()
+    @State private var multiSelection = Set<String>()
     @State private var bob = "" //TODO: ...
     
     init(viewModel: CommunitiesTabMainViewModel) {

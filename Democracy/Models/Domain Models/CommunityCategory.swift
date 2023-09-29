@@ -8,7 +8,7 @@
 import Foundation
 
 struct CommunityCategory: Codable, Identifiable, Hashable {
-    let id: UUID
+    let id: String
     let name: String
     let imageName: String
     var postCount: Int

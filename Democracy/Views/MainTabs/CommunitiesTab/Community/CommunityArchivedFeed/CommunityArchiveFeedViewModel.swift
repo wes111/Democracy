@@ -9,7 +9,7 @@ import Factory
 import Foundation
 
 protocol CommunityArchiveFeedCoordinatorDelegate: PostCardCoordinatorDelegate {
-    func goToCommunityPostCategory(categoryId: UUID)
+    func goToCommunityPostCategory(categoryId: String)
 }
 
 final class CommunityArchiveFeedViewModel: ObservableObject {

@@ -8,7 +8,7 @@
 import Foundation
 
 struct Post: Identifiable {
-    let id: UUID = UUID()
+    let id: String = UUID().uuidString
     let creationDate = Date()
     let title: String
     let subtitle: String?

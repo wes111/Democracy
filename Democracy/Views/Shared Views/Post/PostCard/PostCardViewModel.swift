@@ -25,7 +25,8 @@ final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
 
     var imageName: String {
         // if postLocationInApp == global vs in community
-        return post.creator.imageName ?? "bernie" // default image.
+        //return post.creator.imageName ?? "bernie" // default image.
+        return "bernie"
     }
     
     var postNameOrCommunity: String {

@@ -10,7 +10,7 @@ import Foundation
 import Factory
 
 protocol CommunitiesTabMainCoordinatorDelegate {
-    func goToCommunity(communityId: UUID)
+    func goToCommunity(communityId: String)
     func showCreateCommunityView()
 }
 

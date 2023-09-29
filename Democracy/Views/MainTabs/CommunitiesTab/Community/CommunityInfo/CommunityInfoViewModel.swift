@@ -10,7 +10,7 @@ import Foundation
 
 protocol CommunityInfoCoordinatorDelegate: CandidateCardCoordinatorDelegate, LeadersScrollViewModelCoordinatorDelegate, AlliedCommunitiesSectionViewModelCoordinatorDelegate {
     func showCandidates()
-    func goToCommunityView(id: UUID)
+    func goToCommunityView(id: String)
     func openResourceURL(_ url: URL)
 }
 
@@ -72,7 +72,7 @@ final class CommunityInfoViewModel: ObservableObject {
         coordinator.goToCommunityView(id: community.id)
     }
     
-    func onTapCandidateCard(candidateID: UUID) {
+    func onTapCandidateCard(candidateID: String) {
         coordinator.goToCandidateView(candidateId: candidateID)
     }
     

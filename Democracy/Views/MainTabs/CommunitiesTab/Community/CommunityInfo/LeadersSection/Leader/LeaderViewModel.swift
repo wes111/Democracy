@@ -9,7 +9,7 @@ import Foundation
 
 struct LeaderViewModel: Hashable, Identifiable {
     
-    let id: UUID
+    let id: String
     
     private let candidate: Candidate
     

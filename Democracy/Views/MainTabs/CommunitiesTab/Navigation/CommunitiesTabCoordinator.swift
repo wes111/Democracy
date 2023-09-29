@@ -39,7 +39,7 @@ extension CommunitiesTabCoordinator: CommunitiesTabMainCoordinatorDelegate {
         router.push(CommunitiesTabPath.goToCreateCommunity)
     }
     
-    func goToCommunity(communityId: UUID) {
+    func goToCommunity(communityId: String) {
         // TODO: Add actual community.
         router.push(CommunitiesTabPath.goToCommunity(.preview))
     }

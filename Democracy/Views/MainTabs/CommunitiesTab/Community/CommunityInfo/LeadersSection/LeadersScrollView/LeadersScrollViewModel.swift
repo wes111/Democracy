@@ -9,7 +9,7 @@ import Foundation
 
 protocol LeadersScrollViewModelCoordinatorDelegate {
     
-    func goToCandidateView(candidateId: UUID)
+    func goToCandidateView(candidateId: String)
     func goToVoteView()
 }
 
@@ -36,7 +36,7 @@ struct LeadersScrollViewModel {
         leaders = candidates.map{ .init(candidate: $0) }
     }
     
-    func onTapLeader(id: UUID) {
+    func onTapLeader(id: String) {
         coordinator.goToCandidateView(candidateId: id)
     }
 

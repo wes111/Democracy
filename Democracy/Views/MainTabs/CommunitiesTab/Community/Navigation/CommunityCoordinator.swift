@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CommunityCoordinatorParent {
-    func goToCommunity(communityId: UUID)
+    func goToCommunity(communityId: String)
 }
 
 class CommunityCoordinator: Coordinator, CommunityCoordinatorDelegate {
@@ -46,7 +46,7 @@ extension CommunityCoordinator {
         isShowingWebView = true
     }
     
-    func goToCommunityPostCategory(categoryId: UUID) {
+    func goToCommunityPostCategory(categoryId: String) {
         // TODO: Get the actual post category.
         router.push(CommunityPath.goToCommunityPostCategory(category: .preview))
     }
@@ -55,7 +55,7 @@ extension CommunityCoordinator {
         router.push(CommunityPath.postView(post))
     }
     
-    func goToCandidateView(candidateId: UUID) {
+    func goToCandidateView(candidateId: String) {
         // TODO: Get the actual candidate.
         router.push(CommunityPath.singleCandidate(.preview))
     }
@@ -133,7 +133,7 @@ extension CommunityCoordinator: PostCoordinatorDelegate {}
 
 extension CommunityCoordinator: AlliedCommunitiesSectionViewModelCoordinatorDelegate {
     
-    func goToCommunityView(id: UUID) {
+    func goToCommunityView(id: String) {
         parentCoordinator.goToCommunity(communityId: id)
     }
 }

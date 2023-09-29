@@ -7,11 +7,20 @@
 
 import Foundation
 
+// Matches Appwrite User.
 struct User: Codable {
-    // TODO: Break into protocols so we can have different types of users (admins, leaders, regular, etc.)
-    var id: UUID = UUID() // TODO: Change where id is assigned value.
-    var userName: String
-    var firstName: String?
-    var lastName: String?
-    let imageName: String?
+    let accessedAt: Date?
+    let createdAt: Date?
+    let email: String
+    let emailVerification: Bool
+    let id: String
+    let labels: [String]
+    let name: String
+    let passwordUpdate: Date?
+    let phone: String
+    let phoneVerification: Bool
+    let prefs: [String] //TODO...
+    let registration: Date?
+    let status: Bool
+    let updatedAt: Date?
 }

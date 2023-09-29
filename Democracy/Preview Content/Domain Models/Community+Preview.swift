@@ -9,7 +9,7 @@ import Foundation
 
 extension Community {
     static let preview = Community(
-        id: UUID(),
+        id: UUID().uuidString,
         name: "Test Community",
         summary: "Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah",
         foundedDate: Date(),
@@ -27,7 +27,7 @@ extension Community {
         for index in 0...25 {
             array.append(
                 Community(
-                    id: UUID(),
+                    id: UUID().uuidString,
                     name: "My Community \(index)",
                     summary: "Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah",
                     foundedDate: Community.preview.foundedDate,
@@ -48,7 +48,7 @@ extension Community {
         for index in 0...25 {
             array.append(
                 Community(
-                    id: UUID(),
+                    id: UUID().uuidString,
                     name: "Recommended Community \(index)",
                     summary: "Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah",
                     foundedDate: Community.preview.foundedDate,
@@ -69,7 +69,7 @@ extension Community {
         for index in 0...25 {
             array.append(
                 Community(
-                    id: UUID(),
+                    id: UUID().uuidString,
                     name: "Top Community \(index)",
                     summary: "Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, blah",
                     foundedDate: Community.preview.foundedDate,

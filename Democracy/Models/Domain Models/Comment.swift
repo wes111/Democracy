@@ -10,7 +10,7 @@ import Foundation
 // Structs cannot have a property of the same type.
 class Comment: Hashable {
     
-    let id: UUID = UUID()
+    let id: String = UUID().uuidString
     let parent: Comment? = nil
     let children: [Comment] = []
     
