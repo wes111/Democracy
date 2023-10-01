@@ -24,13 +24,10 @@ struct CoordinatorView<Path: Hashable, RootView: View, NavigationViewBuilder: Vi
     
     var body: some View {
         NavigationStack(path: $router.navigationPath) {
-            ZStack {
-                Color.primaryBackground.ignoresSafeArea()
-                mainScreen
-                    .navigationDestination(for: Path.self) { path in
-                        secondaryScreen(path)
-                    }
-            }
+            mainScreen
+                .navigationDestination(for: Path.self) { path in
+                    secondaryScreen(path)
+                }
         }
     }
 }

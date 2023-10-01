@@ -5,6 +5,7 @@
 //  Created by Wesley Luntsford on 9/28/23.
 //
 
+import Combine
 import Factory
 import Foundation
 
@@ -15,18 +16,40 @@ protocol AccountService {
     func isValidUsername(_ userName: String) -> Bool
     func isValidEmail(_ email: String) -> Bool
     func isValidPassword(_ password: String) -> Bool
+    
+    var loginPublisher: AnyPublisher<LoginStatus, Never> { get }
 }
 
 final class AccountServiceDefault: AccountService {
     
     @Injected(\.appwriteService) private var appwriteService
     
+    private let loginSubject = CurrentValueSubject<LoginStatus, Never>(.loggedOut)
+    
     init() {}
+    
+    static let maxUsernameCharCount = 36 /// Appwrite requirement.
+    static let maxPasswordCharCount = 128 /// This is an app requirement, not an Appwrite requirement.
 }
 
 extension AccountServiceDefault {
+    var loginPublisher: AnyPublisher<LoginStatus, Never> {
+        loginSubject.eraseToAnyPublisher()
+    }
+}
+
+//MARK: Methods
+extension AccountServiceDefault {
     
     func createUser(userName: String, password: String, email: String) async throws {
+        
+    }
+    
+    func refreshUser() {
+        
+    }
+    
+    func updateEmail() {
         
     }
     

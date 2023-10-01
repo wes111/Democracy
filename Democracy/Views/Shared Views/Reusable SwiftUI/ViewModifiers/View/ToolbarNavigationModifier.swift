@@ -9,19 +9,26 @@ import Foundation
 import SwiftUI
 
 struct ToolbarNavigationModifier: ViewModifier {
-    let title: String
+    let title: String?
     let close: () -> Void
+    
+    init(title: String? = nil, close: @escaping () -> Void) {
+        self.title = title
+        self.close = close
+    }
     
     func body(content: Content) -> some View {
         content
             .navigationBarBackButtonHidden(true)
             .toolbar {
-                ToolbarItem(placement: .principal) {
-                    HStack {
-                        Text(title)
-                            .font(.title2)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.tertiaryText)
+                if let title {
+                    ToolbarItem(placement: .principal) {
+                        HStack {
+                            Text(title)
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.tertiaryText)
+                        }
                     }
                 }
                 
@@ -38,7 +45,7 @@ struct ToolbarNavigationModifier: ViewModifier {
 }
 
 extension View {
-    func toolbarNavigation(title: String, close: @escaping () -> Void) -> some View {
+    func toolbarNavigation(title: String? = nil, close: @escaping () -> Void) -> some View {
         modifier(ToolbarNavigationModifier(title: title, close: close))
     }
 }

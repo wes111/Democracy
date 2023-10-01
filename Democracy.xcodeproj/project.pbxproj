@@ -35,8 +35,13 @@
 		EE4DB88A2AC50AD200A6DC90 /* AppwriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */; };
 		EE4DB88C2AC525FB00A6DC90 /* ISO8601DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB88B2AC525FB00A6DC90 /* ISO8601DateFormatter+Extension.swift */; };
 		EE4DB88F2AC6550100A6DC90 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB88E2AC6550100A6DC90 /* AccountService.swift */; };
+		EE4DB8912AC899ED00A6DC90 /* LoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */; };
+		EE4DB8942AC89F0800A6DC90 /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */; };
+		EE4DB8962AC89F6800A6DC90 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8952AC89F6800A6DC90 /* OnboardingCoordinator.swift */; };
+		EE4DB8982AC8A13C00A6DC90 /* OnboardingPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8972AC8A13C00A6DC90 /* OnboardingPath.swift */; };
+		EE4DB89C2AC9094600A6DC90 /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB89B2AC9094600A6DC90 /* CreateAccountViewModel.swift */; };
+		EE4DB89E2AC9099200A6DC90 /* CreateUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB89D2AC9099200A6DC90 /* CreateUsernameView.swift */; };
 		EE54ADDF29A329C9007C3E3F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADDE29A329C9007C3E3F /* MainTabView.swift */; };
-		EE54ADE729A40101007C3E3F /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADE629A40101007C3E3F /* AuthenticationCoordinator.swift */; };
 		EE54ADEA29A712AE007C3E3F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADE929A712AD007C3E3F /* LoginView.swift */; };
 		EE54ADEC29A714E8007C3E3F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADEB29A714E8007C3E3F /* LoginViewModel.swift */; };
 		EE5B938329F747DD00B43381 /* RepresentativeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5B938229F747DD00B43381 /* RepresentativeType.swift */; };
@@ -220,8 +225,13 @@
 		EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppwriteService.swift; sourceTree = "<group>"; };
 		EE4DB88B2AC525FB00A6DC90 /* ISO8601DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ISO8601DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		EE4DB88E2AC6550100A6DC90 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatus.swift; sourceTree = "<group>"; };
+		EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
+		EE4DB8952AC89F6800A6DC90 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		EE4DB8972AC8A13C00A6DC90 /* OnboardingPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPath.swift; sourceTree = "<group>"; };
+		EE4DB89B2AC9094600A6DC90 /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
+		EE4DB89D2AC9099200A6DC90 /* CreateUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUsernameView.swift; sourceTree = "<group>"; };
 		EE54ADDE29A329C9007C3E3F /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-		EE54ADE629A40101007C3E3F /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		EE54ADE929A712AD007C3E3F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EE54ADEB29A714E8007C3E3F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		EE5B938229F747DD00B43381 /* RepresentativeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepresentativeType.swift; sourceTree = "<group>"; };
@@ -512,10 +522,38 @@
 			path = AccountService;
 			sourceTree = "<group>";
 		};
+		EE4DB8922AC89ECB00A6DC90 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				EE4DB89B2AC9094600A6DC90 /* CreateAccountViewModel.swift */,
+				EE4DB89A2AC9092800A6DC90 /* CreateUsername */,
+				EE4DB8992AC9068000A6DC90 /* Navigation */,
+				EE54ADE829A7128E007C3E3F /* Login */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		EE4DB8992AC9068000A6DC90 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				EE4DB8952AC89F6800A6DC90 /* OnboardingCoordinator.swift */,
+				EE4DB8972AC8A13C00A6DC90 /* OnboardingPath.swift */,
+				EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		EE4DB89A2AC9092800A6DC90 /* CreateUsername */ = {
+			isa = PBXGroup;
+			children = (
+				EE4DB89D2AC9099200A6DC90 /* CreateUsernameView.swift */,
+			);
+			path = CreateUsername;
+			sourceTree = "<group>";
+		};
 		EE54ADE829A7128E007C3E3F /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				EE54ADE629A40101007C3E3F /* AuthenticationCoordinator.swift */,
 				EE54ADE929A712AD007C3E3F /* LoginView.swift */,
 				EE54ADEB29A714E8007C3E3F /* LoginViewModel.swift */,
 			);
@@ -528,6 +566,7 @@
 				EE5B938229F747DD00B43381 /* RepresentativeType.swift */,
 				EE5B938F2A03396700B43381 /* TimeGranularity.swift */,
 				EE5B93912A033A7D00B43381 /* Month.swift */,
+				EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -995,7 +1034,7 @@
 				EED4A52729B8185600DDCCDA /* Shared Views */,
 				EEF8346E299C69DC001EEA5E /* Navigation */,
 				EED4A4ED29AA7E7A00DDCCDA /* Root */,
-				EE54ADE829A7128E007C3E3F /* Login */,
+				EE4DB8922AC89ECB00A6DC90 /* Onboarding */,
 				EED4A4F229AA7FC600DDCCDA /* MainTabs */,
 			);
 			path = Views;
@@ -1298,6 +1337,7 @@
 				EED4A54529BAE16700DDCCDA /* Tag.swift in Sources */,
 				EED4A51329AB1C6F00DDCCDA /* HistoryTabMainView.swift in Sources */,
 				EE80D90A29C926BF0000F8EF /* CommunityInfoViewModel+Preview.swift in Sources */,
+				EE4DB8982AC8A13C00A6DC90 /* OnboardingPath.swift in Sources */,
 				EE80D91129C92C670000F8EF /* Candidate.swift in Sources */,
 				EE80D8C829BC13930000F8EF /* PostCoordinator+Preview.swift in Sources */,
 				EED4A53729B81D9500DDCCDA /* CommunityArchiveFeedView.swift in Sources */,
@@ -1307,10 +1347,12 @@
 				EE78561F2AB7E53A0004B7E4 /* PrimaryButtonStyle.swift in Sources */,
 				EEF83463299C6824001EEA5E /* ContentView.swift in Sources */,
 				EED4A53329B81D6800DDCCDA /* CommunityHomeFeedView.swift in Sources */,
+				EE4DB89E2AC9099200A6DC90 /* CreateUsernameView.swift in Sources */,
 				EED4A50529AA870000DDCCDA /* VotingTabMainViewModel.swift in Sources */,
 				EE80D90829C926600000F8EF /* CandidatesView.swift in Sources */,
 				EE5B93952A0864D400B43381 /* CommunityCategoryPostsView.swift in Sources */,
 				EED4A4FD29AA857B00DDCCDA /* CommunitiesTabCoordinatorView.swift in Sources */,
+				EE4DB8912AC899ED00A6DC90 /* LoginStatus.swift in Sources */,
 				EE80D8F229BD39210000F8EF /* AddPostViewModel.swift in Sources */,
 				EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */,
 				EE4524942A565CA400C7A2DD /* ResourceViewModel.swift in Sources */,
@@ -1337,10 +1379,10 @@
 				EE4524972A56655900C7A2DD /* AboutSectionViewModel.swift in Sources */,
 				EE5B939E2A088B5400B43381 /* CommunityCategoryView.swift in Sources */,
 				EE11729D2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift in Sources */,
-				EE54ADE729A40101007C3E3F /* AuthenticationCoordinator.swift in Sources */,
 				EE80D93D29D882F70000F8EF /* User+Preview.swift in Sources */,
 				EE5D3A032A30204D00D0E312 /* CommunitiesTabCoordinator.swift in Sources */,
 				EED4A52A29B8187D00DDCCDA /* PostCoordinator.swift in Sources */,
+				EE4DB8942AC89F0800A6DC90 /* OnboardingCoordinatorView.swift in Sources */,
 				EE80D8E029BC1A080000F8EF /* HistoryTabMainViewModel+Preview.swift in Sources */,
 				EE4524B32A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift in Sources */,
 				EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */,
@@ -1378,6 +1420,7 @@
 				EE7856182AB7BACB0004B7E4 /* TaggableModifier.swift in Sources */,
 				EED4A50929AA8BC100DDCCDA /* EventsTabMainViewModel.swift in Sources */,
 				EE80D8C629BC12C70000F8EF /* CommunitiesTabMainViewModel+Preview.swift in Sources */,
+				EE4DB89C2AC9094600A6DC90 /* CreateAccountViewModel.swift in Sources */,
 				EE80D8C329BC12720000F8EF /* CommunitiesTabCoordinator+Preview.swift in Sources */,
 				EE0CC2012A9ED9C8003A10C3 /* VoteViewModel.swift in Sources */,
 				EE936CB72A78A12F00D49271 /* UpdatesTabCoordinatorViewModel.swift in Sources */,
@@ -1400,6 +1443,7 @@
 				EED4A4FB29AA857000DDCCDA /* VotingTabCoordinator.swift in Sources */,
 				EE80D8D429BC15FC0000F8EF /* EventsTabMainViewModel+Preview.swift in Sources */,
 				EE11729F2A71C3C700E529AF /* CommunityCategoryViewModel.swift in Sources */,
+				EE4DB8962AC89F6800A6DC90 /* OnboardingCoordinator.swift in Sources */,
 				EE80D92629C955DB0000F8EF /* CandidateRemoteRepository.swift in Sources */,
 				EE80D94F29DB90AD0000F8EF /* CreateCommunityViewModel.swift in Sources */,
 				EE4DB88F2AC6550100A6DC90 /* AccountService.swift in Sources */,

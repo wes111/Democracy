@@ -19,7 +19,6 @@ struct StandardBorderedModifier: ViewModifier {
                     .font(.callout)
                     .foregroundStyle(Color.secondaryText)
             }
-            
             content
                 .foregroundStyle(Color.primaryText)
                 .padding()

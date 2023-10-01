@@ -16,10 +16,10 @@ struct RootView: View {
     }
     
     var body: some View {
-        if viewModel.isAuthenticated {
+        if viewModel.loginStatus == .loggedIn {
             MainTabView(viewModel: viewModel.mainTabViewModel)
         } else {
-            AuthenticationCoordinator(viewModel: viewModel.authenticationCoordinatorViewModel)
+            OnboardingCoordinatorView(viewModel: viewModel.onboardingCoordinatorViewModel)
         }
     }
 }
