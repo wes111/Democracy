@@ -9,12 +9,12 @@ import Foundation
 import SwiftUI
 
 struct ToolbarNavigationModifier: ViewModifier {
-    let title: String?
-    let close: () -> Void
+    @Environment(\.dismiss) private var dismiss
     
-    init(title: String? = nil, close: @escaping () -> Void) {
+    let title: String?
+    
+    init(title: String? = nil) {
         self.title = title
-        self.close = close
     }
     
     func body(content: Content) -> some View {
@@ -34,7 +34,7 @@ struct ToolbarNavigationModifier: ViewModifier {
                 
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        close()
+                        dismiss()
                     } label: {
                         Image(systemName: "chevron.left")
                             .foregroundColor(.tertiaryText)
@@ -45,7 +45,7 @@ struct ToolbarNavigationModifier: ViewModifier {
 }
 
 extension View {
-    func toolbarNavigation(title: String? = nil, close: @escaping () -> Void) -> some View {
-        modifier(ToolbarNavigationModifier(title: title, close: close))
+    func toolbarNavigation(title: String? = nil) -> some View {
+        modifier(ToolbarNavigationModifier(title: title))
     }
 }

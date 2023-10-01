@@ -40,7 +40,7 @@ struct CreateCommunityView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
-        .toolbarNavigation(title: "Create Community", close: viewModel.close)
+        .toolbarNavigation(title: "Create Community")
         .onAppear {
             focusedField = .title
         }

@@ -36,7 +36,7 @@ struct CreateUsernameView: View {
         .onAppear {
             focusedField = .username
         }
-        .toolbarNavigation(close: viewModel.goBack)
+        .toolbarNavigation()
     }
 }
 
