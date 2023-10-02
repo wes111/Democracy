@@ -41,6 +41,7 @@
 		EE4DB8982AC8A13C00A6DC90 /* OnboardingPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8972AC8A13C00A6DC90 /* OnboardingPath.swift */; };
 		EE4DB89C2AC9094600A6DC90 /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB89B2AC9094600A6DC90 /* CreateAccountViewModel.swift */; };
 		EE4DB89E2AC9099200A6DC90 /* CreateUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB89D2AC9099200A6DC90 /* CreateUsernameView.swift */; };
+		EE4DB8A22ACA5C0F00A6DC90 /* CreatePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8A12ACA5C0F00A6DC90 /* CreatePasswordView.swift */; };
 		EE54ADDF29A329C9007C3E3F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADDE29A329C9007C3E3F /* MainTabView.swift */; };
 		EE54ADEA29A712AE007C3E3F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADE929A712AD007C3E3F /* LoginView.swift */; };
 		EE54ADEC29A714E8007C3E3F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADEB29A714E8007C3E3F /* LoginViewModel.swift */; };
@@ -231,6 +232,7 @@
 		EE4DB8972AC8A13C00A6DC90 /* OnboardingPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPath.swift; sourceTree = "<group>"; };
 		EE4DB89B2AC9094600A6DC90 /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
 		EE4DB89D2AC9099200A6DC90 /* CreateUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUsernameView.swift; sourceTree = "<group>"; };
+		EE4DB8A12ACA5C0F00A6DC90 /* CreatePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordView.swift; sourceTree = "<group>"; };
 		EE54ADDE29A329C9007C3E3F /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		EE54ADE929A712AD007C3E3F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EE54ADEB29A714E8007C3E3F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -526,9 +528,10 @@
 			isa = PBXGroup;
 			children = (
 				EE4DB89B2AC9094600A6DC90 /* CreateAccountViewModel.swift */,
-				EE4DB89A2AC9092800A6DC90 /* CreateUsername */,
+				EE4DB89D2AC9099200A6DC90 /* CreateUsernameView.swift */,
 				EE4DB8992AC9068000A6DC90 /* Navigation */,
 				EE54ADE829A7128E007C3E3F /* Login */,
+				EE4DB8A12ACA5C0F00A6DC90 /* CreatePasswordView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -543,12 +546,12 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
-		EE4DB89A2AC9092800A6DC90 /* CreateUsername */ = {
+		EE4DB8A32ACA69B700A6DC90 /* Label */ = {
 			isa = PBXGroup;
 			children = (
-				EE4DB89D2AC9099200A6DC90 /* CreateUsernameView.swift */,
+				EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */,
 			);
-			path = CreateUsername;
+			name = Label;
 			sourceTree = "<group>";
 		};
 		EE54ADE829A7128E007C3E3F /* Login */ = {
@@ -627,6 +630,7 @@
 		EE78561C2AB7E51D0004B7E4 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				EE4DB8A32ACA69B700A6DC90 /* Label */,
 				EE7856222AB917D30004B7E4 /* Toggle */,
 				EE78561D2AB7E5270004B7E4 /* Button */,
 			);
@@ -857,7 +861,6 @@
 				EE78561C2AB7E51D0004B7E4 /* Styles */,
 				EE7856142AB7BA970004B7E4 /* ViewModifiers */,
 				EE5B938A29F7764E00B43381 /* BoundMenu.swift */,
-				EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */,
 				EE5B938429F7652800B43381 /* HeaderWithDropDownFilter.swift */,
 				EE5D39EE2A2B9B4B00D0E312 /* TightLabelStyle.swift */,
 				EE80D95929E8EBB70000F8EF /* UIViewRepresentable */,
@@ -1336,6 +1339,7 @@
 				EED4A50D29AB18E400DDCCDA /* UpdatesTabMainViewModel.swift in Sources */,
 				EED4A54529BAE16700DDCCDA /* Tag.swift in Sources */,
 				EED4A51329AB1C6F00DDCCDA /* HistoryTabMainView.swift in Sources */,
+				EE4DB8A22ACA5C0F00A6DC90 /* CreatePasswordView.swift in Sources */,
 				EE80D90A29C926BF0000F8EF /* CommunityInfoViewModel+Preview.swift in Sources */,
 				EE4DB8982AC8A13C00A6DC90 /* OnboardingPath.swift in Sources */,
 				EE80D91129C92C670000F8EF /* Candidate.swift in Sources */,

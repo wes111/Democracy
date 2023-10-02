@@ -19,6 +19,7 @@ extension OnboardingCoordinator {
         .init(coordinator: self)
     }
     
+    // TODO: Need a new coordinator that will hold this for its life and die when the create account flow is exited.
     func createAccountViewModel() -> CreateAccountViewModel {
         .init(coordinator: self)
     }
@@ -39,6 +40,6 @@ extension OnboardingCoordinator: CreateAccountCoordinatorDelegate {
     }
     
     func goToCreatePassword() {
-        router.push(OnboardingPath.goToCreateAccount)
+        router.push(OnboardingPath.goToCreatePassword)
     }
 }

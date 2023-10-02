@@ -7,19 +7,21 @@
 
 import SwiftUI
 
+
+
 enum CreateUsernameField {
     case username
 }
 
 struct CreateUsernameView: View {
     
-    @StateObject var viewModel: CreateAccountViewModel
+    @ObservedObject var viewModel: CreateAccountViewModel
     @FocusState private var focusedField: CreateUsernameField?
-    @State var appeared: Double = 0
     
     init(viewModel: CreateAccountViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
     }
+    
     var body: some View {
         ZStack {
             Color.primaryBackground.ignoresSafeArea()
@@ -27,7 +29,8 @@ struct CreateUsernameView: View {
             VStack(alignment: .leading, spacing: 20) {
                 title
                 subtitle
-                passwordField
+                usernameField
+                errors
                 nextButton
                 Spacer()
             }
@@ -43,14 +46,28 @@ struct CreateUsernameView: View {
 //MARK: Subviews
 extension CreateUsernameView {
     
-    var passwordField: some View {
+    var usernameField: some View {
         TextField("Username", text: $viewModel.username,
                   prompt: Text("Username").foregroundColor(.secondaryBackground), axis: .vertical
         )
         .limitCharacters(text: $viewModel.username, count: AccountServiceDefault.maxUsernameCharCount)
         .focused($focusedField, equals: .username)
-        .standardTextField()
+        .standardTextField(borderColor: viewModel.usernameErrors.isEmpty ? .tertiaryText : .otherRed)
         .submitLabel(.next)
+    }
+    
+    var errors: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            ForEach(viewModel.usernameErrors, id: \.self) { error in
+                Label() {
+                    Text(error.description)
+                        .font(.system(.caption, weight: .light))
+                } icon: {
+                    Image(systemName: "exclamationmark.triangle")
+                }
+                .foregroundColor(.otherRed)
+            }
+        }
     }
     
     var title: some View {
@@ -67,7 +84,7 @@ extension CreateUsernameView {
     
     var nextButton: some View {
         Button() {
-            viewModel.goToNext()
+            viewModel.submitUsername()
         } label: {
             Text("Next")
         }

@@ -11,6 +11,7 @@ import SwiftUI
 /// Currently only used for TextFields (and the TaggableModifier).
 struct StandardBorderedModifier: ViewModifier {
     let title: String?
+    var borderColor: Color
     
     func body(content: Content) -> some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -24,7 +25,7 @@ struct StandardBorderedModifier: ViewModifier {
                 .padding()
                 .overlay(
                     RoundedRectangle(cornerRadius: 10, style: .circular)
-                        .stroke(Color.tertiaryText, lineWidth: 1.5)
+                        .stroke(borderColor, lineWidth: 1.5)
                 )
         }
     }
@@ -32,7 +33,7 @@ struct StandardBorderedModifier: ViewModifier {
 
 extension View {
     
-    func standardTextField(title: String? = nil) -> some View {
-        modifier(StandardBorderedModifier(title: title))
+    func standardTextField(title: String? = nil, borderColor: Color = .tertiaryText) -> some View {
+        modifier(StandardBorderedModifier(title: title, borderColor: borderColor))
     }
 }
