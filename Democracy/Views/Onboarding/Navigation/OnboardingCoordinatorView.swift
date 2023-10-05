@@ -29,8 +29,8 @@ struct OnboardingCoordinatorView: View {
     @ViewBuilder
     func createViewFromPath(_ path: OnboardingPath) -> some View {
         switch path {
-        case .goToCreateAccount: CreateUsernameView(viewModel: viewModel.createAccountViewModel())
-        case .goToCreatePassword: CreatePasswordView(viewModel: viewModel.createAccountViewModel())
+        case .goToCreateAccount: CreateUsernameView(viewModel: viewModel.createAccountViewModel)
+        case .goToCreatePassword: CreatePasswordView(viewModel: viewModel.createAccountViewModel)
         }
     }
     

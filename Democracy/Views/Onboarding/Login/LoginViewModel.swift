@@ -58,28 +58,24 @@ private extension LoginViewModel {
         
         $password
             .debounce(for: 0.25, scheduler: RunLoop.main)
-            .map { [weak self] password in
-                guard let self, !password.isEmpty else { return false }
-                print("Password valid: \(self.accountService.isValidPassword(password))")
-                return !self.accountService.isValidPassword(password)
+            .map { password in
+                guard !password.isEmpty else { return false }
+                return !PasswordValidation.fullyValid(string: password)
             }
             .assign(to: &$showUsernameError)
         
         $username
             .debounce(for: 0.25, scheduler: RunLoop.main)
-            .map { [weak self] username in
-                guard let self, !username.isEmpty else { return false }
-                print("Username valid: \(self.accountService.isValidUsername(username))")
-                return !self.accountService.isValidUsername(username)
+            .map { username in
+                guard !username.isEmpty else { return false }
+                return !UserNameValidation.fullyValid(string: username)
             }
             .assign(to: &$showUsernameError)
         
         $username.combineLatest($password)
             .debounce(for: 0.25, scheduler: RunLoop.main)
-            .compactMap { [weak self] (username, password) in
-                guard let self else { return nil }
-                //print(self.accountService.isValidUsername(username) && self.accountService.isValidPassword(password))
-                return self.accountService.isValidUsername(username) && self.accountService.isValidPassword(password)
+            .compactMap { (username, password) in
+                return UserNameValidation.fullyValid(string: username) && PasswordValidation.fullyValid(string: password)
             }
             .assign(to: &$isValid)
     }

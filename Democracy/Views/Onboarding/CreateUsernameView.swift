@@ -50,7 +50,7 @@ extension CreateUsernameView {
         TextField("Username", text: $viewModel.username,
                   prompt: Text("Username").foregroundColor(.secondaryBackground), axis: .vertical
         )
-        .limitCharacters(text: $viewModel.username, count: AccountServiceDefault.maxUsernameCharCount)
+        .limitCharacters(text: $viewModel.username, count: UserNameValidation.maxUsernameCharCount)
         .focused($focusedField, equals: .username)
         .standardTextField(borderColor: viewModel.usernameErrors.isEmpty ? .tertiaryText : .otherRed)
         .submitLabel(.next)

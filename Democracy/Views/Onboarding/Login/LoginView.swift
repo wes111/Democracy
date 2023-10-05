@@ -52,7 +52,7 @@ extension LoginView {
         TextField("Username", text: $viewModel.username,
                   prompt: Text("Username").foregroundColor(.secondaryBackground), axis: .vertical
         )
-        .limitCharacters(text: $viewModel.username, count: AccountServiceDefault.maxUsernameCharCount)
+        .limitCharacters(text: $viewModel.username, count: UserNameValidation.maxUsernameCharCount)
         .focused($focusedField, equals: .username)
         .standardTextField()
         .submitLabel(.next)
@@ -62,7 +62,7 @@ extension LoginView {
         TextField("Password", text: $viewModel.password,
                   prompt: Text("Password").foregroundColor(.secondaryBackground), axis: .vertical
         )
-        .limitCharacters(text: $viewModel.password, count: AccountServiceDefault.maxPasswordCharCount)
+        .limitCharacters(text: $viewModel.password, count: PasswordValidation.maxPasswordCharCount)
         .focused($focusedField, equals: .password)
         .standardTextField()
         .submitLabel(.go)

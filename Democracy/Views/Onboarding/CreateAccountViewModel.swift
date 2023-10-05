@@ -19,7 +19,7 @@ final class CreateAccountViewModel: ObservableObject {
     @Published var username: String = ""
     @Published var password: String = ""
     
-    @Published var usernameErrors: [UsernameError] = []
+    @Published var usernameErrors: [UserNameValidation] = []
     
     private let coordinator: CreateAccountCoordinatorDelegate
     
@@ -34,7 +34,7 @@ final class CreateAccountViewModel: ObservableObject {
 extension CreateAccountViewModel {
     
     func submitUsername() {
-        //coordinator.goToCreatePassword()
+        coordinator.goToCreatePassword()
     }
     
     func submitPassword() {
@@ -48,9 +48,9 @@ private extension CreateAccountViewModel {
         
         $username
             .debounce(for: 0.25, scheduler: RunLoop.main)
-            .map { [weak self] username in
-                guard let self, !username.isEmpty else { return [] }
-                return self.accountService.getUsernameErrors(username)
+            .map { username in
+                guard !username.isEmpty else { return [] }
+                return UserNameValidation.getFieldValidationErrors(fieldString: username)
             }
             .assign(to: &$usernameErrors)
     }

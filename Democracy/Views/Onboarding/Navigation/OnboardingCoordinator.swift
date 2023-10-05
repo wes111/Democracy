@@ -9,6 +9,10 @@ import Foundation
 
 final class OnboardingCoordinator: Coordinator {
     
+    // TODO: Need a new coordinator that will hold this for its life and die when the create account flow is exited.
+    lazy var createAccountViewModel: CreateAccountViewModel = {
+        .init(coordinator: self)
+    }()
     
 }
 
@@ -16,11 +20,6 @@ final class OnboardingCoordinator: Coordinator {
 extension OnboardingCoordinator {
     
     func loginViewModel() -> LoginViewModel {
-        .init(coordinator: self)
-    }
-    
-    // TODO: Need a new coordinator that will hold this for its life and die when the create account flow is exited.
-    func createAccountViewModel() -> CreateAccountViewModel {
         .init(coordinator: self)
     }
     

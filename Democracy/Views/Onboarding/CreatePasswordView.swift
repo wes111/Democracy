@@ -46,7 +46,7 @@ extension CreatePasswordView {
         TextField("Password", text: $viewModel.username,
                   prompt: Text("Password").foregroundColor(.secondaryBackground), axis: .vertical
         )
-        .limitCharacters(text: $viewModel.username, count: AccountServiceDefault.maxUsernameCharCount)
+        .limitCharacters(text: $viewModel.password, count: PasswordValidation.maxPasswordCharCount)
         .focused($focusedField, equals: .password)
         .standardTextField()
         .submitLabel(.next)
