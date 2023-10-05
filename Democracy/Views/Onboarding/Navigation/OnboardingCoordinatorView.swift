@@ -31,6 +31,10 @@ struct OnboardingCoordinatorView: View {
         switch path {
         case .goToCreateAccount: CreateUsernameView(viewModel: viewModel.createAccountViewModel)
         case .goToCreatePassword: CreatePasswordView(viewModel: viewModel.createAccountViewModel)
+        case .goToCreateEmail: EmptyView()
+        case .goToVerifyEmail: EmptyView()
+        case .goToVerifyPhone: EmptyView()
+        case .goToCreatePhone: EmptyView()
         }
     }
     

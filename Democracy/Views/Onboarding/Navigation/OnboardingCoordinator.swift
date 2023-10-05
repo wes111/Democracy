@@ -34,11 +34,24 @@ extension OnboardingCoordinator: LoginCoordinatorDelegate {
 }
 
 extension OnboardingCoordinator: CreateAccountCoordinatorDelegate {
-    func goBack() {
-        router.pop()
-    }
     
     func goToCreatePassword() {
         router.push(OnboardingPath.goToCreatePassword)
+    }
+    
+    func goToCreateEmail() {
+        router.push(OnboardingPath.goToCreateEmail)
+    }
+    
+    func goToVerifyEmail() {
+        router.push(OnboardingPath.goToVerifyEmail)
+    }
+    
+    func goToCreatePhone() {
+        router.push(OnboardingPath.goToCreatePhone)
+    }
+    
+    func goToVerifyPhone() {
+        router.push(OnboardingPath.goToVerifyPhone)
     }
 }

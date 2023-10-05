@@ -10,6 +10,10 @@ import Foundation
 
 protocol CreateAccountCoordinatorDelegate {
     func goToCreatePassword()
+    func goToCreateEmail()
+    func goToVerifyEmail()
+    func goToCreatePhone()
+    func goToVerifyPhone()
 }
 
 final class CreateAccountViewModel: ObservableObject {
@@ -38,7 +42,19 @@ extension CreateAccountViewModel {
     }
     
     func submitPassword() {
-        
+        coordinator.goToCreateEmail()
+    }
+    
+    func submitEmail() {
+        coordinator.goToVerifyEmail()
+    }
+    
+    func verifyEmail() {
+        coordinator.goToCreatePhone()
+    }
+    
+    func submitPhone() {
+        coordinator.goToVerifyPhone()
     }
 }
 
