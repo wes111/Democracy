@@ -35,6 +35,8 @@ struct OnboardingCoordinatorView: View {
         case .goToVerifyEmail: EmptyView()
         case .goToVerifyPhone: EmptyView()
         case .goToCreatePhone: EmptyView()
+        case .goToCreateAccountSuccess(let viewModel): CreateAccountSuccessView(viewModel: viewModel)
+        case .goToAcceptTerms(let viewModel): AcceptTermsView(viewModel: viewModel)
         }
     }
     

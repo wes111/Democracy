@@ -7,6 +7,23 @@
 
 import SwiftUI
 
+struct SeconaryButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundStyle(Color.primaryText)
+            .font(.callout)
+            .fontWeight(.bold)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.tertiaryText, style: StrokeStyle(lineWidth: 1))
+             )
+            .contentShape(Rectangle())
+            .opacity(configuration.isPressed ? 0.3 : 1.0)
+    }
+}
+
 struct PrimaryButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -25,13 +42,25 @@ struct PrimaryButtonStyle: ButtonStyle {
     ZStack {
         Color.primaryBackground
         
-        Button {
-            print()
-        } label: {
-            Text("Submit")
+        VStack {
+            Button {
+                print()
+            } label: {
+                Text("Submit")
+            }
+            .buttonStyle(PrimaryButtonStyle())
+            .padding()
+            
+            Button {
+                print()
+            } label: {
+                Text("Submit")
+            }
+            .buttonStyle(SeconaryButtonStyle())
+            .padding()
         }
-        .buttonStyle(PrimaryButtonStyle())
-        .padding()
+
+        
     }
     .ignoresSafeArea()
 }
