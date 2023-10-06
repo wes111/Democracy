@@ -23,19 +23,19 @@ final class CreateAccountViewModel: ObservableObject {
     @Published var username: String = ""
     @Published var password: String = ""
     
-    @Published var usernameErrors: [UserNameValidation] = []
+    @Published var usernameErrors: [UsernameValidationError] = []
     
     private let coordinator: CreateAccountCoordinatorDelegate
     
-    lazy var createEmailFieldViewModel: CreateFieldViewModel<EmailValidation> = {
+    lazy var createEmailFieldViewModel: CreateFieldViewModel<CreateEmailField> = {
         .init(submitAction: submitEmail)
     }()
     
-    lazy var createPasswordFieldViewModel: CreateFieldViewModel<PasswordValidation> = {
+    lazy var createPasswordFieldViewModel: CreateFieldViewModel<CreatePasswordField> = {
         .init(submitAction: submitPassword)
     }()
     
-    lazy var createUsernameFieldViewModel: CreateFieldViewModel<UserNameValidation> = {
+    lazy var createUsernameFieldViewModel: CreateFieldViewModel<CreateUsernameField> = {
         .init(submitAction: submitUsername)
     }()
     
@@ -74,12 +74,12 @@ extension CreateAccountViewModel {
 private extension CreateAccountViewModel {
     func setupBindings() {
         
-        $username
-            .debounce(for: 0.25, scheduler: RunLoop.main)
-            .map { username in
-                guard !username.isEmpty else { return [] }
-                return UserNameValidation.getFieldValidationErrors(fieldString: username)
-            }
-            .assign(to: &$usernameErrors)
+//        $username
+//            .debounce(for: 0.25, scheduler: RunLoop.main)
+//            .map { username in
+//                guard !username.isEmpty else { return [] }
+//                return UsernameValidationError.getFieldValidationErrors(fieldString: username)
+//            }
+//            .assign(to: &$usernameErrors)
     }
 }

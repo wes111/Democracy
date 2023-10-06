@@ -8,9 +8,9 @@
 import Foundation
 
 enum OnboardingPath: Hashable {
-    case goToCreateAccount(CreateFieldViewModel<UserNameValidation>)
-    case goToCreatePassword(CreateFieldViewModel<PasswordValidation>)
-    case goToCreateEmail(CreateFieldViewModel<EmailValidation>)
+    case goToCreateAccount(CreateFieldViewModel<CreateUsernameField>)
+    case goToCreatePassword(CreateFieldViewModel<CreatePasswordField>)
+    case goToCreateEmail(CreateFieldViewModel<CreateEmailField>)
     case goToCreatePhone
     
     case goToVerifyEmail

@@ -7,16 +7,15 @@
 
 import Foundation
 
-final class CreateFieldViewModel<T: Validator>: ObservableObject, Hashable {
+final class CreateFieldViewModel<Field: UserInputField>: ObservableObject, Hashable {
     
     @Published var text: String = ""
-    @Published var textErrors: [T] = []
+    @Published var textErrors: [Field.InputError] = []
     
-    let field: CreateField
+    let field: Field = .init()
     let submitAction: () -> Void
     
     init(submitAction: @escaping () -> Void) {
-        self.field = T.field
         self.submitAction = submitAction
         
         setupBindings()
@@ -35,16 +34,16 @@ final class CreateFieldViewModel<T: Validator>: ObservableObject, Hashable {
     }
     
     var maxCharacterCount: Int {
-        T.maxCharacterCount
+        field.maxCharacterCount
     }
     
     func setupBindings() {
         
         $text
             .debounce(for: 0.25, scheduler: RunLoop.main)
-            .map { text in
+            .compactMap { [weak self] text in
                 guard !text.isEmpty else { return [] }
-                return UserNameValidation.getFieldValidationErrors(fieldString: text)
+                return self?.field.getInputValidationErrors(input: text)
             }
             .assign(to: &$textErrors)
     }

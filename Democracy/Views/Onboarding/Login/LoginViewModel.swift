@@ -56,27 +56,27 @@ private extension LoginViewModel {
     
     func setupBindings() {
         
-        $password
-            .debounce(for: 0.25, scheduler: RunLoop.main)
-            .map { password in
-                guard !password.isEmpty else { return false }
-                return !PasswordValidation.fullyValid(string: password)
-            }
-            .assign(to: &$showUsernameError)
-        
-        $username
-            .debounce(for: 0.25, scheduler: RunLoop.main)
-            .map { username in
-                guard !username.isEmpty else { return false }
-                return !UserNameValidation.fullyValid(string: username)
-            }
-            .assign(to: &$showUsernameError)
-        
-        $username.combineLatest($password)
-            .debounce(for: 0.25, scheduler: RunLoop.main)
-            .compactMap { (username, password) in
-                return UserNameValidation.fullyValid(string: username) && PasswordValidation.fullyValid(string: password)
-            }
-            .assign(to: &$isValid)
+//        $password
+//            .debounce(for: 0.25, scheduler: RunLoop.main)
+//            .map { password in
+//                guard !password.isEmpty else { return false }
+//                return !PasswordValidationError.fullyValid(string: password)
+//            }
+//            .assign(to: &$showUsernameError)
+//        
+//        $username
+//            .debounce(for: 0.25, scheduler: RunLoop.main)
+//            .map { username in
+//                guard !username.isEmpty else { return false }
+//                return !UsernameValidationError.fullyValid(string: username)
+//            }
+//            .assign(to: &$showUsernameError)
+//        
+//        $username.combineLatest($password)
+//            .debounce(for: 0.25, scheduler: RunLoop.main)
+//            .compactMap { (username, password) in
+//                return UsernameValidationError.fullyValid(string: username) && PasswordValidationError.fullyValid(string: password)
+//            }
+//            .assign(to: &$isValid)
     }
 }

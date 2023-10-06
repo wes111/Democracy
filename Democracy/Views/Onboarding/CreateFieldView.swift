@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct CreateFieldView<T: Validator>: View {
-    @ObservedObject var viewModel: CreateFieldViewModel<T>
-    @FocusState private var focusedField: CreateField?
+struct CreateFieldView<Field: UserInputField>: View {
+    @ObservedObject var viewModel: CreateFieldViewModel<Field>
+    @FocusState private var focusedField: Field?
     
-    init(viewModel: CreateFieldViewModel<T>) {
+    init(viewModel: CreateFieldViewModel<Field>) {
         self.viewModel = viewModel
     }
     
@@ -22,7 +22,7 @@ struct CreateFieldView<T: Validator>: View {
             VStack(alignment: .leading, spacing: 20) {
                 title
                 subtitle
-                passwordField
+                field
                 errors
                 nextButton
                 Spacer()
@@ -39,13 +39,13 @@ struct CreateFieldView<T: Validator>: View {
 //MARK: Subviews
 extension CreateFieldView {
     
-    var passwordField: some View {
+    var field: some View {
         TextField(viewModel.fieldTitle, text: $viewModel.text,
                   prompt: Text(viewModel.fieldTitle).foregroundColor(.secondaryBackground), axis: .vertical
         )
         .limitCharacters(text: $viewModel.text, count: viewModel.maxCharacterCount)
         .focused($focusedField, equals: viewModel.field)
-        .standardTextField(borderColor: viewModel.textErrors.isEmpty ? .tertiaryText : .otherRed)
+        .standardTextField(borderColor: $viewModel.textErrors.isEmpty ? .tertiaryText : .otherRed)
         .submitLabel(.next)
     }
     
@@ -53,7 +53,7 @@ extension CreateFieldView {
         VStack(alignment: .leading, spacing: 5) {
             ForEach(viewModel.textErrors, id: \.self) { error in
                 Label() {
-                    Text(error.description)
+                    Text(error.descriptionText)
                         .font(.system(.caption, weight: .light))
                 } icon: {
                     Image(systemName: "exclamationmark.triangle")
@@ -88,6 +88,6 @@ extension CreateFieldView {
 //MARK: - Preview
 #Preview {
     let coordinator = OnboardingCoordinator()
-    let viewModel = CreateFieldViewModel<EmailValidation>(submitAction: {})
+    let viewModel = CreateFieldViewModel<CreateEmailField>(submitAction: {})
     return CreateFieldView(viewModel: viewModel)
 }

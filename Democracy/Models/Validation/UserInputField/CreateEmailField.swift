@@ -1,16 +1,19 @@
 //
-//  EmailValidation.swift
+//  CreateEmailField.swift
 //  Democracy
 //
-//  Created by Wesley Luntsford on 10/4/23.
+//  Created by Wesley Luntsford on 10/6/23.
 //
 
 import Foundation
 
-enum EmailValidation: Validator {
-    static var field: CreateField = .email
+struct CreateEmailField: UserInputField {
     
-    case invalidEmail
+    let title: String = "Create Email"
+    let subtitle: String = "Create the primary email for this account"
+    let fieldTitle: String = "Email"
+    let maxCharacterCount: Int = 128
+    let errors = EmailValidationError.allCases
     
     /// Local part:
     ///     Must start with a character that is either an uppercase letter (A-Z), lowercase letter (a-z), digit (0-9), percent sign (%), plus sign (+), or hyphen (-).
@@ -26,21 +29,5 @@ enum EmailValidation: Validator {
     /// Top-Level Domain (TLD):
     ///     Must consist of at least two characters.
     ///     Allowed characters are: uppercase and lowercase letters (A-Z, a-z).
-    static var fullRegex = "^[A-Z0-9a-z%+-][A-Z0-9a-z._%+-]*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*\\.[A-Za-z]{2,}$"
-    
-    static var maxCharacterCount: Int = 128
-    
-    var description: String {
-        switch self {
-            
-        case .invalidEmail:
-            "Email format is invalid."
-        }
-    }
-    
-    var regex: String {
-        switch self {
-        case .invalidEmail: Self.fullRegex
-        }
-    }
+    static let fullRegex = "^[A-Z0-9a-z%+-][A-Z0-9a-z._%+-]*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*\\.[A-Za-z]{2,}$"
 }
