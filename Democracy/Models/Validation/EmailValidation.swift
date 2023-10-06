@@ -8,6 +8,8 @@
 import Foundation
 
 enum EmailValidation: Validator {
+    static var field: CreateField = .email
+    
     case invalidEmail
     
     /// Local part:
@@ -25,6 +27,8 @@ enum EmailValidation: Validator {
     ///     Must consist of at least two characters.
     ///     Allowed characters are: uppercase and lowercase letters (A-Z, a-z).
     static var fullRegex = "^[A-Z0-9a-z%+-][A-Z0-9a-z._%+-]*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*\\.[A-Za-z]{2,}$"
+    
+    static var maxCharacterCount: Int = 128
     
     var description: String {
         switch self {

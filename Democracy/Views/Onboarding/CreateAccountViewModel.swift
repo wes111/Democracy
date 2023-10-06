@@ -27,6 +27,18 @@ final class CreateAccountViewModel: ObservableObject {
     
     private let coordinator: CreateAccountCoordinatorDelegate
     
+    lazy var createEmailFieldViewModel: CreateFieldViewModel<EmailValidation> = {
+        .init(submitAction: submitEmail)
+    }()
+    
+    lazy var createPasswordFieldViewModel: CreateFieldViewModel<PasswordValidation> = {
+        .init(submitAction: submitPassword)
+    }()
+    
+    lazy var createUsernameFieldViewModel: CreateFieldViewModel<UserNameValidation> = {
+        .init(submitAction: submitUsername)
+    }()
+    
     init(coordinator: CreateAccountCoordinatorDelegate) {
         self.coordinator = coordinator
         

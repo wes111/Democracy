@@ -8,6 +8,8 @@
 import Foundation
 
 enum PasswordValidation: Validator {
+    static var field: CreateField = .password
+    
     case hasUppercase, hasLowercase, hasDigit, hasSpecialChar, length
     
     /// Requires at least one uppercase letter (A-Z).
@@ -17,7 +19,7 @@ enum PasswordValidation: Validator {
     /// At least 8 characters long and at most 128 characters long.
     static let fullRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=_])[A-Za-z\\d@#$%^&+=_]{8,128}$"
     
-    static let maxPasswordCharCount = 128 /// This is an app requirement, not an Appwrite requirement.
+    static let maxCharacterCount = 128 /// This is an app requirement, not an Appwrite requirement.
     
     var description: String {
         switch self {

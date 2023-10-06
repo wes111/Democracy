@@ -1,24 +1,17 @@
 //
-//  CreateUsernameView.swift
+//  CreatePasswordView.swift
 //  Democracy
 //
-//  Created by Wesley Luntsford on 9/30/23.
+//  Created by Wesley Luntsford on 10/1/23.
 //
 
 import SwiftUI
 
-
-
-enum CreateUsernameField {
-    case username
-}
-
-struct CreateUsernameView: View {
+struct CreateFieldView<T: Validator>: View {
+    @ObservedObject var viewModel: CreateFieldViewModel<T>
+    @FocusState private var focusedField: CreateField?
     
-    @ObservedObject var viewModel: CreateAccountViewModel
-    @FocusState private var focusedField: CreateUsernameField?
-    
-    init(viewModel: CreateAccountViewModel) {
+    init(viewModel: CreateFieldViewModel<T>) {
         self.viewModel = viewModel
     }
     
@@ -29,7 +22,7 @@ struct CreateUsernameView: View {
             VStack(alignment: .leading, spacing: 20) {
                 title
                 subtitle
-                usernameField
+                passwordField
                 errors
                 nextButton
                 Spacer()
@@ -37,28 +30,28 @@ struct CreateUsernameView: View {
             .padding()
         }
         .onAppear {
-            focusedField = .username
+            focusedField = viewModel.field
         }
         .toolbarNavigation()
     }
 }
 
 //MARK: Subviews
-extension CreateUsernameView {
+extension CreateFieldView {
     
-    var usernameField: some View {
-        TextField("Username", text: $viewModel.username,
-                  prompt: Text("Username").foregroundColor(.secondaryBackground), axis: .vertical
+    var passwordField: some View {
+        TextField(viewModel.fieldTitle, text: $viewModel.text,
+                  prompt: Text(viewModel.fieldTitle).foregroundColor(.secondaryBackground), axis: .vertical
         )
-        .limitCharacters(text: $viewModel.username, count: UserNameValidation.maxUsernameCharCount)
-        .focused($focusedField, equals: .username)
-        .standardTextField(borderColor: viewModel.usernameErrors.isEmpty ? .tertiaryText : .otherRed)
+        .limitCharacters(text: $viewModel.text, count: viewModel.maxCharacterCount)
+        .focused($focusedField, equals: viewModel.field)
+        .standardTextField(borderColor: viewModel.textErrors.isEmpty ? .tertiaryText : .otherRed)
         .submitLabel(.next)
     }
     
     var errors: some View {
         VStack(alignment: .leading, spacing: 5) {
-            ForEach(viewModel.usernameErrors, id: \.self) { error in
+            ForEach(viewModel.textErrors, id: \.self) { error in
                 Label() {
                     Text(error.description)
                         .font(.system(.caption, weight: .light))
@@ -71,20 +64,20 @@ extension CreateUsernameView {
     }
     
     var title: some View {
-        Text("Create a username")
+        Text(viewModel.title)
             .font(.system(.title, weight: .semibold))
             .foregroundColor(.primaryText)
     }
     
     var subtitle: some View {
-        Text("Create a unique username as a unique identifier across the app.")
+        Text(viewModel.subtitle)
             .font(.system(.body, weight: .light))
             .foregroundColor(.primaryText)
     }
     
     var nextButton: some View {
         Button() {
-            viewModel.submitUsername()
+            viewModel.submitAction()
         } label: {
             Text("Next")
         }
@@ -95,6 +88,6 @@ extension CreateUsernameView {
 //MARK: - Preview
 #Preview {
     let coordinator = OnboardingCoordinator()
-    let viewModel = CreateAccountViewModel(coordinator: coordinator)
-    return CreateUsernameView(viewModel: viewModel)
+    let viewModel = CreateFieldViewModel<EmailValidation>(submitAction: {})
+    return CreateFieldView(viewModel: viewModel)
 }

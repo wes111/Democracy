@@ -28,7 +28,8 @@ extension OnboardingCoordinator {
 // MARK: - Protocols
 extension OnboardingCoordinator: LoginCoordinatorDelegate {
     func goToCreateAccount() {
-        router.push(OnboardingPath.goToCreateAccount)
+        let viewModel = createAccountViewModel.createUsernameFieldViewModel
+        router.push(OnboardingPath.goToCreateAccount(viewModel))
     }
     
 }
@@ -36,11 +37,13 @@ extension OnboardingCoordinator: LoginCoordinatorDelegate {
 extension OnboardingCoordinator: CreateAccountCoordinatorDelegate {
     
     func goToCreatePassword() {
-        router.push(OnboardingPath.goToCreatePassword)
+        let viewModel = createAccountViewModel.createPasswordFieldViewModel
+        router.push(OnboardingPath.goToCreatePassword(viewModel))
     }
     
     func goToCreateEmail() {
-        router.push(OnboardingPath.goToCreateEmail)
+        let viewModel = createAccountViewModel.createEmailFieldViewModel
+        router.push(OnboardingPath.goToCreateEmail(viewModel))
     }
     
     func goToVerifyEmail() {

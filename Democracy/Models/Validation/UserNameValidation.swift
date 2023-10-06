@@ -8,13 +8,15 @@
 import Foundation
 
 enum UserNameValidation: Validator {
+    static var field: CreateField = .username
+    
     case length, startChar, validChars
     
     /// Required to start with an alphanumeric character.
     /// Can be followed by up to 35 characters, which can be alphanumeric, dots, underscores, or hyphens.
     static let fullRegex = "^[a-zA-Z0-9][a-zA-Z0-9._-]{0,35}$"
     
-    static let maxUsernameCharCount = 36 /// Appwrite requirement.
+    static let maxCharacterCount = 36 /// Appwrite requirement.
     
     var description: String {
         switch self {
