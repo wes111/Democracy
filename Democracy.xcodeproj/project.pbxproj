@@ -167,6 +167,9 @@
 		EE9760162AD09F67003069CF /* CreateAccountSuccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9760152AD09F67003069CF /* CreateAccountSuccessViewModel.swift */; };
 		EE9760192AD0B066003069CF /* AcceptTermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9760182AD0B066003069CF /* AcceptTermsView.swift */; };
 		EE97601B2AD0B0B9003069CF /* AcceptTermsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97601A2AD0B0B9003069CF /* AcceptTermsViewModel.swift */; };
+		EE97601E2AD767EF003069CF /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97601D2AD767EF003069CF /* RootCoordinator.swift */; };
+		EE9760202AD76800003069CF /* RootPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97601F2AD76800003069CF /* RootPath.swift */; };
+		EE9760242AD76849003069CF /* RootCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9760232AD76849003069CF /* RootCoordinatorView.swift */; };
 		EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED4299F169000FEFC6E /* SettingsView.swift */; };
 		EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47EDE299F186D00FEFC6E /* SettingsViewModel.swift */; };
 		EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4EB29A9984200DDCCDA /* SettingsCoordinator.swift */; };
@@ -372,6 +375,9 @@
 		EE9760152AD09F67003069CF /* CreateAccountSuccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountSuccessViewModel.swift; sourceTree = "<group>"; };
 		EE9760182AD0B066003069CF /* AcceptTermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptTermsView.swift; sourceTree = "<group>"; };
 		EE97601A2AD0B0B9003069CF /* AcceptTermsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptTermsViewModel.swift; sourceTree = "<group>"; };
+		EE97601D2AD767EF003069CF /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		EE97601F2AD76800003069CF /* RootPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPath.swift; sourceTree = "<group>"; };
+		EE9760232AD76849003069CF /* RootCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorView.swift; sourceTree = "<group>"; };
 		EED47ED4299F169000FEFC6E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		EED47EDE299F186D00FEFC6E /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		EED4A4EB29A9984200DDCCDA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
@@ -1035,6 +1041,16 @@
 			path = AcceptTermsView;
 			sourceTree = "<group>";
 		};
+		EE97601C2AD767D2003069CF /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				EE97601D2AD767EF003069CF /* RootCoordinator.swift */,
+				EE97601F2AD76800003069CF /* RootPath.swift */,
+				EE9760232AD76849003069CF /* RootCoordinatorView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		EED4A4EA29A997AB00DDCCDA /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -1050,6 +1066,7 @@
 			children = (
 				EED4A4EE29AA7E9600DDCCDA /* RootView.swift */,
 				EED4A4F029AA7ED700DDCCDA /* RootViewModel.swift */,
+				EE97601C2AD767D2003069CF /* Navigation */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -1477,6 +1494,7 @@
 				EE80D91529C92DC70000F8EF /* Candidate+Preview.swift in Sources */,
 				EE4524972A56655900C7A2DD /* AboutSectionViewModel.swift in Sources */,
 				EE5B939E2A088B5400B43381 /* CommunityCategoryView.swift in Sources */,
+				EE9760242AD76849003069CF /* RootCoordinatorView.swift in Sources */,
 				EE11729D2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift in Sources */,
 				EE80D93D29D882F70000F8EF /* User+Preview.swift in Sources */,
 				EE5D3A032A30204D00D0E312 /* CommunitiesTabCoordinator.swift in Sources */,
@@ -1534,6 +1552,7 @@
 				EE9760142AD09D10003069CF /* CreateAccountSuccessView.swift in Sources */,
 				EE7856282AB949C10004B7E4 /* PreviewModifier.swift in Sources */,
 				EE936CA02A7895B700D49271 /* CommunityPath.swift in Sources */,
+				EE97601E2AD767EF003069CF /* RootCoordinator.swift in Sources */,
 				EE5B938529F7652800B43381 /* HeaderWithDropDownFilter.swift in Sources */,
 				EE80D8E229BC1DD80000F8EF /* PostInteractor.swift in Sources */,
 				EE80D92229C9557D0000F8EF /* CandidateInteractor.swift in Sources */,
@@ -1550,6 +1569,7 @@
 				EE80D8D429BC15FC0000F8EF /* EventsTabMainViewModel+Preview.swift in Sources */,
 				EE4DB8A62ACE44CC00A6DC90 /* UserInputValidator.swift in Sources */,
 				EE11729F2A71C3C700E529AF /* CommunityCategoryViewModel.swift in Sources */,
+				EE9760202AD76800003069CF /* RootPath.swift in Sources */,
 				EE4DB8962AC89F6800A6DC90 /* OnboardingCoordinator.swift in Sources */,
 				EE80D92629C955DB0000F8EF /* CandidateRemoteRepository.swift in Sources */,
 				EE80D94F29DB90AD0000F8EF /* CreateCommunityViewModel.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol AlliedCommunitiesSectionViewModelCoordinatorDelegate {
+protocol AlliedCommunitiesSectionViewModelCoordinatorDelegate: AnyObject {
     
     func goToCommunityView(id: String)
 }
@@ -16,17 +16,17 @@ class AlliedCommunitiesSectionViewModel {
     
     let alliedCommunities: [AlliedCommunityViewModel]
     let title = "Allied Communities"
-    private let coordinator: AlliedCommunitiesSectionViewModelCoordinatorDelegate
+    private weak var coordinator: AlliedCommunitiesSectionViewModelCoordinatorDelegate?
     
     init(alliedCommunities: [Community],
-         coordinator: AlliedCommunitiesSectionViewModelCoordinatorDelegate
+         coordinator: AlliedCommunitiesSectionViewModelCoordinatorDelegate?
     ) {
         self.alliedCommunities = alliedCommunities.map { .init($0) }
         self.coordinator = coordinator
     }
     
     func onTapCommunity(id: String) {
-        coordinator.goToCommunityView(id: id)
+        coordinator?.goToCommunityView(id: id)
     }
     
 }

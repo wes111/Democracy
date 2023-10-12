@@ -8,7 +8,7 @@
 import Combine
 import Factory
 
-protocol AddPostCoordinatorDelegate {
+protocol AddPostCoordinatorDelegate: AnyObject {
     func close()
 }
 
@@ -37,14 +37,14 @@ final class AddPostViewModel: AddPostViewModelProtocol {
     
     @Injected(\.postInteractor) var postInteractor
     
-    let coordinator: AddPostCoordinatorDelegate
+    private weak var coordinator: AddPostCoordinatorDelegate?
     
     init(coordinator: AddPostCoordinatorDelegate) {
         self.coordinator = coordinator
     }
     
     func close() {
-        coordinator.close()
+        coordinator?.close()
     }
     
     func submitPost() {

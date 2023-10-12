@@ -9,7 +9,7 @@ import Combine
 import Factory
 import Foundation
 
-protocol CommunityCoordinatorDelegate: CommunityHomeFeedCoordinatorDelegate, CommunityInfoCoordinatorDelegate, CommunityArchiveFeedCoordinatorDelegate {
+protocol CommunityCoordinatorDelegate: CommunityHomeFeedCoordinatorDelegate, CommunityInfoCoordinatorDelegate, CommunityArchiveFeedCoordinatorDelegate, AnyObject {
     func showCreatePostView()
     func goBack()
 }
@@ -19,7 +19,7 @@ final class CommunityViewModel: ObservableObject {
     @Published var isShowingNavigationBar = true
     private var cancellables = Set<AnyCancellable>()
 
-    let coordinator: CommunityCoordinatorDelegate
+    private weak var coordinator: CommunityCoordinatorDelegate?
     let community: Community
     var canCreatePost: Bool {
         return true
@@ -34,7 +34,7 @@ final class CommunityViewModel: ObservableObject {
     }
     
     func showCreatePostView() {
-        coordinator.showCreatePostView()
+        coordinator?.showCreatePostView()
     }
     
     func getCommunityHomeFeedViewModel() -> CommunityHomeFeedViewModel {
@@ -50,7 +50,7 @@ final class CommunityViewModel: ObservableObject {
     }
     
     func goBack() {
-        coordinator.goBack()
+        coordinator?.goBack()
     }
     
 }

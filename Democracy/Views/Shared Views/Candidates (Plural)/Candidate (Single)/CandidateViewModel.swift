@@ -22,7 +22,7 @@ enum CandidateBadge: Codable, Identifiable {
     case oneYearMember
 }
 
-protocol CandidateCoordinatorDelegate: PostCardCoordinatorDelegate {
+protocol CandidateCoordinatorDelegate: PostCardCoordinatorDelegate, AnyObject {
 }
 
 protocol CandidateViewModelProtocol: ObservableObject {
@@ -32,7 +32,7 @@ protocol CandidateViewModelProtocol: ObservableObject {
 final class CandidateViewModel: CandidateViewModelProtocol {
     
     let candidate: Candidate
-    private let coordinator: CandidateCoordinatorDelegate
+    private weak var coordinator: CandidateCoordinatorDelegate?
     
     lazy var candidateBadges: [CandidateBadge] = {
         candidate.badges

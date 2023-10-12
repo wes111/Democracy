@@ -14,7 +14,7 @@ class RootViewModel: ObservableObject {
     
     let mainTabViewModel = MainTabViewModel()
     
-    lazy var onboardingCoordinatorViewModel: OnboardingCoordinator = {
+    lazy var rootCoordinator: RootCoordinator = {
         .init()
     }()
     

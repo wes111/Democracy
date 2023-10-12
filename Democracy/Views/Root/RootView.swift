@@ -19,7 +19,7 @@ struct RootView: View {
         if viewModel.loginStatus == .loggedIn {
             MainTabView(viewModel: viewModel.mainTabViewModel)
         } else {
-            OnboardingCoordinatorView(viewModel: viewModel.onboardingCoordinatorViewModel)
+            RootCoordinatorView(viewModel: viewModel.rootCoordinator)
         }
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 extension CreateCandidateViewModel {
     
-    struct PreviewHelper: CreateCandidateCoordinatorDelegate {
+    class PreviewHelper: CreateCandidateCoordinatorDelegate {
         func closeCreateCandidateView() {
             // TODO: ...
         }

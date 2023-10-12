@@ -10,7 +10,7 @@ import Foundation
 import Combine
 import Factory
 
-protocol CreateCommunityCoordinatorDelegate {
+protocol CreateCommunityCoordinatorDelegate: AnyObject {
     func close()
 }
 
@@ -28,7 +28,7 @@ final class CreateCommunityViewModel: ObservableObject {
     
     @Injected(\.communityInteractor) var communityInteractor
     
-    let coordinator: CreateCommunityCoordinatorDelegate
+    weak var coordinator: CreateCommunityCoordinatorDelegate?
     
     init(coordinator: CreateCommunityCoordinatorDelegate) {
         self.coordinator = coordinator
@@ -39,7 +39,7 @@ final class CreateCommunityViewModel: ObservableObject {
 extension CreateCommunityViewModel {
     
     func close() {
-        coordinator.close()
+        coordinator?.close()
     }
     
     func submitCategory() async {

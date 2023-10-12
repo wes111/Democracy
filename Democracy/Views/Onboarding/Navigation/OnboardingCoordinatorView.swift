@@ -15,21 +15,16 @@ struct OnboardingCoordinatorView: View {
     }
     
     var body: some View {
-        ZStack {
-            Color.primaryBackground.ignoresSafeArea()
-            
-            CoordinatorView(router: $viewModel.router) {
-                LoginView(viewModel: viewModel.loginViewModel())
-            } secondaryScreen: { (path: OnboardingPath) in
-                createViewFromPath(path)
-            }
+        CoordinatorView(router: $viewModel.router) {
+            CreateFieldView(viewModel: viewModel.createAccountViewModel.createUsernameFieldViewModel)
+        } secondaryScreen: { (path: OnboardingPath) in
+            createViewFromPath(path)
         }
     }
     
     @ViewBuilder
     func createViewFromPath(_ path: OnboardingPath) -> some View {
         switch path {
-        case .goToCreateAccount(let viewModel): CreateFieldView(viewModel: viewModel)
         case .goToCreatePassword(let viewModel): CreateFieldView(viewModel: viewModel)
         case .goToCreateEmail(let viewModel): CreateFieldView(viewModel: viewModel)
         case .goToVerifyEmail: EmptyView()

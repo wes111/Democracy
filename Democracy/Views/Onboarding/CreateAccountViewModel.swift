@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-protocol CreateAccountCoordinatorDelegate: AcceptTermsCoordinatorDelegate {
+protocol CreateAccountCoordinatorDelegate: AnyObject, AcceptTermsCoordinatorDelegate {
     func goToCreatePassword()
     func goToCreateEmail()
     func goToVerifyEmail()
@@ -27,7 +27,7 @@ final class CreateAccountViewModel: ObservableObject {
     
     @Published var usernameErrors: [UsernameValidationError] = []
     
-    let coordinator: CreateAccountCoordinatorDelegate
+    private weak var coordinator: CreateAccountCoordinatorDelegate?
     
     lazy var createEmailFieldViewModel: CreateFieldViewModel<CreateEmailField> = {
         .init(submitAction: submitEmail)
@@ -49,10 +49,14 @@ final class CreateAccountViewModel: ObservableObject {
         .init(coordinator: coordinator)
     }()
     
-    init(coordinator: CreateAccountCoordinatorDelegate) {
+    init(coordinator: CreateAccountCoordinatorDelegate?) {
         self.coordinator = coordinator
         
         setupBindings()
+    }
+    
+    deinit {
+        print()
     }
 }
 
@@ -60,29 +64,29 @@ final class CreateAccountViewModel: ObservableObject {
 extension CreateAccountViewModel {
     
     func submitUsername() {
-        coordinator.goToCreatePassword()
+        coordinator?.goToCreatePassword()
     }
     
     func submitPassword() {
-        coordinator.goToCreateEmail()
+        coordinator?.goToCreateEmail()
     }
     
     func submitEmail() {
-        coordinator.goToAcceptTerms()
+        coordinator?.goToAcceptTerms()
         //coordinator.goToCreateAccountSuccess()
         //coordinator.goToVerifyEmail()
     }
     
     func verifyEmail() {
-        coordinator.goToCreatePhone()
+        coordinator?.goToCreatePhone()
     }
     
     func submitPhone() {
-        coordinator.goToVerifyPhone()
+        coordinator?.goToVerifyPhone()
     }
     
     func agreeToTerms() {
-        coordinator.goToCreateAccountSuccess()
+        coordinator?.goToCreateAccountSuccess()
     }
 }
 

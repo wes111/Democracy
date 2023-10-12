@@ -8,20 +8,20 @@
 import Factory
 import Foundation
 
-protocol CommunityArchiveFeedCoordinatorDelegate: PostCardCoordinatorDelegate {
+protocol CommunityArchiveFeedCoordinatorDelegate: PostCardCoordinatorDelegate, AnyObject {
     func goToCommunityPostCategory(categoryId: String)
 }
 
 final class CommunityArchiveFeedViewModel: ObservableObject {
     
-    private let coordinator: CommunityArchiveFeedCoordinatorDelegate
+    private weak var coordinator: CommunityArchiveFeedCoordinatorDelegate?
     private let community: Community
     
     var categories: [CommunityCategoryViewModel] {
         CommunityCategory.previewArray.map { $0.toCommunityCategoryViewModel() }
     }
     
-    init(coordinator: CommunityArchiveFeedCoordinatorDelegate,
+    init(coordinator: CommunityArchiveFeedCoordinatorDelegate?,
          community: Community
     ) {
         self.coordinator = coordinator
@@ -29,7 +29,7 @@ final class CommunityArchiveFeedViewModel: ObservableObject {
     }
     
     func goToCommunityPostCategory(category: CommunityCategoryViewModel) {
-        coordinator.goToCommunityPostCategory(categoryId: category.id)
+        coordinator?.goToCommunityPostCategory(categoryId: category.id)
     }
     
 }

@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol VoteViewCoordinator {
+protocol VoteViewCoordinator: AnyObject {
     func goBack()
 }
 
 final class VoteViewModel: ObservableObject {
     
     @Published var role: RepresentativeType = .legislator
-    let coordinator: VoteViewCoordinator
+    private weak var coordinator: VoteViewCoordinator?
     
     init(coordinator: VoteViewCoordinator) {
         self.coordinator = coordinator
@@ -39,7 +39,7 @@ extension VoteViewModel {
 extension VoteViewModel {
     
     func goBack() {
-        coordinator.goBack()
+        coordinator?.goBack()
     }
     
 }

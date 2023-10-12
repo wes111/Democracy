@@ -9,31 +9,19 @@ import Foundation
 
 final class OnboardingCoordinator: Coordinator {
     
-    // TODO: Need a new coordinator that will hold this for its life and die when the create account flow is exited.
     lazy var createAccountViewModel: CreateAccountViewModel = {
         .init(coordinator: self)
     }()
     
-}
-
-// MARK: - Child ViewModels
-extension OnboardingCoordinator {
-    
-    func loginViewModel() -> LoginViewModel {
-        .init(coordinator: self)
+    deinit {
+        print()
     }
     
 }
 
 // MARK: - Protocols
-extension OnboardingCoordinator: LoginCoordinatorDelegate {
-    func goToCreateAccount() {
-        let viewModel = createAccountViewModel.createUsernameFieldViewModel
-        router.push(OnboardingPath.goToCreateAccount(viewModel))
-    }
-}
-
 extension OnboardingCoordinator: AcceptTermsCoordinatorDelegate {
+    
     func goToCreateAccountSuccess() {
         let viewModel = createAccountViewModel.createAccountSuccessViewModel
         router.push(OnboardingPath.goToCreateAccountSuccess(viewModel))

@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-protocol CreateCandidateCoordinatorDelegate {
+protocol CreateCandidateCoordinatorDelegate: AnyObject {
     func closeCreateCandidateView()
 }
 
@@ -35,14 +35,14 @@ final class CreateCandidateViewModel: CreateCandidateViewModelProtocol {
     
     @Injected(\.candidateInteractor) var candidateInteractor
     
-    let coordinator: CreateCandidateCoordinatorDelegate
+    weak var coordinator: CreateCandidateCoordinatorDelegate?
     
-    init(coordinator: CreateCandidateCoordinatorDelegate) {
+    init(coordinator: CreateCandidateCoordinatorDelegate?) {
         self.coordinator = coordinator
     }
     
     func close() {
-        coordinator.closeCreateCandidateView()
+        coordinator?.closeCreateCandidateView()
     }
     
     func submitCandidate() {

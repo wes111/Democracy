@@ -32,7 +32,7 @@ struct Post: Identifiable {
         self.link = link
     }
     
-    func toViewModel(coordinator: PostCardCoordinatorDelegate) -> PostCardViewModel {
+    func toViewModel(coordinator: PostCardCoordinatorDelegate?) -> PostCardViewModel {
         .init(coordinator: coordinator, post: self)
     }
 }

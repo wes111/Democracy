@@ -21,6 +21,10 @@ final class CreateFieldViewModel<Field: UserInputField>: ObservableObject, Hasha
         setupBindings()
     }
     
+    deinit {
+        print()
+    }
+    
     var title: String {
         field.title
     }

@@ -9,7 +9,7 @@ import Combine
 import Foundation
 import Factory
 
-protocol CommunityHomeFeedCoordinatorDelegate: PostCardCoordinatorDelegate {
+protocol CommunityHomeFeedCoordinatorDelegate: PostCardCoordinatorDelegate, AnyObject {
     var community: Community { get }
 }
 
@@ -22,20 +22,20 @@ final class CommunityHomeFeedViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
     
-    let coordinator: CommunityHomeFeedCoordinatorDelegate
+    private weak var coordinator: CommunityHomeFeedCoordinatorDelegate?
     
     func getPostCardViewModel(post: Post) -> PostCardViewModel {
         PostCardViewModel(coordinator: coordinator, post: post)
     }
 
-    init(coordinator: CommunityHomeFeedCoordinatorDelegate
+    init(coordinator: CommunityHomeFeedCoordinatorDelegate?
     ) {
         self.coordinator = coordinator
         postInteractor.subscribeToPosts().assign(to: &$posts)
     }
     
     func goToPost() {
-        coordinator.goToPostView(Post.preview)
+        coordinator?.goToPostView(Post.preview)
     }
     
     func refreshPosts() {

@@ -101,7 +101,7 @@ extension LoginView {
 
 //MARK: - Preview
 #Preview {
-    let coordinator = OnboardingCoordinator()
+    let coordinator = RootCoordinator()
     let viewModel = LoginViewModel(coordinator: coordinator)
     
     return ZStack {

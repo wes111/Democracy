@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-protocol CommunityInfoCoordinatorDelegate: CandidateCardCoordinatorDelegate, LeadersScrollViewModelCoordinatorDelegate, AlliedCommunitiesSectionViewModelCoordinatorDelegate {
+protocol CommunityInfoCoordinatorDelegate: CandidateCardCoordinatorDelegate, LeadersScrollViewModelCoordinatorDelegate, AlliedCommunitiesSectionViewModelCoordinatorDelegate, AnyObject {
     func showCandidates()
     func goToCommunityView(id: String)
     func openResourceURL(_ url: URL)
@@ -19,7 +19,7 @@ final class CommunityInfoViewModel: ObservableObject {
     @Published var representatives: [Candidate] = Candidate.previewArray
     @Published var alliedCommunities: [Community] = Community.myCommunitiesPreviewArray
     
-    let coordinator: CommunityInfoCoordinatorDelegate
+    private weak var coordinator: CommunityInfoCoordinatorDelegate?
     let community: Community
     
     let resourcesSectionViewModel: ResourcesSectionViewModel
@@ -36,7 +36,7 @@ final class CommunityInfoViewModel: ObservableObject {
         )
     }
     
-    init(coordinator: CommunityInfoCoordinatorDelegate,
+    init(coordinator: CommunityInfoCoordinatorDelegate?,
          community: Community
     ) {
         self.coordinator = coordinator
@@ -65,22 +65,22 @@ final class CommunityInfoViewModel: ObservableObject {
     }
     
     func showCandidates() {
-        coordinator.showCandidates()
+        coordinator?.showCandidates()
     }
     
     func onTapCommunityCard(_ community: Community) {
-        coordinator.goToCommunityView(id: community.id)
+        coordinator?.goToCommunityView(id: community.id)
     }
     
     func onTapCandidateCard(candidateID: String) {
-        coordinator.goToCandidateView(candidateId: candidateID)
+        coordinator?.goToCandidateView(candidateId: candidateID)
     }
     
     func openResourceURL(urlString: String) {
         guard let url = URL(string: urlString) else {
             return print("Failed to create URL from urlString.")
         }
-        coordinator.openResourceURL(url)
+        coordinator?.openResourceURL(url)
     }
     
 }

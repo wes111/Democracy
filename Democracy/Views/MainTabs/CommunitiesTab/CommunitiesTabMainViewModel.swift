@@ -9,7 +9,7 @@ import Combine
 import Foundation
 import Factory
 
-protocol CommunitiesTabMainCoordinatorDelegate {
+protocol CommunitiesTabMainCoordinatorDelegate: AnyObject {
     func goToCommunity(communityId: String)
     func showCreateCommunityView()
 }
@@ -22,9 +22,9 @@ final class CommunitiesTabMainViewModel: ObservableObject {
     @Published var recommendedCommunities: [Community] = []
     @Published var topCommunities: [Community] = []
     
-    let coordinator: CommunitiesTabMainCoordinatorDelegate
+    private weak var coordinator: CommunitiesTabMainCoordinatorDelegate?
     
-    init(coordinator: CommunitiesTabMainCoordinatorDelegate) {
+    init(coordinator: CommunitiesTabMainCoordinatorDelegate?) {
         self.coordinator = coordinator
         
         communityInteractor.subscribeToMyCommunities().assign(to: &$myCommunities)
@@ -37,7 +37,7 @@ final class CommunitiesTabMainViewModel: ObservableObject {
     }
     
     func goToCommunity(_ community: Community) {
-        coordinator.goToCommunity(communityId: community.id)
+        coordinator?.goToCommunity(communityId: community.id)
     }
 
     func refreshMyCommunities() {
@@ -53,7 +53,7 @@ final class CommunitiesTabMainViewModel: ObservableObject {
     }
     
     func showCreateCommunityView() {
-        coordinator.showCreateCommunityView()
+        coordinator?.showCreateCommunityView()
     }
     
 }

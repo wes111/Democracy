@@ -78,7 +78,7 @@ extension CommunityCoordinator {
     }
     
     func postViewModel(post: Post) -> PostViewModel {
-        PostViewModel(coordinator: self, post: post)
+        PostViewModel(post: post)
     }
     
     func communityPostCategoryViewModel(category: CommunityCategory) -> CommunityCategoryPostsViewModel {

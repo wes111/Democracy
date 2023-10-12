@@ -8,5 +8,5 @@
 import Foundation
 
 extension PostViewModel {
-    static let preview = PostViewModel(coordinator: PostCoordinator(Post.preview), post: Post.preview)
+    static let preview = PostViewModel(post: Post.preview)
 }

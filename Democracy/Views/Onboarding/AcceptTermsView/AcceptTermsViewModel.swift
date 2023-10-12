@@ -13,14 +13,14 @@ protocol AcceptTermsCoordinatorDelegate {
 
 final class AcceptTermsViewModel: ObservableObject, Hashable {
     
-    private let coordinator: AcceptTermsCoordinatorDelegate
+    private var coordinator: AcceptTermsCoordinatorDelegate?
     
-    init(coordinator: AcceptTermsCoordinatorDelegate) {
+    init(coordinator: AcceptTermsCoordinatorDelegate?) {
         self.coordinator = coordinator
     }
     
     func tapAgree() {
-        coordinator.goToCreateAccountSuccess()
+        coordinator?.goToCreateAccountSuccess()
     }
     
 }

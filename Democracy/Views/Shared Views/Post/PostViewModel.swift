@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol PostCoordinatorDelegate {
+protocol PostCoordinatorDelegate: AnyObject {
 }
 
 protocol PostViewModelProtocol: ObservableObject, Identifiable {
@@ -16,13 +16,13 @@ protocol PostViewModelProtocol: ObservableObject, Identifiable {
 
 final class PostViewModel: PostViewModelProtocol {
 
-    private let coordinator: PostCoordinatorDelegate
+    //private weak var coordinator: PostCoordinatorDelegate?
     let post: Post
     
-    init(coordinator: PostCoordinatorDelegate,
+    init(//coordinator: PostCoordinatorDelegate?,
          post: Post
     ) {
-        self.coordinator = coordinator
+        //self.coordinator = coordinator
         self.post = post
     }
     
