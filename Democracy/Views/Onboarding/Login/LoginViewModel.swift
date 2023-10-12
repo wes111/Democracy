@@ -9,7 +9,7 @@ import Combine
 import Factory
 import Foundation
 
-protocol LoginCoordinatorDelegate {
+protocol LoginCoordinatorDelegate: AnyObject {
     func goToCreateAccount()
 }
 
@@ -29,7 +29,7 @@ final class LoginViewModel: ObservableObject {
         setupBindings()
     }
     
-    var coordinator: LoginCoordinatorDelegate
+    private weak var coordinator: LoginCoordinatorDelegate?
 }
 
 //MARK: - Methods
@@ -37,7 +37,7 @@ extension LoginViewModel {
     
     func createAccount() {
         print("Create account")
-        coordinator.goToCreateAccount()
+        coordinator?.goToCreateAccount()
     }
     
     func forgotPassword() {

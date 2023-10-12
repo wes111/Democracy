@@ -15,7 +15,7 @@ final class EventsTabCoordinatorViewModel: Coordinator {
 extension EventsTabCoordinatorViewModel {
     
     func eventsTabMainViewModel() -> EventsTabMainViewModel {
-        .init(coordinator: self)
+        .init()
     }
 }
 

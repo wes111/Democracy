@@ -31,13 +31,13 @@ struct SettingsCoordinator: View {
     }
     
     private func createRootView() -> SettingsView<SettingsViewModel> {
-        let viewModel = SettingsViewModel(coordinator: self)
+        let viewModel = SettingsViewModel()
         return SettingsView(viewModel: viewModel)
     }
 }
 
-extension SettingsCoordinator: SettingsCoordinatorDelegate {
-
-    
-    
-}
+//extension SettingsCoordinator: SettingsCoordinatorDelegate {
+//
+//    
+//    
+//}

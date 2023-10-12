@@ -8,5 +8,5 @@
 import Foundation
 
 extension UpdatesTabMainViewModel {
-    static let preview = UpdatesTabMainViewModel(coordinator: UpdatesTabCoordinator.preview)
+    static let preview = UpdatesTabMainViewModel()
 }

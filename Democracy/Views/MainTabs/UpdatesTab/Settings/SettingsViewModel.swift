@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol SettingsCoordinatorDelegate {
+protocol SettingsCoordinatorDelegate: AnyObject {
 
 }
 
@@ -17,10 +17,10 @@ protocol SettingsViewModelProtocol: ObservableObject {
 
 final class SettingsViewModel: SettingsViewModelProtocol {
 
-    var coordinator: SettingsCoordinatorDelegate
+    //private weak var coordinator: SettingsCoordinatorDelegate?
     
-    init(coordinator: SettingsCoordinatorDelegate) {
-        self.coordinator = coordinator
+    init() {
+        //self.coordinator = coordinator
     }
     
 

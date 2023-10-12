@@ -7,13 +7,13 @@
 
 import Foundation
 
-protocol AcceptTermsCoordinatorDelegate {
+protocol AcceptTermsCoordinatorDelegate: AnyObject {
     func goToCreateAccountSuccess()
 }
 
 final class AcceptTermsViewModel: ObservableObject, Hashable {
     
-    private var coordinator: AcceptTermsCoordinatorDelegate?
+    private weak var coordinator: AcceptTermsCoordinatorDelegate?
     
     init(coordinator: AcceptTermsCoordinatorDelegate?) {
         self.coordinator = coordinator

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol EventsTabMainCoordinatorDelegate {
+protocol EventsTabMainCoordinatorDelegate: AnyObject {
     func tappedNav()
 }
 
@@ -17,13 +17,13 @@ protocol EventsTabMainViewModelProtocol: ObservableObject {
 
 final class EventsTabMainViewModel: EventsTabMainViewModelProtocol {
     
-    var coordinator: EventsTabMainCoordinatorDelegate
+    //private weak var coordinator: EventsTabMainCoordinatorDelegate?
     
-    init(coordinator: EventsTabMainCoordinatorDelegate) {
-        self.coordinator = coordinator
+    init() {
+        //self.coordinator = coordinator
     }
     
     func tappedNav() {
-        coordinator.tappedNav()
+        //coordinator?.tappedNav()
     }
 }

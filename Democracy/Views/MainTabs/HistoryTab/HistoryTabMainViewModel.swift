@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol HistoryTabMainCoordinatorDelegate {
+protocol HistoryTabMainCoordinatorDelegate: AnyObject {
     func tappedNav()
 }
 
@@ -17,14 +17,14 @@ protocol HistoryTabMainViewModelProtocol: ObservableObject {
 
 final class HistoryTabMainViewModel: HistoryTabMainViewModelProtocol {
     
-    var coordinator: HistoryTabMainCoordinatorDelegate
+    //private weak var coordinator: HistoryTabMainCoordinatorDelegate?
     
-    init(coordinator: HistoryTabMainCoordinatorDelegate) {
-        self.coordinator = coordinator
+    init() {
+        //self.coordinator = coordinator
     }
     
     func tappedNav() {
-        coordinator.tappedNav()
+        //coordinator?.tappedNav()
     }
 }
 

@@ -15,7 +15,7 @@ final class UpdatesTabCoordinatorViewModel: Coordinator {
 extension UpdatesTabCoordinatorViewModel {
     
     func updatesTabMainViewModel() -> UpdatesTabMainViewModel {
-        .init(coordinator: self)
+        .init()
     }
 }
 

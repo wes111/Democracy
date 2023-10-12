@@ -59,18 +59,18 @@ struct EventsTabCoordinator: View {
     }
     
     func createEventsTabMainView() -> EventsTabMainView<EventsTabMainViewModel> {
-        let viewModel = EventsTabMainViewModel(coordinator: self)
+        let viewModel = EventsTabMainViewModel()
         return EventsTabMainView(viewModel: viewModel)
     }
 }
 
-extension EventsTabCoordinator: EventsTabMainCoordinatorDelegate {
-    
-    func tappedNav() {
-        print("tapped nav")
-    }
-    
-}
+//extension EventsTabCoordinator: EventsTabMainCoordinatorDelegate {
+//    
+//    func tappedNav() {
+//        print("tapped nav")
+//    }
+//    
+//}
 
 //MARK: - Preview
 #Preview {

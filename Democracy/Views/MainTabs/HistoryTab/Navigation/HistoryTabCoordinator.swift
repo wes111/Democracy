@@ -31,18 +31,18 @@ struct HistoryTabCoordinator: View {
     }
     
     func createHistoryTabMainView() -> HistoryTabMainView<HistoryTabMainViewModel> {
-        let viewModel = HistoryTabMainViewModel(coordinator: self)
+        let viewModel = HistoryTabMainViewModel()
         return HistoryTabMainView(viewModel: viewModel)
     }
 }
 
-extension HistoryTabCoordinator: HistoryTabMainCoordinatorDelegate {
-    
-    func tappedNav() {
-        print("tapped nav")
-    }
-    
-}
+//extension HistoryTabCoordinator: HistoryTabMainCoordinatorDelegate {
+//    
+//    func tappedNav() {
+//        print("tapped nav")
+//    }
+//    
+//}
 
 //MARK: - Preview
 #Preview {

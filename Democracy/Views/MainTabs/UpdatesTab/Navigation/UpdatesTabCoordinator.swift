@@ -32,18 +32,18 @@ struct UpdatesTabCoordinator: View {
     }
     
     func createUpdatesTabMainView() -> UpdatesTabMainView<UpdatesTabMainViewModel> {
-        let viewModel = UpdatesTabMainViewModel(coordinator: self)
+        let viewModel = UpdatesTabMainViewModel()
         return UpdatesTabMainView(viewModel: viewModel)
     }
 }
 
-extension UpdatesTabCoordinator: UpdatesTabMainCoordinatorDelegate {
-    
-    func tappedNav() {
-        print("tapped nav")
-    }
-    
-}
+//extension UpdatesTabCoordinator: UpdatesTabMainCoordinatorDelegate {
+//    
+//    func tappedNav() {
+//        print("tapped nav")
+//    }
+//    
+//}
 
 //MARK: - Preview
 #Preview {

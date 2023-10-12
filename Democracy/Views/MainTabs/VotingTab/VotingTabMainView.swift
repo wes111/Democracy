@@ -22,5 +22,6 @@ struct VotingTabMainView: View {
 
 // MARK: - Preview
 #Preview {
-    VotingTabMainView(viewModel: VotingTabMainViewModel.preview)
+    EmptyView()
+    //VotingTabMainView(viewModel: VotingTabMainViewModel.preview)
 }

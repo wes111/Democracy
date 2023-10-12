@@ -15,7 +15,7 @@ final class HistoryTabCoordinatorViewModel: Coordinator {
 extension HistoryTabCoordinatorViewModel {
     
     func historyTabMainViewModel() -> HistoryTabMainViewModel {
-        .init(coordinator: self)
+        .init()
     }
 }
 

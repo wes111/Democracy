@@ -31,13 +31,13 @@ struct VotingTabCoordinator: View {
     }
 }
 
-extension VotingTabCoordinator: VotingTabMainCoordinatorDelegate {
-    
-    func tappedNav() {
-        print("tapped nav")
-    }
-    
-}
+//extension VotingTabCoordinator: VotingTabMainCoordinatorDelegate {
+//    
+//    func tappedNav() {
+//        print("tapped nav")
+//    }
+//    
+//}
 
 // MARK: - Preview
 #Preview {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol UpdatesTabMainCoordinatorDelegate {
+protocol UpdatesTabMainCoordinatorDelegate: AnyObject {
     func tappedNav()
 }
 
@@ -17,13 +17,13 @@ protocol UpdatesTabMainViewModelProtocol: ObservableObject {
 
 final class UpdatesTabMainViewModel: UpdatesTabMainViewModelProtocol {
     
-    var coordinator: UpdatesTabMainCoordinatorDelegate
+    //private weak var coordinator: UpdatesTabMainCoordinatorDelegate?
     
-    init(coordinator: UpdatesTabMainCoordinatorDelegate) {
-        self.coordinator = coordinator
+    init() {
+        //self.coordinator = coordinator
     }
     
     func tappedNav() {
-        coordinator.tappedNav()
+        //coordinator?.tappedNav()
     }
 }

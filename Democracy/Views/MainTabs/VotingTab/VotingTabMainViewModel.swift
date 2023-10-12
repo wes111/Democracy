@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol VotingTabMainCoordinatorDelegate {
+protocol VotingTabMainCoordinatorDelegate: AnyObject {
     func tappedNav()
 }
 
@@ -17,13 +17,13 @@ protocol VotingTabMainViewModelProtocol: ObservableObject {
 
 final class VotingTabMainViewModel: VotingTabMainViewModelProtocol {
     
-    var coordinator: VotingTabMainCoordinatorDelegate
+    private weak var coordinator: VotingTabMainCoordinatorDelegate?
     
-    init(coordinator: VotingTabMainCoordinatorDelegate) {
+    init(coordinator: VotingTabMainCoordinatorDelegate?) {
         self.coordinator = coordinator
     }
     
     func tappedNav() {
-        coordinator.tappedNav()
+        coordinator?.tappedNav()
     }
 }
