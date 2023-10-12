@@ -20,9 +20,16 @@ struct RootCoordinatorView: View {
         } secondaryScreen: { (path: RootPath) in
             createViewFromPath(path)
         }
-        .fullScreenCover(isPresented: $viewModel.isShowingOnboardingFlow) {
+        .popover(isPresented: $viewModel.isShowingOnboardingFlow) {
             OnboardingCoordinatorView(viewModel: viewModel.onboardingCoordinator())
         }
+        // TODO: This should be a fullScreenCover not popover.
+        // This temporarily fixes an iOS 17 memory leak.
+        // https://developer.apple.com/forums/thread/736239
+        
+//        .fullScreenCover(isPresented: $viewModel.isShowingOnboardingFlow) {
+//            OnboardingCoordinatorView(viewModel: viewModel.onboardingCoordinator())
+//        }
     }
     
     @ViewBuilder
