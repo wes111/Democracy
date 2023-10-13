@@ -33,6 +33,9 @@ struct CreateFieldView<T: OnboardingCreatable>: View {
             focusedField = viewModel.field
         }
         .toolbarNavigation(topButtons: viewModel.topButtons)
+        .onTapGesture {
+            focusedField = nil
+        }
     }
 }
 

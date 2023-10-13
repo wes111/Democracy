@@ -42,6 +42,9 @@ struct LoginView: View {
         .onAppear {
             focusedField = .username
         }
+        .onTapGesture {
+            focusedField = nil
+        }
     }
 }
 
@@ -90,6 +93,9 @@ extension LoginView {
     
     var createAccountButton: some View {
         Button() {
+            /// A bug occurs if the focusedField is not set to nil here because two views
+            /// would have active focused fields. This causes bad dismiss animation for the onboarding flow.
+            focusedField = nil
             viewModel.createAccount()
         } label: {
             Text("Create Account")
