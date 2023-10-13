@@ -39,6 +39,7 @@ struct OnboardingCoordinatorView: View {
 
 // MARK: - Preview
 #Preview {
-    let viewModel = OnboardingCoordinator()
+    let parentCoordinator = RootCoordinator()
+    let viewModel = OnboardingCoordinator(parentCoordinator: parentCoordinator)
     return OnboardingCoordinatorView(viewModel: viewModel)
 }

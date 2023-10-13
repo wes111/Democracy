@@ -64,7 +64,7 @@ struct CommunityViewPicker: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarHidden(!viewModel.isShowingNavigationBar)
-        .toolbarNavigation(title: viewModel.community.name)
+        .toolbarNavigation(title: viewModel.community.name, topButtons: viewModel.topButtons)
         .toolbar {
             if tabSelection == .feed {
                 ToolbarItem(placement: .navigationBarTrailing) {

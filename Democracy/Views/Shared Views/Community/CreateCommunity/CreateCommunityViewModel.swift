@@ -33,6 +33,13 @@ final class CreateCommunityViewModel: ObservableObject {
     init(coordinator: CreateCommunityCoordinatorDelegate) {
         self.coordinator = coordinator
     }
+    
+    var topButtons: [OnboardingTopButton: () -> Void] {
+        [
+            .back : {},
+            .close : close
+        ]
+    }
 }
 
 //MARK: - Methods

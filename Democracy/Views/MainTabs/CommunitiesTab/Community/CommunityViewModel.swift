@@ -26,6 +26,13 @@ final class CommunityViewModel: ObservableObject {
         // Communityinteractor.canMakePostsInThisCommunity
     }
     
+    var topButtons: [OnboardingTopButton: () -> Void] {
+        [
+            .back : {},
+            .close : {}
+        ]
+    }
+    
     init(coordinator: CommunityCoordinatorDelegate,
          community: Community
     ) {

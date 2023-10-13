@@ -7,7 +7,16 @@
 
 import Foundation
 
+protocol CreateAccountSuccessCoordinatorDelegate: AnyObject {
+    func close()
+}
+
 final class CreateAccountSuccessViewModel: ObservableObject, Hashable {
+    
+    private weak var coordinator: CreateAccountSuccessCoordinatorDelegate?
+    init(coordinator: CreateAccountSuccessCoordinatorDelegate?) {
+        self.coordinator = coordinator
+    }
     
     func continueAction() {
         
@@ -15,5 +24,16 @@ final class CreateAccountSuccessViewModel: ObservableObject, Hashable {
     
     func skipAction() {
         
+    }
+    
+    func close() {
+        coordinator?.close()
+    }
+    
+    var topButtons: [OnboardingTopButton: () -> Void] {
+        [
+            .back : {},
+            .close : close
+        ]
     }
 }

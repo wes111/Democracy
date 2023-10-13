@@ -8,8 +8,8 @@
 import Foundation
 
 enum OnboardingPath: Hashable {
-    case goToCreatePassword(CreateFieldViewModel<CreatePasswordField>)
-    case goToCreateEmail(CreateFieldViewModel<CreateEmailField>)
+    case goToCreatePassword(CreateFieldViewModel<PasswordOnboarding>)
+    case goToCreateEmail(CreateFieldViewModel<EmailOnboarding>)
     case goToCreatePhone
     
     case goToCreateAccountSuccess(CreateAccountSuccessViewModel)

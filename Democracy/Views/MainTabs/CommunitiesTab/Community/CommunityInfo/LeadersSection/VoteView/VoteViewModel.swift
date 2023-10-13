@@ -20,6 +20,13 @@ final class VoteViewModel: ObservableObject {
         self.coordinator = coordinator
     }
     
+    var topButtons: [OnboardingTopButton: () -> Void] {
+        [
+            .back : {},
+            .close : {}
+        ]
+    }
+    
     
 }
 

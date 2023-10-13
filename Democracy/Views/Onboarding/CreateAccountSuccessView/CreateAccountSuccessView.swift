@@ -28,7 +28,7 @@ struct CreateAccountSuccessView: View {
             }
             .padding()
         }
-        .toolbarNavigation()
+        .toolbarNavigation(topButtons: viewModel.topButtons)
     }
 }
 
@@ -83,6 +83,8 @@ extension CreateAccountSuccessView {
 
 //MARK: - Preview
 #Preview {
-    let viewModel = CreateAccountSuccessViewModel()
+    let parentCoordinator = RootCoordinator()
+    let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
+    let viewModel = CreateAccountSuccessViewModel(coordinator: coordinator)
     return CreateAccountSuccessView(viewModel: viewModel)
 }

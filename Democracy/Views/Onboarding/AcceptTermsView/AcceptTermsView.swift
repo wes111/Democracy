@@ -26,7 +26,7 @@ struct AcceptTermsView: View {
             }
             .padding()
         }
-        .toolbarNavigation()
+        .toolbarNavigation(topButtons: viewModel.topButtons)
     }
 }
 
@@ -56,7 +56,8 @@ extension AcceptTermsView {
 
 //MARK: - Preview
 #Preview {
-    let coordinator = OnboardingCoordinator()
+    let parentCoordinator = RootCoordinator()
+    let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
     let viewModel = AcceptTermsViewModel(coordinator: coordinator)
     return NavigationStack {
         AcceptTermsView(viewModel: viewModel)

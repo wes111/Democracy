@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-protocol CreateAccountCoordinatorDelegate: AnyObject, AcceptTermsCoordinatorDelegate {
+protocol CreateAccountCoordinatorDelegate: AnyObject, AcceptTermsCoordinatorDelegate, CreateFieldCoordinatorDelegate, CreateAccountSuccessCoordinatorDelegate {
     func goToCreatePassword()
     func goToCreateEmail()
     func goToVerifyEmail()
@@ -29,20 +29,20 @@ final class CreateAccountViewModel: ObservableObject {
     
     private weak var coordinator: CreateAccountCoordinatorDelegate?
     
-    lazy var createEmailFieldViewModel: CreateFieldViewModel<CreateEmailField> = {
-        .init(submitAction: submitEmail)
+    lazy var createEmailFieldViewModel: CreateFieldViewModel<EmailOnboarding> = {
+        .init(submitAction: submitEmail, coordinator: coordinator)
     }()
     
-    lazy var createPasswordFieldViewModel: CreateFieldViewModel<CreatePasswordField> = {
-        .init(submitAction: submitPassword)
+    lazy var createPasswordFieldViewModel: CreateFieldViewModel<PasswordOnboarding> = {
+        .init(submitAction: submitPassword, coordinator: coordinator)
     }()
     
-    lazy var createUsernameFieldViewModel: CreateFieldViewModel<CreateUsernameField> = {
-        .init(submitAction: submitUsername)
+    lazy var createUsernameFieldViewModel: CreateFieldViewModel<UsernameOnboarding> = {
+        .init(submitAction: submitUsername, coordinator: coordinator)
     }()
     
     lazy var createAccountSuccessViewModel: CreateAccountSuccessViewModel = {
-        .init()
+        .init(coordinator: coordinator)
     }()
     
     lazy var acceptTermsViewModel: AcceptTermsViewModel = {

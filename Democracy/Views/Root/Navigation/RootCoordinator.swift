@@ -12,7 +12,7 @@ final class RootCoordinator: Coordinator {
     @Published var isShowingOnboardingFlow = false
     
     func onboardingCoordinator() -> OnboardingCoordinator {
-        .init()
+        .init(parentCoordinator: self)
     }
     
 }
@@ -29,5 +29,11 @@ extension RootCoordinator {
 extension RootCoordinator: LoginCoordinatorDelegate {
     func goToCreateAccount() {
         isShowingOnboardingFlow = true
+    }
+}
+
+extension RootCoordinator: OnboardingCoordinatorParent {
+    func dismiss() {
+        isShowingOnboardingFlow = false
     }
 }

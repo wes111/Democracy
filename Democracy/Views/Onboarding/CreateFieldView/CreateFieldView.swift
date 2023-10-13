@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct CreateFieldView<Field: UserInputField>: View {
-    @ObservedObject var viewModel: CreateFieldViewModel<Field>
-    @FocusState private var focusedField: Field?
+struct CreateFieldView<T: OnboardingCreatable>: View {
+    @ObservedObject var viewModel: CreateFieldViewModel<T>
+    @FocusState private var focusedField: T.Field?
     
-    init(viewModel: CreateFieldViewModel<Field>) {
+    init(viewModel: CreateFieldViewModel<T>) {
         self.viewModel = viewModel
     }
     
@@ -32,7 +32,7 @@ struct CreateFieldView<Field: UserInputField>: View {
         .onAppear {
             focusedField = viewModel.field
         }
-        .toolbarNavigation()
+        .toolbarNavigation(topButtons: viewModel.topButtons)
     }
 }
 
@@ -87,7 +87,8 @@ extension CreateFieldView {
 
 //MARK: - Preview
 #Preview {
-    let coordinator = OnboardingCoordinator()
-    let viewModel = CreateFieldViewModel<CreateEmailField>(submitAction: {})
+    let parentCoordinator = RootCoordinator()
+    let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
+    let viewModel = CreateFieldViewModel<EmailOnboarding>(submitAction: {}, coordinator: coordinator)
     return CreateFieldView(viewModel: viewModel)
 }

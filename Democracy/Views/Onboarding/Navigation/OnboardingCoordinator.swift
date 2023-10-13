@@ -7,7 +7,17 @@
 
 import Foundation
 
+protocol OnboardingCoordinatorParent: AnyObject {
+    func dismiss()
+}
+
 final class OnboardingCoordinator: Coordinator {
+    
+    weak var parentCoordinator: OnboardingCoordinatorParent?
+    
+    init(parentCoordinator: OnboardingCoordinatorParent?) {
+        self.parentCoordinator = parentCoordinator
+    }
     
     lazy var createAccountViewModel: CreateAccountViewModel = {
         .init(coordinator: self)
@@ -55,5 +65,15 @@ extension OnboardingCoordinator: CreateAccountCoordinatorDelegate {
     func goToAcceptTerms() {
         let viewModel = createAccountViewModel.acceptTermsViewModel
         router.push(OnboardingPath.goToAcceptTerms(viewModel))
+    }
+}
+
+extension OnboardingCoordinator: CreateFieldCoordinatorDelegate {
+    func goBack() {
+        router.pop()
+    }
+    
+    func close() {
+        parentCoordinator?.dismiss()
     }
 }
