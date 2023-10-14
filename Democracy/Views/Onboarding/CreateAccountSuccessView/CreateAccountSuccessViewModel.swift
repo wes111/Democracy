@@ -27,9 +27,6 @@ final class CreateAccountSuccessViewModel: ObservableObject, Hashable {
     }
     
     var topButtons: [OnboardingTopButton: () -> Void] {
-        [
-            .back : {},
-            .close : close
-        ]
+        [ .close : close ]
     }
 }

@@ -16,7 +16,7 @@ struct OnboardingCoordinatorView: View {
     
     var body: some View {
         CoordinatorView(router: $coordinator.router) {
-            CreateFieldView(viewModel: coordinator.createUsernameFieldViewModel)
+            OnboardingUserInputView(viewModel: coordinator.createUsernameFieldViewModel)
         } secondaryScreen: { (path: OnboardingPath) in
             createViewFromPath(path)
         }
@@ -25,11 +25,11 @@ struct OnboardingCoordinatorView: View {
     @ViewBuilder
     func createViewFromPath(_ path: OnboardingPath) -> some View {
         switch path {
-        case .goToCreatePassword(let viewModel): CreateFieldView(viewModel: viewModel)
-        case .goToCreateEmail(let viewModel): CreateFieldView(viewModel: viewModel)
-        case .goToVerifyEmail(let viewmodel): CreateFieldView(viewModel: viewmodel)
-        case .goToVerifyPhone(let viewmodel): CreateFieldView(viewModel: viewmodel)
-        case .goToCreatePhone(let viewModel): CreateFieldView(viewModel: viewModel)
+        case .goToCreatePassword(let viewModel): OnboardingUserInputView(viewModel: viewModel)
+        case .goToCreateEmail(let viewModel): OnboardingUserInputView(viewModel: viewModel)
+        case .goToVerifyEmail(let viewmodel): OnboardingUserInputView(viewModel: viewmodel)
+        case .goToVerifyPhone(let viewmodel): OnboardingUserInputView(viewModel: viewmodel)
+        case .goToCreatePhone(let viewModel): OnboardingUserInputView(viewModel: viewModel)
         case .goToCreateAccountSuccess(let viewModel): CreateAccountSuccessView(viewModel: viewModel)
         case .goToAcceptTerms(let viewModel): AcceptTermsView(viewModel: viewModel)
         }

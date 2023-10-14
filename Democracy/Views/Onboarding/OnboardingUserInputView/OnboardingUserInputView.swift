@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CreateFieldView<ViewModel: NewViewModelProtocol>: View {
+struct OnboardingUserInputView<ViewModel: OnboardingUserInputViewModelProtocol>: View {
     @ObservedObject var viewModel: ViewModel
     @FocusState private var focusedField: ViewModel.Field?
     
@@ -40,7 +40,7 @@ struct CreateFieldView<ViewModel: NewViewModelProtocol>: View {
 }
 
 //MARK: Subviews
-extension CreateFieldView {
+extension OnboardingUserInputView {
     
     var field: some View {
         TextField(viewModel.fieldTitle, text: $viewModel.text,
@@ -80,9 +80,7 @@ extension CreateFieldView {
     
     var nextButton: some View {
         Button() {
-            if let action = viewModel.submitAction {
-                action()
-            }
+            viewModel.submitAction()
         } label: {
             Text("Next")
         }
@@ -95,5 +93,5 @@ extension CreateFieldView {
     let parentCoordinator = RootCoordinator()
     let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
     let viewModel = CreateUsernameViewModel(coordinator: coordinator)
-    return CreateFieldView(viewModel: viewModel)
+    return OnboardingUserInputView(viewModel: viewModel)
 }
