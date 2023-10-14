@@ -9,6 +9,7 @@ import Foundation
 
 protocol CreateAccountSuccessCoordinatorDelegate: AnyObject {
     func close()
+    func continueAccountSetup()
 }
 
 final class CreateAccountSuccessViewModel: ObservableObject, Hashable {
@@ -19,7 +20,7 @@ final class CreateAccountSuccessViewModel: ObservableObject, Hashable {
     }
     
     func continueAction() {
-        
+        coordinator?.continueAccountSetup()
     }
     
     func skipAction() {

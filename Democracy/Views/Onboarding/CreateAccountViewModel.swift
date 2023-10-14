@@ -12,7 +12,6 @@ protocol CreateAccountCoordinatorDelegate: AnyObject, AcceptTermsCoordinatorDele
     func goToCreatePassword()
     func goToCreateEmail()
     func goToVerifyEmail()
-    func goToCreatePhone()
     func goToVerifyPhone()
     func goToCreateAccountSuccess()
     func goToAcceptTerms()
@@ -49,6 +48,18 @@ final class CreateAccountViewModel: ObservableObject {
         .init(coordinator: coordinator)
     }()
     
+    lazy var createPhoneFieldViwModel: CreateFieldViewModel<PhoneOnboarding> = {
+        .init(submitAction: submitPhone, coordinator: coordinator)
+    }()
+    
+    lazy var verifyPhoneViewModel: CreateFieldViewModel<VerifyPhoneOnboarding> = {
+        .init(submitAction: submitPhoneVerification, coordinator: coordinator)
+    }()
+    
+    lazy var verifyEmailViewModel: CreateFieldViewModel<VerifyEmailOnboarding> = {
+        .init(submitAction: submitEmailVerification, coordinator: coordinator)
+    }()
+    
     init(coordinator: CreateAccountCoordinatorDelegate?) {
         self.coordinator = coordinator
         
@@ -73,12 +84,14 @@ extension CreateAccountViewModel {
     
     func submitEmail() {
         coordinator?.goToAcceptTerms()
-        //coordinator.goToCreateAccountSuccess()
-        //coordinator.goToVerifyEmail()
     }
     
-    func verifyEmail() {
-        coordinator?.goToCreatePhone()
+    func submitPhoneVerification() {
+        coordinator?.goToVerifyEmail()
+    }
+    
+    func submitEmailVerification() {
+        
     }
     
     func submitPhone() {

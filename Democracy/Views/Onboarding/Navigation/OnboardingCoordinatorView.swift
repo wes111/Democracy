@@ -27,9 +27,9 @@ struct OnboardingCoordinatorView: View {
         switch path {
         case .goToCreatePassword(let viewModel): CreateFieldView(viewModel: viewModel)
         case .goToCreateEmail(let viewModel): CreateFieldView(viewModel: viewModel)
-        case .goToVerifyEmail: EmptyView()
-        case .goToVerifyPhone: EmptyView()
-        case .goToCreatePhone: EmptyView()
+        case .goToVerifyEmail(let viewmodel): CreateFieldView(viewModel: viewmodel)
+        case .goToVerifyPhone(let viewmodel): CreateFieldView(viewModel: viewmodel)
+        case .goToCreatePhone(let viewModel): CreateFieldView(viewModel: viewModel)
         case .goToCreateAccountSuccess(let viewModel): CreateAccountSuccessView(viewModel: viewModel)
         case .goToAcceptTerms(let viewModel): AcceptTermsView(viewModel: viewModel)
         }

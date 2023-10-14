@@ -38,6 +38,14 @@ extension OnboardingCoordinator: AcceptTermsCoordinatorDelegate {
     }
 }
 
+extension OnboardingCoordinator: CreateAccountSuccessCoordinatorDelegate {
+    
+    func continueAccountSetup() {
+        let viewModel = createAccountViewModel.createPhoneFieldViwModel
+        router.push(OnboardingPath.goToCreatePhone(viewModel))
+    }
+}
+
 extension OnboardingCoordinator: CreateAccountCoordinatorDelegate {
     
     func goToCreatePassword() {
@@ -51,15 +59,13 @@ extension OnboardingCoordinator: CreateAccountCoordinatorDelegate {
     }
     
     func goToVerifyEmail() {
-        router.push(OnboardingPath.goToVerifyEmail)
-    }
-    
-    func goToCreatePhone() {
-        router.push(OnboardingPath.goToCreatePhone)
+        let viewModel = createAccountViewModel.verifyEmailViewModel
+        router.push(OnboardingPath.goToVerifyEmail(viewModel))
     }
     
     func goToVerifyPhone() {
-        router.push(OnboardingPath.goToVerifyPhone)
+        let viewModel = createAccountViewModel.verifyPhoneViewModel
+        router.push(OnboardingPath.goToVerifyPhone(viewModel))
     }
     
     func goToAcceptTerms() {
