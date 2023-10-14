@@ -7,15 +7,10 @@
 
 import Foundation
 
-protocol CreateAccountSuccessCoordinatorDelegate: AnyObject {
-    func close()
-    func continueAccountSetup()
-}
-
 final class CreateAccountSuccessViewModel: ObservableObject, Hashable {
     
-    private weak var coordinator: CreateAccountSuccessCoordinatorDelegate?
-    init(coordinator: CreateAccountSuccessCoordinatorDelegate?) {
+    private weak var coordinator: OnboardingCoordinatorDelegate?
+    init(coordinator: OnboardingCoordinatorDelegate?) {
         self.coordinator = coordinator
     }
     

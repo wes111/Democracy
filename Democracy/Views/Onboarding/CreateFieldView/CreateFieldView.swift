@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct CreateFieldView<T: OnboardingCreatable>: View {
-    @ObservedObject var viewModel: CreateFieldViewModel<T>
-    @FocusState private var focusedField: T.Field?
+struct CreateFieldView<ViewModel: NewViewModelProtocol>: View {
+    @ObservedObject var viewModel: ViewModel
+    @FocusState private var focusedField: ViewModel.Field?
     
-    init(viewModel: CreateFieldViewModel<T>) {
+    init(viewModel: ViewModel) {
         self.viewModel = viewModel
     }
     
@@ -48,7 +48,7 @@ extension CreateFieldView {
         )
         .limitCharacters(text: $viewModel.text, count: viewModel.maxCharacterCount)
         .focused($focusedField, equals: viewModel.field)
-        .standardTextField(borderColor: $viewModel.textErrors.isEmpty ? .tertiaryText : .otherRed)
+        .standardTextField(borderColor: viewModel.textErrors.isEmpty ? .tertiaryText : .otherRed)
         .submitLabel(.next)
     }
     
@@ -80,7 +80,9 @@ extension CreateFieldView {
     
     var nextButton: some View {
         Button() {
-            viewModel.submitAction()
+            if let action = viewModel.submitAction {
+                action()
+            }
         } label: {
             Text("Next")
         }
@@ -92,6 +94,6 @@ extension CreateFieldView {
 #Preview {
     let parentCoordinator = RootCoordinator()
     let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
-    let viewModel = CreateFieldViewModel<EmailOnboarding>(submitAction: {}, coordinator: coordinator)
+    let viewModel = CreateUsernameViewModel(coordinator: coordinator)
     return CreateFieldView(viewModel: viewModel)
 }

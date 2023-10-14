@@ -7,16 +7,11 @@
 
 import Foundation
 
-protocol AcceptTermsCoordinatorDelegate: AnyObject {
-    func goToCreateAccountSuccess()
-    func close()
-}
-
 final class AcceptTermsViewModel: ObservableObject, Hashable {
     
-    private weak var coordinator: AcceptTermsCoordinatorDelegate?
+    private weak var coordinator: OnboardingCoordinatorDelegate?
     
-    init(coordinator: AcceptTermsCoordinatorDelegate?) {
+    init(coordinator: OnboardingCoordinatorDelegate?) {
         self.coordinator = coordinator
     }
     
@@ -28,7 +23,7 @@ final class AcceptTermsViewModel: ObservableObject, Hashable {
     }
     
     func tapAgree() {
-        coordinator?.goToCreateAccountSuccess()
+        coordinator?.agreeToTerms()
     }
     
     func close() {
