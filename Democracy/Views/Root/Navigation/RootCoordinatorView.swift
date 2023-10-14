@@ -21,7 +21,7 @@ struct RootCoordinatorView: View {
             createViewFromPath(path)
         }
         .popover(isPresented: $viewModel.isShowingOnboardingFlow) {
-            OnboardingCoordinatorView(viewModel: viewModel.onboardingCoordinator())
+            OnboardingCoordinatorView(coordinator: viewModel.onboardingCoordinator())
         }
         // TODO: This should be a fullScreenCover not popover.
         // This temporarily fixes an iOS 17 memory leak.

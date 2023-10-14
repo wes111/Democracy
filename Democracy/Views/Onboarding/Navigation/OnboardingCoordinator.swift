@@ -19,21 +19,20 @@ final class OnboardingCoordinator: Coordinator {
         self.parentCoordinator = parentCoordinator
     }
     
-    lazy var createAccountViewModel: CreateAccountViewModel = {
-        .init(coordinator: self)
+    lazy var createUsernameFieldViewModel: CreateFieldViewModel<UsernameOnboarding> = {
+        .init(submitAction: goToCreatePassword, coordinator: self)
     }()
     
     deinit {
         print()
     }
-    
 }
 
 // MARK: - Protocols
 extension OnboardingCoordinator: AcceptTermsCoordinatorDelegate {
     
     func goToCreateAccountSuccess() {
-        let viewModel = createAccountViewModel.createAccountSuccessViewModel
+        let viewModel = CreateAccountSuccessViewModel(coordinator: self)
         router.push(OnboardingPath.goToCreateAccountSuccess(viewModel))
     }
 }
@@ -41,36 +40,36 @@ extension OnboardingCoordinator: AcceptTermsCoordinatorDelegate {
 extension OnboardingCoordinator: CreateAccountSuccessCoordinatorDelegate {
     
     func continueAccountSetup() {
-        let viewModel = createAccountViewModel.createPhoneFieldViwModel
+        let viewModel: CreateFieldViewModel<PhoneOnboarding> = .init(submitAction: goToVerifyPhone, coordinator: self)
         router.push(OnboardingPath.goToCreatePhone(viewModel))
     }
 }
 
-extension OnboardingCoordinator: CreateAccountCoordinatorDelegate {
+extension OnboardingCoordinator {
     
     func goToCreatePassword() {
-        let viewModel = createAccountViewModel.createPasswordFieldViewModel
+        let viewModel: CreateFieldViewModel<PasswordOnboarding> = .init(submitAction: goToCreateEmail, coordinator: self)
         router.push(OnboardingPath.goToCreatePassword(viewModel))
     }
     
     func goToCreateEmail() {
-        let viewModel = createAccountViewModel.createEmailFieldViewModel
+        let viewModel: CreateFieldViewModel<EmailOnboarding> = .init(submitAction: goToAcceptTerms, coordinator: self)
         router.push(OnboardingPath.goToCreateEmail(viewModel))
     }
     
+    func goToAcceptTerms() {
+        let viewModel = AcceptTermsViewModel(coordinator: self)
+        router.push(OnboardingPath.goToAcceptTerms(viewModel))
+    }
+    
     func goToVerifyEmail() {
-        let viewModel = createAccountViewModel.verifyEmailViewModel
+        let viewModel: CreateFieldViewModel<VerifyEmailOnboarding> = .init(submitAction: {}, coordinator: self)
         router.push(OnboardingPath.goToVerifyEmail(viewModel))
     }
     
     func goToVerifyPhone() {
-        let viewModel = createAccountViewModel.verifyPhoneViewModel
+        let viewModel: CreateFieldViewModel<VerifyPhoneOnboarding> = .init(submitAction: goToVerifyEmail, coordinator: self)
         router.push(OnboardingPath.goToVerifyPhone(viewModel))
-    }
-    
-    func goToAcceptTerms() {
-        let viewModel = createAccountViewModel.acceptTermsViewModel
-        router.push(OnboardingPath.goToAcceptTerms(viewModel))
     }
 }
 

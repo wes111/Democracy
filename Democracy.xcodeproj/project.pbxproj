@@ -39,7 +39,6 @@
 		EE4DB8942AC89F0800A6DC90 /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */; };
 		EE4DB8962AC89F6800A6DC90 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8952AC89F6800A6DC90 /* OnboardingCoordinator.swift */; };
 		EE4DB8982AC8A13C00A6DC90 /* OnboardingPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8972AC8A13C00A6DC90 /* OnboardingPath.swift */; };
-		EE4DB89C2AC9094600A6DC90 /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB89B2AC9094600A6DC90 /* CreateAccountViewModel.swift */; };
 		EE4DB8A22ACA5C0F00A6DC90 /* CreateFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8A12ACA5C0F00A6DC90 /* CreateFieldView.swift */; };
 		EE4DB8A62ACE44CC00A6DC90 /* UserInputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8A52ACE44CC00A6DC90 /* UserInputValidator.swift */; };
 		EE4DB8A82ACE455500A6DC90 /* EmailValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8A72ACE455500A6DC90 /* EmailValidationError.swift */; };
@@ -254,7 +253,6 @@
 		EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
 		EE4DB8952AC89F6800A6DC90 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		EE4DB8972AC8A13C00A6DC90 /* OnboardingPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPath.swift; sourceTree = "<group>"; };
-		EE4DB89B2AC9094600A6DC90 /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
 		EE4DB8A12ACA5C0F00A6DC90 /* CreateFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFieldView.swift; sourceTree = "<group>"; };
 		EE4DB8A52ACE44CC00A6DC90 /* UserInputValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputValidator.swift; sourceTree = "<group>"; };
 		EE4DB8A72ACE455500A6DC90 /* EmailValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationError.swift; sourceTree = "<group>"; };
@@ -575,7 +573,6 @@
 		EE4DB8922AC89ECB00A6DC90 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				EE4DB89B2AC9094600A6DC90 /* CreateAccountViewModel.swift */,
 				EE988AAD2AD8D1E10057F9DE /* OnboardingCreatable.swift */,
 				EE9760172AD0AFD4003069CF /* AcceptTermsView */,
 				EE9760122AD09CF6003069CF /* CreateAccountSuccessView */,
@@ -1568,7 +1565,6 @@
 				EE7856182AB7BACB0004B7E4 /* TaggableModifier.swift in Sources */,
 				EED4A50929AA8BC100DDCCDA /* EventsTabMainViewModel.swift in Sources */,
 				EE80D8C629BC12C70000F8EF /* CommunitiesTabMainViewModel+Preview.swift in Sources */,
-				EE4DB89C2AC9094600A6DC90 /* CreateAccountViewModel.swift in Sources */,
 				EE80D8C329BC12720000F8EF /* CommunitiesTabCoordinator+Preview.swift in Sources */,
 				EE988AB42ADA1B150057F9DE /* VerifyEmailCodeValidationError.swift in Sources */,
 				EE0CC2012A9ED9C8003A10C3 /* VoteViewModel.swift in Sources */,

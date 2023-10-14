@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct OnboardingCoordinatorView: View {
-    @StateObject private var viewModel: OnboardingCoordinator
+    @StateObject private var coordinator: OnboardingCoordinator
     
-    init(viewModel: OnboardingCoordinator) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+    init(coordinator: OnboardingCoordinator) {
+        _coordinator = StateObject(wrappedValue: coordinator)
     }
     
     var body: some View {
-        CoordinatorView(router: $viewModel.router) {
-            CreateFieldView(viewModel: viewModel.createAccountViewModel.createUsernameFieldViewModel)
+        CoordinatorView(router: $coordinator.router) {
+            CreateFieldView(viewModel: coordinator.createUsernameFieldViewModel)
         } secondaryScreen: { (path: OnboardingPath) in
             createViewFromPath(path)
         }
@@ -41,5 +41,5 @@ struct OnboardingCoordinatorView: View {
 #Preview {
     let parentCoordinator = RootCoordinator()
     let viewModel = OnboardingCoordinator(parentCoordinator: parentCoordinator)
-    return OnboardingCoordinatorView(viewModel: viewModel)
+    return OnboardingCoordinatorView(coordinator: viewModel)
 }
