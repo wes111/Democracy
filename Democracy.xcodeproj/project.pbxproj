@@ -182,6 +182,9 @@
 		EEB5AF712ADB1E6E00310408 /* CreatePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF702ADB1E6E00310408 /* CreatePasswordViewModel.swift */; };
 		EEB5AF732ADB1E8800310408 /* CreateUsernameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF722ADB1E8800310408 /* CreateUsernameViewModel.swift */; };
 		EEB5AF762ADB1EFA00310408 /* OnboardingTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */; };
+		EEB5AF782ADC321600310408 /* OnboardingFlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF772ADC321600310408 /* OnboardingFlowManager.swift */; };
+		EEB5AF7A2ADC3D6D00310408 /* OnboardingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF792ADC3D6C00310408 /* OnboardingAlert.swift */; };
+		EEB5AF7C2ADCA92A00310408 /* OnboardingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */; };
 		EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED4299F169000FEFC6E /* SettingsView.swift */; };
 		EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47EDE299F186D00FEFC6E /* SettingsViewModel.swift */; };
 		EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4EB29A9984200DDCCDA /* SettingsCoordinator.swift */; };
@@ -402,6 +405,9 @@
 		EEB5AF702ADB1E6E00310408 /* CreatePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePasswordViewModel.swift; sourceTree = "<group>"; };
 		EEB5AF722ADB1E8800310408 /* CreateUsernameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUsernameViewModel.swift; sourceTree = "<group>"; };
 		EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTopButton.swift; sourceTree = "<group>"; };
+		EEB5AF772ADC321600310408 /* OnboardingFlowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowManager.swift; sourceTree = "<group>"; };
+		EEB5AF792ADC3D6C00310408 /* OnboardingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAlert.swift; sourceTree = "<group>"; };
+		EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingError.swift; sourceTree = "<group>"; };
 		EED47ED4299F169000FEFC6E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		EED47EDE299F186D00FEFC6E /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		EED4A4EB29A9984200DDCCDA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
@@ -585,6 +591,9 @@
 		EE4DB8922AC89ECB00A6DC90 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				EEB5AF772ADC321600310408 /* OnboardingFlowManager.swift */,
+				EEB5AF792ADC3D6C00310408 /* OnboardingAlert.swift */,
+				EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */,
 				EEB5AF742ADB1E9D00310408 /* OnboardingUserInputView */,
 				EE9760172AD0AFD4003069CF /* AcceptTermsView */,
 				EE9760122AD09CF6003069CF /* CreateAccountSuccessView */,
@@ -1075,11 +1084,11 @@
 		EEB5AF742ADB1E9D00310408 /* OnboardingUserInputView */ = {
 			isa = PBXGroup;
 			children = (
+				EEB5AF722ADB1E8800310408 /* CreateUsernameViewModel.swift */,
 				EEB5AF6A2ADB1E2900310408 /* PhoneVerificationViewModel.swift */,
 				EEB5AF6C2ADB1E4000310408 /* CreatePhoneViewModel.swift */,
 				EEB5AF6E2ADB1E5900310408 /* CreateEmailViewModel.swift */,
 				EEB5AF702ADB1E6E00310408 /* CreatePasswordViewModel.swift */,
-				EEB5AF722ADB1E8800310408 /* CreateUsernameViewModel.swift */,
 				EEB5AF662ADB186E00310408 /* OnboardingUserInputViewModelProtocol.swift */,
 				EEB5AF682ADB1DFD00310408 /* EmailVerificationViewModel.swift */,
 				EE4DB8A12ACA5C0F00A6DC90 /* OnboardingUserInputView.swift */,
@@ -1518,6 +1527,7 @@
 				EE5D3A092A3804D100D0E312 /* PostCategory+Extension.swift in Sources */,
 				EE45249F2A5CE39400C7A2DD /* RulesSection.swift in Sources */,
 				EED4A4F929AA855900DDCCDA /* EventsTabCoordinator.swift in Sources */,
+				EEB5AF7A2ADC3D6D00310408 /* OnboardingAlert.swift in Sources */,
 				EE80D8EB29BD15640000F8EF /* ProjectNotes.swift in Sources */,
 				EE80D8D029BC157D0000F8EF /* VotingTabMainViewModel+Preview.swift in Sources */,
 				EED4A54329BAB60100DDCCDA /* Hashable+Extensions.swift in Sources */,
@@ -1542,6 +1552,7 @@
 				EE4DB8942AC89F0800A6DC90 /* OnboardingCoordinatorView.swift in Sources */,
 				EE9760162AD09F67003069CF /* CreateAccountSuccessViewModel.swift in Sources */,
 				EE97600C2AD07B92003069CF /* CreateEmailField.swift in Sources */,
+				EEB5AF782ADC321600310408 /* OnboardingFlowManager.swift in Sources */,
 				EE80D8E029BC1A080000F8EF /* HistoryTabMainViewModel+Preview.swift in Sources */,
 				EE4524B32A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift in Sources */,
 				EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */,
@@ -1612,6 +1623,7 @@
 				EE988AB22ADA09820057F9DE /* CreatePhoneField.swift in Sources */,
 				EE80D8D429BC15FC0000F8EF /* EventsTabMainViewModel+Preview.swift in Sources */,
 				EE4DB8A62ACE44CC00A6DC90 /* UserInputValidator.swift in Sources */,
+				EEB5AF7C2ADCA92A00310408 /* OnboardingError.swift in Sources */,
 				EE11729F2A71C3C700E529AF /* CommunityCategoryViewModel.swift in Sources */,
 				EE9760202AD76800003069CF /* RootPath.swift in Sources */,
 				EE4DB8962AC89F6800A6DC90 /* OnboardingCoordinator.swift in Sources */,

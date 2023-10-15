@@ -13,6 +13,8 @@ struct VerifyEmailField: UserInputField {
     let fieldTitle: String = "Email Code"
     let maxCharacterCount: Int = 1_000 //TODO: Verify this is long enough
     let errors = VerifyEmailCodeValidationError.allCases
+    let alertTitle = "Invalid email verification code"
+    let alertDescription = "Enter a valid email verification code."
     
     /// String has at least one character, excluding newline.
     static let fullRegex: String = #"^.+$"#

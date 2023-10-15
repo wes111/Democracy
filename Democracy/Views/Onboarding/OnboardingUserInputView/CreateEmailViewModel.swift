@@ -10,8 +10,9 @@ import Foundation
 final class CreateEmailViewModel: OnboardingUserInputViewModel<CreateEmailField>, OnboardingUserInputViewModelProtocol {
     typealias Field = CreateEmailField
     
-    var submitAction: () -> Void {
-        coordinator?.submitEmail ?? {}
+    override func submit() {
+        super.submit()
+        coordinator?.submitEmail()
     }
     
     var topButtons: TopButtonsDictionary {

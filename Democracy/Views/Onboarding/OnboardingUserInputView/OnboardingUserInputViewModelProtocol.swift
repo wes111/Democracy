@@ -16,12 +16,15 @@ protocol OnboardingUserInputViewModelProtocol: ObservableObject, Hashable {
     var field: Field { get }
     var text: String { get set }
     var textErrors: [Error] { get }
-    var submitAction: () -> Void { get }
     var topButtons: TopButtonsDictionary { get }
     var title: String { get }
     var subtitle: String { get }
     var fieldTitle: String { get }
     var maxCharacterCount: Int { get }
+    var onboardingAlert: OnboardingAlert? { get set }
+    var canSubmit: Bool { get }
+    
+    func submit()
 }
 
 extension OnboardingUserInputViewModelProtocol {
@@ -40,10 +43,14 @@ extension OnboardingUserInputViewModelProtocol {
     var maxCharacterCount: Int {
         field.maxCharacterCount
     }
+    
+    var canSubmit: Bool {
+        field.fullyValid(input: text)
+    }
 }
 
 protocol OnboardingCoordinatorDelegate: AnyObject {
-    func submitUsername()
+    func didSubmitUsername()
     func submitPassword()
     func submitEmail()
     func agreeToTerms()
@@ -59,17 +66,20 @@ protocol OnboardingCoordinatorDelegate: AnyObject {
 // Preferably, the logic in this class would be in the OnboardingUserInputViewModelProtocol
 // and extension, but since property wrappers are difficult to work with in protocols,
 // we keep them in this class instead. Keeping the coordinator in this class allows it
-// to remain inaccessible from the view
+// to remain inaccessible from the view.
 class OnboardingUserInputViewModel<Field: UserInputField> {
     
     @Published var text: String = ""
     @Published var textErrors: [Field.InputError] = []
+    @Published var onboardingAlert: OnboardingAlert?
     let field = Field()
     
     weak var coordinator: OnboardingCoordinatorDelegate?
+    let onboardingManager: OnboardingFlowManager
     
-    init(coordinator: OnboardingCoordinatorDelegate?) {
+    init(coordinator: OnboardingCoordinatorDelegate?, onboardingManager: OnboardingFlowManager) {
         self.coordinator = coordinator
+        self.onboardingManager = onboardingManager
         
         setupBindings()
     }
@@ -82,6 +92,25 @@ class OnboardingUserInputViewModel<Field: UserInputField> {
         coordinator?.goBack()
     }
     
+    func submit() {
+        do {
+            try onboardingManager.submit(input: text, field: field)
+        } catch {
+            presentAlert()
+        }
+    }
+    
+    private func presentAlert() {
+        Task {
+            await MainActor.run {
+                self.onboardingAlert = .init(
+                    title: field.alertTitle,
+                    message: field.alertDescription
+                )
+            }
+        }
+    }
+    
     private func setupBindings() {
         $text
             .debounce(for: 0.25, scheduler: RunLoop.main)
@@ -91,5 +120,4 @@ class OnboardingUserInputViewModel<Field: UserInputField> {
             }
             .assign(to: &$textErrors)
     }
-    
 }

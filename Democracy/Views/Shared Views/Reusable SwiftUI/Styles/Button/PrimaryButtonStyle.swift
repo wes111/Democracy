@@ -25,6 +25,8 @@ struct SeconaryButtonStyle: ButtonStyle {
 }
 
 struct PrimaryButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) private var isEnabled: Bool
+    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .foregroundStyle(Color.primaryText)
@@ -33,7 +35,7 @@ struct PrimaryButtonStyle: ButtonStyle {
             .padding()
             .frame(maxWidth: .infinity)
             .background(Color.otherRed, in: RoundedRectangle(cornerRadius: 10))
-            .opacity(configuration.isPressed ? 0.3 : 1.0)
+            .opacity(configuration.isPressed || !isEnabled ? 0.5 : 1.0)
     }
 }
 

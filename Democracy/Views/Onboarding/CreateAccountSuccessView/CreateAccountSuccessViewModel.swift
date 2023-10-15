@@ -10,8 +10,11 @@ import Foundation
 final class CreateAccountSuccessViewModel: ObservableObject, Hashable {
     
     private weak var coordinator: OnboardingCoordinatorDelegate?
-    init(coordinator: OnboardingCoordinatorDelegate?) {
+    private let onboardingManager: OnboardingFlowManager
+    
+    init(coordinator: OnboardingCoordinatorDelegate?, onboardingManager: OnboardingFlowManager) {
         self.coordinator = coordinator
+        self.onboardingManager = onboardingManager
     }
     
     func continueAction() {

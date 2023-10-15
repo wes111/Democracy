@@ -10,8 +10,9 @@ import Foundation
 final class CreatePhoneViewModel: OnboardingUserInputViewModel<CreatePhoneField>, OnboardingUserInputViewModelProtocol {
     typealias Field = CreatePhoneField
     
-    var submitAction: () -> Void {
-        coordinator?.submitPhone ?? {}
+    override func submit() {
+        super.submit()
+        coordinator?.submitPhone()
     }
     
     var topButtons: TopButtonsDictionary {

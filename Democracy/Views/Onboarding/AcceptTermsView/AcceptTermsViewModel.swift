@@ -10,9 +10,11 @@ import Foundation
 final class AcceptTermsViewModel: ObservableObject, Hashable {
     
     private weak var coordinator: OnboardingCoordinatorDelegate?
+    private let onboardingManager: OnboardingFlowManager
     
-    init(coordinator: OnboardingCoordinatorDelegate?) {
+    init(coordinator: OnboardingCoordinatorDelegate?, onboardingManager: OnboardingFlowManager) {
         self.coordinator = coordinator
+        self.onboardingManager = onboardingManager
     }
     
     var topButtons: [OnboardingTopButton: () -> Void] {

@@ -14,6 +14,8 @@ struct CreateEmailField: UserInputField {
     let fieldTitle: String = "Email"
     let maxCharacterCount: Int = 128
     let errors = EmailValidationError.allCases
+    let alertTitle = "Invalid email"
+    let alertDescription = "Enter an email that matches the requirements."
     
     /// Local part:
     ///     Must start with a character that is either an uppercase letter (A-Z), lowercase letter (a-z), digit (0-9), percent sign (%), plus sign (+), or hyphen (-).

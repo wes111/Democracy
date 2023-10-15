@@ -36,6 +36,9 @@ struct OnboardingUserInputView<ViewModel: OnboardingUserInputViewModelProtocol>:
         .onTapGesture {
             focusedField = nil
         }
+        .alert(item: $viewModel.onboardingAlert) { alert in
+            Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .default(Text("Okay")))
+        }
     }
 }
 
@@ -80,11 +83,12 @@ extension OnboardingUserInputView {
     
     var nextButton: some View {
         Button() {
-            viewModel.submitAction()
+            viewModel.submit()
         } label: {
             Text("Next")
         }
         .buttonStyle(PrimaryButtonStyle())
+        .disabled(!viewModel.canSubmit)
     }
 }
 
@@ -92,6 +96,6 @@ extension OnboardingUserInputView {
 #Preview {
     let parentCoordinator = RootCoordinator()
     let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
-    let viewModel = CreateUsernameViewModel(coordinator: coordinator)
+    let viewModel = CreateUsernameViewModel(coordinator: coordinator, onboardingManager: .init())
     return OnboardingUserInputView(viewModel: viewModel)
 }

@@ -10,8 +10,9 @@ import Foundation
 final class PhoneVerificationViewModel: OnboardingUserInputViewModel<VerifyPhoneField>, OnboardingUserInputViewModelProtocol {
     typealias Field = VerifyPhoneField
     
-    var submitAction: () -> Void {
-        coordinator?.submitPhoneVerification ?? {}
+    override func submit() {
+        super.submit()
+        coordinator?.submitPhoneVerification()
     }
     
     var topButtons: TopButtonsDictionary {

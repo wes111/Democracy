@@ -10,8 +10,9 @@ import Foundation
 final class CreatePasswordViewModel: OnboardingUserInputViewModel<CreatePasswordField>, OnboardingUserInputViewModelProtocol {
     typealias Field = CreatePasswordField
     
-    var submitAction: () -> Void {
-        coordinator?.submitPassword ?? {}
+    override func submit() {
+        super.submit()
+        coordinator?.submitPassword()
     }
     
     var topButtons: TopButtonsDictionary {

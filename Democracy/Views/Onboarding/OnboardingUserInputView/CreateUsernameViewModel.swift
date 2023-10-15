@@ -11,8 +11,9 @@ final class CreateUsernameViewModel: OnboardingUserInputViewModel<CreateUsername
     
     typealias Field = CreateUsernameField
     
-    var submitAction: () -> Void {
-        coordinator?.submitUsername ?? {}
+    override func submit() {
+        super.submit()
+        coordinator?.didSubmitUsername()
     }
     
     var topButtons: TopButtonsDictionary {

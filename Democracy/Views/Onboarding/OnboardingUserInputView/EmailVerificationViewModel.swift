@@ -10,8 +10,9 @@ import Foundation
 final class EmailVerificationViewModel: OnboardingUserInputViewModel<VerifyEmailField>, OnboardingUserInputViewModelProtocol {
     typealias Field = VerifyEmailField
     
-    var submitAction: () -> Void {
-        coordinator?.submitEmailVerification ?? {}
+    override func submit() {
+        super.submit()
+        coordinator?.submitEmailVerification()
     }
     
     var topButtons: TopButtonsDictionary {

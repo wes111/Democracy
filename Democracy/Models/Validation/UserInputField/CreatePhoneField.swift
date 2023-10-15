@@ -14,6 +14,8 @@ struct CreatePhoneField: UserInputField {
     let fieldTitle: String = "Phone"
     let maxCharacterCount: Int = 10 //TODO: Is this correct
     let errors = PhoneValidationError.allCases
+    let alertTitle = "Invalid phone number"
+    let alertDescription = "Enter a phone number that matches the requirements."
     
     /// Must be 10 digits long.
     static let fullRegex = #"^\d{10}$"#

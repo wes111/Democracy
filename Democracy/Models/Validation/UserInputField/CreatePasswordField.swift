@@ -14,6 +14,8 @@ struct CreatePasswordField: UserInputField {
     let fieldTitle: String = "Password"
     let maxCharacterCount: Int = 128 /// Not an Appwrite requirement.
     let errors = PasswordValidationError.allCases
+    let alertTitle = "Invalid password"
+    let alertDescription = "Enter a password that matches the requirements."
     
     /// Requires at least one uppercase letter (A-Z).
     /// Requires at least one lowercase letter (a-z).
