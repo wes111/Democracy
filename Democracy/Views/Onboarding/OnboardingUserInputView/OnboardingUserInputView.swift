@@ -34,10 +34,13 @@ struct OnboardingUserInputView<ViewModel: OnboardingUserInputViewModelProtocol>:
         }
         .toolbarNavigation(topButtons: viewModel.topButtons)
         .onTapGesture {
-            focusedField = nil
+            focusedField = nil //TODO: I don't think this quite works.
         }
         .alert(item: $viewModel.onboardingAlert) { alert in
             Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .default(Text("Okay")))
+        }
+        .task {
+            await viewModel.resetTextField()
         }
     }
 }

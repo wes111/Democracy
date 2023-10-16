@@ -9,4 +9,5 @@ import Foundation
 
 enum OnboardingError: Error {
     case invalidField
+    case createAccountMissingField
 }

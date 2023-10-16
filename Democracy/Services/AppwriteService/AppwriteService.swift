@@ -9,7 +9,7 @@ import Appwrite
 import Foundation
 
 protocol AppwriteService {
-    func createUser() async throws -> User
+    func createUser(userName: String, password: String, email: String) async throws -> User
 }
 
 //TODO: There is info that must be added to get the OAuth callback (see website).
@@ -27,11 +27,13 @@ final class AppwriteServiceDefault: AppwriteService {
         account = Account(client)
     }
     
-    func createUser() async throws -> User {
+    func createUser(userName: String, password: String, email: String) async throws -> User {
         let appwriteUser = try await account.create(
-            userId: "123",
-            email: "",
-            password: "")
+            userId: userName,
+            email: email,
+            password: password
+        )
+        print(appwriteUser)
         return appwriteUser.toUser()
     }
 }

@@ -27,6 +27,9 @@ struct AcceptTermsView: View {
             .padding()
         }
         .toolbarNavigation(topButtons: viewModel.topButtons)
+        .alert(item: $viewModel.onboardingAlert) { alert in
+            Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .default(Text("Okay")))
+        }
     }
 }
 
@@ -46,7 +49,7 @@ extension AcceptTermsView {
     
     var agreeButton: some View {
         Button() {
-            viewModel.tapAgree()
+            viewModel.agreeToTerms()
         } label: {
             Text("I agree")
         }

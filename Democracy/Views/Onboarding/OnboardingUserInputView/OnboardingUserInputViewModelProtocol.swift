@@ -25,6 +25,7 @@ protocol OnboardingUserInputViewModelProtocol: ObservableObject, Hashable {
     var canSubmit: Bool { get }
     
     func submit()
+    func resetTextField() async
 }
 
 extension OnboardingUserInputViewModelProtocol {
@@ -97,6 +98,14 @@ class OnboardingUserInputViewModel<Field: UserInputField> {
             try onboardingManager.submit(input: text, field: field)
         } catch {
             presentAlert()
+        }
+    }
+    
+    func resetTextField() async {
+        if let text = onboardingManager.getSubmittedValue(field: field) {
+            await MainActor.run {
+                self.text = text
+            }
         }
     }
     

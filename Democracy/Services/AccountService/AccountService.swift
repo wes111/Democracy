@@ -35,7 +35,8 @@ extension AccountServiceDefault {
 extension AccountServiceDefault {
     
     func createUser(userName: String, password: String, email: String) async throws {
-        
+        let user = try await appwriteService.createUser(userName: userName, password: password, email: email)
+        //Do something with the user.
     }
     
     func refreshUser() {

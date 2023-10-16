@@ -9,6 +9,7 @@ import Foundation
 
 final class AcceptTermsViewModel: ObservableObject, Hashable {
     
+    @Published var onboardingAlert: OnboardingAlert?
     private weak var coordinator: OnboardingCoordinatorDelegate?
     private let onboardingManager: OnboardingFlowManager
     
@@ -18,19 +19,37 @@ final class AcceptTermsViewModel: ObservableObject, Hashable {
     }
     
     var topButtons: [OnboardingTopButton: () -> Void] {
-        [
-            .back : {},
-            .close : close
-        ]
+        [.back : goBack, .close : close]
     }
     
-    func tapAgree() {
-        coordinator?.agreeToTerms()
+    func agreeToTerms() {
+        Task {
+            do {
+                try await onboardingManager.acceptTerms()
+            } catch {
+                print(error)
+                presentAlert()
+            }
+            coordinator?.agreeToTerms()
+        }
+    }
+    
+    private func presentAlert() {
+        Task {
+            await MainActor.run {
+                self.onboardingAlert = .init(
+                    title: "Create Account Failed",
+                    message: "Please try again later."
+                )
+            }
+        }
     }
     
     func close() {
         coordinator?.close()
     }
     
+    func goBack() {
+        coordinator?.goBack()
+    }
 }
-
