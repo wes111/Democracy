@@ -8,38 +8,40 @@
 import Factory
 import Foundation
 
+protocol OnboardingFlowManagerProtocol: ObservableObject {
+    func submit(input: String, field: OnboardingInputField) throws
+    func acceptTerms() async throws
+    func getSubmittedValue(field: OnboardingInputField) -> String?
+}
+
 // Shared state/functionality among the onboarding view flow
 // with scope matching the onboarding coordinator.
-final class OnboardingFlowManager: ObservableObject {
+final class OnboardingFlowManager: OnboardingFlowManagerProtocol {
     
     @Injected(\.accountService) private var accountService
     
-    // The dictionary's keys are the field ids.
     // The dictionary's values are the submitted user input for the field.
-    private var submittedFieldsDictionary: [String: String] = [:]
+    private var submittedFieldsDictionary: [OnboardingInputField: String] = [:]
     
-    func submit<T: UserInputField>(input: String, field: T) throws {
+    func submit(input: String, field: OnboardingInputField) throws {
         guard field.fullyValid(input: input) else {
             throw OnboardingError.invalidField
         }
-        submittedFieldsDictionary[field.id] = input
+        submittedFieldsDictionary[field] = input
     }
     
-    //At this point we can create the account.
+    // At this point we can create the account.
     func acceptTerms() async throws {
-        //TODO: Make id static?
-        guard let userName = submittedFieldsDictionary[CreateUsernameField().id],
-              let password = submittedFieldsDictionary[CreatePasswordField().id],
-              let email = submittedFieldsDictionary[CreateEmailField().id]
+        guard let userName = submittedFieldsDictionary[OnboardingInputField.username],
+              let password = submittedFieldsDictionary[OnboardingInputField.password],
+              let email = submittedFieldsDictionary[OnboardingInputField.email]
         else {
             throw OnboardingError.createAccountMissingField
         }
-        
         try await accountService.createUser(userName: userName, password: password, email: email)
     }
     
-    func getSubmittedValue<T: UserInputField>(field: T) -> String? {
-        submittedFieldsDictionary[field.id] ?? nil
+    func getSubmittedValue(field: OnboardingInputField) -> String? {
+        submittedFieldsDictionary[field] ?? nil
     }
-    
 }

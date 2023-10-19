@@ -19,7 +19,7 @@ enum EmailValidationError: ValidationError {
     
     var regex: String {
         switch self {
-        case .invalidEmail: CreateEmailField.fullRegex
+        case .invalidEmail: OnboardingInputField.email.fullRegex
         }
     }
 }

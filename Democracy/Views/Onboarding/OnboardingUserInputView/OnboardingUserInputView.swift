@@ -7,15 +7,16 @@
 
 import SwiftUI
 
-struct OnboardingUserInputView<ViewModel: OnboardingUserInputViewModelProtocol>: View {
-    @ObservedObject var viewModel: ViewModel
-    @FocusState private var focusedField: ViewModel.Field?
+struct OnboardingUserInputView<T: ValidatableInputField>: View {
+    @ObservedObject var viewModel: OnboardingUserInputViewModel<T>
+    @FocusState private var focusedField: OnboardingInputField?
     
-    init(viewModel: ViewModel) {
+    init(viewModel: OnboardingUserInputViewModel<T>) {
         self.viewModel = viewModel
     }
     
     var body: some View {
+        EmptyView()
         ZStack {
             Color.primaryBackground.ignoresSafeArea()
             
@@ -30,7 +31,7 @@ struct OnboardingUserInputView<ViewModel: OnboardingUserInputViewModelProtocol>:
             .padding()
         }
         .onAppear {
-            focusedField = viewModel.field
+            focusedField = T.field
         }
         .toolbarNavigation(topButtons: viewModel.topButtons)
         .onTapGesture {
@@ -53,7 +54,7 @@ extension OnboardingUserInputView {
                   prompt: Text(viewModel.fieldTitle).foregroundColor(.secondaryBackground), axis: .vertical
         )
         .limitCharacters(text: $viewModel.text, count: viewModel.maxCharacterCount)
-        .focused($focusedField, equals: viewModel.field)
+        .focused($focusedField, equals: T.field)
         .standardTextField(borderColor: viewModel.textErrors.isEmpty ? .tertiaryText : .otherRed)
         .submitLabel(.next)
     }
@@ -99,6 +100,6 @@ extension OnboardingUserInputView {
 #Preview {
     let parentCoordinator = RootCoordinator()
     let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
-    let viewModel = CreateUsernameViewModel(coordinator: coordinator, onboardingManager: .init())
+    let viewModel = OnboardingUserInputViewModel<UsernameValidator>(coordinator: coordinator)
     return OnboardingUserInputView(viewModel: viewModel)
 }

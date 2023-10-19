@@ -61,7 +61,7 @@ extension AcceptTermsView {
 #Preview {
     let parentCoordinator = RootCoordinator()
     let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
-    let viewModel = AcceptTermsViewModel(coordinator: coordinator, onboardingManager: .init())
+    let viewModel = AcceptTermsViewModel(coordinator: coordinator)
     return NavigationStack {
         AcceptTermsView(viewModel: viewModel)
     }

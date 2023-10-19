@@ -49,7 +49,6 @@ extension Container {
     }
     
     // MARK: - Services
-    
     var accountService: Factory<AccountService> {
         self { AccountServiceDefault() }
     }
@@ -60,5 +59,11 @@ extension Container {
     
     var richLinkService: Factory<RichLinkServiceProtocol> {
         self { RichLinkService() } 
+    }
+    
+    // MARK: - Flow Services
+    var onboardingFlowService: Factory<any OnboardingFlowManagerProtocol> {
+        self { OnboardingFlowManager() }
+            .scope(.shared)
     }
 }

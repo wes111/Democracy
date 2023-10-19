@@ -85,6 +85,6 @@ extension CreateAccountSuccessView {
 #Preview {
     let parentCoordinator = RootCoordinator()
     let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
-    let viewModel = CreateAccountSuccessViewModel(coordinator: coordinator, onboardingManager: .init())
+    let viewModel = CreateAccountSuccessViewModel(coordinator: coordinator)
     return CreateAccountSuccessView(viewModel: viewModel)
 }

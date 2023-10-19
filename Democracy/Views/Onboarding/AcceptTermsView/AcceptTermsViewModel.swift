@@ -5,17 +5,17 @@
 //  Created by Wesley Luntsford on 10/6/23.
 //
 
+import Factory
 import Foundation
 
 final class AcceptTermsViewModel: ObservableObject, Hashable {
     
     @Published var onboardingAlert: OnboardingAlert?
     private weak var coordinator: OnboardingCoordinatorDelegate?
-    private let onboardingManager: OnboardingFlowManager
+    @Injected(\.onboardingFlowService) private var onboardingManager
     
-    init(coordinator: OnboardingCoordinatorDelegate?, onboardingManager: OnboardingFlowManager) {
+    init(coordinator: OnboardingCoordinatorDelegate?) {
         self.coordinator = coordinator
-        self.onboardingManager = onboardingManager
     }
     
     var topButtons: [OnboardingTopButton: () -> Void] {
