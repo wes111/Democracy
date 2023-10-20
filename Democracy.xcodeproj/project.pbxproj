@@ -171,6 +171,8 @@
 		EEB5AF782ADC321600310408 /* OnboardingFlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF772ADC321600310408 /* OnboardingFlowManager.swift */; };
 		EEB5AF7A2ADC3D6D00310408 /* OnboardingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF792ADC3D6C00310408 /* OnboardingAlert.swift */; };
 		EEB5AF7C2ADCA92A00310408 /* OnboardingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */; };
+		EEB5AF7E2AE0DE3700310408 /* ValidatableOnboardingField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7D2AE0DE3700310408 /* ValidatableOnboardingField.swift */; };
+		EEB5AF802AE0DE7000310408 /* OnboardingInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */; };
 		EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED4299F169000FEFC6E /* SettingsView.swift */; };
 		EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47EDE299F186D00FEFC6E /* SettingsViewModel.swift */; };
 		EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4EB29A9984200DDCCDA /* SettingsCoordinator.swift */; };
@@ -380,6 +382,8 @@
 		EEB5AF772ADC321600310408 /* OnboardingFlowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowManager.swift; sourceTree = "<group>"; };
 		EEB5AF792ADC3D6C00310408 /* OnboardingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAlert.swift; sourceTree = "<group>"; };
 		EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingError.swift; sourceTree = "<group>"; };
+		EEB5AF7D2AE0DE3700310408 /* ValidatableOnboardingField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatableOnboardingField.swift; sourceTree = "<group>"; };
+		EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInputField.swift; sourceTree = "<group>"; };
 		EED47ED4299F169000FEFC6E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		EED47EDE299F186D00FEFC6E /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		EED4A4EB29A9984200DDCCDA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
@@ -596,6 +600,8 @@
 		EE4DB8A42ACE43FB00A6DC90 /* Validation */ = {
 			isa = PBXGroup;
 			children = (
+				EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */,
+				EEB5AF7D2AE0DE3700310408 /* ValidatableOnboardingField.swift */,
 				EE9760072AD07959003069CF /* ValidationError */,
 			);
 			path = Validation;
@@ -1439,6 +1445,7 @@
 				EED4A51A29ABC2D400DDCCDA /* Community.swift in Sources */,
 				EED4A4F129AA7ED700DDCCDA /* RootViewModel.swift in Sources */,
 				EE54ADEC29A714E8007C3E3F /* LoginViewModel.swift in Sources */,
+				EEB5AF802AE0DE7000310408 /* OnboardingInputField.swift in Sources */,
 				EED4A50D29AB18E400DDCCDA /* UpdatesTabMainViewModel.swift in Sources */,
 				EED4A54529BAE16700DDCCDA /* Tag.swift in Sources */,
 				EE988AB02ADA07640057F9DE /* PhoneValidationError.swift in Sources */,
@@ -1504,6 +1511,7 @@
 				EED4A51129AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift in Sources */,
 				EE4524912A56597400C7A2DD /* ResourceView.swift in Sources */,
 				EE80D95629E0B6D10000F8EF /* ReversedLabelStyle.swift in Sources */,
+				EEB5AF7E2AE0DE3700310408 /* ValidatableOnboardingField.swift in Sources */,
 				EE80D94D29DB90440000F8EF /* CreateCommunityView.swift in Sources */,
 				EE5B938329F747DD00B43381 /* RepresentativeType.swift in Sources */,
 				EE80D8DC29BC18EE0000F8EF /* CommunityHomeFeedViewModel+Preview.swift in Sources */,

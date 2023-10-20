@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OnboardingUserInputView<T: ValidatableInputField>: View {
+struct OnboardingUserInputView<T: ValidatableOnboardingField>: View {
     @ObservedObject var viewModel: OnboardingUserInputViewModel<T>
     @FocusState private var focusedField: OnboardingInputField?
     
