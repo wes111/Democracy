@@ -15,6 +15,7 @@ protocol AccountService {
     func login(email: String, password: String) async throws
     func updatePhone(phone: PhoneNumber, password: String) async throws
     func createPhoneVerification() async throws
+    func createEmailVerification() async throws
     
     var loginPublisher: AnyPublisher<LoginStatus, Never> { get }
 }
@@ -53,6 +54,11 @@ extension AccountServiceDefault {
     func createPhoneVerification() async throws {
         let token = try await appwriteService.createPhoneVerification()
         //Do something with the token.
+    }
+    
+    func createEmailVerification() async throws {
+        let token = try await appwriteService.createEmailVerification()
+        //Do something with the token
     }
     
     func refreshUser() {

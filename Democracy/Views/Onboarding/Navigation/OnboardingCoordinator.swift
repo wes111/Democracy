@@ -42,6 +42,11 @@ extension OnboardingCoordinator: OnboardingCoordinatorDelegate {
     }
     
     func submitEmail() {
+        let viewModel = OnboardingUserInputViewModel<PhoneValidator>(coordinator: self)
+        router.push(OnboardingPath.goToCreatePhone(viewModel))
+    }
+    
+    func submitPhone() {
         let viewModel = AcceptTermsViewModel(coordinator: self)
         router.push(OnboardingPath.goToAcceptTerms(viewModel))
     }
@@ -52,16 +57,10 @@ extension OnboardingCoordinator: OnboardingCoordinatorDelegate {
     }
     
     func continueAccountSetup() {
-        let viewModel = OnboardingUserInputViewModel<PhoneValidator>(coordinator: self)
-        router.push(OnboardingPath.goToCreatePhone(viewModel))
+
     }
     
-    func submitPhone() {
-//        let viewModel = OnboardingUserInputViewModel<VerifyPhoneValidator>(coordinator: self)
-//        router.push(OnboardingPath.goToVerifyPhone(viewModel))
-        let viewModel = OnboardingUserInputViewModel<VerifyEmailValidator>(coordinator: self)
-        router.push(OnboardingPath.goToVerifyEmail(viewModel))
-    }
+
     
 //    func submitPhoneVerification() {
 //        let viewModel = OnboardingUserInputViewModel<VerifyEmailValidator>(coordinator: self)

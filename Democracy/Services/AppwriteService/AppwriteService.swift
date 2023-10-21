@@ -34,6 +34,7 @@ protocol AppwriteService {
     func logout(sessionID: String) async throws
     func updatePhone(phone: PhoneNumber, password: String) async throws -> User
     func createPhoneVerification() async throws -> Token
+    func createEmailVerification() async throws -> Token 
 }
 
 //TODO: There is info that must be added to get the OAuth callback (see website).
@@ -77,6 +78,11 @@ final class AppwriteServiceDefault: AppwriteService {
     func createPhoneVerification() async throws -> Token {
         let token = try await account.createPhoneVerification()
         return token.toToken()
+    }
+    
+    func createEmailVerification() async throws -> Token {
+        let appwriteToken = try await account.createVerification(url: "http://192.168.86.250/")
+        return appwriteToken.toToken()
     }
     
     func logout(sessionID: String) async throws {

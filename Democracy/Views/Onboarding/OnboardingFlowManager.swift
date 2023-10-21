@@ -30,30 +30,6 @@ final class OnboardingFlowManager: OnboardingFlowManagerProtocol {
             throw OnboardingError.invalidField
         }
         submittedFieldsDictionary[field] = input
-        
-        switch field {
-        case .username, .password, .email:
-            return
-        case .phone:
-            try await submitPhone()
-            try await accountService.createPhoneVerification()
-//        case .verifyPhone:
-//            return
-        case .verifyEmail:
-            return //TODO: ...
-        }
-
-    }
-    
-    private func submitPhone() async throws {
-        guard let password = submittedFieldsDictionary[.password],
-              let phoneString = submittedFieldsDictionary[.phone],
-              let phoneInt = Int(phoneString)
-        else {
-            throw OnboardingError.phoneError
-        }
-        
-        try await accountService.updatePhone(phone: PhoneNumber(base: phoneInt), password: password)
     }
     
     // At this point we can create the account and log-in.
@@ -66,6 +42,11 @@ final class OnboardingFlowManager: OnboardingFlowManagerProtocol {
         }
         try await accountService.createUser(userName: userName, password: password, email: email)
         try await accountService.login(email: email, password: password)
+        
+        if let stringPhone = submittedFieldsDictionary[.phone], let intPhone = Int(stringPhone) {
+            try await accountService.updatePhone(phone: .init(base: intPhone), password: password)
+        }
+        
     }
     
     func getSubmittedValue(field: OnboardingInputField) -> String? {

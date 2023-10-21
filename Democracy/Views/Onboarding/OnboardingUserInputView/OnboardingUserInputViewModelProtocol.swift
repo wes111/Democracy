@@ -16,7 +16,7 @@ protocol OnboardingCoordinatorDelegate: AnyObject {
     func continueAccountSetup()
     func submitPhone()
     //func submitPhoneVerification()
-    func submitEmailVerification()
+    //func submitEmailVerification()
     
     func close()
     func goBack()
@@ -53,8 +53,8 @@ extension OnboardingUserInputViewModel {
             [.close: close]
 //        case .verifyPhone:
 //            [.close: close]
-        case .verifyEmail:
-            [.close: close]
+//        case .verifyEmail:
+//            [.close: close]
         }
     }
     
@@ -105,8 +105,8 @@ extension OnboardingUserInputViewModel {
                 coordinator?.submitPhone()
 //            case .verifyPhone:
 //                coordinator?.submitPhoneVerification()
-            case .verifyEmail:
-                coordinator?.submitEmailVerification()
+//            case .verifyEmail:
+//                coordinator?.submitEmailVerification()
             }
         } catch {
             presentAlert()
