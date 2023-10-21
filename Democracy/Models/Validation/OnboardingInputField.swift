@@ -8,7 +8,8 @@
 import Foundation
 
 enum OnboardingInputField {
-    case username, password, email, phone, verifyPhone, verifyEmail
+    case username, password, email, phone, verifyEmail
+    // case verifyPhone //TODO: Money :'(
 }
 
 // MARK: - Computed Properties
@@ -24,8 +25,8 @@ extension OnboardingInputField {
             "Create Email"
         case .phone:
             "Create Phone"
-        case .verifyPhone:
-            "Verify Phone"
+//        case .verifyPhone:
+//            "Verify Phone"
         case .verifyEmail:
             "Verify Email"
         }
@@ -41,8 +42,8 @@ extension OnboardingInputField {
             "Create the primary email for this account"
         case .phone:
             "Create a phone number we can contact you via SMS"
-        case .verifyPhone:
-            "Enter the code we sent to your phone to verify your phone."
+//        case .verifyPhone:
+//            "Enter the code we sent to your phone to verify your phone."
         case .verifyEmail:
             "Enter the code we sent to your email to verify your email."
         }
@@ -58,8 +59,8 @@ extension OnboardingInputField {
             "Email"
         case .phone:
             "Phone"
-        case .verifyPhone:
-            "Phone Code"
+//        case .verifyPhone:
+//            "Phone Code"
         case .verifyEmail:
             "Email Code"
         }
@@ -75,8 +76,8 @@ extension OnboardingInputField {
             128
         case .phone:
             10 //TODO: Is this correct
-        case .verifyPhone:
-            1_000 //TODO: Verify this is long enough
+//        case .verifyPhone:
+//            1_000 //TODO: Verify this is long enough
         case .verifyEmail:
             1_000 //TODO: Verify this is long enough
         }
@@ -92,8 +93,8 @@ extension OnboardingInputField {
             "Invalid email"
         case .phone:
             "Invalid phone number"
-        case .verifyPhone:
-            "Invalid phone verification code"
+//        case .verifyPhone:
+//            "Invalid phone verification code"
         case .verifyEmail:
             "Invalid email verification code"
         }
@@ -109,8 +110,8 @@ extension OnboardingInputField {
             "Enter an email that matches the requirements."
         case .phone:
             "Enter a phone number that matches the requirements."
-        case .verifyPhone:
-            "Enter a valid phone verification code."
+//        case .verifyPhone:
+//            "Enter a valid phone verification code."
         case .verifyEmail:
             "Enter a valid email verification code."
         }
@@ -152,9 +153,9 @@ extension OnboardingInputField {
             /// Must be 10 digits long.
             #"^\d{10}$"#
             
-        case .verifyPhone:
-            /// String has at least one character, excluding newline.
-            #"^.+$"#
+//        case .verifyPhone:
+//            /// String has at least one character, excluding newline.
+//            #"^.+$"#
             
         case .verifyEmail:
             /// String has at least one character, excluding newline.

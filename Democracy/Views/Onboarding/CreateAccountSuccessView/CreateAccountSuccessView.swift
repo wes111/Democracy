@@ -45,7 +45,7 @@ extension CreateAccountSuccessView {
         VStack(alignment: .center, spacing: 15) {
             VStack(alignment: .center, spacing: 0) {
                 Text("Welcome to Democracy,")
-                Text("User123")
+                Text(viewModel.userName)
             }
             .font(.system(.title, weight: .semibold))
             .foregroundColor(.primaryText)
@@ -73,7 +73,7 @@ extension CreateAccountSuccessView {
     
     var skipButton: some View {
         Button() {
-            viewModel.skipAction()
+            viewModel.close()
         } label: {
             Text("Skip")
         }

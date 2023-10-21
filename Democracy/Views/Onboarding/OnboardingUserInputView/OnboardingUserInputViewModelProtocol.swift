@@ -15,7 +15,7 @@ protocol OnboardingCoordinatorDelegate: AnyObject {
     func agreeToTerms()
     func continueAccountSetup()
     func submitPhone()
-    func submitPhoneVerification()
+    //func submitPhoneVerification()
     func submitEmailVerification()
     
     func close()
@@ -51,8 +51,8 @@ extension OnboardingUserInputViewModel {
             [.close: close, .back : goBack]
         case .phone:
             [.close: close]
-        case .verifyPhone:
-            [.close: close]
+//        case .verifyPhone:
+//            [.close: close]
         case .verifyEmail:
             [.close: close]
         }
@@ -90,26 +90,26 @@ extension OnboardingUserInputViewModel {
         coordinator?.goBack()
     }
     
-    func submit() {
+    func submit() async {
         do {
-            try onboardingManager.submit(input: text, field: T.field)
+            try await onboardingManager.submit(input: text, field: T.field)
+            
+            switch T.field {
+            case .username:
+                coordinator?.didSubmitUsername()
+            case .password:
+                coordinator?.submitPassword()
+            case .email:
+                coordinator?.submitEmail()
+            case .phone:
+                coordinator?.submitPhone()
+//            case .verifyPhone:
+//                coordinator?.submitPhoneVerification()
+            case .verifyEmail:
+                coordinator?.submitEmailVerification()
+            }
         } catch {
             presentAlert()
-        }
-        
-        switch T.field {
-        case .username:
-            coordinator?.didSubmitUsername()
-        case .password:
-            coordinator?.submitPassword()
-        case .email:
-            coordinator?.submitEmail()
-        case .phone:
-            coordinator?.submitPhone()
-        case .verifyPhone:
-            coordinator?.submitPhoneVerification()
-        case .verifyEmail:
-            coordinator?.submitEmailVerification()
         }
     }
     

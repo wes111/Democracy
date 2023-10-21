@@ -28,7 +28,7 @@ struct OnboardingCoordinatorView: View {
         case .goToCreatePassword(let viewModel): OnboardingUserInputView(viewModel: viewModel)
         case .goToCreateEmail(let viewModel): OnboardingUserInputView(viewModel: viewModel)
         case .goToVerifyEmail(let viewmodel): OnboardingUserInputView(viewModel: viewmodel)
-        case .goToVerifyPhone(let viewmodel): OnboardingUserInputView(viewModel: viewmodel)
+//        case .goToVerifyPhone(let viewmodel): OnboardingUserInputView(viewModel: viewmodel)
         case .goToCreatePhone(let viewModel): OnboardingUserInputView(viewModel: viewModel)
         case .goToCreateAccountSuccess(let viewModel): CreateAccountSuccessView(viewModel: viewModel)
         case .goToAcceptTerms(let viewModel): AcceptTermsView(viewModel: viewModel)

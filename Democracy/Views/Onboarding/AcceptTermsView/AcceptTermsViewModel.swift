@@ -26,11 +26,11 @@ final class AcceptTermsViewModel: ObservableObject, Hashable {
         Task {
             do {
                 try await onboardingManager.acceptTerms()
+                coordinator?.agreeToTerms()
             } catch {
                 print(error)
                 presentAlert()
             }
-            coordinator?.agreeToTerms()
         }
     }
     

@@ -87,7 +87,9 @@ extension OnboardingUserInputView {
     
     var nextButton: some View {
         Button() {
-            viewModel.submit()
+            Task {
+                await viewModel.submit()
+            }
         } label: {
             Text("Next")
         }

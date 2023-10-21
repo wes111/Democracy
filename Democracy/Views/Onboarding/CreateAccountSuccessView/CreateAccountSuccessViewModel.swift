@@ -21,15 +21,15 @@ final class CreateAccountSuccessViewModel: ObservableObject, Hashable {
         coordinator?.continueAccountSetup()
     }
     
-    func skipAction() {
-        
-    }
-    
     func close() {
         coordinator?.close()
     }
     
     var topButtons: [OnboardingTopButton: () -> Void] {
-        [ .close : close ]
+        [.close : close]
+    }
+    
+    var userName: String {
+        onboardingManager.userName ?? ""
     }
 }

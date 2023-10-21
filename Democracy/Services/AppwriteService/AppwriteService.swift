@@ -8,8 +8,32 @@
 import Appwrite
 import Foundation
 
+struct PhoneNumber {
+    let countryCode: Int = 1 // Single digit? What are the possible values here
+    let base: Int //10 digit number?
+    
+    init(base: Int) {
+        self.base = base
+    }
+    
+    var appwriteString: String {
+        "+\(countryCode)\(base)"
+    }
+}
+
+struct Token {
+    let id: String
+    let userID: String
+    let createdAt: Date?
+    let expiresAt: Date?
+}
+
 protocol AppwriteService {
     func createUser(userName: String, password: String, email: String) async throws -> User
+    func login(email: String, password: String) async throws
+    func logout(sessionID: String) async throws
+    func updatePhone(phone: PhoneNumber, password: String) async throws -> User
+    func createPhoneVerification() async throws -> Token
 }
 
 //TODO: There is info that must be added to get the OAuth callback (see website).
@@ -35,6 +59,28 @@ final class AppwriteServiceDefault: AppwriteService {
         )
         print(appwriteUser)
         return appwriteUser.toUser()
+    }
+    
+    func login(email: String, password: String) async throws {
+        let session = try await account.createEmailSession(
+            email: email,
+            password: password
+        )
+        //TODO: Do something with the session
+    }
+    
+    func updatePhone(phone: PhoneNumber, password: String) async throws -> User {
+        let user = try await account.updatePhone(phone: phone.appwriteString, password: password)
+        return user.toUser()
+    }
+    
+    func createPhoneVerification() async throws -> Token {
+        let token = try await account.createPhoneVerification()
+        return token.toToken()
+    }
+    
+    func logout(sessionID: String) async throws {
+        //TODO: ...
     }
 }
 
@@ -64,4 +110,23 @@ extension Appwrite.User {
             updatedAt: formatter.date(from: updatedAt)
         )
     }
+}
+
+extension Appwrite.Token {
+    func toToken() -> Token {
+        let formatter = ISO8601DateFormatter.sharedWithFractionalSeconds
+        
+        return .init(
+            id: id,
+            userID: userId,
+            createdAt: formatter.date(from: createdAt),
+            expiresAt: formatter.date(from: expire)
+        )
+    }
+}
+
+extension Appwrite.Session {
+//    func toSession() -> Session {
+//
+//    }
 }

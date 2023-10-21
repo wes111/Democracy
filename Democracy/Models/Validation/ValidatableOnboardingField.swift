@@ -37,7 +37,7 @@ struct VerifyEmailValidator: ValidatableOnboardingField {
     static var field: OnboardingInputField = .verifyEmail
 }
 
-struct VerifyPhoneValidator: ValidatableOnboardingField {
-    typealias Error = VerifyPhoneCodeValidationError
-    static var field: OnboardingInputField = .verifyPhone
-}
+//struct VerifyPhoneValidator: ValidatableOnboardingField {
+//    typealias Error = VerifyPhoneCodeValidationError
+//    static var field: OnboardingInputField = .verifyPhone
+//}
