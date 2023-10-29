@@ -30,6 +30,6 @@ final class CreateAccountSuccessViewModel: ObservableObject, Hashable {
     }
     
     var userName: String {
-        onboardingManager.userName ?? ""
+        onboardingManager.getSubmittedValue(field: .username) ?? ""
     }
 }

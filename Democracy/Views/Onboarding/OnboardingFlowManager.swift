@@ -12,8 +12,6 @@ protocol OnboardingFlowManagerProtocol: ObservableObject {
     func submit(input: String, field: OnboardingInputField) async throws
     func acceptTerms() async throws
     func getSubmittedValue(field: OnboardingInputField) -> String?
-    
-    var userName: String? { get }
 }
 
 // Shared state/functionality among the onboarding view flow
@@ -51,9 +49,5 @@ final class OnboardingFlowManager: OnboardingFlowManagerProtocol {
     
     func getSubmittedValue(field: OnboardingInputField) -> String? {
         submittedFieldsDictionary[field] ?? nil
-    }
-    
-    var userName: String? {
-        submittedFieldsDictionary[OnboardingInputField.username]
     }
 }
