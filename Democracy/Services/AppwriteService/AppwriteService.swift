@@ -8,6 +8,33 @@
 import Appwrite
 import Foundation
 
+extension String {
+    func decode<T: Decodable>() throws -> T {
+        let data = self.data(using: .utf8)!
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+}
+
+struct UsernameAvailable: Codable {
+    var isAvailable: Bool
+}
+
+struct Username: Codable {
+    var userName: String
+}
+
+extension Encodable {
+    func toDictionary() throws -> [String: Any] {
+        let data = try JSONEncoder().encode(self)
+        return try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+    }
+    
+    func toJSONString() throws -> String {
+        let jsonData = try JSONEncoder().encode(self)
+        return String(data: jsonData, encoding: String.Encoding.utf8)!
+    }
+}
+
 struct PhoneNumber {
     let countryCode: Int = 1 // Single digit? What are the possible values here
     let base: Int //10 digit number?
@@ -34,22 +61,43 @@ protocol AppwriteService {
     func logout(sessionID: String) async throws
     func updatePhone(phone: PhoneNumber, password: String) async throws -> User
     func createPhoneVerification() async throws -> Token
-    func createEmailVerification() async throws -> Token 
+    func createEmailVerification() async throws -> Token
+    
+    func getUserNameAvailable(username: String) async throws -> Bool
 }
 
 //TODO: There is info that must be added to get the OAuth callback (see website).
 final class AppwriteServiceDefault: AppwriteService {
     
-    private let client: Client
-    private let account: Account
+    private let projectEndpoint = "http://192.168.86.231/v1"
+    private let projectID = "65466f560e77e46a903e"
     
-    init() {
-        client = Client()
-            .setEndpoint("http://192.168.86.250/v1")
-            .setProject("6510765aeda81a163169")
+    private lazy var client: Client = {
+        Client()
+            .setEndpoint(projectEndpoint)
+            .setProject(projectID)
             .setSelfSigned(true) // For self signed certificates, only use for development
-        
-        account = Account(client)
+    }()
+    
+    private lazy var account: Account = {
+        Account(client)
+    }()
+    
+    private lazy var functions: Functions = {
+        Functions(client)
+    }()
+    
+    init() {}
+    
+    func getUserNameAvailable(username: String) async throws -> Bool {
+        let usernameJSONString = try Username(userName: username).toJSONString()
+        let execution = try await functions.createExecution(
+            functionId: "usernameAvailable",
+            body: usernameJSONString,
+            method: "GET"
+        )
+        let response: UsernameAvailable = try execution.responseBody.decode()
+        return response.isAvailable
     }
     
     func createUser(userName: String, password: String, email: String) async throws -> User {
@@ -81,8 +129,9 @@ final class AppwriteServiceDefault: AppwriteService {
     }
     
     func createEmailVerification() async throws -> Token {
-        let appwriteToken = try await account.createVerification(url: "http://192.168.86.250/")
-        return appwriteToken.toToken()
+        return .init(id: "", userID: "", createdAt: .now, expiresAt: .now)
+//        let appwriteToken = try await account.createVerification(url: "http://192.168.86.244/")
+//        return appwriteToken.toToken()
     }
     
     func logout(sessionID: String) async throws {

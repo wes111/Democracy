@@ -17,6 +17,8 @@ protocol AccountService {
     func createPhoneVerification() async throws
     func createEmailVerification() async throws
     
+    func getUsernameAvailable(username: String) async throws -> Bool
+    
     var loginPublisher: AnyPublisher<LoginStatus, Never> { get }
 }
 
@@ -71,5 +73,9 @@ extension AccountServiceDefault {
     
     func getUser() -> User {
         return .preview
+    }
+    
+    func getUsernameAvailable(username: String) async throws -> Bool {
+        try await appwriteService.getUserNameAvailable(username: username)
     }
 }

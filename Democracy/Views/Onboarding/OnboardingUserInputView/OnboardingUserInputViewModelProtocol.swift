@@ -15,9 +15,6 @@ protocol OnboardingCoordinatorDelegate: AnyObject {
     func agreeToTerms()
     func continueAccountSetup()
     func submitPhone()
-    //func submitPhoneVerification()
-    //func submitEmailVerification()
-    
     func close()
     func goBack()
 }
@@ -28,6 +25,7 @@ class OnboardingUserInputViewModel<T: ValidatableOnboardingField>: Hashable, Obs
     @Published var text: String = ""
     @Published var textErrors: [T.Error] = []
     @Published var onboardingAlert: OnboardingAlert?
+    @Published var isLoading: Bool = false
     @Injected(\.onboardingFlowService) private var onboardingManager
     
     weak var coordinator: OnboardingCoordinatorDelegate?
@@ -51,10 +49,6 @@ extension OnboardingUserInputViewModel {
             [.close: close, .back : goBack]
         case .phone:
             [.close: close]
-//        case .verifyPhone:
-//            [.close: close]
-//        case .verifyEmail:
-//            [.close: close]
         }
     }
     
@@ -91,25 +85,49 @@ extension OnboardingUserInputViewModel {
     }
     
     func submit() async {
+        await MainActor.run {
+            isLoading = true
+        }
+        try? await Task.sleep(nanoseconds: 3_000_000_000)
         do {
-            try await onboardingManager.submit(input: text, field: T.field)
-            
             switch T.field {
+                
             case .username:
+                guard try await onboardingManager.usernameIsAvailable(text) else {
+                    await MainActor.run {
+                        isLoading = false
+                    }
+                    return presentUsernameUnavailableAlert()
+                }
+                try await onboardingManager.submit(input: text, field: T.field)
                 coordinator?.didSubmitUsername()
+                
             case .password:
+                try await onboardingManager.submit(input: text, field: T.field)
                 coordinator?.submitPassword()
+                
             case .email:
+                try await onboardingManager.submit(input: text, field: T.field)
                 coordinator?.submitEmail()
+                
             case .phone:
+                try await onboardingManager.submit(input: text, field: T.field)
                 coordinator?.submitPhone()
-//            case .verifyPhone:
-//                coordinator?.submitPhoneVerification()
-//            case .verifyEmail:
-//                coordinator?.submitEmailVerification()
             }
         } catch {
-            presentAlert()
+            print(error.localizedDescription)
+            await MainActor.run {
+                isLoading = false
+            }
+            if let onboardingError = error as? OnboardingError, onboardingError == .invalidField {
+                presentInvalidInputAlert()
+            } else {
+                presentGenericAlert()
+            }
+        }
+        
+        await MainActor.run {
+            isLoading = false
         }
     }
     
@@ -124,7 +142,7 @@ extension OnboardingUserInputViewModel {
 
 //MARK: - Private methods
 extension OnboardingUserInputViewModel {
-    func presentAlert() {
+    func presentInvalidInputAlert() {
         Task {
             await MainActor.run {
                 self.onboardingAlert = .init(
@@ -135,9 +153,31 @@ extension OnboardingUserInputViewModel {
         }
     }
     
+    func presentUsernameUnavailableAlert() {
+        Task {
+            await MainActor.run {
+                self.onboardingAlert = .init(
+                    title: "Username unavailable",
+                    message: "Please enter a different username to continue."
+                )
+            }
+        }
+    }
+    
+    func presentGenericAlert() {
+        Task {
+            await MainActor.run {
+                self.onboardingAlert = .init(
+                    title: "Error",
+                    message: "An error occurred, please try again later."
+                )
+            }
+        }
+    }
+    
     func setupBindings() {
         $text
-            .debounce(for: 0.25, scheduler: RunLoop.main)
+            .debounce(for: 0.05, scheduler: RunLoop.main)
             .compactMap { text in
                 guard !text.isEmpty else { return [] }
                 return T.field.getInputValidationErrors(input: text)

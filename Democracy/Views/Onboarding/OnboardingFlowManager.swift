@@ -12,6 +12,7 @@ protocol OnboardingFlowManagerProtocol: ObservableObject {
     func submit(input: String, field: OnboardingInputField) async throws
     func acceptTerms() async throws
     func getSubmittedValue(field: OnboardingInputField) -> String?
+    func usernameIsAvailable(_ username: String) async throws -> Bool
 }
 
 // Shared state/functionality among the onboarding view flow
@@ -28,6 +29,10 @@ final class OnboardingFlowManager: OnboardingFlowManagerProtocol {
             throw OnboardingError.invalidField
         }
         submittedFieldsDictionary[field] = input
+    }
+    
+    func usernameIsAvailable(_ username: String) async throws -> Bool {
+        return try await accountService.getUsernameAvailable(username: username)
     }
     
     // At this point we can create the account and log-in.

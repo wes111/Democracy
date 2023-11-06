@@ -29,6 +29,12 @@ struct OnboardingUserInputView<T: ValidatableOnboardingField>: View {
                 Spacer()
             }
             .padding()
+            
+            if viewModel.isLoading {
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .tint(.white)
+            }
         }
         .onAppear {
             focusedField = T.field
