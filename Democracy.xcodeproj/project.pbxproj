@@ -173,6 +173,7 @@
 		EEB5AF7C2ADCA92A00310408 /* OnboardingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */; };
 		EEB5AF7E2AE0DE3700310408 /* ValidatableOnboardingField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7D2AE0DE3700310408 /* ValidatableOnboardingField.swift */; };
 		EEB5AF802AE0DE7000310408 /* OnboardingInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */; };
+		EEB5AF832AF8985500310408 /* SharedResourcesClientAndServer in Frameworks */ = {isa = PBXBuildFile; productRef = EEB5AF822AF8985500310408 /* SharedResourcesClientAndServer */; };
 		EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED4299F169000FEFC6E /* SettingsView.swift */; };
 		EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47EDE299F186D00FEFC6E /* SettingsViewModel.swift */; };
 		EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4EB29A9984200DDCCDA /* SettingsCoordinator.swift */; };
@@ -437,6 +438,7 @@
 			files = (
 				EE4DB8872AC5084900A6DC90 /* Appwrite in Frameworks */,
 				EE80D8E929BD11600000F8EF /* Factory in Frameworks */,
+				EEB5AF832AF8985500310408 /* SharedResourcesClientAndServer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1341,6 +1343,7 @@
 			packageProductDependencies = (
 				EE80D8E829BD11600000F8EF /* Factory */,
 				EE4DB8862AC5084900A6DC90 /* Appwrite */,
+				EEB5AF822AF8985500310408 /* SharedResourcesClientAndServer */,
 			);
 			productName = Democracy;
 			productReference = EEF8345D299C6824001EEA5E /* Democracy.app */;
@@ -1373,6 +1376,7 @@
 			packageReferences = (
 				EE80D8E729BD11600000F8EF /* XCRemoteSwiftPackageReference "Factory" */,
 				EE4DB8852AC5084900A6DC90 /* XCRemoteSwiftPackageReference "sdk-for-apple" */,
+				EEB5AF812AF8985500310408 /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */,
 			);
 			productRefGroup = EEF8345E299C6824001EEA5E /* Products */;
 			projectDirPath = "";
@@ -1827,6 +1831,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		EEB5AF812AF8985500310408 /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wes111/SharedResourcesClientAndServer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1839,6 +1851,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE80D8E729BD11600000F8EF /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
+		};
+		EEB5AF822AF8985500310408 /* SharedResourcesClientAndServer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EEB5AF812AF8985500310408 /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */;
+			productName = SharedResourcesClientAndServer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

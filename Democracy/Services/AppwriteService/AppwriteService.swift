@@ -7,33 +7,7 @@
 
 import Appwrite
 import Foundation
-
-extension String {
-    func decode<T: Decodable>() throws -> T {
-        let data = self.data(using: .utf8)!
-        return try JSONDecoder().decode(T.self, from: data)
-    }
-}
-
-struct UsernameAvailable: Codable {
-    var isAvailable: Bool
-}
-
-struct Username: Codable {
-    var userName: String
-}
-
-extension Encodable {
-    func toDictionary() throws -> [String: Any] {
-        let data = try JSONEncoder().encode(self)
-        return try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-    }
-    
-    func toJSONString() throws -> String {
-        let jsonData = try JSONEncoder().encode(self)
-        return String(data: jsonData, encoding: String.Encoding.utf8)!
-    }
-}
+import SharedResourcesClientAndServer
 
 struct PhoneNumber {
     let countryCode: Int = 1 // Single digit? What are the possible values here

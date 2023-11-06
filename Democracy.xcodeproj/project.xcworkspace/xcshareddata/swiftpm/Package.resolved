@@ -28,6 +28,15 @@
       }
     },
     {
+      "identity" : "sharedresourcesclientandserver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/wes111/SharedResourcesClientAndServer",
+      "state" : {
+        "revision" : "9e7dd088c0065d33529a439d9f35bb39b815bfe5",
+        "version" : "1.0.1"
+      }
+    },
+    {
       "identity" : "swift-atomics",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-atomics.git",
