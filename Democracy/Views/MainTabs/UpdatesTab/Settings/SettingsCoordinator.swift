@@ -8,9 +8,8 @@
 import SwiftUI
 
 enum SettingsPath: Hashable {
-    case b
+    case todo
 }
-
 
 struct SettingsCoordinator: View {
     
@@ -26,7 +25,7 @@ struct SettingsCoordinator: View {
     @ViewBuilder
     func createViewFromPath(_ path: SettingsPath) -> some View {
         switch path {
-        case .b: Text("To Do.")
+        case .todo: Text("To Do.")
         }
     }
     
@@ -36,8 +35,8 @@ struct SettingsCoordinator: View {
     }
 }
 
-//extension SettingsCoordinator: SettingsCoordinatorDelegate {
+// extension SettingsCoordinator: SettingsCoordinatorDelegate {
 //
 //    
 //    
-//}
+// }

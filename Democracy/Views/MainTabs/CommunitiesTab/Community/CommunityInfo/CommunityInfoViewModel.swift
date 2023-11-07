@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-protocol CommunityInfoCoordinatorDelegate: CandidateCardCoordinatorDelegate, LeadersScrollViewModelCoordinatorDelegate, AlliedCommunitiesSectionViewModelCoordinatorDelegate, AnyObject {
+protocol CommunityInfoCoordinatorDelegate: CandidateCardCoordinatorDelegate, LeadersScrollViewModelCoordinatorDelegate, AlliedDelegate, AnyObject {
     func showCandidates()
     func goToCommunityView(id: String)
     func openResourceURL(_ url: URL)

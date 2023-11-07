@@ -131,7 +131,7 @@ extension CommunityCoordinator: CreateCandidateCoordinatorDelegate {}
 
 extension CommunityCoordinator: PostCoordinatorDelegate {}
 
-extension CommunityCoordinator: AlliedCommunitiesSectionViewModelCoordinatorDelegate {
+extension CommunityCoordinator: AlliedDelegate {
     
     func goToCommunityView(id: String) {
         parentCoordinator.goToCommunity(communityId: id)
