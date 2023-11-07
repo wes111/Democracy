@@ -136,7 +136,8 @@ extension OnboardingInputField {
         case .email:
             /// Local part:
             ///     Must start with a character that is either an uppercase letter (A-Z), lowercase letter (a-z), digit (0-9), percent sign (%), plus sign (+), or hyphen (-).
-            ///     Followed by zero or more occurrences of characters that are either uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), dots (.), underscores, percent signs (%), plus signs (+), or hyphens (-).
+            ///     Followed by zero or more occurrences of characters that are either uppercase letters (A-Z), 
+            ///     lowercase letters (a-z), digits (0-9), dots (.), underscores, percent signs (%), plus signs (+), or hyphens (-).
             /// @ symbol:
             ///     The email address must contain exactly one "@" symbol.
             /// Domain name:

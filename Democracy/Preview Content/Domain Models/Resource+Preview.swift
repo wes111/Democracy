@@ -13,61 +13,121 @@ extension Resource {
         Resource(
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
-            description: "At the Community Knowledge Hub, we recognize the power of shared resources in fostering personal growth and community development. That's why we have multiple copies of The Art of Effective Communication available for loan, both in print and digital formats, ensuring that everyone has equal access to this invaluable resource.",
+            description: """
+                         At the Community Knowledge Hub, we recognize the power of shared resources
+                         in fostering personal growth and community development. That's why we have
+                         multiple copies of The Art of Effective Communication available for loan,
+                         both in print and digital formats, ensuring that everyone has equal access
+                         to this invaluable resource.
+                         """,
             url: URL(string: "https://www.google.com")!
         ),
         Resource(
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
-            description: "At the Community Knowledge Hub, we recognize the power of shared resources in fostering personal growth and community development. That's why we have multiple copies of The Art of Effective Communication available for loan, both in print and digital formats, ensuring that everyone has equal access to this invaluable resource.",
+            description: """
+                         At the Community Knowledge Hub, we recognize the power of shared resources
+                         in fostering personal growth and community development. That's why we have
+                         multiple copies of The Art of Effective Communication available for loan,
+                         both in print and digital formats, ensuring that everyone has equal access
+                         to this invaluable resource.
+                         """,
             url: URL(string: "https://www.google.com")!
         ),
         Resource(
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
-            description: "At the Community Knowledge Hub, we recognize the power of shared resources in fostering personal growth and community development. That's why we have multiple copies of The Art of Effective Communication available for loan, both in print and digital formats, ensuring that everyone has equal access to this invaluable resource.",
+            description: """
+                         At the Community Knowledge Hub, we recognize the power of shared resources
+                         in fostering personal growth and community development. That's why we have
+                         multiple copies of The Art of Effective Communication available for loan,
+                         both in print and digital formats, ensuring that everyone has equal access
+                         to this invaluable resource.
+                         """,
             url: URL(string: "https://www.google.com")!
         ),
         Resource(
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
-            description: "At the Community Knowledge Hub, we recognize the power of shared resources in fostering personal growth and community development. That's why we have multiple copies of The Art of Effective Communication available for loan, both in print and digital formats, ensuring that everyone has equal access to this invaluable resource.",
+            description: """
+                         At the Community Knowledge Hub, we recognize the power of shared resources
+                         in fostering personal growth and community development. That's why we have
+                         multiple copies of The Art of Effective Communication available for loan,
+                         both in print and digital formats, ensuring that everyone has equal access
+                         to this invaluable resource.
+                         """,
             url: URL(string: "https://www.walmart.com")!
         ),
         Resource(
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
-            description: "At the Community Knowledge Hub, we recognize the power of shared resources in fostering personal growth and community development. That's why we have multiple copies of The Art of Effective Communication available for loan, both in print and digital formats, ensuring that everyone has equal access to this invaluable resource.",
+            description: """
+                         At the Community Knowledge Hub, we recognize the power of shared resources
+                         in fostering personal growth and community development. That's why we have
+                         multiple copies of The Art of Effective Communication available for loan,
+                         both in print and digital formats, ensuring that everyone has equal access
+                         to this invaluable resource.
+                         """,
             url: URL(string: "https://www.walmart.com")!
         ),
         Resource(
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
-            description: "At the Community Knowledge Hub, we recognize the power of shared resources in fostering personal growth and community development. That's why we have multiple copies of The Art of Effective Communication available for loan, both in print and digital formats, ensuring that everyone has equal access to this invaluable resource.",
+            description: """
+                         At the Community Knowledge Hub, we recognize the power of shared resources
+                         in fostering personal growth and community development. That's why we have
+                         multiple copies of The Art of Effective Communication available for loan,
+                         both in print and digital formats, ensuring that everyone has equal access
+                         to this invaluable resource.
+                         """,
             url: URL(string: "https://www.walmart.com")!
         ),
         Resource(
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
-            description: "At the Community Knowledge Hub, we recognize the power of shared resources in fostering personal growth and community development. That's why we have multiple copies of The Art of Effective Communication available for loan, both in print and digital formats, ensuring that everyone has equal access to this invaluable resource.",
+            description: """
+                         At the Community Knowledge Hub, we recognize the power of shared resources
+                         in fostering personal growth and community development. That's why we have
+                         multiple copies of The Art of Effective Communication available for loan,
+                         both in print and digital formats, ensuring that everyone has equal access
+                         to this invaluable resource.
+                         """,
             url: URL(string: "https://www.apple.com")!
         ),
         Resource(
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
-            description: "At the Community Knowledge Hub, we recognize the power of shared resources in fostering personal growth and community development. That's why we have multiple copies of The Art of Effective Communication available for loan, both in print and digital formats, ensuring that everyone has equal access to this invaluable resource.",
+            description: """
+                         At the Community Knowledge Hub, we recognize the power of shared resources
+                         in fostering personal growth and community development. That's why we have
+                         multiple copies of The Art of Effective Communication available for loan,
+                         both in print and digital formats, ensuring that everyone has equal access
+                         to this invaluable resource.
+                         """,
             url: URL(string: "https://www.apple.com")!
         ),
         Resource(
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
-            description: "At the Community Knowledge Hub, we recognize the power of shared resources in fostering personal growth and community development. That's why we have multiple copies of The Art of Effective Communication available for loan, both in print and digital formats, ensuring that everyone has equal access to this invaluable resource.",
+            description: """
+                         At the Community Knowledge Hub, we recognize the power of shared resources
+                         in fostering personal growth and community development. That's why we have
+                         multiple copies of The Art of Effective Communication available for loan,
+                         both in print and digital formats, ensuring that everyone has equal access
+                         to this invaluable resource.
+                         """,
             url: URL(string: "https://www.amazon.com")!
         ),
         Resource(
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
-            description: "At the Community Knowledge Hub, we recognize the power of shared resources in fostering personal growth and community development. That's why we have multiple copies of The Art of Effective Communication available for loan, both in print and digital formats, ensuring that everyone has equal access to this invaluable resource.",
+            description: """
+                         At the Community Knowledge Hub, we recognize the power of shared resources
+                         in fostering personal growth and community development. That's why we have
+                         multiple copies of The Art of Effective Communication available for loan,
+                         both in print and digital formats, ensuring that everyone has equal access
+                         to this invaluable resource.
+                         """,
             url: URL(string: "https://www.amazon.com")!
         ),
     ]
