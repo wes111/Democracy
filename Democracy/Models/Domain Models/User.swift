@@ -19,8 +19,19 @@ struct User: Codable {
     let passwordUpdate: Date?
     let phone: String
     let phoneVerification: Bool
-    let prefs: [String] //TODO...
+    let prefs: [String] // TODO...
     let registration: Date?
     let status: Bool
     let updatedAt: Date?
+    
+    func toUser() -> User {
+        .init(
+            id: id,
+            createdAt: createdAt,
+            email: email,
+            isEmailVerified: emailVerification,
+            phone: phone,
+            isPhoneVerified: phoneVerification
+        )
+    }
 }
