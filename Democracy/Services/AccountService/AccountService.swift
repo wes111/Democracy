@@ -36,16 +36,16 @@ extension AccountServiceDefault {
     }
 }
 
-//MARK: Methods
+// MARK: - Methods
 extension AccountServiceDefault {
     
     func createUser(userName: String, password: String, email: String) async throws {
         let user = try await appwriteService.createUser(userName: userName, password: password, email: email)
-        //Do something with the user.
+        // Do something with the user.
     }
     
     func login(email: String, password: String) async throws {
-        try await appwriteService.login(email: email, password: password)
+        let session = try await appwriteService.login(email: email, password: password)
     }
     
     func updatePhone(phone: PhoneNumber, password: String) async throws {

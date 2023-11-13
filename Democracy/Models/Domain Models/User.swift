@@ -5,10 +5,12 @@
 //  Created by Wesley Luntsford on 2/26/23.
 //
 
+import Appwrite
 import Foundation
+import SwiftData
 
-// Matches Appwrite User.
-struct User: Codable {
+@Model
+final class User {
     let accessedAt: Date?
     let createdAt: Date?
     let email: String
@@ -19,19 +21,64 @@ struct User: Codable {
     let passwordUpdate: Date?
     let phone: String
     let phoneVerification: Bool
-    let prefs: [String] // TODO...
+    let prefs: [String] // TODO: ...
     let registration: Date?
     let status: Bool
     let updatedAt: Date?
     
+    init(
+        accessedAt: Date?,
+        createdAt: Date?,
+        email: String,
+        emailVerification: Bool,
+        id: String,
+        labels: [String],
+        name: String,
+        passwordUpdate: Date?,
+        phone: String,
+        phoneVerification: Bool,
+        prefs: [String],
+        registration: Date?,
+        status: Bool,
+        updatedAt: Date?
+    ) {
+        self.accessedAt = accessedAt
+        self.createdAt = createdAt
+        self.email = email
+        self.emailVerification = emailVerification
+        self.id = id
+        self.labels = labels
+        self.name = name
+        self.passwordUpdate = passwordUpdate
+        self.phone = phone
+        self.phoneVerification = phoneVerification
+        self.prefs = prefs
+        self.registration = registration
+        self.status = status
+        self.updatedAt = updatedAt
+    }
+}
+
+extension Appwrite.User {
+    
     func toUser() -> User {
-        .init(
-            id: id,
-            createdAt: createdAt,
+        let formatter = ISO8601DateFormatter.sharedWithFractionalSeconds
+        
+        return .init(
+            accessedAt: formatter.date(from: accessedAt),
+            createdAt: formatter.date(from: createdAt),
             email: email,
-            isEmailVerified: emailVerification,
+            emailVerification: emailVerification,
+            id: id,
+            labels: [],
+            name: name,
+            passwordUpdate: formatter.date(from: passwordUpdate),
             phone: phone,
-            isPhoneVerified: phoneVerification
+            phoneVerification: phoneVerification,
+            prefs: [],
+            registration: formatter.date(from: registration),
+            status: status,
+            updatedAt: formatter.date(from: updatedAt)
         )
     }
 }

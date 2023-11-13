@@ -11,7 +11,7 @@ import SharedResourcesClientAndServer
 
 struct PhoneNumber {
     let countryCode: Int = 1 // Single digit? What are the possible values here
-    let base: Int //10 digit number?
+    let base: Int // 10 digit number?
     
     init(base: Int) {
         self.base = base
@@ -31,7 +31,7 @@ struct Token {
 
 protocol AppwriteService {
     func createUser(userName: String, password: String, email: String) async throws -> User
-    func login(email: String, password: String) async throws
+    func login(email: String, password: String) async throws -> Session
     func logout(sessionID: String) async throws
     func updatePhone(phone: PhoneNumber, password: String) async throws -> User
     func createPhoneVerification() async throws -> Token
@@ -84,12 +84,12 @@ final class AppwriteServiceDefault: AppwriteService {
         return appwriteUser.toUser()
     }
     
-    func login(email: String, password: String) async throws {
-        let session = try await account.createEmailSession(
+    func login(email: String, password: String) async throws -> Session {
+        let appwriteSession = try await account.createEmailSession(
             email: email,
             password: password
         )
-        //TODO: Do something with the session
+        return appwriteSession.toSession()
     }
     
     func updatePhone(phone: PhoneNumber, password: String) async throws -> User {
@@ -117,29 +117,6 @@ enum TodoError: Error {
     case unexpected
 }
 
-extension Appwrite.User {
-    
-    func toUser() -> User {
-        let formatter = ISO8601DateFormatter.sharedWithFractionalSeconds
-        
-        return .init(
-            accessedAt: formatter.date(from: accessedAt),
-            createdAt: formatter.date(from: createdAt),
-            email: email,
-            emailVerification: emailVerification,
-            id: id,
-            labels: [],
-            name: name,
-            passwordUpdate: formatter.date(from: passwordUpdate),
-            phone: phone,
-            phoneVerification: phoneVerification,
-            prefs: [],
-            registration: formatter.date(from: registration),
-            status: status,
-            updatedAt: formatter.date(from: updatedAt)
-        )
-    }
-}
 
 extension Appwrite.Token {
     func toToken() -> Token {
@@ -152,10 +129,4 @@ extension Appwrite.Token {
             expiresAt: formatter.date(from: expire)
         )
     }
-}
-
-extension Appwrite.Session {
-//    func toSession() -> Session {
-//
-//    }
 }
