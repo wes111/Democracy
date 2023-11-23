@@ -9,55 +9,57 @@ import Combine
 import Factory
 import Foundation
 
-struct Credentials {
-    let username: String
-    let password: String
+protocol AccountRepository {
+    //var sessionPublisher: AnyPublisher<Session?, Never> { get async }
+    
+    var stream: AsyncStream<Session?> { get async }
+    
+    func createSession(email: String, password: String) async throws
+    func deleteSession(sessionId: String) async throws
+    func refreshSessionIfNecessary() async throws
 }
 
-// Unique keys for storing Codable types in UserDefaults.
-enum UserDefaultsKey: String {
-    case session
-}
-
-final class AccountRepository {
+actor AccountRepositoryDefault: AccountRepository {
     @Injected(\.appwriteService) private var appwriteService
+    @Injected(\.sessionRepository) var sessionRepository
     
-    private var session: Session?
-    private var user: User?
-    private var cancellables = Set<AnyCancellable>()
+    //private var cancellables = Set<AnyCancellable>()
+    //private let sessionSubject = CurrentValueSubject<Session?, Never>(nil)
     
-    init() {
-        setupBindings()
+    init() {}
+    
+//    var sessionPublisher: AnyPublisher<Session?, Never> {
+//        sessionSubject.eraseToAnyPublisher()
+//    }
+    var stream: AsyncStream<Session?> {
+        sessionRepository.stream
     }
     
-    func setupBindings() {
-        sessionRepository.publisher
-            .assign(to: \.session, on: self)
-            .store(in: &cancellables)
-    }
     
-    lazy var sessionRepository: UserDefaultStorageDefault<Session> = {
-        .init(key: UserDefaultsKey.session.rawValue)
-    }()
+    private func setupBindings() async {
+        for await session in await sessionRepository.stream {
+            sessionSubject.send(session)
+        }
+    }
     
     private func updateCurrentSession() async throws {
         let currentSession = try await appwriteService.getCurrentSession()
-        try sessionRepository.saveObject(currentSession)
+        try await sessionRepository.saveObject(currentSession)
     }
     
     func createSession(email: String, password: String) async throws {
         let session = try await appwriteService.login(email: email, password: password)
-        try sessionRepository.saveObject(session)
+        try await sessionRepository.saveObject(session)
     }
     
     func deleteSession(sessionId: String) async throws {
         try await appwriteService.logout(sessionId: sessionId)
-        try sessionRepository.deleteObject()
+        try await sessionRepository.deleteObject()
     }
     
     func refreshSessionIfNecessary() async throws {
         try await updateCurrentSession()
-        guard let session else {
+        guard let session = sessionSubject.value else {
             return // The user is not signed in.
         }
         let threeDaysFromNow = Calendar.current.addDaysToNow(dayCount: 3)
@@ -69,6 +71,10 @@ final class AccountRepository {
     }
 }
 
+// Unique keys for storing Codable types in UserDefaults.
+enum UserDefaultsKey: String {
+    case session
+}
 
 enum UserDefaultsStorageError: Error {
     case keyDoesNotExist
@@ -76,57 +82,64 @@ enum UserDefaultsStorageError: Error {
 
 // To be used for singleton user preferences.
 protocol UserDefaultStorage: AnyObject {
-    associatedtype Object: Codable
+    associatedtype Object: Codable, Sendable
     
     init(key: String) throws
-    func saveObject(_ object: Object) throws
-    func deleteObject() throws
+    func saveObject(_ object: Object) async throws
+    func deleteObject() async throws
+    func fetchObject() async throws -> Object?
     
-    var publisher: AnyPublisher<Object?, Never> { get }
+    var stream: AsyncStream<Object?> { get async }
 }
 
-final class UserDefaultStorageDefault<T: Codable>: UserDefaultStorage {
-    private let subject = CurrentValueSubject<T?, Never>(nil)
-    private let key: String
-    
-    var publisher: AnyPublisher<T?, Never> {
-        subject.eraseToAnyPublisher()
+actor UserDefaultStorageDefault<T: Sendable & Codable>: UserDefaultStorage {
+    private nonisolated let key: String
+    private var continuation: AsyncStream<T?>.Continuation? {
+        didSet {
+            performInitialFetch(continuation: continuation)
+        }
     }
     
-    init(key: String) {
-        self.key = key
-        
+    private func performInitialFetch(continuation: AsyncStream<T?>.Continuation?) {
         do {
-            try fetchObject()
+            let object = try fetchObject()
+            continuation?.yield(object)
         } catch {
             print(error.localizedDescription)
         }
     }
     
+    // Note: Only 1 consumer can iterate over an async stream: https://www.donnywals.com/understanding-swift-concurrencys-asyncstream/
+    lazy var stream: AsyncStream<T?> = {
+        AsyncStream(bufferingPolicy: .bufferingNewest(1)) { (continuation: AsyncStream<T?>.Continuation) -> Void in
+            self.continuation = continuation
+        }
+    }()
+
+    private var defaults: UserDefaults {
+        UserDefaults.standard
+    }
+    
+    init(key: String) {
+        self.key = key
+    }
+    
     func saveObject(_ object: T) throws {
         let encoded = try JSONEncoder().encode(object)
         defaults.set(encoded, forKey: key)
-        subject.send(object)
+        continuation?.yield(object)
     }
     
     func deleteObject() throws {
         defaults.removeObject(forKey: key)
-        subject.send(nil)
-    }
-}
-
-// MARK: - Private Vars and Methods
-private extension UserDefaultStorageDefault {
-    
-    var defaults: UserDefaults {
-        UserDefaults.standard
+        continuation?.yield(nil)
     }
     
-    func fetchObject() throws {
+    func fetchObject() throws -> T? {
         var object: T?
         if let data = defaults.object(forKey: key) as? Data {
             object = try JSONDecoder().decode(T.self, from: data)
         }
-        subject.send(object)
+        return object
     }
 }

@@ -8,11 +8,11 @@
 import Appwrite
 import Foundation
 
-struct Session: Identifiable {
+struct Session: Codable, Identifiable {
     let id: String
     let createdAt: Date?
     let userId: String
-    let expirationDate: Date?
+    let expirationDate: Date
     let provider: String // TODO: This should be an enum: "email", etc..
     let providerUid: String
     let providerAccessToken: String
@@ -31,7 +31,7 @@ extension Appwrite.Session {
             id: id,
             createdAt: formatter.date(from: createdAt),
             userId: userId,
-            expirationDate: formatter.date(from: expire),
+            expirationDate: formatter.date(from: expire) ?? .now,
             provider: provider,
             providerUid: providerUid,
             providerAccessToken: providerAccessToken,

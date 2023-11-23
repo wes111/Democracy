@@ -32,7 +32,8 @@ struct Token {
 protocol AppwriteService {
     func createUser(userName: String, password: String, email: String) async throws -> User
     func login(email: String, password: String) async throws -> Session
-    func logout(sessionID: String) async throws
+    func logout(sessionId: String) async throws
+    func getCurrentSession() async throws -> Session
     func updatePhone(phone: PhoneNumber, password: String) async throws -> User
     func createPhoneVerification() async throws -> Token
     func createEmailVerification() async throws -> Token
@@ -40,7 +41,7 @@ protocol AppwriteService {
     func getUserNameAvailable(username: String) async throws -> Bool
 }
 
-//TODO: There is info that must be added to get the OAuth callback (see website).
+// TODO: There is info that must be added to get the OAuth callback (see website).
 final class AppwriteServiceDefault: AppwriteService {
     
     private let projectEndpoint = "http://192.168.86.231/v1"
@@ -85,11 +86,15 @@ final class AppwriteServiceDefault: AppwriteService {
     }
     
     func login(email: String, password: String) async throws -> Session {
-        let appwriteSession = try await account.createEmailSession(
-            email: email,
-            password: password
-        )
-        return appwriteSession.toSession()
+        try await account.createEmailSession(email: email, password: password).toSession()
+    }
+    
+    func logout(sessionId: String) async throws {
+        _ = try await account.deleteSession(sessionId: sessionId)
+    }
+    
+    func getCurrentSession() async throws -> Session {
+        try await account.getSession(sessionId: "current").toSession()
     }
     
     func updatePhone(phone: PhoneNumber, password: String) async throws -> User {
@@ -104,19 +109,10 @@ final class AppwriteServiceDefault: AppwriteService {
     
     func createEmailVerification() async throws -> Token {
         return .init(id: "", userID: "", createdAt: .now, expiresAt: .now)
-//        let appwriteToken = try await account.createVerification(url: "http://192.168.86.244/")
-//        return appwriteToken.toToken()
-    }
-    
-    func logout(sessionID: String) async throws {
-        //TODO: ...
+        //        let appwriteToken = try await account.createVerification(url: "http://192.168.86.244/")
+        //        return appwriteToken.toToken()
     }
 }
-
-enum TodoError: Error {
-    case unexpected
-}
-
 
 extension Appwrite.Token {
     func toToken() -> Token {

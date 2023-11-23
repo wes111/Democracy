@@ -24,8 +24,8 @@ class RootViewModel: ObservableObject {
 //MARK: Private Methods
 private extension RootViewModel {
     func setupBindings() {
-        accountService.loginPublisher
-            .receive(on: DispatchQueue.main)
-            .assign(to: &$loginStatus)
+//        accountService.loginPublisher
+//            .receive(on: DispatchQueue.main)
+//            .assign(to: &$loginStatus)
     }
 }

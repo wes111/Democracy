@@ -18,21 +18,18 @@ protocol AccountService {
     func createEmailVerification() async throws
     
     func getUsernameAvailable(username: String) async throws -> Bool
-    
-    var loginPublisher: AnyPublisher<LoginStatus, Never> { get }
 }
 
 final class AccountServiceDefault: AccountService {
     @Injected(\.appwriteService) private var appwriteService
     
-    private let loginSubject = CurrentValueSubject<LoginStatus, Never>(.loggedOut)
+    init() {
+        setupBindings()
+    }
     
-    init() {}
-}
+    private func setupBindings() {
 
-extension AccountServiceDefault {
-    var loginPublisher: AnyPublisher<LoginStatus, Never> {
-        loginSubject.eraseToAnyPublisher()
+        
     }
 }
 
@@ -50,17 +47,17 @@ extension AccountServiceDefault {
     
     func updatePhone(phone: PhoneNumber, password: String) async throws {
         let user = try await appwriteService.updatePhone(phone: phone, password: password)
-        //Do something with the user
+        // Do something with the user
     }
     
     func createPhoneVerification() async throws {
         let token = try await appwriteService.createPhoneVerification()
-        //Do something with the token.
+        // Do something with the token.
     }
     
     func createEmailVerification() async throws {
         let token = try await appwriteService.createEmailVerification()
-        //Do something with the token
+        // Do something with the token
     }
     
     func refreshUser() {

@@ -26,27 +26,27 @@ extension Container {
     var postLocalRepository: Factory<PostLocalRepositoryProtocol> {
          self { PostLocalRepository() }
     }
-    var postRemoteRepository: Factory<PostRemoteRepositoryProtocol> {
-         self { PostRemoteRepository() }
-    }
+//    var postRemoteRepository: Factory<PostRemoteRepositoryProtocol> {
+//         self { PostRemoteRepository() }
+//    }
     var userLocalRepository: Factory<UserLocalRepositoryProtocol> {
          self { UserLocalRepository() }
     }
-    var userRemoteRepository: Factory<UserRemoteRepositoryProtocol> {
-         self { UserRemoteRepository() }
-    }
+//    var userRemoteRepository: Factory<UserRemoteRepositoryProtocol> {
+//         self { UserRemoteRepository() }
+//    }
     var communityLocalRepository: Factory<CommunityLocalRepositoryProtocol> {
          self { CommunityLocalRepository() }
     }
-    var communityRemoteRepository: Factory<CommunityRemoteRepositoryProtocol> {
-         self { CommunityRemoteRepository() }
-    }
+//    var communityRemoteRepository: Factory<CommunityRemoteRepositoryProtocol> {
+//         self { CommunityRemoteRepository() }
+//    }
     var candidateLocalRepository: Factory<CandidateLocalRepositoryProtocol> {
          self { CandidateLocalRepository() }
     }
-    var candidateRemoteRepository: Factory<CandidateRemoteRepositoryProtocol> {
-         self { CandidateRemoteRepository() }
-    }
+//    var candidateRemoteRepository: Factory<CandidateRemoteRepositoryProtocol> {
+//         self { CandidateRemoteRepository() }
+//    }
     
     // MARK: - Services
     var accountService: Factory<AccountService> {
@@ -63,7 +63,13 @@ extension Container {
     
     // MARK: - Flow Services
     var onboardingFlowService: Factory<any OnboardingFlowManagerProtocol> {
-        self { OnboardingFlowManager() }
-            .scope(.shared)
+        self { OnboardingFlowManager() }.scope(.shared)
+    }
+    
+    // MARK: - Local Storage
+    // Note: - We only want 1 of each of these. That's why they are defined here,
+    // At least for now...
+    var sessionRepository: Factory<UserDefaultStorageDefault<Session>> {
+        self { UserDefaultStorageDefault<Session>(key: UserDefaultsKey.session.rawValue) }.scope(.shared)
     }
 }

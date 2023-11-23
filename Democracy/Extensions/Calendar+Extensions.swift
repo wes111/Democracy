@@ -9,4 +9,7 @@ import Foundation
 
 extension Calendar {
     
+    func addDaysToNow(dayCount: Int) -> Date {
+        self.date(byAdding: .day, value: dayCount, to: .now)!
+    }
 }

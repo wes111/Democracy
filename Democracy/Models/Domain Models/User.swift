@@ -9,8 +9,7 @@ import Appwrite
 import Foundation
 import SwiftData
 
-@Model
-final class User {
+struct User: Codable {
     let accessedAt: Date?
     let createdAt: Date?
     let email: String
