@@ -12,7 +12,7 @@ import Foundation
 protocol AccountRepository {
     //var sessionPublisher: AnyPublisher<Session?, Never> { get async }
     
-    var stream: AsyncStream<Session?> { get async }
+    //var stream: AsyncStream<Session?> { get async }
     
     func createSession(email: String, password: String) async throws
     func deleteSession(sessionId: String) async throws
@@ -23,6 +23,8 @@ actor AccountRepositoryDefault: AccountRepository {
     @Injected(\.appwriteService) private var appwriteService
     @Injected(\.sessionRepository) var sessionRepository
     
+    var session: Session?
+    
     //private var cancellables = Set<AnyCancellable>()
     //private let sessionSubject = CurrentValueSubject<Session?, Never>(nil)
     
@@ -31,15 +33,15 @@ actor AccountRepositoryDefault: AccountRepository {
 //    var sessionPublisher: AnyPublisher<Session?, Never> {
 //        sessionSubject.eraseToAnyPublisher()
 //    }
-    var stream: AsyncStream<Session?> {
-        sessionRepository.stream
-    }
+//    var stream: AsyncStream<Session?> {
+//        sessionRepository.stream
+//    }
     
     
     private func setupBindings() async {
-        for await session in await sessionRepository.stream {
-            sessionSubject.send(session)
-        }
+//        for await session in await sessionRepository.stream {
+//            sessionSubject.send(session)
+//        }
     }
     
     private func updateCurrentSession() async throws {
@@ -59,14 +61,14 @@ actor AccountRepositoryDefault: AccountRepository {
     
     func refreshSessionIfNecessary() async throws {
         try await updateCurrentSession()
-        guard let session = sessionSubject.value else {
+        guard let session else {
             return // The user is not signed in.
         }
         let threeDaysFromNow = Calendar.current.addDaysToNow(dayCount: 3)
         
         if session.expirationDate < threeDaysFromNow {
             try await appwriteService.logout(sessionId: session.id)
-            try await createSession(email: <#T##String#>, password: <#T##String#>)
+            //try await createSession(email: <#T##String#>, password: <#T##String#>)
         }
     }
 }

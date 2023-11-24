@@ -23,13 +23,11 @@ struct CandidateInteractor: CandidateInteractorProtocol {
 
     // Repositories:
     @Injected(\.candidateLocalRepository) var localRepository
-    @Injected(\.candidateRemoteRepository) var remoteRepository
     
     // Interactors:
     @Injected(\.accountService) var accountService
     
     private let candidatesPublisher = PassthroughSubject<[Candidate], Never>()
-
     
     init() {
         updateCandidates()
