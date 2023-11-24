@@ -81,7 +81,6 @@ final class AppwriteServiceDefault: AppwriteService {
             email: email,
             password: password
         )
-        print(appwriteUser)
         return appwriteUser.toUser()
     }
     
@@ -98,8 +97,7 @@ final class AppwriteServiceDefault: AppwriteService {
     }
     
     func updatePhone(phone: PhoneNumber, password: String) async throws -> User {
-        let user = try await account.updatePhone(phone: phone.appwriteString, password: password)
-        return user.toUser()
+        try await account.updatePhone(phone: phone.appwriteString, password: password).toUser()
     }
     
     func createPhoneVerification() async throws -> Token {

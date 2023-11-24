@@ -10,7 +10,6 @@ import Foundation
 
 class RootViewModel: ObservableObject {
     @Published var loginStatus: LoginStatus = .loggedOut
-    @Injected(\.accountService) private var accountService
     
     let mainTabViewModel = MainTabViewModel()
     

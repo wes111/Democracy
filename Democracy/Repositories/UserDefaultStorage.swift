@@ -5,73 +5,58 @@
 //  Created by Wesley Luntsford on 11/12/23.
 //
 
+import AsyncAlgorithms
 import Foundation
 
 // Unique keys for storing Codable types in UserDefaults.
 enum UserDefaultsKey: String {
     case session
+    case user
 }
 
-// To be used for singleton user preferences.
-protocol UserDefaultStorage: AnyObject {
+protocol UserDefaultsStorable: AnyActor {
     associatedtype Object: Codable, Sendable
     
-    init(key: String) throws
+    var key: UserDefaultsKey { get }
+    var asyncChannel: AsyncChannel<Object?> { get }
+    var currentValue: Object? { get async }
+    
+    func setup()
     func saveObject(_ object: Object) async throws
     func deleteObject() async throws
-    func fetchObject() async throws -> Object?
-    
-    var stream: AsyncStream<Object?> { get async }
+    func setupStreams() async
 }
 
-actor UserDefaultStorageDefault<T: Sendable & Codable>: UserDefaultStorage {
-    private nonisolated let key: String
-    private var continuation: AsyncStream<T?>.Continuation? {
-        didSet {
-            performInitialFetch(continuation: continuation)
+extension UserDefaultsStorable {
+    
+    func setup() {
+        Task {
+            await setupStreams()
+            try await loadObject()
         }
     }
     
-    private func performInitialFetch(continuation: AsyncStream<T?>.Continuation?) {
-        do {
-            let object = try fetchObject()
-            continuation?.yield(object)
-        } catch {
-            print(error.localizedDescription)
-        }
+    func saveObject(_ object: Object) async throws {
+        let encoded = try JSONEncoder().encode(object)
+        defaults.set(encoded, forKey: key.rawValue)
+        await asyncChannel.send(object)
     }
     
-    // Note: Only 1 consumer can iterate over an async stream: https://www.donnywals.com/understanding-swift-concurrencys-asyncstream/
-    lazy var stream: AsyncStream<T?> = {
-        AsyncStream(bufferingPolicy: .bufferingNewest(1)) { (continuation: AsyncStream<T?>.Continuation) -> Void in
-            self.continuation = continuation
+    func deleteObject() async throws {
+        defaults.removeObject(forKey: key.rawValue)
+        await asyncChannel.send(nil)
+    }
+    
+    private func loadObject() async throws {
+        var object: Object?
+        if let data = defaults.object(forKey: key.rawValue) as? Data {
+            object = try JSONDecoder().decode(Object.self, from: data)
         }
-    }()
-
+        await asyncChannel.send(object)
+    }
+    
     private var defaults: UserDefaults {
         UserDefaults.standard
     }
     
-    init(key: String) {
-        self.key = key
-    }
-    
-    func saveObject(_ object: T) throws {
-        let encoded = try JSONEncoder().encode(object)
-        defaults.set(encoded, forKey: key)
-        continuation?.yield(object)
-    }
-    
-    func deleteObject() throws {
-        defaults.removeObject(forKey: key)
-        continuation?.yield(nil)
-    }
-    
-    func fetchObject() throws -> T? {
-        var object: T?
-        if let data = defaults.object(forKey: key) as? Data {
-            object = try JSONDecoder().decode(T.self, from: data)
-        }
-        return object
-    }
 }

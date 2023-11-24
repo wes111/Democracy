@@ -49,7 +49,6 @@ final class OnboardingFlowManager: OnboardingFlowManagerProtocol {
         if let stringPhone = submittedFieldsDictionary[.phone], let intPhone = Int(stringPhone) {
             try await accountService.updatePhone(phone: .init(base: intPhone), password: password)
         }
-        
     }
     
     func getSubmittedValue(field: OnboardingInputField) -> String? {

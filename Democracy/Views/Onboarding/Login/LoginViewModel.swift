@@ -21,8 +21,6 @@ final class LoginViewModel: ObservableObject {
     @Published var showPasswordError = false
     @Published var showUsernameError = false
     
-    @Injected(\.accountService) private var accountService
-    
     init(coordinator: LoginCoordinatorDelegate) {
         self.coordinator = coordinator
         

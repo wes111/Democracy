@@ -13,11 +13,22 @@ enum KeyChainError: Error {
     case genericError(OSStatus)
 }
 
-// Note: This class could be more generic, but that isn't needed currently.
+// Note: This actor could be more generic, but that isn't needed currently.
 // https://www.swiftdevjournal.com/saving-passwords-in-the-keychain-in-swift/
-final class KeyChainStorage {
+protocol PasswordRepository {
+    func savePassword(username: String, password: String) async throws
+    func readPassword(username: String) async throws -> String
+    func deletePassword(username: String) async 
+    func updatePassword(password: String, username: String) async throws
+}
+
+actor PasswordRepositoryDefault: PasswordRepository {
     
     private static let service = "Democracy.com"
+    
+    init() {
+        
+    }
     
     func savePassword(username: String, password: String) throws {
         guard let passwordData = password.data(using: .utf8) else {
@@ -35,9 +46,6 @@ final class KeyChainStorage {
      
         guard saveStatus == errSecSuccess else {
             throw KeyChainError.genericError(saveStatus)
-        }
-        if saveStatus != errSecSuccess {
-            print("Error: \(saveStatus)")
         }
     }
     
