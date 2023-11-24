@@ -5,14 +5,12 @@
 //  Created by Wesley Luntsford on 11/12/23.
 //
 
-import Combine
+import AsyncAlgorithms
 import Factory
 import Foundation
 
 protocol AccountRepository {
-    //var sessionPublisher: AnyPublisher<Session?, Never> { get async }
-    
-    //var stream: AsyncStream<Session?> { get async }
+    var sessionAsyncChannel: AsyncChannel<Session?> { get }
     
     func createSession(email: String, password: String) async throws
     func deleteSession(sessionId: String) async throws
@@ -23,25 +21,19 @@ actor AccountRepositoryDefault: AccountRepository {
     @Injected(\.appwriteService) private var appwriteService
     @Injected(\.sessionRepository) var sessionRepository
     
+    let sessionAsyncChannel = AsyncChannel<Session?>() // <-- This should allow multiple consumers? If not this is useless.
     var session: Session?
     
-    //private var cancellables = Set<AnyCancellable>()
-    //private let sessionSubject = CurrentValueSubject<Session?, Never>(nil)
-    
-    init() {}
-    
-//    var sessionPublisher: AnyPublisher<Session?, Never> {
-//        sessionSubject.eraseToAnyPublisher()
-//    }
-//    var stream: AsyncStream<Session?> {
-//        sessionRepository.stream
-//    }
-    
+    init() {
+        Task {
+            await setupBindings()
+        }
+    }
     
     private func setupBindings() async {
-//        for await session in await sessionRepository.stream {
-//            sessionSubject.send(session)
-//        }
+        for await session in await sessionRepository.stream {
+            await sessionAsyncChannel.send(session)
+        }
     }
     
     private func updateCurrentSession() async throws {

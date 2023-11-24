@@ -175,6 +175,7 @@
 		EEB5AF912B017F0900310408 /* UserDefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF902B017F0900310408 /* UserDefaultStorage.swift */; };
 		EEB5AF952B03116000310408 /* Calendar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF942B03116000310408 /* Calendar+Extensions.swift */; };
 		EEB5AF982B0320D400310408 /* KeyChainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF972B0320D400310408 /* KeyChainStorage.swift */; };
+		EEB5AFA62B1035C400310408 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = EEB5AFA52B1035C400310408 /* AsyncAlgorithms */; };
 		EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED4299F169000FEFC6E /* SettingsView.swift */; };
 		EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47EDE299F186D00FEFC6E /* SettingsViewModel.swift */; };
 		EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4EB29A9984200DDCCDA /* SettingsCoordinator.swift */; };
@@ -441,6 +442,7 @@
 				EE4DB8872AC5084900A6DC90 /* Appwrite in Frameworks */,
 				EE80D8E929BD11600000F8EF /* Factory in Frameworks */,
 				EEB5AF832AF8985500310408 /* SharedResourcesClientAndServer in Frameworks */,
+				EEB5AFA62B1035C400310408 /* AsyncAlgorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1348,6 +1350,7 @@
 				EE80D8E829BD11600000F8EF /* Factory */,
 				EE4DB8862AC5084900A6DC90 /* Appwrite */,
 				EEB5AF822AF8985500310408 /* SharedResourcesClientAndServer */,
+				EEB5AFA52B1035C400310408 /* AsyncAlgorithms */,
 			);
 			productName = Democracy;
 			productReference = EEF8345D299C6824001EEA5E /* Democracy.app */;
@@ -1382,6 +1385,7 @@
 				EE4DB8852AC5084900A6DC90 /* XCRemoteSwiftPackageReference "sdk-for-apple" */,
 				EEB5AF812AF8985500310408 /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */,
 				EEB5AF842AF9C36700310408 /* XCRemoteSwiftPackageReference "SwiftLint" */,
+				EEB5AFA42B1035C400310408 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */,
 			);
 			productRefGroup = EEF8345E299C6824001EEA5E /* Products */;
 			projectDirPath = "";
@@ -1862,6 +1866,14 @@
 				minimumVersion = 0.53.0;
 			};
 		};
+		EEB5AFA42B1035C400310408 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-async-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1884,6 +1896,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EEB5AF842AF9C36700310408 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintPlugin";
+		};
+		EEB5AFA52B1035C400310408 /* AsyncAlgorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EEB5AFA42B1035C400310408 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */;
+			productName = AsyncAlgorithms;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
