@@ -8,21 +8,18 @@
 import AuthenticationServices
 import Foundation
 
-struct Credentials {
-    let username: String
-    let password: String
-}
-
 enum KeyChainError: Error {
     case dataError
     case genericError(OSStatus)
 }
 
+// Note: This class could be more generic, but that isn't needed currently.
+// https://www.swiftdevjournal.com/saving-passwords-in-the-keychain-in-swift/
 final class KeyChainStorage {
     
     private static let service = "Democracy.com"
     
-    func save(username: String, password: String) throws {
+    func savePassword(username: String, password: String) throws {
         guard let passwordData = password.data(using: .utf8) else {
             throw KeyChainError.dataError
         }
@@ -44,11 +41,49 @@ final class KeyChainStorage {
         }
     }
     
-    func read(username: String) {
+    func readPassword(username: String) throws -> String {
+        let query = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: Self.service,
+            kSecAttrAccount: username,
+            kSecReturnData: true
+        ] as CFDictionary
         
+        var result: AnyObject?
+        SecItemCopyMatching(query, &result)
+        guard let data = result as? Data else {
+            throw KeyChainError.dataError
+        }
+        return String(decoding: data, as: UTF8.self)
     }
     
-    func delete(username: String) {
+    func deletePassword(username: String) {
+        let query = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: Self.service,
+            kSecAttrAccount: username
+        ] as CFDictionary
         
+        SecItemDelete(query)
+    }
+    
+    func updatePassword(password: String, username: String) throws {
+        guard let passwordData = password.data(using: .utf8) else {
+            throw KeyChainError.dataError
+        }
+        
+        let query = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrService: Self.service,
+            kSecAttrAccount: username
+        ] as CFDictionary
+            
+        let updatedData = [kSecValueData: passwordData] as CFDictionary
+        
+        let status = SecItemUpdate(query, updatedData)
+        
+        guard status == errSecSuccess else {
+            throw KeyChainError.genericError(status)
+        }
     }
 }

@@ -176,6 +176,7 @@
 		EEB5AF952B03116000310408 /* Calendar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF942B03116000310408 /* Calendar+Extensions.swift */; };
 		EEB5AF982B0320D400310408 /* KeyChainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF972B0320D400310408 /* KeyChainStorage.swift */; };
 		EEB5AFA62B1035C400310408 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = EEB5AFA52B1035C400310408 /* AsyncAlgorithms */; };
+		EEB5AFA82B103AC100310408 /* AccountRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AFA72B103AC100310408 /* AccountRepository.swift */; };
 		EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED4299F169000FEFC6E /* SettingsView.swift */; };
 		EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47EDE299F186D00FEFC6E /* SettingsViewModel.swift */; };
 		EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4EB29A9984200DDCCDA /* SettingsCoordinator.swift */; };
@@ -388,6 +389,7 @@
 		EEB5AF902B017F0900310408 /* UserDefaultStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultStorage.swift; sourceTree = "<group>"; };
 		EEB5AF942B03116000310408 /* Calendar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extensions.swift"; sourceTree = "<group>"; };
 		EEB5AF972B0320D400310408 /* KeyChainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainStorage.swift; sourceTree = "<group>"; };
+		EEB5AFA72B103AC100310408 /* AccountRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRepository.swift; sourceTree = "<group>"; };
 		EED47ED4299F169000FEFC6E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		EED47EDE299F186D00FEFC6E /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		EED4A4EB29A9984200DDCCDA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
@@ -742,6 +744,7 @@
 			children = (
 				EEB5AF902B017F0900310408 /* UserDefaultStorage.swift */,
 				EEB5AF972B0320D400310408 /* KeyChainStorage.swift */,
+				EEB5AFA72B103AC100310408 /* AccountRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1566,6 +1569,7 @@
 				EE0CC2012A9ED9C8003A10C3 /* VoteViewModel.swift in Sources */,
 				EE936CB72A78A12F00D49271 /* UpdatesTabCoordinatorViewModel.swift in Sources */,
 				EED4A54029BAB3E800DDCCDA /* Comment.swift in Sources */,
+				EEB5AFA82B103AC100310408 /* AccountRepository.swift in Sources */,
 				EE936CB92A81DA2700D49271 /* CoordinatorView.swift in Sources */,
 				EE9760142AD09D10003069CF /* CreateAccountSuccessView.swift in Sources */,
 				EE7856282AB949C10004B7E4 /* PreviewModifier.swift in Sources */,
