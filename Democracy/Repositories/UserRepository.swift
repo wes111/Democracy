@@ -9,26 +9,18 @@ import AsyncAlgorithms
 import Factory
 import Foundation
 
-// TODO: Doesn't seem to work with Factory?
-protocol Repository {
-    associatedtype Object: Codable, Sendable
-    var asyncChannel: AsyncChannel<Object?> { get }
-    var currentValue: Object? { get async }
-}
-
-protocol UserRepository: Repository {
+protocol UserRepository: Repository where Object == User {
     func createUser(userName: String, password: String, email: String) async throws
     func updatePhone(phone: PhoneNumber, password: String) async throws
 }
 
 actor UserRepositoryDefault: UserRepository, UserDefaultsStorable {
     @Injected(\.appwriteService) private var appwriteService
-    typealias Object = User
     
     // Local storage conformance
-    let asyncChannel = AsyncChannel<Object?>() // <-- This should allow multiple consumers? If not this is kinda useless.
+    let asyncChannel = AsyncChannel<User?>() // <-- This should allow multiple consumers? If not we need a different solution.
     let key: UserDefaultsKey = .user
-    var currentValue: Object?
+    var currentValue: User?
     
     init() {
         setup()

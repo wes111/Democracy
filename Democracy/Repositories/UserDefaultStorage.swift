@@ -14,12 +14,8 @@ enum UserDefaultsKey: String {
     case user
 }
 
-protocol UserDefaultsStorable: AnyActor {
-    associatedtype Object: Codable, Sendable
-    
+protocol UserDefaultsStorable: AnyActor, Repository {
     var key: UserDefaultsKey { get }
-    var asyncChannel: AsyncChannel<Object?> { get }
-    var currentValue: Object? { get async }
     
     func setup()
     func saveObject(_ object: Object) async throws

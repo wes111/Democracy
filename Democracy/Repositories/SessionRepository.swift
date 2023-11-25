@@ -9,7 +9,7 @@ import AsyncAlgorithms
 import Factory
 import Foundation
 
-protocol SessionRepository: Repository {
+protocol SessionRepository: Repository where Object == Session {
     func createSession(email: String, password: String) async throws
     func deleteSession(sessionId: String) async throws
     func refreshSession() async throws
@@ -17,12 +17,11 @@ protocol SessionRepository: Repository {
 
 actor SessionRepositoryDefault: SessionRepository, UserDefaultsStorable {
     @Injected(\.appwriteService) private var appwriteService
-    typealias Object = Session
     
     // Local storage conformance
-    let asyncChannel = AsyncChannel<Object?>() // <-- This should allow multiple consumers? If not this is kinda useless.
+    let asyncChannel = AsyncChannel<Session?>() // <-- This should allow multiple consumers? If not this is kinda useless.
     let key: UserDefaultsKey = .session
-    var currentValue: Object?
+    var currentValue: Session?
     
     init() {
         setup()

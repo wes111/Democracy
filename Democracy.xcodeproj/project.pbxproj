@@ -71,6 +71,7 @@
 		EE5D3A0F2A45246400D0E312 /* Rule+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5D3A0E2A45246400D0E312 /* Rule+Preview.swift */; };
 		EE7055502B11476E00E40A89 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE70554F2B11476E00E40A89 /* AccountService.swift */; };
 		EE7055522B1147EE00E40A89 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7055512B1147EE00E40A89 /* UserRepository.swift */; };
+		EE7055562B1245A500E40A89 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7055552B1245A500E40A89 /* Repository.swift */; };
 		EE7856132AAE75620004B7E4 /* NewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856122AAE75620004B7E4 /* NewFlowLayout.swift */; };
 		EE7856182AB7BACB0004B7E4 /* TaggableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856172AB7BACB0004B7E4 /* TaggableModifier.swift */; };
 		EE78561B2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78561A2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift */; };
@@ -287,6 +288,7 @@
 		EE5D3A0E2A45246400D0E312 /* Rule+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rule+Preview.swift"; sourceTree = "<group>"; };
 		EE70554F2B11476E00E40A89 /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		EE7055512B1147EE00E40A89 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		EE7055552B1245A500E40A89 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		EE7856122AAE75620004B7E4 /* NewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFlowLayout.swift; sourceTree = "<group>"; };
 		EE7856172AB7BACB0004B7E4 /* TaggableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggableModifier.swift; sourceTree = "<group>"; };
 		EE78561A2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardBorderedModifier.swift; sourceTree = "<group>"; };
@@ -740,6 +742,7 @@
 				EEB5AF972B0320D400310408 /* KeyChainStorage.swift */,
 				EEB5AFA72B103AC100310408 /* SessionRepository.swift */,
 				EE7055512B1147EE00E40A89 /* UserRepository.swift */,
+				EE7055552B1245A500E40A89 /* Repository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1460,6 +1463,7 @@
 				EE54ADEC29A714E8007C3E3F /* LoginViewModel.swift in Sources */,
 				EEB5AF802AE0DE7000310408 /* OnboardingInputField.swift in Sources */,
 				EED4A50D29AB18E400DDCCDA /* UpdatesTabMainViewModel.swift in Sources */,
+				EE7055562B1245A500E40A89 /* Repository.swift in Sources */,
 				EED4A54529BAE16700DDCCDA /* Tag.swift in Sources */,
 				EE988AB02ADA07640057F9DE /* PhoneValidationError.swift in Sources */,
 				EE4DB8A82ACE455500A6DC90 /* EmailValidationError.swift in Sources */,

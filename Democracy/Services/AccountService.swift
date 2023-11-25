@@ -24,7 +24,7 @@ final class AccountServiceDefault: AccountService {
     
     func refreshSessionIfNecessary() async throws {
         try await sessionRepository.refreshSession()
-        guard let session = await sessionRepository.currentValue as? Session else {
+        guard let session = await sessionRepository.currentValue else {
             return // The user is not signed in.
         }
         
