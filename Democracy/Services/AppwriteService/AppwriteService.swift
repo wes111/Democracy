@@ -44,7 +44,7 @@ protocol AppwriteService {
 // TODO: There is info that must be added to get the OAuth callback (see website).
 final class AppwriteServiceDefault: AppwriteService {
     
-    private let projectEndpoint = "http://192.168.86.231/v1"
+    private let projectEndpoint = "http://192.168.86.31/v1"
     private let projectID = "65466f560e77e46a903e"
     
     private lazy var client: Client = {

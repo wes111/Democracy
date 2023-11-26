@@ -12,37 +12,35 @@ final class AcceptTermsViewModel: ObservableObject, Hashable {
     
     @Published var onboardingAlert: OnboardingAlert?
     private weak var coordinator: OnboardingCoordinatorDelegate?
-    @Injected(\.onboardingFlowService) private var onboardingManager
+    private var onboardingInput: OnboardingInput
+    @Injected(\.accountService) private var accountService
     
-    init(coordinator: OnboardingCoordinatorDelegate?) {
+    init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator
+        self.onboardingInput = onboardingInput
     }
     
     var topButtons: [OnboardingTopButton: () -> Void] {
-        [.back : goBack, .close : close]
+        [.back: goBack, .close: close]
     }
     
-    func agreeToTerms() {
-        Task {
-            do {
-                try await onboardingManager.acceptTerms()
-                coordinator?.agreeToTerms()
-            } catch {
-                print(error)
-                presentAlert()
-            }
+    @MainActor
+    func agreeToTerms() async {
+        do {
+            try await accountService.acceptTerms(input: onboardingInput)
+            coordinator?.agreeToTerms(username: onboardingInput.username ?? "") // TODO: Should show error is username is nil.
+        } catch {
+            print(error)
+            presentAlert()
         }
     }
     
+    @MainActor
     private func presentAlert() {
-        Task {
-            await MainActor.run {
-                self.onboardingAlert = .init(
-                    title: "Create Account Failed",
-                    message: "Please try again later."
-                )
-            }
-        }
+        onboardingAlert = .init(
+            title: "Create Account Failed",
+            message: "Please try again later."
+        )
     }
     
     func close() {

@@ -49,11 +49,6 @@ extension Container {
         self { AccountServiceDefault() }.scope(.shared)
     }
     
-    // MARK: - Flow Services
-    var onboardingFlowService: Factory<any OnboardingFlowManagerProtocol> {
-        self { OnboardingFlowManager() }.scope(.shared)
-    }
-    
     var passwordLocalRepository: Factory<PasswordRepository> {
         self { PasswordRepositoryDefault() }.scope(.shared)
     }

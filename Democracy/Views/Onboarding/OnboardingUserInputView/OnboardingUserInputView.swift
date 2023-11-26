@@ -7,16 +7,15 @@
 
 import SwiftUI
 
-struct OnboardingUserInputView<T: ValidatableOnboardingField>: View {
-    @ObservedObject var viewModel: OnboardingUserInputViewModel<T>
+struct OnboardingUserInputView<T: InputViewModel>: View {
+    @ObservedObject var viewModel: T
     @FocusState private var focusedField: OnboardingInputField?
     
-    init(viewModel: OnboardingUserInputViewModel<T>) {
+    init(viewModel: T) {
         self.viewModel = viewModel
     }
     
     var body: some View {
-        EmptyView()
         ZStack {
             Color.primaryBackground.ignoresSafeArea()
             
@@ -37,22 +36,27 @@ struct OnboardingUserInputView<T: ValidatableOnboardingField>: View {
             }
         }
         .onAppear {
-            focusedField = T.field
+            focusedField = viewModel.field
         }
         .toolbarNavigation(topButtons: viewModel.topButtons)
         .onTapGesture {
-            focusedField = nil //TODO: I don't think this quite works.
+            focusedField = nil // TODO: I don't think this quite works.
         }
         .alert(item: $viewModel.onboardingAlert) { alert in
-            Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .default(Text("Okay")))
+            Alert(
+                title: Text(alert.title),
+                message: Text(alert.message),
+                dismissButton: .default(Text("Okay"))
+            )
         }
-        .task {
-            await viewModel.resetTextField()
-        }
+        // TODO: probably need to add this back.
+//        .task {
+//            await viewModel.resetTextField()
+//        }
     }
 }
 
-//MARK: Subviews
+// MARK: Subviews
 extension OnboardingUserInputView {
     
     var field: some View {
@@ -60,7 +64,7 @@ extension OnboardingUserInputView {
                   prompt: Text(viewModel.fieldTitle).foregroundColor(.secondaryBackground), axis: .vertical
         )
         .limitCharacters(text: $viewModel.text, count: viewModel.maxCharacterCount)
-        .focused($focusedField, equals: T.field)
+        .focused($focusedField, equals: viewModel.field)
         .standardTextField(borderColor: viewModel.textErrors.isEmpty ? .tertiaryText : .otherRed)
         .submitLabel(.next)
     }
@@ -68,7 +72,7 @@ extension OnboardingUserInputView {
     var errors: some View {
         VStack(alignment: .leading, spacing: 5) {
             ForEach(viewModel.textErrors, id: \.self) { error in
-                Label() {
+                Label {
                     Text(error.descriptionText)
                         .font(.system(.caption, weight: .light))
                 } icon: {
@@ -92,7 +96,7 @@ extension OnboardingUserInputView {
     }
     
     var nextButton: some View {
-        Button() {
+        Button {
             Task {
                 await viewModel.submit()
             }
@@ -104,10 +108,10 @@ extension OnboardingUserInputView {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let parentCoordinator = RootCoordinator()
     let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
-    let viewModel = OnboardingUserInputViewModel<UsernameValidator>(coordinator: coordinator)
+    let viewModel = UsernameInputViewModel(coordinator: coordinator)
     return OnboardingUserInputView(viewModel: viewModel)
 }

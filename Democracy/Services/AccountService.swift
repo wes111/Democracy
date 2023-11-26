@@ -14,6 +14,7 @@ protocol AccountService {
     func createUser(userName: String, password: String, email: String) async throws
     func login(email: String, password: String) async throws
     func updatePhone(phone: PhoneNumber, password: String) async throws
+    func acceptTerms(input: OnboardingInput) async throws
 }
 
 final class AccountServiceDefault: AccountService {
@@ -34,6 +35,22 @@ final class AccountServiceDefault: AccountService {
             try await appwriteService.logout(sessionId: session.id)
             //let password = try await passwordRepository.readPassword(username: session.userId)
             //try await createSession(email: <#T##String#>, password: <#T##String#>)
+        }
+    }
+    
+    // At this point we can create the account and log-in.
+    func acceptTerms(input: OnboardingInput) async throws {
+        guard let userName = input.username,
+              let password = input.password,
+              let email = input.email
+        else {
+            throw OnboardingError.createAccountMissingField
+        }
+        try await createUser(userName: userName, password: password, email: email)
+        try await login(email: email, password: password)
+        
+        if let stringPhone = input.phone, let intPhone = Int(stringPhone) {
+            try await updatePhone(phone: .init(base: intPhone), password: password)
         }
     }
     

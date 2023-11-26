@@ -11,10 +11,12 @@ import Foundation
 final class CreateAccountSuccessViewModel: ObservableObject, Hashable {
     
     private weak var coordinator: OnboardingCoordinatorDelegate?
-    @Injected(\.onboardingFlowService) private var onboardingManager
+    let username: String
+    @Injected(\.accountService) private var accountService
     
-    init(coordinator: OnboardingCoordinatorDelegate?) {
+    init(coordinator: OnboardingCoordinatorDelegate?, username: String) {
         self.coordinator = coordinator
+        self.username = username
     }
     
     func continueAction() {
@@ -26,10 +28,6 @@ final class CreateAccountSuccessViewModel: ObservableObject, Hashable {
     }
     
     var topButtons: [OnboardingTopButton: () -> Void] {
-        [.close : close]
-    }
-    
-    var userName: String {
-        onboardingManager.getSubmittedValue(field: .username) ?? ""
+        [.close: close]
     }
 }

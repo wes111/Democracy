@@ -8,73 +8,72 @@
 import Factory
 import Foundation
 
+struct OnboardingInput {
+    var password: String?
+    var username: String?
+    var phone: String?
+    var email: String?
+}
+
 protocol OnboardingCoordinatorDelegate: AnyObject {
-    func didSubmitUsername()
-    func submitPassword()
-    func submitEmail()
-    func agreeToTerms()
+    func didSubmitUsername(input: OnboardingInput)
+    func submitPassword(input: OnboardingInput)
+    func submitEmail(input: OnboardingInput)
+    func agreeToTerms(username: String)
     func continueAccountSetup()
-    func submitPhone()
+    func submitPhone(input: OnboardingInput)
     func close()
     func goBack()
 }
 
-class OnboardingUserInputViewModel<T: ValidatableOnboardingField>: Hashable, ObservableObject {
+// TODO: The use of a single protocol here exposes too much to the view.
+protocol InputViewModel: Hashable, ObservableObject {
+    associatedtype Field: ValidatableOnboardingField
+    var isLoading: Bool { get }
+    var text: String { get set }
+    var field: OnboardingInputField { get }
+    var topButtons: [OnboardingTopButton: () -> Void] { get }
+    var onboardingAlert: OnboardingAlert? { get set }
+    var title: String { get }
+    var subtitle: String { get }
+    var fieldTitle: String { get }
+    var maxCharacterCount: Int { get }
+    var textErrors: [Field.Error] { get }
+    var canSubmit: Bool { get }
+    var coordinator: OnboardingCoordinatorDelegate? { get }
     
-    typealias TopButtonsDictionary = [OnboardingTopButton : () -> Void]
-    @Published var text: String = ""
-    @Published var textErrors: [T.Error] = []
-    @Published var onboardingAlert: OnboardingAlert?
-    @Published var isLoading: Bool = false
-    @Injected(\.onboardingFlowService) private var onboardingManager
-    
-    weak var coordinator: OnboardingCoordinatorDelegate?
-    
-    init(coordinator: OnboardingCoordinatorDelegate?) {
-        self.coordinator = coordinator
-        setupBindings()
-    }
+    func submit() async
+    func close()
+    func goBack()
+    @MainActor func presentGenericAlert()
+    @MainActor func presentInvalidInputAlert()
 }
 
-//MARK: - Computed Properties
-extension OnboardingUserInputViewModel {
+extension InputViewModel {
     
-    var topButtons: TopButtonsDictionary {
-        switch T.field {
-        case .username:
-            [.close : close]
-        case .password:
-            [.close: close, .back : goBack]
-        case .email:
-            [.close: close, .back : goBack]
-        case .phone:
-            [.close: close]
-        }
+    var field: OnboardingInputField {
+        Field.field
     }
     
     var title: String {
-        T.field.title
+        field.title
     }
     
     var subtitle: String {
-        T.field.subtitle
+        field.subtitle
     }
     
     var fieldTitle: String {
-        T.field.fieldTitle
+        field.fieldTitle
     }
     
     var maxCharacterCount: Int {
-        T.field.maxCharacterCount
+        field.maxCharacterCount
     }
     
     var canSubmit: Bool {
-        T.field.fullyValid(input: text)
+        field.fullyValid(input: text)
     }
-}
-
-//MARK: - Methods
-extension OnboardingUserInputViewModel {
     
     func close() {
         coordinator?.close()
@@ -84,104 +83,19 @@ extension OnboardingUserInputViewModel {
         coordinator?.goBack()
     }
     
-    func submit() async {
-        await MainActor.run {
-            isLoading = true
-        }
-        try? await Task.sleep(nanoseconds: 3_000_000_000)
-        do {
-            switch T.field {
-                
-            case .username:
-                guard try await onboardingManager.usernameIsAvailable(text) else {
-                    await MainActor.run {
-                        isLoading = false
-                    }
-                    return presentUsernameUnavailableAlert()
-                }
-                try await onboardingManager.submit(input: text, field: T.field)
-                coordinator?.didSubmitUsername()
-                
-            case .password:
-                try await onboardingManager.submit(input: text, field: T.field)
-                coordinator?.submitPassword()
-                
-            case .email:
-                try await onboardingManager.submit(input: text, field: T.field)
-                coordinator?.submitEmail()
-                
-            case .phone:
-                try await onboardingManager.submit(input: text, field: T.field)
-                coordinator?.submitPhone()
-            }
-        } catch {
-            print(error.localizedDescription)
-            await MainActor.run {
-                isLoading = false
-            }
-            if let onboardingError = error as? OnboardingError, onboardingError == .invalidField {
-                presentInvalidInputAlert()
-            } else {
-                presentGenericAlert()
-            }
-        }
-        
-        await MainActor.run {
-            isLoading = false
-        }
-    }
-    
-    func resetTextField() async {
-        if let text = onboardingManager.getSubmittedValue(field: T.field) {
-            await MainActor.run {
-                self.text = text
-            }
-        }
-    }
-}
-
-//MARK: - Private methods
-extension OnboardingUserInputViewModel {
-    func presentInvalidInputAlert() {
-        Task {
-            await MainActor.run {
-                self.onboardingAlert = .init(
-                    title: T.field.alertTitle,
-                    message: T.field.alertDescription
-                )
-            }
-        }
-    }
-    
-    func presentUsernameUnavailableAlert() {
-        Task {
-            await MainActor.run {
-                self.onboardingAlert = .init(
-                    title: "Username unavailable",
-                    message: "Please enter a different username to continue."
-                )
-            }
-        }
-    }
-    
+    @MainActor
     func presentGenericAlert() {
-        Task {
-            await MainActor.run {
-                self.onboardingAlert = .init(
-                    title: "Error",
-                    message: "An error occurred, please try again later."
-                )
-            }
-        }
+        onboardingAlert = .init(
+            title: "Error",
+            message: "An error occurred, please try again later."
+        )
     }
     
-    func setupBindings() {
-        $text
-            .debounce(for: 0.05, scheduler: RunLoop.main)
-            .compactMap { text in
-                guard !text.isEmpty else { return [] }
-                return T.field.getInputValidationErrors(input: text)
-            }
-            .assign(to: &$textErrors)
+    @MainActor
+    func presentInvalidInputAlert() {
+        onboardingAlert = .init(
+            title: field.alertTitle,
+            message: field.alertDescription
+        )
     }
 }

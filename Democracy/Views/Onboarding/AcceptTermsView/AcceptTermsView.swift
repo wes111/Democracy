@@ -28,12 +28,16 @@ struct AcceptTermsView: View {
         }
         .toolbarNavigation(topButtons: viewModel.topButtons)
         .alert(item: $viewModel.onboardingAlert) { alert in
-            Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .default(Text("Okay")))
+            Alert(
+                title: Text(alert.title),
+                message: Text(alert.message),
+                dismissButton: .default(Text("Okay"))
+            )
         }
     }
 }
 
-//MARK: - Subviews
+// MARK: - Subviews
 extension AcceptTermsView {
     var title: some View {
         Text("Agree to Democracy's terms and conditions")
@@ -48,8 +52,8 @@ extension AcceptTermsView {
     }
     
     var agreeButton: some View {
-        Button() {
-            viewModel.agreeToTerms()
+        AsyncButton {
+            await viewModel.agreeToTerms()
         } label: {
             Text("I agree")
         }
@@ -57,11 +61,11 @@ extension AcceptTermsView {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let parentCoordinator = RootCoordinator()
     let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
-    let viewModel = AcceptTermsViewModel(coordinator: coordinator)
+    let viewModel = AcceptTermsViewModel(coordinator: coordinator, onboardingInput: .init())
     return NavigationStack {
         AcceptTermsView(viewModel: viewModel)
     }
