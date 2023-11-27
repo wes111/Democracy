@@ -49,7 +49,7 @@ struct OnboardingUserInputView<T: InputViewModel>: View {
                 dismissButton: .default(Text("Okay"))
             )
         }
-        // TODO: probably need to add this back.
+        // TODO: Might need to add this back?
 //        .task {
 //            await viewModel.resetTextField()
 //        }
@@ -96,10 +96,8 @@ extension OnboardingUserInputView {
     }
     
     var nextButton: some View {
-        Button {
-            Task {
-                await viewModel.submit()
-            }
+        AsyncButton {
+            await viewModel.submit()
         } label: {
             Text("Next")
         }

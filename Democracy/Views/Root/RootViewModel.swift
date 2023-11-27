@@ -8,7 +8,8 @@
 import Factory
 import Foundation
 
-class RootViewModel: ObservableObject {
+final class RootViewModel: ObservableObject {
+    @Injected(\.accountService) private var accountService
     @Published var loginStatus: LoginStatus = .loggedOut
     
     let mainTabViewModel = MainTabViewModel()
@@ -17,14 +18,18 @@ class RootViewModel: ObservableObject {
         .init()
     }()
     
-    init() {}
+    init() {
+        Task {
+            await setupBindings()
+        }
+    }
 }
 
-//MARK: Private Methods
+// MARK: Private Methods
 private extension RootViewModel {
-    func setupBindings() {
-//        accountService.loginPublisher
-//            .receive(on: DispatchQueue.main)
-//            .assign(to: &$loginStatus)
+    func setupBindings() async {
+        for await session in accountService.sessionStream {
+            loginStatus = session == nil ? .loggedOut : .loggedIn
+        }
     }
 }

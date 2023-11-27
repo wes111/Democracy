@@ -5,16 +5,18 @@
 //  Created by Wesley Luntsford on 11/24/23.
 //
 
+import AsyncAlgorithms
 import Factory
 import Foundation
 
 protocol AccountService {
     func refreshSessionIfNecessary() async throws
     func getUsernameAvailable(username: String) async throws -> Bool
-    func createUser(userName: String, password: String, email: String) async throws
     func login(email: String, password: String) async throws
     func updatePhone(phone: PhoneNumber, password: String) async throws
     func acceptTerms(input: OnboardingInput) async throws
+    
+    var sessionStream: AsyncChannel<Session?> { get }
 }
 
 final class AccountServiceDefault: AccountService {
@@ -22,6 +24,10 @@ final class AccountServiceDefault: AccountService {
     @Injected(\.appwriteService) private var appwriteService
     @Injected(\.userRepository) private var userRepository
     @Injected(\.sessionRepository) private var sessionRepository
+    
+    var sessionStream: AsyncChannel<Session?> {
+        sessionRepository.asyncChannel
+    }
     
     func refreshSessionIfNecessary() async throws {
         try await sessionRepository.refreshSession()
@@ -46,7 +52,7 @@ final class AccountServiceDefault: AccountService {
         else {
             throw OnboardingError.createAccountMissingField
         }
-        try await createUser(userName: userName, password: password, email: email)
+        try await userRepository.createUser(userName: userName, password: password, email: email)
         try await login(email: email, password: password)
         
         if let stringPhone = input.phone, let intPhone = Int(stringPhone) {
@@ -56,10 +62,6 @@ final class AccountServiceDefault: AccountService {
     
     func getUsernameAvailable(username: String) async throws -> Bool {
         try await appwriteService.getUserNameAvailable(username: username)
-    }
-    
-    func createUser(userName: String, password: String, email: String) async throws {
-       try await userRepository.createUser(userName: userName, password: password, email: email)
     }
     
     func login(email: String, password: String) async throws {

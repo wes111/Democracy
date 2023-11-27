@@ -19,7 +19,7 @@ actor SessionRepositoryDefault: SessionRepository, UserDefaultsStorable {
     @Injected(\.appwriteService) private var appwriteService
     
     // Local storage conformance
-    let asyncChannel = AsyncChannel<Session?>() // <-- This should allow multiple consumers? If not this is kinda useless.
+    let asyncChannel = AsyncChannel<Session?>() // <-- This does not allow multiple Consumers! :'(
     let key: UserDefaultsKey = .session
     var currentValue: Session?
     
