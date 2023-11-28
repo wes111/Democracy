@@ -14,7 +14,6 @@ struct ContentView: View {
         RootView(viewModel: viewModel)
             .onOpenURL { incomingURL in
                 print("App was opened via URL: \(incomingURL)")
-                print()
             }
     }
 }

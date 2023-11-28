@@ -16,7 +16,12 @@ struct UpdatesTabMainView<ViewModel: UpdatesTabMainViewModelProtocol>: View {
     }
     
     var body: some View {
-        Text("Updates")
+        AsyncButton {
+            await viewModel.logout()
+        } label: {
+            Text("Updates. Logout")
+        }
+
     }
 }
 

@@ -9,14 +9,19 @@ import Asynchrone
 import Factory
 import Foundation
 
+enum AccountServiceError: Error {
+    case noSession
+}
+
 protocol AccountService {
-    func refreshSessionIfNecessary() async throws
     func getUsernameAvailable(username: String) async throws -> Bool
     func login(email: String, password: String) async throws
+    func logout() async throws
     func updatePhone(phone: PhoneNumber, password: String) async throws
     func acceptTerms(input: OnboardingInput) async throws
     
     var sessionStream: SharedAsyncSequence<AsyncStream<Session?>> { get async }
+    var currentSession: Session? { get async }
 }
 
 final class AccountServiceDefault: AccountService {
@@ -31,18 +36,9 @@ final class AccountServiceDefault: AccountService {
         }
     }
     
-    func refreshSessionIfNecessary() async throws {
-        try await sessionRepository.refreshSession()
-        guard let session = await sessionRepository.currentValue else {
-            return // The user is not signed in.
-        }
-        
-        let threeDaysFromNow = Calendar.current.addDaysToNow(dayCount: 3)
-        
-        if session.expirationDate < threeDaysFromNow {
-            try await appwriteService.logout(sessionId: session.id)
-            //let password = try await passwordRepository.readPassword(username: session.userId)
-            //try await createSession(email: <#T##String#>, password: <#T##String#>)
+    var currentSession: Session? {
+        get async {
+            await sessionRepository.currentValue
         }
     }
     
@@ -72,5 +68,12 @@ final class AccountServiceDefault: AccountService {
     
     func updatePhone(phone: PhoneNumber, password: String) async throws {
         try await userRepository.updatePhone(phone: phone, password: password)
+    }
+    
+    func logout() async throws {
+        guard let currentSession = await sessionRepository.currentValue else {
+            throw AccountServiceError.noSession
+        }
+        try await sessionRepository.deleteSession(sessionId: currentSession.id)
     }
 }

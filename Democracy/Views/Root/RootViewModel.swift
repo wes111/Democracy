@@ -24,9 +24,9 @@ final class RootViewModel: ObservableObject {
 // MARK: Methods
 extension RootViewModel {
     @MainActor func startSessionTask() async {
-        let stream = await accountService.sessionStream
+        loginStatus = await accountService.currentSession == nil ? .loggedOut : .loggedIn
         do {
-            for try await session in stream {
+            for try await session in await accountService.sessionStream {
                 loginStatus = session == nil ? .loggedOut : .loggedIn
             }
         } catch {

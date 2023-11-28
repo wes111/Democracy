@@ -34,6 +34,21 @@ actor SessionRepositoryDefault: SessionRepository, UserDefaultsStorable {
     func setupStreams() async throws {
         for try await object in asyncStream {
             currentValue = object
+            if let object {
+                deleteSessionIfNearExpiration(object)
+            }
+        }
+    }
+    
+    private func deleteSessionIfNearExpiration(_ session: Session) {
+        Task {
+            if session.expirationDate < Calendar.current.addDaysToNow(dayCount: 3) {
+                do {
+                    try await deleteSession(sessionId: session.id)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 

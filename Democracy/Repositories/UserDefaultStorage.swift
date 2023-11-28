@@ -30,10 +30,12 @@ extension UserDefaultsStorable {
         Task {
             do {
                 try await setupStreams()
-                try await loadObject()
             } catch {
                 print(error.localizedDescription)
             }
+        }
+        Task {
+            try await loadObject()
         }
     }
     
