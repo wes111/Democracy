@@ -5,7 +5,7 @@
 //  Created by Wesley Luntsford on 11/24/23.
 //
 
-import AsyncAlgorithms
+import Asynchrone
 import Factory
 import Foundation
 
@@ -15,10 +15,16 @@ protocol UserRepository: Repository where Object == User {
 }
 
 actor UserRepositoryDefault: UserRepository, UserDefaultsStorable {
+    
     @Injected(\.appwriteService) private var appwriteService
     
     // Local storage conformance
-    let asyncChannel = AsyncChannel<User?>() // <-- This should allow multiple consumers? If not we need a different solution.
+    var continuation: AsyncStream<User?>.Continuation?
+    lazy var asyncStream: SharedAsyncSequence<AsyncStream<User?>> = {
+        AsyncStream { continuation in
+            self.continuation = continuation
+        }.shared()
+    }()
     let key: UserDefaultsKey = .user
     var currentValue: User?
     
@@ -26,9 +32,9 @@ actor UserRepositoryDefault: UserRepository, UserDefaultsStorable {
         setup()
     }
     
-    func setupStreams() async {
-        for await object in asyncChannel {
-            self.currentValue = object
+    func setupStreams() async throws {
+        for try await object in asyncStream {
+            currentValue = object
         }
     }
     

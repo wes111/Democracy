@@ -5,7 +5,7 @@
 //  Created by Wesley Luntsford on 11/12/23.
 //
 
-import AsyncAlgorithms
+import Asynchrone
 import Foundation
 
 // Unique keys for storing Codable types in UserDefaults.
@@ -16,39 +16,48 @@ enum UserDefaultsKey: String {
 
 protocol UserDefaultsStorable: AnyActor, Repository {
     var key: UserDefaultsKey { get }
+    var continuation: AsyncStream<Object?>.Continuation? { get async }
     
-    func setup()
     func saveObject(_ object: Object) async throws
     func deleteObject() async throws
-    func setupStreams() async
+    func sendObject(_ object: Object?) async
+    func setupStreams() async throws
 }
 
 extension UserDefaultsStorable {
     
     func setup() {
         Task {
-            await setupStreams()
-            try await loadObject()
+            do {
+                try await setupStreams()
+                try await loadObject()
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     
     func saveObject(_ object: Object) async throws {
         let encoded = try JSONEncoder().encode(object)
         defaults.set(encoded, forKey: key.rawValue)
-        await asyncChannel.send(object)
+        await sendObject(object)
     }
     
     func deleteObject() async throws {
         defaults.removeObject(forKey: key.rawValue)
-        await asyncChannel.send(nil)
+        await sendObject(nil)
     }
     
-    private func loadObject() async throws {
+    func loadObject() async throws {
         var object: Object?
         if let data = defaults.object(forKey: key.rawValue) as? Data {
             object = try JSONDecoder().decode(Object.self, from: data)
         }
-        await asyncChannel.send(object)
+        await sendObject(object)
+    }
+    
+    func sendObject(_ object: Object?) async {
+        await continuation?.yield(object)
     }
     
     private var defaults: UserDefaults {

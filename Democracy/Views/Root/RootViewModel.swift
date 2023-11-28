@@ -18,18 +18,19 @@ final class RootViewModel: ObservableObject {
         .init()
     }()
     
-    init() {
-        Task {
-            await setupBindings()
-        }
-    }
+    init() {}
 }
 
-// MARK: Private Methods
-private extension RootViewModel {
-    func setupBindings() async {
-        for await session in accountService.sessionStream {
-            loginStatus = session == nil ? .loggedOut : .loggedIn
+// MARK: Methods
+extension RootViewModel {
+    @MainActor func startSessionTask() async {
+        let stream = await accountService.sessionStream
+        do {
+            for try await session in stream {
+                loginStatus = session == nil ? .loggedOut : .loggedIn
+            }
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }

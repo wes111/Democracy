@@ -16,15 +16,21 @@ struct RootView: View {
     }
     
     var body: some View {
-        if viewModel.loginStatus == .loggedIn {
-            MainTabView(viewModel: viewModel.mainTabViewModel)
-        } else {
-            RootCoordinatorView(viewModel: viewModel.rootCoordinator)
+        Group {
+            if viewModel.loginStatus == .loggedIn {
+                MainTabView(viewModel: viewModel.mainTabViewModel)
+            } else {
+                RootCoordinatorView(viewModel: viewModel.rootCoordinator)
+            }
         }
+        .task {
+            await viewModel.startSessionTask()
+        }
+
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let viewModel = RootViewModel()
     return RootView(viewModel: viewModel)

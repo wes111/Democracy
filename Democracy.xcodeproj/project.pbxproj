@@ -77,6 +77,7 @@
 		EE70555D2B1390A800E40A89 /* EmailInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE70555C2B1390A800E40A89 /* EmailInputViewModel.swift */; };
 		EE70555F2B13917100E40A89 /* PhoneInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE70555E2B13917100E40A89 /* PhoneInputViewModel.swift */; };
 		EE7055612B14034700E40A89 /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7055602B14034700E40A89 /* AsyncButton.swift */; };
+		EE7055642B14E2E000E40A89 /* Asynchrone in Frameworks */ = {isa = PBXBuildFile; productRef = EE7055632B14E2E000E40A89 /* Asynchrone */; };
 		EE7856132AAE75620004B7E4 /* NewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856122AAE75620004B7E4 /* NewFlowLayout.swift */; };
 		EE7856182AB7BACB0004B7E4 /* TaggableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856172AB7BACB0004B7E4 /* TaggableModifier.swift */; };
 		EE78561B2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78561A2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift */; };
@@ -181,7 +182,6 @@
 		EEB5AF912B017F0900310408 /* UserDefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF902B017F0900310408 /* UserDefaultStorage.swift */; };
 		EEB5AF952B03116000310408 /* Calendar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF942B03116000310408 /* Calendar+Extensions.swift */; };
 		EEB5AF982B0320D400310408 /* KeyChainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF972B0320D400310408 /* KeyChainStorage.swift */; };
-		EEB5AFA62B1035C400310408 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = EEB5AFA52B1035C400310408 /* AsyncAlgorithms */; };
 		EEB5AFA82B103AC100310408 /* SessionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AFA72B103AC100310408 /* SessionRepository.swift */; };
 		EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED4299F169000FEFC6E /* SettingsView.swift */; };
 		EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47EDE299F186D00FEFC6E /* SettingsViewModel.swift */; };
@@ -453,10 +453,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE7055642B14E2E000E40A89 /* Asynchrone in Frameworks */,
 				EE4DB8872AC5084900A6DC90 /* Appwrite in Frameworks */,
 				EE80D8E929BD11600000F8EF /* Factory in Frameworks */,
 				EEB5AF832AF8985500310408 /* SharedResourcesClientAndServer in Frameworks */,
-				EEB5AFA62B1035C400310408 /* AsyncAlgorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1371,7 +1371,7 @@
 				EE80D8E829BD11600000F8EF /* Factory */,
 				EE4DB8862AC5084900A6DC90 /* Appwrite */,
 				EEB5AF822AF8985500310408 /* SharedResourcesClientAndServer */,
-				EEB5AFA52B1035C400310408 /* AsyncAlgorithms */,
+				EE7055632B14E2E000E40A89 /* Asynchrone */,
 			);
 			productName = Democracy;
 			productReference = EEF8345D299C6824001EEA5E /* Democracy.app */;
@@ -1406,7 +1406,7 @@
 				EE4DB8852AC5084900A6DC90 /* XCRemoteSwiftPackageReference "sdk-for-apple" */,
 				EEB5AF812AF8985500310408 /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */,
 				EEB5AF842AF9C36700310408 /* XCRemoteSwiftPackageReference "SwiftLint" */,
-				EEB5AFA42B1035C400310408 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */,
+				EE7055622B14E2E000E40A89 /* XCRemoteSwiftPackageReference "Asynchrone" */,
 			);
 			productRefGroup = EEF8345E299C6824001EEA5E /* Products */;
 			projectDirPath = "";
@@ -1870,6 +1870,14 @@
 				minimumVersion = 4.0.1;
 			};
 		};
+		EE7055622B14E2E000E40A89 /* XCRemoteSwiftPackageReference "Asynchrone" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/reddavis/Asynchrone";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		EE80D8E729BD11600000F8EF /* XCRemoteSwiftPackageReference "Factory" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hmlongco/Factory.git";
@@ -1894,14 +1902,6 @@
 				minimumVersion = 0.53.0;
 			};
 		};
-		EEB5AFA42B1035C400310408 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-async-algorithms.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1909,6 +1909,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE4DB8852AC5084900A6DC90 /* XCRemoteSwiftPackageReference "sdk-for-apple" */;
 			productName = Appwrite;
+		};
+		EE7055632B14E2E000E40A89 /* Asynchrone */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE7055622B14E2E000E40A89 /* XCRemoteSwiftPackageReference "Asynchrone" */;
+			productName = Asynchrone;
 		};
 		EE80D8E829BD11600000F8EF /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1924,11 +1929,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EEB5AF842AF9C36700310408 /* XCRemoteSwiftPackageReference "SwiftLint" */;
 			productName = "plugin:SwiftLintPlugin";
-		};
-		EEB5AFA52B1035C400310408 /* AsyncAlgorithms */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EEB5AFA42B1035C400310408 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */;
-			productName = AsyncAlgorithms;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -5,7 +5,7 @@
 //  Created by Wesley Luntsford on 11/24/23.
 //
 
-import AsyncAlgorithms
+import Asynchrone
 import Factory
 import Foundation
 
@@ -16,7 +16,7 @@ protocol AccountService {
     func updatePhone(phone: PhoneNumber, password: String) async throws
     func acceptTerms(input: OnboardingInput) async throws
     
-    var sessionStream: AsyncChannel<Session?> { get }
+    var sessionStream: SharedAsyncSequence<AsyncStream<Session?>> { get async }
 }
 
 final class AccountServiceDefault: AccountService {
@@ -25,8 +25,10 @@ final class AccountServiceDefault: AccountService {
     @Injected(\.userRepository) private var userRepository
     @Injected(\.sessionRepository) private var sessionRepository
     
-    var sessionStream: AsyncChannel<Session?> {
-        sessionRepository.asyncChannel
+    var sessionStream: SharedAsyncSequence<AsyncStream<Session?>> {
+        get async {
+            await sessionRepository.asyncStream
+        }
     }
     
     func refreshSessionIfNecessary() async throws {

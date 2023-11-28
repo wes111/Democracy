@@ -4,8 +4,7 @@
 //
 //  Created by Wesley Luntsford on 11/23/23.
 //
-
-import AsyncAlgorithms
+import Asynchrone
 import Factory
 import Foundation
 
@@ -19,17 +18,22 @@ actor SessionRepositoryDefault: SessionRepository, UserDefaultsStorable {
     @Injected(\.appwriteService) private var appwriteService
     
     // Local storage conformance
-    let asyncChannel = AsyncChannel<Session?>() // <-- This does not allow multiple Consumers! :'(
     let key: UserDefaultsKey = .session
     var currentValue: Session?
+    var continuation: AsyncStream<Session?>.Continuation?
+    lazy var asyncStream: SharedAsyncSequence<AsyncStream<Session?>> = {
+        AsyncStream { continuation in
+            self.continuation = continuation
+        }.shared()
+    }()
     
     init() {
         setup()
     }
     
-    func setupStreams() async {
-        for await object in asyncChannel {
-            self.currentValue = object
+    func setupStreams() async throws {
+        for try await object in asyncStream {
+            currentValue = object
         }
     }
 
