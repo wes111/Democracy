@@ -28,7 +28,7 @@ final class AcceptTermsViewModel: ObservableObject, Hashable {
     func agreeToTerms() async {
         do {
             try await accountService.acceptTerms(input: onboardingInput)
-            coordinator?.agreeToTerms(username: onboardingInput.username ?? "") // TODO: Should show error is username is nil.
+            coordinator?.agreeToTerms(username: onboardingInput.username ?? "")
         } catch {
             print(error)
             presentAlert()

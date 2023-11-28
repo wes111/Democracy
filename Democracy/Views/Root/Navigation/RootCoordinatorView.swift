@@ -16,12 +16,20 @@ struct RootCoordinatorView: View {
     
     var body: some View {
         CoordinatorView(router: $viewModel.router) {
-            LoginView(viewModel: viewModel.loginViewModel())
+            if viewModel.loginStatus == .loggedOut {
+                LoginView(viewModel: viewModel.loginViewModel())
+            } else {
+                MainTabView(viewModel: viewModel.mainTabViewModel)
+            }
+            
         } secondaryScreen: { (path: RootPath) in
             createViewFromPath(path)
         }
         .popover(isPresented: $viewModel.isShowingOnboardingFlow) {
             OnboardingCoordinatorView(coordinator: viewModel.onboardingCoordinator())
+        }
+        .task {
+            await viewModel.startSessionTask()
         }
         // TODO: This should be a fullScreenCover not popover.
         // This temporarily fixes an iOS 17 memory leak.
@@ -35,7 +43,7 @@ struct RootCoordinatorView: View {
     @ViewBuilder
     func createViewFromPath(_ path: RootPath) -> some View {
         switch path {
-            //TODO: ...
+            // TODO: ...
         default:
             EmptyView()
         }
