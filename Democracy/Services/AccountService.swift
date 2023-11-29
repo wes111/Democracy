@@ -22,17 +22,28 @@ protocol AccountService {
     
     var sessionStream: SharedAsyncSequence<AsyncStream<Session?>> { get async }
     var currentSession: Session? { get async }
+    
+    var userStream: SharedAsyncSequence<AsyncStream<User?>> { get async }
 }
 
 final class AccountServiceDefault: AccountService {
     
-    @Injected(\.appwriteService) private var appwriteService
     @Injected(\.userRepository) private var userRepository
     @Injected(\.sessionRepository) private var sessionRepository
+}
+
+// MARK: - Computed Properties
+extension AccountServiceDefault {
     
     var sessionStream: SharedAsyncSequence<AsyncStream<Session?>> {
         get async {
             await sessionRepository.asyncStream
+        }
+    }
+    
+    var userStream: SharedAsyncSequence<AsyncStream<User?>> {
+        get async {
+            await userRepository.asyncStream
         }
     }
     
@@ -41,6 +52,16 @@ final class AccountServiceDefault: AccountService {
             await sessionRepository.currentValue
         }
     }
+    
+    var currentUser: User? {
+        get async {
+            await userRepository.currentValue
+        }
+    }
+}
+
+// MARK: - Methods
+extension AccountServiceDefault {
     
     // At this point we can create the account and log-in.
     func acceptTerms(input: OnboardingInput) async throws {
@@ -59,11 +80,12 @@ final class AccountServiceDefault: AccountService {
     }
     
     func getUsernameAvailable(username: String) async throws -> Bool {
-        try await appwriteService.getUserNameAvailable(username: username)
+        try await userRepository.getUsernameAvailable(username: username)
     }
     
     func login(email: String, password: String) async throws {
         try await sessionRepository.createSession(email: email, password: password)
+        try await userRepository.fetchSignedInUser()
     }
     
     func updatePhone(phone: PhoneNumber, password: String) async throws {
@@ -75,5 +97,6 @@ final class AccountServiceDefault: AccountService {
             throw AccountServiceError.noSession
         }
         try await sessionRepository.deleteSession(sessionId: currentSession.id)
+        try await userRepository.removePersistedUser()
     }
 }

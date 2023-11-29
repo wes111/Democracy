@@ -9,28 +9,35 @@ import Asynchrone
 import Factory
 import Foundation
 
+/// Stores the single logged-in user. If there is no session, there is no user.
 protocol UserRepository: Repository where Object == User {
     func createUser(userName: String, password: String, email: String) async throws
     func updatePhone(phone: PhoneNumber, password: String) async throws
+    func fetchSignedInUser() async throws
+    func removePersistedUser() async throws
+    func getUsernameAvailable(username: String) async throws -> Bool
 }
 
 actor UserRepositoryDefault: UserRepository, UserDefaultsStorable {
     
     @Injected(\.appwriteService) private var appwriteService
-    
-    // Local storage conformance
+    let key: UserDefaultsKey = .user
     var continuation: AsyncStream<User?>.Continuation?
+    var currentValue: User?
+    
     lazy var asyncStream: SharedAsyncSequence<AsyncStream<User?>> = {
         AsyncStream { continuation in
             self.continuation = continuation
         }.shared()
     }()
-    let key: UserDefaultsKey = .user
-    var currentValue: User?
     
     init() {
         setup()
     }
+}
+
+// MARK: - Methods
+extension UserRepositoryDefault {
     
     func setupStreams() async throws {
         for try await object in asyncStream {
@@ -46,5 +53,18 @@ actor UserRepositoryDefault: UserRepository, UserDefaultsStorable {
     func updatePhone(phone: PhoneNumber, password: String) async throws {
         let user = try await appwriteService.updatePhone(phone: phone, password: password)
         try await saveObject(user)
+    }
+    
+    func fetchSignedInUser() async throws {
+        let user = try await appwriteService.getCurrentLoggedInUser()
+        try await saveObject(user)
+    }
+    
+    func removePersistedUser() async throws {
+        try await deleteObject()
+    }
+    
+    func getUsernameAvailable(username: String) async throws -> Bool {
+        try await appwriteService.getUserNameAvailable(username: username)
     }
 }

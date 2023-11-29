@@ -35,8 +35,7 @@ protocol AppwriteService {
     func logout(sessionId: String) async throws
     func getCurrentSession() async throws -> Session
     func updatePhone(phone: PhoneNumber, password: String) async throws -> User
-    func createPhoneVerification() async throws -> Token
-    func createEmailVerification() async throws -> Token
+    func getCurrentLoggedInUser() async throws -> User
     
     func getUserNameAvailable(username: String) async throws -> Bool
 }
@@ -100,27 +99,7 @@ final class AppwriteServiceDefault: AppwriteService {
         try await account.updatePhone(phone: phone.appwriteString, password: password).toUser()
     }
     
-    func createPhoneVerification() async throws -> Token {
-        let token = try await account.createPhoneVerification()
-        return token.toToken()
-    }
-    
-    func createEmailVerification() async throws -> Token {
-        return .init(id: "", userID: "", createdAt: .now, expiresAt: .now)
-        //        let appwriteToken = try await account.createVerification(url: "http://192.168.86.244/")
-        //        return appwriteToken.toToken()
-    }
-}
-
-extension Appwrite.Token {
-    func toToken() -> Token {
-        let formatter = ISO8601DateFormatter.sharedWithFractionalSeconds
-        
-        return .init(
-            id: id,
-            userID: userId,
-            createdAt: formatter.date(from: createdAt),
-            expiresAt: formatter.date(from: expire)
-        )
+    func getCurrentLoggedInUser() async throws -> User {
+        try await account.get().toUser()
     }
 }
