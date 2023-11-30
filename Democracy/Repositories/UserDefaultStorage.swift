@@ -26,18 +26,9 @@ protocol UserDefaultsStorable: AnyActor, Repository {
 
 extension UserDefaultsStorable {
     
-    func setup() {
-        Task {
-            do {
-                try await setupStreams()
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        Task {
-            try await loadObject()
-        }
-    }
+    // IMPORTANT NOTE: Saving and deleting objects from UserDefaults
+    // seems to work inconsistently when killing the app via Xcode!
+    // https://stackoverflow.com/questions/46526460/xcode-9-simulator-doesnt-save-userdefaults
     
     func saveObject(_ object: Object) async throws {
         let encoded = try JSONEncoder().encode(object)
@@ -65,5 +56,4 @@ extension UserDefaultsStorable {
     private var defaults: UserDefaults {
         UserDefaults.standard
     }
-    
 }

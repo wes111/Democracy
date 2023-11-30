@@ -28,10 +28,6 @@ actor SessionRepositoryDefault: SessionRepository, UserDefaultsStorable {
     
     init() {
         setup()
-        
-        Task {
-            try await refreshSession()
-        }
     }
 }
 
@@ -60,6 +56,24 @@ extension SessionRepositoryDefault {
 // MARK: - Private Methods
 private extension SessionRepositoryDefault {
     
+    nonisolated func setup() {
+        Task {
+            do {
+                try await setupStreams()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        Task {
+            do {
+                try await loadObject()
+                try await refreshSession()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func deleteSessionIfNearExpiration(_ session: Session) {
         Task {
             if session.expirationDate < Calendar.current.addDaysToNow(dayCount: 3) {
@@ -73,7 +87,15 @@ private extension SessionRepositoryDefault {
     }
     
     func refreshSession() async throws {
-        let currentSession = try await appwriteService.getCurrentSession()
-        try await saveObject(currentSession)
+        do {
+            let currentSession = try await appwriteService.getCurrentSession()
+            try await saveObject(currentSession)
+        } catch {
+            if error.localizedDescription == AppwriteError.noSession.rawValue {
+                try await deleteObject()
+            } else {
+                throw error
+            }
+        }
     }
 }

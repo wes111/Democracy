@@ -9,6 +9,13 @@ import Appwrite
 import Foundation
 import SharedResourcesClientAndServer
 
+// TODO: Move this to the shared client/server package.
+// TODO: This is an open Appwrite feature: https://github.com/appwrite/sdk-generator/issues/698
+enum AppwriteError: String, Error {
+    case noSession = "User (role: guests) missing scope (account)"
+    case userNotFoundError = "User with the requested ID could not be found."
+}
+
 struct PhoneNumber {
     let countryCode: Int = 1 // Single digit? What are the possible values here
     let base: Int // 10 digit number?

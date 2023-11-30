@@ -39,6 +39,19 @@ actor UserRepositoryDefault: UserRepository, UserDefaultsStorable {
 // MARK: - Methods
 extension UserRepositoryDefault {
     
+    nonisolated private func setup() {
+        Task {
+            do {
+                try await setupStreams()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        Task {
+            try await loadObject()
+        }
+    }
+    
     func setupStreams() async throws {
         for try await object in asyncStream {
             currentValue = object

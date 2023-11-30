@@ -5,9 +5,28 @@
 //  Created by Wesley Luntsford on 2/22/23.
 //
 
-import Combine
 import Factory
 import Foundation
+
+enum LoginAlert: Identifiable {
+    case loginError
+    
+    var id: String {
+        return self.title
+    }
+    
+    var title: String {
+        switch self {
+        case .loginError: return "Login Error"
+        }
+    }
+    
+    var message: String {
+        switch self {
+        case .loginError: return "Please try again later"
+        }
+    }
+}
 
 protocol LoginCoordinatorDelegate: AnyObject {
     func goToCreateAccount()
@@ -15,66 +34,52 @@ protocol LoginCoordinatorDelegate: AnyObject {
 
 final class LoginViewModel: ObservableObject {
     
+    @Injected(\.accountService) private var accountService
     @Published var isValid = false
     @Published var password = ""
-    @Published var username = ""
-    @Published var showPasswordError = false
-    @Published var showUsernameError = false
+    @Published var email = ""
+    @Published var alert: LoginAlert?
     
     init(coordinator: LoginCoordinatorDelegate) {
         self.coordinator = coordinator
-        
         setupBindings()
     }
     
     private weak var coordinator: LoginCoordinatorDelegate?
 }
 
-//MARK: - Methods
+// MARK: - Methods
 extension LoginViewModel {
     
     func createAccount() {
-        print("Create account")
         coordinator?.goToCreateAccount()
     }
     
     func forgotPassword() {
         print("Forgot password")
-        //TODO: ....
     }
     
+    @MainActor
     func login() async {
-        print("Log in.")
-        //TODO: ....
+        do {
+            try await accountService.login(email: email, password: password)
+        } catch {
+            print(error.localizedDescription)
+            alert = .loginError
+        }
     }
 }
 
-//MARK: - Private Methods
+// MARK: - Private Methods
 private extension LoginViewModel {
     
     func setupBindings() {
-        
-//        $password
-//            .debounce(for: 0.25, scheduler: RunLoop.main)
-//            .map { password in
-//                guard !password.isEmpty else { return false }
-//                return !PasswordValidationError.fullyValid(string: password)
-//            }
-//            .assign(to: &$showUsernameError)
-//        
-//        $username
-//            .debounce(for: 0.25, scheduler: RunLoop.main)
-//            .map { username in
-//                guard !username.isEmpty else { return false }
-//                return !UsernameValidationError.fullyValid(string: username)
-//            }
-//            .assign(to: &$showUsernameError)
-//        
-//        $username.combineLatest($password)
-//            .debounce(for: 0.25, scheduler: RunLoop.main)
-//            .compactMap { (username, password) in
-//                return UsernameValidationError.fullyValid(string: username) && PasswordValidationError.fullyValid(string: password)
-//            }
-//            .assign(to: &$isValid)
+        $email.combineLatest($password)
+            .debounce(for: 0.25, scheduler: RunLoop.main)
+            .compactMap { (email, password) in
+                return OnboardingInputField.email.fullyValid(input: email) &&
+                OnboardingInputField.password.fullyValid(input: password)
+            }
+            .assign(to: &$isValid)
     }
 }

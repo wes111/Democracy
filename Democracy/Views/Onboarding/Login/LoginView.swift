@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum LoginField {
-    case username, password
+    case email, password
 }
 
 struct LoginView: View {
@@ -30,7 +30,7 @@ struct LoginView: View {
                     .frame(maxWidth: 100)
                     .frame(height: 175)
                 
-                usernameField
+                emailField
                 passwordField
                 loginButton
                 forgotPasswordButton
@@ -40,23 +40,29 @@ struct LoginView: View {
             .padding()
         }
         .onAppear {
-            focusedField = .username
+            focusedField = .email
         }
         .onTapGesture {
             focusedField = nil
         }
+        .alert(item: $viewModel.alert) { alert in
+            Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .cancel())
+        }
     }
 }
 
-//MARK: - Subviews
+// MARK: - Subviews
 extension LoginView {
     
-    var usernameField: some View {
-        TextField("Username", text: $viewModel.username,
-                  prompt: Text("Username").foregroundColor(.secondaryBackground), axis: .vertical
+    var emailField: some View {
+        TextField("Email", text: $viewModel.email,
+                  prompt: Text("Email").foregroundColor(.secondaryBackground), axis: .vertical
         )
-        //.limitCharacters(text: $viewModel.username, count: UsernameValidationError.maxCharacterCount)
-        .focused($focusedField, equals: .username)
+        .limitCharacters(
+            text: $viewModel.email,
+            count: OnboardingInputField.email.maxCharacterCount
+        )
+        .focused($focusedField, equals: .email)
         .standardTextField()
         .submitLabel(.next)
     }
@@ -65,15 +71,18 @@ extension LoginView {
         TextField("Password", text: $viewModel.password,
                   prompt: Text("Password").foregroundColor(.secondaryBackground), axis: .vertical
         )
-        //.limitCharacters(text: $viewModel.password, count: PasswordValidationError.maxCharacterCount)
+        .limitCharacters(
+            text: $viewModel.password,
+            count: OnboardingInputField.password.maxCharacterCount
+        )
         .focused($focusedField, equals: .password)
         .standardTextField()
         .submitLabel(.go)
     }
     
     var loginButton: some View {
-        Button() {
-            
+        AsyncButton {
+            await viewModel.login()
         } label: {
             Text("Login")
         }
@@ -82,7 +91,7 @@ extension LoginView {
     }
     
     var forgotPasswordButton: some View {
-        Button() {
+        Button {
             
         } label: {
             Text("Forgot Password?")
@@ -92,7 +101,7 @@ extension LoginView {
     }
     
     var createAccountButton: some View {
-        Button() {
+        Button {
             /// A bug occurs if the focusedField is not set to nil here because two views
             /// would have active focused fields. This causes bad dismiss animation for the onboarding flow.
             focusedField = nil
@@ -105,7 +114,7 @@ extension LoginView {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let coordinator = RootCoordinator()
     let viewModel = LoginViewModel(coordinator: coordinator)
