@@ -35,18 +35,14 @@ struct PostCoordinator: View {
         }
     }
     
+    @MainActor
     func createPostView() -> PostView<PostViewModel> {
         let viewModel = PostViewModel(post: post)
         return PostView(viewModel: viewModel)
     }
 }
 
-//extension PostCoordinator: PostCoordinatorDelegate {
-//
-//    
-//}
-
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     PostCoordinator(Post.preview)
 }

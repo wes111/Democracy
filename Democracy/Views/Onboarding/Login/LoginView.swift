@@ -8,12 +8,13 @@
 import SwiftUI
 
 enum LoginField {
-    case username, password
+    case email, password
 }
 
 struct LoginView: View {
     @StateObject private var viewModel: LoginViewModel
     @FocusState private var focusedField: LoginField?
+    @State private var isKeyboardVisible = false
     
     init(viewModel: LoginViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -23,57 +24,79 @@ struct LoginView: View {
         ZStack {
             Color.primaryBackground.ignoresSafeArea()
             
-            VStack(spacing: 20) {
+            VStack(spacing: isKeyboardVisible ? 20 : 50) {
+                
                 Image("BMW")
                     .resizable()
                     .scaledToFit()
-                    .frame(maxWidth: 100)
-                    .frame(height: 175)
+                    .frame(height: isKeyboardVisible ? 80 : 100)
                 
-                usernameField
-                passwordField
-                loginButton
-                forgotPasswordButton
+                VStack(spacing: 20) {
+                    emailField
+                    passwordField
+                    loginButton
+                    forgotPasswordButton
+                    Spacer()
+                }
+            }
+            .padding(.top, isKeyboardVisible ? 20 : 50)
+            .padding([.horizontal, .bottom])
+            
+            VStack {
                 Spacer()
                 createAccountButton
             }
-            .padding()
+            .padding([.horizontal, .bottom])
         }
-        .onAppear {
-            focusedField = .username
-        }
+        .ignoresSafeArea(.keyboard)
         .onTapGesture {
             focusedField = nil
+        }
+        .alert(item: $viewModel.alert) { alert in
+            Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .cancel())
+        }
+        .onReceive(keyboardPublisher) { value in
+            withAnimation {
+                isKeyboardVisible = value
+            }
         }
     }
 }
 
-//MARK: - Subviews
+// MARK: - Subviews
 extension LoginView {
     
-    var usernameField: some View {
-        TextField("Username", text: $viewModel.username,
-                  prompt: Text("Username").foregroundColor(.secondaryBackground), axis: .vertical
+    var emailField: some View {
+        TextField("Email", text: $viewModel.email,
+                  prompt: Text("Email").foregroundColor(.secondaryBackground)
         )
-        //.limitCharacters(text: $viewModel.username, count: UsernameValidationError.maxCharacterCount)
-        .focused($focusedField, equals: .username)
+        .limitCharacters(
+            text: $viewModel.email,
+            count: OnboardingInputField.email.maxCharacterCount
+        )
+        .focused($focusedField, equals: .email)
         .standardTextField()
         .submitLabel(.next)
     }
     
     var passwordField: some View {
-        TextField("Password", text: $viewModel.password,
-                  prompt: Text("Password").foregroundColor(.secondaryBackground), axis: .vertical
+        SecureField(
+            "Enter a password",
+            text: $viewModel.password,
+            prompt: Text("Password").foregroundColor(.secondaryBackground)
         )
-        //.limitCharacters(text: $viewModel.password, count: PasswordValidationError.maxCharacterCount)
+        .limitCharacters(
+            text: $viewModel.password,
+            count: OnboardingInputField.password.maxCharacterCount
+        )
         .focused($focusedField, equals: .password)
         .standardTextField()
         .submitLabel(.go)
     }
     
     var loginButton: some View {
-        Button() {
-            
+        AsyncButton {
+            await viewModel.login()
         } label: {
             Text("Login")
         }
@@ -82,7 +105,7 @@ extension LoginView {
     }
     
     var forgotPasswordButton: some View {
-        Button() {
+        Button {
             
         } label: {
             Text("Forgot Password?")
@@ -92,7 +115,7 @@ extension LoginView {
     }
     
     var createAccountButton: some View {
-        Button() {
+        Button {
             /// A bug occurs if the focusedField is not set to nil here because two views
             /// would have active focused fields. This causes bad dismiss animation for the onboarding flow.
             focusedField = nil
@@ -101,11 +124,10 @@ extension LoginView {
             Text("Create Account")
         }
         .buttonStyle(PrimaryButtonStyle())
-        
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let coordinator = RootCoordinator()
     let viewModel = LoginViewModel(coordinator: coordinator)

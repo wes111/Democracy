@@ -7,17 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4A48C7F1-390D-413F-9316-0FA0F039B998"
+            uuid = "B3D6DCD8-7A90-4AC7-8B9F-1CA47B701FB1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Democracy/App Setup/ContentView.swift"
+            filePath = "Democracy/Views/Onboarding/AcceptTermsView/AcceptTermsViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "agreeToTerms()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

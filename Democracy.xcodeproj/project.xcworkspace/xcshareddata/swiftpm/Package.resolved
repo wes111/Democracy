@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "asynchrone",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/reddavis/Asynchrone",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1ddfcd3bc93277f68dffb793fc60001902f2517b"
+      }
+    },
+    {
       "identity" : "collectionconcurrencykit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/JohnSundell/CollectionConcurrencyKit.git",

@@ -24,7 +24,6 @@ protocol CommunityInteractorProtocol {
 struct CommunityInteractor: CommunityInteractorProtocol {
 
     @Injected(\.communityLocalRepository) var localRepository
-    @Injected(\.communityRemoteRepository) var remoteRepository
 
     private let myCommunitiesPublisher = PassthroughSubject<[Community], Never>()
     private let recommendedCommunitiesPublisher = PassthroughSubject<[Community], Never>()

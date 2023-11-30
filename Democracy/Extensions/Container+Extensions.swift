@@ -22,36 +22,20 @@ extension Container {
     }
     
     // MARK: - Repositories
-    
+    // TODO: Get rid of these repositories!
     var postLocalRepository: Factory<PostLocalRepositoryProtocol> {
          self { PostLocalRepository() }
     }
-    var postRemoteRepository: Factory<PostRemoteRepositoryProtocol> {
-         self { PostRemoteRepository() }
-    }
-    var userLocalRepository: Factory<UserLocalRepositoryProtocol> {
-         self { UserLocalRepository() }
-    }
-    var userRemoteRepository: Factory<UserRemoteRepositoryProtocol> {
-         self { UserRemoteRepository() }
-    }
+    
     var communityLocalRepository: Factory<CommunityLocalRepositoryProtocol> {
          self { CommunityLocalRepository() }
     }
-    var communityRemoteRepository: Factory<CommunityRemoteRepositoryProtocol> {
-         self { CommunityRemoteRepository() }
-    }
+    
     var candidateLocalRepository: Factory<CandidateLocalRepositoryProtocol> {
          self { CandidateLocalRepository() }
     }
-    var candidateRemoteRepository: Factory<CandidateRemoteRepositoryProtocol> {
-         self { CandidateRemoteRepository() }
-    }
     
     // MARK: - Services
-    var accountService: Factory<AccountService> {
-        self { AccountServiceDefault() }
-    }
     
     var appwriteService: Factory<AppwriteService> {
         self { AppwriteServiceDefault() }
@@ -61,9 +45,21 @@ extension Container {
         self { RichLinkService() } 
     }
     
-    // MARK: - Flow Services
-    var onboardingFlowService: Factory<any OnboardingFlowManagerProtocol> {
-        self { OnboardingFlowManager() }
-            .scope(.shared)
+    var accountService: Factory<AccountService> {
+        self { AccountServiceDefault() }.scope(.shared)
+    }
+    
+    var passwordLocalRepository: Factory<PasswordRepository> {
+        self { PasswordRepositoryDefault() }.scope(.shared)
+    }
+    
+    // MARK: - New Repositories
+    
+    var userRepository: Factory<any UserRepository> {
+        self { UserRepositoryDefault() }.scope(.shared)
+    }
+    
+    var sessionRepository: Factory<any SessionRepository> {
+        self { SessionRepositoryDefault() }.scope(.shared)
     }
 }

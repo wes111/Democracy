@@ -32,7 +32,7 @@ struct CreateAccountSuccessView: View {
     }
 }
 
-//MARK: - Subviews
+// MARK: - Subviews
 extension CreateAccountSuccessView {
     var logo: some View {
         Image("BMW")
@@ -45,7 +45,7 @@ extension CreateAccountSuccessView {
         VStack(alignment: .center, spacing: 15) {
             VStack(alignment: .center, spacing: 0) {
                 Text("Welcome to Democracy,")
-                Text(viewModel.userName)
+                Text(viewModel.username)
             }
             .font(.system(.title, weight: .semibold))
             .foregroundColor(.primaryText)
@@ -58,7 +58,7 @@ extension CreateAccountSuccessView {
     }
     
     var continueButton: some View {
-        Button() {
+        Button {
             viewModel.continueAction()
         } label: {
             Label {
@@ -72,7 +72,7 @@ extension CreateAccountSuccessView {
     }
     
     var skipButton: some View {
-        Button() {
+        Button {
             viewModel.close()
         } label: {
             Text("Skip")
@@ -81,10 +81,10 @@ extension CreateAccountSuccessView {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let parentCoordinator = RootCoordinator()
     let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
-    let viewModel = CreateAccountSuccessViewModel(coordinator: coordinator)
+    let viewModel = CreateAccountSuccessViewModel(coordinator: coordinator, username: "Hamlin11")
     return CreateAccountSuccessView(viewModel: viewModel)
 }

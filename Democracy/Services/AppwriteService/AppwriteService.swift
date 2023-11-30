@@ -9,9 +9,16 @@ import Appwrite
 import Foundation
 import SharedResourcesClientAndServer
 
+// TODO: Move this to the shared client/server package.
+// TODO: This is an open Appwrite feature: https://github.com/appwrite/sdk-generator/issues/698
+enum AppwriteError: String, Error {
+    case noSession = "User (role: guests) missing scope (account)"
+    case userNotFoundError = "User with the requested ID could not be found."
+}
+
 struct PhoneNumber {
     let countryCode: Int = 1 // Single digit? What are the possible values here
-    let base: Int //10 digit number?
+    let base: Int // 10 digit number?
     
     init(base: Int) {
         self.base = base
@@ -31,19 +38,19 @@ struct Token {
 
 protocol AppwriteService {
     func createUser(userName: String, password: String, email: String) async throws -> User
-    func login(email: String, password: String) async throws
-    func logout(sessionID: String) async throws
+    func login(email: String, password: String) async throws -> Session
+    func logout(sessionId: String) async throws
+    func getCurrentSession() async throws -> Session
     func updatePhone(phone: PhoneNumber, password: String) async throws -> User
-    func createPhoneVerification() async throws -> Token
-    func createEmailVerification() async throws -> Token
+    func getCurrentLoggedInUser() async throws -> User
     
     func getUserNameAvailable(username: String) async throws -> Bool
 }
 
-//TODO: There is info that must be added to get the OAuth callback (see website).
+// TODO: There is info that must be added to get the OAuth callback (see website).
 final class AppwriteServiceDefault: AppwriteService {
     
-    private let projectEndpoint = "http://192.168.86.231/v1"
+    private let projectEndpoint = "http://192.168.86.31/v1"
     private let projectID = "65466f560e77e46a903e"
     
     private lazy var client: Client = {
@@ -80,82 +87,26 @@ final class AppwriteServiceDefault: AppwriteService {
             email: email,
             password: password
         )
-        print(appwriteUser)
         return appwriteUser.toUser()
     }
     
-    func login(email: String, password: String) async throws {
-        let session = try await account.createEmailSession(
-            email: email,
-            password: password
-        )
-        //TODO: Do something with the session
+    func login(email: String, password: String) async throws -> Session {
+        try await account.createEmailSession(email: email, password: password).toSession()
+    }
+    
+    func logout(sessionId: String) async throws {
+        _ = try await account.deleteSession(sessionId: sessionId)
+    }
+    
+    func getCurrentSession() async throws -> Session {
+        try await account.getSession(sessionId: "current").toSession()
     }
     
     func updatePhone(phone: PhoneNumber, password: String) async throws -> User {
-        let user = try await account.updatePhone(phone: phone.appwriteString, password: password)
-        return user.toUser()
+        try await account.updatePhone(phone: phone.appwriteString, password: password).toUser()
     }
     
-    func createPhoneVerification() async throws -> Token {
-        let token = try await account.createPhoneVerification()
-        return token.toToken()
+    func getCurrentLoggedInUser() async throws -> User {
+        try await account.get().toUser()
     }
-    
-    func createEmailVerification() async throws -> Token {
-        return .init(id: "", userID: "", createdAt: .now, expiresAt: .now)
-//        let appwriteToken = try await account.createVerification(url: "http://192.168.86.244/")
-//        return appwriteToken.toToken()
-    }
-    
-    func logout(sessionID: String) async throws {
-        //TODO: ...
-    }
-}
-
-enum TodoError: Error {
-    case unexpected
-}
-
-extension Appwrite.User {
-    
-    func toUser() -> User {
-        let formatter = ISO8601DateFormatter.sharedWithFractionalSeconds
-        
-        return .init(
-            accessedAt: formatter.date(from: accessedAt),
-            createdAt: formatter.date(from: createdAt),
-            email: email,
-            emailVerification: emailVerification,
-            id: id,
-            labels: [],
-            name: name,
-            passwordUpdate: formatter.date(from: passwordUpdate),
-            phone: phone,
-            phoneVerification: phoneVerification,
-            prefs: [],
-            registration: formatter.date(from: registration),
-            status: status,
-            updatedAt: formatter.date(from: updatedAt)
-        )
-    }
-}
-
-extension Appwrite.Token {
-    func toToken() -> Token {
-        let formatter = ISO8601DateFormatter.sharedWithFractionalSeconds
-        
-        return .init(
-            id: id,
-            userID: userId,
-            createdAt: formatter.date(from: createdAt),
-            expiresAt: formatter.date(from: expire)
-        )
-    }
-}
-
-extension Appwrite.Session {
-//    func toSession() -> Session {
-//
-//    }
 }
