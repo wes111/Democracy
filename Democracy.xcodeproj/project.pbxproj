@@ -78,6 +78,7 @@
 		EE70555F2B13917100E40A89 /* PhoneInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE70555E2B13917100E40A89 /* PhoneInputViewModel.swift */; };
 		EE7055612B14034700E40A89 /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7055602B14034700E40A89 /* AsyncButton.swift */; };
 		EE7055642B14E2E000E40A89 /* Asynchrone in Frameworks */ = {isa = PBXBuildFile; productRef = EE7055632B14E2E000E40A89 /* Asynchrone */; };
+		EE7055662B18C37300E40A89 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7055652B18C37300E40A89 /* View+Extensions.swift */; };
 		EE7856132AAE75620004B7E4 /* NewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856122AAE75620004B7E4 /* NewFlowLayout.swift */; };
 		EE7856182AB7BACB0004B7E4 /* TaggableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856172AB7BACB0004B7E4 /* TaggableModifier.swift */; };
 		EE78561B2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78561A2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift */; };
@@ -296,6 +297,7 @@
 		EE70555C2B1390A800E40A89 /* EmailInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailInputViewModel.swift; sourceTree = "<group>"; };
 		EE70555E2B13917100E40A89 /* PhoneInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneInputViewModel.swift; sourceTree = "<group>"; };
 		EE7055602B14034700E40A89 /* AsyncButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
+		EE7055652B18C37300E40A89 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		EE7856122AAE75620004B7E4 /* NewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFlowLayout.swift; sourceTree = "<group>"; };
 		EE7856172AB7BACB0004B7E4 /* TaggableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggableModifier.swift; sourceTree = "<group>"; };
 		EE78561A2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardBorderedModifier.swift; sourceTree = "<group>"; };
@@ -648,6 +650,7 @@
 			isa = PBXGroup;
 			children = (
 				EE5B93A42A088E7B00B43381 /* Color+Extensions.swift */,
+				EE7055652B18C37300E40A89 /* View+Extensions.swift */,
 			);
 			path = "SwiftUI Extensions";
 			sourceTree = "<group>";
@@ -1594,6 +1597,7 @@
 				EE5B938529F7652800B43381 /* HeaderWithDropDownFilter.swift in Sources */,
 				EE80D8E229BC1DD80000F8EF /* PostInteractor.swift in Sources */,
 				EE80D92229C9557D0000F8EF /* CandidateInteractor.swift in Sources */,
+				EE7055662B18C37300E40A89 /* View+Extensions.swift in Sources */,
 				EED4A50F29AB1A5A00DDCCDA /* CommunitiesTabMainView.swift in Sources */,
 				EE4524B12A5CF0A000C7A2DD /* LeadersScrollView.swift in Sources */,
 				EE936CAB2A789F8700D49271 /* VotingTabPath.swift in Sources */,
