@@ -52,11 +52,11 @@ extension AcceptTermsView {
     }
     
     var agreeButton: some View {
-        AsyncButton {
-            await viewModel.agreeToTerms()
-        } label: {
-            Text("I agree")
-        }
+        AsyncButton(
+            action: { await viewModel.agreeToTerms() },
+            label: { Text("I agree") }, 
+            showProgressView: $viewModel.isShowingProgress
+        )
         .buttonStyle(PrimaryButtonStyle())
     }
 }

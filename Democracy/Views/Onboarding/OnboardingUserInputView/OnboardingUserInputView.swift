@@ -29,7 +29,7 @@ struct OnboardingUserInputView<T: InputViewModel>: View {
             }
             .padding()
             
-            if viewModel.isLoading {
+            if viewModel.isShowingProgress {
                 ProgressView()
                     .progressViewStyle(.circular)
                     .tint(.white)
@@ -96,11 +96,11 @@ extension OnboardingUserInputView {
     }
     
     var nextButton: some View {
-        AsyncButton {
-            await viewModel.submit()
-        } label: {
-            Text("Next")
-        }
+        AsyncButton(
+            action: { await viewModel.submit() },
+            label: { Text("Next") },
+            showProgressView: $viewModel.isShowingProgress
+        )
         .buttonStyle(PrimaryButtonStyle())
         .disabled(!viewModel.canSubmit)
     }

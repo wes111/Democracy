@@ -29,7 +29,7 @@ protocol OnboardingCoordinatorDelegate: AnyObject {
 // TODO: The use of a single protocol here exposes too much to the view.
 protocol InputViewModel: Hashable, ObservableObject {
     associatedtype Field: ValidatableOnboardingField
-    var isLoading: Bool { get }
+    var isShowingProgress: Bool { get set }
     var text: String { get set }
     var field: OnboardingInputField { get }
     var topButtons: [OnboardingTopButton: () -> Void] { get }

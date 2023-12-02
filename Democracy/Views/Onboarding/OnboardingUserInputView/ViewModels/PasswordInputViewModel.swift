@@ -17,7 +17,7 @@ final class PasswordInputViewModel: InputViewModel {
     @Published var text: String = ""
     @Published var textErrors: [Field.Error] = []
     @Published var onboardingAlert: OnboardingAlert?
-    @Published var isLoading: Bool = false
+    @Published var isShowingProgress: Bool = false
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator
@@ -31,9 +31,9 @@ final class PasswordInputViewModel: InputViewModel {
     
     @MainActor // TODO: Need to test using @MainActor like this.
     func submit() async {
-        isLoading = true
+        isShowingProgress = true
         defer {
-            isLoading = false
+            isShowingProgress = false
         }
         try? await Task.sleep(nanoseconds: 1_000_000_000)
         guard field.fullyValid(input: text) else {

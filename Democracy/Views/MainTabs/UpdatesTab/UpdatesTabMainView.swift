@@ -16,16 +16,15 @@ struct UpdatesTabMainView<ViewModel: UpdatesTabMainViewModelProtocol>: View {
     }
     
     var body: some View {
-        AsyncButton {
-            await viewModel.logout()
-        } label: {
-            Text("Updates. Logout")
-        }
-
+        AsyncButton(
+            action: { await viewModel.logout() },
+            label: { Text("Updates. Logout") },
+            showProgressView: $viewModel.isShowingProgress
+        )
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     UpdatesTabMainView(viewModel: UpdatesTabMainViewModel.preview)
 }

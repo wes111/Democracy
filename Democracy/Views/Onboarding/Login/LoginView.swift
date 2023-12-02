@@ -15,56 +15,71 @@ struct LoginView: View {
     @StateObject private var viewModel: LoginViewModel
     @FocusState private var focusedField: LoginField?
     @State private var isKeyboardVisible = false
+    @State private var keyboardVisibilityChangedTask: Task<Void, Error>?
     
     init(viewModel: LoginViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
-        ZStack {
-            Color.primaryBackground.ignoresSafeArea()
-            
-            VStack(spacing: isKeyboardVisible ? 20 : 50) {
-                
-                Image("BMW")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: isKeyboardVisible ? 80 : 100)
-                
-                VStack(spacing: 20) {
-                    emailField
-                    passwordField
-                    loginButton
-                    forgotPasswordButton
-                    Spacer()
+        GeometryReader { geo in
+            ZStack(alignment: .bottom) {
+                Color.primaryBackground.ignoresSafeArea()
+                VStack(spacing: isKeyboardVisible ? 20 : 50) {
+                    logoView
+                    VStack(spacing: 20) {
+                        emailField
+                        passwordField
+                        loginButton
+                        forgotPasswordButton
+                        Spacer()
+                    }
                 }
+                .frame(alignment: .top)
+                .padding(.top, isKeyboardVisible ? 20 : 50)
+                .padding([.horizontal, .bottom])
+                
+                VStack {
+                    Spacer()
+                    if viewModel.isShowingProgress {
+                        progressView
+                    }
+                    Spacer()
+                    createAccountButton
+                }
+                .frame(height: geo.size.height / 2, alignment: .bottom)
+                .padding([.horizontal, .bottom])
             }
-            .padding(.top, isKeyboardVisible ? 20 : 50)
-            .padding([.horizontal, .bottom])
-            
-            VStack {
-                Spacer()
-                createAccountButton
-            }
-            .padding([.horizontal, .bottom])
+            .geometryGroup() // Caused sizes controlled by 'isKeyboardVisible' to update simultaneously.
+            .ignoresSafeArea(.keyboard)
         }
-        .ignoresSafeArea(.keyboard)
         .onTapGesture {
             focusedField = nil
         }
         .alert(item: $viewModel.alert) { alert in
             Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .cancel())
         }
-        .onReceive(keyboardPublisher) { value in
-            withAnimation {
-                isKeyboardVisible = value
-            }
+        .onReceive(keyboardPublisher) { isVisible in
+            startKeyboardVisibilityDidChangeTask(isVisible: isVisible)
         }
     }
 }
 
 // MARK: - Subviews
 extension LoginView {
+    
+    var progressView: some View {
+        ProgressView()
+            .controlSize(.large)
+            .tint(.secondaryText)
+    }
+    
+    var logoView: some View {
+        Image("BMW")
+            .resizable()
+            .scaledToFit()
+            .frame(height: isKeyboardVisible ? 80 : 100)
+    }
     
     var emailField: some View {
         TextField("Email", text: $viewModel.email,
@@ -76,7 +91,10 @@ extension LoginView {
         )
         .focused($focusedField, equals: .email)
         .standardTextField()
-        .submitLabel(.next)
+        .submitLabel(.continue)
+        .onSubmit {
+            focusedField = .password
+        }
     }
     
     var passwordField: some View {
@@ -95,13 +113,17 @@ extension LoginView {
     }
     
     var loginButton: some View {
-        AsyncButton {
-            await viewModel.login()
-        } label: {
-            Text("Login")
-        }
+        AsyncButton(
+            action: {
+                focusedField = nil
+                await viewModel.login()
+            },
+            label: {
+                Text("Login")
+            },
+            showProgressView: $viewModel.isShowingProgress
+        )
         .buttonStyle(PrimaryButtonStyle())
-        .disabled(!viewModel.isValid)
     }
     
     var forgotPasswordButton: some View {
@@ -117,13 +139,29 @@ extension LoginView {
     var createAccountButton: some View {
         Button {
             /// A bug occurs if the focusedField is not set to nil here because two views
-            /// would have active focused fields. This causes bad dismiss animation for the onboarding flow.
+            /// could have active focused fields. This causes bad dismiss animation for the onboarding flow.
             focusedField = nil
             viewModel.createAccount()
         } label: {
             Text("Create Account")
         }
         .buttonStyle(PrimaryButtonStyle())
+    }
+}
+
+// MARK: - Helper Methods
+private extension LoginView {
+    // This method helps smooth an iOS keyboard dismiss bug when updating the @FocusState.
+    // swiftlint:disable:next line_length
+    // https://stackoverflow.com/questions/73112180/textfield-is-dismissed-when-setting-a-new-textfield-focus-in-ios-16
+    func startKeyboardVisibilityDidChangeTask(isVisible: Bool) {
+        keyboardVisibilityChangedTask?.cancel()
+        keyboardVisibilityChangedTask = Task {
+            try await Task.sleep(nanoseconds: 50_000_000)
+            withAnimation {
+                isKeyboardVisible = isVisible
+            }
+        }
     }
 }
 
