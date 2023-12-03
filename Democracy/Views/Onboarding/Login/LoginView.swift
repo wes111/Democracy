@@ -50,7 +50,7 @@ struct LoginView: View {
                 .frame(height: geo.size.height / 2, alignment: .bottom)
                 .padding([.horizontal, .bottom])
             }
-            .geometryGroup() // Caused sizes controlled by 'isKeyboardVisible' to update simultaneously.
+            .geometryGroup() // Causes sizes controlled by 'isKeyboardVisible' to update simultaneously.
             .ignoresSafeArea(.keyboard)
         }
         .onTapGesture {
@@ -101,6 +101,12 @@ extension LoginView {
         CustomSecureField(secureText: $viewModel.password, loginField: $focusedField)
             .focused($focusedField, equals: .password)
             .submitLabel(.go)
+            .onSubmit {
+                performAsnycTask(
+                    action: viewModel.login,
+                    isShowingProgress: $viewModel.isShowingProgress
+                )
+            }
     }
     
     var loginButton: some View {
@@ -115,6 +121,7 @@ extension LoginView {
             showProgressView: $viewModel.isShowingProgress
         )
         .buttonStyle(PrimaryButtonStyle())
+        .disabled(viewModel.isShowingProgress)
     }
     
     var forgotPasswordButton: some View {
@@ -137,6 +144,7 @@ extension LoginView {
             Text("Create Account")
         }
         .buttonStyle(PrimaryButtonStyle())
+        .disabled(viewModel.isShowingProgress)
     }
 }
 

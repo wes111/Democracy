@@ -28,7 +28,24 @@ extension View {
     }
 }
 
-// TODO: ...
-//#Preview {
-//    View_Extensions()
-//}
+extension View {
+    
+    // See 'AsyncButton' for similar functionality.
+    @MainActor
+    func performAsnycTask(action: @escaping () async -> Void, isShowingProgress: Binding<Bool>) {
+        Task {
+            var progressViewTask: Task<Void, Error>?
+            
+            progressViewTask = Task {
+                try await Task.sleep(nanoseconds: 150_000_000)
+                isShowingProgress.wrappedValue = true
+            }
+            
+            await action()
+            progressViewTask?.cancel()
+            withAnimation {
+                isShowingProgress.wrappedValue = false
+            }
+        }
+    }
+}
