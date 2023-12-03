@@ -89,8 +89,12 @@ extension LoginView {
             text: $viewModel.email,
             count: OnboardingInputField.email.maxCharacterCount
         )
-        .focused($focusedField, equals: .email)
         .standardTextField()
+        .contentShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+        .onTapGesture {
+            focusedField = .email
+        }
+        .focused($focusedField, equals: .email)
         .submitLabel(.continue)
         .onSubmit {
             focusedField = .password
