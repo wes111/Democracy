@@ -33,6 +33,8 @@ struct CustomSecureField: View {
             }
             updateVisibilityButton
         }
+        // Prevent button from bouncing incorrectly on keyboard dismiss.
+        .geometryGroup()
         .foregroundStyle(Color.primaryText)
         .padding(.horizontal)
         .overlay(
@@ -50,14 +52,10 @@ struct CustomSecureField: View {
             focusedField = isHidden ? .hidden : .visible
         }
         .onChange(of: secureText) { visibleText, newHiddenText in
-            if didChangeFromVisibleToHidden {
-                if newHiddenText.isEmpty { // The user pressed delete.
-                    secureText = String(visibleText.dropLast())
-                } else { // The user added a new character.
-                    secureText = visibleText + newHiddenText
-                }
-                didChangeFromVisibleToHidden = false
-            }
+            secureTextDidChange(
+                visibleText: visibleText,
+                newHiddenText: newHiddenText
+            )
         }
     }
 }
@@ -71,6 +69,7 @@ private extension CustomSecureField {
             text: $secureText,
             prompt: Text("Password").foregroundColor(.secondaryBackground)
         )
+        .disabled(isHidden)
         .opacity(isHidden ? 0.0 : 1.0)
         .focused($focusedField, equals: .visible)
         .padding(.vertical)
@@ -96,7 +95,30 @@ private extension CustomSecureField {
                 .foregroundStyle(Color.secondaryText)
         }
     }
+}
+
+// MARK: Private Methods
+private extension CustomSecureField {
     
+    func secureTextDidChange(visibleText: String, newHiddenText: String) {
+        if didChangeFromVisibleToHidden {
+            if newHiddenText.isEmpty { // The user pressed delete.
+                secureText = String(visibleText.dropLast())
+            } else if newHiddenText.count == 1 { // The user added a new character.
+                secureText = visibleText + newHiddenText
+            } else {
+                // 'onChange' is in a bad state, so set the text to an emtpy string.
+                secureText = ""
+                // TODO: Remove! For debugging only!
+                fatalError("original: \(visibleText), new: \(newHiddenText))")
+            }
+            didChangeFromVisibleToHidden = false
+        }
+    }
+}
+
+// MARK: - Private Helper Objects
+private extension CustomSecureField {
     enum SecureFocusField {
         case hidden, visible
     }
