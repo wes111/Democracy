@@ -101,18 +101,6 @@ extension LoginView {
         CustomSecureField(secureText: $viewModel.password, loginField: $focusedField)
             .focused($focusedField, equals: .password)
             .submitLabel(.go)
-//        SecureField(
-//            "Enter a password",
-//            text: $viewModel.password,
-//            prompt: Text("Password").foregroundColor(.secondaryBackground)
-//        )
-//        .limitCharacters(
-//            text: $viewModel.password,
-//            count: OnboardingInputField.password.maxCharacterCount
-//        )
-//        .focused($focusedField, equals: .password)
-//        .standardTextField()
-//        .submitLabel(.go)
     }
     
     var loginButton: some View {
