@@ -21,21 +21,19 @@ struct CustomSecureField: View {
                     unsecureTextField
                     secureTextField
                 }
-                .contentShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+                .textFieldStyle(PasswordTextFieldStyle(
+                    password: $secureText,
+                    isNewPassword: false)
+                )
                 .onTapGesture {
                     loginField = .password
                     focusedField = isHidden ? .hidden : .visible
                 }
-                .limitCharacters(
-                    text: $secureText,
-                    count: OnboardingInputField.password.maxCharacterCount
-                )
             }
             updateVisibilityButton
         }
         // Prevent button from bouncing incorrectly on keyboard dismiss.
         .geometryGroup()
-        .foregroundStyle(Color.primaryText)
         .padding(.horizontal)
         .overlay(
             RoundedRectangle(cornerRadius: 10, style: .circular)
@@ -72,7 +70,6 @@ private extension CustomSecureField {
         .disabled(isHidden)
         .opacity(isHidden ? 0.0 : 1.0)
         .focused($focusedField, equals: .visible)
-        .padding(.vertical)
     }
     
     var secureTextField: some View {
@@ -94,6 +91,7 @@ private extension CustomSecureField {
             Image(systemName: isHidden ? "eye": "eye.slash")
                 .foregroundStyle(Color.secondaryText)
         }
+        .foregroundStyle(Color.primaryText)
     }
 }
 

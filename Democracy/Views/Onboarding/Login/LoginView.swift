@@ -85,12 +85,7 @@ extension LoginView {
         TextField("Email", text: $viewModel.email,
                   prompt: Text("Email").foregroundColor(.secondaryBackground)
         )
-        .limitCharacters(
-            text: $viewModel.email,
-            count: OnboardingInputField.email.maxCharacterCount
-        )
-        .standardTextField()
-        .contentShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+        .textFieldStyle(EmailTextFieldStyle(email: $viewModel.email))
         .onTapGesture {
             focusedField = .email
         }
