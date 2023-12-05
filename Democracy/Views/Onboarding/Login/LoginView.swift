@@ -11,6 +11,21 @@ enum LoginField {
     case email, password
 }
 
+extension LoginField: PasswordCaseRepresentable {
+    var isPasswordCase: Bool {
+        switch self {
+        case .email:
+            false
+        case .password:
+            true
+        }
+    }
+    
+    static var passwordCase: LoginField {
+        .password
+    }
+}
+
 struct LoginView: View {
     @StateObject private var viewModel: LoginViewModel
     @FocusState private var focusedField: LoginField?
@@ -31,7 +46,7 @@ struct LoginView: View {
                         emailField
                         passwordField
                         loginButton
-                        forgotPasswordButton
+                        // forgotPasswordButton TODO: add back.
                         Spacer()
                     }
                 }

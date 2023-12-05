@@ -62,7 +62,7 @@ extension OnboardingInputField {
         case .email:
             128
         case .phone:
-            10 //TODO: Is this correct
+            10 // TODO: Is this correct
         }
     }
     
@@ -158,5 +158,21 @@ extension OnboardingInputField {
             }
         }
         return validationErrors
+    }
+}
+
+// MARK: PasswordCaseRepresentable
+extension OnboardingInputField: PasswordCaseRepresentable {
+    var isPasswordCase: Bool {
+        switch self {
+        case .username, .email, .phone:
+            return false
+        case .password:
+            return true
+        }
+    }
+    
+    static var passwordCase: OnboardingInputField {
+        Self.password
     }
 }

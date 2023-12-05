@@ -29,7 +29,7 @@ final class PasswordInputViewModel: InputViewModel {
         [.close: close, .back: goBack]
     }
     
-    @MainActor // TODO: Need to test using @MainActor like this.
+    @MainActor
     func submit() async {
         isShowingProgress = true
         defer {
