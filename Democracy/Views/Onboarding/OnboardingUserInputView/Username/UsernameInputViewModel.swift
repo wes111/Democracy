@@ -28,12 +28,8 @@ final class UsernameInputViewModel: InputViewModel {
         [.close: close]
     }
     
-    @MainActor // TODO: Need to test using @MainActor like this.
+    @MainActor
     func submit() async {
-        isShowingProgress = true
-        defer {
-            isShowingProgress = false
-        }
         try? await Task.sleep(nanoseconds: 1_000_000_000)
         do {
             guard field.fullyValid(input: text) else {

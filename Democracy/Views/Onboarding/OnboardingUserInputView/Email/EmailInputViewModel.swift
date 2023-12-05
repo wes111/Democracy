@@ -29,12 +29,8 @@ final class EmailInputViewModel: InputViewModel {
         [.close: close, .back: goBack]
     }
     
-    @MainActor // TODO: Need to test using @MainActor like this.
+    @MainActor
     func submit() async {
-        isShowingProgress = true
-        defer {
-            isShowingProgress = false
-        }
         try? await Task.sleep(nanoseconds: 1_000_000_000)
         guard field.fullyValid(input: text) else {
             return presentInvalidInputAlert()
