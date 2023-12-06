@@ -39,7 +39,7 @@ struct PhoneOnboardingInputView: OnboardingInputView {
             text: $viewModel.text,
             prompt: Text(viewModel.fieldTitle).foregroundColor(.secondaryBackground)
         )
-        .textFieldStyle(UsernameTextFieldStyle(username: $viewModel.text)) // TODO: Make Phone style.
+        .textFieldStyle(PhoneTextFieldStyle(phone: $viewModel.text))
         .focused($focusedField, equals: viewModel.field)
         .submitLabel(.next)
         .onTapGesture {

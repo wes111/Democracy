@@ -31,7 +31,7 @@ final class PasswordInputViewModel: InputViewModel {
     
     @MainActor
     func submit() async {
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        //try? await Task.sleep(nanoseconds: 1_000_000_000)
         guard field.fullyValid(input: text) else {
             return presentInvalidInputAlert()
         }
@@ -41,7 +41,6 @@ final class PasswordInputViewModel: InputViewModel {
     
     func setupBindings() {
         $text
-            .debounce(for: 0.05, scheduler: RunLoop.main)
             .compactMap { [weak self] text in
                 guard !text.isEmpty else { return [] }
                 return self?.field.getInputValidationErrors(input: text)

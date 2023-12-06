@@ -62,7 +62,7 @@ extension OnboardingInputField {
         case .email:
             128
         case .phone:
-            10 // TODO: Is this correct
+            14
         }
     }
     
@@ -127,15 +127,7 @@ extension OnboardingInputField {
             
         case .phone:
             /// Must be 10 digits long.
-            #"^\d{10}$"#
-            
-//        case .verifyPhone:
-//            /// String has at least one character, excluding newline.
-//            #"^.+$"#
-            
-//        case .verifyEmail:
-//            /// String has at least one character, excluding newline.
-//            #"^.+$"#
+            "\\(\\d{3}\\) \\d{3}-\\d{4}"
         }
     }
 }

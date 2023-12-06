@@ -23,6 +23,7 @@
 		EE36FF952B1E17F3009E8F86 /* EmailOnboardingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF942B1E17F3009E8F86 /* EmailOnboardingInputView.swift */; };
 		EE36FF982B1E183E009E8F86 /* PhoneOnboardingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF972B1E183E009E8F86 /* PhoneOnboardingInputView.swift */; };
 		EE36FF9A2B1ECB17009E8F86 /* UsernameTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF992B1ECB17009E8F86 /* UsernameTextFieldStyle.swift */; };
+		EE36FF9C2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF9B2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift */; };
 		EE45248D2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45248C2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift */; };
 		EE45248F2A5651FB00C7A2DD /* ResourcesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45248E2A5651FB00C7A2DD /* ResourcesSection.swift */; };
 		EE4524912A56597400C7A2DD /* ResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524902A56597400C7A2DD /* ResourceView.swift */; };
@@ -252,6 +253,7 @@
 		EE36FF942B1E17F3009E8F86 /* EmailOnboardingInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailOnboardingInputView.swift; sourceTree = "<group>"; };
 		EE36FF972B1E183E009E8F86 /* PhoneOnboardingInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOnboardingInputView.swift; sourceTree = "<group>"; };
 		EE36FF992B1ECB17009E8F86 /* UsernameTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameTextFieldStyle.swift; sourceTree = "<group>"; };
+		EE36FF9B2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldStyle.swift; sourceTree = "<group>"; };
 		EE45248C2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesSectionViewModel.swift; sourceTree = "<group>"; };
 		EE45248E2A5651FB00C7A2DD /* ResourcesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesSection.swift; sourceTree = "<group>"; };
 		EE4524902A56597400C7A2DD /* ResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceView.swift; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 				EE36FF882B1D0800009E8F86 /* EmailTextFieldStyle.swift */,
 				EE36FF8A2B1D6EFD009E8F86 /* PasswordTextFieldStyle.swift */,
 				EE36FF992B1ECB17009E8F86 /* UsernameTextFieldStyle.swift */,
+				EE36FF9B2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift */,
 			);
 			path = TextField;
 			sourceTree = "<group>";
@@ -1520,6 +1523,7 @@
 				EEB5AF982B0320D400310408 /* KeyChainStorage.swift in Sources */,
 				EE45248D2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift in Sources */,
 				EE80D91329C92DA60000F8EF /* CandidateCardViewModel+Preview.swift in Sources */,
+				EE36FF9C2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift in Sources */,
 				EE11729B2A6F3D0300E529AF /* AlliedCommunityView.swift in Sources */,
 				EE936CAF2A789FB000D49271 /* UpdatesTabPath.swift in Sources */,
 				EE936CB32A78A03600D49271 /* EventsTabCoordinatorViewModel.swift in Sources */,
