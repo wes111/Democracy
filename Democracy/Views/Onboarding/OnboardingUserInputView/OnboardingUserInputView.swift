@@ -41,6 +41,7 @@ extension OnboardingInputView {
         Text(viewModel.subtitle)
             .font(.system(.body, weight: .light))
             .foregroundColor(.primaryText)
+            .lineLimit(2...)
     }
     
     var nextButton: some View {
@@ -62,8 +63,12 @@ extension OnboardingInputView {
                 subtitle
                 field
                 errors
-                nextButton
-                Spacer()
+                
+                VStack {
+                    nextButton
+                    Spacer()
+                }
+                .ignoresSafeArea(.keyboard)
             }
             .padding()
             
