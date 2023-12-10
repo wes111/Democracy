@@ -8,6 +8,7 @@
 import Asynchrone
 import Factory
 import Foundation
+import SharedResourcesClientAndServer
 
 enum AccountServiceError: Error {
     case noSession
@@ -15,6 +16,7 @@ enum AccountServiceError: Error {
 
 protocol AccountService {
     func getUsernameAvailable(username: String) async throws -> Bool
+    func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool
     func login(email: String, password: String) async throws
     func logout() async throws
     func updatePhone(phone: PhoneNumber, password: String) async throws
@@ -81,6 +83,10 @@ extension AccountServiceDefault {
     
     func getUsernameAvailable(username: String) async throws -> Bool {
         try await userRepository.getUsernameAvailable(username: username)
+    }
+    
+    func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool {
+        try await userRepository.getPhoneIsAvailable(phone)
     }
     
     func login(email: String, password: String) async throws {

@@ -37,14 +37,15 @@ struct Token {
 }
 
 protocol AppwriteService {
-    func createUser(userName: String, password: String, email: String) async throws -> User
+    func createUser(userName: String, password: String, email: String) async throws -> SharedResourcesClientAndServer.User
     func login(email: String, password: String) async throws -> Session
     func logout(sessionId: String) async throws
     func getCurrentSession() async throws -> Session
-    func updatePhone(phone: PhoneNumber, password: String) async throws -> User
-    func getCurrentLoggedInUser() async throws -> User
+    func updatePhone(phone: PhoneNumber, password: String) async throws -> SharedResourcesClientAndServer.User
+    func getCurrentLoggedInUser() async throws -> SharedResourcesClientAndServer.User
     
     func getUserNameAvailable(username: String) async throws -> Bool
+    func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool
 }
 
 // TODO: There is info that must be added to get the OAuth callback (see website).
@@ -81,7 +82,7 @@ final class AppwriteServiceDefault: AppwriteService {
         return response.isAvailable
     }
     
-    func createUser(userName: String, password: String, email: String) async throws -> User {
+    func createUser(userName: String, password: String, email: String) async throws -> SharedResourcesClientAndServer.User {
         let appwriteUser = try await account.create(
             userId: userName,
             email: email,
@@ -102,11 +103,22 @@ final class AppwriteServiceDefault: AppwriteService {
         try await account.getSession(sessionId: "current").toSession()
     }
     
-    func updatePhone(phone: PhoneNumber, password: String) async throws -> User {
+    func updatePhone(phone: PhoneNumber, password: String) async throws -> SharedResourcesClientAndServer.User {
         try await account.updatePhone(phone: phone.appwriteString, password: password).toUser()
     }
     
-    func getCurrentLoggedInUser() async throws -> User {
+    func getCurrentLoggedInUser() async throws -> SharedResourcesClientAndServer.User {
         try await account.get().toUser()
+    }
+    
+    func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool {
+        let phoneJSONString = try Phone(phone: phone.appwriteString).toJSONString()
+        let execution = try await functions.createExecution(
+            functionId: "getUserByPhone",
+            body: phoneJSONString,
+            method: "GET"
+        )
+        let users: UsersList = try execution.responseBody.decode()
+        return users.list.isEmpty
     }
 }

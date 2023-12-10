@@ -7,6 +7,7 @@
 
 import Factory
 import Foundation
+import SharedResourcesClientAndServer
 
 // This shoud store info about the signed in user.
 protocol UserLocalRepositoryProtocol {

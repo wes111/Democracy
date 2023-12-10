@@ -8,6 +8,7 @@
 import Asynchrone
 import Factory
 import Foundation
+import SharedResourcesClientAndServer
 
 /// Stores the single logged-in user. If there is no session, there is no user.
 protocol UserRepository: Repository where Object == User {
@@ -16,6 +17,7 @@ protocol UserRepository: Repository where Object == User {
     func fetchSignedInUser() async throws
     func removePersistedUser() async throws
     func getUsernameAvailable(username: String) async throws -> Bool
+    func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool
 }
 
 actor UserRepositoryDefault: UserRepository, UserDefaultsStorable {
@@ -79,5 +81,9 @@ extension UserRepositoryDefault {
     
     func getUsernameAvailable(username: String) async throws -> Bool {
         try await appwriteService.getUserNameAvailable(username: username)
+    }
+    
+    func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool {
+        try await appwriteService.getPhoneIsAvailable(phone)
     }
 }

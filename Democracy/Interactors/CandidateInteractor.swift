@@ -8,6 +8,7 @@
 import Combine
 import Factory
 import Foundation
+import SharedResourcesClientAndServer
 
 protocol CandidateInteractorProtocol {
     func subscribeToCandidates() -> AnyPublisher<[Candidate], Never>

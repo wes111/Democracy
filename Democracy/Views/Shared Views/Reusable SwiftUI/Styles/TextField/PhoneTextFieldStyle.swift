@@ -15,7 +15,7 @@ struct PhoneTextFieldStyle: TextFieldStyle {
     func _body(configuration: TextField<_Label>) -> some View {
         configuration
             .onReceive(Just(phone)) { input in
-                phone = format(with: "(XXX) XXX-XXXX", phone: input)
+                phone = Self.format(with: "(XXX) XXX-XXXX", phone: input)
             }
             .keyboardType(.numberPad)
             .textContentType(.telephoneNumber)
@@ -29,7 +29,7 @@ struct PhoneTextFieldStyle: TextFieldStyle {
     // TODO: Move to a dedicated PhoneFormatter?
     // https://stackoverflow.com/questions/32364055/formatting-phone-number-in-swift
     // mask example: `+X (XXX) XXX-XXXX`
-    func format(with mask: String, phone: String) -> String {
+    static func format(with mask: String, phone: String) -> String {
         let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         var result = ""
         var index = numbers.startIndex // numbers iterator

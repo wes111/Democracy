@@ -15,6 +15,7 @@
 		EE11729B2A6F3D0300E529AF /* AlliedCommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729A2A6F3D0300E529AF /* AlliedCommunityView.swift */; };
 		EE11729D2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729C2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift */; };
 		EE11729F2A71C3C700E529AF /* CommunityCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729E2A71C3C700E529AF /* CommunityCategoryViewModel.swift */; };
+		EE28E35D2B24FACC00EC4E6F /* SharedResourcesClientAndServer in Frameworks */ = {isa = PBXBuildFile; productRef = EE28E35C2B24FACC00EC4E6F /* SharedResourcesClientAndServer */; };
 		EE36FF862B1C15FD009E8F86 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF852B1C15FD009E8F86 /* CustomSecureField.swift */; };
 		EE36FF892B1D0800009E8F86 /* EmailTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF882B1D0800009E8F86 /* EmailTextFieldStyle.swift */; };
 		EE36FF8B2B1D6EFD009E8F86 /* PasswordTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF8A2B1D6EFD009E8F86 /* PasswordTextFieldStyle.swift */; };
@@ -24,6 +25,7 @@
 		EE36FF982B1E183E009E8F86 /* PhoneOnboardingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF972B1E183E009E8F86 /* PhoneOnboardingInputView.swift */; };
 		EE36FF9A2B1ECB17009E8F86 /* UsernameTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF992B1ECB17009E8F86 /* UsernameTextFieldStyle.swift */; };
 		EE36FF9C2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF9B2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift */; };
+		EE36FFA22B24F487009E8F86 /* Appwrite in Frameworks */ = {isa = PBXBuildFile; productRef = EE36FFA12B24F487009E8F86 /* Appwrite */; };
 		EE45248D2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45248C2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift */; };
 		EE45248F2A5651FB00C7A2DD /* ResourcesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45248E2A5651FB00C7A2DD /* ResourcesSection.swift */; };
 		EE4524912A56597400C7A2DD /* ResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524902A56597400C7A2DD /* ResourceView.swift */; };
@@ -40,9 +42,7 @@
 		EE4524AE2A5CED6900C7A2DD /* LeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524AD2A5CED6900C7A2DD /* LeaderViewModel.swift */; };
 		EE4524B12A5CF0A000C7A2DD /* LeadersScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524B02A5CF0A000C7A2DD /* LeadersScrollView.swift */; };
 		EE4524B32A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524B22A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift */; };
-		EE4DB8872AC5084900A6DC90 /* Appwrite in Frameworks */ = {isa = PBXBuildFile; productRef = EE4DB8862AC5084900A6DC90 /* Appwrite */; };
 		EE4DB88A2AC50AD200A6DC90 /* AppwriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */; };
-		EE4DB88C2AC525FB00A6DC90 /* ISO8601DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB88B2AC525FB00A6DC90 /* ISO8601DateFormatter+Extension.swift */; };
 		EE4DB8912AC899ED00A6DC90 /* LoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */; };
 		EE4DB8942AC89F0800A6DC90 /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */; };
 		EE4DB8962AC89F6800A6DC90 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8952AC89F6800A6DC90 /* OnboardingCoordinator.swift */; };
@@ -186,7 +186,6 @@
 		EEB5AF7C2ADCA92A00310408 /* OnboardingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */; };
 		EEB5AF7E2AE0DE3700310408 /* ValidatableOnboardingField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7D2AE0DE3700310408 /* ValidatableOnboardingField.swift */; };
 		EEB5AF802AE0DE7000310408 /* OnboardingInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */; };
-		EEB5AF832AF8985500310408 /* SharedResourcesClientAndServer in Frameworks */ = {isa = PBXBuildFile; productRef = EEB5AF822AF8985500310408 /* SharedResourcesClientAndServer */; };
 		EEB5AF8B2AFA7DD500310408 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF8A2AFA7DD500310408 /* Session.swift */; };
 		EEB5AF8F2AFBCD6B00310408 /* SwiftDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF8E2AFBCD6B00310408 /* SwiftDataService.swift */; };
 		EEB5AF912B017F0900310408 /* UserDefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF902B017F0900310408 /* UserDefaultStorage.swift */; };
@@ -271,7 +270,6 @@
 		EE4524B02A5CF0A000C7A2DD /* LeadersScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersScrollView.swift; sourceTree = "<group>"; };
 		EE4524B22A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersScrollViewModel.swift; sourceTree = "<group>"; };
 		EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppwriteService.swift; sourceTree = "<group>"; };
-		EE4DB88B2AC525FB00A6DC90 /* ISO8601DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ISO8601DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatus.swift; sourceTree = "<group>"; };
 		EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
 		EE4DB8952AC89F6800A6DC90 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
@@ -469,10 +467,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE36FFA22B24F487009E8F86 /* Appwrite in Frameworks */,
+				EE28E35D2B24FACC00EC4E6F /* SharedResourcesClientAndServer in Frameworks */,
 				EE7055642B14E2E000E40A89 /* Asynchrone in Frameworks */,
-				EE4DB8872AC5084900A6DC90 /* Appwrite in Frameworks */,
 				EE80D8E929BD11600000F8EF /* Factory in Frameworks */,
-				EEB5AF832AF8985500310408 /* SharedResourcesClientAndServer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1343,7 +1341,6 @@
 				EED4A54229BAB60100DDCCDA /* Hashable+Extensions.swift */,
 				EE80D8EC29BD180E0000F8EF /* Container+Extensions.swift */,
 				EE5B938D2A03346C00B43381 /* Date+Extensions.swift */,
-				EE4DB88B2AC525FB00A6DC90 /* ISO8601DateFormatter+Extension.swift */,
 				EE9760032AD07314003069CF /* NSPredicate+Extensions.swift */,
 			);
 			path = Extensions;
@@ -1425,9 +1422,9 @@
 			name = Democracy;
 			packageProductDependencies = (
 				EE80D8E829BD11600000F8EF /* Factory */,
-				EE4DB8862AC5084900A6DC90 /* Appwrite */,
-				EEB5AF822AF8985500310408 /* SharedResourcesClientAndServer */,
 				EE7055632B14E2E000E40A89 /* Asynchrone */,
+				EE36FFA12B24F487009E8F86 /* Appwrite */,
+				EE28E35C2B24FACC00EC4E6F /* SharedResourcesClientAndServer */,
 			);
 			productName = Democracy;
 			productReference = EEF8345D299C6824001EEA5E /* Democracy.app */;
@@ -1459,10 +1456,10 @@
 			mainGroup = EEF83454299C6824001EEA5E;
 			packageReferences = (
 				EE80D8E729BD11600000F8EF /* XCRemoteSwiftPackageReference "Factory" */,
-				EE4DB8852AC5084900A6DC90 /* XCRemoteSwiftPackageReference "sdk-for-apple" */,
-				EEB5AF812AF8985500310408 /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */,
 				EEB5AF842AF9C36700310408 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				EE7055622B14E2E000E40A89 /* XCRemoteSwiftPackageReference "Asynchrone" */,
+				EE36FFA02B24F487009E8F86 /* XCRemoteSwiftPackageReference "sdk-for-apple" */,
+				EE28E35B2B24FACC00EC4E6F /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */,
 			);
 			productRefGroup = EEF8345E299C6824001EEA5E /* Products */;
 			projectDirPath = "";
@@ -1634,7 +1631,6 @@
 				EEB5AF672ADB186E00310408 /* OnboardingUserInputViewModelProtocol.swift in Sources */,
 				EEB5AF8B2AFA7DD500310408 /* Session.swift in Sources */,
 				EED4A50329AA86C900DDCCDA /* VotingTabMainView.swift in Sources */,
-				EE4DB88C2AC525FB00A6DC90 /* ISO8601DateFormatter+Extension.swift in Sources */,
 				EE45248F2A5651FB00C7A2DD /* ResourcesSection.swift in Sources */,
 				EE70555F2B13917100E40A89 /* PhoneInputViewModel.swift in Sources */,
 				EE9760062AD07941003069CF /* ValidationError.swift in Sources */,
@@ -1926,12 +1922,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		EE4DB8852AC5084900A6DC90 /* XCRemoteSwiftPackageReference "sdk-for-apple" */ = {
+		EE28E35B2B24FACC00EC4E6F /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wes111/SharedResourcesClientAndServer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.10;
+			};
+		};
+		EE36FFA02B24F487009E8F86 /* XCRemoteSwiftPackageReference "sdk-for-apple" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/appwrite/sdk-for-apple";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.1;
+				minimumVersion = 4.0.2;
 			};
 		};
 		EE7055622B14E2E000E40A89 /* XCRemoteSwiftPackageReference "Asynchrone" */ = {
@@ -1950,14 +1954,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		EEB5AF812AF8985500310408 /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/wes111/SharedResourcesClientAndServer";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		EEB5AF842AF9C36700310408 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint.git";
@@ -1969,9 +1965,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EE4DB8862AC5084900A6DC90 /* Appwrite */ = {
+		EE28E35C2B24FACC00EC4E6F /* SharedResourcesClientAndServer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EE4DB8852AC5084900A6DC90 /* XCRemoteSwiftPackageReference "sdk-for-apple" */;
+			package = EE28E35B2B24FACC00EC4E6F /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */;
+			productName = SharedResourcesClientAndServer;
+		};
+		EE36FFA12B24F487009E8F86 /* Appwrite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE36FFA02B24F487009E8F86 /* XCRemoteSwiftPackageReference "sdk-for-apple" */;
 			productName = Appwrite;
 		};
 		EE7055632B14E2E000E40A89 /* Asynchrone */ = {
@@ -1983,11 +1984,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE80D8E729BD11600000F8EF /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
-		};
-		EEB5AF822AF8985500310408 /* SharedResourcesClientAndServer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EEB5AF812AF8985500310408 /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */;
-			productName = SharedResourcesClientAndServer;
 		};
 		EEB5AF852AF9C3CD00310408 /* SwiftLintPlugin */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedResourcesClientAndServer
 
 struct Post: Identifiable {
     let id: String = UUID().uuidString
@@ -21,7 +22,6 @@ struct Post: Identifiable {
     let creator: User
     let community: Community = Community.preview
     var tags: [Tag]
-
     
     init(title: String, subtitle: String? = nil, body: String, creator: User, tags: [Tag], link: Link? = nil) {
         self.title = title

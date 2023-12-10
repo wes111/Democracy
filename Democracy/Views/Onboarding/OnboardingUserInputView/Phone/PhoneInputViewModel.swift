@@ -31,12 +31,23 @@ final class PhoneInputViewModel: InputViewModel {
     
     @MainActor
     func submit() async {
-        //try? await Task.sleep(nanoseconds: 1_000_000_000)
-        guard field.fullyValid(input: text) else {
-            return presentInvalidInputAlert()
+        do {
+            guard field.fullyValid(input: text) else {
+                return presentInvalidInputAlert()
+            }
+            guard let phoneBaseInt = Int(PhoneTextFieldStyle.format(with: "XXXXXXXXXX", phone: text)) else {
+                return // TODO: Throw an error?
+            }
+            let phoneNumber = PhoneNumber(base: phoneBaseInt)
+            guard try await accountService.getPhoneIsAvailable(phoneNumber) else {
+                return presentPhoneUnavailableAlert()
+            }
+            onboardingInput.phone = text
+            coordinator?.submitPhone(input: onboardingInput)
+        } catch {
+            print(error.localizedDescription)
+            presentGenericAlert()
         }
-        onboardingInput.phone = text
-        coordinator?.submitPhone(input: onboardingInput)
     }
     
     func setupBindings() {
@@ -46,5 +57,13 @@ final class PhoneInputViewModel: InputViewModel {
                 return self?.field.getInputValidationErrors(input: text)
             }
             .assign(to: &$textErrors)
+    }
+    
+    @MainActor
+    func presentPhoneUnavailableAlert() {
+        onboardingAlert = .init(
+            title: "Phone Number Unavailable",
+            message: "Please enter a different phone number to continue."
+        )
     }
 }
