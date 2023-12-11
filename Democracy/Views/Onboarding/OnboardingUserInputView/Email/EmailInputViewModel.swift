@@ -31,12 +31,19 @@ final class EmailInputViewModel: InputViewModel {
     
     @MainActor
     func submit() async {
-        //try? await Task.sleep(nanoseconds: 1_000_000_000)
-        guard field.fullyValid(input: text) else {
-            return presentInvalidInputAlert()
+        do {
+            guard field.fullyValid(input: text) else {
+                return presentInvalidInputAlert()
+            }
+            guard try await accountService.getEmailAvailable(text) else {
+                return presentEmailUnavailableAlert()
+            }
+            onboardingInput.email = text
+            coordinator?.submitEmail(input: onboardingInput)
+        } catch {
+            print(error.localizedDescription)
+            presentGenericAlert()
         }
-        onboardingInput.email = text
-        coordinator?.submitEmail(input: onboardingInput)
     }
     
     func setupBindings() {
@@ -46,5 +53,13 @@ final class EmailInputViewModel: InputViewModel {
                 return self?.field.getInputValidationErrors(input: text)
             }
             .assign(to: &$textErrors)
+    }
+    
+    @MainActor
+    func presentEmailUnavailableAlert() {
+        onboardingAlert = .init(
+            title: "Email Unavailable",
+            message: "Please enter a different email to continue."
+        )
     }
 }

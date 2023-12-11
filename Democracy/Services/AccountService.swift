@@ -17,6 +17,7 @@ enum AccountServiceError: Error {
 protocol AccountService {
     func getUsernameAvailable(username: String) async throws -> Bool
     func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool
+    func getEmailAvailable(_ email: String) async throws -> Bool
     func login(email: String, password: String) async throws
     func logout() async throws
     func updatePhone(phone: PhoneNumber, password: String) async throws
@@ -87,6 +88,10 @@ extension AccountServiceDefault {
     
     func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool {
         try await userRepository.getPhoneIsAvailable(phone)
+    }
+    
+    func getEmailAvailable(_ email: String) async throws -> Bool {
+        try await userRepository.getEmailAvailable(email)
     }
     
     func login(email: String, password: String) async throws {

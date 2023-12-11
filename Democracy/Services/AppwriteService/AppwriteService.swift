@@ -46,6 +46,7 @@ protocol AppwriteService {
     
     func getUserNameAvailable(username: String) async throws -> Bool
     func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool
+    func getEmailAvailable(_ email: String) async throws -> Bool
 }
 
 // TODO: There is info that must be added to get the OAuth callback (see website).
@@ -68,19 +69,10 @@ final class AppwriteServiceDefault: AppwriteService {
     private lazy var functions: Functions = {
         Functions(client)
     }()
-    
-    init() {}
-    
-    func getUserNameAvailable(username: String) async throws -> Bool {
-        let usernameJSONString = try Username(userName: username).toJSONString()
-        let execution = try await functions.createExecution(
-            functionId: "usernameAvailable",
-            body: usernameJSONString,
-            method: "GET"
-        )
-        let response: UsernameAvailable = try execution.responseBody.decode()
-        return response.isAvailable
-    }
+}
+
+// MARK: - Methods
+extension AppwriteServiceDefault {
     
     func createUser(userName: String, password: String, email: String) async throws -> SharedResourcesClientAndServer.User {
         let appwriteUser = try await account.create(
@@ -112,13 +104,33 @@ final class AppwriteServiceDefault: AppwriteService {
     }
     
     func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool {
-        let phoneJSONString = try Phone(phone: phone.appwriteString).toJSONString()
+        try await getUniqueAccountFieldAvailable(.phone, value: phone.appwriteString)
+    }
+    
+    func getUserNameAvailable(username: String) async throws -> Bool {
+        try await getUniqueAccountFieldAvailable(.username, value: username)
+    }
+    
+    func getEmailAvailable(_ email: String) async throws -> Bool {
+        let newEmail = "\"\(email)\""
+        return try await getUniqueAccountFieldAvailable(.email, value: newEmail)
+    }
+}
+
+// MARK: - Private Methods
+private extension AppwriteServiceDefault {
+    func getUniqueAccountFieldAvailable(_ field: UniqueAccountField, value: String) async throws -> Bool {
+        let jsonString = try UniqueAccountFieldRequest(
+            field: field,
+            value: value
+        ).toJSONString()
+        
         let execution = try await functions.createExecution(
-            functionId: "getUserByPhone",
-            body: phoneJSONString,
+            functionId: "UniqueAccountFieldIsAvailable",
+            body: jsonString,
             method: "GET"
         )
-        let users: UsersList = try execution.responseBody.decode()
-        return users.list.isEmpty
+        let isAvailable: UniqueAccountFieldAvailable = try execution.responseBody.decode()
+        return isAvailable.isAvailable
     }
 }

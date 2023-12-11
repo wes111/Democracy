@@ -18,6 +18,7 @@ protocol UserRepository: Repository where Object == User {
     func removePersistedUser() async throws
     func getUsernameAvailable(username: String) async throws -> Bool
     func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool
+    func getEmailAvailable(_ email: String) async throws -> Bool
 }
 
 actor UserRepositoryDefault: UserRepository, UserDefaultsStorable {
@@ -85,5 +86,9 @@ extension UserRepositoryDefault {
     
     func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool {
         try await appwriteService.getPhoneIsAvailable(phone)
+    }
+    
+    func getEmailAvailable(_ email: String) async throws -> Bool {
+        try await appwriteService.getEmailAvailable(email)
     }
 }
