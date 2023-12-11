@@ -1,5 +1,5 @@
 //
-//  UsernameInputViewModel.swift
+//  PhoneInputViewModel.swift
 //  Democracy
 //
 //  Created by Wesley Luntsford on 11/26/23.
@@ -8,42 +8,42 @@
 import Factory
 import Foundation
 
-final class UsernameInputViewModel: InputViewModel {
-    typealias Field = UsernameValidator
+final class PhoneInputViewModel: InputViewModel {
+    typealias Field = PhoneValidator
     @Injected(\.accountService) private var accountService
-    private var onboardingInput = OnboardingInput()
+    private var onboardingInput: OnboardingInput
     weak var coordinator: OnboardingCoordinatorDelegate?
     
     @Published var text: String = ""
     @Published var textErrors: [Field.Error] = []
     @Published var onboardingAlert: OnboardingAlert?
-    @Published var isLoading: Bool = false
+    @Published var isShowingProgress: Bool = false
     
-    init(coordinator: OnboardingCoordinatorDelegate?) {
+    init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator
+        self.onboardingInput = onboardingInput
         setupBindings()
     }
     
     var topButtons: [OnboardingTopButton: () -> Void] {
-        [.close: close]
+        [.close: close, .back: goBack]
     }
     
-    @MainActor // TODO: Need to test using @MainActor like this.
+    @MainActor
     func submit() async {
-        isLoading = true
-        defer {
-            isLoading = false
-        }
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
         do {
             guard field.fullyValid(input: text) else {
                 return presentInvalidInputAlert()
             }
-            guard try await accountService.getUsernameAvailable(username: text) else {
-                return presentUsernameUnavailableAlert()
+            guard let phoneBaseInt = Int(PhoneTextFieldStyle.format(with: "XXXXXXXXXX", phone: text)) else {
+                return // TODO: Throw an error?
             }
-            onboardingInput.username = text
-            coordinator?.didSubmitUsername(input: onboardingInput)
+            let phoneNumber = PhoneNumber(base: phoneBaseInt)
+            guard try await accountService.getPhoneIsAvailable(phoneNumber) else {
+                return presentPhoneUnavailableAlert()
+            }
+            onboardingInput.phone = text
+            coordinator?.submitPhone(input: onboardingInput)
         } catch {
             print(error.localizedDescription)
             presentGenericAlert()
@@ -52,7 +52,6 @@ final class UsernameInputViewModel: InputViewModel {
     
     func setupBindings() {
         $text
-            .debounce(for: 0.05, scheduler: RunLoop.main)
             .compactMap { [weak self] text in
                 guard !text.isEmpty else { return [] }
                 return self?.field.getInputValidationErrors(input: text)
@@ -61,10 +60,10 @@ final class UsernameInputViewModel: InputViewModel {
     }
     
     @MainActor
-    func presentUsernameUnavailableAlert() {
+    func presentPhoneUnavailableAlert() {
         onboardingAlert = .init(
-            title: "Username unavailable",
-            message: "Please enter a different username to continue."
+            title: "Phone Number Unavailable",
+            message: "Please enter a different phone number to continue."
         )
     }
 }

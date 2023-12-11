@@ -5,6 +5,7 @@
 //  Created by Wesley Luntsford on 2/22/23.
 //
 
+import Combine
 import Factory
 import Foundation
 
@@ -35,14 +36,15 @@ protocol LoginCoordinatorDelegate: AnyObject {
 final class LoginViewModel: ObservableObject {
     
     @Injected(\.accountService) private var accountService
-    @Published var isValid = false
     @Published var password = ""
     @Published var email = ""
     @Published var alert: LoginAlert?
+    @Published var isShowingProgress = false
+    
+    var bob = Set<AnyCancellable>()
     
     init(coordinator: LoginCoordinatorDelegate) {
         self.coordinator = coordinator
-        setupBindings()
     }
     
     private weak var coordinator: LoginCoordinatorDelegate?
@@ -62,24 +64,11 @@ extension LoginViewModel {
     @MainActor
     func login() async {
         do {
+            try await Task.sleep(seconds: 3.0)
             try await accountService.login(email: email, password: password)
         } catch {
             print(error.localizedDescription)
             alert = .loginError
         }
-    }
-}
-
-// MARK: - Private Methods
-private extension LoginViewModel {
-    
-    func setupBindings() {
-        $email.combineLatest($password)
-            .debounce(for: 0.25, scheduler: RunLoop.main)
-            .compactMap { (email, password) in
-                return OnboardingInputField.email.fullyValid(input: email) &&
-                OnboardingInputField.password.fullyValid(input: password)
-            }
-            .assign(to: &$isValid)
     }
 }

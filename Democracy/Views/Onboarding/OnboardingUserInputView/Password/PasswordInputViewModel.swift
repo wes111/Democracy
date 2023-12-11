@@ -1,5 +1,5 @@
 //
-//  EmailInputViewModel.swift
+//  PasswordInputViewModel.swift
 //  Democracy
 //
 //  Created by Wesley Luntsford on 11/26/23.
@@ -8,8 +8,8 @@
 import Factory
 import Foundation
 
-final class EmailInputViewModel: InputViewModel {
-    typealias Field = EmailValidator
+final class PasswordInputViewModel: InputViewModel {
+    typealias Field = PasswordValidator
     @Injected(\.accountService) private var accountService
     private var onboardingInput: OnboardingInput
     weak var coordinator: OnboardingCoordinatorDelegate?
@@ -17,7 +17,7 @@ final class EmailInputViewModel: InputViewModel {
     @Published var text: String = ""
     @Published var textErrors: [Field.Error] = []
     @Published var onboardingAlert: OnboardingAlert?
-    @Published var isLoading: Bool = false
+    @Published var isShowingProgress: Bool = false
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator
@@ -29,23 +29,18 @@ final class EmailInputViewModel: InputViewModel {
         [.close: close, .back: goBack]
     }
     
-    @MainActor // TODO: Need to test using @MainActor like this.
+    @MainActor
     func submit() async {
-        isLoading = true
-        defer {
-            isLoading = false
-        }
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        //try? await Task.sleep(nanoseconds: 1_000_000_000)
         guard field.fullyValid(input: text) else {
             return presentInvalidInputAlert()
         }
-        onboardingInput.email = text
-        coordinator?.submitEmail(input: onboardingInput)
+        onboardingInput.password = text
+        coordinator?.submitPassword(input: onboardingInput)
     }
     
     func setupBindings() {
         $text
-            .debounce(for: 0.05, scheduler: RunLoop.main)
             .compactMap { [weak self] text in
                 guard !text.isEmpty else { return [] }
                 return self?.field.getInputValidationErrors(input: text)

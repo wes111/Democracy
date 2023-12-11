@@ -10,10 +10,12 @@ import Foundation
 
 final class AcceptTermsViewModel: ObservableObject, Hashable {
     
+    @Injected(\.accountService) private var accountService
     @Published var onboardingAlert: OnboardingAlert?
+    @Published var isShowingProgress = false
+    
     private weak var coordinator: OnboardingCoordinatorDelegate?
     private var onboardingInput: OnboardingInput
-    @Injected(\.accountService) private var accountService
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator

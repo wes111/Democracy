@@ -24,42 +24,57 @@ struct ToolbarNavigationModifier: ViewModifier {
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 if let title {
-                    ToolbarItem(placement: .principal) {
-                        HStack {
-                            Text(title)
-                                .font(.title2)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.tertiaryText)
-                        }
-                    }
+                    toolbarTitle(title)
                 }
                 
                 if topButtons.keys.contains(where: { $0 == .close }) {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button {
-                            if let action = topButtons[.close] {
-                                action()
-                            } else {
-                                return
-                            }
-                        } label: {
-                            Image(systemName: "xmark")
-                                .foregroundColor(.tertiaryText)
-                        }
-                    }
+                    toolbarCloseButton
                 }
                 
                 if topButtons.keys.contains(where: { $0 == .back }) {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Image(systemName: "chevron.left")
-                                .foregroundColor(.tertiaryText)
-                        }
-                    }
+                    toolbarBackButton
                 }
             }
+    }
+}
+
+// MARK: - Subviews
+private extension ToolbarNavigationModifier {
+    func toolbarTitle(_ title: String) -> some ToolbarContent {
+        ToolbarItem(placement: .principal) {
+            HStack {
+                Text(title)
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.tertiaryText)
+            }
+        }
+    }
+    
+    var toolbarCloseButton: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Button {
+                if let action = topButtons[.close] {
+                    action()
+                } else {
+                    return
+                }
+            } label: {
+                Image(systemName: "xmark")
+                    .foregroundColor(.tertiaryText)
+            }
+        }
+    }
+    
+    var toolbarBackButton: some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "chevron.left")
+                    .foregroundColor(.tertiaryText)
+            }
+        }
     }
 }
 

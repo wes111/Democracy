@@ -37,14 +37,16 @@ struct Token {
 }
 
 protocol AppwriteService {
-    func createUser(userName: String, password: String, email: String) async throws -> User
+    func createUser(userName: String, password: String, email: String) async throws -> SharedResourcesClientAndServer.User
     func login(email: String, password: String) async throws -> Session
     func logout(sessionId: String) async throws
     func getCurrentSession() async throws -> Session
-    func updatePhone(phone: PhoneNumber, password: String) async throws -> User
-    func getCurrentLoggedInUser() async throws -> User
+    func updatePhone(phone: PhoneNumber, password: String) async throws -> SharedResourcesClientAndServer.User
+    func getCurrentLoggedInUser() async throws -> SharedResourcesClientAndServer.User
     
     func getUserNameAvailable(username: String) async throws -> Bool
+    func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool
+    func getEmailAvailable(_ email: String) async throws -> Bool
 }
 
 // TODO: There is info that must be added to get the OAuth callback (see website).
@@ -67,21 +69,12 @@ final class AppwriteServiceDefault: AppwriteService {
     private lazy var functions: Functions = {
         Functions(client)
     }()
+}
+
+// MARK: - Methods
+extension AppwriteServiceDefault {
     
-    init() {}
-    
-    func getUserNameAvailable(username: String) async throws -> Bool {
-        let usernameJSONString = try Username(userName: username).toJSONString()
-        let execution = try await functions.createExecution(
-            functionId: "usernameAvailable",
-            body: usernameJSONString,
-            method: "GET"
-        )
-        let response: UsernameAvailable = try execution.responseBody.decode()
-        return response.isAvailable
-    }
-    
-    func createUser(userName: String, password: String, email: String) async throws -> User {
+    func createUser(userName: String, password: String, email: String) async throws -> SharedResourcesClientAndServer.User {
         let appwriteUser = try await account.create(
             userId: userName,
             email: email,
@@ -102,11 +95,42 @@ final class AppwriteServiceDefault: AppwriteService {
         try await account.getSession(sessionId: "current").toSession()
     }
     
-    func updatePhone(phone: PhoneNumber, password: String) async throws -> User {
+    func updatePhone(phone: PhoneNumber, password: String) async throws -> SharedResourcesClientAndServer.User {
         try await account.updatePhone(phone: phone.appwriteString, password: password).toUser()
     }
     
-    func getCurrentLoggedInUser() async throws -> User {
+    func getCurrentLoggedInUser() async throws -> SharedResourcesClientAndServer.User {
         try await account.get().toUser()
+    }
+    
+    func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool {
+        try await getUniqueAccountFieldAvailable(.phone, value: phone.appwriteString)
+    }
+    
+    func getUserNameAvailable(username: String) async throws -> Bool {
+        try await getUniqueAccountFieldAvailable(.username, value: username)
+    }
+    
+    func getEmailAvailable(_ email: String) async throws -> Bool {
+        let newEmail = "\"\(email)\""
+        return try await getUniqueAccountFieldAvailable(.email, value: newEmail)
+    }
+}
+
+// MARK: - Private Methods
+private extension AppwriteServiceDefault {
+    func getUniqueAccountFieldAvailable(_ field: UniqueAccountField, value: String) async throws -> Bool {
+        let jsonString = try UniqueAccountFieldRequest(
+            field: field,
+            value: value
+        ).toJSONString()
+        
+        let execution = try await functions.createExecution(
+            functionId: "UniqueAccountFieldIsAvailable",
+            body: jsonString,
+            method: "GET"
+        )
+        let isAvailable: UniqueAccountFieldAvailable = try execution.responseBody.decode()
+        return isAvailable.isAvailable
     }
 }

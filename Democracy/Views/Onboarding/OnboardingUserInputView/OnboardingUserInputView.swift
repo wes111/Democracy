@@ -7,68 +7,16 @@
 
 import SwiftUI
 
-struct OnboardingUserInputView<T: InputViewModel>: View {
-    @ObservedObject var viewModel: T
-    @FocusState private var focusedField: OnboardingInputField?
-    
-    init(viewModel: T) {
-        self.viewModel = viewModel
-    }
-    
-    var body: some View {
-        ZStack {
-            Color.primaryBackground.ignoresSafeArea()
-            
-            VStack(alignment: .leading, spacing: 20) {
-                title
-                subtitle
-                field
-                errors
-                nextButton
-                Spacer()
-            }
-            .padding()
-            
-            if viewModel.isLoading {
-                ProgressView()
-                    .progressViewStyle(.circular)
-                    .tint(.white)
-            }
-        }
-        .onAppear {
-            focusedField = viewModel.field
-        }
-        .toolbarNavigation(topButtons: viewModel.topButtons)
-        .onTapGesture {
-            focusedField = nil // TODO: I don't think this quite works.
-        }
-        .alert(item: $viewModel.onboardingAlert) { alert in
-            Alert(
-                title: Text(alert.title),
-                message: Text(alert.message),
-                dismissButton: .default(Text("Okay"))
-            )
-        }
-        // TODO: Might need to add this back?
-//        .task {
-//            await viewModel.resetTextField()
-//        }
-    }
+@MainActor protocol OnboardingInputView: View {
+    associatedtype ViewModel: InputViewModel
+    associatedtype ContentView: View
+    var viewModel: ViewModel { get }
+    var field: ContentView { get }
+    var isShowingProgress: Binding<Bool> { get }
+    var onboardingAlert: Binding<OnboardingAlert?> { get }
 }
 
-// MARK: Subviews
-extension OnboardingUserInputView {
-    
-    var field: some View {
-        TextField(viewModel.fieldTitle, text: $viewModel.text,
-                  prompt: Text(viewModel.fieldTitle).foregroundColor(.secondaryBackground), axis: .vertical
-        )
-        .limitCharacters(text: $viewModel.text, count: viewModel.maxCharacterCount)
-        .focused($focusedField, equals: viewModel.field)
-        .standardTextField(borderColor: viewModel.textErrors.isEmpty ? .tertiaryText : .otherRed)
-        .submitLabel(.next)
-    }
-    
+extension OnboardingInputView {
     var errors: some View {
         VStack(alignment: .leading, spacing: 5) {
             ForEach(viewModel.textErrors, id: \.self) { error in
@@ -93,23 +41,56 @@ extension OnboardingUserInputView {
         Text(viewModel.subtitle)
             .font(.system(.body, weight: .light))
             .foregroundColor(.primaryText)
+            .lineLimit(2...)
     }
     
     var nextButton: some View {
-        AsyncButton {
-            await viewModel.submit()
-        } label: {
-            Text("Next")
-        }
+        AsyncButton(
+            action: { await viewModel.submit() },
+            label: { Text("Next") },
+            showProgressView: isShowingProgress
+        )
         .buttonStyle(PrimaryButtonStyle())
         .disabled(!viewModel.canSubmit)
     }
-}
-
-// MARK: - Preview
-#Preview {
-    let parentCoordinator = RootCoordinator()
-    let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
-    let viewModel = UsernameInputViewModel(coordinator: coordinator)
-    return OnboardingUserInputView(viewModel: viewModel)
+    
+    var main: some View {
+        ZStack {
+            Color.primaryBackground.ignoresSafeArea()
+            
+            VStack(alignment: .leading, spacing: 20) {
+                title
+                subtitle
+                field
+                errors
+                
+                VStack {
+                    nextButton
+                    Spacer()
+                }
+                .ignoresSafeArea(.keyboard)
+            }
+            .padding()
+            
+            if viewModel.isShowingProgress {
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .tint(.white)
+            }
+        }
+        .toolbarNavigation(topButtons: viewModel.topButtons)
+        .onSubmit {
+            performAsnycTask(
+                action: viewModel.submit,
+                isShowingProgress: isShowingProgress
+            )
+        }
+        .alert(item: onboardingAlert) { alert in
+            Alert(
+                title: Text(alert.title),
+                message: Text(alert.message),
+                dismissButton: .default(Text("Okay"))
+            )
+        }
+    }
 }

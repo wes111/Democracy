@@ -15,11 +15,13 @@ protocol UpdatesTabMainCoordinatorDelegate: AnyObject {
 protocol UpdatesTabMainViewModelProtocol: ObservableObject {
     func tappedNav()
     func logout() async
+    var isShowingProgress: Bool { get set }
 }
 
 final class UpdatesTabMainViewModel: UpdatesTabMainViewModelProtocol {
     
     @Injected(\.accountService) private var accountService
+    @Published var isShowingProgress = false
     
     func logout() async {
         do {

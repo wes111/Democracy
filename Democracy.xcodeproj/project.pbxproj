@@ -15,6 +15,17 @@
 		EE11729B2A6F3D0300E529AF /* AlliedCommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729A2A6F3D0300E529AF /* AlliedCommunityView.swift */; };
 		EE11729D2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729C2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift */; };
 		EE11729F2A71C3C700E529AF /* CommunityCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729E2A71C3C700E529AF /* CommunityCategoryViewModel.swift */; };
+		EE28E35D2B24FACC00EC4E6F /* SharedResourcesClientAndServer in Frameworks */ = {isa = PBXBuildFile; productRef = EE28E35C2B24FACC00EC4E6F /* SharedResourcesClientAndServer */; };
+		EE36FF862B1C15FD009E8F86 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF852B1C15FD009E8F86 /* CustomSecureField.swift */; };
+		EE36FF892B1D0800009E8F86 /* EmailTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF882B1D0800009E8F86 /* EmailTextFieldStyle.swift */; };
+		EE36FF8B2B1D6EFD009E8F86 /* PasswordTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF8A2B1D6EFD009E8F86 /* PasswordTextFieldStyle.swift */; };
+		EE36FF8F2B1E14E3009E8F86 /* UsernameOnboardingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF8E2B1E14E3009E8F86 /* UsernameOnboardingInputView.swift */; };
+		EE36FF922B1E16CB009E8F86 /* PasswordOnboardingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF912B1E16CB009E8F86 /* PasswordOnboardingInputView.swift */; };
+		EE36FF952B1E17F3009E8F86 /* EmailOnboardingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF942B1E17F3009E8F86 /* EmailOnboardingInputView.swift */; };
+		EE36FF982B1E183E009E8F86 /* PhoneOnboardingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF972B1E183E009E8F86 /* PhoneOnboardingInputView.swift */; };
+		EE36FF9A2B1ECB17009E8F86 /* UsernameTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF992B1ECB17009E8F86 /* UsernameTextFieldStyle.swift */; };
+		EE36FF9C2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF9B2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift */; };
+		EE36FFA22B24F487009E8F86 /* Appwrite in Frameworks */ = {isa = PBXBuildFile; productRef = EE36FFA12B24F487009E8F86 /* Appwrite */; };
 		EE45248D2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45248C2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift */; };
 		EE45248F2A5651FB00C7A2DD /* ResourcesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45248E2A5651FB00C7A2DD /* ResourcesSection.swift */; };
 		EE4524912A56597400C7A2DD /* ResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524902A56597400C7A2DD /* ResourceView.swift */; };
@@ -31,9 +42,7 @@
 		EE4524AE2A5CED6900C7A2DD /* LeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524AD2A5CED6900C7A2DD /* LeaderViewModel.swift */; };
 		EE4524B12A5CF0A000C7A2DD /* LeadersScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524B02A5CF0A000C7A2DD /* LeadersScrollView.swift */; };
 		EE4524B32A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524B22A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift */; };
-		EE4DB8872AC5084900A6DC90 /* Appwrite in Frameworks */ = {isa = PBXBuildFile; productRef = EE4DB8862AC5084900A6DC90 /* Appwrite */; };
 		EE4DB88A2AC50AD200A6DC90 /* AppwriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */; };
-		EE4DB88C2AC525FB00A6DC90 /* ISO8601DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB88B2AC525FB00A6DC90 /* ISO8601DateFormatter+Extension.swift */; };
 		EE4DB8912AC899ED00A6DC90 /* LoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */; };
 		EE4DB8942AC89F0800A6DC90 /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */; };
 		EE4DB8962AC89F6800A6DC90 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8952AC89F6800A6DC90 /* OnboardingCoordinator.swift */; };
@@ -177,7 +186,6 @@
 		EEB5AF7C2ADCA92A00310408 /* OnboardingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */; };
 		EEB5AF7E2AE0DE3700310408 /* ValidatableOnboardingField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7D2AE0DE3700310408 /* ValidatableOnboardingField.swift */; };
 		EEB5AF802AE0DE7000310408 /* OnboardingInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */; };
-		EEB5AF832AF8985500310408 /* SharedResourcesClientAndServer in Frameworks */ = {isa = PBXBuildFile; productRef = EEB5AF822AF8985500310408 /* SharedResourcesClientAndServer */; };
 		EEB5AF8B2AFA7DD500310408 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF8A2AFA7DD500310408 /* Session.swift */; };
 		EEB5AF8F2AFBCD6B00310408 /* SwiftDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF8E2AFBCD6B00310408 /* SwiftDataService.swift */; };
 		EEB5AF912B017F0900310408 /* UserDefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF902B017F0900310408 /* UserDefaultStorage.swift */; };
@@ -236,6 +244,15 @@
 		EE11729A2A6F3D0300E529AF /* AlliedCommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlliedCommunityView.swift; sourceTree = "<group>"; };
 		EE11729C2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlliedCommunityViewModel.swift; sourceTree = "<group>"; };
 		EE11729E2A71C3C700E529AF /* CommunityCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCategoryViewModel.swift; sourceTree = "<group>"; };
+		EE36FF852B1C15FD009E8F86 /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
+		EE36FF882B1D0800009E8F86 /* EmailTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextFieldStyle.swift; sourceTree = "<group>"; };
+		EE36FF8A2B1D6EFD009E8F86 /* PasswordTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextFieldStyle.swift; sourceTree = "<group>"; };
+		EE36FF8E2B1E14E3009E8F86 /* UsernameOnboardingInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameOnboardingInputView.swift; sourceTree = "<group>"; };
+		EE36FF912B1E16CB009E8F86 /* PasswordOnboardingInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordOnboardingInputView.swift; sourceTree = "<group>"; };
+		EE36FF942B1E17F3009E8F86 /* EmailOnboardingInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailOnboardingInputView.swift; sourceTree = "<group>"; };
+		EE36FF972B1E183E009E8F86 /* PhoneOnboardingInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneOnboardingInputView.swift; sourceTree = "<group>"; };
+		EE36FF992B1ECB17009E8F86 /* UsernameTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameTextFieldStyle.swift; sourceTree = "<group>"; };
+		EE36FF9B2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldStyle.swift; sourceTree = "<group>"; };
 		EE45248C2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesSectionViewModel.swift; sourceTree = "<group>"; };
 		EE45248E2A5651FB00C7A2DD /* ResourcesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesSection.swift; sourceTree = "<group>"; };
 		EE4524902A56597400C7A2DD /* ResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceView.swift; sourceTree = "<group>"; };
@@ -253,7 +270,6 @@
 		EE4524B02A5CF0A000C7A2DD /* LeadersScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersScrollView.swift; sourceTree = "<group>"; };
 		EE4524B22A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadersScrollViewModel.swift; sourceTree = "<group>"; };
 		EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppwriteService.swift; sourceTree = "<group>"; };
-		EE4DB88B2AC525FB00A6DC90 /* ISO8601DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ISO8601DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatus.swift; sourceTree = "<group>"; };
 		EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
 		EE4DB8952AC89F6800A6DC90 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
@@ -451,10 +467,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE36FFA22B24F487009E8F86 /* Appwrite in Frameworks */,
+				EE28E35D2B24FACC00EC4E6F /* SharedResourcesClientAndServer in Frameworks */,
 				EE7055642B14E2E000E40A89 /* Asynchrone in Frameworks */,
-				EE4DB8872AC5084900A6DC90 /* Appwrite in Frameworks */,
 				EE80D8E929BD11600000F8EF /* Factory in Frameworks */,
-				EEB5AF832AF8985500310408 /* SharedResourcesClientAndServer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +503,53 @@
 				EE11729C2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift */,
 			);
 			path = AlliedCommunity;
+			sourceTree = "<group>";
+		};
+		EE36FF872B1D07EB009E8F86 /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				EE36FF882B1D0800009E8F86 /* EmailTextFieldStyle.swift */,
+				EE36FF8A2B1D6EFD009E8F86 /* PasswordTextFieldStyle.swift */,
+				EE36FF992B1ECB17009E8F86 /* UsernameTextFieldStyle.swift */,
+				EE36FF9B2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift */,
+			);
+			path = TextField;
+			sourceTree = "<group>";
+		};
+		EE36FF8D2B1E14CD009E8F86 /* Username */ = {
+			isa = PBXGroup;
+			children = (
+				EE36FF8E2B1E14E3009E8F86 /* UsernameOnboardingInputView.swift */,
+				EE7055582B138F4F00E40A89 /* UsernameInputViewModel.swift */,
+			);
+			path = Username;
+			sourceTree = "<group>";
+		};
+		EE36FF902B1E1694009E8F86 /* Password */ = {
+			isa = PBXGroup;
+			children = (
+				EE36FF912B1E16CB009E8F86 /* PasswordOnboardingInputView.swift */,
+				EE70555A2B138FB600E40A89 /* PasswordInputViewModel.swift */,
+			);
+			path = Password;
+			sourceTree = "<group>";
+		};
+		EE36FF932B1E1718009E8F86 /* Email */ = {
+			isa = PBXGroup;
+			children = (
+				EE36FF942B1E17F3009E8F86 /* EmailOnboardingInputView.swift */,
+				EE70555C2B1390A800E40A89 /* EmailInputViewModel.swift */,
+			);
+			path = Email;
+			sourceTree = "<group>";
+		};
+		EE36FF962B1E1825009E8F86 /* Phone */ = {
+			isa = PBXGroup;
+			children = (
+				EE36FF972B1E183E009E8F86 /* PhoneOnboardingInputView.swift */,
+				EE70555E2B13917100E40A89 /* PhoneInputViewModel.swift */,
+			);
+			path = Phone;
 			sourceTree = "<group>";
 		};
 		EE45248B2A5651B600C7A2DD /* ResourceSection */ = {
@@ -663,17 +726,6 @@
 			path = RichLinkService;
 			sourceTree = "<group>";
 		};
-		EE7055572B138F2500E40A89 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				EE7055582B138F4F00E40A89 /* UsernameInputViewModel.swift */,
-				EE70555A2B138FB600E40A89 /* PasswordInputViewModel.swift */,
-				EE70555C2B1390A800E40A89 /* EmailInputViewModel.swift */,
-				EE70555E2B13917100E40A89 /* PhoneInputViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
 		EE7856142AB7BA970004B7E4 /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
@@ -705,9 +757,10 @@
 		EE78561C2AB7E51D0004B7E4 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
-				EE4DB8A32ACA69B700A6DC90 /* Label */,
-				EE7856222AB917D30004B7E4 /* Toggle */,
 				EE78561D2AB7E5270004B7E4 /* Button */,
+				EE4DB8A32ACA69B700A6DC90 /* Label */,
+				EE36FF872B1D07EB009E8F86 /* TextField */,
+				EE7856222AB917D30004B7E4 /* Toggle */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -934,6 +987,7 @@
 				EE80D95929E8EBB70000F8EF /* UIViewRepresentable */,
 				EE7856122AAE75620004B7E4 /* NewFlowLayout.swift */,
 				EE7055602B14034700E40A89 /* AsyncButton.swift */,
+				EE36FF852B1C15FD009E8F86 /* CustomSecureField.swift */,
 			);
 			path = "Reusable SwiftUI";
 			sourceTree = "<group>";
@@ -1061,9 +1115,12 @@
 		EEB5AF742ADB1E9D00310408 /* OnboardingUserInputView */ = {
 			isa = PBXGroup;
 			children = (
-				EE7055572B138F2500E40A89 /* ViewModels */,
 				EEB5AF662ADB186E00310408 /* OnboardingUserInputViewModelProtocol.swift */,
 				EE4DB8A12ACA5C0F00A6DC90 /* OnboardingUserInputView.swift */,
+				EE36FF962B1E1825009E8F86 /* Phone */,
+				EE36FF932B1E1718009E8F86 /* Email */,
+				EE36FF902B1E1694009E8F86 /* Password */,
+				EE36FF8D2B1E14CD009E8F86 /* Username */,
 			);
 			path = OnboardingUserInputView;
 			sourceTree = "<group>";
@@ -1284,7 +1341,6 @@
 				EED4A54229BAB60100DDCCDA /* Hashable+Extensions.swift */,
 				EE80D8EC29BD180E0000F8EF /* Container+Extensions.swift */,
 				EE5B938D2A03346C00B43381 /* Date+Extensions.swift */,
-				EE4DB88B2AC525FB00A6DC90 /* ISO8601DateFormatter+Extension.swift */,
 				EE9760032AD07314003069CF /* NSPredicate+Extensions.swift */,
 			);
 			path = Extensions;
@@ -1366,9 +1422,9 @@
 			name = Democracy;
 			packageProductDependencies = (
 				EE80D8E829BD11600000F8EF /* Factory */,
-				EE4DB8862AC5084900A6DC90 /* Appwrite */,
-				EEB5AF822AF8985500310408 /* SharedResourcesClientAndServer */,
 				EE7055632B14E2E000E40A89 /* Asynchrone */,
+				EE36FFA12B24F487009E8F86 /* Appwrite */,
+				EE28E35C2B24FACC00EC4E6F /* SharedResourcesClientAndServer */,
 			);
 			productName = Democracy;
 			productReference = EEF8345D299C6824001EEA5E /* Democracy.app */;
@@ -1400,10 +1456,10 @@
 			mainGroup = EEF83454299C6824001EEA5E;
 			packageReferences = (
 				EE80D8E729BD11600000F8EF /* XCRemoteSwiftPackageReference "Factory" */,
-				EE4DB8852AC5084900A6DC90 /* XCRemoteSwiftPackageReference "sdk-for-apple" */,
-				EEB5AF812AF8985500310408 /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */,
 				EEB5AF842AF9C36700310408 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 				EE7055622B14E2E000E40A89 /* XCRemoteSwiftPackageReference "Asynchrone" */,
+				EE36FFA02B24F487009E8F86 /* XCRemoteSwiftPackageReference "sdk-for-apple" */,
+				EE28E35B2B24FACC00EC4E6F /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */,
 			);
 			productRefGroup = EEF8345E299C6824001EEA5E /* Products */;
 			projectDirPath = "";
@@ -1464,6 +1520,7 @@
 				EEB5AF982B0320D400310408 /* KeyChainStorage.swift in Sources */,
 				EE45248D2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift in Sources */,
 				EE80D91329C92DA60000F8EF /* CandidateCardViewModel+Preview.swift in Sources */,
+				EE36FF9C2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift in Sources */,
 				EE11729B2A6F3D0300E529AF /* AlliedCommunityView.swift in Sources */,
 				EE936CAF2A789FB000D49271 /* UpdatesTabPath.swift in Sources */,
 				EE936CB32A78A03600D49271 /* EventsTabCoordinatorViewModel.swift in Sources */,
@@ -1486,6 +1543,7 @@
 				EE4DB8A82ACE455500A6DC90 /* EmailValidationError.swift in Sources */,
 				EED4A51329AB1C6F00DDCCDA /* HistoryTabMainView.swift in Sources */,
 				EE4DB8A22ACA5C0F00A6DC90 /* OnboardingUserInputView.swift in Sources */,
+				EE36FF982B1E183E009E8F86 /* PhoneOnboardingInputView.swift in Sources */,
 				EE80D90A29C926BF0000F8EF /* CommunityInfoViewModel+Preview.swift in Sources */,
 				EE4DB8982AC8A13C00A6DC90 /* OnboardingPath.swift in Sources */,
 				EE80D91129C92C670000F8EF /* Candidate.swift in Sources */,
@@ -1497,10 +1555,13 @@
 				EE78561F2AB7E53A0004B7E4 /* PrimaryButtonStyle.swift in Sources */,
 				EEF83463299C6824001EEA5E /* ContentView.swift in Sources */,
 				EED4A53329B81D6800DDCCDA /* CommunityHomeFeedView.swift in Sources */,
+				EE36FF8B2B1D6EFD009E8F86 /* PasswordTextFieldStyle.swift in Sources */,
+				EE36FF952B1E17F3009E8F86 /* EmailOnboardingInputView.swift in Sources */,
 				EED4A50529AA870000DDCCDA /* VotingTabMainViewModel.swift in Sources */,
 				EE80D90829C926600000F8EF /* CandidatesView.swift in Sources */,
 				EE5B93952A0864D400B43381 /* CommunityCategoryPostsView.swift in Sources */,
 				EED4A4FD29AA857B00DDCCDA /* CommunitiesTabCoordinatorView.swift in Sources */,
+				EE36FF892B1D0800009E8F86 /* EmailTextFieldStyle.swift in Sources */,
 				EE4DB8912AC899ED00A6DC90 /* LoginStatus.swift in Sources */,
 				EE80D8F229BD39210000F8EF /* AddPostViewModel.swift in Sources */,
 				EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */,
@@ -1570,7 +1631,6 @@
 				EEB5AF672ADB186E00310408 /* OnboardingUserInputViewModelProtocol.swift in Sources */,
 				EEB5AF8B2AFA7DD500310408 /* Session.swift in Sources */,
 				EED4A50329AA86C900DDCCDA /* VotingTabMainView.swift in Sources */,
-				EE4DB88C2AC525FB00A6DC90 /* ISO8601DateFormatter+Extension.swift in Sources */,
 				EE45248F2A5651FB00C7A2DD /* ResourcesSection.swift in Sources */,
 				EE70555F2B13917100E40A89 /* PhoneInputViewModel.swift in Sources */,
 				EE9760062AD07941003069CF /* ValidationError.swift in Sources */,
@@ -1609,6 +1669,7 @@
 				EED4A4FB29AA857000DDCCDA /* VotingTabCoordinator.swift in Sources */,
 				EE80D8D429BC15FC0000F8EF /* EventsTabMainViewModel+Preview.swift in Sources */,
 				EEB5AF7C2ADCA92A00310408 /* OnboardingError.swift in Sources */,
+				EE36FF862B1C15FD009E8F86 /* CustomSecureField.swift in Sources */,
 				EE11729F2A71C3C700E529AF /* CommunityCategoryViewModel.swift in Sources */,
 				EE9760202AD76800003069CF /* RootPath.swift in Sources */,
 				EE4DB8962AC89F6800A6DC90 /* OnboardingCoordinator.swift in Sources */,
@@ -1626,16 +1687,19 @@
 				EED4A51C29ABC2FE00DDCCDA /* User.swift in Sources */,
 				EED4A53A29B9629900DDCCDA /* PostCardView.swift in Sources */,
 				EE7055502B11476E00E40A89 /* AccountService.swift in Sources */,
+				EE36FF8F2B1E14E3009E8F86 /* UsernameOnboardingInputView.swift in Sources */,
 				EE9760042AD07314003069CF /* NSPredicate+Extensions.swift in Sources */,
 				EE5D3A012A2EE0ED00D0E312 /* CommunitiesTabCoordinatorViewModel+Preview.swift in Sources */,
 				EE5B93972A0864E700B43381 /* CommunityCategoryPostsViewModel.swift in Sources */,
 				EED4A50729AA8BAE00DDCCDA /* EventsTabMainView.swift in Sources */,
+				EE36FF9A2B1ECB17009E8F86 /* UsernameTextFieldStyle.swift in Sources */,
 				EE80D8ED29BD180E0000F8EF /* Container+Extensions.swift in Sources */,
 				EE4524A92A5CED2100C7A2DD /* LeadersSectionViewModel.swift in Sources */,
 				EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */,
 				EE5B938729F76EF800B43381 /* CommunityArchiveFeedViewModel.swift in Sources */,
 				EE80D92029C938320000F8EF /* CandidatesViewModel+Preview.swift in Sources */,
 				EED4A53C29B965AF00DDCCDA /* PostCardViewModel.swift in Sources */,
+				EE36FF922B1E16CB009E8F86 /* PasswordOnboardingInputView.swift in Sources */,
 				EE80D95329DB96F50000F8EF /* CreateCommunityViewModel+Preview.swift in Sources */,
 				EE80D93329D286180000F8EF /* CreateCandidateView.swift in Sources */,
 				EE80D8FE29C020780000F8EF /* CommunityLocalRepository.swift in Sources */,
@@ -1858,12 +1922,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		EE4DB8852AC5084900A6DC90 /* XCRemoteSwiftPackageReference "sdk-for-apple" */ = {
+		EE28E35B2B24FACC00EC4E6F /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wes111/SharedResourcesClientAndServer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.10;
+			};
+		};
+		EE36FFA02B24F487009E8F86 /* XCRemoteSwiftPackageReference "sdk-for-apple" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/appwrite/sdk-for-apple";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.1;
+				minimumVersion = 4.0.2;
 			};
 		};
 		EE7055622B14E2E000E40A89 /* XCRemoteSwiftPackageReference "Asynchrone" */ = {
@@ -1882,14 +1954,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		EEB5AF812AF8985500310408 /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/wes111/SharedResourcesClientAndServer";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		EEB5AF842AF9C36700310408 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint.git";
@@ -1901,9 +1965,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EE4DB8862AC5084900A6DC90 /* Appwrite */ = {
+		EE28E35C2B24FACC00EC4E6F /* SharedResourcesClientAndServer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = EE4DB8852AC5084900A6DC90 /* XCRemoteSwiftPackageReference "sdk-for-apple" */;
+			package = EE28E35B2B24FACC00EC4E6F /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */;
+			productName = SharedResourcesClientAndServer;
+		};
+		EE36FFA12B24F487009E8F86 /* Appwrite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE36FFA02B24F487009E8F86 /* XCRemoteSwiftPackageReference "sdk-for-apple" */;
 			productName = Appwrite;
 		};
 		EE7055632B14E2E000E40A89 /* Asynchrone */ = {
@@ -1915,11 +1984,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE80D8E729BD11600000F8EF /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
-		};
-		EEB5AF822AF8985500310408 /* SharedResourcesClientAndServer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EEB5AF812AF8985500310408 /* XCRemoteSwiftPackageReference "SharedResourcesClientAndServer" */;
-			productName = SharedResourcesClientAndServer;
 		};
 		EEB5AF852AF9C3CD00310408 /* SwiftLintPlugin */ = {
 			isa = XCSwiftPackageProductDependency;

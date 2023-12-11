@@ -62,7 +62,7 @@ extension OnboardingInputField {
         case .email:
             128
         case .phone:
-            10 //TODO: Is this correct
+            14
         }
     }
     
@@ -127,15 +127,7 @@ extension OnboardingInputField {
             
         case .phone:
             /// Must be 10 digits long.
-            #"^\d{10}$"#
-            
-//        case .verifyPhone:
-//            /// String has at least one character, excluding newline.
-//            #"^.+$"#
-            
-//        case .verifyEmail:
-//            /// String has at least one character, excluding newline.
-//            #"^.+$"#
+            "\\(\\d{3}\\) \\d{3}-\\d{4}"
         }
     }
 }
@@ -158,5 +150,21 @@ extension OnboardingInputField {
             }
         }
         return validationErrors
+    }
+}
+
+// MARK: PasswordCaseRepresentable
+extension OnboardingInputField: PasswordCaseRepresentable {
+    var isPasswordCase: Bool {
+        switch self {
+        case .username, .email, .phone:
+            return false
+        case .password:
+            return true
+        }
+    }
+    
+    static var passwordCase: OnboardingInputField {
+        Self.password
     }
 }

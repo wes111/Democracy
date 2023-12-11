@@ -8,12 +8,10 @@
 import Foundation
 
 enum PhoneValidationError: ValidationError {
-    case onlyDigits, length
+    case length
     
     var descriptionText: String {
         switch self {
-        case .onlyDigits:
-            "Phone number can only contain digits."
         case .length:
             "Phone number must be 10 digits long."
         }
@@ -21,13 +19,10 @@ enum PhoneValidationError: ValidationError {
     
     var regex: String {
         switch self {
-        /// The string can only contain digits.
-        case .onlyDigits:
-            "^\\d+$"
             
         /// The string must be 10 characters in length.
         case .length:
-            "^\\d{10}$"
+            "^\\d{14}$"
         }
     }
 }

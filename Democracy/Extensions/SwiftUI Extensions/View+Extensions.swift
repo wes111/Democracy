@@ -22,13 +22,30 @@ extension View {
                 NotificationCenter
                     .default
                     .publisher(for: UIResponder.keyboardWillHideNotification)
-                    .map { _ in false })
-            .debounce(for: .seconds(0.1), scheduler: RunLoop.main)
+                    .map { _ in false }
+            )
             .eraseToAnyPublisher()
     }
 }
 
-// TODO: ...
-//#Preview {
-//    View_Extensions()
-//}
+extension View {
+    
+    // See 'AsyncButton' for similar functionality.
+    @MainActor
+    func performAsnycTask(action: @escaping () async -> Void, isShowingProgress: Binding<Bool>) {
+        Task {
+            var progressViewTask: Task<Void, Error>?
+            
+            progressViewTask = Task {
+                try await Task.sleep(nanoseconds: 150_000_000)
+                isShowingProgress.wrappedValue = true
+            }
+            
+            await action()
+            progressViewTask?.cancel()
+            withAnimation {
+                isShowingProgress.wrappedValue = false
+            }
+        }
+    }
+}
