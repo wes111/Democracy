@@ -104,9 +104,10 @@ extension OnboardingInputField {
             /// Requires at least one uppercase letter (A-Z).
             /// Requires at least one lowercase letter (a-z).
             /// Requires at least one digit (0-9).
-            /// Requires at least one special character from the provided set: [@, #, $, %, ^, &, +, =, _]
+            /// Requires at least one special character from the provided set:
+            /// [@, #, $, %, ^, &, +, =, _, !, ~, (, ), [, ], {, }, |, ;, :, ,, ., <, >, ?, /, \]
             /// At least 8 characters long and at most 128 characters long.
-            "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=_])[A-Za-z\\d@#$%^&+=_]{8,128}$"
+            "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#\\$%&+=_!~*,()\\[\\]{}|;:.<>?/\\\\])[A-Za-z\\d@#\\$%&+=_!~*,()\\[\\]{}|;:.<>?/\\\\]{8,128}$"
             
         case .email:
             /// Local part:

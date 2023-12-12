@@ -37,8 +37,9 @@ enum PasswordValidationError: ValidationError {
         /// At least one digit anywhere in the string.
         case .hasDigit: ".*\\d+.*"
             
-        /// Requires one or more occurrences of the following special characters: @, #, $, %, ^, &, +, =,  _
-        case .hasSpecialChar: ".*[@#$%^&+=_].*"
+        /// Requires one or more occurrences of the following special characters:
+        /// [@, #, $, %, ^, &, +, =, _, !, ~, (, ), [, ], {, }, |, ;, :, ,, ., <, >, ?, /, \]
+        case .hasSpecialChar: ".*[@#$%^&+=_!~*()\\[\\]{}|;:,.<>?/\\\\].*"
             
         /// Checks if the string is between 8 and 128 characters in length.
         case .length: "^.{8,128}$"

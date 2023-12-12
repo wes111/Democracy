@@ -80,10 +80,12 @@ extension OnboardingInputView {
         }
         .toolbarNavigation(topButtons: viewModel.topButtons)
         .onSubmit {
-            performAsnycTask(
-                action: viewModel.submit,
-                isShowingProgress: isShowingProgress
-            )
+            if viewModel.canSubmit {
+                performAsnycTask(
+                    action: viewModel.submit,
+                    isShowingProgress: isShowingProgress
+                )
+            }
         }
         .alert(item: onboardingAlert) { alert in
             Alert(
