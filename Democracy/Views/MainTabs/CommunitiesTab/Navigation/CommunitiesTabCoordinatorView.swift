@@ -25,7 +25,8 @@ struct CommunitiesTabCoordinatorView: View {
     @ViewBuilder
     func createViewFromPath(_ path: CommunitiesTabPath) -> some View {
         switch path {
-        case .goToCommunity(let community): CommunityCoordinatorView(viewModel: viewModel.communityCoordinatorViewModel(community: community))
+        case .goToCommunity(let community): 
+            CommunityCoordinatorView(viewModel: viewModel.communityCoordinatorViewModel(community: community))
         case .goToCreateCommunity:
             CreateCommunityView(viewModel: viewModel.createCommunityViewModel())
         }

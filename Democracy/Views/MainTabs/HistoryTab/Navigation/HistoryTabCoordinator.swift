@@ -36,15 +36,15 @@ struct HistoryTabCoordinator: View {
     }
 }
 
-//extension HistoryTabCoordinator: HistoryTabMainCoordinatorDelegate {
-//    
+// extension HistoryTabCoordinator: HistoryTabMainCoordinatorDelegate {
+//
 //    func tappedNav() {
 //        print("tapped nav")
 //    }
 //    
-//}
+// }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     HistoryTabCoordinator(viewModel: .preview)
 }

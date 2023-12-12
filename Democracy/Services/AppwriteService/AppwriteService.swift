@@ -9,7 +9,6 @@ import Appwrite
 import Foundation
 import SharedResourcesClientAndServer
 
-// TODO: Move this to the shared client/server package.
 // TODO: This is an open Appwrite feature: https://github.com/appwrite/sdk-generator/issues/698
 enum AppwriteError: String, Error {
     case noSession = "User (role: guests) missing scope (account)"
@@ -37,11 +36,13 @@ struct Token {
 }
 
 protocol AppwriteService {
-    func createUser(userName: String, password: String, email: String) async throws -> SharedResourcesClientAndServer.User
+    func createUser(userName: String, password: String, email: String) 
+        async throws -> SharedResourcesClientAndServer.User
     func login(email: String, password: String) async throws -> Session
     func logout(sessionId: String) async throws
     func getCurrentSession() async throws -> Session
-    func updatePhone(phone: PhoneNumber, password: String) async throws -> SharedResourcesClientAndServer.User
+    func updatePhone(phone: PhoneNumber, password: String) 
+        async throws -> SharedResourcesClientAndServer.User
     func getCurrentLoggedInUser() async throws -> SharedResourcesClientAndServer.User
     
     func getUserNameAvailable(username: String) async throws -> Bool
@@ -49,7 +50,6 @@ protocol AppwriteService {
     func getEmailAvailable(_ email: String) async throws -> Bool
 }
 
-// TODO: There is info that must be added to get the OAuth callback (see website).
 final class AppwriteServiceDefault: AppwriteService {
     
     private let projectEndpoint = "http://192.168.86.31/v1"
@@ -74,7 +74,8 @@ final class AppwriteServiceDefault: AppwriteService {
 // MARK: - Methods
 extension AppwriteServiceDefault {
     
-    func createUser(userName: String, password: String, email: String) async throws -> SharedResourcesClientAndServer.User {
+    func createUser(userName: String, password: String, email: String)
+        async throws -> SharedResourcesClientAndServer.User {
         let appwriteUser = try await account.create(
             userId: userName,
             email: email,
@@ -95,7 +96,8 @@ extension AppwriteServiceDefault {
         try await account.getSession(sessionId: "current").toSession()
     }
     
-    func updatePhone(phone: PhoneNumber, password: String) async throws -> SharedResourcesClientAndServer.User {
+    func updatePhone(phone: PhoneNumber, password: String) 
+        async throws -> SharedResourcesClientAndServer.User {
         try await account.updatePhone(phone: phone.appwriteString, password: password).toUser()
     }
     

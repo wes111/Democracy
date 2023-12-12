@@ -20,7 +20,7 @@ struct EventsTabMainView<ViewModel: EventsTabMainViewModelProtocol>: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     EventsTabMainView(viewModel: EventsTabMainViewModel.preview)
 }

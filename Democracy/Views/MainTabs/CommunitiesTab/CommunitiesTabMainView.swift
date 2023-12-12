@@ -11,7 +11,7 @@ struct CommunitiesTabMainView: View {
     
     @StateObject var viewModel: CommunitiesTabMainViewModel
     @State private var multiSelection = Set<String>()
-    @State private var bob = "" //TODO: ...
+    @State private var bob = "" // TODO: ...
     
     init(viewModel: CommunitiesTabMainViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -86,7 +86,7 @@ struct CommunitiesScrollView: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     NavigationStack {
         CommunitiesTabMainView(viewModel: CommunitiesTabMainViewModel.preview)

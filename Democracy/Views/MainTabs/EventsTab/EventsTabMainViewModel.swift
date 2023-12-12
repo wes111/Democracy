@@ -17,13 +17,13 @@ protocol EventsTabMainViewModelProtocol: ObservableObject {
 
 final class EventsTabMainViewModel: EventsTabMainViewModelProtocol {
     
-    //private weak var coordinator: EventsTabMainCoordinatorDelegate?
+    // private weak var coordinator: EventsTabMainCoordinatorDelegate?
     
     init() {
-        //self.coordinator = coordinator
+        // self.coordinator = coordinator
     }
     
     func tappedNav() {
-        //coordinator?.tappedNav()
+        // coordinator?.tappedNav()
     }
 }

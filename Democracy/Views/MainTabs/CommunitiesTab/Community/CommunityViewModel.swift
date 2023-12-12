@@ -9,7 +9,9 @@ import Combine
 import Factory
 import Foundation
 
-protocol CommunityCoordinatorDelegate: CommunityHomeFeedCoordinatorDelegate, CommunityInfoCoordinatorDelegate, CommunityArchiveFeedCoordinatorDelegate, AnyObject {
+protocol CommunityCoordinatorDelegate: 
+    CommunityHomeFeedCoordinatorDelegate, CommunityInfoCoordinatorDelegate,
+        CommunityArchiveFeedCoordinatorDelegate, AnyObject {
     func showCreatePostView()
     func goBack()
 }
@@ -28,8 +30,8 @@ final class CommunityViewModel: ObservableObject {
     
     var topButtons: [OnboardingTopButton: () -> Void] {
         [
-            .back : {},
-            .close : {}
+            .back: {},
+            .close: {}
         ]
     }
     

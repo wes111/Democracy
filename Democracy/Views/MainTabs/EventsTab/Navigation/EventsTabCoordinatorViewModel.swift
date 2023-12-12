@@ -11,7 +11,7 @@ final class EventsTabCoordinatorViewModel: Coordinator {
     
 }
 
-//MARK: - Child ViewModels
+// MARK: - Child ViewModels
 extension EventsTabCoordinatorViewModel {
     
     func eventsTabMainViewModel() -> EventsTabMainViewModel {

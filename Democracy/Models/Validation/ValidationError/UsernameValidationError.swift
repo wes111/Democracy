@@ -31,7 +31,8 @@ enum UsernameValidationError: ValidationError {
         /// Can be followed by zero or more of any characters.
         case .startChar: "^[a-zA-Z0-9].*"
             
-        /// The entire string must consist of one or more characters that are either alphanumeric, dots, underscores, or hyphens.
+        /// The entire string must consist of one or more characters that are either
+        ///  alphanumeric, dots, underscores, or hyphens.
         case .validChars: "^[a-zA-Z0-9._-]+$"
         }
     }

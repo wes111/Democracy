@@ -48,7 +48,7 @@ struct CandidateInteractor: CandidateInteractorProtocol {
                 let candidates = try await localRepository.getCandidates()
                 candidatesPublisher.send(candidates)
             } catch {
-                //print("Failed to update candidates from local repository, error: \(error)")
+                // print("Failed to update candidates from local repository, error: \(error)")
             }
         }
     }
@@ -69,13 +69,13 @@ struct CandidateInteractor: CandidateInteractorProtocol {
     
     func addCandidate(summary: String, link: String?, repType: RepresentativeType) async throws {
         
-        let user = User.preview //accountService.getUser()
+        let user = User.preview // accountService.getUser()
         let candidate = Candidate(
             id: user.id,
             userName: user.name,
             firstName: user.name,
             lastName: user.name,
-            imageName: "bernie", //TODO: ...
+            imageName: "bernie", // TODO: ...
             upVotes: 0,
             downVotes: 0,
             communityId: UUID().uuidString,

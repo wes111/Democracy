@@ -129,6 +129,6 @@ extension Resource {
                          to this invaluable resource.
                          """,
             url: URL(string: "https://www.amazon.com")!
-        ),
+        )
     ]
 }

@@ -8,8 +8,6 @@
 import Foundation
 
 final class VotingTabCoordinatorViewModel: Coordinator {
-    
-    
 }
 
 // MARK: - Child ViewModels

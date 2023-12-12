@@ -54,7 +54,7 @@ struct AboutSection: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let viewModel = AboutSectionViewModel(
         summary: "summary",

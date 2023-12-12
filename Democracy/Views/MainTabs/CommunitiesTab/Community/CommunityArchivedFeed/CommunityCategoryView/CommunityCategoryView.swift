@@ -52,7 +52,7 @@ struct CommunityCategoryView: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     CommunityCategoryView(viewModel: CommunityCategory.preview.toCommunityCategoryViewModel())
         .frame(height: 100)

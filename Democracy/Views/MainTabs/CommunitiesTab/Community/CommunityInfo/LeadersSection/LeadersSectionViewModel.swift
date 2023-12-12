@@ -13,14 +13,23 @@ struct LeadersSectionViewModel {
     let modsScrollViewModel: LeadersScrollViewModel
     let legislatorsScrollViewModel: LeadersScrollViewModel
     
-    private weak var coordinator: LeadersScrollViewModelCoordinatorDelegate?
+    private weak var coordinator: LeadersCoordinatorDelegate?
     
-    init(creators: [Candidate], mods: [Candidate], legislators: [Candidate], coordinator: LeadersScrollViewModelCoordinatorDelegate?) {
+    init(
+        creators: [Candidate],
+        mods: [Candidate],
+        legislators: [Candidate],
+        coordinator: LeadersCoordinatorDelegate?
+    ) {
         self.coordinator = coordinator
         
         creatorsScrollViewModel = .init(candidates: creators, repType: .creator, coordinator: coordinator)
         modsScrollViewModel = .init(candidates: mods, repType: .mod, coordinator: coordinator)
-        legislatorsScrollViewModel = .init(candidates: legislators, repType: .legislator, coordinator: coordinator)
+        legislatorsScrollViewModel = .init(
+            candidates: legislators,
+            repType: .legislator,
+            coordinator: coordinator
+        )
     }
     
     func tappedVote() {

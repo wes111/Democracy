@@ -5,7 +5,6 @@
 //  Created by Wesley Luntsford on 3/20/23.
 //
 
-
 import Foundation
 
 enum CandidateBadge: Codable, Identifiable {
@@ -52,6 +51,4 @@ final class CandidateViewModel: CandidateViewModelProtocol {
         self.coordinator = coordinator
         self.candidate = candidate
     }
-    
 }
-

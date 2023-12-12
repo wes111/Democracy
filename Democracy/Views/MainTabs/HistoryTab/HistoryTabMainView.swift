@@ -20,7 +20,7 @@ struct HistoryTabMainView<ViewModel: HistoryTabMainViewModelProtocol>: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     HistoryTabMainView(viewModel: HistoryTabMainViewModel.preview)
 }

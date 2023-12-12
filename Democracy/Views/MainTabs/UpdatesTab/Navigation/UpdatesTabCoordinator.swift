@@ -37,15 +37,15 @@ struct UpdatesTabCoordinator: View {
     }
 }
 
-//extension UpdatesTabCoordinator: UpdatesTabMainCoordinatorDelegate {
-//    
+// extension UpdatesTabCoordinator: UpdatesTabMainCoordinatorDelegate {
+//
 //    func tappedNav() {
 //        print("tapped nav")
 //    }
 //    
-//}
+// }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     UpdatesTabCoordinator(viewModel: .preview)
 }

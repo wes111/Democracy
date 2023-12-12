@@ -29,7 +29,7 @@ struct RulesSection: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let viewModel = RulesSectionViewModel(
         rules: Rule.previewArray,

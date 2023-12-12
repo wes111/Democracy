@@ -138,7 +138,7 @@ extension CommunityCoordinator: AlliedDelegate {
     }
 }
 
-extension CommunityCoordinator: LeadersScrollViewModelCoordinatorDelegate {
+extension CommunityCoordinator: LeadersCoordinatorDelegate {
     
     func goToVoteView() {
         router.push(CommunityPath.voteView)

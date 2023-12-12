@@ -34,7 +34,7 @@ struct LeadersScrollView: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let viewModel = LeadersScrollViewModel(
         candidates: Candidate.previewArray,

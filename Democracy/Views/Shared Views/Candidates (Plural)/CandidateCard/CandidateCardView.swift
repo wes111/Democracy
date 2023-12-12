@@ -38,7 +38,6 @@ struct CandidateCardView: View {
         .background(Color.blue)
         .clipShape(RoundedRectangle(cornerRadius: 10))
         
-        
 //        VStack {
 //            if let imageName = viewModel.candidate.imageName {
 //                Image(imageName)
@@ -77,7 +76,7 @@ struct CandidateCardView: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     CandidateCardView(candidate: Candidate.preview)
 }

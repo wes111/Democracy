@@ -23,8 +23,14 @@ struct CommunityViewPicker: View {
         _viewModel = StateObject(wrappedValue: viewModel)
         
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor.init(.otherRed)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.init(.primaryText)], for: .normal)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.init(.primaryText)], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes(
+            [.foregroundColor: UIColor.init(.primaryText)],
+            for: .normal
+        )
+        UISegmentedControl.appearance().setTitleTextAttributes(
+            [.foregroundColor: UIColor.init(.primaryText)],
+            for: .selected
+        )
         UISegmentedControl.appearance().backgroundColor = UIColor.init(.secondaryBackground)
     }
     
@@ -81,7 +87,7 @@ struct CommunityViewPicker: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     NavigationStack {
         CommunityViewPicker(viewModel: CommunityViewModel.preview)

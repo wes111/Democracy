@@ -45,8 +45,6 @@ struct CandidateCard: View {
     let imageName: String?
     let badges: [CandidateBadge]
     let dateString: String
-    
-    
     var body: some View {
         HStack(alignment: .top, spacing: 0) {
             Spacer()
@@ -63,7 +61,7 @@ struct CandidateCard: View {
                     }
                     
                     HStack(spacing: 5) {
-                        ForEach(badges) { badge in
+                        ForEach(badges) { _ in
                             Image(systemName: "star.fill")
                                 .font(.caption)
                                 .padding(4)
@@ -123,10 +121,7 @@ struct CandidateCard: View {
                         .font(.caption2)
                         .foregroundColor(.tertiaryText)
                 }
-
-                
             }
-            
             Spacer()
         }
         .foregroundColor(.primaryText)
@@ -135,8 +130,7 @@ struct CandidateCard: View {
     }
 }
 
-
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     ZStack {
         Color.primaryBackground.ignoresSafeArea()

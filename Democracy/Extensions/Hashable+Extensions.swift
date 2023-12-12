@@ -15,7 +15,7 @@ extension Hashable where Self: AnyObject {
          hasher.combine(ObjectIdentifier(self))
     }
     
-    public static func ==(lhs: Self, rhs: Self) -> Bool {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
         return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
     }
 }

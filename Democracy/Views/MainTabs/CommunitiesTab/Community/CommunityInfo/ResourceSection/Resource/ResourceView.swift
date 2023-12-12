@@ -29,7 +29,7 @@ struct ResourceView: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let viewModel = Resource.previewArray.first!.viewModel(index: 0)
     return ResourceView(viewModel: viewModel)

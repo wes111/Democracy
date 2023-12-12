@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol LeadersScrollViewModelCoordinatorDelegate: AnyObject {
+protocol LeadersCoordinatorDelegate: AnyObject {
     
     func goToCandidateView(candidateId: String)
     func goToVoteView()
@@ -23,17 +23,17 @@ struct LeadersScrollViewModel {
     
     private let candidates: [Candidate]
     private let repType: RepresentativeType
-    private weak var coordinator: LeadersScrollViewModelCoordinatorDelegate?
+    private weak var coordinator: LeadersCoordinatorDelegate?
     
     init(
         candidates: [Candidate],
         repType: RepresentativeType,
-        coordinator: LeadersScrollViewModelCoordinatorDelegate?
+        coordinator: LeadersCoordinatorDelegate?
     ) {
         self.candidates = candidates
         self.repType = repType
         self.coordinator = coordinator
-        leaders = candidates.map{ .init(candidate: $0) }
+        leaders = candidates.map { .init(candidate: $0) }
     }
     
     func onTapLeader(id: String) {

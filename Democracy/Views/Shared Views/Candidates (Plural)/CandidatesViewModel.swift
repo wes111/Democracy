@@ -21,7 +21,7 @@ protocol CandidatesViewModelProtocol: ObservableObject {
     var representatives: [Candidate] { get }
     var candidatesFilter: RepresentativeType { get set }
     var representativesFilter: RepresentativeType { get set }
-    //var isShowingCreateCandidateView: Bool { get set }
+    // var isShowingCreateCandidateView: Bool { get set }
     
     func refreshCandidates()
     func openCreateCandidateView()
@@ -35,7 +35,7 @@ final class CandidatesViewModel: CandidatesViewModelProtocol {
     @Published var allCandidates: [Candidate] = []
     @Published var candidatesFilter: RepresentativeType = .legislator
     @Published var representativesFilter: RepresentativeType = .legislator
-    //@Published var isShowingCreateCandidateView = false
+    // @Published var isShowingCreateCandidateView = false
     
     weak var coordinator: CandidatesCoordinatorDelegate?
     private var cancellables = Set<AnyCancellable>()
@@ -64,7 +64,7 @@ final class CandidatesViewModel: CandidatesViewModelProtocol {
     
     func openCreateCandidateView() {
         coordinator?.showCreateCandidateView()
-        //isShowingCreateCandidateView = true
+        // isShowingCreateCandidateView = true
     }
     
     func closeCreateCandidateView() {
@@ -74,7 +74,4 @@ final class CandidatesViewModel: CandidatesViewModelProtocol {
     func getCandidateCardViewModel(_ candidate: Candidate) -> CandidateCardViewModel {
         CandidateCardViewModel(candidate: candidate)
     }
-    
-    
 }
-

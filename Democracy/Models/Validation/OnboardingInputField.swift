@@ -96,7 +96,8 @@ extension OnboardingInputField {
         switch self {
         case .username:
             /// Required to start with an alphanumeric character.
-            /// Can be followed by up to 35 characters, which can be alphanumeric, dots, underscores, or hyphens.
+            /// Can be followed by up to 35 characters, which can be alphanumeric, 
+            /// dots, underscores, or hyphens.
             "^[a-zA-Z0-9][a-zA-Z0-9._-]{0,35}$"
             
         case .password:
@@ -109,14 +110,17 @@ extension OnboardingInputField {
             
         case .email:
             /// Local part:
-            ///     Must start with a character that is either an uppercase letter (A-Z), lowercase letter (a-z), digit (0-9), percent sign (%), plus sign (+), or hyphen (-).
-            ///     Followed by zero or more occurrences of characters that are either uppercase letters (A-Z), 
-            ///     lowercase letters (a-z), digits (0-9), dots (.), underscores, percent signs (%), plus signs (+), or hyphens (-).
+            ///     Must start with a character that is either an uppercase letter (A-Z), 
+            ///     lowercase letter (a-z), digit (0-9), percent sign (%), plus sign (+), or hyphen (-).
+            ///     Followed by zero or more occurrences of characters that are either 
+            ///     uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), dots (.), underscores,
+            ///     percent signs (%), plus signs (+), or hyphens (-).
             /// @ symbol:
             ///     The email address must contain exactly one "@" symbol.
             /// Domain name:
             ///     Must consist of one or more characters.
-            ///     Allowed characters are: uppercase letters (A-Z), lowercase letters (a-z), digits (0-9), dots (.), and hyphens (-).
+            ///     Allowed characters are: uppercase letters (A-Z), lowercase letters (a-z), 
+            ///     digits (0-9), dots (.), and hyphens (-).
             ///     Dots must not be adjacent to each other.
             /// Dot after Domain:
             ///     The email address must contain exactly one dot (.) after the "@" symbol.

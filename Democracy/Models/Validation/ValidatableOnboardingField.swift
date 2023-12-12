@@ -32,12 +32,12 @@ struct PhoneValidator: ValidatableOnboardingField {
     static var field: OnboardingInputField = .phone
 }
 
-//struct VerifyEmailValidator: ValidatableOnboardingField {
+// struct VerifyEmailValidator: ValidatableOnboardingField {
 //    typealias Error = VerifyEmailCodeValidationError
 //    static var field: OnboardingInputField = .verifyEmail
-//}
+// }
 
-//struct VerifyPhoneValidator: ValidatableOnboardingField {
+// struct VerifyPhoneValidator: ValidatableOnboardingField {
 //    typealias Error = VerifyPhoneCodeValidationError
 //    static var field: OnboardingInputField = .verifyPhone
-//}
+// }

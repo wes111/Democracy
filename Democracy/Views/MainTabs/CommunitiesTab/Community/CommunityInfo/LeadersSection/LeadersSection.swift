@@ -44,7 +44,7 @@ struct LeadersSection: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let viewModel = LeadersSectionViewModel(
         creators: Candidate.previewArray,

@@ -31,7 +31,7 @@ final class PasswordInputViewModel: InputViewModel {
     
     @MainActor
     func submit() async {
-        //try? await Task.sleep(nanoseconds: 1_000_000_000)
+        // try? await Task.sleep(nanoseconds: 1_000_000_000)
         guard field.fullyValid(input: text) else {
             return presentInvalidInputAlert()
         }

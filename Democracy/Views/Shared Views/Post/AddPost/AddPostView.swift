@@ -88,7 +88,7 @@ struct AddPostView<ViewModel: AddPostViewModelProtocol>: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     AddPostView(viewModel: AddPostViewModel.preview)
 }

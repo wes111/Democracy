@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-//struct CommunitiesTabCoordinator: View {
+// struct CommunitiesTabCoordinator: View {
 //    @StateObject private var viewModel: CommunitiesTabCoordinatorViewModel
 //
 //    init(viewModel: CommunitiesTabCoordinatorViewModel) {
@@ -28,10 +28,11 @@ import SwiftUI
 //    @ViewBuilder
 //    func createViewFromPath(_ path: CommunitiesTabPath) -> some View {
 //        switch path {
-//        case .goToCommunity(let community): CommunityCoordinator(viewModel: viewModel.communityCoordinatorViewModel(community: community))
+//        case .goToCommunity(let community): 
+//              CommunityCoordinator(viewModel: viewModel.communityCoordinatorViewModel(community: community))
 //        }
 //    }
-//}
+// }
 
 struct EventsTabCoordinator: View {
     
@@ -47,7 +48,7 @@ struct EventsTabCoordinator: View {
         } secondaryScreen: { (path: EventsTabPath) in
             createViewFromPath(path)
         }
-        //.fullScreenCover(item: <#T##Binding<Identifiable?>#>, content: <#T##(Identifiable) -> View#>)
+        // .fullScreenCover(item: <#T##Binding<Identifiable?>#>, content: <#T##(Identifiable) -> View#>)
     }
     
     @ViewBuilder
@@ -64,15 +65,15 @@ struct EventsTabCoordinator: View {
     }
 }
 
-//extension EventsTabCoordinator: EventsTabMainCoordinatorDelegate {
-//    
+// extension EventsTabCoordinator: EventsTabMainCoordinatorDelegate {
+//
 //    func tappedNav() {
 //        print("tapped nav")
 //    }
 //    
-//}
+// }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let viewModel = EventsTabCoordinatorViewModel()
     return EventsTabCoordinator(viewModel: viewModel)

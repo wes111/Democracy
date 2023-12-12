@@ -33,7 +33,7 @@ struct MainTabView: View {
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithOpaqueBackground()
         navigationBarAppearance.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor : UIColor(.primaryText)
+            NSAttributedString.Key.foregroundColor: UIColor(.primaryText)
         ]
         navigationBarAppearance.backgroundColor = UIColor(.primaryBackground)
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
@@ -87,7 +87,7 @@ struct MainTabView: View {
     
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let viewModel = MainTabViewModel()
     return MainTabView(viewModel: viewModel)

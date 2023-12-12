@@ -22,7 +22,7 @@ struct CommunityCard: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     CommunityCard(community: Community.preview)
 }

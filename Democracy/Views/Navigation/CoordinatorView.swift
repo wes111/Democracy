@@ -32,7 +32,7 @@ struct CoordinatorView<Path: Hashable, RootView: View, NavigationViewBuilder: Vi
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     CoordinatorView(router: .constant(Router())) {
         Text("Hello")

@@ -23,7 +23,7 @@ struct PostView<ViewModel: PostViewModelProtocol>: View {
     
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     PostView(viewModel: PostViewModel.preview)
 }

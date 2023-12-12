@@ -17,13 +17,9 @@ protocol SettingsViewModelProtocol: ObservableObject {
 
 final class SettingsViewModel: SettingsViewModelProtocol {
 
-    //private weak var coordinator: SettingsCoordinatorDelegate?
+    // private weak var coordinator: SettingsCoordinatorDelegate?
     
     init() {
-        //self.coordinator = coordinator
+        // self.coordinator = coordinator
     }
-    
-
-    
-    
 }

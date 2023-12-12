@@ -9,15 +9,15 @@ import Combine
 import Factory
 import Foundation
 
-protocol CandidateCardCoordinatorDelegate {
-    //func goToCandidateView(_ candidate: Candidate)
+protocol CandidateCardCoordinatorDelegate: AnyObject {
+    // func goToCandidateView(_ candidate: Candidate)
 }
 
 final class CandidateCardViewModel: ObservableObject {
     
     @Injected(\.candidateInteractor) var candidateInteractor
 
-    //private let coordinator: CandidateCardCoordinatorDelegate
+    // private let coordinator: CandidateCardCoordinatorDelegate
     @Published var candidate: Candidate
     private var cancellables = Set<AnyCancellable>()
     
@@ -32,7 +32,7 @@ final class CandidateCardViewModel: ObservableObject {
     init(
          candidate: Candidate
     ) {
-        //self.coordinator = coordinator
+        // self.coordinator = coordinator
         self.candidate = candidate
         
         subscribeToCandidates()
@@ -44,7 +44,9 @@ final class CandidateCardViewModel: ObservableObject {
             .subscribeToCandidates()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] candidates in
-                guard let self = self, let cardCandidate = candidates.first(where: { $0.id == self.candidate.id }) else {
+                guard let self = self, 
+                      let cardCandidate = candidates.first(where: { $0.id == self.candidate.id })
+                else {
                     return // print("Candidate for card went missing from local database.")
                 }
                 self.updateCandidate(newCandidate: cardCandidate)

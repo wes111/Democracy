@@ -29,7 +29,7 @@ struct RuleView: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let viewModel = Rule.previewArray.first!.viewModel(index: 0)
     return RuleView(viewModel: viewModel)

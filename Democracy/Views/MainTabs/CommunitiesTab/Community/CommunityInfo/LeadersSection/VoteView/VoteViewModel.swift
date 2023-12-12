@@ -22,15 +22,13 @@ final class VoteViewModel: ObservableObject {
     
     var topButtons: [OnboardingTopButton: () -> Void] {
         [
-            .back : {},
-            .close : {}
+            .back: {},
+            .close: {}
         ]
     }
-    
-    
 }
 
-//MARK: Computed Properties
+// MARK: Computed Properties
 extension VoteViewModel {
     
     var navigationTitle: String {
@@ -42,7 +40,7 @@ extension VoteViewModel {
     }
 }
 
-//MARK: - Methods
+// MARK: - Methods
 extension VoteViewModel {
     
     func goBack() {

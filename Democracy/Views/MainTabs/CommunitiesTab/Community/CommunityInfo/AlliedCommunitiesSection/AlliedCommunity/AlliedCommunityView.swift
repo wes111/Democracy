@@ -22,7 +22,7 @@ struct AlliedCommunityView: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let viewModel = AlliedCommunityViewModel(.preview)
     return AlliedCommunityView(viewModel: viewModel)

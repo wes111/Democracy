@@ -36,13 +36,13 @@ final class CreateCommunityViewModel: ObservableObject {
     
     var topButtons: [OnboardingTopButton: () -> Void] {
         [
-            .back : {},
-            .close : close
+            .back: {},
+            .close: close
         ]
     }
 }
 
-//MARK: - Methods
+// MARK: - Methods
 extension CreateCommunityViewModel {
     
     func close() {

@@ -39,7 +39,7 @@ struct PrimaryButtonStyle: ButtonStyle {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     ZStack {
         Color.primaryBackground
@@ -61,8 +61,6 @@ struct PrimaryButtonStyle: ButtonStyle {
             .buttonStyle(SeconaryButtonStyle())
             .padding()
         }
-
-        
     }
     .ignoresSafeArea()
 }

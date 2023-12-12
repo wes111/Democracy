@@ -86,7 +86,7 @@ struct CreateCandidateView<ViewModel: CreateCandidateViewModelProtocol>: View {
     
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     CreateCandidateView(viewModel: CreateCandidateViewModel.preview)
 }

@@ -135,9 +135,9 @@ private extension VerticalAlignment {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
-    //TODO: Use a better (dynamic tags array) example here.
+    // TODO: Use a better (dynamic tags array) example here.
     let tags = ["Cat", "Dog", "Turkey", "Goose", "Elephant", "Monkey", "Lion"]
     return NewFlowLayout {
         ForEach(tags, id: \.self) { tag in

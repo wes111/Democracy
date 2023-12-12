@@ -30,7 +30,7 @@ extension ToggleStyle where Self == CheckboxToggleStyle {
     static var iOSCheckbox: CheckboxToggleStyle { .init() }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     ZStack {
         Color.primaryBackground

@@ -31,7 +31,7 @@ struct HeaderWithDropDownFilter<T: Hashable>: View where T: CustomStringConverti
     
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     HeaderWithDropDownFilter(
         title: "Filterable Results",

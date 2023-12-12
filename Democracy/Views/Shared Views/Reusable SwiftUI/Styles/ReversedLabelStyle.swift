@@ -16,7 +16,7 @@ struct ReversedLabelStyle: LabelStyle {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     Label("Label Title", systemImage: "chevron.right")
         .labelStyle(ReversedLabelStyle())

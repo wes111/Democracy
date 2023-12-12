@@ -37,7 +37,7 @@ struct CommunityInfoView: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     CommunityInfoView(viewModel: CommunityInfoViewModel.preview)
         .background(Color.primaryBackground)

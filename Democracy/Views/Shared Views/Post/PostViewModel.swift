@@ -16,15 +16,13 @@ protocol PostViewModelProtocol: ObservableObject, Identifiable {
 
 final class PostViewModel: PostViewModelProtocol {
 
-    //private weak var coordinator: PostCoordinatorDelegate?
+    // private weak var coordinator: PostCoordinatorDelegate?
     let post: Post
     
-    init(//coordinator: PostCoordinatorDelegate?,
+    init(// coordinator: PostCoordinatorDelegate?,
          post: Post
     ) {
-        //self.coordinator = coordinator
+        // self.coordinator = coordinator
         self.post = post
     }
-    
 }
-

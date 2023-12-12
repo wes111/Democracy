@@ -31,7 +31,7 @@ struct SettingsView<ViewModel: SettingsViewModelProtocol>: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let viewModel = SettingsViewModel()
     return SettingsView(viewModel: viewModel)

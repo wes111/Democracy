@@ -15,17 +15,17 @@ protocol PostCardCoordinatorDelegate: AnyObject {
 
 final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
     
-    //MARK: - Private Variables
+    // MARK: - Private Variables
     @Injected(\.richLinkService) private var richLinkService
     private weak var coordinator: PostCardCoordinatorDelegate?
-    let post: Post //TODO: Make this private?
+    let post: Post // TODO: Make this private?
     
     // MARK: - Protocol Variables
     @Published var linkMetadata: LPLinkMetadata?
 
     var imageName: String {
         // if postLocationInApp == global vs in community
-        //return post.creator.imageName ?? "bernie" // default image.
+        // return post.creator.imageName ?? "bernie" // default image.
         return "bernie"
     }
     

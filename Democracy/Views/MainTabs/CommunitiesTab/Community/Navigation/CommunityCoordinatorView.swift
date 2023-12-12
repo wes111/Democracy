@@ -49,7 +49,9 @@ struct CommunityCoordinatorView: View {
             CandidateView(viewModel: viewModel.candidateViewModel(candidate: candidate))
             
         case .goToCommunityPostCategory(let category):
-            CommunityCategoryPostsView(viewModel: viewModel.communityPostCategoryViewModel(category: category))
+            CommunityCategoryPostsView(
+                viewModel: viewModel.communityPostCategoryViewModel(category: category)
+            )
             
         case .voteView:
             VoteView(viewModel: viewModel.voteViewModel())

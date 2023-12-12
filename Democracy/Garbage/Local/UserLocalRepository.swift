@@ -19,8 +19,6 @@ protocol UserLocalRepositoryProtocol {
 
 struct UserLocalRepository: UserLocalRepositoryProtocol {
     
-    init() { }
-    
     func getUser() async throws -> User {
         .preview
     }

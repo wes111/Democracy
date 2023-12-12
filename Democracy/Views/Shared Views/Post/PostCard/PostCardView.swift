@@ -108,7 +108,7 @@ struct PostCardView: View {
         
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     ScrollView {
         PostCardView(viewModel: PostCardViewModel.preview)

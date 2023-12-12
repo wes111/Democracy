@@ -53,36 +53,50 @@ struct CreateCommunityView: View {
     }
 }
 
-//MARK: - Subviews
+// MARK: - Subviews
 extension CreateCommunityView {
     
     var summaryField: some View {
-        TextField("Summary", text: $viewModel.summary, prompt: Text("Describe the community").foregroundColor(.secondaryBackground), axis: .vertical)
-            .limitCharacters(text: $viewModel.categoryString, count: 2_000)
-            .lineLimit(3...10)
-            .focused($focusedField, equals: .summary)
-            .standardTextField(title: "Description")
+        TextField(
+            "Summary",
+            text: $viewModel.summary,
+            prompt: Text("Describe the community").foregroundColor(.secondaryBackground),
+            axis: .vertical
+        )
+        .limitCharacters(text: $viewModel.categoryString, count: 2_000)
+        .lineLimit(3...10)
+        .focused($focusedField, equals: .summary)
+        .standardTextField(title: "Description")
     }
     
     var titleField: some View {
-        TextField("", text: $viewModel.title, prompt: Text("Add a title").foregroundColor(.secondaryBackground), axis: .vertical)
-            .limitCharacters(text: $viewModel.title, count: 75)
-            .lineLimit(2)
-            .focused($focusedField, equals: .title)
-            .standardTextField(title: "Title")
-            .submitLabel(.next)
+        TextField(
+            "",
+            text: $viewModel.title,
+            prompt: Text("Add a title").foregroundColor(.secondaryBackground),
+            axis: .vertical
+        )
+        .limitCharacters(text: $viewModel.title, count: 75)
+        .lineLimit(2)
+        .focused($focusedField, equals: .title)
+        .standardTextField(title: "Title")
+        .submitLabel(.next)
     }
     
     var categoriesField: some View {
-        TextField("Add Category", text: $viewModel.categoryString, prompt: Text("Add a post category").foregroundColor(.secondaryBackground))
-            .taggable(title: "Categories", tags: viewModel.categories)
-            .limitCharacters(text: $viewModel.categoryString, count: 25)
-            .focused($focusedField, equals: .addCategory)
-            .onSubmit {
-                Task {
-                    await viewModel.submitCategory()
-                }
+        TextField(
+            "Add Category",
+            text: $viewModel.categoryString,
+            prompt: Text("Add a post category").foregroundColor(.secondaryBackground)
+        )
+        .taggable(title: "Categories", tags: viewModel.categories)
+        .limitCharacters(text: $viewModel.categoryString, count: 25)
+        .focused($focusedField, equals: .addCategory)
+        .onSubmit {
+            Task {
+                await viewModel.submitCategory()
             }
+        }
     }
     
     var submitButton: some View {
@@ -103,7 +117,7 @@ extension CreateCommunityView {
     }
 }
 
-//MARK: - Helper Methods
+// MARK: - Helper Methods
 extension CreateCommunityView {
     
     func getNextField(after field: CreateCommunityField?) -> CreateCommunityField? {
@@ -118,7 +132,7 @@ extension CreateCommunityView {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     NavigationStack {
         CreateCommunityView(viewModel: CreateCommunityViewModel.preview)

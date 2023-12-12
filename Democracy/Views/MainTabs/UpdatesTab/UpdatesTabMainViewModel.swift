@@ -31,13 +31,13 @@ final class UpdatesTabMainViewModel: UpdatesTabMainViewModelProtocol {
         }
     }
     
-    //private weak var coordinator: UpdatesTabMainCoordinatorDelegate?
+    // private weak var coordinator: UpdatesTabMainCoordinatorDelegate?
     
     init() {
-        //self.coordinator = coordinator
+        // self.coordinator = coordinator
     }
     
     func tappedNav() {
-        //coordinator?.tappedNav()
+        // coordinator?.tappedNav()
     }
 }

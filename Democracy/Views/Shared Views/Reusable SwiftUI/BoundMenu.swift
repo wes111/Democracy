@@ -21,7 +21,7 @@ struct BoundMenu<T: Hashable & CustomStringConvertible>: View {
                 }
             }
         } label: {
-            HStack() {
+            HStack {
                 Text(selectedItem.description.capitalized)
                 Image(systemName: "chevron.down")
                 Spacer()
@@ -32,7 +32,7 @@ struct BoundMenu<T: Hashable & CustomStringConvertible>: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     BoundMenu(
         menuItems: RepresentativeType.allCases,

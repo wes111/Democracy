@@ -33,7 +33,7 @@ struct CommunityArchiveFeedView: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     CommunityArchiveFeedView(viewModel: CommunityArchiveFeedViewModel.preview)
 }

@@ -17,7 +17,14 @@ struct CandidateListItemViewModel: Identifiable {
     let candidateName: String
     let imageName: String
     
-    init(score: Int, upVotes: Int, downVotes: Int, memberSince: Date, candidateName: String, imageName: String) {
+    init(
+        score: Int,
+        upVotes: Int,
+        downVotes: Int,
+        memberSince: Date,
+        candidateName: String,
+        imageName: String
+    ) {
         self.score = score
         self.upVotes = upVotes
         self.downVotes = downVotes
@@ -82,8 +89,8 @@ struct CandidateListItem: View {
             .foregroundColor(.primaryText)
             .font(.system(.callout, weight: .medium))
         }
-        //.padding()
-        //.background(Color.secondaryBackground, in: RoundedRectangle(cornerRadius: 15))
+        // .padding()
+        // .background(Color.secondaryBackground, in: RoundedRectangle(cornerRadius: 15))
     }
 }
 
@@ -123,7 +130,7 @@ struct VoteView: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let viewModel = VoteViewModel(coordinator: CommunityCoordinator.preview)
     

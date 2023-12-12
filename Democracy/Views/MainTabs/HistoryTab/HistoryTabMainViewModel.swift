@@ -17,14 +17,13 @@ protocol HistoryTabMainViewModelProtocol: ObservableObject {
 
 final class HistoryTabMainViewModel: HistoryTabMainViewModelProtocol {
     
-    //private weak var coordinator: HistoryTabMainCoordinatorDelegate?
+    // private weak var coordinator: HistoryTabMainCoordinatorDelegate?
     
     init() {
-        //self.coordinator = coordinator
+        // self.coordinator = coordinator
     }
     
     func tappedNav() {
-        //coordinator?.tappedNav()
+        // coordinator?.tappedNav()
     }
 }
-

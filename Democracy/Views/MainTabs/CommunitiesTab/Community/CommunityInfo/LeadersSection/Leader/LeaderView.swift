@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-//TODO: This overlaps with CandidateView.
+// TODO: This overlaps with CandidateView.
 struct LeaderView: View {
     
     let viewModel: LeaderViewModel
@@ -37,7 +37,7 @@ struct LeaderView: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let viewModel = LeaderViewModel(candidate: .preview)
     return LeaderView(viewModel: viewModel)

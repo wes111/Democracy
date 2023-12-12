@@ -37,7 +37,7 @@ struct CommunityCategoryPostsView: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     CommunityCategoryPostsView(viewModel: CommunityCategoryPostsViewModel.preview)
 }

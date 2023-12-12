@@ -65,7 +65,7 @@ class CandidateLocalRepository: CandidateLocalRepositoryProtocol {
     }
     
     func getCandidate(id: String) async throws -> Candidate? {
-        //try await getCandidates().first(where: { $0.id == id })
+        // try await getCandidates().first(where: { $0.id == id })
         return nil
     }
     

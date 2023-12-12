@@ -16,7 +16,7 @@ struct TightLabelStyle: LabelStyle {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     Label("11", systemImage: "arrow.down")
         .labelStyle(TightLabelStyle())

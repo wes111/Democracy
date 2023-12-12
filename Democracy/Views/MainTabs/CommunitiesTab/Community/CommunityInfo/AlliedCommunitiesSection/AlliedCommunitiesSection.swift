@@ -34,7 +34,7 @@ struct AlliedCommunitiesSection: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let viewModel = AlliedCommunitiesSectionViewModel(
         alliedCommunities: Community.myCommunitiesPreviewArray,

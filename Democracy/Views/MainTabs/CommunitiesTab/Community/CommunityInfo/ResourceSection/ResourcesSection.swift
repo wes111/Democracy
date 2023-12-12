@@ -27,7 +27,7 @@ struct ResourcesSection: View {
     }
 }
 
-//MARK: - Preview
+// MARK: - Preview
 #Preview {
     let viewModel = ResourcesSectionViewModel(
         title: "Resources",
