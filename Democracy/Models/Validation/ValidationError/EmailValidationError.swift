@@ -13,7 +13,7 @@ enum EmailValidationError: ValidationError {
     
     var descriptionText: String {
         switch self {
-        case .invalidEmail: "Email format is invalid."
+        case .invalidEmail: "Valid email format."
         }
     }
     

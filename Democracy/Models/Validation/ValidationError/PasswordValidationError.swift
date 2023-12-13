@@ -14,15 +14,15 @@ enum PasswordValidationError: ValidationError {
     var descriptionText: String {
         switch self {
         case .hasUppercase:
-            "Password must have at least one uppercase letter."
+            "At least one uppercase letter."
         case .hasLowercase:
-            "Password must have at least one lowercase letter."
+            "At least one lowercase letter."
         case .hasDigit:
-            "Password must have at least one digit."
+            "At least one digit."
         case .hasSpecialChar:
-            "Password must have at least one special character."
+            "At least one special character."
         case .length:
-            "Password must be between 8 and 128 characters long."
+            "8-128 characters."
         }
     }
     

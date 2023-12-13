@@ -17,26 +17,26 @@ extension OnboardingInputField {
     var title: String {
         switch self {
         case .username:
-            "Create Username"
+            "Create a Username"
         case .password:
-            "Create Password"
+            "Create a Password"
         case .email:
-            "Create Email"
+            "Add Your Email"
         case .phone:
-            "Create Phone"
+            "Add Your Phone Number"
         }
     }
     
     var subtitle: String {
         switch self {
         case .username:
-            "Create a unique username as a unique identifier across the app."
+            "Create a unique username for your account."
         case .password:
-            "Create a password that will be difficult to guess."
+            "Create a password that meets the password requirements listed below."
         case .email:
-            "Create the primary email for this account"
+            "Add a primary email for your account."
         case .phone:
-            "Create a phone number we can contact you via SMS"
+            "Add a phone number to receive SMS notifications."
         }
     }
     
@@ -49,7 +49,7 @@ extension OnboardingInputField {
         case .email:
             "Email"
         case .phone:
-            "Phone"
+            "Phone Number"
         }
     }
     
@@ -69,26 +69,26 @@ extension OnboardingInputField {
     var alertTitle: String {
         switch self {
         case .username:
-            "Invalid username"
+            "Invalid Username"
         case .password:
-            "Invalid password"
+            "Invalid Password"
         case .email:
-            "Invalid email"
+            "Invalid Email"
         case .phone:
-            "Invalid phone number"
+            "Invalid Phone Number"
         }
     }
     
     var alertDescription: String {
         switch self {
         case .username:
-            "Enter a username that matches the requirements."
+            "Enter a username that meets the requirements."
         case .password:
-            "Enter a password that matches the requirements."
+            "Enter a password that meets the requirements."
         case .email:
-            "Enter an email that matches the requirements."
+            "Enter an email that meets the requirements."
         case .phone:
-            "Enter a phone number that matches the requirements."
+            "Enter a phone number that meets the requirements."
         }
     }
     

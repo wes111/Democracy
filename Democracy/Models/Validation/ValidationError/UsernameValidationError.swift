@@ -16,9 +16,9 @@ enum UsernameValidationError: ValidationError {
         case .length:
             "1-36 characters"
         case .startChar:
-            "Must begin with an alphanumeric character"
+            "Begins with an alphanumeric character"
         case .validChars:
-            "May only contain alphanumeric characters, dots, underscores, and hyphens"
+            "Contains only alphanumeric characters, dots, underscores, and hyphens"
         }
     }
     

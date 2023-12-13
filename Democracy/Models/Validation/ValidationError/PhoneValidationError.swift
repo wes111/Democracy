@@ -13,7 +13,7 @@ enum PhoneValidationError: ValidationError {
     var descriptionText: String {
         switch self {
         case .length:
-            "Phone number must be 10 digits long."
+            "10 digits."
         }
     }
     
