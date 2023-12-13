@@ -41,6 +41,7 @@ protocol InputViewModel: Hashable, ObservableObject {
     var textErrors: [Field.Error] { get }
     var canSubmit: Bool { get }
     var coordinator: OnboardingCoordinatorDelegate? { get }
+    var allErrors: [Field.Error] { get }
     
     func submit() async
     func close()
@@ -50,6 +51,10 @@ protocol InputViewModel: Hashable, ObservableObject {
 }
 
 extension InputViewModel {
+    
+    var allErrors: [Field.Error] {
+        Field.Error.allCases as! [Field.Error]
+    }
     
     var field: OnboardingInputField {
         Field.field

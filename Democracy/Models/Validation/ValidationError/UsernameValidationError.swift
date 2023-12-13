@@ -14,11 +14,11 @@ enum UsernameValidationError: ValidationError {
     var descriptionText: String {
         switch self {
         case .length:
-            "Username must be between 1 and 36 characters long."
+            "1-36 characters"
         case .startChar:
-            "Username must start with an alphanumeric character."
+            "Must begin with an alphanumeric character"
         case .validChars:
-            "Username contains an invalid character."
+            "May only contain alphanumeric characters, dots, underscores, and hyphens"
         }
     }
     

@@ -11,6 +11,7 @@ struct UsernameOnboardingInputView: OnboardingInputView {
     
     @ObservedObject var viewModel: UsernameInputViewModel
     @FocusState private var focusedField: OnboardingInputField?
+    @State private var isFirstAppear = true
     
     init(viewModel: UsernameInputViewModel) {
         self.viewModel = viewModel
@@ -19,7 +20,17 @@ struct UsernameOnboardingInputView: OnboardingInputView {
     var body: some View {
         main
             .onAppear {
-                focusedField = viewModel.field
+                if isFirstAppear {
+                    focusedField = viewModel.field
+                    isFirstAppear = false
+                } else {
+                    Task {
+                        // Note: Keyboard jumps to mid screen without this sleep,
+                        // when dismissing a view above in the stack.
+                        try await Task.sleep(seconds: 0.5)
+                        focusedField = viewModel.field
+                    }
+                }
             }
             .onTapGesture {
                 focusedField = nil

@@ -17,19 +17,63 @@ import SwiftUI
 }
 
 extension OnboardingInputView {
-    var errors: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            ForEach(viewModel.textErrors, id: \.self) { error in
-                Label {
-                    Text(error.descriptionText)
-                        .font(.system(.caption, weight: .light))
-                } icon: {
-                    Image(systemName: "exclamationmark.triangle")
+    
+    var progressView: some View {
+        ProgressView()
+            .controlSize(.large)
+            .tint(.secondaryText)
+    }
+    
+    var main: some View {
+        ZStack {
+            Color.primaryBackground.ignoresSafeArea()
+            
+            // The GeometryReader here prevents the view from moving
+            // with keyboard appearance/disappearance.
+            GeometryReader { _ in
+                VStack(alignment: .center, spacing: 20) {
+                    VStack(alignment: .leading, spacing: 20) {
+                        title
+                        subtitle
+                        
+                        VStack(alignment: .leading, spacing: 10) {
+                            field
+                            requirements
+                        }
+                        
+                        VStack {
+                            nextButton
+                        }
+                    }
+                    if viewModel.isShowingProgress {
+                        progressView
+                    }
                 }
-                .foregroundColor(.otherRed)
+                .padding()
+            }
+            .ignoresSafeArea(.keyboard, edges: .bottom)
+        }
+        .toolbarNavigation(topButtons: viewModel.topButtons)
+        .onSubmit {
+            if viewModel.canSubmit {
+                performAsnycTask(
+                    action: viewModel.submit,
+                    isShowingProgress: isShowingProgress
+                )
             }
         }
+        .alert(item: onboardingAlert) { alert in
+            Alert(
+                title: Text(alert.title),
+                message: Text(alert.message),
+                dismissButton: .default(Text("Okay"))
+            )
+        }
     }
+}
+
+// MARK: Private Subviews
+private extension OnboardingInputView {
     
     var title: some View {
         Text(viewModel.title)
@@ -54,45 +98,41 @@ extension OnboardingInputView {
         .disabled(!viewModel.canSubmit)
     }
     
-    var main: some View {
-        ZStack {
-            Color.primaryBackground.ignoresSafeArea()
-            
-            VStack(alignment: .leading, spacing: 20) {
-                title
-                subtitle
-                field
-                errors
-                
-                VStack {
-                    nextButton
-                    Spacer()
+    var requirements: some View {
+        VStack(alignment: .leading, spacing: 5) {
+            ForEach(viewModel.allErrors, id: \.self) { error in
+                if viewModel.text.isEmpty {
+                    requirementLabel(
+                        text: error.descriptionText,
+                        color: .tertiaryText,
+                        systemImage: "checkmark.circle"
+                    )
+                } else if viewModel.textErrors.contains(error) {
+                    requirementLabel(
+                        text: error.descriptionText,
+                        color: .yellow,
+                        systemImage: "exclamationmark.triangle"
+                    )
+                } else {
+                    requirementLabel(
+                        text: error.descriptionText,
+                        color: .green,
+                        systemImage: "checkmark.circle.fill"
+                    )
                 }
-                .ignoresSafeArea(.keyboard)
             }
-            .padding()
-            
-            if viewModel.isShowingProgress {
-                ProgressView()
-                    .progressViewStyle(.circular)
-                    .tint(.white)
-            }
+            .foregroundColor(.tertiaryText)
         }
-        .toolbarNavigation(topButtons: viewModel.topButtons)
-        .onSubmit {
-            if viewModel.canSubmit {
-                performAsnycTask(
-                    action: viewModel.submit,
-                    isShowingProgress: isShowingProgress
-                )
-            }
-        }
-        .alert(item: onboardingAlert) { alert in
-            Alert(
-                title: Text(alert.title),
-                message: Text(alert.message),
-                dismissButton: .default(Text("Okay"))
-            )
+    }
+    
+    func requirementLabel(text: String, color: Color, systemImage: String) -> some View {
+        Label {
+            Text(text)
+                .font(.system(.caption, weight: .light))
+        } icon: {
+            Image(systemName: systemImage)
+                .frame(width: 20, height: 20) // TODO: This does not control size lol
+                .foregroundColor(color)
         }
     }
 }
