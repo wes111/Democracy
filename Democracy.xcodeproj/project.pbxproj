@@ -670,7 +670,7 @@
 			children = (
 				EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */,
 				EEB5AF7D2AE0DE3700310408 /* ValidatableOnboardingField.swift */,
-				EE9760072AD07959003069CF /* ValidationError */,
+				EE9760072AD07959003069CF /* InputRequirement */,
 			);
 			path = Validation;
 			sourceTree = "<group>";
@@ -1066,7 +1066,7 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
-		EE9760072AD07959003069CF /* ValidationError */ = {
+		EE9760072AD07959003069CF /* InputRequirement */ = {
 			isa = PBXGroup;
 			children = (
 				EE9760052AD07941003069CF /* InputRequirement.swift */,
@@ -1075,7 +1075,7 @@
 				EE988AAF2ADA07640057F9DE /* PhoneRequirement.swift */,
 				EE4DB8AB2ACE45AB00A6DC90 /* UsernameRequirement.swift */,
 			);
-			path = ValidationError;
+			path = InputRequirement;
 			sourceTree = "<group>";
 		};
 		EE9760122AD09CF6003069CF /* CreateAccountSuccessView */ = {

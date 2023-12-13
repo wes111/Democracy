@@ -99,13 +99,13 @@ private extension OnboardingInputView {
     }
     
     var requirements: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: 10) {
             ForEach(viewModel.allErrors, id: \.self) { error in
                 if viewModel.text.isEmpty {
                     requirementLabel(
                         text: error.descriptionText,
-                        color: .tertiaryText,
-                        systemImage: "checkmark.circle"
+                        color: .primaryText,
+                        systemImage: "asterisk"
                     )
                 } else if viewModel.textErrors.contains(error) {
                     requirementLabel(
@@ -128,11 +128,11 @@ private extension OnboardingInputView {
     func requirementLabel(text: String, color: Color, systemImage: String) -> some View {
         Label {
             Text(text)
-                .font(.system(.caption, weight: .light))
         } icon: {
             Image(systemName: systemImage)
-                .frame(width: 20, height: 20) // TODO: This does not control size lol
                 .foregroundColor(color)
+                .frame(width: 10, height: 10)
         }
+        .font(.system(.caption, weight: .light))
     }
 }
