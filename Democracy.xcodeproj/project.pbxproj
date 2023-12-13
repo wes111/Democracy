@@ -48,9 +48,9 @@
 		EE4DB8962AC89F6800A6DC90 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8952AC89F6800A6DC90 /* OnboardingCoordinator.swift */; };
 		EE4DB8982AC8A13C00A6DC90 /* OnboardingPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8972AC8A13C00A6DC90 /* OnboardingPath.swift */; };
 		EE4DB8A22ACA5C0F00A6DC90 /* OnboardingUserInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8A12ACA5C0F00A6DC90 /* OnboardingUserInputView.swift */; };
-		EE4DB8A82ACE455500A6DC90 /* EmailValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8A72ACE455500A6DC90 /* EmailValidationError.swift */; };
-		EE4DB8AA2ACE457000A6DC90 /* PasswordValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8A92ACE457000A6DC90 /* PasswordValidationError.swift */; };
-		EE4DB8AC2ACE45AB00A6DC90 /* UsernameValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8AB2ACE45AB00A6DC90 /* UsernameValidationError.swift */; };
+		EE4DB8A82ACE455500A6DC90 /* EmailRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8A72ACE455500A6DC90 /* EmailRequirement.swift */; };
+		EE4DB8AA2ACE457000A6DC90 /* PasswordRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8A92ACE457000A6DC90 /* PasswordRequirement.swift */; };
+		EE4DB8AC2ACE45AB00A6DC90 /* UsernameRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8AB2ACE45AB00A6DC90 /* UsernameRequirement.swift */; };
 		EE54ADDF29A329C9007C3E3F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADDE29A329C9007C3E3F /* MainTabView.swift */; };
 		EE54ADEA29A712AE007C3E3F /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADE929A712AD007C3E3F /* LoginView.swift */; };
 		EE54ADEC29A714E8007C3E3F /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE54ADEB29A714E8007C3E3F /* LoginViewModel.swift */; };
@@ -169,7 +169,7 @@
 		EE936CB72A78A12F00D49271 /* UpdatesTabCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE936CB62A78A12F00D49271 /* UpdatesTabCoordinatorViewModel.swift */; };
 		EE936CB92A81DA2700D49271 /* CoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE936CB82A81DA2700D49271 /* CoordinatorView.swift */; };
 		EE9760042AD07314003069CF /* NSPredicate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9760032AD07314003069CF /* NSPredicate+Extensions.swift */; };
-		EE9760062AD07941003069CF /* ValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9760052AD07941003069CF /* ValidationError.swift */; };
+		EE9760062AD07941003069CF /* InputRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9760052AD07941003069CF /* InputRequirement.swift */; };
 		EE9760142AD09D10003069CF /* CreateAccountSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9760132AD09D10003069CF /* CreateAccountSuccessView.swift */; };
 		EE9760162AD09F67003069CF /* CreateAccountSuccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9760152AD09F67003069CF /* CreateAccountSuccessViewModel.swift */; };
 		EE9760192AD0B066003069CF /* AcceptTermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9760182AD0B066003069CF /* AcceptTermsView.swift */; };
@@ -177,7 +177,7 @@
 		EE97601E2AD767EF003069CF /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97601D2AD767EF003069CF /* RootCoordinator.swift */; };
 		EE9760202AD76800003069CF /* RootPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97601F2AD76800003069CF /* RootPath.swift */; };
 		EE9760242AD76849003069CF /* RootCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9760232AD76849003069CF /* RootCoordinatorView.swift */; };
-		EE988AB02ADA07640057F9DE /* PhoneValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE988AAF2ADA07640057F9DE /* PhoneValidationError.swift */; };
+		EE988AB02ADA07640057F9DE /* PhoneRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE988AAF2ADA07640057F9DE /* PhoneRequirement.swift */; };
 		EEB5AF672ADB186E00310408 /* OnboardingUserInputViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF662ADB186E00310408 /* OnboardingUserInputViewModelProtocol.swift */; };
 		EEB5AF762ADB1EFA00310408 /* OnboardingTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */; };
 		EEB5AF7A2ADC3D6D00310408 /* OnboardingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF792ADC3D6C00310408 /* OnboardingAlert.swift */; };
@@ -273,9 +273,9 @@
 		EE4DB8952AC89F6800A6DC90 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		EE4DB8972AC8A13C00A6DC90 /* OnboardingPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPath.swift; sourceTree = "<group>"; };
 		EE4DB8A12ACA5C0F00A6DC90 /* OnboardingUserInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUserInputView.swift; sourceTree = "<group>"; };
-		EE4DB8A72ACE455500A6DC90 /* EmailValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationError.swift; sourceTree = "<group>"; };
-		EE4DB8A92ACE457000A6DC90 /* PasswordValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidationError.swift; sourceTree = "<group>"; };
-		EE4DB8AB2ACE45AB00A6DC90 /* UsernameValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameValidationError.swift; sourceTree = "<group>"; };
+		EE4DB8A72ACE455500A6DC90 /* EmailRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailRequirement.swift; sourceTree = "<group>"; };
+		EE4DB8A92ACE457000A6DC90 /* PasswordRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordRequirement.swift; sourceTree = "<group>"; };
+		EE4DB8AB2ACE45AB00A6DC90 /* UsernameRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameRequirement.swift; sourceTree = "<group>"; };
 		EE54ADDE29A329C9007C3E3F /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		EE54ADE929A712AD007C3E3F /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EE54ADEB29A714E8007C3E3F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -393,7 +393,7 @@
 		EE936CB62A78A12F00D49271 /* UpdatesTabCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesTabCoordinatorViewModel.swift; sourceTree = "<group>"; };
 		EE936CB82A81DA2700D49271 /* CoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorView.swift; sourceTree = "<group>"; };
 		EE9760032AD07314003069CF /* NSPredicate+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPredicate+Extensions.swift"; sourceTree = "<group>"; };
-		EE9760052AD07941003069CF /* ValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationError.swift; sourceTree = "<group>"; };
+		EE9760052AD07941003069CF /* InputRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputRequirement.swift; sourceTree = "<group>"; };
 		EE9760132AD09D10003069CF /* CreateAccountSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountSuccessView.swift; sourceTree = "<group>"; };
 		EE9760152AD09F67003069CF /* CreateAccountSuccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountSuccessViewModel.swift; sourceTree = "<group>"; };
 		EE9760182AD0B066003069CF /* AcceptTermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptTermsView.swift; sourceTree = "<group>"; };
@@ -401,7 +401,7 @@
 		EE97601D2AD767EF003069CF /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		EE97601F2AD76800003069CF /* RootPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPath.swift; sourceTree = "<group>"; };
 		EE9760232AD76849003069CF /* RootCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorView.swift; sourceTree = "<group>"; };
-		EE988AAF2ADA07640057F9DE /* PhoneValidationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneValidationError.swift; sourceTree = "<group>"; };
+		EE988AAF2ADA07640057F9DE /* PhoneRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneRequirement.swift; sourceTree = "<group>"; };
 		EEB5AF662ADB186E00310408 /* OnboardingUserInputViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUserInputViewModelProtocol.swift; sourceTree = "<group>"; };
 		EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTopButton.swift; sourceTree = "<group>"; };
 		EEB5AF792ADC3D6C00310408 /* OnboardingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAlert.swift; sourceTree = "<group>"; };
@@ -1069,11 +1069,11 @@
 		EE9760072AD07959003069CF /* ValidationError */ = {
 			isa = PBXGroup;
 			children = (
-				EE9760052AD07941003069CF /* ValidationError.swift */,
-				EE4DB8A72ACE455500A6DC90 /* EmailValidationError.swift */,
-				EE4DB8A92ACE457000A6DC90 /* PasswordValidationError.swift */,
-				EE988AAF2ADA07640057F9DE /* PhoneValidationError.swift */,
-				EE4DB8AB2ACE45AB00A6DC90 /* UsernameValidationError.swift */,
+				EE9760052AD07941003069CF /* InputRequirement.swift */,
+				EE4DB8A72ACE455500A6DC90 /* EmailRequirement.swift */,
+				EE4DB8A92ACE457000A6DC90 /* PasswordRequirement.swift */,
+				EE988AAF2ADA07640057F9DE /* PhoneRequirement.swift */,
+				EE4DB8AB2ACE45AB00A6DC90 /* UsernameRequirement.swift */,
 			);
 			path = ValidationError;
 			sourceTree = "<group>";
@@ -1508,7 +1508,7 @@
 				EE80D91E29C932180000F8EF /* CandidatesViewModel.swift in Sources */,
 				EE80D91829C930210000F8EF /* CandidateView.swift in Sources */,
 				EE80D90F29C92C190000F8EF /* CandidateCardViewModel.swift in Sources */,
-				EE4DB8AA2ACE457000A6DC90 /* PasswordValidationError.swift in Sources */,
+				EE4DB8AA2ACE457000A6DC90 /* PasswordRequirement.swift in Sources */,
 				EE80D8B629BAECCE0000F8EF /* Link.swift in Sources */,
 				EE7856132AAE75620004B7E4 /* NewFlowLayout.swift in Sources */,
 				EEB5AF982B0320D400310408 /* KeyChainStorage.swift in Sources */,
@@ -1533,8 +1533,8 @@
 				EED4A50D29AB18E400DDCCDA /* UpdatesTabMainViewModel.swift in Sources */,
 				EE7055562B1245A500E40A89 /* Repository.swift in Sources */,
 				EED4A54529BAE16700DDCCDA /* Tag.swift in Sources */,
-				EE988AB02ADA07640057F9DE /* PhoneValidationError.swift in Sources */,
-				EE4DB8A82ACE455500A6DC90 /* EmailValidationError.swift in Sources */,
+				EE988AB02ADA07640057F9DE /* PhoneRequirement.swift in Sources */,
+				EE4DB8A82ACE455500A6DC90 /* EmailRequirement.swift in Sources */,
 				EED4A51329AB1C6F00DDCCDA /* HistoryTabMainView.swift in Sources */,
 				EE4DB8A22ACA5C0F00A6DC90 /* OnboardingUserInputView.swift in Sources */,
 				EE36FF982B1E183E009E8F86 /* PhoneOnboardingInputView.swift in Sources */,
@@ -1581,7 +1581,7 @@
 				EE5D39F32A2BDA1E00D0E312 /* LPLinkViewRepresented.swift in Sources */,
 				EE80D8F829C01F1D0000F8EF /* UserLocalRepository.swift in Sources */,
 				EE936CB52A78A06800D49271 /* VotingTabCoordinatorViewModel.swift in Sources */,
-				EE4DB8AC2ACE45AB00A6DC90 /* UsernameValidationError.swift in Sources */,
+				EE4DB8AC2ACE45AB00A6DC90 /* UsernameRequirement.swift in Sources */,
 				EE80D8E429BC1E2F0000F8EF /* PostLocalRepository.swift in Sources */,
 				EE7055592B138F4F00E40A89 /* UsernameInputViewModel.swift in Sources */,
 				EE80D91529C92DC70000F8EF /* Candidate+Preview.swift in Sources */,
@@ -1626,7 +1626,7 @@
 				EED4A50329AA86C900DDCCDA /* VotingTabMainView.swift in Sources */,
 				EE45248F2A5651FB00C7A2DD /* ResourcesSection.swift in Sources */,
 				EE70555F2B13917100E40A89 /* PhoneInputViewModel.swift in Sources */,
-				EE9760062AD07941003069CF /* ValidationError.swift in Sources */,
+				EE9760062AD07941003069CF /* InputRequirement.swift in Sources */,
 				EE45249D2A5CE36B00C7A2DD /* RulesSectionViewModel.swift in Sources */,
 				EE5D3A0D2A45241200D0E312 /* Resource+Preview.swift in Sources */,
 				EEB5AF8F2AFBCD6B00310408 /* SwiftDataService.swift in Sources */,

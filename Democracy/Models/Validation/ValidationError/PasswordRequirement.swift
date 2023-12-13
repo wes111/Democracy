@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PasswordValidationError: ValidationError {
+enum PasswordRequirement: InputRequirement {
     
     case hasUppercase, hasLowercase, hasDigit, hasSpecialChar, length
     

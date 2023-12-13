@@ -15,7 +15,7 @@ final class UsernameInputViewModel: InputViewModel {
     weak var coordinator: OnboardingCoordinatorDelegate?
     
     @Published var text: String = ""
-    @Published var textErrors: [Field.Error] = []
+    @Published var textErrors: [Field.Requirement] = []
     @Published var onboardingAlert: OnboardingAlert?
     @Published var isShowingProgress: Bool = false
     

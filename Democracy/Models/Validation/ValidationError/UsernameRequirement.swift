@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum UsernameValidationError: ValidationError {
+enum UsernameRequirement: InputRequirement {
     
     case length, startChar, validChars
     

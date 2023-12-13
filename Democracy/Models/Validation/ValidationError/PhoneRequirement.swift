@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PhoneValidationError: ValidationError {
+enum PhoneRequirement: InputRequirement {
     case length
     
     var descriptionText: String {

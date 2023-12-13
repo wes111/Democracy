@@ -145,7 +145,7 @@ extension OnboardingInputField {
     }
     
     // Returns an array of errors corresponding to the unmet requirements of the fullRegex.
-    func getInputValidationErrors<T: ValidationError>(input: String) -> [T] {
+    func getInputValidationErrors<T: InputRequirement>(input: String) -> [T] {
         var validationErrors: [T] = []
         if !fullyValid(input: input) {
             T.allCases.forEach { validation in

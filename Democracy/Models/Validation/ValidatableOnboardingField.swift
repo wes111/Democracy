@@ -8,36 +8,26 @@
 import Foundation
 
 protocol ValidatableOnboardingField: Hashable {
-    associatedtype Error: ValidationError
+    associatedtype Requirement: InputRequirement
     static var field: OnboardingInputField { get }
 }
 
 struct EmailValidator: ValidatableOnboardingField {
-    typealias Error = EmailValidationError
+    typealias Requirement = EmailRequirement
     static var field: OnboardingInputField = .email
 }
 
 struct UsernameValidator: ValidatableOnboardingField {
-    typealias Error = UsernameValidationError
+    typealias Requirement = UsernameRequirement
     static var field: OnboardingInputField = .username
 }
 
 struct PasswordValidator: ValidatableOnboardingField {
-    typealias Error = PasswordValidationError
+    typealias Requirement = PasswordRequirement
     static var field: OnboardingInputField = .password
 }
 
 struct PhoneValidator: ValidatableOnboardingField {
-    typealias Error = PhoneValidationError
+    typealias Requirement = PhoneRequirement
     static var field: OnboardingInputField = .phone
 }
-
-// struct VerifyEmailValidator: ValidatableOnboardingField {
-//    typealias Error = VerifyEmailCodeValidationError
-//    static var field: OnboardingInputField = .verifyEmail
-// }
-
-// struct VerifyPhoneValidator: ValidatableOnboardingField {
-//    typealias Error = VerifyPhoneCodeValidationError
-//    static var field: OnboardingInputField = .verifyPhone
-// }

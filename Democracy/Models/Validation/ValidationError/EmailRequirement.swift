@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum EmailValidationError: ValidationError {
+enum EmailRequirement: InputRequirement {
     
     case invalidEmail
     

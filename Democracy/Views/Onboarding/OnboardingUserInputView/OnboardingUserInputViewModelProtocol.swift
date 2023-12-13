@@ -38,10 +38,10 @@ protocol InputViewModel: Hashable, ObservableObject {
     var subtitle: String { get }
     var fieldTitle: String { get }
     var maxCharacterCount: Int { get }
-    var textErrors: [Field.Error] { get }
+    var textErrors: [Field.Requirement] { get }
     var canSubmit: Bool { get }
     var coordinator: OnboardingCoordinatorDelegate? { get }
-    var allErrors: [Field.Error] { get }
+    var allErrors: [Field.Requirement] { get }
     
     func submit() async
     func close()
@@ -52,8 +52,8 @@ protocol InputViewModel: Hashable, ObservableObject {
 
 extension InputViewModel {
     
-    var allErrors: [Field.Error] {
-        Field.Error.allCases as! [Field.Error]
+    var allErrors: [Field.Requirement] {
+        Field.Requirement.allCases as! [Field.Requirement]
     }
     
     var field: OnboardingInputField {
