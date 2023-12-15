@@ -37,7 +37,7 @@ struct EmailOnboardingInputView: OnboardingInputView {
         TextField(
             viewModel.fieldTitle,
             text: $viewModel.text,
-            prompt: Text(viewModel.fieldTitle).foregroundColor(.secondaryBackground)
+            prompt: Text(viewModel.fieldTitle).foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(EmailTextFieldStyle(email: $viewModel.text))
         .focused($focusedField, equals: viewModel.field)

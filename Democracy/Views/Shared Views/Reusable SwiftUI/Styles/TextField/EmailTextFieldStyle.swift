@@ -32,7 +32,7 @@ struct EmailTextFieldStyle: TextFieldStyle {
         Color.primaryBackground.ignoresSafeArea()
         
         TextField("Email", text: .constant("Password"),
-                  prompt: Text("Email").foregroundColor(.secondaryBackground)
+                  prompt: Text("Email").foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(EmailTextFieldStyle(email: .constant("Email")))
     }

@@ -34,7 +34,7 @@ struct PasswordTextFieldStyle: TextFieldStyle {
         Color.primaryBackground.ignoresSafeArea()
         
         TextField("Email", text: .constant("Password"),
-                  prompt: Text("Email").foregroundColor(.secondaryBackground)
+                  prompt: Text("Email").foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(PasswordTextFieldStyle(password: .constant("Password"), isNewPassword: false))
     }

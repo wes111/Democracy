@@ -37,6 +37,23 @@ struct LoginView: View {
     }
     
     var body: some View {
+        mainContent
+            .onTapGesture {
+                focusedField = nil
+            }
+            .alert(item: $viewModel.alert) { alert in
+                Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .cancel())
+            }
+            .onReceive(keyboardPublisher) { isVisible in
+                startKeyboardVisibilityDidChangeTask(isVisible: isVisible)
+            }
+    }
+}
+
+// MARK: - Subviews
+extension LoginView {
+    
+    var mainContent: some View {
         GeometryReader { geo in
             ZStack(alignment: .bottom) {
                 Color.primaryBackground.ignoresSafeArea()
@@ -68,20 +85,7 @@ struct LoginView: View {
             .geometryGroup() // Causes sizes controlled by 'isKeyboardVisible' to update simultaneously.
             .ignoresSafeArea(.keyboard)
         }
-        .onTapGesture {
-            focusedField = nil
-        }
-        .alert(item: $viewModel.alert) { alert in
-            Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .cancel())
-        }
-        .onReceive(keyboardPublisher) { isVisible in
-            startKeyboardVisibilityDidChangeTask(isVisible: isVisible)
-        }
     }
-}
-
-// MARK: - Subviews
-extension LoginView {
     
     var progressView: some View {
         ProgressView()
@@ -98,7 +102,7 @@ extension LoginView {
     
     var emailField: some View {
         TextField("Email", text: $viewModel.email,
-                  prompt: Text("Email").foregroundColor(.secondaryBackground)
+                  prompt: Text("Email").foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(EmailTextFieldStyle(email: $viewModel.email))
         .onTapGesture {
@@ -157,7 +161,7 @@ extension LoginView {
         } label: {
             Text("Create Account")
         }
-        .buttonStyle(PrimaryButtonStyle())
+        .buttonStyle(SeconaryButtonStyle())
         .disabled(viewModel.isShowingProgress)
     }
 }

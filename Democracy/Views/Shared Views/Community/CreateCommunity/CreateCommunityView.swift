@@ -73,7 +73,7 @@ extension CreateCommunityView {
         TextField(
             "",
             text: $viewModel.title,
-            prompt: Text("Add a title").foregroundColor(.secondaryBackground),
+            prompt: Text("Add a title").foregroundColor(.tertiaryBackground),
             axis: .vertical
         )
         .limitCharacters(text: $viewModel.title, count: 75)
@@ -87,7 +87,7 @@ extension CreateCommunityView {
         TextField(
             "Add Category",
             text: $viewModel.categoryString,
-            prompt: Text("Add a post category").foregroundColor(.secondaryBackground)
+            prompt: Text("Add a post category").foregroundColor(.tertiaryBackground)
         )
         .taggable(title: "Categories", tags: viewModel.categories)
         .limitCharacters(text: $viewModel.categoryString, count: 25)

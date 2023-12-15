@@ -26,7 +26,7 @@ extension Color {
     
     /// Dark gray.
     static var primaryBackground: Color {
-        .init(red: 37 / 255, green: 37 / 255, blue: 37 / 255)
+        .init(red: 30 / 255, green: 30 / 255, blue: 30 / 255)
     }
     
     /// Medium gray.

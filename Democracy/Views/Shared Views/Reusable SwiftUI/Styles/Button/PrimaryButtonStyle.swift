@@ -16,10 +16,10 @@ struct SeconaryButtonStyle: ButtonStyle {
             .padding()
             .frame(maxWidth: .infinity)
             .overlay(
-                RoundedRectangle(cornerRadius: 10)
+                Capsule()
                     .stroke(Color.tertiaryText, style: StrokeStyle(lineWidth: 1))
              )
-            .contentShape(Rectangle())
+            .contentShape(Capsule())
             .opacity(configuration.isPressed ? 0.3 : 1.0)
     }
 }
@@ -34,7 +34,7 @@ struct PrimaryButtonStyle: ButtonStyle {
             .fontWeight(.bold)
             .padding()
             .frame(maxWidth: .infinity)
-            .background(Color.otherRed, in: RoundedRectangle(cornerRadius: 10))
+            .background(Color.otherRed, in: Capsule())
             .opacity(configuration.isPressed || !isEnabled ? 0.5 : 1.0)
     }
 }

@@ -32,7 +32,7 @@ struct UsernameTextFieldStyle: TextFieldStyle {
         Color.primaryBackground.ignoresSafeArea()
         
         TextField("Username", text: .constant("Username"),
-                  prompt: Text("Username").foregroundColor(.secondaryBackground)
+                  prompt: Text("Username").foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(UsernameTextFieldStyle(username: .constant("Username")))
     }

@@ -49,7 +49,7 @@ struct UsernameOnboardingInputView: OnboardingInputView {
         TextField(
             viewModel.fieldTitle,
             text: $viewModel.text,
-            prompt: Text(viewModel.fieldTitle).foregroundColor(.secondaryBackground)
+            prompt: Text(viewModel.fieldTitle).foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(UsernameTextFieldStyle(username: $viewModel.text))
         .focused($focusedField, equals: viewModel.field)

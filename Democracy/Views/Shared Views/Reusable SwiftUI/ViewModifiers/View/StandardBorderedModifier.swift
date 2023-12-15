@@ -23,17 +23,15 @@ struct StandardBorderedModifier: ViewModifier {
             content
                 .foregroundStyle(Color.primaryText)
                 .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10, style: .circular)
-                        .stroke(borderColor, lineWidth: 1.5)
-                )
+                .background(Color.white.opacity(0.1))
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
         }
     }
 }
 
 extension View {
     
-    func standardTextField(title: String? = nil, borderColor: Color = .tertiaryText) -> some View {
+    func standardTextField(title: String? = nil, borderColor: Color = .secondaryBackground) -> some View {
         modifier(StandardBorderedModifier(title: title, borderColor: borderColor))
     }
 }

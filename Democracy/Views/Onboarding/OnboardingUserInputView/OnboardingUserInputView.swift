@@ -99,7 +99,7 @@ private extension OnboardingInputView {
     }
     
     var requirements: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 5) {
             ForEach(viewModel.allErrors, id: \.self) { error in
                 if viewModel.text.isEmpty {
                     requirementLabel(

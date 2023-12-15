@@ -57,7 +57,7 @@ struct PhoneTextFieldStyle: TextFieldStyle {
         Color.primaryBackground.ignoresSafeArea()
         
         TextField("Phone", text: .constant("Phone"),
-                  prompt: Text("Phone").foregroundColor(.secondaryBackground)
+                  prompt: Text("Phone").foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(PhoneTextFieldStyle(phone: .constant("Phone")))
     }

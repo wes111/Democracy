@@ -40,10 +40,8 @@ struct CustomSecureField<T: PasswordCaseRepresentable>: View {
         // Prevent button from bouncing incorrectly on keyboard dismiss.
         .geometryGroup()
         .padding(.horizontal)
-        .overlay(
-            RoundedRectangle(cornerRadius: 10, style: .circular)
-                .stroke(Color.tertiaryText, lineWidth: 1.5)
-        )
+        .background(Color.white.opacity(0.1))
+        .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
         .onChange(of: loginField) { _, newValue in
             didChangeFromVisibleToHidden = false
             guard let newValue, newValue.isPasswordCase else { return }
@@ -70,7 +68,7 @@ private extension CustomSecureField {
         TextField(
             "Enter a password",
             text: $secureText,
-            prompt: Text("Password").foregroundColor(.secondaryBackground)
+            prompt: Text("Password").foregroundColor(.tertiaryBackground)
         )
         .disabled(isHidden)
         .opacity(isHidden ? 0.0 : 1.0)
@@ -81,7 +79,7 @@ private extension CustomSecureField {
         SecureField(
             "Enter a password",
             text: $secureText,
-            prompt: Text("Password").foregroundColor(.secondaryBackground)
+            prompt: Text("Password").foregroundColor(.tertiaryBackground)
         )
         .opacity(isHidden ? 1.0 : 0.0)
         .focused($focusedField, equals: .hidden)
