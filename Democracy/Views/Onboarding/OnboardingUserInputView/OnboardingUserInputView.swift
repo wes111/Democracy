@@ -25,6 +25,30 @@ extension OnboardingInputView {
     }
     
     var main: some View {
+        primaryContent
+            .toolbarNavigation(topButtons: viewModel.topButtons)
+            .onSubmit {
+                if viewModel.canSubmit {
+                    performAsnycTask(
+                        action: viewModel.submit,
+                        isShowingProgress: isShowingProgress
+                    )
+                }
+            }
+            .alert(item: onboardingAlert) { alert in
+                Alert(
+                    title: Text(alert.title),
+                    message: Text(alert.message),
+                    dismissButton: .default(Text("Okay"))
+                )
+            }
+    }
+}
+
+// MARK: Private Subviews
+private extension OnboardingInputView {
+    
+    var primaryContent: some View {
         ZStack {
             Color.primaryBackground.ignoresSafeArea()
             
@@ -48,32 +72,26 @@ extension OnboardingInputView {
                     if viewModel.isShowingProgress {
                         progressView
                     }
+                    
+                    if !viewModel.field.required {
+                        skipButton
+                    }
                 }
                 .padding()
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
         }
-        .toolbarNavigation(topButtons: viewModel.topButtons)
-        .onSubmit {
-            if viewModel.canSubmit {
-                performAsnycTask(
-                    action: viewModel.submit,
-                    isShowingProgress: isShowingProgress
-                )
-            }
-        }
-        .alert(item: onboardingAlert) { alert in
-            Alert(
-                title: Text(alert.title),
-                message: Text(alert.message),
-                dismissButton: .default(Text("Okay"))
-            )
-        }
     }
-}
-
-// MARK: Private Subviews
-private extension OnboardingInputView {
+    
+    var skipButton: some View {
+        Button {
+            viewModel.skip()
+        } label: {
+            Label("Skip", systemImage: "arrow.right")
+                .labelStyle(ReversedLabelStyle())
+        }
+        .buttonStyle(SeconaryButtonStyle())
+    }
     
     var title: some View {
         Text(viewModel.title)
@@ -85,7 +103,7 @@ private extension OnboardingInputView {
         Text(viewModel.subtitle)
             .font(.system(.body, weight: .light))
             .foregroundColor(.primaryText)
-            .lineLimit(2...)
+            .fixedSize(horizontal: false, vertical: true)
     }
     
     var nextButton: some View {

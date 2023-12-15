@@ -53,6 +53,15 @@ extension OnboardingInputField {
         }
     }
     
+    var required: Bool {
+        switch self {
+        case .username, .password, .email:
+            true
+        case .phone:
+            false
+        }
+    }
+    
     var maxCharacterCount: Int {
         switch self {
         case .username:

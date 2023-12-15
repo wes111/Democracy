@@ -29,6 +29,10 @@ final class PhoneInputViewModel: InputViewModel {
         [.close: close, .back: goBack]
     }
     
+    func skip() {
+        coordinator?.submitPhone(input: onboardingInput)
+    }
+    
     @MainActor
     func submit() async {
         do {

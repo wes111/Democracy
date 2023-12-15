@@ -13,7 +13,7 @@ enum EmailRequirement: InputRequirement {
     
     var descriptionText: String {
         switch self {
-        case .invalidEmail: "Valid email format."
+        case .invalidEmail: "valid email format"
         }
     }
     

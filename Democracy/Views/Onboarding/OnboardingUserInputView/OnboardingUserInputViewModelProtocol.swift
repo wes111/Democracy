@@ -46,6 +46,7 @@ protocol InputViewModel: Hashable, ObservableObject {
     func submit() async
     func close()
     func goBack()
+    func skip()
     @MainActor func presentGenericAlert()
     @MainActor func presentInvalidInputAlert()
 }
@@ -86,6 +87,10 @@ extension InputViewModel {
     
     func goBack() {
         coordinator?.goBack()
+    }
+    
+    func skip() {
+        return // Must override if skipable.
     }
     
     @MainActor

@@ -13,7 +13,7 @@ enum PhoneRequirement: InputRequirement {
     var descriptionText: String {
         switch self {
         case .length:
-            "10 digits."
+            "10 digits"
         }
     }
     

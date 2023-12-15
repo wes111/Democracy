@@ -14,15 +14,15 @@ enum PasswordRequirement: InputRequirement {
     var descriptionText: String {
         switch self {
         case .hasUppercase:
-            "At least one uppercase letter."
+            "uppercase letter"
         case .hasLowercase:
-            "At least one lowercase letter."
+            "lowercase letter"
         case .hasDigit:
-            "At least one digit."
+            "digit"
         case .hasSpecialChar:
-            "At least one special character."
+            "special character"
         case .length:
-            "8-128 characters."
+            "8-128 characters"
         }
     }
     

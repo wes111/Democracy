@@ -16,9 +16,9 @@ enum UsernameRequirement: InputRequirement {
         case .length:
             "1-36 characters"
         case .startChar:
-            "Begins with an alphanumeric character"
+            "begins with an alphanumeric character"
         case .validChars:
-            "Contains only alphanumeric characters, dots, underscores, and hyphens"
+            "contains only alphanumeric characters, dots, underscores, and hyphens"
         }
     }
     
