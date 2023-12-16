@@ -26,7 +26,10 @@ struct AcceptTermsView: View {
             }
             .padding()
         }
-        .toolbarNavigation(topButtons: viewModel.topButtons)
+        .toolbarNavigation(
+            leadingButtons: viewModel.leadingButtons,
+            trailingButtons: viewModel.trailingButtons
+        )
         .alert(item: $viewModel.onboardingAlert) { alert in
             Alert(
                 title: Text(alert.title),

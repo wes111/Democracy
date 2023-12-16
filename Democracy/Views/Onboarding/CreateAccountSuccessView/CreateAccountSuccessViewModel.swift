@@ -27,7 +27,7 @@ final class CreateAccountSuccessViewModel: ObservableObject, Hashable {
         coordinator?.close()
     }
     
-    var topButtons: [OnboardingTopButton: () -> Void] {
-        [.close: close]
-    }
+    lazy var trailingButtons: [OnboardingTopButton] = {
+        [.close(close)]
+    }()
 }

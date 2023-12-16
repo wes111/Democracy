@@ -32,7 +32,8 @@ protocol InputViewModel: Hashable, ObservableObject {
     var isShowingProgress: Bool { get set }
     var text: String { get set }
     var field: OnboardingInputField { get }
-    var topButtons: [OnboardingTopButton: () -> Void] { get }
+    var trailingButtons: [OnboardingTopButton] { get }
+    var leadingButtons: [OnboardingTopButton] { get }
     var onboardingAlert: OnboardingAlert? { get set }
     var title: String { get }
     var subtitle: String { get }

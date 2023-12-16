@@ -28,7 +28,7 @@ struct CreateAccountSuccessView: View {
             }
             .padding()
         }
-        .toolbarNavigation(topButtons: viewModel.topButtons)
+        .toolbarNavigation(trailingButtons: viewModel.trailingButtons)
     }
 }
 

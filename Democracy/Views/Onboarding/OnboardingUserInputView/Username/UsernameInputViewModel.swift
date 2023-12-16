@@ -24,9 +24,13 @@ final class UsernameInputViewModel: InputViewModel {
         setupBindings()
     }
     
-    var topButtons: [OnboardingTopButton: () -> Void] {
-        [.close: close]
-    }
+    lazy var leadingButtons: [OnboardingTopButton] = {
+        []
+    }()
+    
+    lazy var trailingButtons: [OnboardingTopButton] = {
+        [.close(close)]
+    }()
     
     @MainActor
     func submit() async {

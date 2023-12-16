@@ -28,12 +28,13 @@ final class CommunityViewModel: ObservableObject {
         // Communityinteractor.canMakePostsInThisCommunity
     }
     
-    var topButtons: [OnboardingTopButton: () -> Void] {
-        [
-            .back: {},
-            .close: {}
-        ]
-    }
+    lazy var leadingButtons: [OnboardingTopButton] = {
+        [.back]
+    }()
+    
+    lazy var trailingButtons: [OnboardingTopButton] = {
+        []
+    }()
     
     init(coordinator: CommunityCoordinatorDelegate,
          community: Community

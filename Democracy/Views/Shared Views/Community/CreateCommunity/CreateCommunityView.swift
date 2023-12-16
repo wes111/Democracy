@@ -39,8 +39,10 @@ struct CreateCommunityView: View {
                 ProgressView()
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbarNavigation(title: "Create Community", topButtons: viewModel.topButtons)
+        .toolbarNavigation(
+            leadingButtons: viewModel.leadingButtons,
+            trailingButtons: viewModel.trailingButtons
+        )
         .onAppear {
             focusedField = .title
         }

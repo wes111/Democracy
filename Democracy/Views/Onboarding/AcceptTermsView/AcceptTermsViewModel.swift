@@ -22,8 +22,12 @@ final class AcceptTermsViewModel: ObservableObject, Hashable {
         self.onboardingInput = onboardingInput
     }
     
-    var topButtons: [OnboardingTopButton: () -> Void] {
-        [.back: goBack, .close: close]
+    var leadingButtons: [OnboardingTopButton] {
+        [.back]
+    }
+    
+    var trailingButtons: [OnboardingTopButton] {
+        [.close(close)]
     }
     
     @MainActor

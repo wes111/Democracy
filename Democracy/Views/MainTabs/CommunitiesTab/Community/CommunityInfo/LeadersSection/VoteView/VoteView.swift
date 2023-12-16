@@ -113,7 +113,11 @@ struct VoteView: View {
             }
         }
         .padding()
-        .toolbarNavigation(title: viewModel.navigationTitle, topButtons: viewModel.topButtons)
+        .toolbarNavigation(
+            leadingButtons: viewModel.leadingButtons,
+            trailingButtons: viewModel.trailingButtons,
+            centerContent: .title(viewModel.navigationTitle)
+        )
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu("Role") {

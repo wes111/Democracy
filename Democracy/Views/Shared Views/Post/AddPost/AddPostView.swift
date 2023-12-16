@@ -11,58 +11,55 @@ enum PostField {
     case title, subtitle, body, link, tags
 }
 
-struct AddPostView<ViewModel: AddPostViewModelProtocol>: View {
+extension View {
+    func defaultBackground() -> some View {
+        modifier(DefaultBackgroundModifier())
+    }
+}
+
+struct DefaultBackgroundModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        ZStack {
+            Color.primaryBackground
+                .ignoresSafeArea()
+            
+            content
+        }
+    }
+}
+
+struct AddPostView: View {
     
-    @StateObject private var viewModel: ViewModel
+    @StateObject private var viewModel: AddPostViewModel
     @FocusState private var focusedField: PostField?
     
-    init(viewModel: ViewModel) {
+    init(viewModel: AddPostViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
-        ZStack(alignment: .topTrailing) {
-            Button {
-                viewModel.close()
-            } label: {
-                Image(systemName: "xmark")
-            }
-            
-            ZStack {
-                VStack {
-                    Text("Create Post")
-                        .font(.title)
-                    Form {
-                        TextField("Title", text: $viewModel.title)
-                            .focused($focusedField, equals: .title)
-                            .submitLabel(.next)
-                        
-                        TextField("Subtitle", text: $viewModel.subtitle)
-                            .focused($focusedField, equals: .subtitle)
-                            .submitLabel(.next)
-                        
-                        TextField("Body", text: $viewModel.body)
-                            .focused($focusedField, equals: .body)
-                            .submitLabel(.next)
-                        
-                        TextField("Link", text: $viewModel.link)
-                            .focused($focusedField, equals: .link)
-                            .submitLabel(.next)
-                        
-                        Button {
-                            viewModel.submitPost()
-                        } label: {
-                            Text("Submit")
-                        }
-                        .disabled(viewModel.isLoading)
-                    }
-                }
-                
-                if viewModel.isLoading {
-                    ProgressView()
-                }
-            }
+        NavigationStack {
+            EmptyView()
         }
+//        ZStack(alignment: .topTrailing) {
+//            Button {
+//                viewModel.close()
+//            } label: {
+//                Image(systemName: "xmark")
+//            }
+//            
+//            ZStack {
+//                VStack {
+//                    Text("Create Post")
+//                        .font(.title)
+//                }
+//                
+//                if viewModel.isLoading {
+//                    ProgressView()
+//                }
+//            }
+//        }
+        .defaultBackground()
         .onAppear {
             focusedField = .title
         }

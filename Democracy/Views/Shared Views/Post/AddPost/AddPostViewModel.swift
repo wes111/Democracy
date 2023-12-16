@@ -12,20 +12,7 @@ protocol AddPostCoordinatorDelegate: AnyObject {
     func close()
 }
 
-protocol AddPostViewModelProtocol: ObservableObject {
-    var title: String { get set }
-    var subtitle: String { get set }
-    var body: String { get set }
-    var link: String { get set }
-    
-    var alert: AddPostAlert? { get set }
-    var isLoading: Bool { get set }
-    
-    func close()
-    func submitPost()
-}
-
-final class AddPostViewModel: AddPostViewModelProtocol {
+final class AddPostViewModel: ObservableObject {
     
     @Published var title = ""
     @Published var subtitle = ""

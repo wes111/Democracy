@@ -25,9 +25,13 @@ final class PasswordInputViewModel: InputViewModel {
         setupBindings()
     }
     
-    var topButtons: [OnboardingTopButton: () -> Void] {
-        [.close: close, .back: goBack]
-    }
+    lazy var leadingButtons: [OnboardingTopButton] = {
+        [.back]
+    }()
+    
+    lazy var trailingButtons: [OnboardingTopButton] = {
+        [.close(close)]
+    }()
     
     @MainActor
     func submit() async {

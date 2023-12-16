@@ -34,12 +34,13 @@ final class CreateCommunityViewModel: ObservableObject {
         self.coordinator = coordinator
     }
     
-    var topButtons: [OnboardingTopButton: () -> Void] {
-        [
-            .back: {},
-            .close: close
-        ]
-    }
+    lazy var leadingButtons: [OnboardingTopButton] = {
+        [.back]
+    }()
+    
+    lazy var trailingButtons: [OnboardingTopButton] = {
+        [.close(close)]
+    }()
 }
 
 // MARK: - Methods

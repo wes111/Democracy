@@ -20,12 +20,13 @@ final class VoteViewModel: ObservableObject {
         self.coordinator = coordinator
     }
     
-    var topButtons: [OnboardingTopButton: () -> Void] {
-        [
-            .back: {},
-            .close: {}
-        ]
-    }
+    lazy var leadingButtons: [OnboardingTopButton] = {
+        []
+    }()
+    
+    lazy var trailingButtons: [OnboardingTopButton] = {
+        []
+    }()
 }
 
 // MARK: Computed Properties

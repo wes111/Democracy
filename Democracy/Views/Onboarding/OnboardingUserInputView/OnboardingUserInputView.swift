@@ -26,7 +26,10 @@ extension OnboardingInputView {
     
     var main: some View {
         primaryContent
-            .toolbarNavigation(topButtons: viewModel.topButtons)
+            .toolbarNavigation(
+                leadingButtons: viewModel.leadingButtons,
+                trailingButtons: viewModel.trailingButtons
+            )
             .onSubmit {
                 if viewModel.canSubmit {
                     performAsnycTask(
