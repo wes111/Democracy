@@ -14,24 +14,21 @@ protocol SubmitPostCoordinatorDelegate: AnyObject {
 }
 
 final class PostTitleViewModel: InputViewModel {
-    var onboardingAlert: OnboardingAlert?
-    
-    var coordinator: SubmitPostCoordinatorDelegate?
-    
     typealias Field = PostTitleValidator
     
+    @Injected(\.postInteractor) var postInteractor
     @Published var isShowingProgress: Bool = false
     @Published var text: String = ""
     @Published var textErrors: [Field.Requirement] = []
+    @Published var alert: AddPostAlert?
+    @Published var isLoading: Bool = false
+    
+    var onboardingAlert: OnboardingAlert?
+    private weak var coordinator: SubmitPostCoordinatorDelegate?
     
     init(coordinator: SubmitPostCoordinatorDelegate?) {
         self.coordinator = coordinator
     }
-    
-    @Published var alert: AddPostAlert?
-    @Published var isLoading: Bool = false
-    
-    @Injected(\.postInteractor) var postInteractor
     
     lazy var trailingButtons: [OnboardingTopButton] = {
         [.close(close)]
@@ -40,6 +37,10 @@ final class PostTitleViewModel: InputViewModel {
     lazy var leadingButtons: [OnboardingTopButton] = {
         [.back]
     }()
+}
+
+// MARK: - Methods
+extension PostTitleViewModel {
     
     @MainActor
     func submit() async {

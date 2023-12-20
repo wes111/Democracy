@@ -10,14 +10,15 @@ import Foundation
 
 final class PasswordInputViewModel: InputViewModel {
     typealias Field = PasswordValidator
-    @Injected(\.accountService) private var accountService
-    private var onboardingInput: OnboardingInput
-    weak var coordinator: OnboardingCoordinatorDelegate?
     
+    @Injected(\.accountService) private var accountService
     @Published var text: String = ""
     @Published var textErrors: [Field.Requirement] = []
     @Published var onboardingAlert: OnboardingAlert?
     @Published var isShowingProgress: Bool = false
+    
+    private var onboardingInput: OnboardingInput
+    private weak var coordinator: OnboardingCoordinatorDelegate?
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator
@@ -32,6 +33,10 @@ final class PasswordInputViewModel: InputViewModel {
     lazy var trailingButtons: [OnboardingTopButton] = {
         [.close(close)]
     }()
+}
+
+// MARK: - Methods
+extension PasswordInputViewModel {
     
     @MainActor
     func submit() async {

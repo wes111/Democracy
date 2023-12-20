@@ -24,6 +24,10 @@ struct EmailOnboardingInputView: UserInputView {
                 focusedField = nil
             }
     }
+}
+
+// MARK: - Subviews and Computed Properties
+extension EmailOnboardingInputView {
     
     var isShowingProgress: Binding<Bool> {
         $viewModel.isShowingProgress
@@ -48,6 +52,7 @@ struct EmailOnboardingInputView: UserInputView {
     }
 }
 
+// MARK: - Preview
 #Preview {
     let parentCoordinator = RootCoordinator()
     let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)

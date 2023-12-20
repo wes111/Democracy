@@ -36,6 +36,10 @@ struct UsernameOnboardingInputView: UserInputView {
                 focusedField = nil
             }
     }
+}
+
+// MARK: Subviews and Computed Properties
+extension UsernameOnboardingInputView {
     
     var isShowingProgress: Binding<Bool> {
         $viewModel.isShowingProgress

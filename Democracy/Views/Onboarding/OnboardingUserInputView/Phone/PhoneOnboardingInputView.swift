@@ -24,6 +24,10 @@ struct PhoneOnboardingInputView: UserInputView {
                 focusedField = nil
             }
     }
+}
+
+// MARK: - Subviews and Computed Properties
+extension PhoneOnboardingInputView {
     
     var isShowingProgress: Binding<Bool> {
         $viewModel.isShowingProgress
@@ -48,6 +52,7 @@ struct PhoneOnboardingInputView: UserInputView {
     }
 }
 
+// MARK: - Preview
 #Preview {
     let parentCoordinator = RootCoordinator()
     let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)

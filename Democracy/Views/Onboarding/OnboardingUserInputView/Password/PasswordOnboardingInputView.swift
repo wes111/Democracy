@@ -24,6 +24,10 @@ struct PasswordOnboardingInputView: UserInputView {
                 focusedField = nil
             }
     }
+}
+
+// MARK: - Subviews and Computed Properties
+extension PasswordOnboardingInputView {
     
     var isShowingProgress: Binding<Bool> {
         $viewModel.isShowingProgress

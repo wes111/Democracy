@@ -58,6 +58,13 @@
 		EE4987E92B2F97A500AB7522 /* PostLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987E82B2F97A500AB7522 /* PostLinkView.swift */; };
 		EE4987EC2B30861000AB7522 /* DefaultTextEditorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987EB2B30861000AB7522 /* DefaultTextEditorStyle.swift */; };
 		EE4987F02B31D99300AB7522 /* SubmitPostField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987EF2B31D99300AB7522 /* SubmitPostField.swift */; };
+		EE4987F22B32773300AB7522 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987F12B32773300AB7522 /* String+Extensions.swift */; };
+		EE4987F52B328B4600AB7522 /* EmptyRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987F42B328B4600AB7522 /* EmptyRequirement.swift */; };
+		EE4987F82B328BB300AB7522 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987F72B328BB300AB7522 /* EmailValidator.swift */; };
+		EE4987FA2B328BCE00AB7522 /* UsernameValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987F92B328BCE00AB7522 /* UsernameValidator.swift */; };
+		EE4987FC2B328BE100AB7522 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987FB2B328BE100AB7522 /* PasswordValidator.swift */; };
+		EE4987FE2B328BF500AB7522 /* PhoneValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987FD2B328BF500AB7522 /* PhoneValidator.swift */; };
+		EE4988002B328C0C00AB7522 /* PostTitleValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987FF2B328C0C00AB7522 /* PostTitleValidator.swift */; };
 		EE4DB88A2AC50AD200A6DC90 /* AppwriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */; };
 		EE4DB8912AC899ED00A6DC90 /* LoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */; };
 		EE4DB8942AC89F0800A6DC90 /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */; };
@@ -195,7 +202,7 @@
 		EEB5AF762ADB1EFA00310408 /* OnboardingTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */; };
 		EEB5AF7A2ADC3D6D00310408 /* OnboardingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF792ADC3D6C00310408 /* OnboardingAlert.swift */; };
 		EEB5AF7C2ADCA92A00310408 /* OnboardingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */; };
-		EEB5AF7E2AE0DE3700310408 /* ValidatableOnboardingField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7D2AE0DE3700310408 /* ValidatableOnboardingField.swift */; };
+		EEB5AF7E2AE0DE3700310408 /* InputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7D2AE0DE3700310408 /* InputValidator.swift */; };
 		EEB5AF802AE0DE7000310408 /* OnboardingInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */; };
 		EEB5AF8B2AFA7DD500310408 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF8A2AFA7DD500310408 /* Session.swift */; };
 		EEB5AF8F2AFBCD6B00310408 /* SwiftDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF8E2AFBCD6B00310408 /* SwiftDataService.swift */; };
@@ -296,6 +303,13 @@
 		EE4987E82B2F97A500AB7522 /* PostLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLinkView.swift; sourceTree = "<group>"; };
 		EE4987EB2B30861000AB7522 /* DefaultTextEditorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextEditorStyle.swift; sourceTree = "<group>"; };
 		EE4987EF2B31D99300AB7522 /* SubmitPostField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitPostField.swift; sourceTree = "<group>"; };
+		EE4987F12B32773300AB7522 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		EE4987F42B328B4600AB7522 /* EmptyRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyRequirement.swift; sourceTree = "<group>"; };
+		EE4987F72B328BB300AB7522 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
+		EE4987F92B328BCE00AB7522 /* UsernameValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameValidator.swift; sourceTree = "<group>"; };
+		EE4987FB2B328BE100AB7522 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
+		EE4987FD2B328BF500AB7522 /* PhoneValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneValidator.swift; sourceTree = "<group>"; };
+		EE4987FF2B328C0C00AB7522 /* PostTitleValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTitleValidator.swift; sourceTree = "<group>"; };
 		EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppwriteService.swift; sourceTree = "<group>"; };
 		EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatus.swift; sourceTree = "<group>"; };
 		EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
@@ -432,7 +446,7 @@
 		EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTopButton.swift; sourceTree = "<group>"; };
 		EEB5AF792ADC3D6C00310408 /* OnboardingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAlert.swift; sourceTree = "<group>"; };
 		EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingError.swift; sourceTree = "<group>"; };
-		EEB5AF7D2AE0DE3700310408 /* ValidatableOnboardingField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatableOnboardingField.swift; sourceTree = "<group>"; };
+		EEB5AF7D2AE0DE3700310408 /* InputValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidator.swift; sourceTree = "<group>"; };
 		EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInputField.swift; sourceTree = "<group>"; };
 		EEB5AF8A2AFA7DD500310408 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		EEB5AF8E2AFBCD6B00310408 /* SwiftDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataService.swift; sourceTree = "<group>"; };
@@ -706,21 +720,41 @@
 			path = TextEditor;
 			sourceTree = "<group>";
 		};
-		EE4987ED2B31D95400AB7522 /* OnBoarding */ = {
+		EE4987F32B328B2600AB7522 /* FieldType */ = {
 			isa = PBXGroup;
 			children = (
 				EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */,
-				EE9760072AD07959003069CF /* InputRequirement */,
-			);
-			path = OnBoarding;
-			sourceTree = "<group>";
-		};
-		EE4987EE2B31D97800AB7522 /* SubmitPost */ = {
-			isa = PBXGroup;
-			children = (
 				EE4987EF2B31D99300AB7522 /* SubmitPostField.swift */,
 			);
-			path = SubmitPost;
+			path = FieldType;
+			sourceTree = "<group>";
+		};
+		EE4987F62B328B6E00AB7522 /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				EE4988012B328C3500AB7522 /* OnboardingFlow */,
+				EE4988022B328C3D00AB7522 /* SubmitPostFlow */,
+			);
+			path = Validator;
+			sourceTree = "<group>";
+		};
+		EE4988012B328C3500AB7522 /* OnboardingFlow */ = {
+			isa = PBXGroup;
+			children = (
+				EE4987FD2B328BF500AB7522 /* PhoneValidator.swift */,
+				EE4987FB2B328BE100AB7522 /* PasswordValidator.swift */,
+				EE4987F92B328BCE00AB7522 /* UsernameValidator.swift */,
+				EE4987F72B328BB300AB7522 /* EmailValidator.swift */,
+			);
+			path = OnboardingFlow;
+			sourceTree = "<group>";
+		};
+		EE4988022B328C3D00AB7522 /* SubmitPostFlow */ = {
+			isa = PBXGroup;
+			children = (
+				EE4987FF2B328C0C00AB7522 /* PostTitleValidator.swift */,
+			);
+			path = SubmitPostFlow;
 			sourceTree = "<group>";
 		};
 		EE4DB8882AC50AB500A6DC90 /* AppwriteService */ = {
@@ -766,9 +800,10 @@
 		EE4DB8A42ACE43FB00A6DC90 /* Validation */ = {
 			isa = PBXGroup;
 			children = (
-				EEB5AF7D2AE0DE3700310408 /* ValidatableOnboardingField.swift */,
-				EE4987EE2B31D97800AB7522 /* SubmitPost */,
-				EE4987ED2B31D95400AB7522 /* OnBoarding */,
+				EEB5AF7D2AE0DE3700310408 /* InputValidator.swift */,
+				EE4987F62B328B6E00AB7522 /* Validator */,
+				EE4987F32B328B2600AB7522 /* FieldType */,
+				EE9760072AD07959003069CF /* InputRequirement */,
 			);
 			path = Validation;
 			sourceTree = "<group>";
@@ -1177,6 +1212,7 @@
 				EE4DB8A92ACE457000A6DC90 /* PasswordRequirement.swift */,
 				EE988AAF2ADA07640057F9DE /* PhoneRequirement.swift */,
 				EE4DB8AB2ACE45AB00A6DC90 /* UsernameRequirement.swift */,
+				EE4987F42B328B4600AB7522 /* EmptyRequirement.swift */,
 			);
 			path = InputRequirement;
 			sourceTree = "<group>";
@@ -1439,6 +1475,7 @@
 				EE80D8EC29BD180E0000F8EF /* Container+Extensions.swift */,
 				EE5B938D2A03346C00B43381 /* Date+Extensions.swift */,
 				EE9760032AD07314003069CF /* NSPredicate+Extensions.swift */,
+				EE4987F12B32773300AB7522 /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1623,6 +1660,7 @@
 				EE36FF9C2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift in Sources */,
 				EE11729B2A6F3D0300E529AF /* AlliedCommunityView.swift in Sources */,
 				EE936CAF2A789FB000D49271 /* UpdatesTabPath.swift in Sources */,
+				EE4987FC2B328BE100AB7522 /* PasswordValidator.swift in Sources */,
 				EE936CB32A78A03600D49271 /* EventsTabCoordinatorViewModel.swift in Sources */,
 				EE5D39EF2A2B9B4B00D0E312 /* TightLabelStyle.swift in Sources */,
 				EED4A51529AB1C7900DDCCDA /* HistoryTabMainViewModel.swift in Sources */,
@@ -1667,6 +1705,7 @@
 				EE36FF892B1D0800009E8F86 /* EmailTextFieldStyle.swift in Sources */,
 				EE4DB8912AC899ED00A6DC90 /* LoginStatus.swift in Sources */,
 				EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */,
+				EE4987F82B328BB300AB7522 /* EmailValidator.swift in Sources */,
 				EE4524942A565CA400C7A2DD /* ResourceViewModel.swift in Sources */,
 				EE9760192AD0B066003069CF /* AcceptTermsView.swift in Sources */,
 				EE1172962A6F3C5C00E529AF /* AlliedCommunitiesSection.swift in Sources */,
@@ -1703,6 +1742,7 @@
 				EE4DB8942AC89F0800A6DC90 /* OnboardingCoordinatorView.swift in Sources */,
 				EE9760162AD09F67003069CF /* CreateAccountSuccessViewModel.swift in Sources */,
 				EE80D8E029BC1A080000F8EF /* HistoryTabMainViewModel+Preview.swift in Sources */,
+				EE4987FE2B328BF500AB7522 /* PhoneValidator.swift in Sources */,
 				EE4524B32A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift in Sources */,
 				EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */,
 				EE70555D2B1390A800E40A89 /* EmailInputViewModel.swift in Sources */,
@@ -1711,7 +1751,7 @@
 				EED4A51129AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift in Sources */,
 				EE4524912A56597400C7A2DD /* ResourceView.swift in Sources */,
 				EE80D95629E0B6D10000F8EF /* ReversedLabelStyle.swift in Sources */,
-				EEB5AF7E2AE0DE3700310408 /* ValidatableOnboardingField.swift in Sources */,
+				EEB5AF7E2AE0DE3700310408 /* InputValidator.swift in Sources */,
 				EE80D94D29DB90440000F8EF /* CreateCommunityView.swift in Sources */,
 				EE5B938329F747DD00B43381 /* RepresentativeType.swift in Sources */,
 				EE80D8DC29BC18EE0000F8EF /* CommunityHomeFeedViewModel+Preview.swift in Sources */,
@@ -1720,16 +1760,19 @@
 				EE4987CA2B2F5B3900AB7522 /* TitleTextFieldStyle.swift in Sources */,
 				EE80D90429C923960000F8EF /* CommunityInfoViewModel.swift in Sources */,
 				EE936CB12A78A01200D49271 /* HistoryTabCoordinatorViewModel.swift in Sources */,
+				EE4987F52B328B4600AB7522 /* EmptyRequirement.swift in Sources */,
 				EE97601B2AD0B0B9003069CF /* AcceptTermsViewModel.swift in Sources */,
 				EE7856262AB948E50004B7E4 /* CharacterLimiterModifier.swift in Sources */,
 				EE80D8FC29C01FF00000F8EF /* CommunityInteractor.swift in Sources */,
 				EE80D8DA29BC176E0000F8EF /* CommunityViewModel+Preview.swift in Sources */,
+				EE4987F22B32773300AB7522 /* String+Extensions.swift in Sources */,
 				EE80D91C29C930C40000F8EF /* CandidateViewModel+Preview.swift in Sources */,
 				EE4987D62B2F8E2300AB7522 /* PostTitleView.swift in Sources */,
 				EED4A52C29B8190700DDCCDA /* PostView.swift in Sources */,
 				EE4524A32A5CE85200C7A2DD /* RuleView.swift in Sources */,
 				EE80D8B429BAE6410000F8EF /* Community+Preview.swift in Sources */,
 				EE5D3A0F2A45246400D0E312 /* Rule+Preview.swift in Sources */,
+				EE4987FA2B328BCE00AB7522 /* UsernameValidator.swift in Sources */,
 				EEB5AF672ADB186E00310408 /* OnboardingUserInputViewModelProtocol.swift in Sources */,
 				EEB5AF8B2AFA7DD500310408 /* Session.swift in Sources */,
 				EED4A50329AA86C900DDCCDA /* VotingTabMainView.swift in Sources */,
@@ -1781,6 +1824,7 @@
 				EE80D94F29DB90AD0000F8EF /* CreateCommunityViewModel.swift in Sources */,
 				EE70555B2B138FB600E40A89 /* PasswordInputViewModel.swift in Sources */,
 				EED4A53E29B971B700DDCCDA /* CommunityHomeFeedViewModel.swift in Sources */,
+				EE4988002B328C0C00AB7522 /* PostTitleValidator.swift in Sources */,
 				EE5B938929F76FDA00B43381 /* CommunityArchiveFeedViewModel+Preview.swift in Sources */,
 				EE5D39F12A2BB5DC00D0E312 /* RichLinkService.swift in Sources */,
 				EE80D8C129BC120A0000F8EF /* Router+Preview.swift in Sources */,

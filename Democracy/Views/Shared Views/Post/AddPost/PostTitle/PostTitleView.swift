@@ -8,14 +8,6 @@
 import SwiftUI
 
 struct PostTitleView: UserInputView {
-    var isShowingProgress: Binding<Bool> {
-        $viewModel.isShowingProgress
-    }
-    
-    var onboardingAlert: Binding<OnboardingAlert?> {
-        $viewModel.onboardingAlert
-    }
-    
     @ObservedObject var viewModel: PostTitleViewModel
     @FocusState private var focusedField: SubmitPostField?
     
@@ -32,6 +24,9 @@ struct PostTitleView: UserInputView {
                 focusedField = nil
             }
     }
+}
+
+extension PostTitleView {
     
     var field: some View {
         TextField(
@@ -40,73 +35,22 @@ struct PostTitleView: UserInputView {
             prompt: Text("Title").foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(TitleTextFieldStyle(title: $viewModel.text))
-        .titledElement(title: "Create a title for your post.")
+        .focused($focusedField, equals: viewModel.field)
+        .submitLabel(.next)
+        .onTapGesture {
+            focusedField = .title
+        }
     }
     
-//    var body: some View {
-//        content
-//            .background(Color.primaryBackground, ignoresSafeAreaEdges: .all)
-//            .toolbarNavigation(
-//                trailingButtons: viewModel.trailingButtons,
-//                centerContent: .title("Create Post")
-//            )
-//            .onAppear {
-//                focusedField = .title
-//            }
-//            .onSubmit {
-//                focusedField = getNextField(after: focusedField)
-//            }
-//            .alert(item: $viewModel.alert) { alert in
-//                Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .cancel())
-//            }
-//    }
+    var isShowingProgress: Binding<Bool> {
+        $viewModel.isShowingProgress
+    }
     
-    func getNextField(after field: SubmitPostField?) -> SubmitPostField? {
-        guard let field = field else {
-            return nil
-        }
-        switch field {
-        case .title: return .body
-        case .body: return .link
-        case .link: return nil
-        case .tags: return nil
-        }
+    var onboardingAlert: Binding<OnboardingAlert?> {
+        $viewModel.onboardingAlert
     }
 }
 
-// MARK: - Subviews
-private extension PostTitleView {
-    
-//    var content: some View {
-//        NavigationStack {
-//            ZStack {
-//                ScrollView {
-//                    VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-//                        titleField
-//                        subtitleField
-//                        bodyField
-//                        submitButton
-//                    }
-//                    .padding()
-//                }
-//                
-//                if viewModel.isLoading {
-//                    ProgressView()
-//                }
-//            }
-//        }
-//    }
-    
-//    var titleField: some View {
-//        TextField(
-//            "Title",
-//            text: $viewModel.title,
-//            prompt: Text("Title").foregroundColor(.tertiaryBackground)
-//            )
-//        .textFieldStyle(TitleTextFieldStyle(title: $viewModel.title))
-//        .titledElement(title: "Create a title for your post.")
-//    }
-    
 //    var subtitleField: some View {
 //        TextField(
 //            "Subtitle",
@@ -135,7 +79,6 @@ private extension PostTitleView {
 //        )
 //        .buttonStyle(PrimaryButtonStyle())
 //    }
-}
 
 // MARK: - Preview
 #Preview {

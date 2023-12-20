@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@MainActor protocol UserInputView: View {
+@MainActor protocol UserInputView: View { // TODO: This should probably just be part of the view instead of a protocol (:
     associatedtype ViewModel: InputViewModel
     associatedtype ContentView: View
     var viewModel: ViewModel { get }
@@ -58,13 +58,14 @@ private extension UserInputView {
             // The GeometryReader here prevents the view from moving
             // with keyboard appearance/disappearance.
             GeometryReader { _ in
-                VStack(alignment: .center, spacing: 20) {
-                    VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
+                    VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
                         title
-                        subtitle
                         
-                        VStack(alignment: .leading, spacing: 10) {
+                        VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
                             field
+                                .titledElement(title: viewModel.subtitle)
+                            
                             requirements
                         }
                         
@@ -102,13 +103,6 @@ private extension UserInputView {
             .foregroundColor(.primaryText)
     }
     
-    var subtitle: some View {
-        Text(viewModel.subtitle)
-            .font(.system(.body, weight: .light))
-            .foregroundColor(.primaryText)
-            .fixedSize(horizontal: false, vertical: true)
-    }
-    
     var nextButton: some View {
         AsyncButton(
             action: { await viewModel.submit() },
@@ -120,7 +114,7 @@ private extension UserInputView {
     }
     
     var requirements: some View {
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(alignment: .leading, spacing: ViewConstants.extraSmallElementSpacing) {
             ForEach(viewModel.allErrors, id: \.self) { error in
                 if viewModel.text.isEmpty {
                     requirementLabel(

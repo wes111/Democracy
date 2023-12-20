@@ -10,14 +10,15 @@ import Foundation
 
 final class UsernameInputViewModel: InputViewModel {
     typealias Field = UsernameValidator
-    @Injected(\.accountService) private var accountService
-    private var onboardingInput = OnboardingInput()
-    weak var coordinator: OnboardingCoordinatorDelegate?
     
+    @Injected(\.accountService) private var accountService
     @Published var text: String = ""
     @Published var textErrors: [Field.Requirement] = []
     @Published var onboardingAlert: OnboardingAlert?
     @Published var isShowingProgress: Bool = false
+    
+    private var onboardingInput = OnboardingInput()
+    private weak var coordinator: OnboardingCoordinatorDelegate?
     
     init(coordinator: OnboardingCoordinatorDelegate?) {
         self.coordinator = coordinator
@@ -31,6 +32,10 @@ final class UsernameInputViewModel: InputViewModel {
     lazy var trailingButtons: [OnboardingTopButton] = {
         [.close(close)]
     }()
+}
+
+// MARK: - Methods
+extension UsernameInputViewModel {
     
     @MainActor
     func submit() async {

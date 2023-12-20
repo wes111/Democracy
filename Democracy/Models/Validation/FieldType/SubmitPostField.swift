@@ -72,14 +72,30 @@ enum SubmitPostField: InputField {
     }
     
     var fullRegex: String {
-        ""
+        switch self {
+            
+        /// Checks if the string is between 1 and 100 characters in length.
+        case .title:
+            "^.{1,100}$"
+            
+        /// Checks if the string is between 1 and 1000 characters in length.
+        case .body:
+            "^.{1,1000}$"
+            
+        /// Checks if the string is between 1 and 100 characters in length.
+        case .link:
+            "^.{1,100}$"
+            
+        case .tags:
+            "" // TODO: ...
+        }
     }
     
     var alertTitle: String {
-        ""
+        "Invalid Length"
     }
     
     var alertDescription: String {
-        ""
+        "Enter a valid input" // TODO: ...
     }
 }
