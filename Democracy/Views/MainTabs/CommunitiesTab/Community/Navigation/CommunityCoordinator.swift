@@ -89,10 +89,6 @@ extension CommunityCoordinator {
         CommunityViewModel(coordinator: self, community: community)
     }
     
-    func addPostViewModel() -> AddPostViewModel {
-        AddPostViewModel(coordinator: self)
-    }
-    
     func candidatesViewModel() -> CandidatesViewModel {
         CandidatesViewModel(coordinator: self)
     }
@@ -107,7 +103,7 @@ extension CommunityCoordinator {
 }
 
 // MARK: - Protocols
-extension CommunityCoordinator: AddPostCoordinatorDelegate {
+extension CommunityCoordinator: SubmitPostCoordinatorDelegate {
     
     func close() {
         isShowingCreatePostView = false
@@ -122,6 +118,12 @@ extension CommunityCoordinator: CandidatesCoordinatorDelegate {
     
     func closeCreateCandidateView() {
         isShowingCreateCandidateView = false
+    }
+}
+
+extension CommunityCoordinator: SubmitPostCoordinatorParent {
+    func dismiss() {
+        isShowingCreatePostView = false
     }
 }
 

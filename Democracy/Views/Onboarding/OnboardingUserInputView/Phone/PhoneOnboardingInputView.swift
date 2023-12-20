@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PhoneOnboardingInputView: OnboardingInputView {
+struct PhoneOnboardingInputView: UserInputView {
     @ObservedObject var viewModel: PhoneInputViewModel
     @FocusState private var focusedField: OnboardingInputField?
     

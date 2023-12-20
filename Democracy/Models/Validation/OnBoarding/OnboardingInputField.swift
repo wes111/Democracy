@@ -7,7 +7,37 @@
 
 import Foundation
 
-enum OnboardingInputField {
+protocol InputField {
+    var title: String { get }
+    var subtitle: String { get }
+    var fieldTitle: String { get }
+    var required: Bool { get }
+    var maxCharacterCount: Int { get }
+    var fullRegex: String { get }
+    var alertTitle: String { get }
+    var alertDescription: String { get }
+}
+
+extension InputField {
+    func fullyValid(input: String) -> Bool {
+        NSPredicate.validate(string: input, regex: fullRegex)
+    }
+    
+    // Returns an array of errors corresponding to the unmet requirements of the fullRegex.
+    func getInputValidationErrors<T: InputRequirement>(input: String) -> [T] {
+        var validationErrors: [T] = []
+        if !fullyValid(input: input) {
+            T.allCases.forEach { validation in
+                if !NSPredicate.validate(string: input, regex: validation.regex) {
+                    validationErrors.append(validation)
+                }
+            }
+        }
+        return validationErrors
+    }
+}
+
+enum OnboardingInputField: InputField {
     case username, password, email, phone
 }
 
@@ -143,27 +173,6 @@ extension OnboardingInputField {
             /// Must be 10 digits long.
             "\\(\\d{3}\\) \\d{3}-\\d{4}"
         }
-    }
-}
-
-// MARK: - Methods
-extension OnboardingInputField {
-    
-    func fullyValid(input: String) -> Bool {
-        NSPredicate.validate(string: input, regex: fullRegex)
-    }
-    
-    // Returns an array of errors corresponding to the unmet requirements of the fullRegex.
-    func getInputValidationErrors<T: InputRequirement>(input: String) -> [T] {
-        var validationErrors: [T] = []
-        if !fullyValid(input: input) {
-            T.allCases.forEach { validation in
-                if !NSPredicate.validate(string: input, regex: validation.regex) {
-                    validationErrors.append(validation)
-                }
-            }
-        }
-        return validationErrors
     }
 }
 

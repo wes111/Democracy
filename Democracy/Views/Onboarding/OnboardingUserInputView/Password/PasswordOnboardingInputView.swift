@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PasswordOnboardingInputView: OnboardingInputView {
+struct PasswordOnboardingInputView: UserInputView {
     @ObservedObject var viewModel: PasswordInputViewModel
     @FocusState private var focusedField: OnboardingInputField?
     

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@MainActor protocol OnboardingInputView: View {
+@MainActor protocol UserInputView: View {
     associatedtype ViewModel: InputViewModel
     associatedtype ContentView: View
     var viewModel: ViewModel { get }
@@ -16,7 +16,7 @@ import SwiftUI
     var onboardingAlert: Binding<OnboardingAlert?> { get }
 }
 
-extension OnboardingInputView {
+extension UserInputView {
     
     var progressView: some View {
         ProgressView()
@@ -49,7 +49,7 @@ extension OnboardingInputView {
 }
 
 // MARK: Private Subviews
-private extension OnboardingInputView {
+private extension UserInputView {
     
     var primaryContent: some View {
         ZStack {

@@ -9,7 +9,8 @@ import Foundation
 
 protocol ValidatableOnboardingField: Hashable {
     associatedtype Requirement: InputRequirement
-    static var field: OnboardingInputField { get }
+    associatedtype FieldCollection: InputField
+    static var field: FieldCollection { get }
 }
 
 struct EmailValidator: ValidatableOnboardingField {
@@ -30,4 +31,11 @@ struct PasswordValidator: ValidatableOnboardingField {
 struct PhoneValidator: ValidatableOnboardingField {
     typealias Requirement = PhoneRequirement
     static var field: OnboardingInputField = .phone
+}
+
+// NEW --
+
+struct PostTitleValidator: ValidatableOnboardingField {
+    typealias Requirement = PhoneRequirement // TODO: ...
+    static var field: SubmitPostField = .title
 }

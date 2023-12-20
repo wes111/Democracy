@@ -66,4 +66,12 @@ final class UsernameInputViewModel: InputViewModel {
             message: "Please enter a different username to continue."
         )
     }
+    
+    func close() {
+        coordinator?.close()
+    }
+    
+    func goBack() {
+        coordinator?.goBack()
+    }
 }

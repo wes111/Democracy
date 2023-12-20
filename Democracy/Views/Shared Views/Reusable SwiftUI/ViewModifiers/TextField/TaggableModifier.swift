@@ -34,7 +34,7 @@ extension TextField {
                     }
                 }
             }
-            .standardTextField(title: title)
+            .standardTextField()
         }
     }
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EmailOnboardingInputView: OnboardingInputView {
+struct EmailOnboardingInputView: UserInputView {
     @ObservedObject var viewModel: EmailInputViewModel
     @FocusState private var focusedField: OnboardingInputField?
     

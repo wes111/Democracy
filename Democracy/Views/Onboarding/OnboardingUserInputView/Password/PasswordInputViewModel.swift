@@ -51,4 +51,12 @@ final class PasswordInputViewModel: InputViewModel {
             }
             .assign(to: &$textErrors)
     }
+    
+    func close() {
+        coordinator?.close()
+    }
+    
+    func goBack() {
+        coordinator?.goBack()
+    }
 }

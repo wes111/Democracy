@@ -68,7 +68,7 @@ extension CreateCommunityView {
         .limitCharacters(text: $viewModel.categoryString, count: 2_000)
         .lineLimit(3...10)
         .focused($focusedField, equals: .summary)
-        .standardTextField(title: "Description")
+        .standardTextField()
     }
     
     var titleField: some View {
@@ -81,7 +81,7 @@ extension CreateCommunityView {
         .limitCharacters(text: $viewModel.title, count: 75)
         .lineLimit(2)
         .focused($focusedField, equals: .title)
-        .standardTextField(title: "Title")
+        .standardTextField()
         .submitLabel(.next)
     }
     

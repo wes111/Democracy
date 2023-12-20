@@ -29,9 +29,10 @@ protocol OnboardingCoordinatorDelegate: AnyObject {
 // TODO: The use of a single protocol here exposes too much to the view.
 protocol InputViewModel: Hashable, ObservableObject {
     associatedtype Field: ValidatableOnboardingField
+    
     var isShowingProgress: Bool { get set }
     var text: String { get set }
-    var field: OnboardingInputField { get }
+    var field: Field.FieldCollection { get }
     var trailingButtons: [OnboardingTopButton] { get }
     var leadingButtons: [OnboardingTopButton] { get }
     var onboardingAlert: OnboardingAlert? { get set }
@@ -41,7 +42,6 @@ protocol InputViewModel: Hashable, ObservableObject {
     var maxCharacterCount: Int { get }
     var textErrors: [Field.Requirement] { get }
     var canSubmit: Bool { get }
-    var coordinator: OnboardingCoordinatorDelegate? { get }
     var allErrors: [Field.Requirement] { get }
     
     func submit() async
@@ -58,7 +58,7 @@ extension InputViewModel {
         Field.Requirement.allCases as! [Field.Requirement]
     }
     
-    var field: OnboardingInputField {
+    var field: Field.FieldCollection {
         Field.field
     }
     
@@ -80,14 +80,6 @@ extension InputViewModel {
     
     var canSubmit: Bool {
         field.fullyValid(input: text)
-    }
-    
-    func close() {
-        coordinator?.close()
-    }
-    
-    func goBack() {
-        coordinator?.goBack()
     }
     
     func skip() {

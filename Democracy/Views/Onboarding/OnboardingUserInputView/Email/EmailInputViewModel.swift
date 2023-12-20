@@ -66,4 +66,12 @@ final class EmailInputViewModel: InputViewModel {
             message: "Please enter a different email to continue."
         )
     }
+    
+    func close() {
+        coordinator?.close()
+    }
+    
+    func goBack() {
+        coordinator?.goBack()
+    }
 }

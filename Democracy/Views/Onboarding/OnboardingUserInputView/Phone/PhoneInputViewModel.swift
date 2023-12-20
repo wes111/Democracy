@@ -74,4 +74,12 @@ final class PhoneInputViewModel: InputViewModel {
             message: "Please enter a different phone number to continue."
         )
     }
+    
+    func close() {
+        coordinator?.close()
+    }
+    
+    func goBack() {
+        coordinator?.goBack()
+    }
 }

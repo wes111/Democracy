@@ -49,3 +49,15 @@ extension View {
         }
     }
 }
+
+extension View {
+    func titledElement(title: String) -> some View {
+        VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
+            Text(title)
+                .font(.system(.body, weight: .light))
+                .foregroundColor(.primaryText)
+                .fixedSize(horizontal: false, vertical: true)
+            self
+        }
+    }
+}
