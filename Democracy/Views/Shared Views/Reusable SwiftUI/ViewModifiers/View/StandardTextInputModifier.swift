@@ -8,35 +8,29 @@
 import Foundation
 import SwiftUI
 
-enum TextInput {
-    case field, editor
-}
-
 /// Standard shared appearance of TextFields and TextEditors.
 struct StandardTextInputModifier: ViewModifier {
     @Binding var text: String
     let maxCharacterCount: Int
-    let inputType: TextInput
+    let shouldTrimWhiteSpace: Bool
+    let isTextField: Bool // Either textField or textEditor
     
     func body(content: Content) -> some View {
         Group {
-            switch inputType {
-            case .field:
+            if shouldTrimWhiteSpace {
                 content
-                    .padding(5)
-                    .background(Color.white.opacity(0.1))
                     .trimWhiteSpace(text: $text)
-                
-            case .editor:
+            } else {
                 content
-                    .padding(15)
-                    .background(Color.white.opacity(0.1))
             }
         }
+        .textInputAutocapitalization(.never)
+        .autocorrectionDisabled()
         .foregroundStyle(Color.primaryText)
+        .padding(isTextField ? 17.5 : 15)
+        .background(Color.white.opacity(0.1))
         .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
         .limitCharacters(text: $text, count: maxCharacterCount)
-
     }
 }
 
@@ -45,11 +39,14 @@ extension View {
     func standardTextInputAppearance(
         text: Binding<String>,
         maxCharacterCount: Int,
-        inputType: TextInput = .field
+        shouldTrimWhiteSpace: Bool = true,
+        isTextField: Bool = true
     ) -> some View {
         modifier(StandardTextInputModifier(
             text: text,
-            maxCharacterCount: maxCharacterCount, inputType: inputType
+            maxCharacterCount: maxCharacterCount,
+            shouldTrimWhiteSpace: shouldTrimWhiteSpace,
+            isTextField: isTextField
         ))
     }
 }

@@ -15,8 +15,6 @@ struct UsernameTextFieldStyle: TextFieldStyle {
         configuration
             .keyboardType(.default)
             .textContentType(.username)
-            .textInputAutocapitalization(.never)
-            .autocorrectionDisabled()
             .standardTextInputAppearance(
                 text: $username,
                 maxCharacterCount: OnboardingInputField.username.maxCharacterCount

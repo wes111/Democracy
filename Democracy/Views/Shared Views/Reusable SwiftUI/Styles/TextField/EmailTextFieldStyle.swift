@@ -15,8 +15,6 @@ struct EmailTextFieldStyle: TextFieldStyle {
         configuration
             .keyboardType(.emailAddress)
             .textContentType(.emailAddress)
-            .textInputAutocapitalization(.never)
-            .autocorrectionDisabled()
             .standardTextInputAppearance(
                 text: $email,
                 maxCharacterCount: OnboardingInputField.email.maxCharacterCount

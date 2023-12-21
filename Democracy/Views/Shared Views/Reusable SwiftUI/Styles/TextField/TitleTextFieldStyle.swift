@@ -14,8 +14,6 @@ struct TitleTextFieldStyle: TextFieldStyle {
     func _body(configuration: TextField<_Label>) -> some View {
         configuration
             .keyboardType(.default)
-            .textInputAutocapitalization(.never)
-            .autocorrectionDisabled()
             .standardTextInputAppearance(
                 text: $title,
                 maxCharacterCount: SubmitPostField.title.maxCharacterCount

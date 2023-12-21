@@ -19,8 +19,6 @@ struct PhoneTextFieldStyle: TextFieldStyle {
             }
             .keyboardType(.numberPad)
             .textContentType(.telephoneNumber)
-            .textInputAutocapitalization(.never)
-            .autocorrectionDisabled()
             .standardTextInputAppearance(
                 text: $phone,
                 maxCharacterCount: OnboardingInputField.phone.maxCharacterCount

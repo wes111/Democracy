@@ -18,6 +18,7 @@ struct CustomSecureField<T: PasswordCaseRepresentable>: View {
     @FocusState private var focusedField: SecureFocusField?
     @State private var isHidden = true
     @State private var didChangeFromVisibleToHidden = false
+    let isNewPassword: Bool
     
     var body: some View {
         HStack {
@@ -26,10 +27,8 @@ struct CustomSecureField<T: PasswordCaseRepresentable>: View {
                     unsecureTextField
                     secureTextField
                 }
-                .textFieldStyle(PasswordTextFieldStyle(
-                    password: $secureText,
-                    isNewPassword: false)
-                )
+                .keyboardType(.default)
+                .textContentType(isNewPassword ? .newPassword : .password)
                 .onTapGesture {
                     loginField = T.passwordCase
                     focusedField = isHidden ? .hidden : .visible
@@ -39,9 +38,10 @@ struct CustomSecureField<T: PasswordCaseRepresentable>: View {
         }
         // Prevent button from bouncing incorrectly on keyboard dismiss.
         .geometryGroup()
-        .padding(.horizontal)
-        .background(Color.white.opacity(0.1))
-        .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+        .standardTextInputAppearance(
+            text: $secureText,
+            maxCharacterCount: OnboardingInputField.email.maxCharacterCount
+        )
         .onChange(of: loginField) { _, newValue in
             didChangeFromVisibleToHidden = false
             guard let newValue, newValue.isPasswordCase else { return }
@@ -126,18 +126,19 @@ private extension CustomSecureField {
 }
 
 // MARK: - Preview
-//#Preview {
-//    
-//    enum PreviewNameSpace {
-//        @FocusState static var focus: LoginField?
-//    }
-//    
-//    return ZStack {
-//        Color.primaryBackground.ignoresSafeArea()
-//        CustomSecureField(
-//            secureText: .constant("Hello World"),
-//            loginField: PreviewNameSpace.$focus
-//        )
-//        .padding()
-//    }
-//}
+#Preview {
+    
+    enum PreviewNameSpace {
+        @FocusState static var focus: LoginField?
+    }
+    
+    return ZStack {
+        Color.primaryBackground.ignoresSafeArea()
+        CustomSecureField(
+            secureText: .constant("Hello World"),
+            loginField: PreviewNameSpace.$focus,
+            isNewPassword: true
+        )
+        .padding()
+    }
+}

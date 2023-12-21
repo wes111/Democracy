@@ -38,7 +38,7 @@ extension PasswordOnboardingInputView {
     }
     
     var field: some View {
-        CustomSecureField(secureText: $viewModel.text, loginField: $focusedField)
+        CustomSecureField(secureText: $viewModel.text, loginField: $focusedField, isNewPassword: true)
             .focused($focusedField, equals: viewModel.field)
             .submitLabel(.next)
             .onTapGesture {

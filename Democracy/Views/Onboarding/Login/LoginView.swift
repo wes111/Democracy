@@ -116,7 +116,7 @@ extension LoginView {
     }
     
     var passwordField: some View {
-        CustomSecureField(secureText: $viewModel.password, loginField: $focusedField)
+        CustomSecureField(secureText: $viewModel.password, loginField: $focusedField, isNewPassword: false)
             .focused($focusedField, equals: .password)
             .submitLabel(.go)
             .onSubmit {
