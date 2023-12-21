@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct OnboardingAlert: Identifiable {
+struct AlertModel: Identifiable {
     
     var id: String {
         title

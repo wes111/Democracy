@@ -147,7 +147,6 @@
 		EE80D8F829C01F1D0000F8EF /* UserLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8F729C01F1D0000F8EF /* UserLocalRepository.swift */; };
 		EE80D8FC29C01FF00000F8EF /* CommunityInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8FB29C01FF00000F8EF /* CommunityInteractor.swift */; };
 		EE80D8FE29C020780000F8EF /* CommunityLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8FD29C020780000F8EF /* CommunityLocalRepository.swift */; };
-		EE80D90229C2BB0C0000F8EF /* AddPostAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D90129C2BB0C0000F8EF /* AddPostAlert.swift */; };
 		EE80D90429C923960000F8EF /* CommunityInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D90329C923960000F8EF /* CommunityInfoViewModel.swift */; };
 		EE80D90829C926600000F8EF /* CandidatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D90729C926600000F8EF /* CandidatesView.swift */; };
 		EE80D90A29C926BF0000F8EF /* CommunityInfoViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D90929C926BF0000F8EF /* CommunityInfoViewModel+Preview.swift */; };
@@ -200,7 +199,7 @@
 		EE988AB02ADA07640057F9DE /* PhoneRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE988AAF2ADA07640057F9DE /* PhoneRequirement.swift */; };
 		EEB5AF672ADB186E00310408 /* OnboardingUserInputViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF662ADB186E00310408 /* OnboardingUserInputViewModelProtocol.swift */; };
 		EEB5AF762ADB1EFA00310408 /* OnboardingTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */; };
-		EEB5AF7A2ADC3D6D00310408 /* OnboardingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF792ADC3D6C00310408 /* OnboardingAlert.swift */; };
+		EEB5AF7A2ADC3D6D00310408 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF792ADC3D6C00310408 /* AlertModel.swift */; };
 		EEB5AF7C2ADCA92A00310408 /* OnboardingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */; };
 		EEB5AF7E2AE0DE3700310408 /* InputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7D2AE0DE3700310408 /* InputValidator.swift */; };
 		EEB5AF802AE0DE7000310408 /* OnboardingInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */; };
@@ -390,7 +389,6 @@
 		EE80D8F729C01F1D0000F8EF /* UserLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocalRepository.swift; sourceTree = "<group>"; };
 		EE80D8FB29C01FF00000F8EF /* CommunityInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityInteractor.swift; sourceTree = "<group>"; };
 		EE80D8FD29C020780000F8EF /* CommunityLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityLocalRepository.swift; sourceTree = "<group>"; };
-		EE80D90129C2BB0C0000F8EF /* AddPostAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostAlert.swift; sourceTree = "<group>"; };
 		EE80D90329C923960000F8EF /* CommunityInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityInfoViewModel.swift; sourceTree = "<group>"; };
 		EE80D90729C926600000F8EF /* CandidatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatesView.swift; sourceTree = "<group>"; };
 		EE80D90929C926BF0000F8EF /* CommunityInfoViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunityInfoViewModel+Preview.swift"; sourceTree = "<group>"; };
@@ -444,7 +442,7 @@
 		EE988AAF2ADA07640057F9DE /* PhoneRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneRequirement.swift; sourceTree = "<group>"; };
 		EEB5AF662ADB186E00310408 /* OnboardingUserInputViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUserInputViewModelProtocol.swift; sourceTree = "<group>"; };
 		EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTopButton.swift; sourceTree = "<group>"; };
-		EEB5AF792ADC3D6C00310408 /* OnboardingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAlert.swift; sourceTree = "<group>"; };
+		EEB5AF792ADC3D6C00310408 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingError.swift; sourceTree = "<group>"; };
 		EEB5AF7D2AE0DE3700310408 /* InputValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidator.swift; sourceTree = "<group>"; };
 		EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInputField.swift; sourceTree = "<group>"; };
@@ -768,7 +766,7 @@
 		EE4DB8922AC89ECB00A6DC90 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				EEB5AF792ADC3D6C00310408 /* OnboardingAlert.swift */,
+				EEB5AF792ADC3D6C00310408 /* AlertModel.swift */,
 				EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */,
 				EEB5AF742ADB1E9D00310408 /* OnboardingUserInputView */,
 				EE9760172AD0AFD4003069CF /* AcceptTermsView */,
@@ -1012,7 +1010,6 @@
 		EE80D8EE29BD37710000F8EF /* SubmitPost */ = {
 			isa = PBXGroup;
 			children = (
-				EE80D90129C2BB0C0000F8EF /* AddPostAlert.swift */,
 				EE4987D42B2F8E0E00AB7522 /* PostTitle */,
 				EE4987E52B2F972800AB7522 /* PostLink */,
 				EE4987D92B2F90F000AB7522 /* PostBody */,
@@ -1664,7 +1661,6 @@
 				EE936CB32A78A03600D49271 /* EventsTabCoordinatorViewModel.swift in Sources */,
 				EE5D39EF2A2B9B4B00D0E312 /* TightLabelStyle.swift in Sources */,
 				EED4A51529AB1C7900DDCCDA /* HistoryTabMainViewModel.swift in Sources */,
-				EE80D90229C2BB0C0000F8EF /* AddPostAlert.swift in Sources */,
 				EEF83473299C6A11001EEA5E /* Router.swift in Sources */,
 				EE5D39FF2A2ED43A00D0E312 /* CommunityCoordinator.swift in Sources */,
 				EE0CC2052AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift in Sources */,
@@ -1716,7 +1712,7 @@
 				EE5D3A092A3804D100D0E312 /* PostCategory+Extension.swift in Sources */,
 				EE45249F2A5CE39400C7A2DD /* RulesSection.swift in Sources */,
 				EED4A4F929AA855900DDCCDA /* EventsTabCoordinator.swift in Sources */,
-				EEB5AF7A2ADC3D6D00310408 /* OnboardingAlert.swift in Sources */,
+				EEB5AF7A2ADC3D6D00310408 /* AlertModel.swift in Sources */,
 				EE80D8EB29BD15640000F8EF /* ProjectNotes.swift in Sources */,
 				EE80D8D029BC157D0000F8EF /* VotingTabMainViewModel+Preview.swift in Sources */,
 				EED4A54329BAB60100DDCCDA /* Hashable+Extensions.swift in Sources */,

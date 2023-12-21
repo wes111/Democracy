@@ -14,7 +14,7 @@ final class PhoneInputViewModel: InputViewModel {
     @Injected(\.accountService) private var accountService
     @Published var text: String = ""
     @Published var textErrors: [Field.Requirement] = []
-    @Published var onboardingAlert: OnboardingAlert?
+    @Published var alertModel: AlertModel?
     @Published var isShowingProgress: Bool = false
     
     private var onboardingInput: OnboardingInput
@@ -74,7 +74,7 @@ extension PhoneInputViewModel {
     
     @MainActor
     func presentPhoneUnavailableAlert() {
-        onboardingAlert = .init(
+        alertModel = .init(
             title: "Phone Number Unavailable",
             message: "Please enter a different phone number to continue."
         )

@@ -14,7 +14,7 @@ final class EmailInputViewModel: InputViewModel {
     @Injected(\.accountService) private var accountService
     @Published var text: String = ""
     @Published var textErrors: [Field.Requirement] = []
-    @Published var onboardingAlert: OnboardingAlert?
+    @Published var alertModel: AlertModel?
     @Published var isShowingProgress: Bool = false
     
     private var onboardingInput: OnboardingInput
@@ -66,7 +66,7 @@ extension EmailInputViewModel {
     
     @MainActor
     func presentEmailUnavailableAlert() {
-        onboardingAlert = .init(
+        alertModel = .init(
             title: "Email Unavailable",
             message: "Please enter a different email to continue."
         )

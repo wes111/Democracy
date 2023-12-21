@@ -35,7 +35,7 @@ protocol InputViewModel: Hashable, ObservableObject {
     var field: Field.FieldCollection { get }
     var trailingButtons: [OnboardingTopButton] { get }
     var leadingButtons: [OnboardingTopButton] { get }
-    var onboardingAlert: OnboardingAlert? { get set }
+    var alertModel: AlertModel? { get set }
     var title: String { get }
     var subtitle: String { get }
     var fieldTitle: String { get }
@@ -88,7 +88,7 @@ extension InputViewModel {
     
     @MainActor
     func presentGenericAlert() {
-        onboardingAlert = .init(
+        alertModel = .init(
             title: "Error",
             message: "An error occurred, please try again later."
         )
@@ -96,7 +96,7 @@ extension InputViewModel {
     
     @MainActor
     func presentInvalidInputAlert() {
-        onboardingAlert = .init(
+        alertModel = .init(
             title: field.alertTitle,
             message: field.alertDescription
         )

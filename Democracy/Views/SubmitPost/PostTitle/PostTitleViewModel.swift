@@ -20,10 +20,9 @@ final class PostTitleViewModel: InputViewModel {
     @Published var isShowingProgress: Bool = false
     @Published var text: String = ""
     @Published var textErrors: [Field.Requirement] = []
-    @Published var alert: AddPostAlert?
+    @Published var alertModel: AlertModel?
     @Published var isLoading: Bool = false
     
-    var onboardingAlert: OnboardingAlert?
     private weak var coordinator: SubmitPostCoordinatorDelegate?
     
     init(coordinator: SubmitPostCoordinatorDelegate?) {

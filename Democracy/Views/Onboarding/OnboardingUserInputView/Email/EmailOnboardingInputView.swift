@@ -33,8 +33,8 @@ extension EmailOnboardingInputView {
         $viewModel.isShowingProgress
     }
     
-    var onboardingAlert: Binding<OnboardingAlert?> {
-        $viewModel.onboardingAlert
+    var onboardingAlert: Binding<AlertModel?> {
+        $viewModel.alertModel
     }
     
     var field: some View {

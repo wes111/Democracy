@@ -13,7 +13,7 @@ import SwiftUI
     var viewModel: ViewModel { get }
     var field: ContentView { get }
     var isShowingProgress: Binding<Bool> { get }
-    var onboardingAlert: Binding<OnboardingAlert?> { get }
+    var onboardingAlert: Binding<AlertModel?> { get }
 }
 
 extension UserInputView {
