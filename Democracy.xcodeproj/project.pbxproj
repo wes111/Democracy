@@ -1009,7 +1009,7 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		EE80D8EE29BD37710000F8EF /* AddPost */ = {
+		EE80D8EE29BD37710000F8EF /* SubmitPost */ = {
 			isa = PBXGroup;
 			children = (
 				EE80D90129C2BB0C0000F8EF /* AddPostAlert.swift */,
@@ -1019,7 +1019,7 @@
 				EE4987E02B2F96F100AB7522 /* PostTags */,
 				EE4987CD2B2F820A00AB7522 /* Navigation */,
 			);
-			path = AddPost;
+			path = SubmitPost;
 			sourceTree = "<group>";
 		};
 		EE80D90629C926490000F8EF /* Candidates (Plural) */ = {
@@ -1355,6 +1355,7 @@
 				EED4A52729B8185600DDCCDA /* Shared Views */,
 				EEF8346E299C69DC001EEA5E /* Navigation */,
 				EED4A4ED29AA7E7A00DDCCDA /* Root */,
+				EE80D8EE29BD37710000F8EF /* SubmitPost */,
 				EE4DB8922AC89ECB00A6DC90 /* Onboarding */,
 				EED4A4F229AA7FC600DDCCDA /* MainTabs */,
 			);
@@ -1417,7 +1418,6 @@
 				EED4A52929B8187D00DDCCDA /* PostCoordinator.swift */,
 				EED4A52B29B8190700DDCCDA /* PostView.swift */,
 				EED4A52D29B81A2E00DDCCDA /* PostViewModel.swift */,
-				EE80D8EE29BD37710000F8EF /* AddPost */,
 				EED4A53829B9623C00DDCCDA /* PostCard */,
 			);
 			path = Post;
