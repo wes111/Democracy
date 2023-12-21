@@ -13,16 +13,15 @@ struct UsernameTextFieldStyle: TextFieldStyle {
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {
         configuration
-            .limitCharacters(
-                text: $username,
-                count: OnboardingInputField.username.maxCharacterCount
-            )
             .keyboardType(.default)
             .textContentType(.username)
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled()
-            .standardTextField()
-            .contentShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+            .standardTextInputAppearance(
+                text: $username,
+                maxCharacterCount: OnboardingInputField.username.maxCharacterCount
+            )
+
     }
 }
 

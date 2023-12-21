@@ -65,6 +65,7 @@
 		EE4987FC2B328BE100AB7522 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987FB2B328BE100AB7522 /* PasswordValidator.swift */; };
 		EE4987FE2B328BF500AB7522 /* PhoneValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987FD2B328BF500AB7522 /* PhoneValidator.swift */; };
 		EE4988002B328C0C00AB7522 /* PostTitleValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987FF2B328C0C00AB7522 /* PostTitleValidator.swift */; };
+		EE4988042B3325CB00AB7522 /* TrimWhiteSpaceCharactersModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4988032B3325CB00AB7522 /* TrimWhiteSpaceCharactersModifier.swift */; };
 		EE4DB88A2AC50AD200A6DC90 /* AppwriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */; };
 		EE4DB8912AC899ED00A6DC90 /* LoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */; };
 		EE4DB8942AC89F0800A6DC90 /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */; };
@@ -113,7 +114,7 @@
 		EE7055662B18C37300E40A89 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7055652B18C37300E40A89 /* View+Extensions.swift */; };
 		EE7856132AAE75620004B7E4 /* NewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856122AAE75620004B7E4 /* NewFlowLayout.swift */; };
 		EE7856182AB7BACB0004B7E4 /* TaggableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856172AB7BACB0004B7E4 /* TaggableModifier.swift */; };
-		EE78561B2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78561A2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift */; };
+		EE78561B2AB7BB4D0004B7E4 /* StandardTextInputModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78561A2AB7BB4D0004B7E4 /* StandardTextInputModifier.swift */; };
 		EE78561F2AB7E53A0004B7E4 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE78561E2AB7E53A0004B7E4 /* PrimaryButtonStyle.swift */; };
 		EE7856212AB90E200004B7E4 /* ToolbarNavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856202AB90E200004B7E4 /* ToolbarNavigationModifier.swift */; };
 		EE7856242AB917FA0004B7E4 /* CheckboxToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7856232AB917FA0004B7E4 /* CheckboxToggleStyle.swift */; };
@@ -310,6 +311,7 @@
 		EE4987FB2B328BE100AB7522 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
 		EE4987FD2B328BF500AB7522 /* PhoneValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneValidator.swift; sourceTree = "<group>"; };
 		EE4987FF2B328C0C00AB7522 /* PostTitleValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTitleValidator.swift; sourceTree = "<group>"; };
+		EE4988032B3325CB00AB7522 /* TrimWhiteSpaceCharactersModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimWhiteSpaceCharactersModifier.swift; sourceTree = "<group>"; };
 		EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppwriteService.swift; sourceTree = "<group>"; };
 		EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatus.swift; sourceTree = "<group>"; };
 		EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
@@ -357,7 +359,7 @@
 		EE7055652B18C37300E40A89 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		EE7856122AAE75620004B7E4 /* NewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFlowLayout.swift; sourceTree = "<group>"; };
 		EE7856172AB7BACB0004B7E4 /* TaggableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggableModifier.swift; sourceTree = "<group>"; };
-		EE78561A2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardBorderedModifier.swift; sourceTree = "<group>"; };
+		EE78561A2AB7BB4D0004B7E4 /* StandardTextInputModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardTextInputModifier.swift; sourceTree = "<group>"; };
 		EE78561E2AB7E53A0004B7E4 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		EE7856202AB90E200004B7E4 /* ToolbarNavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarNavigationModifier.swift; sourceTree = "<group>"; };
 		EE7856232AB917FA0004B7E4 /* CheckboxToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxToggleStyle.swift; sourceTree = "<group>"; };
@@ -875,10 +877,11 @@
 		EE7856192AB7BB3D0004B7E4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EE78561A2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift */,
+				EE78561A2AB7BB4D0004B7E4 /* StandardTextInputModifier.swift */,
 				EE7856202AB90E200004B7E4 /* ToolbarNavigationModifier.swift */,
 				EE7856252AB948E50004B7E4 /* CharacterLimiterModifier.swift */,
 				EE7856272AB949C10004B7E4 /* PreviewModifier.swift */,
+				EE4988032B3325CB00AB7522 /* TrimWhiteSpaceCharactersModifier.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1802,6 +1805,7 @@
 				EE4987EC2B30861000AB7522 /* DefaultTextEditorStyle.swift in Sources */,
 				EE80D8E229BC1DD80000F8EF /* PostInteractor.swift in Sources */,
 				EE80D92229C9557D0000F8EF /* CandidateInteractor.swift in Sources */,
+				EE4988042B3325CB00AB7522 /* TrimWhiteSpaceCharactersModifier.swift in Sources */,
 				EE7055662B18C37300E40A89 /* View+Extensions.swift in Sources */,
 				EE4987CC2B2F5ED200AB7522 /* ViewConstants.swift in Sources */,
 				EED4A50F29AB1A5A00DDCCDA /* CommunitiesTabMainView.swift in Sources */,
@@ -1833,7 +1837,7 @@
 				EE4DB88A2AC50AD200A6DC90 /* AppwriteService.swift in Sources */,
 				EE80D8CC29BC14560000F8EF /* PostCardViewModel+Preview.swift in Sources */,
 				EE80D95129DB94AF0000F8EF /* CreateCommunityAlert.swift in Sources */,
-				EE78561B2AB7BB4D0004B7E4 /* StandardBorderedModifier.swift in Sources */,
+				EE78561B2AB7BB4D0004B7E4 /* StandardTextInputModifier.swift in Sources */,
 				EED4A51C29ABC2FE00DDCCDA /* User.swift in Sources */,
 				EED4A53A29B9629900DDCCDA /* PostCardView.swift in Sources */,
 				EE7055502B11476E00E40A89 /* AccountService.swift in Sources */,

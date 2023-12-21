@@ -21,9 +21,10 @@ struct PhoneTextFieldStyle: TextFieldStyle {
             .textContentType(.telephoneNumber)
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled()
-            .standardTextField()
-            .contentShape(RoundedRectangle(cornerRadius: 10, style: .circular))
-
+            .standardTextInputAppearance(
+                text: $phone,
+                maxCharacterCount: OnboardingInputField.phone.maxCharacterCount
+            )
     }
     
     // TODO: Move to a dedicated PhoneFormatter?

@@ -9,17 +9,16 @@ import Foundation
 import SwiftUI
 
 extension TextEditor {
-    func defaultStyle() -> some View {
+    func defaultStyle(text: Binding<String>, maxCharacterCount: Int) -> some View {
         self
+            .standardTextInputAppearance(text: text, maxCharacterCount: maxCharacterCount)
             .font(.system(.body, weight: .regular))
-            .foregroundStyle(Color.primaryText)
             .scrollContentBackground(.hidden)
             .lineSpacing(10)
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled()
-            .padding(10) // TODO: This needs to match TextField.
-            .background(Color.white.opacity(0.1))
             .cornerRadius(10)
             .frame(minHeight: 200)
+        // TODO: Make sure modifiers are still in correct order.
     }
 }

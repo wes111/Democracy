@@ -13,15 +13,14 @@ struct TitleTextFieldStyle: TextFieldStyle {
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {
         configuration
-            .limitCharacters(
-                text: $title,
-                count: 100
-            ) // TODO: Define somewhere else
             .keyboardType(.default)
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled()
-            .standardTextField()
-            .contentShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+            .standardTextInputAppearance(
+                text: $title,
+                maxCharacterCount: SubmitPostField.title.maxCharacterCount
+            )
+
     }
 }
 

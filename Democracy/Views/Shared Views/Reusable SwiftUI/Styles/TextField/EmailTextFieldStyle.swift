@@ -13,16 +13,14 @@ struct EmailTextFieldStyle: TextFieldStyle {
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {
         configuration
-            .limitCharacters(
-                text: $email,
-                count: OnboardingInputField.email.maxCharacterCount
-            )
             .keyboardType(.emailAddress)
             .textContentType(.emailAddress)
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled()
-            .standardTextField()
-            .contentShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+            .standardTextInputAppearance(
+                text: $email,
+                maxCharacterCount: OnboardingInputField.email.maxCharacterCount
+            )
     }
 }
 
