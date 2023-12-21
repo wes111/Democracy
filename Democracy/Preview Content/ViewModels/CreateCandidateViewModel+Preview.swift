@@ -11,7 +11,6 @@ extension CreateCandidateViewModel {
     
     class PreviewHelper: CreateCandidateCoordinatorDelegate {
         func closeCreateCandidateView() {
-            // TODO: ...
         }
     }
     

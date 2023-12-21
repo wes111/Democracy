@@ -10,7 +10,7 @@ import SwiftUI
 struct PostLinkView: View {
     
     @ObservedObject var viewModel: PostLinkViewModel
-    //@FocusState private var focusedField: OnboardingInputField?
+    // @FocusState private var focusedField: OnboardingInputField?
     
     init(viewModel: PostLinkViewModel) {
         self.viewModel = viewModel

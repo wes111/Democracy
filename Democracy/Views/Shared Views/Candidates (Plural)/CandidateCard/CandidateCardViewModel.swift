@@ -56,11 +56,11 @@ final class CandidateCardViewModel: ObservableObject {
     
     /// Update the card's candidate on the main thread.
     private func updateCandidate(newCandidate: Candidate) {
-        Task {
-            await MainActor.run {
-                self.candidate = newCandidate
-            }
-        }
+//        Task {
+//            await MainActor.run {
+//                self.candidate = newCandidate
+//            }
+//        }
     }
     
 //    func goToCandidateView() {
@@ -68,23 +68,23 @@ final class CandidateCardViewModel: ObservableObject {
 //    }
     
     func upVoteCandidate() {
-        Task {
-            do {
-                try await candidateInteractor.upVoteCandidate(candidate)
-            } catch {
-                print("Failed to up vote candidate, error: \(error)")
-            }
-        }
+//        Task {
+//            do {
+//                try await candidateInteractor.upVoteCandidate(candidate)
+//            } catch {
+//                print("Failed to up vote candidate, error: \(error)")
+//            }
+//        }
     }
     
     func downVoteCandidate() {
-        Task {
-            do {
-                try await candidateInteractor.downVoteCandidate(candidate)
-            } catch {
-                print("Failed to down vote candidate, error: \(error)")
-            }
-        }
+//        Task {
+//            do {
+//                try await candidateInteractor.downVoteCandidate(candidate)
+//            } catch {
+//                print("Failed to down vote candidate, error: \(error)")
+//            }
+//        }
     }
     
 }

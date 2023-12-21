@@ -46,24 +46,24 @@ final class CreateCandidateViewModel: CreateCandidateViewModelProtocol {
     }
     
     func submitCandidate() {
-        isLoading = true
-        Task {
-            do {
-                try await candidateInteractor.addCandidate(summary: summary, link: link, repType: repType)
-                await MainActor.run {
-                    close()
-                }
-            } catch {
-                await MainActor.run {
-                    alert = CreateCandidateAlert.missingBody
-                }
-                print("Failed to submit candidate, error: \(error)")
-            }
-            await MainActor.run {
-                isLoading = false
-            }
-            
-        }
+//        isLoading = true
+//        Task {
+//            do {
+//                try await candidateInteractor.addCandidate(summary: summary, link: link, repType: repType)
+//                await MainActor.run {
+//                    close()
+//                }
+//            } catch {
+//                await MainActor.run {
+//                    alert = CreateCandidateAlert.missingBody
+//                }
+//                print("Failed to submit candidate, error: \(error)")
+//            }
+//            await MainActor.run {
+//                isLoading = false
+//            }
+//            
+//        }
     }
     
 }

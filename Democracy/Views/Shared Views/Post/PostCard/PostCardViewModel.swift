@@ -18,7 +18,7 @@ final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
     // MARK: - Private Variables
     @Injected(\.richLinkService) private var richLinkService
     private weak var coordinator: PostCardCoordinatorDelegate?
-    let post: Post // TODO: Make this private?
+    let post: Post
     
     // MARK: - Protocol Variables
     @Published var linkMetadata: LPLinkMetadata?
@@ -87,16 +87,16 @@ final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
     // MARK: - Private methods
     
     func loadLinkMetadata() async {
-        guard let url = post.link?.url else { return }
-        do {
-            let metadata = try await richLinkService.getMetadata(for: url)
-            
-            await MainActor.run {
-                self.linkMetadata = metadata
-            }
-        } catch {
-            print("Error occurred fetching rich link metadata: \(error).")
-        }
+//        guard let url = post.link?.url else { return }
+//        do {
+//            let metadata = try await richLinkService.getMetadata(for: url)
+//            
+//            await MainActor.run {
+//                self.linkMetadata = metadata
+//            }
+//        } catch {
+//            print("Error occurred fetching rich link metadata: \(error).")
+//        }
     }
     
 }

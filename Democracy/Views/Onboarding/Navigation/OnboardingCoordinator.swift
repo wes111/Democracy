@@ -57,7 +57,6 @@ extension OnboardingCoordinator: OnboardingCoordinatorDelegate {
     }
     
     func continueAccountSetup() {
-        // TODO: ...
     }
     
     func submitEmailVerification() {

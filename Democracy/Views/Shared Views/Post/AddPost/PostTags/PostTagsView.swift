@@ -10,7 +10,7 @@ import SwiftUI
 struct PostTagsView: View {
     
     @ObservedObject var viewModel: PostTagsViewModel
-    //@FocusState private var focusedField: OnboardingInputField?
+    // @FocusState private var focusedField: OnboardingInputField?
     
     init(viewModel: PostTagsViewModel) {
         self.viewModel = viewModel

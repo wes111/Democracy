@@ -47,7 +47,6 @@ extension CommunityCoordinator {
     }
     
     func goToCommunityPostCategory(categoryId: String) {
-        // TODO: Get the actual post category.
         router.push(CommunityPath.goToCommunityPostCategory(category: .preview))
     }
     
@@ -56,7 +55,6 @@ extension CommunityCoordinator {
     }
     
     func goToCandidateView(candidateId: String) {
-        // TODO: Get the actual candidate.
         router.push(CommunityPath.singleCandidate(.preview))
     }
     

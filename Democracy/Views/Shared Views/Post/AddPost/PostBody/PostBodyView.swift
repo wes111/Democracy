@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PostBodyView: View {
     @ObservedObject var viewModel: PostBodyViewModel
-    //@FocusState private var focusedField: OnboardingInputField?
+    // @FocusState private var focusedField: OnboardingInputField?
     
     init(viewModel: PostBodyViewModel) {
         self.viewModel = viewModel

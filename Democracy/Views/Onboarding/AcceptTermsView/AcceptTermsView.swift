@@ -49,9 +49,14 @@ extension AcceptTermsView {
     }
     
     var subtitle: some View {
-        Text("By tapping I agree, you agree to create an account and to Democracy's terms and privacy policy.")
-            .font(.system(.body, weight: .light))
-            .foregroundColor(.primaryText)
+        Text(
+            """
+            By tapping I agree, you agree to create an
+            account and to Democracy's terms and privacy policy.
+            """
+        )
+        .font(.system(.body, weight: .light))
+        .foregroundColor(.primaryText)
     }
     
     var agreeButton: some View {

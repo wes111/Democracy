@@ -63,9 +63,9 @@ enum SubmitPostField: InputField {
         case .title:
             100
         case .body:
-            1000 // TODO: ...
+            1000
         case .link:
-            500 // TODO: ...
+            500
         case .tags:
             100 // TODO: ...
         }

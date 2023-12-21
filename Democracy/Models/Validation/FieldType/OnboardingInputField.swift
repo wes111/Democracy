@@ -147,6 +147,7 @@ extension OnboardingInputField {
             /// [@, #, $, %, ^, &, +, =, _, !, ~, (, ), [, ], {, }, |, ;, :, ,, ., <, >, ?, /, \]
             /// At least 8 characters long and at most 128 characters long.
             "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#\\$%&+=_!~*,()\\[\\]{}|;:.<>?/\\\\])[A-Za-z\\d@#\\$%&+=_!~*,()\\[\\]{}|;:.<>?/\\\\]{8,128}$"
+            // swiftlint:disable:previous line_length
             
         case .email:
             /// Local part:

@@ -11,7 +11,7 @@ struct CommunitiesTabMainView: View {
     
     @StateObject var viewModel: CommunitiesTabMainViewModel
     @State private var multiSelection = Set<String>()
-    @State private var bob = "" // TODO: ...
+    @State private var bob = ""
     
     init(viewModel: CommunitiesTabMainViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)

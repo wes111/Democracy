@@ -23,7 +23,14 @@ struct Post: Identifiable {
     let community: Community = Community.preview
     var tags: [Tag]
     
-    init(title: String, subtitle: String? = nil, body: String, creator: User, tags: [Tag], link: Link? = nil) {
+    init(
+        title: String,
+        subtitle: String? = nil,
+        body: String,
+        creator: User,
+        tags: [Tag],
+        link: Link? = nil
+    ) {
         self.title = title
         self.subtitle = subtitle
         self.body = body
