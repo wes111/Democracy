@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UsernameOnboardingInputView: UserInputView {
+struct UsernameOnboardingInputView: View {
     
     @ObservedObject var viewModel: UsernameInputViewModel
     @FocusState private var focusedField: OnboardingInputField?
@@ -18,23 +18,26 @@ struct UsernameOnboardingInputView: UserInputView {
     }
     
     var body: some View {
-        main
-            .onAppear {
-                if isFirstAppear {
+        UserInputView(
+            viewModel: viewModel,
+            content: { field }
+        )
+        .onAppear {
+            if isFirstAppear {
+                focusedField = viewModel.field
+                isFirstAppear = false
+            } else {
+                Task {
+                    // Note: Keyboard jumps to mid screen without this sleep,
+                    // when dismissing a view above in the stack.
+                    try await Task.sleep(seconds: 0.5)
                     focusedField = viewModel.field
-                    isFirstAppear = false
-                } else {
-                    Task {
-                        // Note: Keyboard jumps to mid screen without this sleep,
-                        // when dismissing a view above in the stack.
-                        try await Task.sleep(seconds: 0.5)
-                        focusedField = viewModel.field
-                    }
                 }
             }
-            .onTapGesture {
-                focusedField = nil
-            }
+        }
+        .onTapGesture {
+            focusedField = nil
+        }
     }
 }
 

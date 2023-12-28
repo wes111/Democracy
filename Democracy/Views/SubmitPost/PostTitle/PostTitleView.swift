@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PostTitleView: UserInputView {
+struct PostTitleView: View {
     @ObservedObject var viewModel: PostTitleViewModel
     @FocusState private var focusedField: SubmitPostField?
     
@@ -16,13 +16,16 @@ struct PostTitleView: UserInputView {
     }
     
     var body: some View {
-        main
-            .onAppear {
-                focusedField = viewModel.field
-            }
-            .onTapGesture {
-                focusedField = nil
-            }
+        UserInputView(
+            viewModel: viewModel,
+            content: { field }
+        )
+        .onAppear {
+            focusedField = viewModel.field
+        }
+        .onTapGesture {
+            focusedField = nil
+        }
     }
 }
 

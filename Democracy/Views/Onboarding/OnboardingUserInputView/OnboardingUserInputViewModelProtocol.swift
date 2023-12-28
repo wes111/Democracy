@@ -9,7 +9,7 @@ import Factory
 import Foundation
 
 // TODO: The use of a single protocol here exposes too much to the view.
-protocol InputViewModel: Hashable, ObservableObject {
+protocol UserInputViewModel: Hashable, ObservableObject {
     associatedtype Field: InputValidator
     
     var isShowingProgress: Bool { get set }
@@ -34,7 +34,7 @@ protocol InputViewModel: Hashable, ObservableObject {
     @MainActor func presentInvalidInputAlert()
 }
 
-extension InputViewModel {
+extension UserInputViewModel {
     
     var allErrors: [Field.Requirement] {
         Field.Requirement.allCases as! [Field.Requirement]

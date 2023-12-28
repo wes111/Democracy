@@ -13,15 +13,13 @@ protocol SubmitPostCoordinatorDelegate: AnyObject {
     func goBack()
 }
 
-final class PostTitleViewModel: InputViewModel {
+final class PostTitleViewModel: UserInputViewModel {
     typealias Field = PostTitleValidator
     
-    @Injected(\.postInteractor) var postInteractor
     @Published var isShowingProgress: Bool = false
     @Published var text: String = ""
     @Published var textErrors: [Field.Requirement] = []
     @Published var alertModel: NewAlertModel?
-    @Published var isLoading: Bool = false
     
     private weak var coordinator: SubmitPostCoordinatorDelegate?
     

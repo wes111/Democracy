@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EmailOnboardingInputView: UserInputView {
+struct EmailOnboardingInputView: View {
     @ObservedObject var viewModel: EmailInputViewModel
     @FocusState private var focusedField: OnboardingInputField?
     
@@ -16,13 +16,16 @@ struct EmailOnboardingInputView: UserInputView {
     }
     
     var body: some View {
-        main
-            .onAppear {
-                focusedField = viewModel.field
-            }
-            .onTapGesture {
-                focusedField = nil
-            }
+        UserInputView(
+            viewModel: viewModel,
+            content: { field }
+        )
+        .onAppear {
+            focusedField = viewModel.field
+        }
+        .onTapGesture {
+            focusedField = nil
+        }
     }
 }
 

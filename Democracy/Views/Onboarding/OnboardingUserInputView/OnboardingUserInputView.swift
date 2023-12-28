@@ -7,25 +7,19 @@
 
 import SwiftUI
 
-@MainActor protocol UserInputView: View { // TODO: This should probably just be part of the view instead of a protocol (:
-    associatedtype ViewModel: InputViewModel
-    associatedtype ContentView: View
+struct UserInputView<ViewModel: UserInputViewModel, Content: View>: View {
+    @ObservedObject var viewModel: ViewModel
+    @ViewBuilder let content: Content
     
-    var viewModel: ViewModel { get }
-    var field: ContentView { get }
-    var isShowingProgress: Binding<Bool> { get }
-    var onboardingAlert: Binding<NewAlertModel?> { get }
-}
-
-extension UserInputView {
-    
-    var progressView: some View {
-        ProgressView()
-            .controlSize(.large)
-            .tint(.secondaryText)
+    init(
+        viewModel: ViewModel,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.viewModel = viewModel
+        self.content = content()
     }
     
-    var main: some View {
+    var body: some View {
         primaryContent
             .toolbarNavigation(
                 leadingButtons: viewModel.leadingButtons,
@@ -35,11 +29,11 @@ extension UserInputView {
                 if viewModel.canSubmit {
                     performAsnycTask(
                         action: viewModel.submit,
-                        isShowingProgress: isShowingProgress
+                        isShowingProgress: $viewModel.isShowingProgress
                     )
                 }
             }
-            .alert(item: onboardingAlert) { alert in
+            .alert(item: $viewModel.alertModel) { alert in
                 Alert(
                     title: Text(alert.title),
                     message: Text(alert.description),
@@ -47,10 +41,16 @@ extension UserInputView {
                 )
             }
     }
+    
 }
 
-// MARK: Private Subviews
 private extension UserInputView {
+    
+    var progressView: some View {
+        ProgressView()
+            .controlSize(.large)
+            .tint(.secondaryText)
+    }
     
     var primaryContent: some View {
         ZStack {
@@ -64,7 +64,7 @@ private extension UserInputView {
                         title
                         
                         VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
-                            field
+                            content
                                 .titledElement(title: viewModel.subtitle)
                             
                             requirements
@@ -108,7 +108,7 @@ private extension UserInputView {
         AsyncButton(
             action: { await viewModel.submit() },
             label: { Text("Next") },
-            showProgressView: isShowingProgress
+            showProgressView: $viewModel.isShowingProgress
         )
         .buttonStyle(PrimaryButtonStyle())
         .disabled(!viewModel.canSubmit)
