@@ -8,14 +8,15 @@
 import Foundation
 
 protocol InputField {
+    associatedtype AlertModel: AlertModelProtocol
+    
     var title: String { get }
     var subtitle: String { get }
     var fieldTitle: String { get }
     var required: Bool { get }
     var maxCharacterCount: Int { get }
     var fullRegex: String { get }
-    var alertTitle: String { get }
-    var alertDescription: String { get }
+    var alert: AlertModel { get }
 }
 
 extension InputField {
@@ -105,29 +106,16 @@ extension OnboardingInputField {
         }
     }
     
-    var alertTitle: String {
+    var alert: OnboardingAlert {
         switch self {
         case .username:
-            "Invalid Username"
+            .invalidUsername
         case .password:
-            "Invalid Password"
+            .invalidPassword
         case .email:
-            "Invalid Email"
+            .invalidEmail
         case .phone:
-            "Invalid Phone Number"
-        }
-    }
-    
-    var alertDescription: String {
-        switch self {
-        case .username:
-            "Enter a username that meets the requirements."
-        case .password:
-            "Enter a password that meets the requirements."
-        case .email:
-            "Enter an email that meets the requirements."
-        case .phone:
-            "Enter a phone number that meets the requirements."
+            .invalidPhone
         }
     }
     

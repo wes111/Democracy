@@ -11,7 +11,7 @@ import Foundation
 final class AcceptTermsViewModel: ObservableObject, Hashable {
     
     @Injected(\.accountService) private var accountService
-    @Published var onboardingAlert: AlertModel?
+    @Published var onboardingAlert: NewAlertModel?
     @Published var isShowingProgress = false
     
     private weak var coordinator: OnboardingCoordinatorDelegate?
@@ -43,10 +43,7 @@ final class AcceptTermsViewModel: ObservableObject, Hashable {
     
     @MainActor
     private func presentAlert() {
-        onboardingAlert = .init(
-            title: "Create Account Failed",
-            message: "Please try again later."
-        )
+        onboardingAlert = OnboardingAlert.createAccountFailed.toNewAlertModel()
     }
     
     func close() {

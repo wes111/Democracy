@@ -14,7 +14,7 @@ final class PasswordInputViewModel: InputViewModel {
     @Injected(\.accountService) private var accountService
     @Published var text: String = ""
     @Published var textErrors: [Field.Requirement] = []
-    @Published var alertModel: AlertModel?
+    @Published var alertModel: NewAlertModel?
     @Published var isShowingProgress: Bool = false
     
     private var onboardingInput: OnboardingInput

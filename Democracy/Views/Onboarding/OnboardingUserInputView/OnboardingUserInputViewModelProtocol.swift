@@ -8,24 +8,6 @@
 import Factory
 import Foundation
 
-struct OnboardingInput {
-    var password: String?
-    var username: String?
-    var phone: String?
-    var email: String?
-}
-
-protocol OnboardingCoordinatorDelegate: AnyObject {
-    func didSubmitUsername(input: OnboardingInput)
-    func submitPassword(input: OnboardingInput)
-    func submitEmail(input: OnboardingInput)
-    func agreeToTerms(username: String)
-    func continueAccountSetup()
-    func submitPhone(input: OnboardingInput)
-    func close()
-    func goBack()
-}
-
 // TODO: The use of a single protocol here exposes too much to the view.
 protocol InputViewModel: Hashable, ObservableObject {
     associatedtype Field: InputValidator
@@ -35,7 +17,7 @@ protocol InputViewModel: Hashable, ObservableObject {
     var field: Field.FieldCollection { get }
     var trailingButtons: [OnboardingTopButton] { get }
     var leadingButtons: [OnboardingTopButton] { get }
-    var alertModel: AlertModel? { get set }
+    var alertModel: NewAlertModel? { get set }
     var title: String { get }
     var subtitle: String { get }
     var fieldTitle: String { get }
@@ -83,22 +65,16 @@ extension InputViewModel {
     }
     
     func skip() {
-        return // Must override if skipable.
+        return // Must override if skippable.
     }
     
     @MainActor
     func presentGenericAlert() {
-        alertModel = .init(
-            title: "Error",
-            message: "An error occurred, please try again later."
-        )
+        alertModel = NewAlertModel.genericAlert
     }
     
     @MainActor
     func presentInvalidInputAlert() {
-        alertModel = .init(
-            title: field.alertTitle,
-            message: field.alertDescription
-        )
+        alertModel = field.alert.toNewAlertModel()
     }
 }

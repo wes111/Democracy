@@ -7,12 +7,29 @@
 
 import Foundation
 
-struct AlertModel: Identifiable {
+protocol AlertModelProtocol {
+    var title: String { get }
+    var description: String { get }
+    
+    func toNewAlertModel() -> NewAlertModel
+}
+
+extension AlertModelProtocol {
+    func toNewAlertModel() -> NewAlertModel {
+        .init(title: title, description: description)
+    }
+}
+
+struct NewAlertModel: Identifiable {
+    var title: String
+    var description: String
     
     var id: String {
         title
     }
     
-    let title: String
-    let message: String
+    static let genericAlert = Self.init(
+        title: "Error",
+        description: "An error occurred, please try again later."
+    )
 }

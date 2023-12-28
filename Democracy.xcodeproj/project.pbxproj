@@ -65,6 +65,9 @@
 		EE4987FE2B328BF500AB7522 /* PhoneValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987FD2B328BF500AB7522 /* PhoneValidator.swift */; };
 		EE4988002B328C0C00AB7522 /* PostTitleValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987FF2B328C0C00AB7522 /* PostTitleValidator.swift */; };
 		EE4988042B3325CB00AB7522 /* TrimWhiteSpaceCharactersModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4988032B3325CB00AB7522 /* TrimWhiteSpaceCharactersModifier.swift */; };
+		EE4988062B35D83B00AB7522 /* OnboardingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4988052B35D83B00AB7522 /* OnboardingAlert.swift */; };
+		EE4988082B35D8BA00AB7522 /* OnboardingCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4988072B35D8BA00AB7522 /* OnboardingCoordinatorDelegate.swift */; };
+		EE49880A2B35D8D300AB7522 /* OnboardingInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4988092B35D8D300AB7522 /* OnboardingInput.swift */; };
 		EE4DB88A2AC50AD200A6DC90 /* AppwriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */; };
 		EE4DB8912AC899ED00A6DC90 /* LoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */; };
 		EE4DB8942AC89F0800A6DC90 /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */; };
@@ -200,7 +203,6 @@
 		EEB5AF672ADB186E00310408 /* OnboardingUserInputViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF662ADB186E00310408 /* OnboardingUserInputViewModelProtocol.swift */; };
 		EEB5AF762ADB1EFA00310408 /* OnboardingTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */; };
 		EEB5AF7A2ADC3D6D00310408 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF792ADC3D6C00310408 /* AlertModel.swift */; };
-		EEB5AF7C2ADCA92A00310408 /* OnboardingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */; };
 		EEB5AF7E2AE0DE3700310408 /* InputValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7D2AE0DE3700310408 /* InputValidator.swift */; };
 		EEB5AF802AE0DE7000310408 /* OnboardingInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */; };
 		EEB5AF8B2AFA7DD500310408 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF8A2AFA7DD500310408 /* Session.swift */; };
@@ -309,6 +311,9 @@
 		EE4987FD2B328BF500AB7522 /* PhoneValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneValidator.swift; sourceTree = "<group>"; };
 		EE4987FF2B328C0C00AB7522 /* PostTitleValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTitleValidator.swift; sourceTree = "<group>"; };
 		EE4988032B3325CB00AB7522 /* TrimWhiteSpaceCharactersModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrimWhiteSpaceCharactersModifier.swift; sourceTree = "<group>"; };
+		EE4988052B35D83B00AB7522 /* OnboardingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAlert.swift; sourceTree = "<group>"; };
+		EE4988072B35D8BA00AB7522 /* OnboardingCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorDelegate.swift; sourceTree = "<group>"; };
+		EE4988092B35D8D300AB7522 /* OnboardingInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInput.swift; sourceTree = "<group>"; };
 		EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppwriteService.swift; sourceTree = "<group>"; };
 		EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatus.swift; sourceTree = "<group>"; };
 		EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
@@ -443,7 +448,6 @@
 		EEB5AF662ADB186E00310408 /* OnboardingUserInputViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingUserInputViewModelProtocol.swift; sourceTree = "<group>"; };
 		EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTopButton.swift; sourceTree = "<group>"; };
 		EEB5AF792ADC3D6C00310408 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
-		EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingError.swift; sourceTree = "<group>"; };
 		EEB5AF7D2AE0DE3700310408 /* InputValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidator.swift; sourceTree = "<group>"; };
 		EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInputField.swift; sourceTree = "<group>"; };
 		EEB5AF8A2AFA7DD500310408 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -766,8 +770,10 @@
 		EE4DB8922AC89ECB00A6DC90 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				EE4988092B35D8D300AB7522 /* OnboardingInput.swift */,
+				EE4988072B35D8BA00AB7522 /* OnboardingCoordinatorDelegate.swift */,
+				EE4988052B35D83B00AB7522 /* OnboardingAlert.swift */,
 				EEB5AF792ADC3D6C00310408 /* AlertModel.swift */,
-				EEB5AF7B2ADCA92A00310408 /* OnboardingError.swift */,
 				EEB5AF742ADB1E9D00310408 /* OnboardingUserInputView */,
 				EE9760172AD0AFD4003069CF /* AcceptTermsView */,
 				EE9760122AD09CF6003069CF /* CreateAccountSuccessView */,
@@ -1708,6 +1714,7 @@
 				EE0CC2032A9EDA00003A10C3 /* VoteView.swift in Sources */,
 				EE80D8CE29BC15550000F8EF /* VotingTabCoordinator+Preview.swift in Sources */,
 				EE7055522B1147EE00E40A89 /* UserRepository.swift in Sources */,
+				EE4988082B35D8BA00AB7522 /* OnboardingCoordinatorDelegate.swift in Sources */,
 				EED4A4FF29AA858600DDCCDA /* HistoryTabCoordinator.swift in Sources */,
 				EE5D3A092A3804D100D0E312 /* PostCategory+Extension.swift in Sources */,
 				EE45249F2A5CE39400C7A2DD /* RulesSection.swift in Sources */,
@@ -1776,6 +1783,7 @@
 				EE9760062AD07941003069CF /* InputRequirement.swift in Sources */,
 				EE45249D2A5CE36B00C7A2DD /* RulesSectionViewModel.swift in Sources */,
 				EE5D3A0D2A45241200D0E312 /* Resource+Preview.swift in Sources */,
+				EE4988062B35D83B00AB7522 /* OnboardingAlert.swift in Sources */,
 				EEB5AF8F2AFBCD6B00310408 /* SwiftDataService.swift in Sources */,
 				EE7856212AB90E200004B7E4 /* ToolbarNavigationModifier.swift in Sources */,
 				EE80D93929D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift in Sources */,
@@ -1796,6 +1804,7 @@
 				EE5B938529F7652800B43381 /* HeaderWithDropDownFilter.swift in Sources */,
 				EE4987EC2B30861000AB7522 /* DefaultTextEditorStyle.swift in Sources */,
 				EE80D8E229BC1DD80000F8EF /* PostInteractor.swift in Sources */,
+				EE49880A2B35D8D300AB7522 /* OnboardingInput.swift in Sources */,
 				EE80D92229C9557D0000F8EF /* CandidateInteractor.swift in Sources */,
 				EE4988042B3325CB00AB7522 /* TrimWhiteSpaceCharactersModifier.swift in Sources */,
 				EE7055662B18C37300E40A89 /* View+Extensions.swift in Sources */,
@@ -1812,7 +1821,6 @@
 				EED4A4FB29AA857000DDCCDA /* VotingTabCoordinator.swift in Sources */,
 				EE4987DD2B2F917F00AB7522 /* PostBodyViewModel.swift in Sources */,
 				EE80D8D429BC15FC0000F8EF /* EventsTabMainViewModel+Preview.swift in Sources */,
-				EEB5AF7C2ADCA92A00310408 /* OnboardingError.swift in Sources */,
 				EE36FF862B1C15FD009E8F86 /* CustomSecureField.swift in Sources */,
 				EE11729F2A71C3C700E529AF /* CommunityCategoryViewModel.swift in Sources */,
 				EE9760202AD76800003069CF /* RootPath.swift in Sources */,

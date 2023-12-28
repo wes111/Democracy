@@ -14,7 +14,7 @@ final class UsernameInputViewModel: InputViewModel {
     @Injected(\.accountService) private var accountService
     @Published var text: String = ""
     @Published var textErrors: [Field.Requirement] = []
-    @Published var alertModel: AlertModel?
+    @Published var alertModel: NewAlertModel?
     @Published var isShowingProgress: Bool = false
     
     private var onboardingInput = OnboardingInput()
@@ -66,10 +66,7 @@ extension UsernameInputViewModel {
     
     @MainActor
     func presentUsernameUnavailableAlert() {
-        alertModel = .init(
-            title: "Username unavailable",
-            message: "Please enter a different username to continue."
-        )
+        alertModel = OnboardingAlert.usernameUnavailable.toNewAlertModel()
     }
     
     func close() {

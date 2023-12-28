@@ -10,10 +10,11 @@ import SwiftUI
 @MainActor protocol UserInputView: View { // TODO: This should probably just be part of the view instead of a protocol (:
     associatedtype ViewModel: InputViewModel
     associatedtype ContentView: View
+    
     var viewModel: ViewModel { get }
     var field: ContentView { get }
     var isShowingProgress: Binding<Bool> { get }
-    var onboardingAlert: Binding<AlertModel?> { get }
+    var onboardingAlert: Binding<NewAlertModel?> { get }
 }
 
 extension UserInputView {
@@ -41,7 +42,7 @@ extension UserInputView {
             .alert(item: onboardingAlert) { alert in
                 Alert(
                     title: Text(alert.title),
-                    message: Text(alert.message),
+                    message: Text(alert.description),
                     dismissButton: .default(Text("Okay"))
                 )
             }

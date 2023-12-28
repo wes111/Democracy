@@ -33,7 +33,7 @@ struct AcceptTermsView: View {
         .alert(item: $viewModel.onboardingAlert) { alert in
             Alert(
                 title: Text(alert.title),
-                message: Text(alert.message),
+                message: Text(alert.description),
                 dismissButton: .default(Text("Okay"))
             )
         }

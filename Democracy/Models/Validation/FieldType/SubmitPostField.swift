@@ -7,6 +7,18 @@
 
 import Foundation
 
+enum SubmitPostAlert: AlertModelProtocol {
+    case generic
+    
+    var title: String {
+        "Invalid Length"
+    }
+    
+    var description: String {
+        "Enter a valid input" // TODO: ...
+    }
+}
+
 enum SubmitPostField: InputField {
     case title, body, link, tags
     
@@ -91,11 +103,7 @@ enum SubmitPostField: InputField {
         }
     }
     
-    var alertTitle: String {
-        "Invalid Length"
-    }
-    
-    var alertDescription: String {
-        "Enter a valid input" // TODO: ...
+    var alert: SubmitPostAlert {
+        .generic
     }
 }

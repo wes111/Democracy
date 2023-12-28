@@ -33,7 +33,7 @@ extension PhoneOnboardingInputView {
         $viewModel.isShowingProgress
     }
     
-    var onboardingAlert: Binding<AlertModel?> {
+    var onboardingAlert: Binding<NewAlertModel?> {
         $viewModel.alertModel
     }
     
