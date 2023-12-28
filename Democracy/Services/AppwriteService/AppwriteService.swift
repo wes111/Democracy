@@ -51,8 +51,7 @@ protocol AppwriteService {
 }
 
 final class AppwriteServiceDefault: AppwriteService {
-    
-    private let projectEndpoint = "http://192.168.86.51/v1"
+    private let projectEndpoint = "http://192.168.86.67/v1"
     private let projectID = "65466f560e77e46a903e"
     
     private lazy var client: Client = {
