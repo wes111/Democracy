@@ -53,36 +53,36 @@ private extension UserInputView {
     }
     
     var primaryContent: some View {
-        ZStack {
+        ZStack(alignment: .center) {
             Color.primaryBackground.ignoresSafeArea()
             
             // The GeometryReader here prevents the view from moving
             // with keyboard appearance/disappearance.
-            GeometryReader { geo in
-                VStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
-                    VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-                        title
-                        
-                        VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
-                            content
-                                .titledElement(title: viewModel.subtitle)
+            GeometryReader { _ in
+                    VStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
+                        VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+                            title
                             
-                            requirements
+                            VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
+                                content
+                                    .titledElement(title: viewModel.subtitle)
+                                
+                                requirements
+                            }
+                            nextButton
                         }
-                        nextButton
+                        
+                        if !viewModel.field.required {
+                            skipButton
+                        }
                     }
-                    
-                    if viewModel.isShowingProgress {
-                        progressView
-                    }
-                    
-                    if !viewModel.field.required {
-                        skipButton
-                    }
-                }
-                .padding()
+                    .padding(ViewConstants.screenPadding)
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
+            
+            if viewModel.isShowingProgress {
+                progressView
+            }
         }
     }
     

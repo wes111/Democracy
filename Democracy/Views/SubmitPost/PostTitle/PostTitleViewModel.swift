@@ -28,7 +28,7 @@ final class PostTitleViewModel: UserInputViewModel {
     }()
     
     lazy var leadingButtons: [OnboardingTopButton] = {
-        [.back]
+        []
     }()
 }
 
