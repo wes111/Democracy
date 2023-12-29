@@ -8,11 +8,6 @@
 import Factory
 import Foundation
 
-protocol SubmitPostCoordinatorDelegate: AnyObject {
-    func close()
-    func goBack()
-}
-
 final class PostTitleViewModel: UserInputViewModel {
     typealias Field = PostTitleValidator
     
@@ -21,6 +16,7 @@ final class PostTitleViewModel: UserInputViewModel {
     @Published var textErrors: [Field.Requirement] = []
     @Published var alertModel: NewAlertModel?
     
+    private let submitPostInput = SubmitPostInput()
     private weak var coordinator: SubmitPostCoordinatorDelegate?
     
     init(coordinator: SubmitPostCoordinatorDelegate?) {
@@ -41,7 +37,13 @@ extension PostTitleViewModel {
     
     @MainActor
     func submit() async {
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
         
+        guard field.fullyValid(input: text) else {
+            return presentInvalidInputAlert()
+        }
+        submitPostInput.title = text
+        coordinator?.didSubmitTitle(input: submitPostInput)
     }
     
     func close() {

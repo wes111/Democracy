@@ -58,7 +58,7 @@ private extension UserInputView {
             
             // The GeometryReader here prevents the view from moving
             // with keyboard appearance/disappearance.
-            GeometryReader { _ in
+            GeometryReader { geo in
                 VStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
                     VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
                         title
@@ -69,11 +69,9 @@ private extension UserInputView {
                             
                             requirements
                         }
-                        
-                        VStack {
-                            nextButton
-                        }
+                        nextButton
                     }
+                    
                     if viewModel.isShowingProgress {
                         progressView
                     }

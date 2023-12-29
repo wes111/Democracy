@@ -32,14 +32,6 @@ struct EmailOnboardingInputView: View {
 // MARK: - Subviews and Computed Properties
 extension EmailOnboardingInputView {
     
-    var isShowingProgress: Binding<Bool> {
-        $viewModel.isShowingProgress
-    }
-    
-    var onboardingAlert: Binding<NewAlertModel?> {
-        $viewModel.alertModel
-    }
-    
     var field: some View {
         TextField(
             viewModel.fieldTitle,

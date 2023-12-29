@@ -9,18 +9,48 @@ import SwiftUI
 
 struct PostBodyView: View {
     @ObservedObject var viewModel: PostBodyViewModel
-    // @FocusState private var focusedField: OnboardingInputField?
+    @FocusState private var focusedField: SubmitPostField?
+    @State private var size: CGSize = .zero
     
     init(viewModel: PostBodyViewModel) {
         self.viewModel = viewModel
     }
     
     var body: some View {
-        Text("Hello, World!")
+        UserInputView(
+            viewModel: viewModel,
+            content: { field }
+        )
+        .onAppear {
+            focusedField = viewModel.field
+        }
+        .onTapGesture {
+            focusedField = nil
+        }
     }
 }
 
+// MARK: - Subviews
+private extension PostBodyView {
+    var field: some View {
+        TextEditor(text: $viewModel.text)
+            .defaultStyle(
+                text: $viewModel.text,
+                maxCharacterCount: viewModel.field.maxCharacterCount
+            )
+            .focused($focusedField, equals: viewModel.field)
+            .submitLabel(.next)
+            .onTapGesture {
+                focusedField = viewModel.field
+            }
+    }
+}
+
+// MARK: - Preview
 #Preview {
-    let viewModel = PostBodyViewModel(coordinator: SubmitPostCoordinator.preview)
+    let viewModel = PostBodyViewModel(
+        coordinator: SubmitPostCoordinator.preview,
+        submitPostInput: .init()
+    )
     return PostBodyView(viewModel: viewModel)
 }

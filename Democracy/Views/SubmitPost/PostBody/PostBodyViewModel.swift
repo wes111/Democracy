@@ -7,10 +7,52 @@
 
 import Foundation
 
-final class PostBodyViewModel: ObservableObject, Hashable {
-    weak var coordinator: SubmitPostCoordinatorDelegate?
+final class PostBodyViewModel: UserInputViewModel {
+    typealias Field = PostBodyValidator
     
-    init(coordinator: SubmitPostCoordinatorDelegate) {
+    @Published var isShowingProgress: Bool = false
+    @Published var text: String = ""
+    @Published var textErrors: [Field.Requirement] = []
+    @Published var alertModel: NewAlertModel?
+    
+    private let submitPostInput: SubmitPostInput
+    private weak var coordinator: SubmitPostCoordinatorDelegate?
+    
+    init(
+        coordinator: SubmitPostCoordinatorDelegate,
+        submitPostInput: SubmitPostInput
+    ) {
         self.coordinator = coordinator
+        self.submitPostInput = submitPostInput
+    }
+    
+    lazy var trailingButtons: [OnboardingTopButton] = {
+        [.close(close)]
+    }()
+    
+    lazy var leadingButtons: [OnboardingTopButton] = {
+        [.back]
+    }()
+}
+
+// MARK: - Methods
+extension PostBodyViewModel {
+    @MainActor
+    func submit() async {
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        
+        guard field.fullyValid(input: text) else {
+            return presentInvalidInputAlert()
+        }
+        submitPostInput.body = text
+        coordinator?.didSubmitBody(input: submitPostInput)
+    }
+    
+    func close() {
+        coordinator?.close()
+    }
+    
+    func goBack() {
+        coordinator?.goBack()
     }
 }

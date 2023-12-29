@@ -32,14 +32,6 @@ struct PasswordOnboardingInputView: View {
 // MARK: - Subviews and Computed Properties
 extension PasswordOnboardingInputView {
     
-    var isShowingProgress: Binding<Bool> {
-        $viewModel.isShowingProgress
-    }
-    
-    var onboardingAlert: Binding<NewAlertModel?> {
-        $viewModel.alertModel
-    }
-    
     var field: some View {
         CustomSecureField(secureText: $viewModel.text, loginField: $focusedField, isNewPassword: true)
             .focused($focusedField, equals: viewModel.field)

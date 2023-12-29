@@ -23,6 +23,9 @@ struct PostTagsView: View {
 
 // MARK: - Preview
 #Preview {
-    let viewModel = PostTagsViewModel(coordinator: SubmitPostCoordinator.preview)
+    let viewModel = PostTagsViewModel(
+        coordinator: SubmitPostCoordinator.preview,
+        submitPostInput: .init()
+    )
     return PostTagsView(viewModel: viewModel)
 }

@@ -32,14 +32,6 @@ struct PhoneOnboardingInputView: View {
 // MARK: - Subviews and Computed Properties
 extension PhoneOnboardingInputView {
     
-    var isShowingProgress: Binding<Bool> {
-        $viewModel.isShowingProgress
-    }
-    
-    var onboardingAlert: Binding<NewAlertModel?> {
-        $viewModel.alertModel
-    }
-    
     var field: some View {
         TextField(
             viewModel.fieldTitle,

@@ -39,7 +39,7 @@ extension UsernameInputViewModel {
     
     @MainActor
     func submit() async {
-         try? await Task.sleep(nanoseconds: 1_000_000_000)
+         try? await Task.sleep(nanoseconds: 1_000_000_000) // TODO: Remove.
         do {
             guard field.fullyValid(input: text) else {
                 return presentInvalidInputAlert()

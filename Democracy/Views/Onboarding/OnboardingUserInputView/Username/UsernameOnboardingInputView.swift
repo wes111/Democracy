@@ -44,14 +44,6 @@ struct UsernameOnboardingInputView: View {
 // MARK: Subviews and Computed Properties
 extension UsernameOnboardingInputView {
     
-    var isShowingProgress: Binding<Bool> {
-        $viewModel.isShowingProgress
-    }
-    
-    var onboardingAlert: Binding<NewAlertModel?> {
-        $viewModel.alertModel
-    }
-    
     var field: some View {
         TextField(
             viewModel.fieldTitle,

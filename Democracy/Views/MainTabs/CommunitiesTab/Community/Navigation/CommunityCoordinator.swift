@@ -101,12 +101,6 @@ extension CommunityCoordinator {
 }
 
 // MARK: - Protocols
-extension CommunityCoordinator: SubmitPostCoordinatorDelegate {
-    
-    func close() {
-        isShowingCreatePostView = false
-    }
-}
 
 extension CommunityCoordinator: CandidatesCoordinatorDelegate {
     

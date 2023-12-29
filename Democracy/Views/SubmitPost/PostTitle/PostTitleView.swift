@@ -29,6 +29,7 @@ struct PostTitleView: View {
     }
 }
 
+// MARK: - Subviews
 extension PostTitleView {
     
     var field: some View {
@@ -41,46 +42,16 @@ extension PostTitleView {
         .focused($focusedField, equals: viewModel.field)
         .submitLabel(.next)
         .onTapGesture {
-            focusedField = .title
+            focusedField = viewModel.field
         }
-    }
-    
-    var isShowingProgress: Binding<Bool> {
-        $viewModel.isShowingProgress
-    }
-    
-    var onboardingAlert: Binding<NewAlertModel?> {
-        $viewModel.alertModel
     }
 }
 
-//    var subtitleField: some View {
-//        TextField(
-//            "Subtitle",
-//            text: $viewModel.subtitle,
-//            prompt: Text("Subtitle").foregroundColor(.tertiaryBackground)
-//            )
-//        .textFieldStyle(TitleTextFieldStyle(title: $viewModel.title))
-//        .titledElement(title: "Create a subtitle for your post.")
-//    }
-//    
+//
 //    var bodyField: some View {
 //        TextEditor(text: $viewModel.body)
 //            .defaultStyle()
 //            .titledElement(title: "Add text content to your post.")
-//    }
-//    
-//    var submitButton: some View {
-//        AsyncButton(
-//            action: {
-//                await viewModel.submitPost()
-//            },
-//            label: {
-//                Text("Submit")
-//            },
-//            showProgressView: $viewModel.isLoading
-//        )
-//        .buttonStyle(PrimaryButtonStyle())
 //    }
 
 // MARK: - Preview

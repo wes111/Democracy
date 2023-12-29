@@ -24,6 +24,7 @@ struct StandardTextInputModifier: ViewModifier {
                 content
             }
         }
+        .font(.system(.body, weight: .regular))
         .textInputAutocapitalization(.never)
         .autocorrectionDisabled()
         .foregroundStyle(Color.primaryText)
