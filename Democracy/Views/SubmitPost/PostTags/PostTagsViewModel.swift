@@ -8,25 +8,15 @@
 import Foundation
 import Combine
 
-final class PostTagsViewModel: UserInputViewModel {
-    typealias Field = PostTagsValidator
-    
+final class PostTagsViewModel: ObservableObject, Hashable {
     @Published var isShowingProgress: Bool = false
-    @Published var text: String = ""
-    @Published var textErrors: [Field.Requirement] = []
     @Published var alertModel: NewAlertModel?
     @Published var selectableTags: [SelectableTag] = Community.preview.tags.map { SelectableTag(tag: $0) }
     
+    let title = "Add Tags"
+    let subtitle = "Add community tags to your post to improve searchability."
     private let submitPostInput: SubmitPostInput
     private weak var coordinator: SubmitPostCoordinatorDelegate?
-    
-    lazy var trailingButtons: [OnboardingTopButton] = {
-        [.close(close)]
-    }()
-    
-    lazy var leadingButtons: [OnboardingTopButton] = {
-        [.back]
-    }()
     
     init(
         coordinator: SubmitPostCoordinatorDelegate,
@@ -37,19 +27,25 @@ final class PostTagsViewModel: UserInputViewModel {
     }
 }
 
+// MARK: - Computed Properties
+extension PostTagsViewModel {
+    var canSubmit: Bool {
+        selectableTags.contains { $0.isSelected }
+    }
+}
+
 // MARK: - Methods
 extension PostTagsViewModel {
     
-    @MainActor
     func submit() async {
         try? await Task.sleep(nanoseconds: 1_000_000_000)
         
-        guard field.fullyValid(input: text) else {
-            return presentInvalidInputAlert()
+        guard canSubmit else {
+            return alertModel = NewAlertModel.genericAlert
         }
         
-        //submitPostInput.title = text
-        //coordinator?.didSubmitTitle(input: submitPostInput)
+        submitPostInput.tags = selectableTags.filter { $0.isSelected }.map { $0.tag }
+        coordinator?.didSubmitTags(input: submitPostInput)
     }
     
     func toggleTag(_ tag: SelectableTag) {
@@ -59,9 +55,5 @@ extension PostTagsViewModel {
     
     func close() {
         coordinator?.close()
-    }
-    
-    func goBack() {
-        coordinator?.goBack()
     }
 }

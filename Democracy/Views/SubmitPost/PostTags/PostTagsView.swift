@@ -7,59 +7,74 @@
 
 import SwiftUI
 
-struct SelectableTag: Identifiable {
-    let tag: Tag
-    var isSelected: Bool
-    let id: String
-    
-    init(tag: Tag, isSelected: Bool = false) {
-        self.tag = tag
-        self.isSelected = isSelected
-        id = tag.id
-    }
-}
-
 struct PostTagsView: View {
     @ObservedObject var viewModel: PostTagsViewModel
-    @FocusState private var focusedField: SubmitPostField?
     
     init(viewModel: PostTagsViewModel) {
         self.viewModel = viewModel
     }
     
     var body: some View {
-        UserInputView(
-            viewModel: viewModel,
-            content: { field }
+        ZStack(alignment: .center) {
+            Color.primaryBackground.ignoresSafeArea()
+            
+            VStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
+                VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+                    title
+                    
+                    tagsFlow
+                        .titledElement(title: viewModel.subtitle)
+                }
+                nextButton
+            }
+            .padding(ViewConstants.screenPadding)
+            
+            if viewModel.isShowingProgress {
+                CustomProgressView()
+            }
+        }
+        .toolbarNavigation(
+            leadingButtons: [.back],
+            trailingButtons: [.close(viewModel.close)]
         )
-        .onAppear {
-            focusedField = viewModel.field
-        }
-        .onTapGesture {
-            focusedField = nil
-        }
     }
 }
 
 // MARK: - Subviews
 private extension PostTagsView {
     
-    var field: some View {
+    // Note: This matches the title in UserInputView.
+    var title: some View {
+        Text(viewModel.title)
+            .font(.system(.title, weight: .semibold))
+            .foregroundColor(.primaryText)
+    }
+    
+    var tagsFlow: some View {
         ScrollView {
             NewFlowLayout(alignment: .leading) {
                 ForEach(viewModel.selectableTags) { tag in
                     let tagBackgroundColor: Color = tag.isSelected ? .otherRed : .secondaryBackground
-                    Button {
-                        viewModel.toggleTag(tag)
-                    } label: {
-                        Text(tag.tag.name)
-                            .padding(10)
-                            .background(tagBackgroundColor, in: RoundedRectangle(cornerRadius: 10))
-                            .foregroundStyle(Color.secondaryText)
-                    }
+                    Text(tag.tag.name)
+                        .padding(10)
+                        .background(tagBackgroundColor, in: RoundedRectangle(cornerRadius: 10))
+                        .foregroundStyle(Color.secondaryText)
+                        .onTapGesture {
+                            viewModel.toggleTag(tag)
+                        }
                 }
             }
         }
+    }
+    
+    var nextButton: some View {
+        AsyncButton(
+            action: { await viewModel.submit() },
+            label: { Text("Next") },
+            showProgressView: $viewModel.isShowingProgress
+        )
+        .buttonStyle(PrimaryButtonStyle())
+        .disabled(!viewModel.canSubmit)
     }
 }
 
@@ -69,5 +84,8 @@ private extension PostTagsView {
         coordinator: SubmitPostCoordinator.preview,
         submitPostInput: .init()
     )
-    return PostTagsView(viewModel: viewModel)
+    
+    return NavigationStack {
+        PostTagsView(viewModel: viewModel)
+    }
 }

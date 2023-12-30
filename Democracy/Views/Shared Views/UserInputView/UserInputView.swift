@@ -46,12 +46,6 @@ struct UserInputView<ViewModel: UserInputViewModel, Content: View>: View {
 
 private extension UserInputView {
     
-    var progressView: some View {
-        ProgressView()
-            .controlSize(.large)
-            .tint(.secondaryText)
-    }
-    
     var primaryContent: some View {
         ZStack(alignment: .center) {
             Color.primaryBackground.ignoresSafeArea()
@@ -81,7 +75,7 @@ private extension UserInputView {
             .ignoresSafeArea(.keyboard, edges: .bottom)
             
             if viewModel.isShowingProgress {
-                progressView
+                CustomProgressView()
             }
         }
     }

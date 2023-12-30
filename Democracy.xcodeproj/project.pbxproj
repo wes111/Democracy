@@ -74,7 +74,8 @@
 		EE4988122B3E355300AB7522 /* PostLinkValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4988112B3E355300AB7522 /* PostLinkValidator.swift */; };
 		EE4988142B3E3F0800AB7522 /* PostBodyValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4988132B3E3F0800AB7522 /* PostBodyValidator.swift */; };
 		EE4988162B3F1E8F00AB7522 /* BackgroundGeometryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4988152B3F1E8F00AB7522 /* BackgroundGeometryView.swift */; };
-		EE4988192B3F664F00AB7522 /* PostTagsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4988182B3F664F00AB7522 /* PostTagsValidator.swift */; };
+		EE49881B2B406B2A00AB7522 /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE49881A2B406B2A00AB7522 /* CustomProgressView.swift */; };
+		EE49881D2B407DDF00AB7522 /* SelectableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE49881C2B407DDF00AB7522 /* SelectableTag.swift */; };
 		EE4DB88A2AC50AD200A6DC90 /* AppwriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */; };
 		EE4DB8912AC899ED00A6DC90 /* LoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */; };
 		EE4DB8942AC89F0800A6DC90 /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */; };
@@ -327,7 +328,8 @@
 		EE4988112B3E355300AB7522 /* PostLinkValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLinkValidator.swift; sourceTree = "<group>"; };
 		EE4988132B3E3F0800AB7522 /* PostBodyValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBodyValidator.swift; sourceTree = "<group>"; };
 		EE4988152B3F1E8F00AB7522 /* BackgroundGeometryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGeometryView.swift; sourceTree = "<group>"; };
-		EE4988182B3F664F00AB7522 /* PostTagsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTagsValidator.swift; sourceTree = "<group>"; };
+		EE49881A2B406B2A00AB7522 /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
+		EE49881C2B407DDF00AB7522 /* SelectableTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableTag.swift; sourceTree = "<group>"; };
 		EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppwriteService.swift; sourceTree = "<group>"; };
 		EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatus.swift; sourceTree = "<group>"; };
 		EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
@@ -715,6 +717,7 @@
 			children = (
 				EE4987E12B2F970400AB7522 /* PostTagsView.swift */,
 				EE4987E32B2F970F00AB7522 /* PostTagsViewModel.swift */,
+				EE49881C2B407DDF00AB7522 /* SelectableTag.swift */,
 			);
 			path = PostTags;
 			sourceTree = "<group>";
@@ -771,7 +774,6 @@
 				EE4987FF2B328C0C00AB7522 /* PostTitleValidator.swift */,
 				EE4988112B3E355300AB7522 /* PostLinkValidator.swift */,
 				EE4988132B3E3F0800AB7522 /* PostBodyValidator.swift */,
-				EE4988182B3F664F00AB7522 /* PostTagsValidator.swift */,
 			);
 			path = SubmitPostFlow;
 			sourceTree = "<group>";
@@ -1152,6 +1154,7 @@
 				EE7856122AAE75620004B7E4 /* NewFlowLayout.swift */,
 				EE7055602B14034700E40A89 /* AsyncButton.swift */,
 				EE4988152B3F1E8F00AB7522 /* BackgroundGeometryView.swift */,
+				EE49881A2B406B2A00AB7522 /* CustomProgressView.swift */,
 			);
 			path = "Reusable SwiftUI";
 			sourceTree = "<group>";
@@ -1750,7 +1753,6 @@
 				EED4A4FF29AA858600DDCCDA /* HistoryTabCoordinator.swift in Sources */,
 				EE5D3A092A3804D100D0E312 /* PostCategory+Extension.swift in Sources */,
 				EE45249F2A5CE39400C7A2DD /* RulesSection.swift in Sources */,
-				EE4988192B3F664F00AB7522 /* PostTagsValidator.swift in Sources */,
 				EED4A4F929AA855900DDCCDA /* EventsTabCoordinator.swift in Sources */,
 				EEB5AF7A2ADC3D6D00310408 /* AlertModel.swift in Sources */,
 				EE80D8EB29BD15640000F8EF /* ProjectNotes.swift in Sources */,
@@ -1776,6 +1778,7 @@
 				EE5D3A032A30204D00D0E312 /* CommunitiesTabCoordinator.swift in Sources */,
 				EED4A52A29B8187D00DDCCDA /* PostCoordinator.swift in Sources */,
 				EE4DB8942AC89F0800A6DC90 /* OnboardingCoordinatorView.swift in Sources */,
+				EE49881B2B406B2A00AB7522 /* CustomProgressView.swift in Sources */,
 				EE9760162AD09F67003069CF /* CreateAccountSuccessViewModel.swift in Sources */,
 				EE80D8E029BC1A080000F8EF /* HistoryTabMainViewModel+Preview.swift in Sources */,
 				EE4987FE2B328BF500AB7522 /* PhoneValidator.swift in Sources */,
@@ -1829,6 +1832,7 @@
 				EE80D8C329BC12720000F8EF /* CommunitiesTabCoordinator+Preview.swift in Sources */,
 				EE0CC2012A9ED9C8003A10C3 /* VoteViewModel.swift in Sources */,
 				EE936CB72A78A12F00D49271 /* UpdatesTabCoordinatorViewModel.swift in Sources */,
+				EE49881D2B407DDF00AB7522 /* SelectableTag.swift in Sources */,
 				EED4A54029BAB3E800DDCCDA /* Comment.swift in Sources */,
 				EEB5AFA82B103AC100310408 /* SessionRepository.swift in Sources */,
 				EE936CB92A81DA2700D49271 /* CoordinatorView.swift in Sources */,

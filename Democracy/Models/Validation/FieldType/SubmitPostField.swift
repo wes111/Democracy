@@ -8,7 +8,7 @@
 import Foundation
 
 enum SubmitPostField: InputField {
-    case title, body, link, tags
+    case title, body, link
     
     var title: String {
         switch self {
@@ -18,8 +18,6 @@ enum SubmitPostField: InputField {
             "Add Content"
         case .link:
             "Add a Link"
-        case .tags:
-            "Add Tags"
         }
     }
     
@@ -31,8 +29,6 @@ enum SubmitPostField: InputField {
             "Add text content to your post."
         case .link:
             "Add a primary link to your post."
-        case .tags:
-            "Add community tags to your post to improve searchability."
         }
     }
     
@@ -44,14 +40,12 @@ enum SubmitPostField: InputField {
             "Post Body"
         case .link:
             "Post Link"
-        case .tags:
-            "Post Tags"
         }
     }
     
     var required: Bool {
         switch self {
-        case .title, .body, .tags:
+        case .title, .body:
             true
         case .link:
             false
@@ -66,8 +60,6 @@ enum SubmitPostField: InputField {
             1000
         case .link:
             500
-        case .tags:
-            100 // TODO: ...
         }
     }
     
@@ -85,9 +77,6 @@ enum SubmitPostField: InputField {
         /// Checks if the string is between 1 and 100 characters in length.
         case .link:
             "^.{1,100}$"
-            
-        case .tags:
-            "" // TODO: ...
         }
     }
     
