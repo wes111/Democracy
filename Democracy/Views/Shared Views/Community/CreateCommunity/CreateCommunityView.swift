@@ -91,7 +91,7 @@ extension CreateCommunityView {
             text: $viewModel.categoryString,
             prompt: Text("Add a post category").foregroundColor(.tertiaryBackground)
         )
-        .taggable(title: "Categories", tags: viewModel.categories)
+        .taggable(tags: viewModel.categories)
         .limitCharacters(text: $viewModel.categoryString, count: 25)
         .focused($focusedField, equals: .addCategory)
         .onSubmit {

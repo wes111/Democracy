@@ -74,6 +74,7 @@
 		EE4988122B3E355300AB7522 /* PostLinkValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4988112B3E355300AB7522 /* PostLinkValidator.swift */; };
 		EE4988142B3E3F0800AB7522 /* PostBodyValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4988132B3E3F0800AB7522 /* PostBodyValidator.swift */; };
 		EE4988162B3F1E8F00AB7522 /* BackgroundGeometryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4988152B3F1E8F00AB7522 /* BackgroundGeometryView.swift */; };
+		EE4988192B3F664F00AB7522 /* PostTagsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4988182B3F664F00AB7522 /* PostTagsValidator.swift */; };
 		EE4DB88A2AC50AD200A6DC90 /* AppwriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */; };
 		EE4DB8912AC899ED00A6DC90 /* LoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */; };
 		EE4DB8942AC89F0800A6DC90 /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */; };
@@ -326,6 +327,7 @@
 		EE4988112B3E355300AB7522 /* PostLinkValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLinkValidator.swift; sourceTree = "<group>"; };
 		EE4988132B3E3F0800AB7522 /* PostBodyValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBodyValidator.swift; sourceTree = "<group>"; };
 		EE4988152B3F1E8F00AB7522 /* BackgroundGeometryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGeometryView.swift; sourceTree = "<group>"; };
+		EE4988182B3F664F00AB7522 /* PostTagsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTagsValidator.swift; sourceTree = "<group>"; };
 		EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppwriteService.swift; sourceTree = "<group>"; };
 		EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatus.swift; sourceTree = "<group>"; };
 		EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
@@ -769,6 +771,7 @@
 				EE4987FF2B328C0C00AB7522 /* PostTitleValidator.swift */,
 				EE4988112B3E355300AB7522 /* PostLinkValidator.swift */,
 				EE4988132B3E3F0800AB7522 /* PostBodyValidator.swift */,
+				EE4988182B3F664F00AB7522 /* PostTagsValidator.swift */,
 			);
 			path = SubmitPostFlow;
 			sourceTree = "<group>";
@@ -1747,6 +1750,7 @@
 				EED4A4FF29AA858600DDCCDA /* HistoryTabCoordinator.swift in Sources */,
 				EE5D3A092A3804D100D0E312 /* PostCategory+Extension.swift in Sources */,
 				EE45249F2A5CE39400C7A2DD /* RulesSection.swift in Sources */,
+				EE4988192B3F664F00AB7522 /* PostTagsValidator.swift in Sources */,
 				EED4A4F929AA855900DDCCDA /* EventsTabCoordinator.swift in Sources */,
 				EEB5AF7A2ADC3D6D00310408 /* AlertModel.swift in Sources */,
 				EE80D8EB29BD15640000F8EF /* ProjectNotes.swift in Sources */,

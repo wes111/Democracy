@@ -47,13 +47,6 @@ extension PostTitleView {
     }
 }
 
-//
-//    var bodyField: some View {
-//        TextEditor(text: $viewModel.body)
-//            .defaultStyle()
-//            .titledElement(title: "Add text content to your post.")
-//    }
-
 // MARK: - Preview
 #Preview {
     let viewModel = PostTitleViewModel(coordinator: SubmitPostCoordinator.preview)
