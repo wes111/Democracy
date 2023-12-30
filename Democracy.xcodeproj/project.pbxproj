@@ -76,6 +76,8 @@
 		EE4988162B3F1E8F00AB7522 /* BackgroundGeometryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4988152B3F1E8F00AB7522 /* BackgroundGeometryView.swift */; };
 		EE49881B2B406B2A00AB7522 /* CustomProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE49881A2B406B2A00AB7522 /* CustomProgressView.swift */; };
 		EE49881D2B407DDF00AB7522 /* SelectableTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE49881C2B407DDF00AB7522 /* SelectableTag.swift */; };
+		EE4988202B40849900AB7522 /* UserSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE49881F2B40849900AB7522 /* UserSelectionView.swift */; };
+		EE4988222B4084A700AB7522 /* UserSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4988212B4084A700AB7522 /* UserSelectionViewModel.swift */; };
 		EE4DB88A2AC50AD200A6DC90 /* AppwriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */; };
 		EE4DB8912AC899ED00A6DC90 /* LoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */; };
 		EE4DB8942AC89F0800A6DC90 /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */; };
@@ -330,6 +332,8 @@
 		EE4988152B3F1E8F00AB7522 /* BackgroundGeometryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGeometryView.swift; sourceTree = "<group>"; };
 		EE49881A2B406B2A00AB7522 /* CustomProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProgressView.swift; sourceTree = "<group>"; };
 		EE49881C2B407DDF00AB7522 /* SelectableTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableTag.swift; sourceTree = "<group>"; };
+		EE49881F2B40849900AB7522 /* UserSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSelectionView.swift; sourceTree = "<group>"; };
+		EE4988212B4084A700AB7522 /* UserSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSelectionViewModel.swift; sourceTree = "<group>"; };
 		EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppwriteService.swift; sourceTree = "<group>"; };
 		EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatus.swift; sourceTree = "<group>"; };
 		EE4DB8932AC89F0800A6DC90 /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
@@ -778,13 +782,31 @@
 			path = SubmitPostFlow;
 			sourceTree = "<group>";
 		};
-		EE4988172B3F4AB300AB7522 /* UserInputView */ = {
+		EE4988172B3F4AB300AB7522 /* UserTextInputView */ = {
 			isa = PBXGroup;
 			children = (
 				EE4DB8A12ACA5C0F00A6DC90 /* UserInputView.swift */,
 				EEB5AF662ADB186E00310408 /* UserInputViewModelProtocol.swift */,
 			);
-			path = UserInputView;
+			path = UserTextInputView;
+			sourceTree = "<group>";
+		};
+		EE49881E2B40846400AB7522 /* UserSelectionView */ = {
+			isa = PBXGroup;
+			children = (
+				EE49881F2B40849900AB7522 /* UserSelectionView.swift */,
+				EE4988212B4084A700AB7522 /* UserSelectionViewModel.swift */,
+			);
+			path = UserSelectionView;
+			sourceTree = "<group>";
+		};
+		EE4988232B40871A00AB7522 /* UserInputFlow */ = {
+			isa = PBXGroup;
+			children = (
+				EE4988172B3F4AB300AB7522 /* UserTextInputView */,
+				EE49881E2B40846400AB7522 /* UserSelectionView */,
+			);
+			path = UserInputFlow;
 			sourceTree = "<group>";
 		};
 		EE4DB8882AC50AB500A6DC90 /* AppwriteService */ = {
@@ -1438,7 +1460,7 @@
 		EED4A52729B8185600DDCCDA /* Shared Views */ = {
 			isa = PBXGroup;
 			children = (
-				EE4988172B3F4AB300AB7522 /* UserInputView */,
+				EE4988232B40871A00AB7522 /* UserInputFlow */,
 				EE80D95429E0B6B90000F8EF /* Reusable SwiftUI */,
 				EE80D94529D9DA5B0000F8EF /* Community */,
 				EE80D90629C926490000F8EF /* Candidates (Plural) */,
@@ -1677,6 +1699,7 @@
 				EEB5AF912B017F0900310408 /* UserDefaultStorage.swift in Sources */,
 				EE80D92429C955C30000F8EF /* CandidateLocalRepository.swift in Sources */,
 				EE4524992A56656B00C7A2DD /* AboutSection.swift in Sources */,
+				EE4988202B40849900AB7522 /* UserSelectionView.swift in Sources */,
 				EE5B938E2A03346C00B43381 /* Date+Extensions.swift in Sources */,
 				EE80D8DE29BC19ED0000F8EF /* HistoryTabCoordinator+Preview.swift in Sources */,
 				EED4A53529B81D8000DDCCDA /* CommunityInfoView.swift in Sources */,
@@ -1895,6 +1918,7 @@
 				EED4A53C29B965AF00DDCCDA /* PostCardViewModel.swift in Sources */,
 				EE4987DB2B2F917500AB7522 /* PostBodyView.swift in Sources */,
 				EE36FF922B1E16CB009E8F86 /* PasswordOnboardingInputView.swift in Sources */,
+				EE4988222B4084A700AB7522 /* UserSelectionViewModel.swift in Sources */,
 				EE80D95329DB96F50000F8EF /* CreateCommunityViewModel+Preview.swift in Sources */,
 				EE80D93329D286180000F8EF /* CreateCandidateView.swift in Sources */,
 				EE80D8FE29C020780000F8EF /* CommunityLocalRepository.swift in Sources */,
