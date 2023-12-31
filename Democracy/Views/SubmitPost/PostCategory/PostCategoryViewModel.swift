@@ -1,21 +1,20 @@
 //
-//  PostTagsViewModel.swift
+//  PostCategoryViewModel.swift
 //  Democracy
 //
-//  Created by Wesley Luntsford on 12/17/23.
+//  Created by Wesley Luntsford on 12/30/23.
 //
 
 import Foundation
-import Combine
 
-final class PostTagsViewModel: UserInputViewModel {
+final class PostCategoryViewModel: UserInputViewModel {
     @Published var isShowingProgress: Bool = false
     @Published var alertModel: NewAlertModel?
-    @Published var tags: [Tag] = Community.preview.tags
-    @Published var selectedTags: Set<Tag> = []
+    @Published var selectedCategory: CommunityCategory?
     
-    let title = "Add Tags"
-    let subtitle = "Add community tags to your post to improve searchability."
+    let categories: [CommunityCategory] = Community.preview.postCategories
+    let title = "Select a Category"
+    let subtitle = "Each post belongs to a single category within a Community."
     private let submitPostInput: SubmitPostInput
     private weak var coordinator: SubmitPostCoordinatorDelegate?
     
@@ -37,15 +36,14 @@ final class PostTagsViewModel: UserInputViewModel {
 }
 
 // MARK: - Computed Properties
-extension PostTagsViewModel {
+extension PostCategoryViewModel {
     var canSubmit: Bool {
-        !selectedTags.isEmpty
+        selectedCategory != nil
     }
 }
 
 // MARK: - Methods
-extension PostTagsViewModel {
-    
+extension PostCategoryViewModel {
     func submit() async {
         try? await Task.sleep(nanoseconds: 1_000_000_000)
         
@@ -53,15 +51,15 @@ extension PostTagsViewModel {
             return alertModel = NewAlertModel.genericAlert
         }
         
-        submitPostInput.tags = Array(selectedTags)
-        coordinator?.didSubmitTags(input: submitPostInput)
+        submitPostInput.category = selectedCategory
+        coordinator?.didSubmitCategory(input: submitPostInput)
     }
     
-    func toggleTag(_ tag: Tag) {
-        if selectedTags.contains(tag) {
-            selectedTags.remove(tag)
+    func toggleCategory(_ category: CommunityCategory) {
+        if selectedCategory == nil || selectedCategory != category {
+            selectedCategory = category
         } else {
-            selectedTags.insert(tag)
+            selectedCategory = nil
         }
     }
     

@@ -10,7 +10,7 @@ import Foundation
 struct CommunityCategory: Codable, Identifiable, Hashable {
     let id: String
     let name: String
-    let imageName: String
+    let imageName: String // TODO: Remove
     var postCount: Int
     
     func toCommunityCategoryViewModel() -> CommunityCategoryViewModel {

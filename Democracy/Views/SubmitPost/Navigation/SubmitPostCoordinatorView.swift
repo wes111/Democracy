@@ -25,9 +25,17 @@ struct SubmitPostCoordinatorView: View {
     @ViewBuilder
     func createViewFromPath(_ path: SubmitPostPath) -> some View {
         switch path {
-        case .goToPostBody(let viewModel): PostBodyView(viewModel: viewModel)
-        case .goToPostLink(let viewModel): PostLinkView(viewModel: viewModel)
-        case .goToPostTags(let viewModel): PostTagsView(viewModel: viewModel)
+        case .goToPostBody(let viewModel): 
+            PostBodyView(viewModel: viewModel)
+            
+        case .goToPostLink(let viewModel):
+            PostLinkView(viewModel: viewModel)
+            
+        case .goToPostTags(let viewModel):
+            PostTagsView(viewModel: viewModel)
+            
+        case .goToPostCategory(let viewModel):
+            PostCategoryView(viewModel: viewModel)
         }
     }
 }

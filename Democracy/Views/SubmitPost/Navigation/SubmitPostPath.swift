@@ -11,4 +11,5 @@ enum SubmitPostPath: Hashable {
     case goToPostBody(PostBodyViewModel)
     case goToPostLink(PostLinkViewModel)
     case goToPostTags(PostTagsViewModel)
+    case goToPostCategory(PostCategoryViewModel)
 }

@@ -15,4 +15,5 @@ protocol SubmitPostCoordinatorDelegate: AnyObject {
     func didSubmitLink(input: SubmitPostInput)
     func didSubmitBody(input: SubmitPostInput)
     func didSubmitTags(input: SubmitPostInput)
+    func didSubmitCategory(input: SubmitPostInput)
 }

@@ -26,19 +26,19 @@ private extension PostTagsView {
     var tagsFlow: some View {
         ScrollView {
             NewFlowLayout(alignment: .leading) {
-                ForEach(viewModel.selectableTags) { tag in
+                ForEach(viewModel.tags) { tag in
                     tagView(tag)
                 }
             }
         }
     }
     
-    func tagView(_ tag: SelectableTag) -> some View {
-        let tagBackgroundColor: Color = tag.isSelected ? .otherRed : .secondaryBackground
+    func tagView(_ tag: Tag) -> some View {
+        let backgroundColor: Color = viewModel.selectedTags.contains(tag) ? .otherRed : Color.white.opacity(0.1)
         
-        return Text(tag.tag.name)
-            .padding(ViewConstants.smallElementSpacing)
-            .background(tagBackgroundColor, in: RoundedRectangle(cornerRadius: ViewConstants.cornerRadius))
+        return Text(tag.name)
+            .padding(ViewConstants.smallInnerBorder)
+            .background(backgroundColor, in: RoundedRectangle(cornerRadius: ViewConstants.cornerRadius))
             .foregroundStyle(Color.secondaryText)
             .onTapGesture {
                 viewModel.toggleTag(tag)
