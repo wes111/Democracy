@@ -14,7 +14,7 @@ struct AsyncButton<Label: View>: View {
     var action: () async -> Void
     @ViewBuilder var label: () -> Label
 
-    @State private var isDisabled = false
+    @State private var isDisabled: Bool = false
     @Binding var showProgressView: Bool
 
     var body: some View {
@@ -42,10 +42,11 @@ struct AsyncButton<Label: View>: View {
                 label()
             }
         )
-        .disabled(isDisabled)
+        .disabled(isDisabled || showProgressView)
     }
 }
 
+// MARK: - Preview
 #Preview {
     AsyncButton(
         action: { {}() },

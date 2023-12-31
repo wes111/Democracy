@@ -38,7 +38,10 @@ extension View {
             
             progressViewTask = Task {
                 try await Task.sleep(nanoseconds: 150_000_000)
-                isShowingProgress.wrappedValue = true
+                withAnimation {
+                    isShowingProgress.wrappedValue = true
+                }
+                
             }
             
             await action()

@@ -40,14 +40,17 @@ private extension PostCategoryView {
         return HStack {
             Text(category.name)
             Spacer()
-            Image(systemName: "checkmark.circle.fill")
+            Image(systemName: SystemImage.checkmarkCircleFill.rawValue)
                 .opacity(isSelected ? 1.0 : 0.0)
         }
         .padding(ViewConstants.innerBorder)
         .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .strokeBorder(isSelected ? Color.tertiaryText : Color.primaryBackground, lineWidth: 3)
-                .fill(Color.white.opacity(0.1))
+            RoundedRectangle(cornerRadius: ViewConstants.cornerRadius)
+                .strokeBorder(
+                    isSelected ? Color.tertiaryText : Color.primaryBackground,
+                    lineWidth: ViewConstants.borderWidth
+                )
+                .fill(Color.onBackground)
         )
         .foregroundStyle(Color.secondaryText)
         .onTapGesture {

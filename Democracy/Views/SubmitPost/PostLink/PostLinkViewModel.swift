@@ -56,4 +56,8 @@ extension PostLinkViewModel {
     func goBack() {
         coordinator?.goBack()
     }
+    
+    func skip() {
+        coordinator?.didSubmitLink(input: submitPostInput)
+    }
 }

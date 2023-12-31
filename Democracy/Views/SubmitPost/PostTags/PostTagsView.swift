@@ -34,7 +34,7 @@ private extension PostTagsView {
     }
     
     func tagView(_ tag: Tag) -> some View {
-        let backgroundColor: Color = viewModel.selectedTags.contains(tag) ? .otherRed : Color.white.opacity(0.1)
+        let backgroundColor: Color = viewModel.selectedTags.contains(tag) ? .otherRed : .onBackground
         
         return Text(tag.name)
             .padding(ViewConstants.smallInnerBorder)

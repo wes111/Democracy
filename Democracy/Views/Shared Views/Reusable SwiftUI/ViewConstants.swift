@@ -18,6 +18,16 @@ enum ViewConstants {
     static let innerBorder: CGFloat = 20
     static let smallInnerBorder: CGFloat = 10
     
+    // Other standard values
     static let cornerRadius: CGFloat = 10
     static let screenPadding: CGFloat = 15
+    static let borderWidth: CGFloat = 3
+}
+
+// SF Symbols
+enum SystemImage: String {
+    case checkmarkCircleFill = "checkmark.circle.fill"
+    case arrowRight = "arrow.right"
+    case asterisk = "asterisk"
+    case exclamationmarkTriangle = "exclamationmark.triangle"
 }

@@ -84,9 +84,10 @@ private extension UserTextInputView {
         Button {
             viewModel.skip()
         } label: {
-            Label("Skip", systemImage: "arrow.right")
+            Label("Skip", systemImage: SystemImage.arrowRight.rawValue)
                 .labelStyle(ReversedLabelStyle())
         }
+        .disabled(viewModel.isShowingProgress)
         .buttonStyle(SeconaryButtonStyle())
     }
     
@@ -113,19 +114,19 @@ private extension UserTextInputView {
                     requirementLabel(
                         text: error.descriptionText,
                         color: .primaryText,
-                        systemImage: "asterisk"
+                        systemImage: SystemImage.asterisk.rawValue
                     )
                 } else if viewModel.textErrors.contains(error) {
                     requirementLabel(
                         text: error.descriptionText,
                         color: .yellow,
-                        systemImage: "exclamationmark.triangle"
+                        systemImage: SystemImage.exclamationmarkTriangle.rawValue
                     )
                 } else {
                     requirementLabel(
                         text: error.descriptionText,
                         color: .green,
-                        systemImage: "checkmark.circle.fill"
+                        systemImage: SystemImage.checkmarkCircleFill.rawValue
                     )
                 }
             }
