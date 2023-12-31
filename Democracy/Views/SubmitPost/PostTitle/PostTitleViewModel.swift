@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-final class PostTitleViewModel: UserInputViewModel {
+final class PostTitleViewModel: UserTextInputViewModel {
     typealias Field = PostTitleValidator
     
     @Published var isShowingProgress: Bool = false

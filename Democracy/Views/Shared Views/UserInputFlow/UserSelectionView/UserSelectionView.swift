@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UserSelectionView<ViewModel: UserSelectionViewModel, Content: View>: View {
+struct UserSelectionView<ViewModel: UserInputViewModel, Content: View>: View {
     @ObservedObject var viewModel: ViewModel
     @ViewBuilder let selectableContent: Content
     
@@ -25,14 +25,6 @@ struct UserSelectionView<ViewModel: UserSelectionViewModel, Content: View>: View
                 leadingButtons: viewModel.leadingButtons,
                 trailingButtons: viewModel.trailingButtons
             )
-            .onSubmit {
-                if viewModel.canSubmit {
-                    performAsnycTask(
-                        action: viewModel.submit,
-                        isShowingProgress: $viewModel.isShowingProgress
-                    )
-                }
-            }
             .alert(item: $viewModel.alertModel) { alert in
                 Alert(
                     title: Text(alert.title),
@@ -46,6 +38,41 @@ struct UserSelectionView<ViewModel: UserSelectionViewModel, Content: View>: View
 private extension UserSelectionView {
     
     var primaryContent: some View {
-        EmptyView()
+        ZStack(alignment: .center) {
+            Color.primaryBackground.ignoresSafeArea()
+            
+            VStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
+                VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+                    title
+                    
+                    selectableContent
+                        .titledElement(title: viewModel.subtitle)
+                }
+                nextButton
+            }
+            .padding(ViewConstants.screenPadding)
+            
+            if viewModel.isShowingProgress {
+                CustomProgressView()
+            }
+        }
+    }
+    
+    // Note: This matches the title in UserTextInputView.
+    var title: some View {
+        Text(viewModel.title)
+            .font(.system(.title, weight: .semibold))
+            .foregroundColor(.primaryText)
+    }
+    
+    // Note: This matches the nextButton in UserTextInputView.
+    var nextButton: some View {
+        AsyncButton(
+            action: { await viewModel.submit() },
+            label: { Text("Next") },
+            showProgressView: $viewModel.isShowingProgress
+        )
+        .buttonStyle(PrimaryButtonStyle())
+        .disabled(!viewModel.canSubmit)
     }
 }

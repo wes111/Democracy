@@ -1,5 +1,5 @@
 //
-//  UserFlowSelectViewModel.swift
+//  UserInputViewModel.swift
 //  Democracy
 //
 //  Created by Wesley Luntsford on 12/30/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol UserSelectionViewModel: Hashable, ObservableObject {
+protocol UserInputViewModel: Hashable, ObservableObject {
     var isShowingProgress: Bool { get set }
     var trailingButtons: [OnboardingTopButton] { get }
     var leadingButtons: [OnboardingTopButton] { get }

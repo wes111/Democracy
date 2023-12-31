@@ -15,66 +15,34 @@ struct PostTagsView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .center) {
-            Color.primaryBackground.ignoresSafeArea()
-            
-            VStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
-                VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-                    title
-                    
-                    tagsFlow
-                        .titledElement(title: viewModel.subtitle)
-                }
-                nextButton
-            }
-            .padding(ViewConstants.screenPadding)
-            
-            if viewModel.isShowingProgress {
-                CustomProgressView()
-            }
+        UserSelectionView(viewModel: viewModel) {
+            tagsFlow
         }
-        .toolbarNavigation(
-            leadingButtons: [.back],
-            trailingButtons: [.close(viewModel.close)]
-        )
     }
 }
 
 // MARK: - Subviews
 private extension PostTagsView {
-    
-    // Note: This matches the title in UserInputView.
-    var title: some View {
-        Text(viewModel.title)
-            .font(.system(.title, weight: .semibold))
-            .foregroundColor(.primaryText)
-    }
-    
     var tagsFlow: some View {
         ScrollView {
             NewFlowLayout(alignment: .leading) {
                 ForEach(viewModel.selectableTags) { tag in
-                    let tagBackgroundColor: Color = tag.isSelected ? .otherRed : .secondaryBackground
-                    Text(tag.tag.name)
-                        .padding(10)
-                        .background(tagBackgroundColor, in: RoundedRectangle(cornerRadius: 10))
-                        .foregroundStyle(Color.secondaryText)
-                        .onTapGesture {
-                            viewModel.toggleTag(tag)
-                        }
+                    tagView(tag)
                 }
             }
         }
     }
     
-    var nextButton: some View {
-        AsyncButton(
-            action: { await viewModel.submit() },
-            label: { Text("Next") },
-            showProgressView: $viewModel.isShowingProgress
-        )
-        .buttonStyle(PrimaryButtonStyle())
-        .disabled(!viewModel.canSubmit)
+    func tagView(_ tag: SelectableTag) -> some View {
+        let tagBackgroundColor: Color = tag.isSelected ? .otherRed : .secondaryBackground
+        
+        return Text(tag.tag.name)
+            .padding(ViewConstants.smallElementSpacing)
+            .background(tagBackgroundColor, in: RoundedRectangle(cornerRadius: ViewConstants.cornerRadius))
+            .foregroundStyle(Color.secondaryText)
+            .onTapGesture {
+                viewModel.toggleTag(tag)
+            }
     }
 }
 

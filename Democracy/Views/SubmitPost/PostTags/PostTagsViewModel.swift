@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class PostTagsViewModel: ObservableObject, Hashable {
+final class PostTagsViewModel: UserInputViewModel {
     @Published var isShowingProgress: Bool = false
     @Published var alertModel: NewAlertModel?
     @Published var selectableTags: [SelectableTag] = Community.preview.tags.map { SelectableTag(tag: $0) }
@@ -25,6 +25,14 @@ final class PostTagsViewModel: ObservableObject, Hashable {
         self.coordinator = coordinator
         self.submitPostInput = submitPostInput
     }
+    
+    lazy var leadingButtons: [OnboardingTopButton] = {
+        [.back]
+    }()
+    
+    lazy var trailingButtons: [OnboardingTopButton] = {
+        [.close(close)]
+    }()
 }
 
 // MARK: - Computed Properties

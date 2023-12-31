@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-final class EmailInputViewModel: UserInputViewModel {
+final class EmailInputViewModel: UserTextInputViewModel {
     typealias Field = EmailValidator
     
     @Injected(\.accountService) private var accountService

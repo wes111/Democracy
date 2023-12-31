@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-final class PasswordInputViewModel: UserInputViewModel {
+final class PasswordInputViewModel: UserTextInputViewModel {
     typealias Field = PasswordValidator
     
     @Injected(\.accountService) private var accountService

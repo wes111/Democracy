@@ -9,24 +9,16 @@ import Factory
 import Foundation
 
 // TODO: The use of a single protocol here exposes too much to the view.
-protocol UserInputViewModel: Hashable, ObservableObject {
+protocol UserTextInputViewModel: UserInputViewModel {
     associatedtype Field: InputValidator
     
-    var isShowingProgress: Bool { get set }
     var text: String { get set }
     var field: Field.FieldCollection { get }
-    var trailingButtons: [OnboardingTopButton] { get }
-    var leadingButtons: [OnboardingTopButton] { get }
-    var alertModel: NewAlertModel? { get set }
-    var title: String { get }
-    var subtitle: String { get }
     var fieldTitle: String { get }
     var maxCharacterCount: Int { get }
     var textErrors: [Field.Requirement] { get }
-    var canSubmit: Bool { get }
     var allErrors: [Field.Requirement] { get }
     
-    func submit() async
     func close()
     func goBack()
     func skip()
@@ -34,7 +26,7 @@ protocol UserInputViewModel: Hashable, ObservableObject {
     @MainActor func presentInvalidInputAlert()
 }
 
-extension UserInputViewModel {
+extension UserTextInputViewModel {
     
     var allErrors: [Field.Requirement] {
         Field.Requirement.allCases as! [Field.Requirement]

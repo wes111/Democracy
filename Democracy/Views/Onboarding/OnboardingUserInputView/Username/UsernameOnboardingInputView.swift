@@ -18,7 +18,7 @@ struct UsernameOnboardingInputView: View {
     }
     
     var body: some View {
-        UserInputView(
+        UserTextInputView(
             viewModel: viewModel,
             content: { field }
         )

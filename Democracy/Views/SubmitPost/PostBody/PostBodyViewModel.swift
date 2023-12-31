@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class PostBodyViewModel: UserInputViewModel {
+final class PostBodyViewModel: UserTextInputViewModel {
     typealias Field = PostBodyValidator
     
     @Published var isShowingProgress: Bool = false

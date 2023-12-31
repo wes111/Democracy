@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class PostLinkViewModel: UserInputViewModel {
+final class PostLinkViewModel: UserTextInputViewModel {
     typealias Field = PostLinkValidator
     
     @Published var isShowingProgress: Bool = false

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UserInputView<ViewModel: UserInputViewModel, Content: View>: View {
+struct UserTextInputView<ViewModel: UserTextInputViewModel, Content: View>: View {
     @ObservedObject var viewModel: ViewModel
     @ViewBuilder let content: Content
     
@@ -44,7 +44,7 @@ struct UserInputView<ViewModel: UserInputViewModel, Content: View>: View {
     
 }
 
-private extension UserInputView {
+private extension UserTextInputView {
     
     var primaryContent: some View {
         ZStack(alignment: .center) {
