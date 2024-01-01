@@ -20,7 +20,7 @@ extension TextEditor {
                 .standardTextInputAppearance(
                     text: text,
                     maxCharacterCount: maxCharacterCount,
-                    shouldTrimWhiteSpace: false,
+                    shouldTrimWhileTyping: false,
                     isTextField: false
                 )
                 .scrollContentBackground(.hidden)

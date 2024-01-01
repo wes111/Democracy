@@ -28,7 +28,7 @@ struct UserTextInputView<ViewModel: UserTextInputViewModel, Content: View>: View
             .onSubmit {
                 if viewModel.canSubmit {
                     performAsnycTask(
-                        action: viewModel.submit,
+                        action: { await submit() },
                         isShowingProgress: $viewModel.isShowingProgress
                     )
                 }
@@ -44,6 +44,7 @@ struct UserTextInputView<ViewModel: UserTextInputViewModel, Content: View>: View
     
 }
 
+// MARK: - Subviews
 private extension UserTextInputView {
     
     var primaryContent: some View {
@@ -99,7 +100,7 @@ private extension UserTextInputView {
     
     var nextButton: some View {
         AsyncButton(
-            action: { await viewModel.submit() },
+            action: { await submit() },
             label: { Text("Next") },
             showProgressView: $viewModel.isShowingProgress
         )
@@ -143,5 +144,14 @@ private extension UserTextInputView {
                 .frame(width: 10, height: 10)
         }
         .font(.system(.caption, weight: .light))
+    }
+}
+
+private extension UserTextInputView {
+    func submit() async {
+        withAnimation {
+            viewModel.text = viewModel.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        await viewModel.submit()
     }
 }

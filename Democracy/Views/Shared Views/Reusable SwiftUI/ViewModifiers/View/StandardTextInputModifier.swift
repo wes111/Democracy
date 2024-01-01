@@ -12,12 +12,12 @@ import SwiftUI
 struct StandardTextInputModifier: ViewModifier {
     @Binding var text: String
     let maxCharacterCount: Int
-    let shouldTrimWhiteSpace: Bool
+    let shouldTrimWhileTyping: Bool
     let isTextField: Bool // Either textField or textEditor
     
     func body(content: Content) -> some View {
         Group {
-            if shouldTrimWhiteSpace {
+            if shouldTrimWhileTyping {
                 content
                     .trimWhiteSpace(text: $text)
             } else {
@@ -30,7 +30,7 @@ struct StandardTextInputModifier: ViewModifier {
         .foregroundStyle(Color.primaryText)
         .padding(isTextField ? 17.5 : 15)
         .background(Color.white.opacity(0.1))
-        .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+        .clipShape(RoundedRectangle(cornerRadius: ViewConstants.cornerRadius, style: .circular))
         .limitCharacters(text: $text, count: maxCharacterCount)
     }
 }
@@ -40,13 +40,13 @@ extension View {
     func standardTextInputAppearance(
         text: Binding<String>,
         maxCharacterCount: Int,
-        shouldTrimWhiteSpace: Bool = true,
+        shouldTrimWhileTyping: Bool = true,
         isTextField: Bool = true
     ) -> some View {
         modifier(StandardTextInputModifier(
             text: text,
             maxCharacterCount: maxCharacterCount,
-            shouldTrimWhiteSpace: shouldTrimWhiteSpace,
+            shouldTrimWhileTyping: shouldTrimWhileTyping,
             isTextField: isTextField
         ))
     }

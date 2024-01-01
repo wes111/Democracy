@@ -16,9 +16,9 @@ struct TitleTextFieldStyle: TextFieldStyle {
             .keyboardType(.default)
             .standardTextInputAppearance(
                 text: $title,
-                maxCharacterCount: SubmitPostField.title.maxCharacterCount
+                maxCharacterCount: SubmitPostField.title.maxCharacterCount,
+                shouldTrimWhileTyping: false
             )
-
     }
 }
 
