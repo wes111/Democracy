@@ -66,4 +66,8 @@ extension PostCategoryViewModel {
     func close() {
         coordinator?.close()
     }
+    
+    func onAppear() {
+        selectedCategory = submitPostInput.category
+    }
 }

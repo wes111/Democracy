@@ -55,4 +55,8 @@ extension PostBodyViewModel {
     func goBack() {
         coordinator?.goBack()
     }
+    
+    func onAppear() {
+        text = submitPostInput.body ?? ""
+    }
 }

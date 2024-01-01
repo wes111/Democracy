@@ -22,6 +22,7 @@ struct PostTitleView: View {
         )
         .onAppear {
             focusedField = viewModel.field
+            viewModel.onAppear()
         }
         .onTapGesture {
             focusedField = nil

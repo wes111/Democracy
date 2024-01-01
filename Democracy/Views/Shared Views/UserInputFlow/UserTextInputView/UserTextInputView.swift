@@ -147,6 +147,7 @@ private extension UserTextInputView {
     }
 }
 
+// MARK: - Helper Methods
 private extension UserTextInputView {
     func submit() async {
         withAnimation {

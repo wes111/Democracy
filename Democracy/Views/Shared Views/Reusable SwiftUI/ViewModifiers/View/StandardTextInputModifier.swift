@@ -29,7 +29,7 @@ struct StandardTextInputModifier: ViewModifier {
         .autocorrectionDisabled()
         .foregroundStyle(Color.primaryText)
         .padding(isTextField ? 17.5 : 15)
-        .background(Color.white.opacity(0.1))
+        .background(Color.onBackground)
         .clipShape(RoundedRectangle(cornerRadius: ViewConstants.cornerRadius, style: .circular))
         .limitCharacters(text: $text, count: maxCharacterCount)
     }

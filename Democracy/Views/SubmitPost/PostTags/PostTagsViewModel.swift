@@ -53,7 +53,7 @@ extension PostTagsViewModel {
             return alertModel = NewAlertModel.genericAlert
         }
         
-        submitPostInput.tags = Array(selectedTags)
+        submitPostInput.tags = selectedTags
         coordinator?.didSubmitTags(input: submitPostInput)
     }
     
@@ -67,5 +67,9 @@ extension PostTagsViewModel {
     
     func close() {
         coordinator?.close()
+    }
+    
+    func onAppear() {
+        selectedTags = submitPostInput.tags
     }
 }

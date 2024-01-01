@@ -23,6 +23,7 @@ struct PostBodyView: View {
         )
         .onAppear {
             focusedField = viewModel.field
+            viewModel.onAppear()
         }
         .onTapGesture {
             focusedField = nil

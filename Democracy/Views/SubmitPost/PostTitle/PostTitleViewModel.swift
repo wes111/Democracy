@@ -53,4 +53,8 @@ extension PostTitleViewModel {
     func goBack() {
         coordinator?.goBack()
     }
+    
+    func onAppear() {
+        text = submitPostInput.title ?? ""
+    }
 }

@@ -18,6 +18,9 @@ struct PostTagsView: View {
         UserSelectionView(viewModel: viewModel) {
             tagsFlow
         }
+        .onAppear {
+            viewModel.onAppear()
+        }
     }
 }
 

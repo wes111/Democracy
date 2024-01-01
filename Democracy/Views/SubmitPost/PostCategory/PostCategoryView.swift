@@ -18,6 +18,9 @@ struct PostCategoryView: View {
         UserSelectionView(viewModel: viewModel) {
             categoryList
         }
+        .onAppear {
+            viewModel.onAppear()
+        }
     }
 }
 

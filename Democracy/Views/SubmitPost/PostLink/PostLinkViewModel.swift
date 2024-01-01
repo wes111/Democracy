@@ -58,6 +58,11 @@ extension PostLinkViewModel {
     }
     
     func skip() {
+        submitPostInput.link = nil
         coordinator?.didSubmitLink(input: submitPostInput)
+    }
+    
+    func onAppear() {
+        text = submitPostInput.link ?? ""
     }
 }
