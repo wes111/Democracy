@@ -20,7 +20,7 @@ enum PhoneRequirement: InputRequirement {
     var regex: String {
         switch self {
             
-        /// The string must be 10 characters in length.
+        /// The string must be 10 characters long.
         case .length:
             "^\\d{14}$"
         }

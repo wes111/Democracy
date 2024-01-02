@@ -8,6 +8,6 @@
 import Foundation
 
 struct PostLinkValidator: InputValidator {
-    typealias Requirement = EmptyRequirement
+    typealias Requirement = PostLinkRequirement
     static var field: SubmitPostField = .link
 }

@@ -74,13 +74,23 @@ enum SubmitPostField: InputField {
         case .body:
             "^.{1,1000}$"
             
-        /// Checks if the string is between 1 and 100 characters in length.
+        // The String must begin with "https://"
+        // The string must be between 9 and 500 characters long.
         case .link:
-            "^.{1,100}$"
+            "^https://.{1,500}$"
         }
     }
     
     var alert: SubmitPostAlert {
-        .generic
+        switch self {
+        case .title:
+            .invalidTitle
+            
+        case .body:
+            .invalidBody
+            
+        case .link:
+            .invalidLink
+        }
     }
 }

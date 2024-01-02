@@ -24,6 +24,8 @@ final class PostBodyViewModel: UserTextInputViewModel {
     ) {
         self.coordinator = coordinator
         self.submitPostInput = submitPostInput
+        
+        setupBindings()
     }
     
     lazy var trailingButtons: [OnboardingTopButton] = {
@@ -46,6 +48,15 @@ extension PostBodyViewModel {
         }
         submitPostInput.body = text
         coordinator?.didSubmitBody(input: submitPostInput)
+    }
+    
+    func setupBindings() {
+        $text
+            .compactMap { [weak self] text in
+                guard !text.isEmpty else { return [] }
+                return self?.field.getInputValidationErrors(input: text)
+            }
+            .assign(to: &$textErrors)
     }
     
     func close() {

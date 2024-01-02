@@ -8,13 +8,31 @@
 import Foundation
 
 enum SubmitPostAlert: AlertModelProtocol {
-    case generic
+    case invalidTitle, invalidLink, invalidBody, failedFetchingLinkMetadata
     
     var title: String {
-        "Invalid Length"
+        switch self {
+        case .invalidTitle:
+            "Invalid Title"
+        case .invalidLink:
+            "Invalid Link"
+        case .invalidBody:
+            "Invalid Body"
+        case .failedFetchingLinkMetadata:
+            "Unable to Verify Link"
+        }
     }
     
     var description: String {
-        "Enter a valid input" // TODO: ...
+        switch self {
+        case .invalidTitle:
+            "Enter a title that meets the requirements."
+        case .invalidLink:
+            "Enter a link that meets the requirements or skip adding a link."
+        case .invalidBody:
+            "Enter a body that meets the requirements."
+        case .failedFetchingLinkMetadata:
+            "Ensure the link you provided is valid or try again later."
+        }
     }
 }

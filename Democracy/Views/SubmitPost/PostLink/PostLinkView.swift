@@ -39,7 +39,7 @@ private extension PostLinkView {
             text: $viewModel.text,
             prompt: Text("Link").foregroundColor(.tertiaryBackground)
         )
-        .textFieldStyle(TitleTextFieldStyle(title: $viewModel.text))
+        .textFieldStyle(LinkTextFieldStyle(link: $viewModel.text))
         .focused($focusedField, equals: viewModel.field)
         .submitLabel(.next)
         .onTapGesture {

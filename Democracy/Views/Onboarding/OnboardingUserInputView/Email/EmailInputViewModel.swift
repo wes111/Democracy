@@ -23,6 +23,7 @@ final class EmailInputViewModel: UserTextInputViewModel {
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator
         self.onboardingInput = onboardingInput
+        
         setupBindings()
     }
     

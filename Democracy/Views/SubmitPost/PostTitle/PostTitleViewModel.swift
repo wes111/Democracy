@@ -21,6 +21,8 @@ final class PostTitleViewModel: UserTextInputViewModel {
     
     init(coordinator: SubmitPostCoordinatorDelegate?) {
         self.coordinator = coordinator
+        
+        setupBindings()
     }
     
     lazy var trailingButtons: [OnboardingTopButton] = {
@@ -44,6 +46,15 @@ extension PostTitleViewModel {
         }
         submitPostInput.title = text
         coordinator?.didSubmitTitle(input: submitPostInput)
+    }
+    
+    func setupBindings() {
+        $text
+            .compactMap { [weak self] text in
+                guard !text.isEmpty else { return [] }
+                return self?.field.getInputValidationErrors(input: text)
+            }
+            .assign(to: &$textErrors)
     }
     
     func close() {
