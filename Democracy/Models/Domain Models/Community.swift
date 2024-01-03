@@ -16,8 +16,8 @@ struct Community: Hashable, Identifiable, Codable {
     let memberCount: Int
     var rules: [Rule]
     var resources: [Resource]
-    var postCategories: [CommunityCategory] // Categories defined by community, cannot be enum.
-    var tags: [Tag]
+    var categories: [String]// Categories defined by community, cannot be enum.
+    var tags: [String]
     var alliedCommunities: [Community]
 }
 

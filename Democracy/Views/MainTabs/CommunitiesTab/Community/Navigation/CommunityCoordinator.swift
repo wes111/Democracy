@@ -47,7 +47,7 @@ extension CommunityCoordinator {
     }
     
     func goToCommunityPostCategory(categoryId: String) {
-        router.push(CommunityPath.goToCommunityPostCategory(category: .preview))
+        router.push(CommunityPath.goToCommunityPostCategory(category: Community.preview.categories.first!))
     }
     
     func goToPostView(_ post: Post) {
@@ -79,7 +79,7 @@ extension CommunityCoordinator {
         PostViewModel(post: post)
     }
     
-    func communityPostCategoryViewModel(category: CommunityCategory) -> CommunityCategoryPostsViewModel {
+    func communityPostCategoryViewModel(category: String) -> CommunityCategoryPostsViewModel {
         CommunityCategoryPostsViewModel(community: community, category: category)
     }
     

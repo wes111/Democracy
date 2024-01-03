@@ -10,9 +10,9 @@ import Foundation
 final class PostCategoryViewModel: UserInputViewModel {
     @Published var isShowingProgress: Bool = false
     @Published var alertModel: NewAlertModel?
-    @Published var selectedCategory: CommunityCategory?
+    @Published var selectedCategory: String?
     
-    let categories: [CommunityCategory] = Community.preview.postCategories
+    let categories: [String] = Community.preview.categories
     let title = "Select a Category"
     let subtitle = "Each post belongs to a single category within a Community."
     private let submitPostInput: SubmitPostInput
@@ -55,7 +55,7 @@ extension PostCategoryViewModel {
         coordinator?.didSubmitCategory(input: submitPostInput)
     }
     
-    func toggleCategory(_ category: CommunityCategory) {
+    func toggleCategory(_ category: String) {
         if selectedCategory == nil || selectedCategory != category {
             selectedCategory = category
         } else {

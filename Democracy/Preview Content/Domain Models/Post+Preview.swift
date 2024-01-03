@@ -12,23 +12,10 @@ extension Post {
     
     static let preview = Post(
         title: "The Title of a Post",
-        subtitle: "The subtitle for this post",
         body: "The body of this post",
+        link: URL(string: "https://www.wired.com/story/seagrass-humble-ocean-plant-worth-trillions/")!,
         creator: User.preview,
-        tags: [
-            Tag(name: "Dog"),
-            Tag(name: "Cat"),
-            Tag(name: "Mouse"),
-            Tag(name: "Horse"),
-            Tag(name: "Elephant"),
-            Tag(name: "Zebra"),
-            Tag(name: "Donkey"),
-            Tag(name: "Chicken")
-        ],
-        link: Link(url: URL(
-            string: "https://www.wired.com/story/seagrass-humble-ocean-plant-worth-trillions/")!
-        )
-    )
+        tags: [ "Dog", "Cat", "Mouse", "Horse", "Elephant", "Zebra", "Donkey", "Chicken"])
     
     static let previewArray: [Post] = {
         var postArray: [Post] = []
@@ -36,21 +23,9 @@ extension Post {
             postArray.append(Post(
                 title: "The Title of a Post",
                 body: "The body of this post",
+                link: URL(string: "https://www.wired.com/story/seagrass-humble-ocean-plant-worth-trillions/")!,
                 creator: User.preview,
-                tags: [
-                    Tag(name: "Dog"),
-                    Tag(name: "Cat"),
-                    Tag(name: "Mouse"),
-                    Tag(name: "Horse"),
-                    Tag(name: "Elephant"),
-                    Tag(name: "Zebra"),
-                    Tag(name: "Donkey"),
-                    Tag(name: "Chicken")
-                ],
-                link: Link(url: URL(
-                    string: "https://www.wired.com/story/seagrass-humble-ocean-plant-worth-trillions/")!
-                )
-            )
+                tags: [ "Dog", "Cat", "Mouse", "Horse", "Elephant", "Zebra", "Donkey", "Chicken"])
             )
         }
         return postArray

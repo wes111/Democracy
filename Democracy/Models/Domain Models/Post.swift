@@ -8,35 +8,54 @@
 import Foundation
 import SharedResourcesClientAndServer
 
+// Sent to backend.
+struct PostDTO {
+    let title: String
+    let body: String
+    let link: URL?
+    let tags: [String]
+    let creatorId: String
+    let communityId: String
+}
+
 struct Post: Identifiable {
     let id: String = UUID().uuidString
-    let creationDate = Date()
+    let creationDate: Date
     let title: String
-    let subtitle: String?
     let body: String
-    let link: Link?
-    var comments: [Comment]?
-    var likeCount: Int = 0
-    var dislikeCount: Int = 0
-    var superLikeCount: Int = 0
+    let link: URL?
+    var comments: [Comment]
+    var likeCount: Int
+    var dislikeCount: Int
+    var superLikeCount: Int
     let creator: User
-    let community: Community = Community.preview
-    var tags: [Tag]
+    let community: Community
+    var tags: [String]
     
     init(
+        creationDate: Date = Date(),
         title: String,
-        subtitle: String? = nil,
         body: String,
-        creator: User,
-        tags: [Tag],
-        link: Link? = nil
+        link: URL?,
+        comments: [Comment] = [],
+        likeCount: Int = 0,
+        dislikeCount: Int = 0,
+        superLikeCount: Int = 0,
+        creator: User = .preview,
+        community: Community = .preview,
+        tags: [String]
     ) {
+        self.creationDate = creationDate
         self.title = title
-        self.subtitle = subtitle
         self.body = body
-        self.creator = creator
-        self.tags = tags
         self.link = link
+        self.comments = comments
+        self.likeCount = likeCount
+        self.dislikeCount = dislikeCount
+        self.superLikeCount = superLikeCount
+        self.creator = creator
+        self.community = community
+        self.tags = tags
     }
     
     func toViewModel(coordinator: PostCardCoordinatorDelegate?) -> PostCardViewModel {

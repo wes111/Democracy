@@ -30,18 +30,18 @@ private extension PostCategoryView {
     var categoryList: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
-                ForEach(viewModel.categories) { category in
+                ForEach(viewModel.categories, id: \.self) { category in
                     categoryView(category)
                 }
             }
         }
     }
     
-    func categoryView(_ category: CommunityCategory) -> some View {
+    func categoryView(_ category: String) -> some View {
         let isSelected = viewModel.selectedCategory == category
         
         return HStack {
-            Text(category.name)
+            Text(category)
             Spacer()
             Image(systemName: SystemImage.checkmarkCircleFill.rawValue)
                 .opacity(isSelected ? 1.0 : 0.0)

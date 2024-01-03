@@ -29,17 +29,17 @@ private extension PostTagsView {
     var tagsFlow: some View {
         ScrollView {
             NewFlowLayout(alignment: .leading) {
-                ForEach(viewModel.tags) { tag in
+                ForEach(viewModel.tags, id: \.self) { tag in
                     tagView(tag)
                 }
             }
         }
     }
     
-    func tagView(_ tag: Tag) -> some View {
+    func tagView(_ tag: String) -> some View {
         let backgroundColor: Color = viewModel.selectedTags.contains(tag) ? .otherRed : .onBackground
         
-        return Text(tag.name)
+        return Text(tag)
             .padding(ViewConstants.smallInnerBorder)
             .background(backgroundColor, in: RoundedRectangle(cornerRadius: ViewConstants.cornerRadius))
             .foregroundStyle(Color.secondaryText)

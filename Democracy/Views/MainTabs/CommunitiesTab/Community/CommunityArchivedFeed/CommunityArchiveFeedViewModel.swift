@@ -18,7 +18,7 @@ final class CommunityArchiveFeedViewModel: ObservableObject {
     private let community: Community
     
     var categories: [CommunityCategoryViewModel] {
-        CommunityCategory.previewArray.map { $0.toCommunityCategoryViewModel() }
+        Community.preview.categories.map { CommunityCategoryViewModel(name: $0) }
     }
     
     init(coordinator: CommunityArchiveFeedCoordinatorDelegate?,
@@ -29,7 +29,7 @@ final class CommunityArchiveFeedViewModel: ObservableObject {
     }
     
     func goToCommunityPostCategory(category: CommunityCategoryViewModel) {
-        coordinator?.goToCommunityPostCategory(categoryId: category.id)
+        coordinator?.goToCommunityPostCategory(categoryId: category.name)
     }
     
 }

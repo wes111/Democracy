@@ -11,15 +11,15 @@ class SubmitPostInput {
     var title: String?
     var link: String?
     var body: String?
-    var tags: Set<Tag>
-    var category: CommunityCategory?
+    var tags: Set<String>
+    var category: String?
     
     init(
         title: String? = nil,
         link: String? = nil,
         body: String? = nil,
-        tags: Set<Tag> = [],
-        category: CommunityCategory? = nil
+        tags: Set<String> = [],
+        category: String? = nil
     ) {
         self.title = title
         self.link = link

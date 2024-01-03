@@ -11,8 +11,8 @@ import Combine
 final class PostTagsViewModel: UserInputViewModel {
     @Published var isShowingProgress: Bool = false
     @Published var alertModel: NewAlertModel?
-    @Published var tags: [Tag] = Community.preview.tags
-    @Published var selectedTags: Set<Tag> = []
+    @Published var tags: [String] = Community.preview.tags
+    @Published var selectedTags: Set<String> = []
     
     let title = "Add Tags"
     let subtitle = "Add community tags to your post to improve searchability."
@@ -57,7 +57,7 @@ extension PostTagsViewModel {
         coordinator?.didSubmitTags(input: submitPostInput)
     }
     
-    func toggleTag(_ tag: Tag) {
+    func toggleTag(_ tag: String) {
         if selectedTags.contains(tag) {
             selectedTags.remove(tag)
         } else {

@@ -16,9 +16,9 @@ class CommunityCategoryPostsViewModel: ObservableObject {
     @Published var searchText = ""
     
     let community: Community
-    let category: CommunityCategory
+    let category: String
     
-    init(community: Community, category: CommunityCategory) {
+    init(community: Community, category: String) {
         self.community = community
         self.category = category
     }

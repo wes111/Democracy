@@ -49,10 +49,6 @@ final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
         post.title
     }
     
-    var postSubtitle: String? {
-        post.subtitle
-    }
-    
     var postSuperLikeCountString: String {
         "\(post.superLikeCount)"
     }
