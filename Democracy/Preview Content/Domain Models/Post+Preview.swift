@@ -19,7 +19,8 @@ extension Post {
         userId: "1234",
         community: .init(id: "12345"),
         creationDate: .now,
-        rootCommentIds: []
+        rootCommentIds: [],
+        approvedDate: .now
     )
     
     static let previewArray: [Post] = {
