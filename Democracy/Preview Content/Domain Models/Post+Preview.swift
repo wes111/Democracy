@@ -11,22 +11,21 @@ import SharedResourcesClientAndServer
 extension Post {
     
     static let preview = Post(
-        title: "The Title of a Post",
-        body: "The body of this post",
+        id: "123",
+        title: "Post Title",
+        body: "Post Body",
         link: URL(string: "https://www.wired.com/story/seagrass-humble-ocean-plant-worth-trillions/")!,
-        creator: User.preview,
-        tags: [ "Dog", "Cat", "Mouse", "Horse", "Elephant", "Zebra", "Donkey", "Chicken"])
+        tags: [ "Dog", "Cat", "Mouse", "Horse", "Elephant", "Zebra", "Donkey", "Chicken"],
+        userId: "1234",
+        community: .init(id: "12345"),
+        creationDate: .now,
+        rootCommentIds: []
+    )
     
     static let previewArray: [Post] = {
         var postArray: [Post] = []
         for _ in 0...25 {
-            postArray.append(Post(
-                title: "The Title of a Post",
-                body: "The body of this post",
-                link: URL(string: "https://www.wired.com/story/seagrass-humble-ocean-plant-worth-trillions/")!,
-                creator: User.preview,
-                tags: [ "Dog", "Cat", "Mouse", "Horse", "Elephant", "Zebra", "Donkey", "Chicken"])
-            )
+            postArray.append(Post.preview)
         }
         return postArray
     }()

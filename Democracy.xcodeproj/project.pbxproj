@@ -19,6 +19,9 @@
 		EE2B15B42B43592E0046D5FC /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B32B43592E0046D5FC /* GenericError.swift */; };
 		EE2B15B62B4443CC0046D5FC /* PostLinkRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B52B4443CC0046D5FC /* PostLinkRequirement.swift */; };
 		EE2B15B82B4449BE0046D5FC /* LinkTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B72B4449BE0046D5FC /* LinkTextFieldStyle.swift */; };
+		EE2B15BA2B4594540046D5FC /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B92B4594540046D5FC /* PostService.swift */; };
+		EE2B15BC2B499E1D0046D5FC /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15BB2B499E1D0046D5FC /* PostRepository.swift */; };
+		EE2B15C02B4B18650046D5FC /* Decodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15BF2B4B18650046D5FC /* Decodable+Extension.swift */; };
 		EE36FF862B1C15FD009E8F86 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF852B1C15FD009E8F86 /* CustomSecureField.swift */; };
 		EE36FF892B1D0800009E8F86 /* EmailTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF882B1D0800009E8F86 /* EmailTextFieldStyle.swift */; };
 		EE36FF8F2B1E14E3009E8F86 /* UsernameOnboardingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF8E2B1E14E3009E8F86 /* UsernameOnboardingInputView.swift */; };
@@ -276,6 +279,9 @@
 		EE2B15B32B43592E0046D5FC /* GenericError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericError.swift; sourceTree = "<group>"; };
 		EE2B15B52B4443CC0046D5FC /* PostLinkRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLinkRequirement.swift; sourceTree = "<group>"; };
 		EE2B15B72B4449BE0046D5FC /* LinkTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextFieldStyle.swift; sourceTree = "<group>"; };
+		EE2B15B92B4594540046D5FC /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		EE2B15BB2B499E1D0046D5FC /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
+		EE2B15BF2B4B18650046D5FC /* Decodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Extension.swift"; sourceTree = "<group>"; };
 		EE36FF852B1C15FD009E8F86 /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
 		EE36FF882B1D0800009E8F86 /* EmailTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextFieldStyle.swift; sourceTree = "<group>"; };
 		EE36FF8E2B1E14E3009E8F86 /* UsernameOnboardingInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameOnboardingInputView.swift; sourceTree = "<group>"; };
@@ -994,6 +1000,7 @@
 				EEB5AFA72B103AC100310408 /* SessionRepository.swift */,
 				EE7055512B1147EE00E40A89 /* UserRepository.swift */,
 				EE7055552B1245A500E40A89 /* Repository.swift */,
+				EE2B15BB2B499E1D0046D5FC /* PostRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1108,10 +1115,11 @@
 		EE80D92A29D0D48D0000F8EF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				EE70554F2B11476E00E40A89 /* AccountService.swift */,
+				EE2B15B92B4594540046D5FC /* PostService.swift */,
 				EEB5AF8E2AFBCD6B00310408 /* SwiftDataService.swift */,
 				EE4DB8882AC50AB500A6DC90 /* AppwriteService */,
 				EE5D39F42A2BDAD100D0E312 /* RichLinkService */,
-				EE70554F2B11476E00E40A89 /* AccountService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1541,6 +1549,7 @@
 				EE5B938D2A03346C00B43381 /* Date+Extensions.swift */,
 				EE9760032AD07314003069CF /* NSPredicate+Extensions.swift */,
 				EE4987F12B32773300AB7522 /* String+Extensions.swift */,
+				EE2B15BF2B4B18650046D5FC /* Decodable+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1708,6 +1717,8 @@
 				EE80D92429C955C30000F8EF /* CandidateLocalRepository.swift in Sources */,
 				EE4524992A56656B00C7A2DD /* AboutSection.swift in Sources */,
 				EE4988202B40849900AB7522 /* UserSelectionView.swift in Sources */,
+				EE2B15C02B4B18650046D5FC /* Decodable+Extension.swift in Sources */,
+				EE2B15BC2B499E1D0046D5FC /* PostRepository.swift in Sources */,
 				EE5B938E2A03346C00B43381 /* Date+Extensions.swift in Sources */,
 				EE80D8DE29BC19ED0000F8EF /* HistoryTabCoordinator+Preview.swift in Sources */,
 				EED4A53529B81D8000DDCCDA /* CommunityInfoView.swift in Sources */,
@@ -1811,6 +1822,7 @@
 				EE9760162AD09F67003069CF /* CreateAccountSuccessViewModel.swift in Sources */,
 				EE80D8E029BC1A080000F8EF /* HistoryTabMainViewModel+Preview.swift in Sources */,
 				EE4987FE2B328BF500AB7522 /* PhoneValidator.swift in Sources */,
+				EE2B15BA2B4594540046D5FC /* PostService.swift in Sources */,
 				EE4524B32A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift in Sources */,
 				EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */,
 				EE70555D2B1390A800E40A89 /* EmailInputViewModel.swift in Sources */,

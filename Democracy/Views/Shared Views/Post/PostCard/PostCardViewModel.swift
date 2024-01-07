@@ -35,13 +35,14 @@ final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
     }
     
     var dateTitle: String {
-        if post.creationDate.isYesterday() {
-            return "Yesterday"
-        } else if post.creationDate.isToday() {
-            return "Today"
-        } else {
-            return post.creationDate.getFormattedDate(format: "MMMM dd, YYYY")
-        }
+        ""
+//        if post.creationDate.isYesterday() {
+//            return "Yesterday"
+//        } else if post.creationDate.isToday() {
+//            return "Today"
+//        } else {
+//            return post.creationDate.getFormattedDate(format: "MMMM dd, YYYY")
+//        }
         
     }
     
@@ -50,15 +51,15 @@ final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
     }
     
     var postSuperLikeCountString: String {
-        "\(post.superLikeCount)"
+        ""
     }
     
     var postLikeCountString: String {
-        "\(post.likeCount)"
+        ""
     }
     
     var postDislikeCountString: String {
-        "\(post.dislikeCount)"
+        ""
     }
     
     // MARK: - Init

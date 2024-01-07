@@ -15,6 +15,10 @@ enum AppwriteError: String, Error {
     case userNotFoundError = "User with the requested ID could not be found."
 }
 
+enum AppwriteServiceError: Error {
+    case badCreationDate
+}
+
 struct PhoneNumber {
     let countryCode: Int = 1 // Single digit? What are the possible values here
     let base: Int // 10 digit number?
@@ -36,7 +40,8 @@ struct Token {
 }
 
 protocol AppwriteService {
-    func createUser(userName: String, password: String, email: String) 
+    // Account Methods
+    func createUser(userName: String, password: String, email: String)
         async throws -> SharedResourcesClientAndServer.User
     func login(email: String, password: String) async throws -> Session
     func logout(sessionId: String) async throws
@@ -48,17 +53,27 @@ protocol AppwriteService {
     func getUserNameAvailable(username: String) async throws -> Bool
     func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool
     func getEmailAvailable(_ email: String) async throws -> Bool
+    
+    // Post/Database Methods
+    @discardableResult func submitNewPost(_ newPost: PostDTO) async throws -> Post
 }
 
 final class AppwriteServiceDefault: AppwriteService {
     private let projectEndpoint = "http://192.168.86.67/v1"
     private let projectID = "65466f560e77e46a903e"
     
+    private let databaseId = "65956325b9edac11832a"
+    private let postCollectionId = "6595636e9fae941f4374"
+    
     private lazy var client: Client = {
         Client()
             .setEndpoint(projectEndpoint)
             .setProject(projectID)
             .setSelfSigned(true) // For self signed certificates, only use for development
+    }()
+    
+    private lazy var databases = {
+        Databases(client)
     }()
     
     private lazy var account: Account = {
@@ -115,6 +130,20 @@ extension AppwriteServiceDefault {
     func getEmailAvailable(_ email: String) async throws -> Bool {
         let newEmail = "\"\(email)\""
         return try await getUniqueAccountFieldAvailable(.email, value: newEmail)
+    }
+}
+
+// MARK: - Post/Database Methods
+extension AppwriteServiceDefault {
+    
+    @discardableResult func submitNewPost(_ newPost: PostDTO) async throws -> Post {
+        let document = try await databases.createDocument(
+            databaseId: databaseId,
+            collectionId: postCollectionId,
+            documentId: ID.unique(),
+            data: try newPost.toDictionary()
+        )
+        return try Post(document.data.toDictionary())
     }
 }
 

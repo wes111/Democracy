@@ -5,14 +5,17 @@
 //  Created by Wesley Luntsford on 12/17/23.
 //
 
+import Factory
 import Foundation
 import Combine
 
 final class PostTagsViewModel: UserInputViewModel {
     @Published var isShowingProgress: Bool = false
     @Published var alertModel: NewAlertModel?
-    @Published var tags: [String] = Community.preview.tags
+    @Published var tags: [String] = Community.preview.tags // TODO: ...
     @Published var selectedTags: Set<String> = []
+    
+    @Injected(\.postService) private var postService
     
     let title = "Add Tags"
     let subtitle = "Add community tags to your post to improve searchability."
@@ -53,6 +56,13 @@ extension PostTagsViewModel {
             return alertModel = NewAlertModel.genericAlert
         }
         
+        do {
+            try await postService.submitPost(userInput: submitPostInput, communityId: "123") // TODO: ...
+        } catch {
+            print(error.localizedDescription)
+            alertModel = SubmitPostAlert.createPostFailed.toNewAlertModel()
+        }
+        
         submitPostInput.tags = selectedTags
         coordinator?.didSubmitTags(input: submitPostInput)
     }
@@ -72,4 +82,6 @@ extension PostTagsViewModel {
     func onAppear() {
         selectedTags = submitPostInput.tags
     }
+    
+
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 enum SubmitPostAlert: AlertModelProtocol {
-    case invalidTitle, invalidLink, invalidBody, failedFetchingLinkMetadata
+    case invalidTitle, invalidLink, invalidBody, failedFetchingLinkMetadata, createPostFailed
     
     var title: String {
         switch self {
@@ -20,6 +20,8 @@ enum SubmitPostAlert: AlertModelProtocol {
             "Invalid Body"
         case .failedFetchingLinkMetadata:
             "Unable to Verify Link"
+        case .createPostFailed:
+            "Create Post Failed"
         }
     }
     
@@ -33,6 +35,8 @@ enum SubmitPostAlert: AlertModelProtocol {
             "Enter a body that meets the requirements."
         case .failedFetchingLinkMetadata:
             "Ensure the link you provided is valid or try again later."
+        case .createPostFailed:
+            "Please try again later."
         }
     }
 }

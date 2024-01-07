@@ -49,6 +49,10 @@ extension Container {
         self { AccountServiceDefault() }.scope(.shared)
     }
     
+    var postService: Factory<PostService> {
+        self { PostServiceDefault() }.scope(.shared)
+    }
+    
     var passwordLocalRepository: Factory<PasswordRepository> {
         self { PasswordRepositoryDefault() }.scope(.shared)
     }
@@ -61,5 +65,9 @@ extension Container {
     
     var sessionRepository: Factory<any SessionRepository> {
         self { SessionRepositoryDefault() }.scope(.shared)
+    }
+    
+    var postRepository: Factory<PostRepository> {
+        self { PostRepositoryDefault() }.scope(.shared)
     }
 }

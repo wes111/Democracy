@@ -7,6 +7,14 @@
 
 import Foundation
 
+struct TempCommunity: Codable, Hashable {
+    let id: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "$id"
+    }
+}
+
 struct Community: Hashable, Identifiable, Codable {
     let id: String // TODO: Change where id is assigned value.
     let name: String
