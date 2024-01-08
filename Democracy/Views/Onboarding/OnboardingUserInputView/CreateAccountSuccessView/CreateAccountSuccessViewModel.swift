@@ -19,6 +19,14 @@ final class CreateAccountSuccessViewModel: ObservableObject, Hashable {
         self.username = username
     }
     
+    lazy var primaryButtonInfo: ButtonInfo = {
+        .init(title: "Continue Account Setup", action: continueAction)
+    }()
+    
+    lazy var secondaryButtonInfo: ButtonInfo = {
+        .init(title: "Skip", action: close)
+    }()
+    
     func continueAction() {
         coordinator?.continueAccountSetup()
     }

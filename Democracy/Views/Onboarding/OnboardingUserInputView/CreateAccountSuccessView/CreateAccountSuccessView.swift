@@ -8,76 +8,22 @@
 import SwiftUI
 
 struct CreateAccountSuccessView: View {
-    @ObservedObject var viewModel: CreateAccountSuccessViewModel
+    @ObservedObject private var viewModel: CreateAccountSuccessViewModel
+    private let centerText = "Your account was created successfully!"
     
     init(viewModel: CreateAccountSuccessViewModel) {
         self.viewModel = viewModel
     }
     
     var body: some View {
-        ZStack {
-            Color.primaryBackground.ignoresSafeArea()
-            
-            VStack(alignment: .center, spacing: 25) {
-                logo
-                Spacer()
-                welcomeText
-                Spacer()
-                continueButton
-                skipButton
-            }
-            .padding()
-        }
+        SuccessView(
+            primaryText: Text("Welcome to Democracy,\n \(viewModel.username)"),
+            secondarText: Text("Your account was created successfully!"),
+            image: Image("BMW"),
+            primaryButtonInfo: viewModel.primaryButtonInfo,
+            secondaryButtonInfo: viewModel.secondaryButtonInfo
+        )
         .toolbarNavigation(trailingButtons: viewModel.trailingButtons)
-    }
-}
-
-// MARK: - Subviews
-extension CreateAccountSuccessView {
-    var logo: some View {
-        Image("BMW")
-            .resizable()
-            .scaledToFit()
-            .frame(maxWidth: 100)
-    }
-    
-    var welcomeText: some View {
-        VStack(alignment: .center, spacing: 15) {
-            VStack(alignment: .center, spacing: 0) {
-                Text("Welcome to Democracy,")
-                Text(viewModel.username)
-            }
-            .font(.system(.title, weight: .semibold))
-            .foregroundColor(.primaryText)
-            
-            Text("Your account was created successfully!")
-                .font(.system(.body, weight: .regular))
-                .foregroundColor(.tertiaryText)
-        }
-        
-    }
-    
-    var continueButton: some View {
-        Button {
-            viewModel.continueAction()
-        } label: {
-            Label {
-                Text("Continue Account Setup")
-            } icon: {
-                Image(systemName: "arrow.right")
-            }
-            .labelStyle(ReversedLabelStyle())
-        }
-        .buttonStyle(PrimaryButtonStyle())
-    }
-    
-    var skipButton: some View {
-        Button {
-            viewModel.close()
-        } label: {
-            Text("Skip")
-        }
-        .buttonStyle(SeconaryButtonStyle())
     }
 }
 
@@ -86,5 +32,7 @@ extension CreateAccountSuccessView {
     let parentCoordinator = RootCoordinator()
     let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
     let viewModel = CreateAccountSuccessViewModel(coordinator: coordinator, username: "Hamlin11")
-    return CreateAccountSuccessView(viewModel: viewModel)
+    return NavigationStack {
+        CreateAccountSuccessView(viewModel: viewModel)
+    }
 }
