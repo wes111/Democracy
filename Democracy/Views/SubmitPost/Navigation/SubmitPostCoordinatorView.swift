@@ -36,6 +36,9 @@ struct SubmitPostCoordinatorView: View {
             
         case .goToPostCategory(let viewModel):
             PostCategoryView(viewModel: viewModel)
+            
+        case .goToPostSuccess(let viewModel):
+            PostSuccessView(viewModel: viewModel)
         }
     }
 }

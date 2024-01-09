@@ -22,13 +22,13 @@ struct SuccessView: View {
     
     init(
         primaryText: Text,
-        secondarText: Text,
+        secondaryText: Text,
         image: Image,
         primaryButtonInfo: ButtonInfo,
         secondaryButtonInfo: ButtonInfo?
     ) {
         self.primaryText = primaryText
-        self.secondaryText = secondarText
+        self.secondaryText = secondaryText
         self.image = image
         self.primaryButtonInfo = primaryButtonInfo
         self.secondaryButtonInfo = secondaryButtonInfo
@@ -46,12 +46,13 @@ struct SuccessView: View {
     }
     
     // MARK: - Subviews
-    var topLogo: some View {
+    var topLogo: some View { // TODO: This could be more generic.
         VStack {
             image
                 .resizable()
                 .scaledToFit()
                 .frame(maxWidth: 100)
+                .foregroundStyle(Color.green)
             
             Spacer()
         }
@@ -70,6 +71,7 @@ struct SuccessView: View {
             secondaryText
                 .font(.system(.body, weight: .regular))
                 .foregroundColor(.tertiaryText)
+                .multilineTextAlignment(.center)
             
             Spacer()
         }
@@ -115,7 +117,7 @@ struct SuccessView: View {
 #Preview {
     SuccessView(
         primaryText: Text("Welcome to Democracy,\n Hamlin111"),
-        secondarText: Text("Hello World!"),
+        secondaryText: Text("Hello World!"),
         image: Image("BMW"),
         primaryButtonInfo: .init(title: "Next", action: {}),
         secondaryButtonInfo: .init(title: "Continue", action: {})

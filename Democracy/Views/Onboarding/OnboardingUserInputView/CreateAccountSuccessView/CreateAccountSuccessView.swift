@@ -18,7 +18,7 @@ struct CreateAccountSuccessView: View {
     var body: some View {
         SuccessView(
             primaryText: Text("Welcome to Democracy,\n \(viewModel.username)"),
-            secondarText: Text("Your account was created successfully!"),
+            secondaryText: Text("Your account was created successfully!"),
             image: Image("BMW"),
             primaryButtonInfo: viewModel.primaryButtonInfo,
             secondaryButtonInfo: viewModel.secondaryButtonInfo
@@ -29,9 +29,10 @@ struct CreateAccountSuccessView: View {
 
 // MARK: - Preview
 #Preview {
-    let parentCoordinator = RootCoordinator()
-    let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
-    let viewModel = CreateAccountSuccessViewModel(coordinator: coordinator, username: "Hamlin11")
+    let viewModel = CreateAccountSuccessViewModel(
+        coordinator: OnboardingCoordinator.preview,
+        username: "Hamlin11"
+    )
     return NavigationStack {
         CreateAccountSuccessView(viewModel: viewModel)
     }

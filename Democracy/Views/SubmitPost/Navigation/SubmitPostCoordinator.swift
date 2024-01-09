@@ -30,6 +30,9 @@ final class SubmitPostCoordinator: Coordinator {
 
 // MARK: - Single NEW protocool.
 extension SubmitPostCoordinator: SubmitPostCoordinatorDelegate {
+    func didFinish() {
+        close()
+    }
     
     func didSubmitTitle(input: SubmitPostInput) {
         let viewModel = PostLinkViewModel(coordinator: self, submitPostInput: input)
@@ -55,7 +58,8 @@ extension SubmitPostCoordinator: SubmitPostCoordinatorDelegate {
     }
     
     func didSubmitTags(input: SubmitPostInput) {
-        close() // TODO: ...
+        let viewModel = PostSuccessViewModel(coordinator: self)
+        router.push(SubmitPostPath.goToPostSuccess(viewModel))
     }
     
     func didSubmitCategory(input: SubmitPostInput) {

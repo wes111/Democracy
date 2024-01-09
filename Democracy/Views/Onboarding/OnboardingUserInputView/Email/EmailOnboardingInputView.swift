@@ -49,10 +49,8 @@ extension EmailOnboardingInputView {
 
 // MARK: - Preview
 #Preview {
-    let parentCoordinator = RootCoordinator()
-    let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
     let viewModel = EmailInputViewModel(
-        coordinator: coordinator,
+        coordinator: OnboardingCoordinator.preview,
         onboardingInput: .init()
     )
     return EmailOnboardingInputView(viewModel: viewModel)

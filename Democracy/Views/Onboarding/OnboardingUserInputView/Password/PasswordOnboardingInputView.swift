@@ -44,10 +44,8 @@ extension PasswordOnboardingInputView {
 
 // MARK: - Preview
 #Preview {
-    let parentCoordinator = RootCoordinator()
-    let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
     let viewModel = PasswordInputViewModel(
-        coordinator: coordinator,
+        coordinator: OnboardingCoordinator.preview,
         onboardingInput: .init()
     )
     return PasswordOnboardingInputView(viewModel: viewModel)

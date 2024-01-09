@@ -61,10 +61,8 @@ extension UsernameOnboardingInputView {
 
 // MARK: - Preview
 #Preview {
-    let parentCoordinator = RootCoordinator()
-    let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
     let viewModel = UsernameInputViewModel(
-        coordinator: coordinator
+        coordinator: OnboardingCoordinator.preview
     )
     return UsernameOnboardingInputView(viewModel: viewModel)
 }
