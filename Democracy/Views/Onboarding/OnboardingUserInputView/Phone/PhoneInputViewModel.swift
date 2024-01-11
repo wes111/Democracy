@@ -33,14 +33,14 @@ final class PhoneInputViewModel: UserTextInputViewModel {
     lazy var trailingButtons: [OnboardingTopButton] = {
         [.close(close)]
     }()
+    
+    lazy var skipAction: (() -> Void)? = {
+        { self.coordinator?.submitPhone(input: self.onboardingInput) }
+    }()
 }
 
 // MARK: - Methods
 extension PhoneInputViewModel {
-    
-    func skip() {
-        coordinator?.submitPhone(input: onboardingInput)
-    }
     
     @MainActor
     func submit() async {

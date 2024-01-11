@@ -16,7 +16,7 @@ struct LinkTextFieldStyle: TextFieldStyle {
             .keyboardType(.URL)
             .standardTextInputAppearance(
                 text: $link,
-                maxCharacterCount: SubmitPostField.link.maxCharacterCount,
+                maxCharacterCount: SubmitPostField.primaryLink.maxCharacterCount,
                 shouldTrimWhileTyping: true
             )
     }

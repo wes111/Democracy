@@ -21,7 +21,6 @@ protocol UserTextInputViewModel: UserInputViewModel {
     
     func close()
     func goBack()
-    func skip()
     @MainActor func presentGenericAlert()
     @MainActor func presentInvalidInputAlert()
 }
@@ -56,9 +55,6 @@ extension UserTextInputViewModel {
         field.fullyValid(input: text)
     }
     
-    func skip() {
-        return // Must override if skippable.
-    }
     
     @MainActor
     func presentGenericAlert() {

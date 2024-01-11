@@ -15,6 +15,7 @@ protocol UserInputViewModel: Hashable, ObservableObject {
     var title: String { get }
     var subtitle: String { get }
     var canSubmit: Bool { get }
+    var skipAction: (() -> Void)? { get }
     
     func submit() async
 }

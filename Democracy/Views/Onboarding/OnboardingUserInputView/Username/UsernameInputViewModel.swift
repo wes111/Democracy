@@ -19,6 +19,7 @@ final class UsernameInputViewModel: UserTextInputViewModel {
     
     private var onboardingInput = OnboardingInput()
     private weak var coordinator: OnboardingCoordinatorDelegate?
+    let skipAction: (() -> Void)? = nil
     
     init(coordinator: OnboardingCoordinatorDelegate?) {
         self.coordinator = coordinator

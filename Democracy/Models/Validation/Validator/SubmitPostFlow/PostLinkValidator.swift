@@ -9,5 +9,5 @@ import Foundation
 
 struct PostLinkValidator: InputValidator {
     typealias Requirement = PostLinkRequirement
-    static var field: SubmitPostField = .link
+    static var field: SubmitPostField = .primaryLink
 }

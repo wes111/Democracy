@@ -26,6 +26,12 @@
 		EE2B15C52B4C3C6C0046D5FC /* PostSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15C42B4C3C6C0046D5FC /* PostSuccessView.swift */; };
 		EE2B15C72B4C3C7D0046D5FC /* PostSuccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15C62B4C3C7D0046D5FC /* PostSuccessViewModel.swift */; };
 		EE2B15C92B4C3EA30046D5FC /* OnboardingCoordinator+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15C82B4C3EA30046D5FC /* OnboardingCoordinator+Preview.swift */; };
+		EE2B15CC2B4CE6E80046D5FC /* PostSecondaryLinksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15CB2B4CE6E80046D5FC /* PostSecondaryLinksViewModel.swift */; };
+		EE2B15CE2B4CE6FF0046D5FC /* PostSecondaryLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15CD2B4CE6FF0046D5FC /* PostSecondaryLinksView.swift */; };
+		EE2B15D22B4D7F650046D5FC /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15D12B4D7F650046D5FC /* NextButton.swift */; };
+		EE2B15D42B4D80C00046D5FC /* FieldRequirementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15D32B4D80C00046D5FC /* FieldRequirementsView.swift */; };
+		EE2B15D62B4D874B0046D5FC /* UserInputTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15D52B4D874B0046D5FC /* UserInputTitle.swift */; };
+		EE2B15D82B4D8D640046D5FC /* UserInputScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15D72B4D8D640046D5FC /* UserInputScreen.swift */; };
 		EE36FF862B1C15FD009E8F86 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF852B1C15FD009E8F86 /* CustomSecureField.swift */; };
 		EE36FF892B1D0800009E8F86 /* EmailTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF882B1D0800009E8F86 /* EmailTextFieldStyle.swift */; };
 		EE36FF8F2B1E14E3009E8F86 /* UsernameOnboardingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF8E2B1E14E3009E8F86 /* UsernameOnboardingInputView.swift */; };
@@ -63,8 +69,8 @@
 		EE4987DF2B2F958800AB7522 /* SubmitPostCoordinator+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987DE2B2F958800AB7522 /* SubmitPostCoordinator+Preview.swift */; };
 		EE4987E22B2F970400AB7522 /* PostTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987E12B2F970400AB7522 /* PostTagsView.swift */; };
 		EE4987E42B2F970F00AB7522 /* PostTagsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987E32B2F970F00AB7522 /* PostTagsViewModel.swift */; };
-		EE4987E72B2F977D00AB7522 /* PostLinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987E62B2F977D00AB7522 /* PostLinkViewModel.swift */; };
-		EE4987E92B2F97A500AB7522 /* PostLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987E82B2F97A500AB7522 /* PostLinkView.swift */; };
+		EE4987E72B2F977D00AB7522 /* PostPrimaryLinkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987E62B2F977D00AB7522 /* PostPrimaryLinkViewModel.swift */; };
+		EE4987E92B2F97A500AB7522 /* PostPrimaryLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987E82B2F97A500AB7522 /* PostPrimaryLinkView.swift */; };
 		EE4987EC2B30861000AB7522 /* DefaultTextEditorStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987EB2B30861000AB7522 /* DefaultTextEditorStyle.swift */; };
 		EE4987F02B31D99300AB7522 /* SubmitPostField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987EF2B31D99300AB7522 /* SubmitPostField.swift */; };
 		EE4987F22B32773300AB7522 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987F12B32773300AB7522 /* String+Extensions.swift */; };
@@ -290,6 +296,12 @@
 		EE2B15C42B4C3C6C0046D5FC /* PostSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSuccessView.swift; sourceTree = "<group>"; };
 		EE2B15C62B4C3C7D0046D5FC /* PostSuccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSuccessViewModel.swift; sourceTree = "<group>"; };
 		EE2B15C82B4C3EA30046D5FC /* OnboardingCoordinator+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingCoordinator+Preview.swift"; sourceTree = "<group>"; };
+		EE2B15CB2B4CE6E80046D5FC /* PostSecondaryLinksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSecondaryLinksViewModel.swift; sourceTree = "<group>"; };
+		EE2B15CD2B4CE6FF0046D5FC /* PostSecondaryLinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSecondaryLinksView.swift; sourceTree = "<group>"; };
+		EE2B15D12B4D7F650046D5FC /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
+		EE2B15D32B4D80C00046D5FC /* FieldRequirementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldRequirementsView.swift; sourceTree = "<group>"; };
+		EE2B15D52B4D874B0046D5FC /* UserInputTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputTitle.swift; sourceTree = "<group>"; };
+		EE2B15D72B4D8D640046D5FC /* UserInputScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputScreen.swift; sourceTree = "<group>"; };
 		EE36FF852B1C15FD009E8F86 /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
 		EE36FF882B1D0800009E8F86 /* EmailTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextFieldStyle.swift; sourceTree = "<group>"; };
 		EE36FF8E2B1E14E3009E8F86 /* UsernameOnboardingInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameOnboardingInputView.swift; sourceTree = "<group>"; };
@@ -326,8 +338,8 @@
 		EE4987DE2B2F958800AB7522 /* SubmitPostCoordinator+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubmitPostCoordinator+Preview.swift"; sourceTree = "<group>"; };
 		EE4987E12B2F970400AB7522 /* PostTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTagsView.swift; sourceTree = "<group>"; };
 		EE4987E32B2F970F00AB7522 /* PostTagsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTagsViewModel.swift; sourceTree = "<group>"; };
-		EE4987E62B2F977D00AB7522 /* PostLinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLinkViewModel.swift; sourceTree = "<group>"; };
-		EE4987E82B2F97A500AB7522 /* PostLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLinkView.swift; sourceTree = "<group>"; };
+		EE4987E62B2F977D00AB7522 /* PostPrimaryLinkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPrimaryLinkViewModel.swift; sourceTree = "<group>"; };
+		EE4987E82B2F97A500AB7522 /* PostPrimaryLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPrimaryLinkView.swift; sourceTree = "<group>"; };
 		EE4987EB2B30861000AB7522 /* DefaultTextEditorStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTextEditorStyle.swift; sourceTree = "<group>"; };
 		EE4987EF2B31D99300AB7522 /* SubmitPostField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitPostField.swift; sourceTree = "<group>"; };
 		EE4987F12B32773300AB7522 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -586,6 +598,33 @@
 			path = PostSuccess;
 			sourceTree = "<group>";
 		};
+		EE2B15CA2B4CE6D10046D5FC /* PostSecondaryLinks */ = {
+			isa = PBXGroup;
+			children = (
+				EE2B15CB2B4CE6E80046D5FC /* PostSecondaryLinksViewModel.swift */,
+				EE2B15CD2B4CE6FF0046D5FC /* PostSecondaryLinksView.swift */,
+			);
+			path = PostSecondaryLinks;
+			sourceTree = "<group>";
+		};
+		EE2B15CF2B4CEA390046D5FC /* UserMultiInputView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UserMultiInputView;
+			sourceTree = "<group>";
+		};
+		EE2B15D02B4D7F3D0046D5FC /* Shared Components */ = {
+			isa = PBXGroup;
+			children = (
+				EE2B15D12B4D7F650046D5FC /* NextButton.swift */,
+				EE2B15D32B4D80C00046D5FC /* FieldRequirementsView.swift */,
+				EE2B15D52B4D874B0046D5FC /* UserInputTitle.swift */,
+				EE2B15D72B4D8D640046D5FC /* UserInputScreen.swift */,
+			);
+			path = "Shared Components";
+			sourceTree = "<group>";
+		};
 		EE36FF872B1D07EB009E8F86 /* TextField */ = {
 			isa = PBXGroup;
 			children = (
@@ -749,13 +788,13 @@
 			path = PostTags;
 			sourceTree = "<group>";
 		};
-		EE4987E52B2F972800AB7522 /* PostLink */ = {
+		EE4987E52B2F972800AB7522 /* PostPrimaryLink */ = {
 			isa = PBXGroup;
 			children = (
-				EE4987E62B2F977D00AB7522 /* PostLinkViewModel.swift */,
-				EE4987E82B2F97A500AB7522 /* PostLinkView.swift */,
+				EE4987E62B2F977D00AB7522 /* PostPrimaryLinkViewModel.swift */,
+				EE4987E82B2F97A500AB7522 /* PostPrimaryLinkView.swift */,
 			);
-			path = PostLink;
+			path = PostPrimaryLink;
 			sourceTree = "<group>";
 		};
 		EE4987EA2B3085F500AB7522 /* TextEditor */ = {
@@ -826,8 +865,10 @@
 			isa = PBXGroup;
 			children = (
 				EEC61B5B2B408A7600F73509 /* UserInputViewModel.swift */,
+				EE2B15D02B4D7F3D0046D5FC /* Shared Components */,
 				EE4988172B3F4AB300AB7522 /* UserTextInputView */,
 				EE49881E2B40846400AB7522 /* UserSelectionView */,
+				EE2B15CF2B4CEA390046D5FC /* UserMultiInputView */,
 			);
 			path = UserInputFlow;
 			sourceTree = "<group>";
@@ -1091,8 +1132,9 @@
 				EE49880D2B3E1FE700AB7522 /* SubmitPostAlert.swift */,
 				EE49880F2B3E209700AB7522 /* SubmitPostInput.swift */,
 				EE4987D42B2F8E0E00AB7522 /* PostTitle */,
-				EE4987E52B2F972800AB7522 /* PostLink */,
+				EE4987E52B2F972800AB7522 /* PostPrimaryLink */,
 				EE4987D92B2F90F000AB7522 /* PostBody */,
+				EE2B15CA2B4CE6D10046D5FC /* PostSecondaryLinks */,
 				EEC61B5D2B40F41600F73509 /* PostCategory */,
 				EE4987E02B2F96F100AB7522 /* PostTags */,
 				EE2B15C32B4C3C510046D5FC /* PostSuccess */,
@@ -1729,9 +1771,11 @@
 				EE7055612B14034700E40A89 /* AsyncButton.swift in Sources */,
 				EE936CAD2A789F9D00D49271 /* EventsTabPath.swift in Sources */,
 				EE80D94829D9DC040000F8EF /* CommunityCard.swift in Sources */,
-				EE4987E72B2F977D00AB7522 /* PostLinkViewModel.swift in Sources */,
+				EE2B15D62B4D874B0046D5FC /* UserInputTitle.swift in Sources */,
+				EE4987E72B2F977D00AB7522 /* PostPrimaryLinkViewModel.swift in Sources */,
 				EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */,
 				EE80D95B29E8EBD10000F8EF /* WebView.swift in Sources */,
+				EE2B15CE2B4CE6FF0046D5FC /* PostSecondaryLinksView.swift in Sources */,
 				EE4987E42B2F970F00AB7522 /* PostTagsViewModel.swift in Sources */,
 				EEB5AF912B017F0900310408 /* UserDefaultStorage.swift in Sources */,
 				EE80D92429C955C30000F8EF /* CandidateLocalRepository.swift in Sources */,
@@ -1793,7 +1837,7 @@
 				EED4A53329B81D6800DDCCDA /* CommunityHomeFeedView.swift in Sources */,
 				EE36FF952B1E17F3009E8F86 /* EmailOnboardingInputView.swift in Sources */,
 				EED4A50529AA870000DDCCDA /* VotingTabMainViewModel.swift in Sources */,
-				EE4987E92B2F97A500AB7522 /* PostLinkView.swift in Sources */,
+				EE4987E92B2F97A500AB7522 /* PostPrimaryLinkView.swift in Sources */,
 				EE80D90829C926600000F8EF /* CandidatesView.swift in Sources */,
 				EE4987D32B2F82A500AB7522 /* SubmitPostPath.swift in Sources */,
 				EE5B93952A0864D400B43381 /* CommunityCategoryPostsView.swift in Sources */,
@@ -1801,6 +1845,7 @@
 				EE36FF892B1D0800009E8F86 /* EmailTextFieldStyle.swift in Sources */,
 				EE4DB8912AC899ED00A6DC90 /* LoginStatus.swift in Sources */,
 				EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */,
+				EE2B15D82B4D8D640046D5FC /* UserInputScreen.swift in Sources */,
 				EE4987F82B328BB300AB7522 /* EmailValidator.swift in Sources */,
 				EE4524942A565CA400C7A2DD /* ResourceViewModel.swift in Sources */,
 				EE9760192AD0B066003069CF /* AcceptTermsView.swift in Sources */,
@@ -1811,11 +1856,13 @@
 				EE7055522B1147EE00E40A89 /* UserRepository.swift in Sources */,
 				EE4988082B35D8BA00AB7522 /* OnboardingCoordinatorDelegate.swift in Sources */,
 				EE4988162B3F1E8F00AB7522 /* BackgroundGeometryView.swift in Sources */,
+				EE2B15CC2B4CE6E80046D5FC /* PostSecondaryLinksViewModel.swift in Sources */,
 				EED4A4FF29AA858600DDCCDA /* HistoryTabCoordinator.swift in Sources */,
 				EE45249F2A5CE39400C7A2DD /* RulesSection.swift in Sources */,
 				EED4A4F929AA855900DDCCDA /* EventsTabCoordinator.swift in Sources */,
 				EEB5AF7A2ADC3D6D00310408 /* AlertModel.swift in Sources */,
 				EE80D8EB29BD15640000F8EF /* ProjectNotes.swift in Sources */,
+				EE2B15D42B4D80C00046D5FC /* FieldRequirementsView.swift in Sources */,
 				EE80D8D029BC157D0000F8EF /* VotingTabMainViewModel+Preview.swift in Sources */,
 				EE4988122B3E355300AB7522 /* PostLinkValidator.swift in Sources */,
 				EED4A54329BAB60100DDCCDA /* Hashable+Extensions.swift in Sources */,
@@ -1914,6 +1961,7 @@
 				EE4987CC2B2F5ED200AB7522 /* ViewConstants.swift in Sources */,
 				EED4A50F29AB1A5A00DDCCDA /* CommunitiesTabMainView.swift in Sources */,
 				EE4524B12A5CF0A000C7A2DD /* LeadersScrollView.swift in Sources */,
+				EE2B15D22B4D7F650046D5FC /* NextButton.swift in Sources */,
 				EE936CAB2A789F8700D49271 /* VotingTabPath.swift in Sources */,
 				EE4987D12B2F829200AB7522 /* SubmitPostCoordinatorView.swift in Sources */,
 				EE54ADDF29A329C9007C3E3F /* MainTabView.swift in Sources */,

@@ -28,8 +28,8 @@ struct SubmitPostCoordinatorView: View {
         case .goToPostBody(let viewModel): 
             PostBodyView(viewModel: viewModel)
             
-        case .goToPostLink(let viewModel):
-            PostLinkView(viewModel: viewModel)
+        case .goToPostPrimaryLink(let viewModel):
+            PostPrimaryLinkView(viewModel: viewModel)
             
         case .goToPostTags(let viewModel):
             PostTagsView(viewModel: viewModel)

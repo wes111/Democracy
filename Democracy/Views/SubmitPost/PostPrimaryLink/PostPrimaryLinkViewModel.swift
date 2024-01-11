@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-final class PostLinkViewModel: UserTextInputViewModel {
+final class PostPrimaryLinkViewModel: UserTextInputViewModel {
     typealias Field = PostLinkValidator
     
     @Published var isShowingProgress: Bool = false
@@ -37,10 +37,15 @@ final class PostLinkViewModel: UserTextInputViewModel {
     lazy var leadingButtons: [OnboardingTopButton] = {
         [.back]
     }()
+    
+    lazy var skipAction: (() -> Void)? = {{
+        self.submitPostInput.link = nil
+        self.coordinator?.didSubmitLink(input: self.submitPostInput)
+    }}()
 }
 
 // MARK: - Methods
-extension PostLinkViewModel {
+extension PostPrimaryLinkViewModel {
     
     @MainActor
     func submit() async {
@@ -74,18 +79,13 @@ extension PostLinkViewModel {
         coordinator?.goBack()
     }
     
-    func skip() {
-        submitPostInput.link = nil
-        coordinator?.didSubmitLink(input: submitPostInput)
-    }
-    
     func onAppear() {
         text = submitPostInput.link ?? ""
     }
 }
 
 // MARK: - Private Methods
-private extension PostLinkViewModel {
+private extension PostPrimaryLinkViewModel {
     
     func fetchLinkMetadata(for urlString: String) async throws {
         guard let url = URL(string: urlString) else {

@@ -18,6 +18,7 @@ final class PostTitleViewModel: UserTextInputViewModel {
     
     private let submitPostInput = SubmitPostInput()
     private weak var coordinator: SubmitPostCoordinatorDelegate?
+    let skipAction: (() -> Void)? = nil
     
     init(coordinator: SubmitPostCoordinatorDelegate?) {
         self.coordinator = coordinator

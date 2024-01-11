@@ -35,8 +35,8 @@ extension SubmitPostCoordinator: SubmitPostCoordinatorDelegate {
     }
     
     func didSubmitTitle(input: SubmitPostInput) {
-        let viewModel = PostLinkViewModel(coordinator: self, submitPostInput: input)
-        router.push(SubmitPostPath.goToPostLink(viewModel))
+        let viewModel = PostPrimaryLinkViewModel(coordinator: self, submitPostInput: input)
+        router.push(SubmitPostPath.goToPostPrimaryLink(viewModel))
     }
     
     func close() {

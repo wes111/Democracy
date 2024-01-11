@@ -8,7 +8,7 @@
 import Foundation
 
 enum SubmitPostField: InputField {
-    case title, body, link
+    case title, body, primaryLink
     
     var title: String {
         switch self {
@@ -16,8 +16,8 @@ enum SubmitPostField: InputField {
             "Add a Title"
         case .body:
             "Add Content"
-        case .link:
-            "Add a Link"
+        case .primaryLink:
+            "Add a Primary Link"
         }
     }
     
@@ -27,8 +27,11 @@ enum SubmitPostField: InputField {
             "Create a title for your post."
         case .body:
             "Add text content to your post."
-        case .link:
-            "Add a primary link to your post."
+        case .primaryLink:
+            """
+            Add a primary link to your post with previewable content. If we are unable to fetch the metadata
+            for the provided link, please try a different link or skip this step.
+            """
         }
     }
     
@@ -38,7 +41,7 @@ enum SubmitPostField: InputField {
             "Post Title"
         case .body:
             "Post Body"
-        case .link:
+        case .primaryLink:
             "Post Link"
         }
     }
@@ -47,7 +50,7 @@ enum SubmitPostField: InputField {
         switch self {
         case .title, .body:
             true
-        case .link:
+        case .primaryLink:
             false
         }
     }
@@ -58,7 +61,7 @@ enum SubmitPostField: InputField {
             100
         case .body:
             1000
-        case .link:
+        case .primaryLink:
             500
         }
     }
@@ -76,7 +79,7 @@ enum SubmitPostField: InputField {
             
         // The String must begin with "https://"
         // The string must be between 9 and 500 characters long.
-        case .link:
+        case .primaryLink:
             "^https://.{1,500}$"
         }
     }
@@ -89,7 +92,7 @@ enum SubmitPostField: InputField {
         case .body:
             .invalidBody
             
-        case .link:
+        case .primaryLink:
             .invalidLink
         }
     }

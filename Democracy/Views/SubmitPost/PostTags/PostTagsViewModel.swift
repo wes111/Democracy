@@ -21,6 +21,7 @@ final class PostTagsViewModel: UserInputViewModel {
     let subtitle = "Add community tags to your post to improve searchability."
     private let submitPostInput: SubmitPostInput
     private weak var coordinator: SubmitPostCoordinatorDelegate?
+    let skipAction: (() -> Void)? = nil
     
     init(
         coordinator: SubmitPostCoordinatorDelegate,

@@ -17,11 +17,9 @@ final class PostBodyViewModel: UserTextInputViewModel {
     
     private let submitPostInput: SubmitPostInput
     private weak var coordinator: SubmitPostCoordinatorDelegate?
+    let skipAction: (() -> Void)? = nil // Not skippable.
     
-    init(
-        coordinator: SubmitPostCoordinatorDelegate,
-        submitPostInput: SubmitPostInput
-    ) {
+    init(coordinator: SubmitPostCoordinatorDelegate, submitPostInput: SubmitPostInput) {
         self.coordinator = coordinator
         self.submitPostInput = submitPostInput
         

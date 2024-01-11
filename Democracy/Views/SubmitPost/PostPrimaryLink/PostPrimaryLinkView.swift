@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct PostLinkView: View {
+struct PostPrimaryLinkView: View {
     
-    @ObservedObject var viewModel: PostLinkViewModel
+    @ObservedObject var viewModel: PostPrimaryLinkViewModel
     @FocusState private var focusedField: SubmitPostField?
     
-    init(viewModel: PostLinkViewModel) {
+    init(viewModel: PostPrimaryLinkViewModel) {
         self.viewModel = viewModel
     }
     
@@ -32,12 +32,12 @@ struct PostLinkView: View {
 }
 
 // MARK: - Subviews
-private extension PostLinkView {
+private extension PostPrimaryLinkView {
     var field: some View {
         TextField(
-            "Link",
+            "Primary Link",
             text: $viewModel.text,
-            prompt: Text("Link").foregroundColor(.tertiaryBackground)
+            prompt: Text("Primary Link").foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(LinkTextFieldStyle(link: $viewModel.text))
         .focused($focusedField, equals: viewModel.field)
@@ -50,9 +50,9 @@ private extension PostLinkView {
 
 // MARK: - Preview
 #Preview {
-    let viewModel = PostLinkViewModel(
+    let viewModel = PostPrimaryLinkViewModel(
         coordinator: SubmitPostCoordinator.preview,
         submitPostInput: .init()
     )
-    return PostLinkView(viewModel: viewModel)
+    return PostPrimaryLinkView(viewModel: viewModel)
 }

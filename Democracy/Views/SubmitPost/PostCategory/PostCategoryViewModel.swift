@@ -17,6 +17,7 @@ final class PostCategoryViewModel: UserInputViewModel {
     let subtitle = "Each post belongs to a single category within a Community."
     private let submitPostInput: SubmitPostInput
     private weak var coordinator: SubmitPostCoordinatorDelegate?
+    let skipAction: (() -> Void)? = nil
     
     init(
         coordinator: SubmitPostCoordinatorDelegate,

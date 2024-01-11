@@ -9,7 +9,7 @@ import Foundation
 
 enum SubmitPostPath: Hashable {
     case goToPostBody(PostBodyViewModel)
-    case goToPostLink(PostLinkViewModel)
+    case goToPostPrimaryLink(PostPrimaryLinkViewModel)
     case goToPostTags(PostTagsViewModel)
     case goToPostCategory(PostCategoryViewModel)
     case goToPostSuccess(PostSuccessViewModel)

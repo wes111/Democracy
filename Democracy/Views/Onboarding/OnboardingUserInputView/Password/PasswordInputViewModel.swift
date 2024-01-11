@@ -19,6 +19,7 @@ final class PasswordInputViewModel: UserTextInputViewModel {
     
     private var onboardingInput: OnboardingInput
     private weak var coordinator: OnboardingCoordinatorDelegate?
+    let skipAction: (() -> Void)? = nil
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator
