@@ -40,6 +40,11 @@ private extension PostPrimaryLinkView {
             prompt: Text("Primary Link").foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(LinkTextFieldStyle(link: $viewModel.text))
+        .requirements(
+            text: viewModel.text,
+            allPossibleErrors: viewModel.allErrors,
+            textErrors: viewModel.textErrors
+        )
         .focused($focusedField, equals: viewModel.field)
         .submitLabel(.next)
         .onTapGesture {

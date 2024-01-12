@@ -39,6 +39,11 @@ extension PhoneOnboardingInputView {
             prompt: Text(viewModel.fieldTitle).foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(PhoneTextFieldStyle(phone: $viewModel.text))
+        .requirements(
+            text: viewModel.text,
+            allPossibleErrors: viewModel.allErrors,
+            textErrors: viewModel.textErrors
+        )
         .focused($focusedField, equals: viewModel.field)
         .submitLabel(.next)
         .onTapGesture {

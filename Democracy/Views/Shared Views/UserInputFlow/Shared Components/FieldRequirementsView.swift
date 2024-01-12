@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct FieldRequirementsView<Field: InputValidator>: View {
-    let allPossibleErrors: [Field.Requirement]
+struct FieldRequirementsView<Requirement: InputRequirement>: View {
+    let allPossibleErrors: [Requirement]
     let text: String
-    let currentInputErrors: [Field.Requirement]
+    let currentInputErrors: [Requirement]
     
     var body: some View {
         VStack(alignment: .leading, spacing: ViewConstants.extraSmallElementSpacing) {
@@ -53,7 +53,7 @@ struct FieldRequirementsView<Field: InputValidator>: View {
 
 // MARK: - Preview
 #Preview {
-    FieldRequirementsView<UsernameValidator>(
+    FieldRequirementsView<UsernameRequirement>(
         allPossibleErrors: [UsernameValidator.Requirement.length],
         text: "Hello World",
         currentInputErrors: [UsernameValidator.Requirement.length])

@@ -39,6 +39,11 @@ extension EmailOnboardingInputView {
             prompt: Text(viewModel.fieldTitle).foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(EmailTextFieldStyle(email: $viewModel.text))
+        .requirements(
+            text: viewModel.text,
+            allPossibleErrors: viewModel.allErrors,
+            textErrors: viewModel.textErrors
+        )
         .focused($focusedField, equals: viewModel.field)
         .submitLabel(.next)
         .onTapGesture {

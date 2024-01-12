@@ -43,8 +43,6 @@ private extension UserTextInputView {
                 VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
                     content
                         .titledElement(title: viewModel.subtitle)
-                    
-                    requirements
                 }
                 nextButton
             }
@@ -56,14 +54,6 @@ private extension UserTextInputView {
             isShowingProgress: $viewModel.isShowingProgress,
             nextAction: submit,
             isDisabled: !viewModel.canSubmit
-        )
-    }
-    
-    var requirements: some View {
-        FieldRequirementsView<ViewModel.Field>(
-            allPossibleErrors: viewModel.allErrors,
-            text: viewModel.text,
-            currentInputErrors: viewModel.textErrors
         )
     }
 }

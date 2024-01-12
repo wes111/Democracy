@@ -39,6 +39,11 @@ private extension PostBodyView {
                 text: $viewModel.text,
                 maxCharacterCount: viewModel.field.maxCharacterCount
             )
+            .requirements(
+                text: viewModel.text,
+                allPossibleErrors: viewModel.allErrors,
+                textErrors: viewModel.textErrors
+            )
             .focused($focusedField, equals: viewModel.field)
             .submitLabel(.next)
             .onTapGesture {

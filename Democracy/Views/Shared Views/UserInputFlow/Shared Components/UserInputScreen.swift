@@ -8,7 +8,7 @@
 import SwiftUI
 
 // A modifier intended to be used by 'UserTextInputView','UserMultiInputView', 'UserSelectionView'.
-// Standard appearance for any user input screen with 1 or multiple textFields.
+// Standard appearance for any user input screen (text fields, user selection, etc.)
 struct UserInputScreen<ViewModel: UserInputViewModel, Content: View>: View {
     @ObservedObject var viewModel: ViewModel
     @ViewBuilder let content: Content
@@ -32,6 +32,10 @@ struct UserInputScreen<ViewModel: UserInputViewModel, Content: View>: View {
                 )
             }
     }
+}
+
+// MARK: - Private Subviews
+private extension UserInputScreen {
     
     var primaryContent: some View {
         ZStack(alignment: .center) {

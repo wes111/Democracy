@@ -32,6 +32,7 @@
 		EE2B15D42B4D80C00046D5FC /* FieldRequirementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15D32B4D80C00046D5FC /* FieldRequirementsView.swift */; };
 		EE2B15D62B4D874B0046D5FC /* UserInputTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15D52B4D874B0046D5FC /* UserInputTitle.swift */; };
 		EE2B15D82B4D8D640046D5FC /* UserInputScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15D72B4D8D640046D5FC /* UserInputScreen.swift */; };
+		EE2B15DA2B50C9340046D5FC /* TextInputRequirementsModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15D92B50C9340046D5FC /* TextInputRequirementsModifier.swift */; };
 		EE36FF862B1C15FD009E8F86 /* CustomSecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF852B1C15FD009E8F86 /* CustomSecureField.swift */; };
 		EE36FF892B1D0800009E8F86 /* EmailTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF882B1D0800009E8F86 /* EmailTextFieldStyle.swift */; };
 		EE36FF8F2B1E14E3009E8F86 /* UsernameOnboardingInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF8E2B1E14E3009E8F86 /* UsernameOnboardingInputView.swift */; };
@@ -302,6 +303,7 @@
 		EE2B15D32B4D80C00046D5FC /* FieldRequirementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldRequirementsView.swift; sourceTree = "<group>"; };
 		EE2B15D52B4D874B0046D5FC /* UserInputTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputTitle.swift; sourceTree = "<group>"; };
 		EE2B15D72B4D8D640046D5FC /* UserInputScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputScreen.swift; sourceTree = "<group>"; };
+		EE2B15D92B50C9340046D5FC /* TextInputRequirementsModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputRequirementsModifier.swift; sourceTree = "<group>"; };
 		EE36FF852B1C15FD009E8F86 /* CustomSecureField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureField.swift; sourceTree = "<group>"; };
 		EE36FF882B1D0800009E8F86 /* EmailTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextFieldStyle.swift; sourceTree = "<group>"; };
 		EE36FF8E2B1E14E3009E8F86 /* UsernameOnboardingInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameOnboardingInputView.swift; sourceTree = "<group>"; };
@@ -607,13 +609,6 @@
 			path = PostSecondaryLinks;
 			sourceTree = "<group>";
 		};
-		EE2B15CF2B4CEA390046D5FC /* UserMultiInputView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UserMultiInputView;
-			sourceTree = "<group>";
-		};
 		EE2B15D02B4D7F3D0046D5FC /* Shared Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -868,7 +863,6 @@
 				EE2B15D02B4D7F3D0046D5FC /* Shared Components */,
 				EE4988172B3F4AB300AB7522 /* UserTextInputView */,
 				EE49881E2B40846400AB7522 /* UserSelectionView */,
-				EE2B15CF2B4CEA390046D5FC /* UserMultiInputView */,
 			);
 			path = UserInputFlow;
 			sourceTree = "<group>";
@@ -995,6 +989,7 @@
 				EE7856252AB948E50004B7E4 /* CharacterLimiterModifier.swift */,
 				EE7856272AB949C10004B7E4 /* PreviewModifier.swift */,
 				EE4988032B3325CB00AB7522 /* TrimWhiteSpaceCharactersModifier.swift */,
+				EE2B15D92B50C9340046D5FC /* TextInputRequirementsModifier.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1783,6 +1778,7 @@
 				EE4988202B40849900AB7522 /* UserSelectionView.swift in Sources */,
 				EE2B15C02B4B18650046D5FC /* Decodable+Extension.swift in Sources */,
 				EE2B15BC2B499E1D0046D5FC /* PostRepository.swift in Sources */,
+				EE2B15DA2B50C9340046D5FC /* TextInputRequirementsModifier.swift in Sources */,
 				EE5B938E2A03346C00B43381 /* Date+Extensions.swift in Sources */,
 				EE80D8DE29BC19ED0000F8EF /* HistoryTabCoordinator+Preview.swift in Sources */,
 				EED4A53529B81D8000DDCCDA /* CommunityInfoView.swift in Sources */,

@@ -40,6 +40,11 @@ extension PostTitleView {
             prompt: Text("Title").foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(TitleTextFieldStyle(title: $viewModel.text))
+        .requirements(
+            text: viewModel.text,
+            allPossibleErrors: viewModel.allErrors,
+            textErrors: viewModel.textErrors
+        )
         .focused($focusedField, equals: viewModel.field)
         .submitLabel(.next)
         .onTapGesture {
