@@ -20,41 +20,17 @@ struct UserTextInputView<ViewModel: UserTextInputViewModel, Content: View>: View
     }
     
     var body: some View {
-        primaryContent
-            .onSubmit { // Note: Only needed for user text input screens.
-                if viewModel.canSubmit {
-                    performAsnycTask(
-                        action: { await submit() },
-                        isShowingProgress: $viewModel.isShowingProgress
-                    )
-                }
-            }
-    }
-}
-
-// MARK: - Subviews
-private extension UserTextInputView {
-    
-    var primaryContent: some View {
-        UserInputScreen(viewModel: viewModel) {
-            VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-                UserInputTitle(title: viewModel.title)
-                
-                VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
-                    content
-                        .titledElement(title: viewModel.subtitle)
-                }
-                nextButton
+        UserInputScreen(viewModel: viewModel, additionalSubmitAction: submit) {
+            content
+        }
+        .onSubmit {
+            if viewModel.canSubmit {
+                performAsnycTask(
+                    action: { await submit() },
+                    isShowingProgress: $viewModel.isShowingProgress
+                )
             }
         }
-    }
-    
-    var nextButton: some View {
-        NextButton(
-            isShowingProgress: $viewModel.isShowingProgress,
-            nextAction: submit,
-            isDisabled: !viewModel.canSubmit
-        )
     }
 }
 
@@ -64,7 +40,6 @@ private extension UserTextInputView {
         withAnimation {
             viewModel.text = viewModel.text.trimmingCharacters(in: .whitespacesAndNewlines)
         }
-        await viewModel.submit()
     }
 }
 

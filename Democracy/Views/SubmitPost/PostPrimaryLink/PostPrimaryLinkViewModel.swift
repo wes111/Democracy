@@ -9,13 +9,13 @@ import Factory
 import Foundation
 
 final class PostPrimaryLinkViewModel: UserTextInputViewModel {
-    typealias Field = PostLinkValidator
+    typealias Field = PostPrimaryLinkValidator
     
+    @Injected(\.richLinkService) private var richLinkService
     @Published var isShowingProgress: Bool = false
     @Published var text: String = ""
     @Published var textErrors: [Field.Requirement] = []
     @Published var alertModel: NewAlertModel?
-    @Injected(\.richLinkService) private var richLinkService
     
     private let submitPostInput: SubmitPostInput
     weak var coordinator: SubmitPostCoordinatorDelegate?
@@ -39,7 +39,7 @@ final class PostPrimaryLinkViewModel: UserTextInputViewModel {
     }()
     
     lazy var skipAction: (() -> Void)? = {{
-        self.submitPostInput.link = nil
+        self.submitPostInput.primaryLink = nil
         self.coordinator?.didSubmitLink(input: self.submitPostInput)
     }}()
 }
@@ -58,7 +58,7 @@ extension PostPrimaryLinkViewModel {
             print(error.localizedDescription)
             return alertModel = SubmitPostAlert.failedFetchingLinkMetadata.toNewAlertModel()
         }
-        submitPostInput.link = text
+        submitPostInput.primaryLink = text
         coordinator?.didSubmitLink(input: submitPostInput)
     }
     
@@ -80,7 +80,7 @@ extension PostPrimaryLinkViewModel {
     }
     
     func onAppear() {
-        text = submitPostInput.link ?? ""
+        text = submitPostInput.primaryLink ?? ""
     }
 }
 

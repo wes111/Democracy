@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PostLinkValidator: InputValidator {
+struct PostPrimaryLinkValidator: InputValidator {
     typealias Requirement = PostLinkRequirement
     static var field: SubmitPostField = .primaryLink
 }

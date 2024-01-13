@@ -15,7 +15,7 @@ struct PostTagsView: View {
     }
     
     var body: some View {
-        UserSelectionView(viewModel: viewModel) {
+        UserInputScreen(viewModel: viewModel) {
             tagsFlow
         }
         .onAppear {

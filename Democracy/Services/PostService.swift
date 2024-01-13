@@ -31,7 +31,7 @@ final class PostServiceDefault: PostService {
         try await postRepository.submitPost(.init(
             title: title,
             body: body,
-            link: userInput.link,
+            link: userInput.primaryLink,
             tags: Array(userInput.tags),
             userId: userId,
             communityId: communityId

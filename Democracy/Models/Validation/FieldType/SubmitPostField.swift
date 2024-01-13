@@ -8,7 +8,7 @@
 import Foundation
 
 enum SubmitPostField: InputField {
-    case title, body, primaryLink
+    case title, body, primaryLink, secondaryLinks
     
     var title: String {
         switch self {
@@ -18,6 +18,8 @@ enum SubmitPostField: InputField {
             "Add Content"
         case .primaryLink:
             "Add a Primary Link"
+        case .secondaryLinks:
+            "Add Secondary Links"
         }
     }
     
@@ -32,6 +34,8 @@ enum SubmitPostField: InputField {
             Add a primary link to your post with previewable content. If we are unable to fetch the metadata
             for the provided link, please try a different link or skip this step.
             """
+        case .secondaryLinks:
+            "Optionally add secondary links to your post. These will appear at the bottom of your post."
         }
     }
     
@@ -43,6 +47,8 @@ enum SubmitPostField: InputField {
             "Post Body"
         case .primaryLink:
             "Post Link"
+        case .secondaryLinks:
+            "Secondary Link"
         }
     }
     
@@ -50,7 +56,7 @@ enum SubmitPostField: InputField {
         switch self {
         case .title, .body:
             true
-        case .primaryLink:
+        case .primaryLink, .secondaryLinks:
             false
         }
     }
@@ -61,7 +67,7 @@ enum SubmitPostField: InputField {
             100
         case .body:
             1000
-        case .primaryLink:
+        case .primaryLink, .secondaryLinks:
             500
         }
     }
@@ -79,7 +85,7 @@ enum SubmitPostField: InputField {
             
         // The String must begin with "https://"
         // The string must be between 9 and 500 characters long.
-        case .primaryLink:
+        case .primaryLink, .secondaryLinks:
             "^https://.{1,500}$"
         }
     }
@@ -92,7 +98,7 @@ enum SubmitPostField: InputField {
         case .body:
             .invalidBody
             
-        case .primaryLink:
+        case .primaryLink, .secondaryLinks:
             .invalidLink
         }
     }

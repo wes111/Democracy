@@ -15,7 +15,7 @@ struct PostCategoryView: View {
     }
     
     var body: some View {
-        UserSelectionView(viewModel: viewModel) {
+        UserInputScreen(viewModel: viewModel) {
             categoryList
         }
         .onAppear {

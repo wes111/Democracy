@@ -12,9 +12,15 @@ import SwiftUI
 struct UserInputScreen<ViewModel: UserInputViewModel, Content: View>: View {
     @ObservedObject var viewModel: ViewModel
     @ViewBuilder let content: Content
+    let additionalSubmitAction: () async -> Void
     
-    init(viewModel: ViewModel, @ViewBuilder content: () -> Content) {
+    init(
+        viewModel: ViewModel,
+        additionalSubmitAction: @escaping () async -> Void = {},
+        @ViewBuilder content: () -> Content
+    ) {
         self.viewModel = viewModel
+        self.additionalSubmitAction = additionalSubmitAction
         self.content = content()
     }
     
@@ -44,8 +50,13 @@ private extension UserInputScreen {
             // The GeometryReader here prevents the view from moving
             // with keyboard appearance/disappearance.
             GeometryReader { _ in
-                VStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
+                VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+                    UserInputTitle(title: viewModel.title)
+                    
                     content
+                        .titledElement(title: viewModel.subtitle)
+                    
+                    nextButton
                     
                     if let action = viewModel.skipAction {
                         skipButton(action: action)
@@ -71,6 +82,17 @@ private extension UserInputScreen {
         .disabled(viewModel.isShowingProgress)
         .buttonStyle(SeconaryButtonStyle())
     }
+    
+    var nextButton: some View {
+        NextButton(
+            isShowingProgress: $viewModel.isShowingProgress, 
+            nextAction: {
+                await additionalSubmitAction()
+                await viewModel.submit()
+            },
+            isDisabled: !viewModel.canSubmit
+        )
+    }
 }
 
 // MARK: - Preview
@@ -81,8 +103,9 @@ private extension UserInputScreen {
     )
     
     return NavigationStack {
-        UserInputScreen(viewModel: viewModel) {
-            EmptyView()
-        }
+        UserInputScreen(
+            viewModel: viewModel) {
+                EmptyView()
+            }
     }
 }
