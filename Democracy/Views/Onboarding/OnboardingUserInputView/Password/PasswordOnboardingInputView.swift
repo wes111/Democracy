@@ -16,15 +16,8 @@ struct PasswordOnboardingInputView: View {
     }
     
     var body: some View {
-        UserTextInputView(
-            viewModel: viewModel,
-            content: { field }
-        )
-        .onAppear {
-            focusedField = viewModel.field
-        }
-        .onTapGesture {
-            focusedField = nil
+        UserTextInputView(viewModel: viewModel, focusedField: $focusedField) {
+            field
         }
     }
 }

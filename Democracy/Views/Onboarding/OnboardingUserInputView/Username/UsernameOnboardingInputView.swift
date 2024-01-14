@@ -7,20 +7,21 @@
 
 import SwiftUI
 
-struct UsernameOnboardingInputView: View {
-    
-    @ObservedObject var viewModel: UsernameInputViewModel
-    @FocusState private var focusedField: OnboardingInputField?
+struct UsernameOnboardingInputView<ViewModel: UsernameInputViewModel>: View {
+    @ObservedObject var viewModel: ViewModel
+    @FocusState private var focusedField: ViewModel.Field.FieldCollection?
     @State private var isFirstAppear = true
     
-    init(viewModel: UsernameInputViewModel) {
-        self.viewModel = viewModel
-    }
-    
     var body: some View {
-        UserTextInputView(
+        DefaultTextFieldInputView(
             viewModel: viewModel,
-            content: { field }
+            focusedField: $focusedField,
+            shouldOverrideOnAppear: true, // TODO: This should fix bug below
+            textFieldStyle: UsernameTextFieldStyle(
+                username: $viewModel.text,
+                focusedField: $focusedField,
+                textErrors: viewModel.textErrors
+            )
         )
         .onAppear {
             if isFirstAppear {
@@ -34,27 +35,6 @@ struct UsernameOnboardingInputView: View {
                     focusedField = viewModel.field
                 }
             }
-        }
-        .onTapGesture {
-            focusedField = nil
-        }
-    }
-}
-
-// MARK: Subviews and Computed Properties
-extension UsernameOnboardingInputView {
-    
-    var field: some View {
-        TextField(
-            viewModel.fieldTitle,
-            text: $viewModel.text,
-            prompt: Text(viewModel.fieldTitle).foregroundColor(.tertiaryBackground)
-        )
-        .textFieldStyle(UsernameTextFieldStyle(username: $viewModel.text))
-        .focused($focusedField, equals: viewModel.field)
-        .submitLabel(.next)
-        .onTapGesture {
-            focusedField = .username
         }
     }
 }

@@ -32,7 +32,9 @@ struct CharacterLimiterModifier: ViewModifier {
 }
 
 #Preview {
-    TextField("Preview", text: .constant("BadTest"))
-        .limitCharacters(text: .constant("Bad"), count: 25)
-        .preview()
+    ZStack {
+        Color.primaryBackground
+        TextField("Preview", text: .constant("BadTest"))
+            .limitCharacters(text: .constant("Bad"), count: 25)
+    }
 }

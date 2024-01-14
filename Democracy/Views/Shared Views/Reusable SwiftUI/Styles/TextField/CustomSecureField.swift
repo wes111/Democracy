@@ -38,10 +38,12 @@ struct CustomSecureField<T: PasswordCaseRepresentable>: View {
         }
         // Prevent button from bouncing incorrectly on keyboard dismiss.
         .geometryGroup()
-        .standardTextInputAppearance(
-            text: $secureText,
-            maxCharacterCount: OnboardingInputField.email.maxCharacterCount
-        )
+//        .standardTextInputAppearance(
+//            input: PasswordValidator.self,
+//            text: $secureText,
+//            focusedField: $loginField,
+//            requirements: PasswordValidator.Requirement.allCases
+//        )
         .onChange(of: loginField) { _, newValue in
             didChangeFromVisibleToHidden = false
             guard let newValue, newValue.isPasswordCase else { return }

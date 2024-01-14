@@ -7,48 +7,20 @@
 
 import SwiftUI
 
-struct EmailOnboardingInputView: View {
-    @ObservedObject var viewModel: EmailInputViewModel
-    @FocusState private var focusedField: OnboardingInputField?
-    
-    init(viewModel: EmailInputViewModel) {
-        self.viewModel = viewModel
-    }
+struct EmailOnboardingInputView<ViewModel: EmailInputViewModel>: View {
+    @ObservedObject var viewModel: ViewModel
+    @FocusState private var focusedField: ViewModel.Field.FieldCollection?
     
     var body: some View {
-        UserTextInputView(
+        DefaultTextFieldInputView(
             viewModel: viewModel,
-            content: { field }
+            focusedField: $focusedField,
+            textFieldStyle: EmailTextFieldStyle(
+                email: $viewModel.text,
+                focusedField: $focusedField,
+                textErrors: viewModel.textErrors
+            )
         )
-        .onAppear {
-            focusedField = viewModel.field
-        }
-        .onTapGesture {
-            focusedField = nil
-        }
-    }
-}
-
-// MARK: - Subviews and Computed Properties
-extension EmailOnboardingInputView {
-    
-    var field: some View {
-        TextField(
-            viewModel.fieldTitle,
-            text: $viewModel.text,
-            prompt: Text(viewModel.fieldTitle).foregroundColor(.tertiaryBackground)
-        )
-        .textFieldStyle(EmailTextFieldStyle(email: $viewModel.text))
-        .requirements(
-            text: viewModel.text,
-            allPossibleErrors: viewModel.allErrors,
-            textErrors: viewModel.textErrors
-        )
-        .focused($focusedField, equals: viewModel.field)
-        .submitLabel(.next)
-        .onTapGesture {
-            focusedField = .email
-        }
     }
 }
 

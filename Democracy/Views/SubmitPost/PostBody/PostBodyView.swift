@@ -10,23 +10,10 @@ import SwiftUI
 struct PostBodyView: View {
     @ObservedObject var viewModel: PostBodyViewModel
     @FocusState private var focusedField: SubmitPostField?
-    @State private var size: CGSize = .zero
-    
-    init(viewModel: PostBodyViewModel) {
-        self.viewModel = viewModel
-    }
     
     var body: some View {
-        UserTextInputView(
-            viewModel: viewModel,
-            content: { field }
-        )
-        .onAppear {
-            focusedField = viewModel.field
-            viewModel.onAppear()
-        }
-        .onTapGesture {
-            focusedField = nil
+        UserTextInputView(viewModel: viewModel, focusedField: $focusedField) {
+            field
         }
     }
 }
@@ -36,19 +23,10 @@ private extension PostBodyView {
     var field: some View {
         TextEditor(text: $viewModel.text)
             .defaultStyle(
+                input: PostBodyValidator.self,
                 text: $viewModel.text,
-                maxCharacterCount: viewModel.field.maxCharacterCount
+                focusedField: $focusedField
             )
-            .requirements(
-                text: viewModel.text,
-                allPossibleErrors: viewModel.allErrors,
-                textErrors: viewModel.textErrors
-            )
-            .focused($focusedField, equals: viewModel.field)
-            .submitLabel(.next)
-            .onTapGesture {
-                focusedField = viewModel.field
-            }
     }
 }
 

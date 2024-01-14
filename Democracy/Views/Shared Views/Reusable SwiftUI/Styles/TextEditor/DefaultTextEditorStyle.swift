@@ -8,20 +8,22 @@
 import Foundation
 import SwiftUI
 
-// Need to get the initial value of geo reader.
-
 extension TextEditor {
-    
     private static let minFrameHeight: CGFloat = 200.0
     
-    func defaultStyle(text: Binding<String>, maxCharacterCount: Int) -> some View {
+    func defaultStyle<Input: InputValidator>(
+        input: Input.Type,
+        text: Binding<String>,
+        focusedField: FocusState<Input.FieldCollection?>.Binding
+    ) -> some View {
         GeometryReader { geometry in
             self
                 .standardTextInputAppearance(
+                    input: Input.self,
                     text: text,
-                    maxCharacterCount: maxCharacterCount,
+                    focusedField: focusedField,
                     shouldTrimWhileTyping: false,
-                    isTextField: false
+                    requirements: .none // Currently none, but could change.
                 )
                 .scrollContentBackground(.hidden)
                 .cornerRadius(10)

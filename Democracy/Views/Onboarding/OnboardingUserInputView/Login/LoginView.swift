@@ -104,7 +104,12 @@ extension LoginView {
         TextField("Email", text: $viewModel.email,
                   prompt: Text("Email").foregroundColor(.tertiaryBackground)
         )
-        .textFieldStyle(EmailTextFieldStyle(email: $viewModel.email))
+        // TODO: ...
+//        .textFieldStyle(EmailTextFieldStyle(
+//            email: $viewModel.email,
+//            focusedField: $focusedField,
+//            textErrors: [] // Don't display errors to user when logging in.
+//        ))
         .onTapGesture {
             focusedField = .email
         }

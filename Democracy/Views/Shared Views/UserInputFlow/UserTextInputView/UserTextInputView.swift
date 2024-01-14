@@ -10,12 +10,18 @@ import SwiftUI
 struct UserTextInputView<ViewModel: UserTextInputViewModel, Content: View>: View {
     @ObservedObject var viewModel: ViewModel
     @ViewBuilder let content: Content
+    @FocusState.Binding var focusedField: ViewModel.Field.FieldCollection?
+    let shouldOverrideOnAppear: Bool
     
     init(
         viewModel: ViewModel,
+        focusedField: FocusState<ViewModel.Field.FieldCollection?>.Binding,
+        shouldOverrideOnAppear: Bool = false,
         @ViewBuilder content: () -> Content
     ) {
         self.viewModel = viewModel
+        self._focusedField = focusedField
+        self.shouldOverrideOnAppear = shouldOverrideOnAppear
         self.content = content()
     }
     
@@ -26,10 +32,21 @@ struct UserTextInputView<ViewModel: UserTextInputViewModel, Content: View>: View
         .onSubmit {
             if viewModel.canSubmit {
                 performAsnycTask(
-                    action: { await submit() },
+                    action: {
+                        await submit()
+                        await viewModel.submit()
+                    },
                     isShowingProgress: $viewModel.isShowingProgress
                 )
             }
+        }
+        .onAppear {
+            if !shouldOverrideOnAppear {
+                focusedField = viewModel.field
+            }
+        }
+        .onTapGesture {
+            focusedField = nil
         }
     }
 }
@@ -46,12 +63,21 @@ private extension UserTextInputView {
 // MARK: - Preview
 #Preview {
     let viewModel = EmailInputViewModel(coordinator: OnboardingCoordinator.preview, onboardingInput: .init())
-    return UserTextInputView(viewModel: viewModel) {
+    @FocusState var focusedField: OnboardingInputField?
+    
+    return UserTextInputView(
+        viewModel: viewModel,
+        focusedField: $focusedField
+    ) {
         TextField(
             "Field Title",
             text: .constant("Hello World"),
             prompt: Text("Field Title").foregroundColor(.tertiaryBackground)
         )
-        .textFieldStyle(EmailTextFieldStyle(email: .constant("emailText")))
+        .textFieldStyle(EmailTextFieldStyle(
+            email: .constant("Email Text"),
+            focusedField: $focusedField,
+            textErrors: EmailValidator.Requirement.allCases
+        ))
     }
 }

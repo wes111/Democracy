@@ -7,49 +7,20 @@
 
 import SwiftUI
 
-struct PostPrimaryLinkView: View {
-    
-    @ObservedObject var viewModel: PostPrimaryLinkViewModel
+struct PostPrimaryLinkView<ViewModel: PostPrimaryLinkViewModel>: View {
+    @ObservedObject var viewModel: ViewModel
     @FocusState private var focusedField: SubmitPostField?
     
-    init(viewModel: PostPrimaryLinkViewModel) {
-        self.viewModel = viewModel
-    }
-    
     var body: some View {
-        UserTextInputView(
+        DefaultTextFieldInputView(
             viewModel: viewModel,
-            content: { field }
+            focusedField: $focusedField,
+            textFieldStyle: LinkTextFieldStyle(
+                link: $viewModel.text,
+                focusedField: $focusedField,
+                textErrors: viewModel.textErrors
+            )
         )
-        .onAppear {
-            focusedField = viewModel.field
-            viewModel.onAppear()
-        }
-        .onTapGesture {
-            focusedField = nil
-        }
-    }
-}
-
-// MARK: - Subviews
-private extension PostPrimaryLinkView {
-    var field: some View {
-        TextField(
-            "Primary Link",
-            text: $viewModel.text,
-            prompt: Text("Primary Link").foregroundColor(.tertiaryBackground)
-        )
-        .textFieldStyle(LinkTextFieldStyle(link: $viewModel.text))
-        .requirements(
-            text: viewModel.text,
-            allPossibleErrors: viewModel.allErrors,
-            textErrors: viewModel.textErrors
-        )
-        .focused($focusedField, equals: viewModel.field)
-        .submitLabel(.next)
-        .onTapGesture {
-            focusedField = viewModel.field
-        }
     }
 }
 

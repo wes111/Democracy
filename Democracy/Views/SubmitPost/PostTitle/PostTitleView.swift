@@ -7,49 +7,20 @@
 
 import SwiftUI
 
-struct PostTitleView: View {
-    @ObservedObject var viewModel: PostTitleViewModel
+struct PostTitleView<ViewModel: PostTitleViewModel>: View {
+    @ObservedObject var viewModel: ViewModel
     @FocusState private var focusedField: SubmitPostField?
     
-    init(viewModel: PostTitleViewModel) {
-        self.viewModel = viewModel
-    }
-    
     var body: some View {
-        UserTextInputView(
+        DefaultTextFieldInputView(
             viewModel: viewModel,
-            content: { field }
+            focusedField: $focusedField,
+            textFieldStyle: TitleTextFieldStyle(
+                title: $viewModel.text,
+                focusedField: $focusedField,
+                textErrors: viewModel.textErrors
+            )
         )
-        .onAppear {
-            focusedField = viewModel.field
-            viewModel.onAppear()
-        }
-        .onTapGesture {
-            focusedField = nil
-        }
-    }
-}
-
-// MARK: - Subviews
-extension PostTitleView {
-    
-    var field: some View {
-        TextField(
-            "Title",
-            text: $viewModel.text,
-            prompt: Text("Title").foregroundColor(.tertiaryBackground)
-        )
-        .textFieldStyle(TitleTextFieldStyle(title: $viewModel.text))
-        .requirements(
-            text: viewModel.text,
-            allPossibleErrors: viewModel.allErrors,
-            textErrors: viewModel.textErrors
-        )
-        .focused($focusedField, equals: viewModel.field)
-        .submitLabel(.next)
-        .onTapGesture {
-            focusedField = viewModel.field
-        }
     }
 }
 

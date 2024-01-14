@@ -9,6 +9,8 @@ import SwiftUI
 
 struct UsernameTextFieldStyle: TextFieldStyle {
     @Binding var username: String
+    @FocusState.Binding var focusedField: UsernameValidator.FieldCollection?
+    var textErrors: [UsernameValidator.Requirement]
     
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {
@@ -16,21 +18,29 @@ struct UsernameTextFieldStyle: TextFieldStyle {
             .keyboardType(.default)
             .textContentType(.username)
             .standardTextInputAppearance(
+                input: UsernameValidator.self,
                 text: $username,
-                maxCharacterCount: OnboardingInputField.username.maxCharacterCount
-            )
-
+                focusedField: $focusedField,
+                requirements: .some(
+                    allPossibleErrors: UsernameValidator.Requirement.allCases,
+                    textErrors: textErrors
+                ))
     }
 }
 
 // MARK: - Preview
 #Preview {
-    ZStack {
+    @FocusState var focusedField: OnboardingInputField?
+    return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
         TextField("Username", text: .constant("Username"),
                   prompt: Text("Username").foregroundColor(.tertiaryBackground)
         )
-        .textFieldStyle(UsernameTextFieldStyle(username: .constant("Username")))
+        .textFieldStyle(UsernameTextFieldStyle(
+            username: .constant("Username Text"),
+            focusedField: $focusedField,
+            textErrors: UsernameValidator.Requirement.allCases
+        ))
     }
 }

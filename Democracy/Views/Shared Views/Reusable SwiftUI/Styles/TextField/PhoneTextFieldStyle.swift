@@ -10,6 +10,8 @@ import Combine
 
 struct PhoneTextFieldStyle: TextFieldStyle {
     @Binding var phone: String
+    @FocusState.Binding var focusedField: EmailValidator.FieldCollection?
+    var textErrors: [PhoneValidator.Requirement]
     
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {
@@ -20,8 +22,13 @@ struct PhoneTextFieldStyle: TextFieldStyle {
             .keyboardType(.numberPad)
             .textContentType(.telephoneNumber)
             .standardTextInputAppearance(
+                input: PhoneValidator.self,
                 text: $phone,
-                maxCharacterCount: OnboardingInputField.phone.maxCharacterCount
+                focusedField: $focusedField,
+                requirements: .some(
+                    allPossibleErrors: PhoneValidator.Requirement.allCases,
+                    textErrors: textErrors
+                )
             )
     }
     
@@ -52,12 +59,18 @@ struct PhoneTextFieldStyle: TextFieldStyle {
 
 // MARK: - Preview
 #Preview {
-    ZStack {
+    @FocusState var focusedField: OnboardingInputField?
+    
+    return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
         TextField("Phone", text: .constant("Phone"),
                   prompt: Text("Phone").foregroundColor(.tertiaryBackground)
         )
-        .textFieldStyle(PhoneTextFieldStyle(phone: .constant("Phone")))
+        .textFieldStyle(PhoneTextFieldStyle(
+            phone: .constant("123-456-7890"),
+            focusedField: $focusedField,
+            textErrors: PhoneValidator.Requirement.allCases
+        ))
     }
 }

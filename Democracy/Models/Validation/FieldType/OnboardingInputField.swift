@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol InputField {
+protocol InputField: Hashable {
     associatedtype AlertModel: AlertModelProtocol
     
     var title: String { get }

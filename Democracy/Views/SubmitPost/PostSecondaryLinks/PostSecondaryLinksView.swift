@@ -7,13 +7,9 @@
 
 import SwiftUI
 
-struct PostSecondaryLinksView: View {
-    @ObservedObject var viewModel: PostSecondaryLinksViewModel
+struct PostSecondaryLinksView<ViewModel: PostSecondaryLinksViewModel>: View {
+    @ObservedObject var viewModel: ViewModel
     @FocusState private var focusedField: SubmitPostField?
-    
-    init(viewModel: PostSecondaryLinksViewModel) {
-        self.viewModel = viewModel
-    }
     
     var body: some View {
         UserInputScreen(viewModel: viewModel) {
@@ -41,17 +37,11 @@ private extension PostSecondaryLinksView {
             text: $viewModel.text,
             prompt: Text("Secondary Link").foregroundColor(.tertiaryBackground)
         )
-        .textFieldStyle(LinkTextFieldStyle(link: $viewModel.text))
-        .requirements(
-            text: viewModel.text,
-            allPossibleErrors: viewModel.allErrors,
+        .textFieldStyle(LinkTextFieldStyle(
+            link: $viewModel.text,
+            focusedField: $focusedField,
             textErrors: viewModel.textErrors
-        )
-        .focused($focusedField, equals: viewModel.field)
-        .submitLabel(.next)
-        .onTapGesture {
-            focusedField = viewModel.field
-        }
+        ))
     }
 }
 
