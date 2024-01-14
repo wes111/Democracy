@@ -9,14 +9,14 @@ import Factory
 import Foundation
 
 final class PostPrimaryLinkViewModel: UserTextInputViewModel {
-    typealias Field = PostPrimaryLinkValidator
-    
     @Injected(\.richLinkService) private var richLinkService
     @Published var isShowingProgress: Bool = false
     @Published var text: String = ""
-    @Published var textErrors: [Field.Requirement] = []
+    @Published var textErrors: [Requirement] = []
     @Published var alertModel: NewAlertModel?
     
+    typealias Requirement = PostLinkRequirement
+    let field = SubmitPostField.primaryLink
     private let submitPostInput: SubmitPostInput
     weak var coordinator: SubmitPostCoordinatorDelegate?
     

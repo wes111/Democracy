@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UsernameOnboardingInputView<ViewModel: UsernameInputViewModel>: View {
     @ObservedObject var viewModel: ViewModel
-    @FocusState private var focusedField: ViewModel.Field.FieldCollection?
+    @FocusState private var focusedField: ViewModel.Field?
     @State private var isFirstAppear = true
     
     var body: some View {
@@ -20,7 +20,7 @@ struct UsernameOnboardingInputView<ViewModel: UsernameInputViewModel>: View {
             textFieldStyle: UsernameTextFieldStyle(
                 username: $viewModel.text,
                 focusedField: $focusedField,
-                textErrors: viewModel.textErrors
+                field: .username
             )
         )
         .onAppear {

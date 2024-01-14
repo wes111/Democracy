@@ -9,13 +9,13 @@ import Factory
 import Foundation
 
 final class PostTitleViewModel: UserTextInputViewModel {
-    typealias Field = PostTitleValidator
-    
     @Published var isShowingProgress: Bool = false
     @Published var text: String = ""
-    @Published var textErrors: [Field.Requirement] = []
+    @Published var textErrors: [Requirement] = []
     @Published var alertModel: NewAlertModel?
     
+    typealias Requirement = NoneRequirement
+    let field = SubmitPostField.title
     private let submitPostInput = SubmitPostInput()
     private weak var coordinator: SubmitPostCoordinatorDelegate?
     let skipAction: (() -> Void)? = nil

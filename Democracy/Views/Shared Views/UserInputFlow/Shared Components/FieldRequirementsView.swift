@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct FieldRequirementsView<Requirement: InputRequirement>: View {
-    let allPossibleErrors: [Requirement]
     let text: String
     let currentInputErrors: [Requirement]
     
     var body: some View {
         VStack(alignment: .leading, spacing: ViewConstants.extraSmallElementSpacing) {
-            ForEach(allPossibleErrors, id: \.self) { error in
+            ForEach(allRequirements, id: \.self) { error in
                 if text.isEmpty {
                     requirementLabel(
                         text: error.descriptionText,
@@ -49,12 +48,16 @@ struct FieldRequirementsView<Requirement: InputRequirement>: View {
         }
         .font(.system(.caption, weight: .light))
     }
+    
+    var allRequirements: [Requirement] {
+        Requirement.allCases as! [Requirement]
+    }
 }
 
 // MARK: - Preview
 #Preview {
-    FieldRequirementsView<UsernameRequirement>(
-        allPossibleErrors: [UsernameValidator.Requirement.length],
+    FieldRequirementsView(
         text: "Hello World",
-        currentInputErrors: [UsernameValidator.Requirement.length])
+        currentInputErrors: [EmailRequirement.invalidEmail]
+    )
 }

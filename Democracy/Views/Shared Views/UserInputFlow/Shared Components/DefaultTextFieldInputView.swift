@@ -9,13 +9,13 @@ import SwiftUI
 
 struct DefaultTextFieldInputView<ViewModel: UserTextInputViewModel, Style: TextFieldStyle>: View {
     @ObservedObject var viewModel: ViewModel
-    @FocusState.Binding var focusedField: ViewModel.Field.FieldCollection?
+    @FocusState.Binding var focusedField: ViewModel.Field?
     let textFieldStyle: Style
     let shouldOverrideOnAppear: Bool
     
     init(
         viewModel: ViewModel,
-        focusedField: FocusState<ViewModel.Field.FieldCollection?>.Binding,
+        focusedField: FocusState<ViewModel.Field?>.Binding,
         shouldOverrideOnAppear: Bool = false,
         textFieldStyle: Style
     ) {
@@ -45,6 +45,7 @@ private extension DefaultTextFieldInputView {
             prompt: Text(viewModel.fieldTitle).foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(textFieldStyle)
+        .requirements(text: viewModel.text, textErrors: viewModel.textErrors)
     }
 }
 

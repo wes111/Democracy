@@ -10,12 +10,12 @@ import SwiftUI
 struct UserTextInputView<ViewModel: UserTextInputViewModel, Content: View>: View {
     @ObservedObject var viewModel: ViewModel
     @ViewBuilder let content: Content
-    @FocusState.Binding var focusedField: ViewModel.Field.FieldCollection?
+    @FocusState.Binding var focusedField: ViewModel.Field?
     let shouldOverrideOnAppear: Bool
     
     init(
         viewModel: ViewModel,
-        focusedField: FocusState<ViewModel.Field.FieldCollection?>.Binding,
+        focusedField: FocusState<ViewModel.Field?>.Binding,
         shouldOverrideOnAppear: Bool = false,
         @ViewBuilder content: () -> Content
     ) {
@@ -77,7 +77,7 @@ private extension UserTextInputView {
         .textFieldStyle(EmailTextFieldStyle(
             email: .constant("Email Text"),
             focusedField: $focusedField,
-            textErrors: EmailValidator.Requirement.allCases
+            field: OnboardingInputField.email
         ))
     }
 }

@@ -12,9 +12,11 @@ struct PostBodyView: View {
     @FocusState private var focusedField: SubmitPostField?
     
     var body: some View {
-        UserTextInputView(viewModel: viewModel, focusedField: $focusedField) {
-            field
-        }
+        UserTextInputView(
+            viewModel: viewModel,
+            focusedField: $focusedField) {
+                field
+            }
     }
 }
 
@@ -23,7 +25,7 @@ private extension PostBodyView {
     var field: some View {
         TextEditor(text: $viewModel.text)
             .defaultStyle(
-                input: PostBodyValidator.self,
+                field: SubmitPostField.body,
                 text: $viewModel.text,
                 focusedField: $focusedField
             )

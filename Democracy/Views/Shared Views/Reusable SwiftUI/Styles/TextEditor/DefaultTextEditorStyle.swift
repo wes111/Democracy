@@ -11,22 +11,21 @@ import SwiftUI
 extension TextEditor {
     private static let minFrameHeight: CGFloat = 200.0
     
-    func defaultStyle<Input: InputValidator>(
-        input: Input.Type,
+    func defaultStyle<Field: InputField>(
+        field: Field,
         text: Binding<String>,
-        focusedField: FocusState<Input.FieldCollection?>.Binding
+        focusedField: FocusState<Field?>.Binding
     ) -> some View {
         GeometryReader { geometry in
             self
                 .standardTextInputAppearance(
-                    input: Input.self,
                     text: text,
                     focusedField: focusedField,
-                    shouldTrimWhileTyping: false,
-                    requirements: .none // Currently none, but could change.
+                    field: field,
+                    shouldTrimWhileTyping: false
                 )
                 .scrollContentBackground(.hidden)
-                .cornerRadius(10)
+                .cornerRadius(ViewConstants.cornerRadius)
                 .frame(
                     minHeight: Self.minFrameHeight,
                     maxHeight: max(Self.minFrameHeight, geometry.size.height)

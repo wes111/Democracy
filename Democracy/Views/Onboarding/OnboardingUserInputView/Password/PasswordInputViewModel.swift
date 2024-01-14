@@ -9,17 +9,17 @@ import Factory
 import Foundation
 
 final class PasswordInputViewModel: UserTextInputViewModel {
-    typealias Field = PasswordValidator
-    
     @Injected(\.accountService) private var accountService
     @Published var text: String = ""
-    @Published var textErrors: [Field.Requirement] = []
+    @Published var textErrors: [Requirement] = []
     @Published var alertModel: NewAlertModel?
     @Published var isShowingProgress: Bool = false
     
+    typealias Requirement = PasswordRequirement
     private var onboardingInput: OnboardingInput
     private weak var coordinator: OnboardingCoordinatorDelegate?
     let skipAction: (() -> Void)? = nil
+    let field = OnboardingInputField.password
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator

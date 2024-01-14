@@ -7,23 +7,19 @@
 
 import SwiftUI
 
-struct LinkTextFieldStyle: TextFieldStyle {
+struct LinkTextFieldStyle<Field: InputField>: TextFieldStyle {
     @Binding var link: String
-    @FocusState.Binding var focusedField: PostPrimaryLinkValidator.FieldCollection?
-    var textErrors: [PostPrimaryLinkValidator.Requirement]
+    @FocusState.Binding var focusedField: Field?
+    let field: Field
     
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {
         configuration
             .keyboardType(.URL)
             .standardTextInputAppearance(
-                input: PostPrimaryLinkValidator.self,
                 text: $link,
                 focusedField: $focusedField,
-                requirements: .some(
-                    allPossibleErrors: PostPrimaryLinkValidator.Requirement.allCases,
-                    textErrors: textErrors
-                )
+                field: field
             )
     }
 }
@@ -39,9 +35,9 @@ struct LinkTextFieldStyle: TextFieldStyle {
                   prompt: Text("Link").foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(LinkTextFieldStyle(
-            link: .constant("Link Text"),
+            link: .constant("Link"),
             focusedField: $focusedField,
-            textErrors: PostPrimaryLinkValidator.Requirement.allCases
+            field: SubmitPostField.primaryLink
         ))
         .padding()
     }

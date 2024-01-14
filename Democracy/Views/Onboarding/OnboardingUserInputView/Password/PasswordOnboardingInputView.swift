@@ -26,17 +26,21 @@ struct PasswordOnboardingInputView: View {
 extension PasswordOnboardingInputView {
     
     var field: some View {
-        CustomSecureField(secureText: $viewModel.text, loginField: $focusedField, isNewPassword: true)
-            .requirements(
-                text: viewModel.text,
-                allPossibleErrors: viewModel.allErrors,
-                textErrors: viewModel.textErrors
-            )
-            .focused($focusedField, equals: viewModel.field)
-            .submitLabel(.next)
-            .onTapGesture {
-                focusedField = .password
-            }
+        CustomSecureField(
+            secureText: $viewModel.text,
+            loginField: $focusedField,
+            isNewPassword: true,
+            field: .password
+        )
+        .requirements(
+            text: viewModel.text,
+            textErrors: viewModel.textErrors
+        )
+        .focused($focusedField, equals: viewModel.field)
+        .submitLabel(.next)
+        .onTapGesture {
+            focusedField = .password
+        }
     }
 }
 

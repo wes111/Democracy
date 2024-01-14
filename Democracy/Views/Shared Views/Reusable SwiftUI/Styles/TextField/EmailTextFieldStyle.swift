@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct EmailTextFieldStyle: TextFieldStyle {
+struct EmailTextFieldStyle<Field: InputField>: TextFieldStyle {
     @Binding var email: String
-    @FocusState.Binding var focusedField: EmailValidator.FieldCollection?
-    var textErrors: [EmailValidator.Requirement]
+    @FocusState.Binding var focusedField: Field?
+    let field: Field
     
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {
@@ -18,14 +18,11 @@ struct EmailTextFieldStyle: TextFieldStyle {
             .keyboardType(.emailAddress)
             .textContentType(.emailAddress)
             .standardTextInputAppearance(
-                input: EmailValidator.self,
                 text: $email,
                 focusedField: $focusedField,
-                requirements: .some(
-                    allPossibleErrors: EmailValidator.Requirement.allCases,
-                    textErrors: textErrors
-                )
+                field: field
             )
+        
     }
 }
 
@@ -41,7 +38,7 @@ struct EmailTextFieldStyle: TextFieldStyle {
         .textFieldStyle(EmailTextFieldStyle(
             email: .constant("Email"),
             focusedField: $focusedField,
-            textErrors: [.invalidEmail]
+            field: OnboardingInputField.email
         ))
     }
 }

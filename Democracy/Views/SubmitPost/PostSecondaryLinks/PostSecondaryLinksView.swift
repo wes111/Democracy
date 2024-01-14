@@ -40,7 +40,7 @@ private extension PostSecondaryLinksView {
         .textFieldStyle(LinkTextFieldStyle(
             link: $viewModel.text,
             focusedField: $focusedField,
-            textErrors: viewModel.textErrors
+            field: .secondaryLinks
         ))
     }
 }

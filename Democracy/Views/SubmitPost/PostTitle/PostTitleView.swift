@@ -18,7 +18,7 @@ struct PostTitleView<ViewModel: PostTitleViewModel>: View {
             textFieldStyle: TitleTextFieldStyle(
                 title: $viewModel.text,
                 focusedField: $focusedField,
-                textErrors: viewModel.textErrors
+                field: .title
             )
         )
     }

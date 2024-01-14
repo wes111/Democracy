@@ -18,7 +18,7 @@ struct PostPrimaryLinkView<ViewModel: PostPrimaryLinkViewModel>: View {
             textFieldStyle: LinkTextFieldStyle(
                 link: $viewModel.text,
                 focusedField: $focusedField,
-                textErrors: viewModel.textErrors
+                field: .primaryLink
             )
         )
     }

@@ -7,23 +7,20 @@
 
 import SwiftUI
 
-struct TitleTextFieldStyle: TextFieldStyle {
+struct TitleTextFieldStyle<Field: InputField>: TextFieldStyle {
     @Binding var title: String
-    @FocusState.Binding var focusedField: PostTitleValidator.FieldCollection?
-    var textErrors: [PostTitleValidator.Requirement]
+    @FocusState.Binding var focusedField: Field?
+    let field: Field
     
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {
         configuration
             .keyboardType(.default)
             .standardTextInputAppearance(
-                input: PostTitleValidator.self,
                 text: $title,
                 focusedField: $focusedField,
-                requirements: .some(
-                    allPossibleErrors: PostTitleValidator.Requirement.allCases,
-                    textErrors: textErrors
-                )
+                field: field,
+                shouldTrimWhileTyping: false
             )
     }
 }
@@ -38,9 +35,9 @@ struct TitleTextFieldStyle: TextFieldStyle {
                   prompt: Text("Title").foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(TitleTextFieldStyle(
-            title: .constant("Title Text"),
+            title: .constant("Title"),
             focusedField: $focusedField,
-            textErrors: PostTitleValidator.Requirement.allCases
+            field: SubmitPostField.title
         ))
         .padding()
     }

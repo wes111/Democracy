@@ -2,12 +2,12 @@
 //  EmptyRequirement.swift
 //  Democracy
 //
-//  Created by Wesley Luntsford on 12/19/23.
+//  Created by Wesley Luntsford on 1/14/24.
 //
 
 import Foundation
 
-enum EmptyRequirement: InputRequirement {
+enum NoneRequirement: InputRequirement {
     var descriptionText: String {
         ""
     }

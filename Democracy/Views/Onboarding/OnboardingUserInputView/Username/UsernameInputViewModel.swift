@@ -9,14 +9,14 @@ import Factory
 import Foundation
 
 final class UsernameInputViewModel: UserTextInputViewModel {
-    typealias Field = UsernameValidator
-    
     @Injected(\.accountService) private var accountService
     @Published var text: String = ""
-    @Published var textErrors: [Field.Requirement] = []
+    @Published var textErrors: [Requirement] = []
     @Published var alertModel: NewAlertModel?
     @Published var isShowingProgress: Bool = false
     
+    typealias Requirement = UsernameRequirement
+    let field = OnboardingInputField.username
     private var onboardingInput = OnboardingInput()
     private weak var coordinator: OnboardingCoordinatorDelegate?
     let skipAction: (() -> Void)? = nil

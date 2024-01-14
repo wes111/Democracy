@@ -7,25 +7,6 @@
 
 import SwiftUI
 
-enum LoginField {
-    case email, password
-}
-
-extension LoginField: PasswordCaseRepresentable {
-    var isPasswordCase: Bool {
-        switch self {
-        case .email:
-            false
-        case .password:
-            true
-        }
-    }
-    
-    static var passwordCase: LoginField {
-        .password
-    }
-}
-
 struct LoginView: View {
     @StateObject private var viewModel: LoginViewModel
     @FocusState private var focusedField: LoginField?
@@ -42,7 +23,11 @@ struct LoginView: View {
                 focusedField = nil
             }
             .alert(item: $viewModel.alert) { alert in
-                Alert(title: Text(alert.title), message: Text(alert.message), dismissButton: .cancel())
+                Alert(
+                    title: Text(alert.title),
+                    message: Text(alert.description),
+                    dismissButton: .cancel()
+                )
             }
             .onReceive(keyboardPublisher) { isVisible in
                 startKeyboardVisibilityDidChangeTask(isVisible: isVisible)
@@ -74,7 +59,7 @@ extension LoginView {
                 VStack {
                     Spacer()
                     if viewModel.isShowingProgress {
-                        progressView
+                        ProgressView()
                     }
                     Spacer()
                     createAccountButton
@@ -87,12 +72,6 @@ extension LoginView {
         }
     }
     
-    var progressView: some View {
-        ProgressView()
-            .controlSize(.large)
-            .tint(.secondaryText)
-    }
-    
     var logoView: some View {
         Image("BMW")
             .resizable()
@@ -101,15 +80,16 @@ extension LoginView {
     }
     
     var emailField: some View {
-        TextField("Email", text: $viewModel.email,
-                  prompt: Text("Email").foregroundColor(.tertiaryBackground)
+        TextField(
+            "Email",
+            text: $viewModel.email,
+            prompt: Text("Email").foregroundColor(.tertiaryBackground)
         )
-        // TODO: ...
-//        .textFieldStyle(EmailTextFieldStyle(
-//            email: $viewModel.email,
-//            focusedField: $focusedField,
-//            textErrors: [] // Don't display errors to user when logging in.
-//        ))
+        .textFieldStyle(EmailTextFieldStyle(
+            email: $viewModel.email,
+            focusedField: $focusedField,
+            field: LoginField.email
+        ))
         .onTapGesture {
             focusedField = .email
         }
@@ -121,15 +101,20 @@ extension LoginView {
     }
     
     var passwordField: some View {
-        CustomSecureField(secureText: $viewModel.password, loginField: $focusedField, isNewPassword: false)
-            .focused($focusedField, equals: .password)
-            .submitLabel(.go)
-            .onSubmit {
-                performAsnycTask(
-                    action: viewModel.login,
-                    isShowingProgress: $viewModel.isShowingProgress
-                )
-            }
+        CustomSecureField(
+            secureText: $viewModel.password,
+            loginField: $focusedField,
+            isNewPassword: false,
+            field: .password
+        )
+        .focused($focusedField, equals: .password)
+        .submitLabel(.go)
+        .onSubmit {
+            performAsnycTask(
+                action: viewModel.login,
+                isShowingProgress: $viewModel.isShowingProgress
+            )
+        }
     }
     
     var loginButton: some View {

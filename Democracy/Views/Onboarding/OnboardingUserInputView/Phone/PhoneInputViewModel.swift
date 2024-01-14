@@ -9,14 +9,14 @@ import Factory
 import Foundation
 
 final class PhoneInputViewModel: UserTextInputViewModel {
-    typealias Field = PhoneValidator
-    
     @Injected(\.accountService) private var accountService
     @Published var text: String = ""
-    @Published var textErrors: [Field.Requirement] = []
+    @Published var textErrors: [Requirement] = []
     @Published var alertModel: NewAlertModel?
     @Published var isShowingProgress: Bool = false
     
+    typealias Requirement = PhoneRequirement
+    let field = OnboardingInputField.phone
     private var onboardingInput: OnboardingInput
     private weak var coordinator: OnboardingCoordinatorDelegate?
     
@@ -48,7 +48,7 @@ extension PhoneInputViewModel {
             guard field.fullyValid(input: text) else {
                 return presentInvalidInputAlert()
             }
-            guard let phoneBaseInt = Int(PhoneTextFieldStyle.format(with: "XXXXXXXXXX", phone: text)) else {
+            guard let phoneBaseInt = Int(PhoneFormatter.format(with: "XXXXXXXXXX", phone: text)) else {
                 return // TODO: Throw an error?
             }
             let phoneNumber = PhoneNumber(base: phoneBaseInt)

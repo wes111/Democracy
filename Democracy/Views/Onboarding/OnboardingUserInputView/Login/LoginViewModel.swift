@@ -9,7 +9,7 @@ import Combine
 import Factory
 import Foundation
 
-enum LoginAlert: Identifiable {
+enum LoginAlert: AlertModelProtocol {
     case loginError
     
     var id: String {
@@ -18,13 +18,15 @@ enum LoginAlert: Identifiable {
     
     var title: String {
         switch self {
-        case .loginError: return "Login Error"
+        case .loginError:
+            "Login Error"
         }
     }
     
-    var message: String {
+    var description: String {
         switch self {
-        case .loginError: return "Please try again later"
+        case .loginError:
+            "Please try again later"
         }
     }
 }
@@ -38,7 +40,7 @@ final class LoginViewModel: ObservableObject {
     @Injected(\.accountService) private var accountService
     @Published var password = ""
     @Published var email = ""
-    @Published var alert: LoginAlert?
+    @Published var alert: NewAlertModel?
     @Published var isShowingProgress = false
     
     var bob = Set<AnyCancellable>()
@@ -68,7 +70,7 @@ extension LoginViewModel {
             try await accountService.login(email: email, password: password)
         } catch {
             print(error.localizedDescription)
-            alert = .loginError
+            alert = LoginAlert.loginError.toNewAlertModel()
         }
     }
 }

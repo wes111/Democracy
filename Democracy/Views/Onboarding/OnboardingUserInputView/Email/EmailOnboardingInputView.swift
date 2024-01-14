@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EmailOnboardingInputView<ViewModel: EmailInputViewModel>: View {
     @ObservedObject var viewModel: ViewModel
-    @FocusState private var focusedField: ViewModel.Field.FieldCollection?
+    @FocusState private var focusedField: ViewModel.Field?
     
     var body: some View {
         DefaultTextFieldInputView(
@@ -18,7 +18,7 @@ struct EmailOnboardingInputView<ViewModel: EmailInputViewModel>: View {
             textFieldStyle: EmailTextFieldStyle(
                 email: $viewModel.text,
                 focusedField: $focusedField,
-                textErrors: viewModel.textErrors
+                field: .email
             )
         )
     }

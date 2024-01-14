@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct UsernameTextFieldStyle: TextFieldStyle {
+struct UsernameTextFieldStyle<Field: InputField>: TextFieldStyle {
     @Binding var username: String
-    @FocusState.Binding var focusedField: UsernameValidator.FieldCollection?
-    var textErrors: [UsernameValidator.Requirement]
+    @FocusState.Binding var focusedField: Field?
+    let field: Field
     
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {
@@ -18,13 +18,10 @@ struct UsernameTextFieldStyle: TextFieldStyle {
             .keyboardType(.default)
             .textContentType(.username)
             .standardTextInputAppearance(
-                input: UsernameValidator.self,
                 text: $username,
                 focusedField: $focusedField,
-                requirements: .some(
-                    allPossibleErrors: UsernameValidator.Requirement.allCases,
-                    textErrors: textErrors
-                ))
+                field: field
+            )
     }
 }
 
@@ -38,9 +35,9 @@ struct UsernameTextFieldStyle: TextFieldStyle {
                   prompt: Text("Username").foregroundColor(.tertiaryBackground)
         )
         .textFieldStyle(UsernameTextFieldStyle(
-            username: .constant("Username Text"),
+            username: .constant("Username"),
             focusedField: $focusedField,
-            textErrors: UsernameValidator.Requirement.allCases
+            field: OnboardingInputField.username
         ))
     }
 }

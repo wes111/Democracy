@@ -10,14 +10,14 @@ import Foundation
 
 // TODO: The use of a single protocol here exposes too much to the view.
 protocol UserTextInputViewModel: UserInputViewModel {
-    associatedtype Field: InputValidator
+    associatedtype Requirement: InputRequirement
+    associatedtype Field: InputField
     
     var text: String { get set }
-    var field: Field.FieldCollection { get }
+    var field: Field { get }
     var fieldTitle: String { get }
     var maxCharacterCount: Int { get }
-    var textErrors: [Field.Requirement] { get }
-    var allErrors: [Field.Requirement] { get }
+    var textErrors: [Requirement] { get }
     
     func close()
     func goBack()
@@ -26,14 +26,6 @@ protocol UserTextInputViewModel: UserInputViewModel {
 }
 
 extension UserTextInputViewModel {
-    
-    var allErrors: [Field.Requirement] {
-        Field.Requirement.allCases as! [Field.Requirement]
-    }
-    
-    var field: Field.FieldCollection {
-        Field.field
-    }
     
     var title: String {
         field.title
@@ -54,7 +46,6 @@ extension UserTextInputViewModel {
     var canSubmit: Bool {
         field.fullyValid(input: text)
     }
-    
     
     @MainActor
     func presentGenericAlert() {

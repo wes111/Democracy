@@ -8,16 +8,16 @@
 import Foundation
 
 final class PostBodyViewModel: UserTextInputViewModel {
-    typealias Field = PostBodyValidator
-    
     @Published var isShowingProgress: Bool = false
     @Published var text: String = ""
-    @Published var textErrors: [Field.Requirement] = []
+    @Published var textErrors: [Requirement] = []
     @Published var alertModel: NewAlertModel?
     
+    typealias Requirement = NoneRequirement
     private let submitPostInput: SubmitPostInput
     private weak var coordinator: SubmitPostCoordinatorDelegate?
     let skipAction: (() -> Void)? = nil // Not skippable.
+    let field = SubmitPostField.body
     
     init(coordinator: SubmitPostCoordinatorDelegate, submitPostInput: SubmitPostInput) {
         self.coordinator = coordinator

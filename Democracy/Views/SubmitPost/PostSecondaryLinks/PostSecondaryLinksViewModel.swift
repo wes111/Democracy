@@ -9,15 +9,15 @@ import Factory
 import Foundation
 
 final class PostSecondaryLinksViewModel: UserTextInputViewModel {
-    typealias Field = PostSecondaryLinkValidator
-    
     @Injected(\.richLinkService) private var richLinkService
     @Published var isShowingProgress: Bool = false
     @Published var alertModel: NewAlertModel?
     @Published var text: String = ""
     @Published var addedSecondaryLinks: [String] = []
-    @Published var textErrors: [Field.Requirement] = []
+    @Published var textErrors: [Requirement] = []
     
+    typealias Requirement = PostLinkRequirement
+    let field = SubmitPostField.secondaryLinks
     private let submitPostInput: SubmitPostInput
     private weak var coordinator: SubmitPostCoordinatorDelegate?
     

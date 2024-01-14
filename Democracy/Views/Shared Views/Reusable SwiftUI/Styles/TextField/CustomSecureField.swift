@@ -7,18 +7,19 @@
 
 import SwiftUI
 
-protocol PasswordCaseRepresentable: Hashable {
+protocol PasswordCaseRepresentable: InputField {
     var isPasswordCase: Bool { get }
     static var passwordCase: Self { get }
 }
 
-struct CustomSecureField<T: PasswordCaseRepresentable>: View {
+struct CustomSecureField<Field: PasswordCaseRepresentable>: View {
     @Binding var secureText: String
-    @FocusState.Binding var loginField: T?
+    @FocusState.Binding var loginField: Field?
     @FocusState private var focusedField: SecureFocusField?
     @State private var isHidden = true
     @State private var didChangeFromVisibleToHidden = false
     let isNewPassword: Bool
+    let field: Field
     
     var body: some View {
         HStack {
@@ -30,20 +31,18 @@ struct CustomSecureField<T: PasswordCaseRepresentable>: View {
                 .keyboardType(.default)
                 .textContentType(isNewPassword ? .newPassword : .password)
                 .onTapGesture {
-                    loginField = T.passwordCase
+                    loginField = Field.passwordCase
                     focusedField = isHidden ? .hidden : .visible
                 }
             }
             updateVisibilityButton
         }
-        // Prevent button from bouncing incorrectly on keyboard dismiss.
-        .geometryGroup()
-//        .standardTextInputAppearance(
-//            input: PasswordValidator.self,
-//            text: $secureText,
-//            focusedField: $loginField,
-//            requirements: PasswordValidator.Requirement.allCases
-//        )
+        .geometryGroup() // Prevent button from bouncing incorrectly on keyboard dismiss.
+        .standardTextInputAppearance(
+            text: $secureText,
+            focusedField: $loginField,
+            field: Field.passwordCase
+        )
         .onChange(of: loginField) { _, newValue in
             didChangeFromVisibleToHidden = false
             guard let newValue, newValue.isPasswordCase else { return }
@@ -129,17 +128,15 @@ private extension CustomSecureField {
 
 // MARK: - Preview
 #Preview {
-    
-    enum PreviewNameSpace {
-        @FocusState static var focus: LoginField?
-    }
+    @FocusState var focusedField: OnboardingInputField?
     
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         CustomSecureField(
             secureText: .constant("Hello World"),
-            loginField: PreviewNameSpace.$focus,
-            isNewPassword: true
+            loginField: $focusedField,
+            isNewPassword: false,
+            field: OnboardingInputField.password
         )
         .padding()
     }
