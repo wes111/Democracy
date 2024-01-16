@@ -48,6 +48,10 @@ final class PostSecondaryLinksViewModel: UserTextInputViewModel {
 // MARK: - Computed Properties
 extension PostSecondaryLinksViewModel {
     var canSubmit: Bool {
+        !addedSecondaryLinks.isEmpty
+    }
+    
+    var canAddLink: Bool {
         field.fullyValid(input: text)
     }
 }
@@ -70,13 +74,16 @@ extension PostSecondaryLinksViewModel {
             return presentInvalidInputAlert()
         }
         
+        guard !addedSecondaryLinks.contains(text) else {
+            return presentDuplicateLinkAlert()
+        }
+        
         do {
             try await fetchLinkMetadata(for: text)
         } catch {
             print(error.localizedDescription)
             return alertModel = SubmitPostAlert.failedFetchingLinkMetadata.toNewAlertModel()
         }
-        
         addedSecondaryLinks.append(text)
         text = ""
     }
@@ -97,6 +104,13 @@ extension PostSecondaryLinksViewModel {
     func onAppear() {
         addedSecondaryLinks = submitPostInput.secondaryLinks
     }
+    
+    func removeLink(_ link: String) {
+        guard let index = addedSecondaryLinks.firstIndex(where: { $0 == link }) else {
+            return
+        }
+        addedSecondaryLinks.remove(at: index)
+    }
 }
 
 // MARK: - Private Methods
@@ -109,5 +123,9 @@ private extension PostSecondaryLinksViewModel {
         }
         let bob = try await richLinkService.getMetadata(for: url)
         print(bob)
+    }
+    
+    func presentDuplicateLinkAlert() {
+        alertModel = SubmitPostAlert.duplicateLink.toNewAlertModel()
     }
 }

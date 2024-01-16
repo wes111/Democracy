@@ -129,7 +129,7 @@ extension LoginView {
             showProgressView: $viewModel.isShowingProgress
         )
         .buttonStyle(PrimaryButtonStyle())
-        .disabled(viewModel.isShowingProgress)
+        .isDisabledWithAnimation(isDisabled: viewModel.isShowingProgress)
     }
     
     var forgotPasswordButton: some View {

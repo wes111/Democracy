@@ -108,7 +108,7 @@ extension CreateCommunityView {
             Text("Submit")
         }
         .buttonStyle(PrimaryButtonStyle())
-        .disabled(viewModel.isLoading)
+        .isDisabledWithAnimation(isDisabled: viewModel.isLoading)
     }
     
     var adultContentCheckBox: some View {

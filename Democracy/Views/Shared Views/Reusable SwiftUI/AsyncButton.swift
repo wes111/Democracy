@@ -42,7 +42,8 @@ struct AsyncButton<Label: View>: View {
                 label()
             }
         )
-        .disabled(isDisabled || showProgressView)
+        .isDisabledWithAnimation(isDisabled: isDisabled || showProgressView)
+        // .disabled(isDisabled || showProgressView)
     }
 }
 

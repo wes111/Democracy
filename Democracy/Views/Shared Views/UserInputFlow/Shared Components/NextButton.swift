@@ -19,7 +19,7 @@ struct NextButton: View {
             showProgressView: $isShowingProgress
         )
         .buttonStyle(PrimaryButtonStyle())
-        .disabled(isDisabled)
+        .isDisabledWithAnimation(isDisabled: isDisabled)
     }
 }
 
