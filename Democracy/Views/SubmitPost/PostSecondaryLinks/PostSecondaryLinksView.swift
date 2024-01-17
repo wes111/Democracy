@@ -14,7 +14,7 @@ struct PostSecondaryLinksView<ViewModel: PostSecondaryLinksViewModel>: View {
     
     var body: some View {
         UserInputScreen(viewModel: viewModel) {
-            todoView
+            primaryContent
         }
         .onAppear {
             focusedField = viewModel.field
@@ -33,20 +33,40 @@ struct PostSecondaryLinksView<ViewModel: PostSecondaryLinksViewModel>: View {
 
 // MARK: - Subviews
 private extension PostSecondaryLinksView {
-    var todoView: some View {
-        VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-            field
-            addLinkButton
-            
+    var primaryContent: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+                field
+                addLinkButton
+            }
+            addedLinksScrollView
+        }
+    }
+    
+    var addedLinksScrollView: some View {
+        ScrollViewReader { proxy in
             ScrollView(showsIndicators: true) {
-                VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
+                VStack(alignment: .leading, spacing: 0) {
                     ForEach(addedSecondaryLinks, id: \.self) { link in
                         addedLinkView(link)
+                            .padding(.bottom, ViewConstants.smallElementSpacing)
+                            .id(link)
                     }
+                    // Hack to get ScrollViewReader proxy to work as expected.
+                    Spacer().frame(height: ViewConstants.largeElementSpacing).id(1)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .onChange(of: addedSecondaryLinks, { oldValue, newValue in
+                    if newValue.count > oldValue.count {
+                        withAnimation {
+                            proxy.scrollTo(addedSecondaryLinks.last, anchor: .bottom)
+                        }
+                    }
+                })
             }
         }
+        .contentMargins(.top, ViewConstants.elementSpacing, for: .scrollContent)
+        .padding(.bottom, -ViewConstants.elementSpacing)
     }
     
     func addedLinkView(_ link: String) -> some View {

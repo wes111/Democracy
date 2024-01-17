@@ -32,9 +32,12 @@ struct AsyncButton<Label: View>: View {
                     
                     await action()
                     progressViewTask?.cancel()
-                    withAnimation {
-                        isDisabled = false
-                        showProgressView = false
+                    Task { // Fixes bug where progressView is not dismissed.
+                        try await Task.sleep(nanoseconds: 150_000)
+                        withAnimation {
+                            isDisabled = false
+                            showProgressView = false
+                        }
                     }
                 }
             },
@@ -43,7 +46,6 @@ struct AsyncButton<Label: View>: View {
             }
         )
         .isDisabledWithAnimation(isDisabled: isDisabled || showProgressView)
-        // .disabled(isDisabled || showProgressView)
     }
 }
 

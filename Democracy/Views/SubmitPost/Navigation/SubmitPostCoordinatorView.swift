@@ -39,6 +39,9 @@ struct SubmitPostCoordinatorView: View {
             
         case .goToPostSuccess(let viewModel):
             PostSuccessView(viewModel: viewModel)
+            
+        case .goToPostSeconaryLinks(let viewModel):
+            PostSecondaryLinksView(viewModel: viewModel)
         }
     }
 }
