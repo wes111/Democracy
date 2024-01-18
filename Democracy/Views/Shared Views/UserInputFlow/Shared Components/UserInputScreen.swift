@@ -56,11 +56,7 @@ private extension UserInputScreen {
                     content
                         .titledElement(title: viewModel.subtitle)
                     
-                    nextButton
-                    
-                    if let action = viewModel.skipAction {
-                        skipButton(action: action)
-                    }
+                    skipAndNextButtons
                 }
                 .padding(ViewConstants.screenPadding)
             }
@@ -70,6 +66,17 @@ private extension UserInputScreen {
                 CustomProgressView()
             }
         }
+    }
+    
+    var skipAndNextButtons: some View {
+        ZStack {
+            if let action = viewModel.skipAction, !viewModel.canSubmit {
+                skipButton(action: action)
+            } else {
+                nextButton
+            }
+        }
+        .animation(.easeInOut, value: viewModel.canSubmit)
     }
     
     func skipButton(action: @escaping () -> Void) -> some View {
