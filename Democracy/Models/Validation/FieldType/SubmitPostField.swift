@@ -28,7 +28,10 @@ enum SubmitPostField: InputField {
         case .title:
             "Create a title for your post."
         case .body:
-            "Add text content to your post."
+            """
+            Add text content to your post. Optionally, use markdown to add links, \
+            bold, italics, and more to your post
+            """
         case .primaryLink:
             """
             Add a primary link to your post with previewable content. If we are unable to fetch the metadata

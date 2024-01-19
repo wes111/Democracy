@@ -7,11 +7,16 @@
 
 import Foundation
 
+enum PostBodyTab: String, CaseIterable, Equatable {
+    case editor, preview
+}
+
 final class PostBodyViewModel: UserTextInputViewModel {
     @Published var isShowingProgress: Bool = false
     @Published var text: String = ""
     @Published var textErrors: [Requirement] = []
     @Published var alertModel: NewAlertModel?
+    @Published var selectedTab: PostBodyTab = .editor
     
     typealias Requirement = NoneRequirement
     private let submitPostInput: SubmitPostInput
@@ -33,6 +38,16 @@ final class PostBodyViewModel: UserTextInputViewModel {
     lazy var leadingButtons: [OnboardingTopButton] = {
         [.back]
     }()
+    
+    // https://forums.developer.apple.com/forums/thread/682957
+    var markdown: AttributedString {
+        (try? AttributedString(
+            markdown: text,
+            options: AttributedString.MarkdownParsingOptions(
+                interpretedSyntax: .inlineOnlyPreservingWhitespace
+            )
+        )) ?? .init()
+    }
 }
 
 // MARK: - Methods

@@ -264,6 +264,8 @@
 		EED4A53E29B971B700DDCCDA /* CommunityHomeFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A53D29B971B700DDCCDA /* CommunityHomeFeedViewModel.swift */; };
 		EED4A54029BAB3E800DDCCDA /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A53F29BAB3E800DDCCDA /* Comment.swift */; };
 		EED4A54329BAB60100DDCCDA /* Hashable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A54229BAB60100DDCCDA /* Hashable+Extensions.swift */; };
+		EEE464482B5A0E1600E5DBFC /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE464472B5A0E1600E5DBFC /* CustomPicker.swift */; };
+		EEE4644A2B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE464492B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift */; };
 		EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF83460299C6824001EEA5E /* DemocracyApp.swift */; };
 		EEF83463299C6824001EEA5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF83462299C6824001EEA5E /* ContentView.swift */; };
 		EEF83465299C6827001EEA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEF83464299C6827001EEA5E /* Assets.xcassets */; };
@@ -526,6 +528,8 @@
 		EED4A53D29B971B700DDCCDA /* CommunityHomeFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityHomeFeedViewModel.swift; sourceTree = "<group>"; };
 		EED4A53F29BAB3E800DDCCDA /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		EED4A54229BAB60100DDCCDA /* Hashable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hashable+Extensions.swift"; sourceTree = "<group>"; };
+		EEE464472B5A0E1600E5DBFC /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
+		EEE464492B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissKeyboardOnDragModifier.swift; sourceTree = "<group>"; };
 		EEF8345D299C6824001EEA5E /* Democracy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Democracy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF83460299C6824001EEA5E /* DemocracyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemocracyApp.swift; sourceTree = "<group>"; };
 		EEF83462299C6824001EEA5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -937,6 +941,7 @@
 				EE4988032B3325CB00AB7522 /* TrimWhiteSpaceCharactersModifier.swift */,
 				EE2B15D92B50C9340046D5FC /* TextInputRequirementsModifier.swift */,
 				EE2B15E72B5615E90046D5FC /* DisabledAnimationModifier.swift */,
+				EEE464492B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -944,6 +949,7 @@
 		EE78561C2AB7E51D0004B7E4 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
+				EEE464462B5A0E0300E5DBFC /* Picker */,
 				EE4987EA2B3085F500AB7522 /* TextEditor */,
 				EE78561D2AB7E5270004B7E4 /* Button */,
 				EE4DB8A32ACA69B700A6DC90 /* Label */,
@@ -1558,6 +1564,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		EEE464462B5A0E0300E5DBFC /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				EEE464472B5A0E1600E5DBFC /* CustomPicker.swift */,
+			);
+			name = Picker;
+			sourceTree = "<group>";
+		};
 		EEF83454299C6824001EEA5E = {
 			isa = PBXGroup;
 			children = (
@@ -1746,6 +1760,7 @@
 				EE11729B2A6F3D0300E529AF /* AlliedCommunityView.swift in Sources */,
 				EE936CAF2A789FB000D49271 /* UpdatesTabPath.swift in Sources */,
 				EE936CB32A78A03600D49271 /* EventsTabCoordinatorViewModel.swift in Sources */,
+				EEE464482B5A0E1600E5DBFC /* CustomPicker.swift in Sources */,
 				EE5D39EF2A2B9B4B00D0E312 /* TightLabelStyle.swift in Sources */,
 				EED4A51529AB1C7900DDCCDA /* HistoryTabMainViewModel.swift in Sources */,
 				EEF83473299C6A11001EEA5E /* Router.swift in Sources */,
@@ -1759,6 +1774,7 @@
 				EEB5AF802AE0DE7000310408 /* OnboardingInputField.swift in Sources */,
 				EED4A50D29AB18E400DDCCDA /* UpdatesTabMainViewModel.swift in Sources */,
 				EE7055562B1245A500E40A89 /* Repository.swift in Sources */,
+				EEE4644A2B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift in Sources */,
 				EE988AB02ADA07640057F9DE /* PhoneRequirement.swift in Sources */,
 				EE4DB8A82ACE455500A6DC90 /* EmailRequirement.swift in Sources */,
 				EED4A51329AB1C6F00DDCCDA /* HistoryTabMainView.swift in Sources */,

@@ -15,13 +15,31 @@ struct PostBodyView: View {
         UserTextInputView(
             viewModel: viewModel,
             focusedField: $focusedField) {
-                field
+                primaryContent
             }
     }
 }
 
 // MARK: - Subviews
 private extension PostBodyView {
+    
+    var primaryContent: some View {
+        VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+            picker
+            tabView
+        }
+    }
+    
+    var picker: some View {
+        CustomPicker(
+            title: "Picker",
+            selection: $viewModel.selectedTab) {
+                ForEach(PostBodyTab.allCases, id: \.self) { tab in
+                    Text(tab.rawValue.capitalized).tag(tab)
+                }
+            }
+    }
+    
     var field: some View {
         TextEditor(text: $viewModel.text)
             .defaultStyle(
@@ -29,6 +47,31 @@ private extension PostBodyView {
                 text: $viewModel.text,
                 focusedField: $focusedField
             )
+    }
+    
+    var userPreview: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+                Text(viewModel.markdown)
+                    .foregroundStyle(Color.tertiaryText)
+                    .lineLimit(nil)
+                    .padding(.horizontal, 22.5)
+                    .padding(.vertical, 25.5)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+    
+    var tabView: some View {
+        TabView(selection: $viewModel.selectedTab) {
+            field
+                .tag(PostBodyTab.editor)
+            
+            userPreview
+                .tag(PostBodyTab.preview)
+        }
+        .tabViewStyle(.page(indexDisplayMode: .never))
+        .animation(.easeOut(duration: 0.2), value: viewModel.selectedTab)
     }
 }
 
@@ -38,5 +81,7 @@ private extension PostBodyView {
         coordinator: SubmitPostCoordinator.preview,
         submitPostInput: .init()
     )
-    return PostBodyView(viewModel: viewModel)
+    return NavigationStack {
+        PostBodyView(viewModel: viewModel)
+    }
 }

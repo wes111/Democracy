@@ -45,9 +45,7 @@ struct UserTextInputView<ViewModel: UserTextInputViewModel, Content: View>: View
                 focusedField = viewModel.field
             }
         }
-        .onTapGesture {
-            focusedField = nil
-        }
+        .dismissKeyboardOnDrag()
     }
 }
 
