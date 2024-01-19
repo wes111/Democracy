@@ -21,6 +21,9 @@ struct PostPrimaryLinkView<ViewModel: PostPrimaryLinkViewModel>: View {
                 field: .primaryLink
             )
         )
+        .onAppear {
+            viewModel.onAppear()
+        }
     }
 }
 

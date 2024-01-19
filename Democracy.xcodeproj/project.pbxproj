@@ -26,8 +26,6 @@
 		EE2B15C52B4C3C6C0046D5FC /* PostSuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15C42B4C3C6C0046D5FC /* PostSuccessView.swift */; };
 		EE2B15C72B4C3C7D0046D5FC /* PostSuccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15C62B4C3C7D0046D5FC /* PostSuccessViewModel.swift */; };
 		EE2B15C92B4C3EA30046D5FC /* OnboardingCoordinator+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15C82B4C3EA30046D5FC /* OnboardingCoordinator+Preview.swift */; };
-		EE2B15CC2B4CE6E80046D5FC /* PostSecondaryLinksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15CB2B4CE6E80046D5FC /* PostSecondaryLinksViewModel.swift */; };
-		EE2B15CE2B4CE6FF0046D5FC /* PostSecondaryLinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15CD2B4CE6FF0046D5FC /* PostSecondaryLinksView.swift */; };
 		EE2B15D22B4D7F650046D5FC /* NextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15D12B4D7F650046D5FC /* NextButton.swift */; };
 		EE2B15D42B4D80C00046D5FC /* FieldRequirementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15D32B4D80C00046D5FC /* FieldRequirementsView.swift */; };
 		EE2B15D62B4D874B0046D5FC /* UserInputTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15D52B4D874B0046D5FC /* UserInputTitle.swift */; };
@@ -292,8 +290,6 @@
 		EE2B15C42B4C3C6C0046D5FC /* PostSuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSuccessView.swift; sourceTree = "<group>"; };
 		EE2B15C62B4C3C7D0046D5FC /* PostSuccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSuccessViewModel.swift; sourceTree = "<group>"; };
 		EE2B15C82B4C3EA30046D5FC /* OnboardingCoordinator+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnboardingCoordinator+Preview.swift"; sourceTree = "<group>"; };
-		EE2B15CB2B4CE6E80046D5FC /* PostSecondaryLinksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSecondaryLinksViewModel.swift; sourceTree = "<group>"; };
-		EE2B15CD2B4CE6FF0046D5FC /* PostSecondaryLinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSecondaryLinksView.swift; sourceTree = "<group>"; };
 		EE2B15D12B4D7F650046D5FC /* NextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButton.swift; sourceTree = "<group>"; };
 		EE2B15D32B4D80C00046D5FC /* FieldRequirementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldRequirementsView.swift; sourceTree = "<group>"; };
 		EE2B15D52B4D874B0046D5FC /* UserInputTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputTitle.swift; sourceTree = "<group>"; };
@@ -588,15 +584,6 @@
 				EE2B15C62B4C3C7D0046D5FC /* PostSuccessViewModel.swift */,
 			);
 			path = PostSuccess;
-			sourceTree = "<group>";
-		};
-		EE2B15CA2B4CE6D10046D5FC /* PostSecondaryLinks */ = {
-			isa = PBXGroup;
-			children = (
-				EE2B15CB2B4CE6E80046D5FC /* PostSecondaryLinksViewModel.swift */,
-				EE2B15CD2B4CE6FF0046D5FC /* PostSecondaryLinksView.swift */,
-			);
-			path = PostSecondaryLinks;
 			sourceTree = "<group>";
 		};
 		EE2B15D02B4D7F3D0046D5FC /* Shared Components */ = {
@@ -1082,7 +1069,6 @@
 				EE4987D42B2F8E0E00AB7522 /* PostTitle */,
 				EE4987E52B2F972800AB7522 /* PostPrimaryLink */,
 				EE4987D92B2F90F000AB7522 /* PostBody */,
-				EE2B15CA2B4CE6D10046D5FC /* PostSecondaryLinks */,
 				EEC61B5D2B40F41600F73509 /* PostCategory */,
 				EE4987E02B2F96F100AB7522 /* PostTags */,
 				EE2B15C32B4C3C510046D5FC /* PostSuccess */,
@@ -1731,7 +1717,6 @@
 				EE4987E72B2F977D00AB7522 /* PostPrimaryLinkViewModel.swift in Sources */,
 				EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */,
 				EE80D95B29E8EBD10000F8EF /* WebView.swift in Sources */,
-				EE2B15CE2B4CE6FF0046D5FC /* PostSecondaryLinksView.swift in Sources */,
 				EE4987E42B2F970F00AB7522 /* PostTagsViewModel.swift in Sources */,
 				EEB5AF912B017F0900310408 /* UserDefaultStorage.swift in Sources */,
 				EE2B15E42B54383B0046D5FC /* LoginField .swift in Sources */,
@@ -1815,7 +1800,6 @@
 				EE2B15E82B5615E90046D5FC /* DisabledAnimationModifier.swift in Sources */,
 				EE4988082B35D8BA00AB7522 /* OnboardingCoordinatorDelegate.swift in Sources */,
 				EE4988162B3F1E8F00AB7522 /* BackgroundGeometryView.swift in Sources */,
-				EE2B15CC2B4CE6E80046D5FC /* PostSecondaryLinksViewModel.swift in Sources */,
 				EED4A4FF29AA858600DDCCDA /* HistoryTabCoordinator.swift in Sources */,
 				EE45249F2A5CE39400C7A2DD /* RulesSection.swift in Sources */,
 				EED4A4F929AA855900DDCCDA /* EventsTabCoordinator.swift in Sources */,

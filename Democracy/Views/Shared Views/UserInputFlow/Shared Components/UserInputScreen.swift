@@ -76,6 +76,8 @@ private extension UserInputScreen {
                 nextButton
             }
         }
+        // Wait to draw the button until the view has properly placed the button.
+        .geometryGroup()
         .animation(.easeInOut, value: viewModel.canSubmit)
     }
     

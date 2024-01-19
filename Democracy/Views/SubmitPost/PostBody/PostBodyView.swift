@@ -17,6 +17,9 @@ struct PostBodyView: View {
             focusedField: $focusedField) {
                 primaryContent
             }
+            .onAppear {
+                viewModel.onAppear()
+            }
     }
 }
 
