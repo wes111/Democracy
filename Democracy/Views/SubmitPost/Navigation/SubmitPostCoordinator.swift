@@ -19,12 +19,8 @@ final class SubmitPostCoordinator: Coordinator {
         self.parentCoordinator = parentCoordinator
     }
     
-    lazy var createPostTitleViewModel: PostTitleViewModel = {
+    var createPostTitleViewModel: PostTitleViewModel {
         .init(coordinator: self)
-    }()
-    
-    deinit {
-        print()
     }
 }
 

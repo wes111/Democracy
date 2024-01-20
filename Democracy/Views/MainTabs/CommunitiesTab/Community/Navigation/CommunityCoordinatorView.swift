@@ -24,7 +24,13 @@ struct CommunityCoordinatorView: View {
                     createViewFromPath(path)
                 }
             }
-            .fullScreenCover(isPresented: $coordinator.isShowingCreatePostView) {
+        // TODO: This should be a fullScreenCover not popover.
+        // This temporarily fixes an iOS 17 memory leak.
+        // https://developer.apple.com/forums/thread/736239
+//            .fullScreenCover(isPresented: $coordinator.isShowingCreatePostView) {
+//                SubmitPostCoordinatorView(coordinator: .init(parentCoordinator: coordinator))
+//            }
+            .popover(isPresented: $coordinator.isShowingCreatePostView) {
                 SubmitPostCoordinatorView(coordinator: .init(parentCoordinator: coordinator))
             }
             .sheet(isPresented: $coordinator.isShowingWebView) {

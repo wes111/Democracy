@@ -25,14 +25,18 @@ final class PostTitleViewModel: UserTextInputViewModel {
         
         setupBindings()
     }
+}
+
+// MARK: - Computed Properties
+extension PostTitleViewModel {
     
-    lazy var trailingButtons: [OnboardingTopButton] = {
+    var trailingButtons: [OnboardingTopButton] {
         [.close(close)]
-    }()
+    }
     
-    lazy var leadingButtons: [OnboardingTopButton] = {
+    var leadingButtons: [OnboardingTopButton] {
         []
-    }()
+    }
 }
 
 // MARK: - Methods

@@ -31,13 +31,20 @@ final class PostBodyViewModel: UserTextInputViewModel {
         setupBindings()
     }
     
-    lazy var trailingButtons: [OnboardingTopButton] = {
+    deinit {
+        print()
+    }
+}
+
+// MARK: - Computed Properties
+extension PostBodyViewModel {
+    var trailingButtons: [OnboardingTopButton] {
         [.close(close)]
-    }()
+    }
     
-    lazy var leadingButtons: [OnboardingTopButton] = {
+    var leadingButtons: [OnboardingTopButton] {
         [.back]
-    }()
+    }
     
     // https://forums.developer.apple.com/forums/thread/682957
     var markdown: AttributedString {

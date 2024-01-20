@@ -29,19 +29,21 @@ final class PostPrimaryLinkViewModel: UserTextInputViewModel {
         
         setupBindings()
     }
-    
-    lazy var trailingButtons: [OnboardingTopButton] = {
+}
+
+// MARK: Computed Properties
+extension PostPrimaryLinkViewModel {
+    var trailingButtons: [OnboardingTopButton] {
         [.close(close)]
-    }()
+    }
     
-    lazy var leadingButtons: [OnboardingTopButton] = {
+    var leadingButtons: [OnboardingTopButton] {
         [.back]
-    }()
+    }
     
-    lazy var skipAction: (() -> Void)? = {{
-        self.submitPostInput.primaryLink = nil
-        self.coordinator?.didSubmitLink(input: self.submitPostInput)
-    }}()
+    var skipAction: (() -> Void)? {
+        skip
+    }
 }
 
 // MARK: - Methods
@@ -91,7 +93,11 @@ private extension PostPrimaryLinkViewModel {
         guard let url = URL(string: urlString) else {
             throw GenericError.defaultError
         }
-        let bob = try await richLinkService.getMetadata(for: url)
-        print(bob)
+        _ = try await richLinkService.getMetadata(for: url)
+    }
+    
+    func skip() {
+        submitPostInput.primaryLink = nil
+        coordinator?.didSubmitLink(input: submitPostInput)
     }
 }

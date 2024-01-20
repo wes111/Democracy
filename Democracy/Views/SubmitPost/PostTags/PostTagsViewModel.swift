@@ -30,20 +30,20 @@ final class PostTagsViewModel: UserInputViewModel {
         self.coordinator = coordinator
         self.submitPostInput = submitPostInput
     }
-    
-    lazy var leadingButtons: [OnboardingTopButton] = {
-        [.back]
-    }()
-    
-    lazy var trailingButtons: [OnboardingTopButton] = {
-        [.close(close)]
-    }()
 }
 
 // MARK: - Computed Properties
 extension PostTagsViewModel {
     var canSubmit: Bool {
         !selectedTags.isEmpty
+    }
+    
+    var leadingButtons: [OnboardingTopButton] {
+        [.back]
+    }
+    
+    var trailingButtons: [OnboardingTopButton] {
+        [.close(close)]
     }
 }
 

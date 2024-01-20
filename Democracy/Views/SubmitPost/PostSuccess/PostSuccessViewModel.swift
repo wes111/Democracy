@@ -13,16 +13,24 @@ final class PostSuccessViewModel: ObservableObject, Hashable {
     init(coordinator: SubmitPostCoordinator?) {
         self.coordinator = coordinator
     }
+}
+
+// MARK: - Computed Properties
+extension PostSuccessViewModel {
     
-    lazy var primaryButtonInfo: ButtonInfo = {
+    var primaryButtonInfo: ButtonInfo {
         .init(title: "Finish", action: close)
-    }()
+    }
+    
+    var trailingButtons: [OnboardingTopButton] {
+        [.close(close)]
+    }
+}
+
+// MARK: - Methods
+extension PostSuccessViewModel {
     
     func close() {
         coordinator?.close()
     }
-    
-    lazy var trailingButtons: [OnboardingTopButton] = {
-        [.close(close)]
-    }()
 }

@@ -27,13 +27,9 @@ final class PostCategoryViewModel: UserInputViewModel {
         self.submitPostInput = submitPostInput
     }
     
-    lazy var leadingButtons: [OnboardingTopButton] = {
-        [.back]
-    }()
-    
-    lazy var trailingButtons: [OnboardingTopButton] = {
-        [.close(close)]
-    }()
+    deinit {
+        print()
+    }
 }
 
 // MARK: - Computed Properties
@@ -41,6 +37,15 @@ extension PostCategoryViewModel {
     var canSubmit: Bool {
         selectedCategory != nil
     }
+    
+    var leadingButtons: [OnboardingTopButton] {
+        [.back]
+    }
+    
+    var trailingButtons: [OnboardingTopButton] {
+        [.close(close)]
+    }
+
 }
 
 // MARK: - Methods
