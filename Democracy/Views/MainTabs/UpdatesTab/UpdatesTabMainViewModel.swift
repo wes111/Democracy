@@ -8,6 +8,7 @@
 import Factory
 import Foundation
 
+@MainActor
 protocol UpdatesTabMainCoordinatorDelegate: AnyObject {
     func tappedNav()
 }

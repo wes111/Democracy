@@ -31,6 +31,7 @@ enum LoginAlert: AlertModelProtocol {
     }
 }
 
+@MainActor
 protocol LoginCoordinatorDelegate: AnyObject {
     func goToCreateAccount()
 }
@@ -55,6 +56,7 @@ final class LoginViewModel: ObservableObject {
 // MARK: - Methods
 extension LoginViewModel {
     
+    @MainActor
     func createAccount() {
         coordinator?.goToCreateAccount()
     }

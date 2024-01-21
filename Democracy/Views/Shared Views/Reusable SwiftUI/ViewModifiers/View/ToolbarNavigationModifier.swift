@@ -16,6 +16,7 @@ enum ToolbarCenterContent: Hashable, Identifiable {
     }
 }
 
+@MainActor
 struct ToolbarNavigationModifier: ViewModifier {
     @Environment(\.dismiss) private var dismiss
     

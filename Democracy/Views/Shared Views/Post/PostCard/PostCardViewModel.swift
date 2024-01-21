@@ -10,7 +10,7 @@ import Foundation
 import LinkPresentation
 
 protocol PostCardCoordinatorDelegate: AnyObject {
-    func goToPostView(_ post: Post)
+    @MainActor func goToPostView(_ post: Post)
 }
 
 final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
@@ -73,6 +73,7 @@ final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
     
     // MARK: - Protocol Methods
     
+    @MainActor
     func goToPostView() {
         coordinator?.goToPostView(post)
     }

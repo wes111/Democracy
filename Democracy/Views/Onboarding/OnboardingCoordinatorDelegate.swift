@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 protocol OnboardingCoordinatorDelegate: AnyObject {
     func didSubmitUsername(input: OnboardingInput)
     func submitPassword(input: OnboardingInput)

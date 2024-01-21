@@ -7,11 +7,12 @@
 
 import Foundation
 
+@MainActor
 protocol OnboardingCoordinatorParent: AnyObject {
     func dismiss()
 }
 
-@Observable
+@MainActor @Observable
 final class OnboardingCoordinator {
     
     weak var parentCoordinator: OnboardingCoordinatorParent?

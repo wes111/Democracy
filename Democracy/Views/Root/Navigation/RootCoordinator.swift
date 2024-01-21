@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class RootCoordinator {
     
     @ObservationIgnored @Injected(\.accountService) private var accountService

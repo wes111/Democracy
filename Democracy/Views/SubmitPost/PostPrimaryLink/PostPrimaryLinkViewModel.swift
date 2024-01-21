@@ -73,10 +73,12 @@ extension PostPrimaryLinkViewModel {
             .assign(to: &$textErrors)
     }
     
+    @MainActor
     func close() {
         coordinator?.close()
     }
     
+    @MainActor
     func goBack() {
         coordinator?.goBack()
     }
@@ -96,6 +98,7 @@ private extension PostPrimaryLinkViewModel {
         _ = try await richLinkService.getMetadata(for: url)
     }
     
+    @MainActor
     func skip() {
         submitPostInput.primaryLink = nil
         coordinator?.didSubmitLink(input: submitPostInput)

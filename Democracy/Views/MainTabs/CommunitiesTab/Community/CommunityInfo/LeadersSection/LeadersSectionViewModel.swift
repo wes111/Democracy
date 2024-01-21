@@ -32,6 +32,7 @@ struct LeadersSectionViewModel {
         )
     }
     
+    @MainActor
     func tappedVote() {
         coordinator?.goToVoteView()
     }

@@ -10,9 +10,9 @@ import Foundation
 
 protocol CommunityInfoCoordinatorDelegate: 
     CandidateCardCoordinatorDelegate, LeadersCoordinatorDelegate, AlliedDelegate, AnyObject {
-    func showCandidates()
-    func goToCommunityView(id: String)
-    func openResourceURL(_ url: URL)
+    @MainActor func showCandidates()
+    @MainActor func goToCommunityView(id: String)
+    @MainActor func openResourceURL(_ url: URL)
 }
 
 final class CommunityInfoViewModel: ObservableObject {
@@ -65,18 +65,22 @@ final class CommunityInfoViewModel: ObservableObject {
         )
     }
     
+    @MainActor
     func showCandidates() {
         coordinator?.showCandidates()
     }
     
+    @MainActor
     func onTapCommunityCard(_ community: Community) {
         coordinator?.goToCommunityView(id: community.id)
     }
     
+    @MainActor
     func onTapCandidateCard(candidateID: String) {
         coordinator?.goToCandidateView(candidateId: candidateID)
     }
     
+    @MainActor
     func openResourceURL(urlString: String) {
         guard let url = URL(string: urlString) else {
             return print("Failed to create URL from urlString.")

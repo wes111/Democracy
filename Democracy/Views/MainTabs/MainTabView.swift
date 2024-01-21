@@ -11,7 +11,8 @@ enum MainTab {
     case voting, events, updates, communities, history
 }
 
-class MainTabViewModel: ObservableObject {
+@MainActor
+final class MainTabViewModel: ObservableObject {
     @Published var selectedTab: MainTab = .updates
     
     let communitiesViewModel = CommunitiesTabCoordinator()

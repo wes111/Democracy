@@ -7,11 +7,12 @@
 
 import Foundation
 
+@MainActor
 protocol SubmitPostCoordinatorParent: AnyObject {
     func dismiss()
 }
 
-@Observable
+@MainActor @Observable
 final class SubmitPostCoordinator {
     
     weak var parentCoordinator: SubmitPostCoordinatorParent?

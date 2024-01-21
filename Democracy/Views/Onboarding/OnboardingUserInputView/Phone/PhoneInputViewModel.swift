@@ -34,6 +34,7 @@ final class PhoneInputViewModel: UserTextInputViewModel {
         [.close(close)]
     }()
     
+    @MainActor
     lazy var skipAction: (() -> Void)? = {
         { self.coordinator?.submitPhone(input: self.onboardingInput) }
     }()
@@ -77,10 +78,12 @@ extension PhoneInputViewModel {
         alertModel = OnboardingAlert.phoneUnavailable.toNewAlertModel()
     }
     
+    @MainActor
     func close() {
         coordinator?.close()
     }
     
+    @MainActor
     func goBack() {
         coordinator?.goBack()
     }

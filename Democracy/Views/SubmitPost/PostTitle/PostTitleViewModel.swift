@@ -60,10 +60,12 @@ extension PostTitleViewModel {
             .assign(to: &$textErrors)
     }
     
+    @MainActor
     func close() {
         coordinator?.close()
     }
     
+    @MainActor
     func goBack() {
         coordinator?.goBack()
     }

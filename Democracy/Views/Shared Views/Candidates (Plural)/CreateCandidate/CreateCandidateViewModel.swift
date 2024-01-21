@@ -8,6 +8,7 @@
 import Factory
 import Foundation
 
+@MainActor
 protocol CreateCandidateCoordinatorDelegate: AnyObject {
     func closeCreateCandidateView()
 }
@@ -20,7 +21,7 @@ protocol CreateCandidateViewModelProtocol: ObservableObject {
     var alert: CreateCandidateAlert? { get set }
     var isLoading: Bool { get set }
     
-    func close()
+    @MainActor func close()
     func submitCandidate()
 }
 
@@ -41,6 +42,7 @@ final class CreateCandidateViewModel: CreateCandidateViewModelProtocol {
         self.coordinator = coordinator
     }
     
+    @MainActor
     func close() {
         coordinator?.closeCreateCandidateView()
     }

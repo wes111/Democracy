@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 protocol SubmitPostCoordinatorDelegate: AnyObject {
     func close()
     func goBack()

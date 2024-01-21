@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ButtonInfo {
     let title: String
-    let action: () -> Void
+    let action: @MainActor () -> Void
 }
 
 // Generic success view.
+@MainActor
 struct SuccessView: View {
     let primaryText: Text
     let secondaryText: Text

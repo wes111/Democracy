@@ -11,6 +11,7 @@ enum SettingsPath: Hashable {
     case todo
 }
 
+@MainActor
 struct SettingsCoordinator: View {
     
     @State private var router = Router()

@@ -70,10 +70,12 @@ extension UsernameInputViewModel {
         alertModel = OnboardingAlert.usernameUnavailable.toNewAlertModel()
     }
     
+    @MainActor
     func close() {
         coordinator?.close()
     }
     
+    @MainActor
     func goBack() {
         coordinator?.goBack()
     }

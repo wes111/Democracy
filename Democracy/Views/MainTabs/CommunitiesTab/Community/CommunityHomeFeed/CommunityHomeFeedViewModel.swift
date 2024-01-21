@@ -34,6 +34,7 @@ final class CommunityHomeFeedViewModel: ObservableObject {
         postInteractor.subscribeToPosts().assign(to: &$posts)
     }
     
+    @MainActor
     func goToPost() {
         coordinator?.goToPostView(Post.preview)
     }

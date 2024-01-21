@@ -50,6 +50,7 @@ extension PostCategoryViewModel {
 
 // MARK: - Methods
 extension PostCategoryViewModel {
+    @MainActor
     func submit() async {
         guard canSubmit else {
             return alertModel = NewAlertModel.genericAlert
@@ -67,6 +68,7 @@ extension PostCategoryViewModel {
         }
     }
     
+    @MainActor
     func close() {
         coordinator?.close()
     }

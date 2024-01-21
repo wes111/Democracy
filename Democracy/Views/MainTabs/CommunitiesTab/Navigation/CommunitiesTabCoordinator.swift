@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class CommunitiesTabCoordinator {
     var router = Router()
 }

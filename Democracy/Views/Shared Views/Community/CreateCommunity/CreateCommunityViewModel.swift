@@ -10,6 +10,7 @@ import Foundation
 import Combine
 import Factory
 
+@MainActor
 protocol CreateCommunityCoordinatorDelegate: AnyObject {
     func close()
 }
@@ -46,6 +47,7 @@ final class CreateCommunityViewModel: ObservableObject {
 // MARK: - Methods
 extension CreateCommunityViewModel {
     
+    @MainActor
     func close() {
         coordinator?.close()
     }

@@ -30,7 +30,7 @@ extension PostSuccessViewModel {
 // MARK: - Methods
 extension PostSuccessViewModel {
     
-    func close() {
+    @MainActor func close() {
         coordinator?.close()
     }
 }

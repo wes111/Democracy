@@ -8,7 +8,7 @@
 import Foundation
 
 protocol VoteViewCoordinator: AnyObject {
-    func goBack()
+    @MainActor func goBack()
 }
 
 final class VoteViewModel: ObservableObject {
@@ -44,6 +44,7 @@ extension VoteViewModel {
 // MARK: - Methods
 extension VoteViewModel {
     
+    @MainActor
     func goBack() {
         coordinator?.goBack()
     }

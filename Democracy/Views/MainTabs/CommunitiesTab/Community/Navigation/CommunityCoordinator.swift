@@ -8,10 +8,10 @@
 import Foundation
 
 protocol CommunityCoordinatorParent {
-    func goToCommunity(communityId: String)
+    @MainActor func goToCommunity(communityId: String)
 }
 
-@Observable
+@MainActor @Observable
 final class CommunityCoordinator: CommunityCoordinatorDelegate {
     
     var url: URL = URL(string: "https://www.google.com")!

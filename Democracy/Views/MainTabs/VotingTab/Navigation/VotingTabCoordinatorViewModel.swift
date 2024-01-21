@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class VotingTabCoordinatorViewModel {
     var router = Router()
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class EventsTabCoordinatorViewModel {
     var router = Router()
 }

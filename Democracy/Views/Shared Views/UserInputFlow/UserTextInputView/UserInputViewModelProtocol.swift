@@ -19,8 +19,8 @@ protocol UserTextInputViewModel: UserInputViewModel {
     var maxCharacterCount: Int { get }
     var textErrors: [Requirement] { get }
     
-    func close()
-    func goBack()
+    @MainActor func close()
+    @MainActor func goBack()
     @MainActor func presentGenericAlert()
     @MainActor func presentInvalidInputAlert()
 }

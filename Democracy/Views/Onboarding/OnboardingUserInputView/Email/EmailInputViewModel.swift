@@ -71,10 +71,12 @@ extension EmailInputViewModel {
         alertModel = OnboardingAlert.emailUnavailable.toNewAlertModel()
     }
     
+    @MainActor
     func close() {
         coordinator?.close()
     }
     
+    @MainActor
     func goBack() {
         coordinator?.goBack()
     }

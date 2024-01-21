@@ -14,5 +14,5 @@ extension CreateCandidateViewModel {
         }
     }
     
-    static let preview = CreateCandidateViewModel(coordinator: PreviewHelper())
+    @MainActor static let preview = CreateCandidateViewModel(coordinator: PreviewHelper())
 }

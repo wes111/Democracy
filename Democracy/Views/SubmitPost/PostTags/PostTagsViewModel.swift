@@ -50,6 +50,7 @@ extension PostTagsViewModel {
 // MARK: - Methods
 extension PostTagsViewModel {
     
+    @MainActor
     func submit() async {
         guard canSubmit else {
             return alertModel = NewAlertModel.genericAlert
@@ -74,6 +75,7 @@ extension PostTagsViewModel {
         }
     }
     
+    @MainActor
     func close() {
         coordinator?.close()
     }
