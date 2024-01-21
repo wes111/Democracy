@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CreateAccountSuccessView: View {
-    @ObservedObject private var viewModel: CreateAccountSuccessViewModel
+    private let viewModel: CreateAccountSuccessViewModel
     private let centerText = "Your account was created successfully!"
     
     init(viewModel: CreateAccountSuccessViewModel) {

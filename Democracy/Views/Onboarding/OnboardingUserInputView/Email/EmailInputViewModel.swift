@@ -8,33 +8,37 @@
 import Factory
 import Foundation
 
+@Observable
 final class EmailInputViewModel: UserTextInputViewModel {
-    @Injected(\.accountService) private var accountService
-    @Published var text: String = ""
-    @Published var textErrors: [Requirement] = []
-    @Published var alertModel: NewAlertModel?
-    @Published var isShowingProgress: Bool = false
-    
     typealias Requirement = EmailRequirement
+    
+    var text: String = ""
+    var textErrors: [Requirement] = []
+    var alertModel: NewAlertModel?
+    var isShowingProgress: Bool = false
+    
+    @ObservationIgnored @Injected(\.accountService) private var accountService
+    @ObservationIgnored private var onboardingInput: OnboardingInput
+    
     let field = OnboardingInputField.email
-    private var onboardingInput: OnboardingInput
     private weak var coordinator: OnboardingCoordinatorDelegate?
     let skipAction: (() -> Void)? = nil
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator
         self.onboardingInput = onboardingInput
-        
-        setupBindings()
+    }
+}
+
+// MARK: - Computed Properties
+extension EmailInputViewModel {
+    var leadingButtons: [OnboardingTopButton] {
+        [.back]
     }
     
-    lazy var leadingButtons: [OnboardingTopButton] = {
-        [.back]
-    }()
-    
-    lazy var trailingButtons: [OnboardingTopButton] = {
+    var trailingButtons: [OnboardingTopButton] {
         [.close(close)]
-    }()
+    }
 }
 
 // MARK: - Methods
@@ -55,15 +59,6 @@ extension EmailInputViewModel {
             print(error.localizedDescription)
             presentGenericAlert()
         }
-    }
-    
-    func setupBindings() {
-        $text
-            .compactMap { [weak self] text in
-                guard !text.isEmpty else { return [] }
-                return self?.field.getInputValidationErrors(input: text)
-            }
-            .assign(to: &$textErrors)
     }
     
     @MainActor

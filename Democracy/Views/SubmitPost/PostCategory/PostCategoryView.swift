@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PostCategoryView: View {
-    @ObservedObject var viewModel: PostCategoryViewModel
+    @Bindable var viewModel: PostCategoryViewModel
     
     init(viewModel: PostCategoryViewModel) {
         self.viewModel = viewModel

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AcceptTermsView: View {
-    @ObservedObject var viewModel: AcceptTermsViewModel
+    @Bindable var viewModel: AcceptTermsViewModel
     
     init(viewModel: AcceptTermsViewModel) {
         self.viewModel = viewModel

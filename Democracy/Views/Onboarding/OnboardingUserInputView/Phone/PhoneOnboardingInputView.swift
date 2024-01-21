@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PhoneOnboardingInputView<ViewModel: PhoneInputViewModel>: View {
-    @ObservedObject var viewModel: ViewModel
+    @Bindable var viewModel: ViewModel
     @FocusState private var focusedField: ViewModel.Field?
     
     var body: some View {

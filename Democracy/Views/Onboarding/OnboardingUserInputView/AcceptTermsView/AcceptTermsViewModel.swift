@@ -8,19 +8,23 @@
 import Factory
 import Foundation
 
-final class AcceptTermsViewModel: ObservableObject, Hashable {
+@Observable
+final class AcceptTermsViewModel: Hashable {
+    var onboardingAlert: NewAlertModel?
+    var isShowingProgress = false
     
-    @Injected(\.accountService) private var accountService
-    @Published var onboardingAlert: NewAlertModel?
-    @Published var isShowingProgress = false
-    
-    private weak var coordinator: OnboardingCoordinatorDelegate?
-    private var onboardingInput: OnboardingInput
+    @ObservationIgnored @Injected(\.accountService) private var accountService
+    @ObservationIgnored private weak var coordinator: OnboardingCoordinatorDelegate?
+    @ObservationIgnored private var onboardingInput: OnboardingInput
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator
         self.onboardingInput = onboardingInput
     }
+}
+
+// MARK: - Computed Properties
+extension AcceptTermsViewModel {
     
     var leadingButtons: [OnboardingTopButton] {
         [.back]
@@ -29,6 +33,10 @@ final class AcceptTermsViewModel: ObservableObject, Hashable {
     var trailingButtons: [OnboardingTopButton] {
         [.close(close)]
     }
+}
+
+// MARK: - Methods
+extension AcceptTermsViewModel {
     
     @MainActor
     func agreeToTerms() async {
@@ -46,10 +54,12 @@ final class AcceptTermsViewModel: ObservableObject, Hashable {
         onboardingAlert = OnboardingAlert.createAccountFailed.toNewAlertModel()
     }
     
+    @MainActor
     func close() {
         coordinator?.close()
     }
     
+    @MainActor
     func goBack() {
         coordinator?.goBack()
     }

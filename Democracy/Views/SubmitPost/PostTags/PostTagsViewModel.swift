@@ -9,17 +9,18 @@ import Factory
 import Foundation
 import Combine
 
+@Observable
 final class PostTagsViewModel: UserInputViewModel {
-    @Published var isShowingProgress: Bool = false
-    @Published var alertModel: NewAlertModel?
-    @Published var tags: [String] = Community.preview.tags // TODO: ...
-    @Published var selectedTags: Set<String> = []
+    var isShowingProgress: Bool = false
+    var alertModel: NewAlertModel?
+    var tags: [String] = Community.preview.tags // TODO: ...
+    var selectedTags: Set<String> = []
     
-    @Injected(\.postService) private var postService
+    @ObservationIgnored @Injected(\.postService) private var postService
+    @ObservationIgnored private let submitPostInput: SubmitPostInput
     
     let title = "Add Tags"
     let subtitle = "Add community tags to your post to improve searchability."
-    private let submitPostInput: SubmitPostInput
     private weak var coordinator: SubmitPostCoordinatorDelegate?
     let skipAction: (() -> Void)? = nil
     

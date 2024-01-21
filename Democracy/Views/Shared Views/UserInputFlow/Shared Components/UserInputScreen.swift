@@ -9,8 +9,9 @@ import SwiftUI
 
 // A modifier intended to be used by 'UserTextInputView','UserMultiInputView', 'UserSelectionView'.
 // Standard appearance for any user input screen (text fields, user selection, etc.)
+@MainActor
 struct UserInputScreen<ViewModel: UserInputViewModel, Content: View>: View {
-    @ObservedObject var viewModel: ViewModel
+    @Bindable var viewModel: ViewModel
     @ViewBuilder let content: Content
     let additionalSubmitAction: () async -> Void
     

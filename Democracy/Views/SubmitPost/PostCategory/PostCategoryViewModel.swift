@@ -7,10 +7,11 @@
 
 import Foundation
 
+@Observable
 final class PostCategoryViewModel: UserInputViewModel {
-    @Published var isShowingProgress: Bool = false
-    @Published var alertModel: NewAlertModel?
-    @Published var selectedCategory: String?
+    var isShowingProgress: Bool = false
+    var alertModel: NewAlertModel?
+    var selectedCategory: String?
     
     let categories: [String] = Community.preview.categories
     let title = "Select a Category"
@@ -25,10 +26,6 @@ final class PostCategoryViewModel: UserInputViewModel {
     ) {
         self.coordinator = coordinator
         self.submitPostInput = submitPostInput
-    }
-    
-    deinit {
-        print()
     }
 }
 

@@ -8,16 +8,19 @@
 import Factory
 import Foundation
 
+@Observable
 final class PostPrimaryLinkViewModel: UserTextInputViewModel {
-    @Injected(\.richLinkService) private var richLinkService
-    @Published var isShowingProgress: Bool = false
-    @Published var text: String = ""
-    @Published var textErrors: [Requirement] = []
-    @Published var alertModel: NewAlertModel?
-    
     typealias Requirement = PostLinkRequirement
+    
+    var isShowingProgress: Bool = false
+    var text: String = ""
+    var textErrors: [Requirement] = []
+    var alertModel: NewAlertModel?
+    
+    @ObservationIgnored @Injected(\.richLinkService) private var richLinkService
+    @ObservationIgnored private let submitPostInput: SubmitPostInput
+    
     let field = SubmitPostField.primaryLink
-    private let submitPostInput: SubmitPostInput
     weak var coordinator: SubmitPostCoordinatorDelegate?
     
     init(
@@ -26,8 +29,6 @@ final class PostPrimaryLinkViewModel: UserTextInputViewModel {
     ) {
         self.coordinator = coordinator
         self.submitPostInput = submitPostInput
-        
-        setupBindings()
     }
 }
 
@@ -41,6 +42,7 @@ extension PostPrimaryLinkViewModel {
         [.back]
     }
     
+    @MainActor
     var skipAction: (() -> Void)? {
         skip
     }
@@ -62,15 +64,6 @@ extension PostPrimaryLinkViewModel {
         }
         submitPostInput.primaryLink = text
         coordinator?.didSubmitLink(input: submitPostInput)
-    }
-    
-    func setupBindings() {
-        $text
-            .compactMap { [weak self] text in
-                guard !text.isEmpty else { return [] }
-                return self?.field.getInputValidationErrors(input: text)
-            }
-            .assign(to: &$textErrors)
     }
     
     @MainActor

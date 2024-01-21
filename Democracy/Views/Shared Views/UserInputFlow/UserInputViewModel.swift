@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol UserInputViewModel: Hashable, ObservableObject {
+protocol UserInputViewModel: Hashable, Observable, AnyObject {
     var isShowingProgress: Bool { get set }
     var trailingButtons: [OnboardingTopButton] { get }
     var leadingButtons: [OnboardingTopButton] { get }

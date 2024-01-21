@@ -7,23 +7,23 @@
 
 import Factory
 import Foundation
+import Observation
 
-final class PostTitleViewModel: UserTextInputViewModel {
-    @Published var isShowingProgress: Bool = false
-    @Published var text: String = ""
-    @Published var textErrors: [Requirement] = []
-    @Published var alertModel: NewAlertModel?
-    
+@Observable final class PostTitleViewModel: UserTextInputViewModel {
     typealias Requirement = NoneRequirement
-    let field = SubmitPostField.title
+    
+    var isShowingProgress: Bool = false
+    var text: String = ""
+    var textErrors: [Requirement] = []
+    var alertModel: NewAlertModel?
+    
+    @ObservationIgnored let field = SubmitPostField.title
     private let submitPostInput = SubmitPostInput()
     private weak var coordinator: SubmitPostCoordinatorDelegate?
     let skipAction: (() -> Void)? = nil
     
     init(coordinator: SubmitPostCoordinatorDelegate?) {
         self.coordinator = coordinator
-        
-        setupBindings()
     }
 }
 
@@ -49,15 +49,6 @@ extension PostTitleViewModel {
         }
         submitPostInput.title = text
         coordinator?.didSubmitTitle(input: submitPostInput)
-    }
-    
-    func setupBindings() {
-        $text
-            .compactMap { [weak self] text in
-                guard !text.isEmpty else { return [] }
-                return self?.field.getInputValidationErrors(input: text)
-            }
-            .assign(to: &$textErrors)
     }
     
     @MainActor

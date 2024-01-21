@@ -8,36 +8,41 @@
 import Factory
 import Foundation
 
+@Observable
 final class PhoneInputViewModel: UserTextInputViewModel {
-    @Injected(\.accountService) private var accountService
-    @Published var text: String = ""
-    @Published var textErrors: [Requirement] = []
-    @Published var alertModel: NewAlertModel?
-    @Published var isShowingProgress: Bool = false
-    
     typealias Requirement = PhoneRequirement
+    
+    var text: String = ""
+    var textErrors: [Requirement] = []
+    var alertModel: NewAlertModel?
+    var isShowingProgress: Bool = false
+    
+    @ObservationIgnored @Injected(\.accountService) private var accountService
+    @ObservationIgnored private var onboardingInput: OnboardingInput
+    
     let field = OnboardingInputField.phone
-    private var onboardingInput: OnboardingInput
     private weak var coordinator: OnboardingCoordinatorDelegate?
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator
         self.onboardingInput = onboardingInput
-        setupBindings()
+    }
+}
+
+// MARK: - Computed Properties
+extension PhoneInputViewModel {
+    var leadingButtons: [OnboardingTopButton] {
+        [.back]
     }
     
-    lazy var leadingButtons: [OnboardingTopButton] = {
-        [.back]
-    }()
-    
-    lazy var trailingButtons: [OnboardingTopButton] = {
+    var trailingButtons: [OnboardingTopButton] {
         [.close(close)]
-    }()
+    }
     
     @MainActor
-    lazy var skipAction: (() -> Void)? = {
+    var skipAction: (() -> Void)? {
         { self.coordinator?.submitPhone(input: self.onboardingInput) }
-    }()
+    }
 }
 
 // MARK: - Methods
@@ -62,15 +67,6 @@ extension PhoneInputViewModel {
             print(error.localizedDescription)
             presentGenericAlert()
         }
-    }
-    
-    func setupBindings() {
-        $text
-            .compactMap { [weak self] text in
-                guard !text.isEmpty else { return [] }
-                return self?.field.getInputValidationErrors(input: text)
-            }
-            .assign(to: &$textErrors)
     }
     
     @MainActor

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UsernameOnboardingInputView<ViewModel: UsernameInputViewModel>: View {
-    @ObservedObject var viewModel: ViewModel
+    @Bindable var viewModel: ViewModel
     @FocusState private var focusedField: ViewModel.Field?
     @State private var isFirstAppear = true
     

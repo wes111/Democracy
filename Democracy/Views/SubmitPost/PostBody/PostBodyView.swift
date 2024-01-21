@@ -7,8 +7,9 @@
 
 import SwiftUI
 
+@MainActor
 struct PostBodyView: View {
-    @ObservedObject var viewModel: PostBodyViewModel
+    @Bindable var viewModel: PostBodyViewModel
     @FocusState private var focusedField: SubmitPostField?
     
     var body: some View {

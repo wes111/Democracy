@@ -213,7 +213,7 @@
 		EE9760202AD76800003069CF /* RootPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97601F2AD76800003069CF /* RootPath.swift */; };
 		EE9760242AD76849003069CF /* RootCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9760232AD76849003069CF /* RootCoordinatorView.swift */; };
 		EE988AB02ADA07640057F9DE /* PhoneRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE988AAF2ADA07640057F9DE /* PhoneRequirement.swift */; };
-		EEB5AF672ADB186E00310408 /* UserInputViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF662ADB186E00310408 /* UserInputViewModelProtocol.swift */; };
+		EEB5AF672ADB186E00310408 /* UserTextInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF662ADB186E00310408 /* UserTextInputViewModel.swift */; };
 		EEB5AF762ADB1EFA00310408 /* OnboardingTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */; };
 		EEB5AF7A2ADC3D6D00310408 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF792ADC3D6C00310408 /* AlertModel.swift */; };
 		EEB5AF802AE0DE7000310408 /* OnboardingInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */; };
@@ -474,7 +474,7 @@
 		EE97601F2AD76800003069CF /* RootPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPath.swift; sourceTree = "<group>"; };
 		EE9760232AD76849003069CF /* RootCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorView.swift; sourceTree = "<group>"; };
 		EE988AAF2ADA07640057F9DE /* PhoneRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneRequirement.swift; sourceTree = "<group>"; };
-		EEB5AF662ADB186E00310408 /* UserInputViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputViewModelProtocol.swift; sourceTree = "<group>"; };
+		EEB5AF662ADB186E00310408 /* UserTextInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTextInputViewModel.swift; sourceTree = "<group>"; };
 		EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTopButton.swift; sourceTree = "<group>"; };
 		EEB5AF792ADC3D6C00310408 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInputField.swift; sourceTree = "<group>"; };
@@ -790,7 +790,7 @@
 			isa = PBXGroup;
 			children = (
 				EE4DB8A12ACA5C0F00A6DC90 /* UserTextInputView.swift */,
-				EEB5AF662ADB186E00310408 /* UserInputViewModelProtocol.swift */,
+				EEB5AF662ADB186E00310408 /* UserTextInputViewModel.swift */,
 			);
 			path = UserTextInputView;
 			sourceTree = "<group>";
@@ -1856,7 +1856,7 @@
 				EE4524A32A5CE85200C7A2DD /* RuleView.swift in Sources */,
 				EE80D8B429BAE6410000F8EF /* Community+Preview.swift in Sources */,
 				EE5D3A0F2A45246400D0E312 /* Rule+Preview.swift in Sources */,
-				EEB5AF672ADB186E00310408 /* UserInputViewModelProtocol.swift in Sources */,
+				EEB5AF672ADB186E00310408 /* UserTextInputViewModel.swift in Sources */,
 				EEB5AF8B2AFA7DD500310408 /* Session.swift in Sources */,
 				EE2B15C92B4C3EA30046D5FC /* OnboardingCoordinator+Preview.swift in Sources */,
 				EED4A50329AA86C900DDCCDA /* VotingTabMainView.swift in Sources */,

@@ -11,15 +11,18 @@ enum PostBodyTab: String, CaseIterable, Equatable {
     case editor, preview
 }
 
+@Observable
 final class PostBodyViewModel: UserTextInputViewModel {
-    @Published var isShowingProgress: Bool = false
-    @Published var text: String = ""
-    @Published var textErrors: [Requirement] = []
-    @Published var alertModel: NewAlertModel?
-    @Published var selectedTab: PostBodyTab = .editor
-    
     typealias Requirement = NoneRequirement
-    private let submitPostInput: SubmitPostInput
+    
+    var isShowingProgress: Bool = false
+    var text: String = ""
+    var textErrors: [Requirement] = []
+    var alertModel: NewAlertModel?
+    var selectedTab: PostBodyTab = .editor
+    
+    
+    @ObservationIgnored private let submitPostInput: SubmitPostInput
     private weak var coordinator: SubmitPostCoordinatorDelegate?
     let skipAction: (() -> Void)? = nil // Not skippable.
     let field = SubmitPostField.body
@@ -27,12 +30,6 @@ final class PostBodyViewModel: UserTextInputViewModel {
     init(coordinator: SubmitPostCoordinatorDelegate, submitPostInput: SubmitPostInput) {
         self.coordinator = coordinator
         self.submitPostInput = submitPostInput
-        
-        setupBindings()
-    }
-    
-    deinit {
-        print()
     }
 }
 
@@ -66,15 +63,6 @@ extension PostBodyViewModel {
         }
         submitPostInput.body = text
         coordinator?.didSubmitBody(input: submitPostInput)
-    }
-    
-    func setupBindings() {
-        $text
-            .compactMap { [weak self] text in
-                guard !text.isEmpty else { return [] }
-                return self?.field.getInputValidationErrors(input: text)
-            }
-            .assign(to: &$textErrors)
     }
     
     @MainActor

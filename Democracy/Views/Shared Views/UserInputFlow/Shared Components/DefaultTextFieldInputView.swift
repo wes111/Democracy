@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DefaultTextFieldInputView<ViewModel: UserTextInputViewModel, Style: TextFieldStyle>: View {
-    @ObservedObject var viewModel: ViewModel
+    @Bindable var viewModel: ViewModel
     @FocusState.Binding var focusedField: ViewModel.Field?
     let textFieldStyle: Style
     let shouldOverrideOnAppear: Bool

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PostTagsView: View {
-    @ObservedObject var viewModel: PostTagsViewModel
+    @Bindable var viewModel: PostTagsViewModel
     
     init(viewModel: PostTagsViewModel) {
         self.viewModel = viewModel

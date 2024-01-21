@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PostPrimaryLinkView<ViewModel: PostPrimaryLinkViewModel>: View {
-    @ObservedObject var viewModel: ViewModel
+    @Bindable var viewModel: ViewModel
     @FocusState private var focusedField: SubmitPostField?
     
     var body: some View {

@@ -17,7 +17,7 @@ protocol UserTextInputViewModel: UserInputViewModel {
     var field: Field { get }
     var fieldTitle: String { get }
     var maxCharacterCount: Int { get }
-    var textErrors: [Requirement] { get }
+    var textErrors: [Requirement] { get set }
     
     @MainActor func close()
     @MainActor func goBack()

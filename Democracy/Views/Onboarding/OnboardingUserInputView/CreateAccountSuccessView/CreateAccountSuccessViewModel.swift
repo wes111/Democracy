@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class CreateAccountSuccessViewModel: ObservableObject, Hashable {
+final class CreateAccountSuccessViewModel: Hashable {
     
     private weak var coordinator: OnboardingCoordinatorDelegate?
     let username: String
@@ -16,24 +16,34 @@ final class CreateAccountSuccessViewModel: ObservableObject, Hashable {
         self.coordinator = coordinator
         self.username = username
     }
+}
+
+// MARK: - Computed Properties
+extension CreateAccountSuccessViewModel {
     
-    lazy var primaryButtonInfo: ButtonInfo = {
+    var primaryButtonInfo: ButtonInfo {
         .init(title: "Continue Account Setup", action: continueAction)
-    }()
+    }
     
-    lazy var secondaryButtonInfo: ButtonInfo = {
+    var secondaryButtonInfo: ButtonInfo {
         .init(title: "Skip", action: close)
-    }()
+    }
     
+    var trailingButtons: [OnboardingTopButton] {
+        [.close(close)]
+    }
+}
+
+// MARK: - Methods
+extension CreateAccountSuccessViewModel {
+    
+    @MainActor
     func continueAction() {
         coordinator?.continueAccountSetup()
     }
     
+    @MainActor
     func close() {
         coordinator?.close()
     }
-    
-    lazy var trailingButtons: [OnboardingTopButton] = {
-        [.close(close)]
-    }()
 }
