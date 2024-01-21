@@ -7,8 +7,9 @@
 
 import Foundation
 
-final class CommunitiesTabCoordinator: Coordinator {
-    
+@Observable
+final class CommunitiesTabCoordinator {
+    var router = Router()
 }
 
 // MARK: - Child ViewModels

@@ -10,10 +10,10 @@ import SwiftUI
 
 struct CommunityCoordinatorView: View {
     
-    @StateObject private var coordinator: CommunityCoordinator
+    @State private var coordinator: CommunityCoordinator
     
     init(viewModel: CommunityCoordinator) {
-        _coordinator = StateObject(wrappedValue: viewModel)
+        coordinator = viewModel
     }
     
     var body: some View {
@@ -41,7 +41,7 @@ struct CommunityCoordinatorView: View {
             }
     }
     
-    @ViewBuilder
+    @MainActor @ViewBuilder
     func createViewFromPath(_ path: CommunityPath) -> some View {
         switch path {
             

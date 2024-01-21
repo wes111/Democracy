@@ -192,7 +192,6 @@
 		EE80D95329DB96F50000F8EF /* CreateCommunityViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D95229DB96F50000F8EF /* CreateCommunityViewModel+Preview.swift */; };
 		EE80D95629E0B6D10000F8EF /* ReversedLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */; };
 		EE80D95B29E8EBD10000F8EF /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D95A29E8EBD10000F8EF /* WebView.swift */; };
-		EE936C9E2A78930800D49271 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE936C9D2A78930800D49271 /* Coordinator.swift */; };
 		EE936CA02A7895B700D49271 /* CommunityPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE936C9F2A7895B700D49271 /* CommunityPath.swift */; };
 		EE936CA22A789B8F00D49271 /* CommunitiesTabPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE936CA12A789B8F00D49271 /* CommunitiesTabPath.swift */; };
 		EE936CA92A789F6D00D49271 /* HistoryTabPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE936CA82A789F6D00D49271 /* HistoryTabPath.swift */; };
@@ -454,7 +453,6 @@
 		EE80D95229DB96F50000F8EF /* CreateCommunityViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateCommunityViewModel+Preview.swift"; sourceTree = "<group>"; };
 		EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversedLabelStyle.swift; sourceTree = "<group>"; };
 		EE80D95A29E8EBD10000F8EF /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
-		EE936C9D2A78930800D49271 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		EE936C9F2A7895B700D49271 /* CommunityPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityPath.swift; sourceTree = "<group>"; };
 		EE936CA12A789B8F00D49271 /* CommunitiesTabPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesTabPath.swift; sourceTree = "<group>"; };
 		EE936CA82A789F6D00D49271 /* HistoryTabPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabPath.swift; sourceTree = "<group>"; };
@@ -1609,7 +1607,6 @@
 			isa = PBXGroup;
 			children = (
 				EEF83472299C6A11001EEA5E /* Router.swift */,
-				EE936C9D2A78930800D49271 /* Coordinator.swift */,
 				EE936CB82A81DA2700D49271 /* CoordinatorView.swift */,
 			);
 			path = Navigation;
@@ -1729,7 +1726,6 @@
 				EE80D8DE29BC19ED0000F8EF /* HistoryTabCoordinator+Preview.swift in Sources */,
 				EED4A53529B81D8000DDCCDA /* CommunityInfoView.swift in Sources */,
 				EED4A52E29B81A2E00DDCCDA /* PostViewModel.swift in Sources */,
-				EE936C9E2A78930800D49271 /* Coordinator.swift in Sources */,
 				EE4524A12A5CE46500C7A2DD /* RuleViewModel.swift in Sources */,
 				EE49880E2B3E1FE700AB7522 /* SubmitPostAlert.swift in Sources */,
 				EE4524AC2A5CED5100C7A2DD /* LeaderView.swift in Sources */,

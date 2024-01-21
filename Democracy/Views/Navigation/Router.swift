@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-protocol RouterProtocol: ObservableObject {
+protocol RouterProtocol {
     var navigationPath: NavigationPath { get }
     
     func push<Path: Hashable>(_ path: Path)
@@ -18,12 +18,13 @@ protocol RouterProtocol: ObservableObject {
     func popToRoot()
 }
 
+@Observable
 final class Router: RouterProtocol {
     
-    @Published var navigationPath = NavigationPath()
+    var navigationPath = NavigationPath()
     // Ideally we would make this an actor instead of class, but that does not work with published properties.
     // Using semaphore instead.
-    private let semaphore: DispatchSemaphore = DispatchSemaphore(value: 1)
+    @ObservationIgnored private let semaphore: DispatchSemaphore = DispatchSemaphore(value: 1)
     
     init() {}
     

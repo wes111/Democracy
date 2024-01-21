@@ -8,12 +8,12 @@
 import Factory
 import Foundation
 
-final class RootCoordinator: Coordinator {
+@Observable
+final class RootCoordinator {
     
-    @Injected(\.accountService) private var accountService
-    @Published var loginStatus: LoginStatus = .loggedOut
-    
-    @Published var isShowingOnboardingFlow = false
+    @ObservationIgnored @Injected(\.accountService) private var accountService
+    var loginStatus: LoginStatus = .loggedOut
+    var isShowingOnboardingFlow = false
     
     let mainTabViewModel = MainTabViewModel()
     

@@ -8,7 +8,9 @@
 import Factory
 import Foundation
 
-final class UpdatesTabCoordinatorViewModel: Coordinator {
+@Observable
+final class UpdatesTabCoordinatorViewModel {
+    var router = Router()
 }
 
 // MARK: - Child ViewModels

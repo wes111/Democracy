@@ -7,8 +7,9 @@
 
 import Foundation
 
-final class EventsTabCoordinatorViewModel: Coordinator {
-    
+@Observable
+final class EventsTabCoordinatorViewModel {
+    var router = Router()
 }
 
 // MARK: - Child ViewModels

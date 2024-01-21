@@ -11,12 +11,14 @@ protocol CommunityCoordinatorParent {
     func goToCommunity(communityId: String)
 }
 
-class CommunityCoordinator: Coordinator, CommunityCoordinatorDelegate {
+@Observable
+final class CommunityCoordinator: CommunityCoordinatorDelegate {
     
-    @Published var url: URL = URL(string: "https://www.google.com")!
-    @Published var isShowingWebView = false
-    @Published var isShowingCreatePostView = false
-    @Published var isShowingCreateCandidateView = false
+    var url: URL = URL(string: "https://www.google.com")!
+    var isShowingWebView = false
+    var isShowingCreatePostView = false
+    var isShowingCreateCandidateView = false
+    var router: Router
     
     let community: Community
     let parentCoordinator: CommunityCoordinatorParent
@@ -28,8 +30,7 @@ class CommunityCoordinator: Coordinator, CommunityCoordinatorDelegate {
     ) {
         self.community = community
         self.parentCoordinator = parentCoordinator
-        
-        super.init(router: router)
+        self.router = router
     }
     
 }

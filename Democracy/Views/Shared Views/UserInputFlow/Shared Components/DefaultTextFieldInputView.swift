@@ -50,6 +50,20 @@ private extension DefaultTextFieldInputView {
 }
 
 // MARK: - Preview
-//#Preview {
-//    DefaultTextFieldInputView()
-//}
+#Preview {
+    @FocusState var focusedField: OnboardingInputField?
+    let viewModel = EmailInputViewModel(
+        coordinator: OnboardingCoordinator.preview,
+        onboardingInput: .init()
+    )
+    
+    return DefaultTextFieldInputView(
+        viewModel: viewModel,
+        focusedField: $focusedField,
+        textFieldStyle: EmailTextFieldStyle(
+            email: .constant("Hello World"),
+            focusedField: $focusedField,
+            field: viewModel.field
+        )
+    )
+}

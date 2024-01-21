@@ -11,9 +11,11 @@ protocol SubmitPostCoordinatorParent: AnyObject {
     func dismiss()
 }
 
-final class SubmitPostCoordinator: Coordinator {
+@Observable
+final class SubmitPostCoordinator {
     
     weak var parentCoordinator: SubmitPostCoordinatorParent?
+    var router = Router()
     
     init(parentCoordinator: SubmitPostCoordinatorParent?) {
         self.parentCoordinator = parentCoordinator

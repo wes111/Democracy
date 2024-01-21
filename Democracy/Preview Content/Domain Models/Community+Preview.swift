@@ -124,7 +124,8 @@ extension Community {
                     memberCount: 255,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
-                    categories: ["Racing", "Sports", "Weather", "Dog Grooming", "Vampires", "Fruit & Veggies"],
+                    categories: ["Racing", "Sports", "Weather",
+                                 "Dog Grooming", "Vampires", "Fruit & Veggies"],
                     tags: [],
                     alliedCommunities: []
                 ))
@@ -150,7 +151,8 @@ extension Community {
                     memberCount: 255,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
-                    categories: ["Racing", "Sports", "Weather", "Dog Grooming", "Vampires", "Fruit & Veggies"],
+                    categories: ["Racing", "Sports", "Weather",
+                                 "Dog Grooming", "Vampires", "Fruit & Veggies"],
                     tags: [],
                     alliedCommunities: []
                 ))
