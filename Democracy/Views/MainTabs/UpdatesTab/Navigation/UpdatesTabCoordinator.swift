@@ -9,14 +9,14 @@ import SwiftUI
 
 struct UpdatesTabCoordinator: View {
     
-    @StateObject private var viewModel: UpdatesTabCoordinatorViewModel
+    @State private var viewModel: UpdatesTabCoordinatorViewModel
     
     init(viewModel: UpdatesTabCoordinatorViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
     }
     
     var body: some View {
-        CoordinatorView(router: $viewModel.router) {
+        CoordinatorView(router: viewModel.router) {
             UpdatesTabMainView(viewModel: viewModel.updatesTabMainViewModel())
         } secondaryScreen: { (path: UpdatesTabPath) in
             createViewFromPath(path)
@@ -31,6 +31,7 @@ struct UpdatesTabCoordinator: View {
         }
     }
     
+    @MainActor
     func createUpdatesTabMainView() -> UpdatesTabMainView<UpdatesTabMainViewModel> {
         let viewModel = UpdatesTabMainViewModel()
         return UpdatesTabMainView(viewModel: viewModel)

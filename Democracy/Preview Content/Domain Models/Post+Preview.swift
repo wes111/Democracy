@@ -11,47 +11,22 @@ import SharedResourcesClientAndServer
 extension Post {
     
     static let preview = Post(
-        title: "The Title of a Post",
-        subtitle: "The subtitle for this post",
-        body: "The body of this post",
-        creator: User.preview,
-        tags: [
-            Tag(name: "Dog"),
-            Tag(name: "Cat"),
-            Tag(name: "Mouse"),
-            Tag(name: "Horse"),
-            Tag(name: "Elephant"),
-            Tag(name: "Zebra"),
-            Tag(name: "Donkey"),
-            Tag(name: "Chicken")
-        ],
-        link: Link(url: URL(
-            string: "https://www.wired.com/story/seagrass-humble-ocean-plant-worth-trillions/")!
-        )
+        id: "123",
+        title: "Post Title",
+        body: "Post Body",
+        link: URL(string: "https://www.wired.com/story/seagrass-humble-ocean-plant-worth-trillions/")!,
+        tags: [ "Dog", "Cat", "Mouse", "Horse", "Elephant", "Zebra", "Donkey", "Chicken"],
+        userId: "1234",
+        community: .init(id: "12345"),
+        creationDate: .now,
+        rootCommentIds: [],
+        approvedDate: .now
     )
     
     static let previewArray: [Post] = {
         var postArray: [Post] = []
         for _ in 0...25 {
-            postArray.append(Post(
-                title: "The Title of a Post",
-                body: "The body of this post",
-                creator: User.preview,
-                tags: [
-                    Tag(name: "Dog"),
-                    Tag(name: "Cat"),
-                    Tag(name: "Mouse"),
-                    Tag(name: "Horse"),
-                    Tag(name: "Elephant"),
-                    Tag(name: "Zebra"),
-                    Tag(name: "Donkey"),
-                    Tag(name: "Chicken")
-                ],
-                link: Link(url: URL(
-                    string: "https://www.wired.com/story/seagrass-humble-ocean-plant-worth-trillions/")!
-                )
-            )
-            )
+            postArray.append(Post.preview)
         }
         return postArray
     }()

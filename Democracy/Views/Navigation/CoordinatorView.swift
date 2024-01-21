@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-struct CoordinatorView<Path: Hashable, RootView: View, NavigationViewBuilder: View>: View {
+struct CoordinatorView<Path: Hashable, RootView: View, PushedView: View>: View {
     
-    @Binding var router: Router
+    @Bindable var router: Router
     private let mainScreen: RootView
-    private let secondaryScreen: (_ path: Path) -> NavigationViewBuilder
+    private let secondaryScreen: (_ path: Path) -> PushedView
     
-    init(router: Binding<Router>,
+    init(router: Router,
          @ViewBuilder mainScreen: () -> RootView,
-         @ViewBuilder secondaryScreen: @escaping (_ path: Path) -> NavigationViewBuilder
+         @ViewBuilder secondaryScreen: @escaping (_ path: Path) -> PushedView
     ) {
-        self._router = router
+        self.router = router
         self.mainScreen = mainScreen()
         self.secondaryScreen = secondaryScreen
     }
@@ -34,9 +34,9 @@ struct CoordinatorView<Path: Hashable, RootView: View, NavigationViewBuilder: Vi
 
 // MARK: - Preview
 #Preview {
-    CoordinatorView(router: .constant(Router())) {
+    CoordinatorView(router: .init()) {
         Text("Hello")
-    } secondaryScreen: { (path: CommunitiesTabPath) in
+    } secondaryScreen: { (_: CommunitiesTabPath) in
         Text("World")
     }
 }

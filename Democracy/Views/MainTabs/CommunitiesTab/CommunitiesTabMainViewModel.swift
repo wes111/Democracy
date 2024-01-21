@@ -10,8 +10,8 @@ import Foundation
 import Factory
 
 protocol CommunitiesTabMainCoordinatorDelegate: AnyObject {
-    func goToCommunity(communityId: String)
-    func showCreateCommunityView()
+    @MainActor func goToCommunity(communityId: String)
+    @MainActor func showCreateCommunityView()
 }
 
 final class CommunitiesTabMainViewModel: ObservableObject {
@@ -36,6 +36,7 @@ final class CommunitiesTabMainViewModel: ObservableObject {
         communityInteractor.refreshTopCommunities()
     }
     
+    @MainActor
     func goToCommunity(_ community: Community) {
         coordinator?.goToCommunity(communityId: community.id)
     }
@@ -52,6 +53,7 @@ final class CommunitiesTabMainViewModel: ObservableObject {
         communityInteractor.refreshTopCommunities()
     }
     
+    @MainActor
     func showCreateCommunityView() {
         coordinator?.showCreateCommunityView()
     }

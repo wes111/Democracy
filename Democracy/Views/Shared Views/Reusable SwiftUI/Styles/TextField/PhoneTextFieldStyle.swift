@@ -8,24 +8,29 @@
 import SwiftUI
 import Combine
 
-struct PhoneTextFieldStyle: TextFieldStyle {
+struct PhoneTextFieldStyle<Field: InputField>: TextFieldStyle {
     @Binding var phone: String
+    @FocusState.Binding var focusedField: Field?
+    let field: Field
     
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {
         configuration
             .onReceive(Just(phone)) { input in
-                phone = Self.format(with: "(XXX) XXX-XXXX", phone: input)
+                phone = PhoneFormatter.format(with: "(XXX) XXX-XXXX", phone: input)
             }
             .keyboardType(.numberPad)
             .textContentType(.telephoneNumber)
-            .textInputAutocapitalization(.never)
-            .autocorrectionDisabled()
-            .standardTextField()
-            .contentShape(RoundedRectangle(cornerRadius: 10, style: .circular))
-
+            .standardTextInputAppearance(
+                text: $phone,
+                focusedField: $focusedField,
+                field: field
+            )
     }
-    
+}
+
+// MARK: - Phone Formatter
+enum PhoneFormatter {
     // TODO: Move to a dedicated PhoneFormatter?
     // https://stackoverflow.com/questions/32364055/formatting-phone-number-in-swift
     // mask example: `+X (XXX) XXX-XXXX`
@@ -53,12 +58,18 @@ struct PhoneTextFieldStyle: TextFieldStyle {
 
 // MARK: - Preview
 #Preview {
-    ZStack {
+    @FocusState var focusedField: OnboardingInputField?
+    
+    return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
         TextField("Phone", text: .constant("Phone"),
                   prompt: Text("Phone").foregroundColor(.tertiaryBackground)
         )
-        .textFieldStyle(PhoneTextFieldStyle(phone: .constant("Phone")))
+        .textFieldStyle(PhoneTextFieldStyle(
+            phone: .constant("123-456-7890"),
+            focusedField: $focusedField,
+            field: OnboardingInputField.phone
+        ))
     }
 }

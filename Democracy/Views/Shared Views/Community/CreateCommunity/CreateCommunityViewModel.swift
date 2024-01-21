@@ -10,6 +10,7 @@ import Foundation
 import Combine
 import Factory
 
+@MainActor
 protocol CreateCommunityCoordinatorDelegate: AnyObject {
     func close()
 }
@@ -34,55 +35,57 @@ final class CreateCommunityViewModel: ObservableObject {
         self.coordinator = coordinator
     }
     
-    var topButtons: [OnboardingTopButton: () -> Void] {
-        [
-            .back: {},
-            .close: close
-        ]
-    }
+    lazy var leadingButtons: [OnboardingTopButton] = {
+        [.back]
+    }()
+    
+    lazy var trailingButtons: [OnboardingTopButton] = {
+        [.close(close)]
+    }()
 }
 
 // MARK: - Methods
 extension CreateCommunityViewModel {
     
+    @MainActor
     func close() {
         coordinator?.close()
     }
     
     func submitCategory() async {
-        guard !categoryString.isEmpty && !categories.contains(categoryString) else { return }
-        
-        await MainActor.run {
-            categories.append(categoryString)
-            categoryString = ""
-        }
+//        guard !categoryString.isEmpty && !categories.contains(categoryString) else { return }
+//        
+//        await MainActor.run {
+//            categories.append(categoryString)
+//            categoryString = ""
+//        }
     }
     
     func submitPostTag() async {
-        guard !postTagString.isEmpty && !postTags.contains(postTagString) else { return }
-        
-        await MainActor.run {
-            postTags.append(postTagString)
-            postTagString = ""
-        }
+//        guard !postTagString.isEmpty && !postTags.contains(postTagString) else { return }
+//        
+//        await MainActor.run {
+//            postTags.append(postTagString)
+//            postTagString = ""
+//        }
     }
     
     func submitCommunity() {
-        isLoading = true
-        Task {
-            do {
-                try await communityInteractor.submitCommunity(title: title)
-            } catch {
-                await MainActor.run {
-                    alert = .missingTitle
-                }
-                print(error)
-            }
-            await MainActor.run {
-                isLoading = false
-                close()
-            }
-            
-        }
+//        isLoading = true
+//        Task {
+//            do {
+//                try await communityInteractor.submitCommunity(title: title)
+//            } catch {
+//                await MainActor.run {
+//                    alert = .missingTitle
+//                }
+//                print(error)
+//            }
+//            await MainActor.run {
+//                isLoading = false
+//                close()
+//            }
+//            
+//        }
     }
 }

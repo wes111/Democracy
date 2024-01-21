@@ -8,30 +8,45 @@
 import Factory
 import Foundation
 
-final class PhoneInputViewModel: InputViewModel {
-    typealias Field = PhoneValidator
-    @Injected(\.accountService) private var accountService
-    private var onboardingInput: OnboardingInput
-    weak var coordinator: OnboardingCoordinatorDelegate?
+@Observable
+final class PhoneInputViewModel: UserTextInputViewModel {
+    typealias Requirement = PhoneRequirement
     
-    @Published var text: String = ""
-    @Published var textErrors: [Field.Requirement] = []
-    @Published var onboardingAlert: OnboardingAlert?
-    @Published var isShowingProgress: Bool = false
+    var text: String = ""
+    var textErrors: [Requirement] = []
+    var alertModel: NewAlertModel?
+    var isShowingProgress: Bool = false
+    
+    @ObservationIgnored @Injected(\.accountService) private var accountService
+    @ObservationIgnored private var onboardingInput: OnboardingInput
+    
+    let field = OnboardingInputField.phone
+    private weak var coordinator: OnboardingCoordinatorDelegate?
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator
         self.onboardingInput = onboardingInput
-        setupBindings()
+    }
+}
+
+// MARK: - Computed Properties
+extension PhoneInputViewModel {
+    var leadingButtons: [OnboardingTopButton] {
+        [.back]
     }
     
-    var topButtons: [OnboardingTopButton: () -> Void] {
-        [.close: close, .back: goBack]
+    var trailingButtons: [OnboardingTopButton] {
+        [.close(close)]
     }
     
-    func skip() {
-        coordinator?.submitPhone(input: onboardingInput)
+    @MainActor
+    var skipAction: (() -> Void)? {
+        { self.coordinator?.submitPhone(input: self.onboardingInput) }
     }
+}
+
+// MARK: - Methods
+extension PhoneInputViewModel {
     
     @MainActor
     func submit() async {
@@ -39,7 +54,7 @@ final class PhoneInputViewModel: InputViewModel {
             guard field.fullyValid(input: text) else {
                 return presentInvalidInputAlert()
             }
-            guard let phoneBaseInt = Int(PhoneTextFieldStyle.format(with: "XXXXXXXXXX", phone: text)) else {
+            guard let phoneBaseInt = Int(PhoneFormatter.format(with: "XXXXXXXXXX", phone: text)) else {
                 return // TODO: Throw an error?
             }
             let phoneNumber = PhoneNumber(base: phoneBaseInt)
@@ -54,20 +69,18 @@ final class PhoneInputViewModel: InputViewModel {
         }
     }
     
-    func setupBindings() {
-        $text
-            .compactMap { [weak self] text in
-                guard !text.isEmpty else { return [] }
-                return self?.field.getInputValidationErrors(input: text)
-            }
-            .assign(to: &$textErrors)
+    @MainActor
+    func presentPhoneUnavailableAlert() {
+        alertModel = OnboardingAlert.phoneUnavailable.toNewAlertModel()
     }
     
     @MainActor
-    func presentPhoneUnavailableAlert() {
-        onboardingAlert = .init(
-            title: "Phone Number Unavailable",
-            message: "Please enter a different phone number to continue."
-        )
+    func close() {
+        coordinator?.close()
+    }
+    
+    @MainActor
+    func goBack() {
+        coordinator?.goBack()
     }
 }

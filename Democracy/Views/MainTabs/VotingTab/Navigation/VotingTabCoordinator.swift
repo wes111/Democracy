@@ -9,14 +9,14 @@ import SwiftUI
 
 struct VotingTabCoordinator: View {
     
-    @StateObject private var viewModel: VotingTabCoordinatorViewModel
+    @State private var viewModel: VotingTabCoordinatorViewModel
     
     init(viewModel: VotingTabCoordinatorViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
     }
     
     var body: some View {
-        CoordinatorView(router: $viewModel.router) {
+        CoordinatorView(router: viewModel.router) {
             VotingTabMainView(viewModel: viewModel.votingTabMainViewModel())
         } secondaryScreen: { (path: VotingTabPath) in
             createViewFromPath(path)

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol VoteViewCoordinator: AnyObject {
-    func goBack()
+    @MainActor func goBack()
 }
 
 final class VoteViewModel: ObservableObject {
@@ -20,12 +20,13 @@ final class VoteViewModel: ObservableObject {
         self.coordinator = coordinator
     }
     
-    var topButtons: [OnboardingTopButton: () -> Void] {
-        [
-            .back: {},
-            .close: {}
-        ]
-    }
+    lazy var leadingButtons: [OnboardingTopButton] = {
+        []
+    }()
+    
+    lazy var trailingButtons: [OnboardingTopButton] = {
+        []
+    }()
 }
 
 // MARK: Computed Properties
@@ -43,6 +44,7 @@ extension VoteViewModel {
 // MARK: - Methods
 extension VoteViewModel {
     
+    @MainActor
     func goBack() {
         coordinator?.goBack()
     }

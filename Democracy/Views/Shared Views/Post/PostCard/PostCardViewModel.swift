@@ -10,7 +10,7 @@ import Foundation
 import LinkPresentation
 
 protocol PostCardCoordinatorDelegate: AnyObject {
-    func goToPostView(_ post: Post)
+    @MainActor func goToPostView(_ post: Post)
 }
 
 final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
@@ -18,7 +18,7 @@ final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
     // MARK: - Private Variables
     @Injected(\.richLinkService) private var richLinkService
     private weak var coordinator: PostCardCoordinatorDelegate?
-    let post: Post // TODO: Make this private?
+    let post: Post
     
     // MARK: - Protocol Variables
     @Published var linkMetadata: LPLinkMetadata?
@@ -35,13 +35,14 @@ final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
     }
     
     var dateTitle: String {
-        if post.creationDate.isYesterday() {
-            return "Yesterday"
-        } else if post.creationDate.isToday() {
-            return "Today"
-        } else {
-            return post.creationDate.getFormattedDate(format: "MMMM dd, YYYY")
-        }
+        ""
+//        if post.creationDate.isYesterday() {
+//            return "Yesterday"
+//        } else if post.creationDate.isToday() {
+//            return "Today"
+//        } else {
+//            return post.creationDate.getFormattedDate(format: "MMMM dd, YYYY")
+//        }
         
     }
     
@@ -49,20 +50,16 @@ final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
         post.title
     }
     
-    var postSubtitle: String? {
-        post.subtitle
-    }
-    
     var postSuperLikeCountString: String {
-        "\(post.superLikeCount)"
+        ""
     }
     
     var postLikeCountString: String {
-        "\(post.likeCount)"
+        ""
     }
     
     var postDislikeCountString: String {
-        "\(post.dislikeCount)"
+        ""
     }
     
     // MARK: - Init
@@ -76,6 +73,7 @@ final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
     
     // MARK: - Protocol Methods
     
+    @MainActor
     func goToPostView() {
         coordinator?.goToPostView(post)
     }
@@ -87,16 +85,16 @@ final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
     // MARK: - Private methods
     
     func loadLinkMetadata() async {
-        guard let url = post.link?.url else { return }
-        do {
-            let metadata = try await richLinkService.getMetadata(for: url)
-            
-            await MainActor.run {
-                self.linkMetadata = metadata
-            }
-        } catch {
-            print("Error occurred fetching rich link metadata: \(error).")
-        }
+//        guard let url = post.link?.url else { return }
+//        do {
+//            let metadata = try await richLinkService.getMetadata(for: url)
+//            
+//            await MainActor.run {
+//                self.linkMetadata = metadata
+//            }
+//        } catch {
+//            print("Error occurred fetching rich link metadata: \(error).")
+//        }
     }
     
 }

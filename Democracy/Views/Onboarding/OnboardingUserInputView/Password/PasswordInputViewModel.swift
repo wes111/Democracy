@@ -8,30 +8,44 @@
 import Factory
 import Foundation
 
-final class PasswordInputViewModel: InputViewModel {
-    typealias Field = PasswordValidator
-    @Injected(\.accountService) private var accountService
-    private var onboardingInput: OnboardingInput
-    weak var coordinator: OnboardingCoordinatorDelegate?
+@Observable
+final class PasswordInputViewModel: UserTextInputViewModel {
+    typealias Requirement = PasswordRequirement
     
-    @Published var text: String = ""
-    @Published var textErrors: [Field.Requirement] = []
-    @Published var onboardingAlert: OnboardingAlert?
-    @Published var isShowingProgress: Bool = false
+    var text: String = ""
+    var textErrors: [Requirement] = []
+    var alertModel: NewAlertModel?
+    var isShowingProgress: Bool = false
+    
+    @ObservationIgnored @Injected(\.accountService) private var accountService
+    @ObservationIgnored private var onboardingInput: OnboardingInput
+    
+    private weak var coordinator: OnboardingCoordinatorDelegate?
+    let skipAction: (() -> Void)? = nil
+    let field = OnboardingInputField.password
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator
         self.onboardingInput = onboardingInput
-        setupBindings()
+    }
+}
+
+extension PasswordInputViewModel {
+    
+    var leadingButtons: [OnboardingTopButton] {
+        [.back]
     }
     
-    var topButtons: [OnboardingTopButton: () -> Void] {
-        [.close: close, .back: goBack]
+    var trailingButtons: [OnboardingTopButton] {
+        [.close(close)]
     }
+}
+
+// MARK: - Methods
+extension PasswordInputViewModel {
     
     @MainActor
     func submit() async {
-        // try? await Task.sleep(nanoseconds: 1_000_000_000)
         guard field.fullyValid(input: text) else {
             return presentInvalidInputAlert()
         }
@@ -39,12 +53,13 @@ final class PasswordInputViewModel: InputViewModel {
         coordinator?.submitPassword(input: onboardingInput)
     }
     
-    func setupBindings() {
-        $text
-            .compactMap { [weak self] text in
-                guard !text.isEmpty else { return [] }
-                return self?.field.getInputValidationErrors(input: text)
-            }
-            .assign(to: &$textErrors)
+    @MainActor
+    func close() {
+        coordinator?.close()
+    }
+    
+    @MainActor
+    func goBack() {
+        coordinator?.goBack()
     }
 }

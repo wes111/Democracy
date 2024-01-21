@@ -14,7 +14,7 @@ struct AsyncButton<Label: View>: View {
     var action: () async -> Void
     @ViewBuilder var label: () -> Label
 
-    @State private var isDisabled = false
+    @State private var isDisabled: Bool = false
     @Binding var showProgressView: Bool
 
     var body: some View {
@@ -32,9 +32,12 @@ struct AsyncButton<Label: View>: View {
                     
                     await action()
                     progressViewTask?.cancel()
-                    withAnimation {
-                        isDisabled = false
-                        showProgressView = false
+                    Task { // Fixes bug where progressView is not dismissed.
+                        try await Task.sleep(nanoseconds: 150_000)
+                        withAnimation {
+                            isDisabled = false
+                            showProgressView = false
+                        }
                     }
                 }
             },
@@ -42,10 +45,11 @@ struct AsyncButton<Label: View>: View {
                 label()
             }
         )
-        .disabled(isDisabled)
+        .isDisabledWithAnimation(isDisabled: isDisabled || showProgressView)
     }
 }
 
+// MARK: - Preview
 #Preview {
     AsyncButton(
         action: { {}() },

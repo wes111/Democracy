@@ -39,8 +39,10 @@ struct CreateCommunityView: View {
                 ProgressView()
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbarNavigation(title: "Create Community", topButtons: viewModel.topButtons)
+        .toolbarNavigation(
+            leadingButtons: viewModel.leadingButtons,
+            trailingButtons: viewModel.trailingButtons
+        )
         .onAppear {
             focusedField = .title
         }
@@ -66,7 +68,7 @@ extension CreateCommunityView {
         .limitCharacters(text: $viewModel.categoryString, count: 2_000)
         .lineLimit(3...10)
         .focused($focusedField, equals: .summary)
-        .standardTextField(title: "Description")
+        // .standardTextInputAppearance()
     }
     
     var titleField: some View {
@@ -79,7 +81,7 @@ extension CreateCommunityView {
         .limitCharacters(text: $viewModel.title, count: 75)
         .lineLimit(2)
         .focused($focusedField, equals: .title)
-        .standardTextField(title: "Title")
+        // .standardTextInputAppearance()
         .submitLabel(.next)
     }
     
@@ -89,7 +91,7 @@ extension CreateCommunityView {
             text: $viewModel.categoryString,
             prompt: Text("Add a post category").foregroundColor(.tertiaryBackground)
         )
-        .taggable(title: "Categories", tags: viewModel.categories)
+        .taggable(tags: viewModel.categories)
         .limitCharacters(text: $viewModel.categoryString, count: 25)
         .focused($focusedField, equals: .addCategory)
         .onSubmit {
@@ -106,7 +108,7 @@ extension CreateCommunityView {
             Text("Submit")
         }
         .buttonStyle(PrimaryButtonStyle())
-        .disabled(viewModel.isLoading)
+        .isDisabledWithAnimation(isDisabled: viewModel.isLoading)
     }
     
     var adultContentCheckBox: some View {

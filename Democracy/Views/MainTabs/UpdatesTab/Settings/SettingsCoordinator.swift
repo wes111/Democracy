@@ -11,9 +11,10 @@ enum SettingsPath: Hashable {
     case todo
 }
 
+@MainActor
 struct SettingsCoordinator: View {
     
-    @StateObject private var router = Router()
+    @State private var router = Router()
     
     var body: some View {
         createRootView()
@@ -29,6 +30,7 @@ struct SettingsCoordinator: View {
         }
     }
     
+    @MainActor
     private func createRootView() -> SettingsView<SettingsViewModel> {
         let viewModel = SettingsViewModel()
         return SettingsView(viewModel: viewModel)

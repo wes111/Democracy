@@ -7,19 +7,22 @@
 
 import Foundation
 
+@MainActor
 protocol OnboardingCoordinatorParent: AnyObject {
     func dismiss()
 }
 
-final class OnboardingCoordinator: Coordinator {
+@MainActor @Observable
+final class OnboardingCoordinator {
     
     weak var parentCoordinator: OnboardingCoordinatorParent?
+    var router = Router()
     
     init(parentCoordinator: OnboardingCoordinatorParent?) {
         self.parentCoordinator = parentCoordinator
     }
     
-    lazy var createUsernameFieldViewModel: UsernameInputViewModel = {
+    @ObservationIgnored lazy var createUsernameFieldViewModel: UsernameInputViewModel = {
         .init(coordinator: self)
     }()
     
@@ -57,7 +60,6 @@ extension OnboardingCoordinator: OnboardingCoordinatorDelegate {
     }
     
     func continueAccountSetup() {
-
     }
     
     func submitEmailVerification() {

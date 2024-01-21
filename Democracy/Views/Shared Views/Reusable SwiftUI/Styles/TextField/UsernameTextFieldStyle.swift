@@ -7,33 +7,37 @@
 
 import SwiftUI
 
-struct UsernameTextFieldStyle: TextFieldStyle {
+struct UsernameTextFieldStyle<Field: InputField>: TextFieldStyle {
     @Binding var username: String
+    @FocusState.Binding var focusedField: Field?
+    let field: Field
     
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {
         configuration
-            .limitCharacters(
-                text: $username,
-                count: OnboardingInputField.username.maxCharacterCount
-            )
             .keyboardType(.default)
             .textContentType(.username)
-            .textInputAutocapitalization(.never)
-            .autocorrectionDisabled()
-            .standardTextField()
-            .contentShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+            .standardTextInputAppearance(
+                text: $username,
+                focusedField: $focusedField,
+                field: field
+            )
     }
 }
 
 // MARK: - Preview
 #Preview {
-    ZStack {
+    @FocusState var focusedField: OnboardingInputField?
+    return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
         TextField("Username", text: .constant("Username"),
                   prompt: Text("Username").foregroundColor(.tertiaryBackground)
         )
-        .textFieldStyle(UsernameTextFieldStyle(username: .constant("Username")))
+        .textFieldStyle(UsernameTextFieldStyle(
+            username: .constant("Username"),
+            focusedField: $focusedField,
+            field: OnboardingInputField.username
+        ))
     }
 }

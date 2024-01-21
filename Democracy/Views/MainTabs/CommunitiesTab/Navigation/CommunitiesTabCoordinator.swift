@@ -7,8 +7,9 @@
 
 import Foundation
 
-final class CommunitiesTabCoordinator: Coordinator {
-    
+@MainActor @Observable
+final class CommunitiesTabCoordinator {
+    var router = Router()
 }
 
 // MARK: - Child ViewModels
@@ -40,7 +41,6 @@ extension CommunitiesTabCoordinator: CommunitiesTabMainCoordinatorDelegate {
     }
     
     func goToCommunity(communityId: String) {
-        // TODO: Add actual community.
         router.push(CommunitiesTabPath.goToCommunity(.preview))
     }
 }

@@ -36,14 +36,14 @@ import SwiftUI
 
 struct EventsTabCoordinator: View {
     
-    @StateObject private var viewModel: EventsTabCoordinatorViewModel
+    @State private var viewModel: EventsTabCoordinatorViewModel
     
     init(viewModel: EventsTabCoordinatorViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
     }
     
     var body: some View {
-        CoordinatorView(router: $viewModel.router) {
+        CoordinatorView(router: viewModel.router) {
             EventsTabMainView(viewModel: viewModel.eventsTabMainViewModel())
         } secondaryScreen: { (path: EventsTabPath) in
             createViewFromPath(path)
@@ -59,6 +59,7 @@ struct EventsTabCoordinator: View {
         }
     }
     
+    @MainActor
     func createEventsTabMainView() -> EventsTabMainView<EventsTabMainViewModel> {
         let viewModel = EventsTabMainViewModel()
         return EventsTabMainView(viewModel: viewModel)

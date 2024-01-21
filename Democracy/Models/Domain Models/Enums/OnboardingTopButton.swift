@@ -7,7 +7,18 @@
 
 import Foundation
 
-enum OnboardingTopButton: CaseIterable {
+enum OnboardingTopButton: Identifiable {
+    typealias Action = @MainActor () -> Void
+    
     case back
-    case close
+    case close(Action)
+    
+    var id: String {
+        switch self {
+        case .back:
+            "back"
+        case .close:
+            "close"
+        }
+    }
 }

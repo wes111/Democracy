@@ -20,7 +20,7 @@ struct CommunityArchiveFeedView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: true) {
             LazyVGrid(columns: gridItemLayout, alignment: .center) {
-                ForEach(viewModel.categories) { category in
+                ForEach(viewModel.categories, id: \.self) { category in
                     CommunityCategoryView(viewModel: category)
                         .onTapGesture {
                             viewModel.goToCommunityPostCategory(category: category)

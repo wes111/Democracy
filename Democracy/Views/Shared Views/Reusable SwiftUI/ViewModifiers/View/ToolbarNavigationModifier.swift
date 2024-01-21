@@ -8,42 +8,43 @@
 import Foundation
 import SwiftUI
 
+enum ToolbarCenterContent: Hashable, Identifiable {
+    case title(String)
+    
+    var id: Self {
+        self
+    }
+}
+
+@MainActor
 struct ToolbarNavigationModifier: ViewModifier {
     @Environment(\.dismiss) private var dismiss
     
-    let title: String?
-    let topButtons: [OnboardingTopButton: () -> Void]
-    
-    init(title: String? = nil, topButtons: [OnboardingTopButton: () -> Void]) {
-        self.title = title
-        self.topButtons = topButtons
-    }
+    let leadingButtons: [OnboardingTopButton]
+    let trailingButtons: [OnboardingTopButton]
+    let centerContent: ToolbarCenterContent?
     
     func body(content: Content) -> some View {
         content
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
             .toolbar {
-                if let title {
-                    toolbarTitle(title)
+                toolbarSideContent(placement: .topBarLeading, buttons: leadingButtons)
+                if let centerContent {
+                    toolbarCenterContent(centerContent)
                 }
-                
-                if topButtons.keys.contains(where: { $0 == .close }) {
-                    toolbarCloseButton
-                }
-                
-                if topButtons.keys.contains(where: { $0 == .back }) {
-                    toolbarBackButton
-                }
+                toolbarSideContent(placement: .topBarTrailing, buttons: trailingButtons)
             }
     }
 }
 
 // MARK: - Subviews
 private extension ToolbarNavigationModifier {
-    func toolbarTitle(_ title: String) -> some ToolbarContent {
+    func toolbarCenterContent(_ content: ToolbarCenterContent) -> some ToolbarContent {
         ToolbarItem(placement: .principal) {
-            HStack {
-                Text(title)
+            switch content {
+            case .title(let string):
+                Text(string)
                     .font(.title2)
                     .fontWeight(.semibold)
                     .foregroundColor(.tertiaryText)
@@ -51,35 +52,45 @@ private extension ToolbarNavigationModifier {
         }
     }
     
-    var toolbarCloseButton: some ToolbarContent {
-        ToolbarItem(placement: .topBarTrailing) {
-            Button {
-                if let action = topButtons[.close] {
-                    action()
-                } else {
-                    return
+    func toolbarSideContent(
+        placement: ToolbarItemPlacement,
+        buttons: [OnboardingTopButton]
+    ) -> some ToolbarContent {
+        ToolbarItemGroup(placement: placement) {
+            ForEach(buttons) { button in
+                switch button {
+                case .back:
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.tertiaryText)
+                    }
+                    
+                case .close(let action):
+                    Button {
+                        action()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .foregroundColor(.tertiaryText)
+                    }
                 }
-            } label: {
-                Image(systemName: "xmark")
-                    .foregroundColor(.tertiaryText)
-            }
-        }
-    }
-    
-    var toolbarBackButton: some ToolbarContent {
-        ToolbarItem(placement: .topBarLeading) {
-            Button {
-                dismiss()
-            } label: {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(.tertiaryText)
             }
         }
     }
 }
 
+// MARK: View extension
 extension View {
-    func toolbarNavigation(title: String? = nil, topButtons: [OnboardingTopButton: () -> Void]) -> some View {
-        modifier(ToolbarNavigationModifier(title: title, topButtons: topButtons))
+    func toolbarNavigation(
+        leadingButtons: [OnboardingTopButton] = [],
+        trailingButtons: [OnboardingTopButton] = [],
+        centerContent: ToolbarCenterContent? = nil
+    ) -> some View {
+        modifier(ToolbarNavigationModifier(
+            leadingButtons: leadingButtons,
+            trailingButtons: trailingButtons,
+            centerContent: centerContent
+        ))
     }
 }

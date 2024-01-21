@@ -7,10 +7,12 @@
 
 import Foundation
 
+@MainActor
 protocol VotingTabMainCoordinatorDelegate: AnyObject {
     func tappedNav()
 }
 
+@MainActor
 protocol VotingTabMainViewModelProtocol: ObservableObject {
     func tappedNav()
 }
@@ -23,6 +25,7 @@ final class VotingTabMainViewModel: VotingTabMainViewModelProtocol {
         self.coordinator = coordinator
     }
     
+    @MainActor
     func tappedNav() {
         coordinator?.tappedNav()
     }

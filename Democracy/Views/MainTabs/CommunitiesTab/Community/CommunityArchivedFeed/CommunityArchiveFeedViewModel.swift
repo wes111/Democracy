@@ -9,7 +9,7 @@ import Factory
 import Foundation
 
 protocol CommunityArchiveFeedCoordinatorDelegate: PostCardCoordinatorDelegate, AnyObject {
-    func goToCommunityPostCategory(categoryId: String)
+    @MainActor func goToCommunityPostCategory(categoryId: String)
 }
 
 final class CommunityArchiveFeedViewModel: ObservableObject {
@@ -18,7 +18,7 @@ final class CommunityArchiveFeedViewModel: ObservableObject {
     private let community: Community
     
     var categories: [CommunityCategoryViewModel] {
-        CommunityCategory.previewArray.map { $0.toCommunityCategoryViewModel() }
+        Community.preview.categories.map { CommunityCategoryViewModel(name: $0) }
     }
     
     init(coordinator: CommunityArchiveFeedCoordinatorDelegate?,
@@ -28,8 +28,9 @@ final class CommunityArchiveFeedViewModel: ObservableObject {
         self.community = community
     }
     
+    @MainActor
     func goToCommunityPostCategory(category: CommunityCategoryViewModel) {
-        coordinator?.goToCommunityPostCategory(categoryId: category.id)
+        coordinator?.goToCommunityPostCategory(categoryId: category.name)
     }
     
 }

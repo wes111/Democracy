@@ -11,12 +11,11 @@ import SwiftUI
 // A Textfield with a list of entered tags displayed below.
 extension TextField {
     
-    func taggable(title: String? = nil, tags: [String]) -> some View {
-        modifier(TaggableModifier(title: title, tags: tags))
+    func taggable(tags: [String]) -> some View {
+        modifier(TaggableModifier(tags: tags))
     }
     
     struct TaggableModifier: ViewModifier {
-        let title: String?
         let tags: [String]
         
         func body(content: Content) -> some View {
@@ -34,7 +33,7 @@ extension TextField {
                     }
                 }
             }
-            .standardTextField(title: title)
+            // .standardTextField()
         }
     }
 }

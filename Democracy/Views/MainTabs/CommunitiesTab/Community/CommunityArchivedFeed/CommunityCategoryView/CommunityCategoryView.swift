@@ -16,10 +16,10 @@ struct CommunityCategoryView: View {
             
             VStack(spacing: 0) {
                 
-                Image(viewModel.imageName)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 175)
+//                Image(viewModel.imageName)
+//                    .resizable()
+//                    .scaledToFill()
+//                    .frame(width: 175)
                 
                 HStack {
                     Text(viewModel.name)
@@ -35,7 +35,7 @@ struct CommunityCategoryView: View {
             .background(Color.blue)
             .clipShape(RoundedRectangle(cornerRadius: 10))
             
-            Label("\(viewModel.postCount)",
+            Label("\(10)",
                   systemImage: "book.closed.fill"
             )
             .labelStyle(ReversedLabelStyle())
@@ -54,6 +54,8 @@ struct CommunityCategoryView: View {
 
 // MARK: - Preview
 #Preview {
-    CommunityCategoryView(viewModel: CommunityCategory.preview.toCommunityCategoryViewModel())
-        .frame(height: 100)
+    CommunityCategoryView(
+        viewModel: CommunityCategoryViewModel(name: Community.preview.categories.first!)
+    )
+    .frame(height: 100)
 }

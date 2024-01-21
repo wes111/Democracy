@@ -8,15 +8,17 @@
 import Foundation
 
 protocol CommunityCoordinatorParent {
-    func goToCommunity(communityId: String)
+    @MainActor func goToCommunity(communityId: String)
 }
 
-class CommunityCoordinator: Coordinator, CommunityCoordinatorDelegate {
+@MainActor @Observable
+final class CommunityCoordinator: CommunityCoordinatorDelegate {
     
-    @Published var url: URL = URL(string: "https://www.google.com")!
-    @Published var isShowingWebView = false
-    @Published var isShowingCreatePostView = false
-    @Published var isShowingCreateCandidateView = false
+    var url: URL = URL(string: "https://www.google.com")!
+    var isShowingWebView = false
+    var isShowingCreatePostView = false
+    var isShowingCreateCandidateView = false
+    var router: Router
     
     let community: Community
     let parentCoordinator: CommunityCoordinatorParent
@@ -28,8 +30,7 @@ class CommunityCoordinator: Coordinator, CommunityCoordinatorDelegate {
     ) {
         self.community = community
         self.parentCoordinator = parentCoordinator
-        
-        super.init(router: router)
+        self.router = router
     }
     
 }
@@ -47,8 +48,7 @@ extension CommunityCoordinator {
     }
     
     func goToCommunityPostCategory(categoryId: String) {
-        // TODO: Get the actual post category.
-        router.push(CommunityPath.goToCommunityPostCategory(category: .preview))
+        router.push(CommunityPath.goToCommunityPostCategory(category: Community.preview.categories.first!))
     }
     
     func goToPostView(_ post: Post) {
@@ -56,7 +56,6 @@ extension CommunityCoordinator {
     }
     
     func goToCandidateView(candidateId: String) {
-        // TODO: Get the actual candidate.
         router.push(CommunityPath.singleCandidate(.preview))
     }
     
@@ -81,16 +80,12 @@ extension CommunityCoordinator {
         PostViewModel(post: post)
     }
     
-    func communityPostCategoryViewModel(category: CommunityCategory) -> CommunityCategoryPostsViewModel {
+    func communityPostCategoryViewModel(category: String) -> CommunityCategoryPostsViewModel {
         CommunityCategoryPostsViewModel(community: community, category: category)
     }
     
     func communityViewModel() -> CommunityViewModel {
         CommunityViewModel(coordinator: self, community: community)
-    }
-    
-    func addPostViewModel() -> AddPostViewModel {
-        AddPostViewModel(coordinator: self)
     }
     
     func candidatesViewModel() -> CandidatesViewModel {
@@ -107,12 +102,6 @@ extension CommunityCoordinator {
 }
 
 // MARK: - Protocols
-extension CommunityCoordinator: AddPostCoordinatorDelegate {
-    
-    func close() {
-        isShowingCreatePostView = false
-    }
-}
 
 extension CommunityCoordinator: CandidatesCoordinatorDelegate {
     
@@ -122,6 +111,12 @@ extension CommunityCoordinator: CandidatesCoordinatorDelegate {
     
     func closeCreateCandidateView() {
         isShowingCreateCandidateView = false
+    }
+}
+
+extension CommunityCoordinator: SubmitPostCoordinatorParent {
+    func dismiss() {
+        isShowingCreatePostView = false
     }
 }
 

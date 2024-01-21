@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct OnboardingCoordinatorView: View {
-    @StateObject private var coordinator: OnboardingCoordinator
+    @State private var coordinator: OnboardingCoordinator
     
     init(coordinator: OnboardingCoordinator) {
-        _coordinator = StateObject(wrappedValue: coordinator)
+        self.coordinator = coordinator
     }
     
     var body: some View {
-        CoordinatorView(router: $coordinator.router) {
+        CoordinatorView(router: coordinator.router) {
             UsernameOnboardingInputView(viewModel: coordinator.createUsernameFieldViewModel)
         } secondaryScreen: { (path: OnboardingPath) in
             createViewFromPath(path)
         }
     }
     
-    @ViewBuilder
+    @ViewBuilder @MainActor
     func createViewFromPath(_ path: OnboardingPath) -> some View {
         switch path {
         case .goToCreatePassword(let viewModel): PasswordOnboardingInputView(viewModel: viewModel)

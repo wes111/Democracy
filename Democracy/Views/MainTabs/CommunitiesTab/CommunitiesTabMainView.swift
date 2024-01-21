@@ -11,7 +11,7 @@ struct CommunitiesTabMainView: View {
     
     @StateObject var viewModel: CommunitiesTabMainViewModel
     @State private var multiSelection = Set<String>()
-    @State private var bob = "" // TODO: ...
+    @State private var bob = ""
     
     init(viewModel: CommunitiesTabMainViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -64,7 +64,7 @@ struct CommunitiesScrollView: View {
     
     let title: String
     var communities: [Community]
-    let onTapAction: (Community) -> Void
+    let onTapAction: @MainActor (Community) -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {

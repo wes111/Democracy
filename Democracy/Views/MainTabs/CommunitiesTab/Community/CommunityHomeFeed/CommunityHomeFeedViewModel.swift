@@ -34,6 +34,7 @@ final class CommunityHomeFeedViewModel: ObservableObject {
         postInteractor.subscribeToPosts().assign(to: &$posts)
     }
     
+    @MainActor
     func goToPost() {
         coordinator?.goToPostView(Post.preview)
     }
@@ -57,9 +58,8 @@ final class CommunityHomeFeedViewModel: ObservableObject {
         // PostCardViewModel.previewArray
     }()
     
-    // TODO: ...
     func topPostsForDate(_ date: Date) -> [PostCardViewModel] {
-        // Tapping a post card doesn't do anything currently because we're using this privew here. TODO: ...
+        // Tapping a post card doesn't do anything currently because we're using this privew here.
         // PostCardViewModel.previewArray
         []
     }

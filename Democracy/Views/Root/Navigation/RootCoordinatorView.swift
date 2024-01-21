@@ -8,22 +8,19 @@
 import SwiftUI
 
 struct RootCoordinatorView: View {
-    @StateObject private var viewModel: RootCoordinator
+    @State private var viewModel: RootCoordinator
     
     init(viewModel: RootCoordinator) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
     }
     
     var body: some View {
-        CoordinatorView(router: $viewModel.router) {
+        Group {
             if viewModel.loginStatus == .loggedOut {
                 LoginView(viewModel: viewModel.loginViewModel())
             } else {
                 MainTabView(viewModel: viewModel.mainTabViewModel)
             }
-            
-        } secondaryScreen: { (path: RootPath) in
-            createViewFromPath(path)
         }
         .popover(isPresented: $viewModel.isShowingOnboardingFlow) {
             OnboardingCoordinatorView(coordinator: viewModel.onboardingCoordinator())

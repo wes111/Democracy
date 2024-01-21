@@ -7,9 +7,7 @@
 
 import Foundation
 
-struct CommunityCategoryViewModel: Identifiable, Hashable {
-    let id: String
+// TODO: why is this needed?
+struct CommunityCategoryViewModel: Hashable {
     let name: String
-    let imageName: String
-    var postCount: Int
 }

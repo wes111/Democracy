@@ -43,14 +43,14 @@ struct CandidateInteractor: CandidateInteractorProtocol {
     }
     
     private func updateCandidates() {
-        Task {
-            do {
-                let candidates = try await localRepository.getCandidates()
-                candidatesPublisher.send(candidates)
-            } catch {
-                // print("Failed to update candidates from local repository, error: \(error)")
-            }
-        }
+//        Task {
+//            do {
+//                let candidates = try await localRepository.getCandidates()
+//                candidatesPublisher.send(candidates)
+//            } catch {
+//                // print("Failed to update candidates from local repository, error: \(error)")
+//            }
+//        }
     }
     
     func upVoteCandidate(_ candidate: Candidate) async throws {
@@ -75,7 +75,7 @@ struct CandidateInteractor: CandidateInteractorProtocol {
             userName: user.name,
             firstName: user.name,
             lastName: user.name,
-            imageName: "bernie", // TODO: ...
+            imageName: "bernie",
             upVotes: 0,
             downVotes: 0,
             communityId: UUID().uuidString,
@@ -95,4 +95,3 @@ struct CandidateInteractor: CandidateInteractorProtocol {
 enum CandidateInteractorError: Error {
     case unexpected
 }
-

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// TODO: This overlaps with CandidateView.
 struct LeaderView: View {
     
     let viewModel: LeaderViewModel

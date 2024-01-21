@@ -11,9 +11,8 @@ extension CreateCandidateViewModel {
     
     class PreviewHelper: CreateCandidateCoordinatorDelegate {
         func closeCreateCandidateView() {
-            // TODO: ...
         }
     }
     
-    static let preview = CreateCandidateViewModel(coordinator: PreviewHelper())
+    @MainActor static let preview = CreateCandidateViewModel(coordinator: PreviewHelper())
 }

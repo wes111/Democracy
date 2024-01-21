@@ -9,7 +9,7 @@ import Foundation
 
 struct Candidate: Hashable, Identifiable, Codable {
     let id: String // <-- link to user.
-    let userName: String // TODO: Remove these 3 fields, should be in user.
+    let userName: String
     let firstName: String?
     let lastName: String?
     let imageName: String?

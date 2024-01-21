@@ -7,52 +7,27 @@
 
 import SwiftUI
 
-struct PhoneOnboardingInputView: OnboardingInputView {
-    @ObservedObject var viewModel: PhoneInputViewModel
-    @FocusState private var focusedField: OnboardingInputField?
-    
-    init(viewModel: PhoneInputViewModel) {
-        self.viewModel = viewModel
-    }
+struct PhoneOnboardingInputView<ViewModel: PhoneInputViewModel>: View {
+    @Bindable var viewModel: ViewModel
+    @FocusState private var focusedField: ViewModel.Field?
     
     var body: some View {
-        main
-            .onAppear {
-                focusedField = viewModel.field
-            }
-            .onTapGesture {
-                focusedField = nil
-            }
-    }
-    
-    var isShowingProgress: Binding<Bool> {
-        $viewModel.isShowingProgress
-    }
-    
-    var onboardingAlert: Binding<OnboardingAlert?> {
-        $viewModel.onboardingAlert
-    }
-    
-    var field: some View {
-        TextField(
-            viewModel.fieldTitle,
-            text: $viewModel.text,
-            prompt: Text(viewModel.fieldTitle).foregroundColor(.tertiaryBackground)
+        DefaultTextFieldInputView(
+            viewModel: viewModel,
+            focusedField: $focusedField,
+            textFieldStyle: PhoneTextFieldStyle(
+                phone: $viewModel.text,
+                focusedField: $focusedField,
+                field: OnboardingInputField.phone
+            )
         )
-        .textFieldStyle(PhoneTextFieldStyle(phone: $viewModel.text))
-        .focused($focusedField, equals: viewModel.field)
-        .submitLabel(.next)
-        .onTapGesture {
-            focusedField = .phone
-        }
     }
 }
 
+// MARK: - Preview
 #Preview {
-    let parentCoordinator = RootCoordinator()
-    let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
     let viewModel = PhoneInputViewModel(
-        coordinator: coordinator,
+        coordinator: OnboardingCoordinator.preview,
         onboardingInput: .init()
     )
     return PhoneOnboardingInputView(viewModel: viewModel)

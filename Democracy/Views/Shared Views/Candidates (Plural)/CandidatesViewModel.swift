@@ -9,8 +9,8 @@ import Foundation
 import Combine
 import Factory
 
+@MainActor
 protocol CandidatesCoordinatorDelegate: CandidateCardCoordinatorDelegate, AnyObject {
-    
     func showCreateCandidateView()
     func closeCreateCandidateView()
 }
@@ -24,9 +24,9 @@ protocol CandidatesViewModelProtocol: ObservableObject {
     // var isShowingCreateCandidateView: Bool { get set }
     
     func refreshCandidates()
-    func openCreateCandidateView()
-    func closeCreateCandidateView()
-    func getCandidateCardViewModel(_ candidate: Candidate) -> CandidateCardViewModel 
+    @MainActor func openCreateCandidateView()
+    @MainActor func closeCreateCandidateView()
+    func getCandidateCardViewModel(_ candidate: Candidate) -> CandidateCardViewModel
 }
 
 final class CandidatesViewModel: CandidatesViewModelProtocol {

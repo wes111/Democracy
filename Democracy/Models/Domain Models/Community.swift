@@ -7,6 +7,14 @@
 
 import Foundation
 
+struct TempCommunity: Codable, Hashable {
+    let id: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "$id"
+    }
+}
+
 struct Community: Hashable, Identifiable, Codable {
     let id: String // TODO: Change where id is assigned value.
     let name: String
@@ -16,8 +24,8 @@ struct Community: Hashable, Identifiable, Codable {
     let memberCount: Int
     var rules: [Rule]
     var resources: [Resource]
-    var postCategories: [CommunityCategory] // Categories defined by community, cannot be enum.
-    var tags: [Tag]
+    var categories: [String]// Categories defined by community, cannot be enum.
+    var tags: [String]
     var alliedCommunities: [Community]
 }
 

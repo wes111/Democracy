@@ -7,8 +7,9 @@
 
 import Foundation
 
-final class HistoryTabCoordinatorViewModel: Coordinator {
-    
+@MainActor @Observable
+final class HistoryTabCoordinatorViewModel {
+    var router = Router()
 }
 
 // MARK: - Child ViewModels

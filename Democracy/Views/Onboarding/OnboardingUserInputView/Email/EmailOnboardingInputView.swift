@@ -7,52 +7,27 @@
 
 import SwiftUI
 
-struct EmailOnboardingInputView: OnboardingInputView {
-    @ObservedObject var viewModel: EmailInputViewModel
-    @FocusState private var focusedField: OnboardingInputField?
-    
-    init(viewModel: EmailInputViewModel) {
-        self.viewModel = viewModel
-    }
+struct EmailOnboardingInputView<ViewModel: EmailInputViewModel>: View {
+    @Bindable var viewModel: ViewModel
+    @FocusState private var focusedField: ViewModel.Field?
     
     var body: some View {
-        main
-            .onAppear {
-                focusedField = viewModel.field
-            }
-            .onTapGesture {
-                focusedField = nil
-            }
-    }
-    
-    var isShowingProgress: Binding<Bool> {
-        $viewModel.isShowingProgress
-    }
-    
-    var onboardingAlert: Binding<OnboardingAlert?> {
-        $viewModel.onboardingAlert
-    }
-    
-    var field: some View {
-        TextField(
-            viewModel.fieldTitle,
-            text: $viewModel.text,
-            prompt: Text(viewModel.fieldTitle).foregroundColor(.tertiaryBackground)
+        DefaultTextFieldInputView(
+            viewModel: viewModel,
+            focusedField: $focusedField,
+            textFieldStyle: EmailTextFieldStyle(
+                email: $viewModel.text,
+                focusedField: $focusedField,
+                field: .email
+            )
         )
-        .textFieldStyle(EmailTextFieldStyle(email: $viewModel.text))
-        .focused($focusedField, equals: viewModel.field)
-        .submitLabel(.next)
-        .onTapGesture {
-            focusedField = .email
-        }
     }
 }
 
+// MARK: - Preview
 #Preview {
-    let parentCoordinator = RootCoordinator()
-    let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
     let viewModel = EmailInputViewModel(
-        coordinator: coordinator,
+        coordinator: OnboardingCoordinator.preview,
         onboardingInput: .init()
     )
     return EmailOnboardingInputView(viewModel: viewModel)

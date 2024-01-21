@@ -8,29 +8,43 @@
 import Factory
 import Foundation
 
-final class UsernameInputViewModel: InputViewModel {
-    typealias Field = UsernameValidator
-    @Injected(\.accountService) private var accountService
-    private var onboardingInput = OnboardingInput()
-    weak var coordinator: OnboardingCoordinatorDelegate?
+@Observable
+final class UsernameInputViewModel: UserTextInputViewModel {
+    typealias Requirement = UsernameRequirement
     
-    @Published var text: String = ""
-    @Published var textErrors: [Field.Requirement] = []
-    @Published var onboardingAlert: OnboardingAlert?
-    @Published var isShowingProgress: Bool = false
+    var text: String = ""
+    var textErrors: [Requirement] = []
+    var alertModel: NewAlertModel?
+    var isShowingProgress: Bool = false
+    
+    @ObservationIgnored @Injected(\.accountService) private var accountService
+    @ObservationIgnored private var onboardingInput = OnboardingInput()
+    
+    let field = OnboardingInputField.username
+    private weak var coordinator: OnboardingCoordinatorDelegate?
+    let skipAction: (() -> Void)? = nil
     
     init(coordinator: OnboardingCoordinatorDelegate?) {
         self.coordinator = coordinator
-        setupBindings()
+    }
+}
+
+// MARK: - Computed Properties
+extension UsernameInputViewModel {
+    var leadingButtons: [OnboardingTopButton] {
+        []
     }
     
-    var topButtons: [OnboardingTopButton: () -> Void] {
-        [.close: close]
+    var trailingButtons: [OnboardingTopButton] {
+        [.close(close)]
     }
+}
+
+// MARK: - Methods
+extension UsernameInputViewModel {
     
     @MainActor
     func submit() async {
-         try? await Task.sleep(nanoseconds: 1_000_000_000)
         do {
             guard field.fullyValid(input: text) else {
                 return presentInvalidInputAlert()
@@ -46,20 +60,18 @@ final class UsernameInputViewModel: InputViewModel {
         }
     }
     
-    func setupBindings() {
-        $text
-            .compactMap { [weak self] text in
-                guard !text.isEmpty else { return [] }
-                return self?.field.getInputValidationErrors(input: text)
-            }
-            .assign(to: &$textErrors)
+    @MainActor
+    func presentUsernameUnavailableAlert() {
+        alertModel = OnboardingAlert.usernameUnavailable.toNewAlertModel()
     }
     
     @MainActor
-    func presentUsernameUnavailableAlert() {
-        onboardingAlert = .init(
-            title: "Username unavailable",
-            message: "Please enter a different username to continue."
-        )
+    func close() {
+        coordinator?.close()
+    }
+    
+    @MainActor
+    func goBack() {
+        coordinator?.goBack()
     }
 }

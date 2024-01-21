@@ -7,7 +7,9 @@
 
 import Foundation
 
-final class VotingTabCoordinatorViewModel: Coordinator {
+@MainActor @Observable
+final class VotingTabCoordinatorViewModel {
+    var router = Router()
 }
 
 // MARK: - Child ViewModels

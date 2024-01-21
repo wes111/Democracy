@@ -12,8 +12,8 @@ import Foundation
 protocol CommunityCoordinatorDelegate: 
     CommunityHomeFeedCoordinatorDelegate, CommunityInfoCoordinatorDelegate,
         CommunityArchiveFeedCoordinatorDelegate, AnyObject {
-    func showCreatePostView()
-    func goBack()
+    @MainActor func showCreatePostView()
+    @MainActor func goBack()
 }
 
 final class CommunityViewModel: ObservableObject {
@@ -28,12 +28,13 @@ final class CommunityViewModel: ObservableObject {
         // Communityinteractor.canMakePostsInThisCommunity
     }
     
-    var topButtons: [OnboardingTopButton: () -> Void] {
-        [
-            .back: {},
-            .close: {}
-        ]
-    }
+    lazy var leadingButtons: [OnboardingTopButton] = {
+        [.back]
+    }()
+    
+    lazy var trailingButtons: [OnboardingTopButton] = {
+        []
+    }()
     
     init(coordinator: CommunityCoordinatorDelegate,
          community: Community
@@ -42,6 +43,7 @@ final class CommunityViewModel: ObservableObject {
         self.community = community
     }
     
+    @MainActor
     func showCreatePostView() {
         coordinator?.showCreatePostView()
     }
@@ -58,6 +60,7 @@ final class CommunityViewModel: ObservableObject {
         CommunityArchiveFeedViewModel(coordinator: coordinator, community: community)
     }
     
+    @MainActor
     func goBack() {
         coordinator?.goBack()
     }

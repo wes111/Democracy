@@ -12,6 +12,7 @@ import SharedResourcesClientAndServer
 
 enum AccountServiceError: Error {
     case noSession
+    case createAccountMissingField
 }
 
 protocol AccountService {
@@ -72,7 +73,7 @@ extension AccountServiceDefault {
               let password = input.password,
               let email = input.email
         else {
-            throw OnboardingError.createAccountMissingField
+            throw AccountServiceError.createAccountMissingField
         }
         try await userRepository.createUser(userName: userName, password: password, email: email)
         try await login(email: email, password: password)

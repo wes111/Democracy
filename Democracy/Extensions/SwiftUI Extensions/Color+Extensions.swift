@@ -60,4 +60,8 @@ extension Color {
         .init(red: 165 / 255, green: 4 / 255, blue: 4 / 255)
     }
     
+    static var onBackground: Color {
+        Color.white.opacity(0.1)
+    }
+    
 }

@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct PasswordOnboardingInputView: OnboardingInputView {
-    @ObservedObject var viewModel: PasswordInputViewModel
+struct PasswordOnboardingInputView: View {
+    @Bindable var viewModel: PasswordInputViewModel
     @FocusState private var focusedField: OnboardingInputField?
     
     init(viewModel: PasswordInputViewModel) {
@@ -16,39 +16,38 @@ struct PasswordOnboardingInputView: OnboardingInputView {
     }
     
     var body: some View {
-        main
-            .onAppear {
-                focusedField = viewModel.field
-            }
-            .onTapGesture {
-                focusedField = nil
-            }
+        UserTextInputView(viewModel: viewModel, focusedField: $focusedField) {
+            field
+        }
     }
-    
-    var isShowingProgress: Binding<Bool> {
-        $viewModel.isShowingProgress
-    }
-    
-    var onboardingAlert: Binding<OnboardingAlert?> {
-        $viewModel.onboardingAlert
-    }
+}
+
+// MARK: - Subviews and Computed Properties
+extension PasswordOnboardingInputView {
     
     var field: some View {
-        CustomSecureField(secureText: $viewModel.text, loginField: $focusedField)
-            .focused($focusedField, equals: viewModel.field)
-            .submitLabel(.next)
-            .onTapGesture {
-                focusedField = .password
-            }
+        CustomSecureField(
+            secureText: $viewModel.text,
+            loginField: $focusedField,
+            isNewPassword: true,
+            field: .password
+        )
+        .requirements(
+            text: viewModel.text,
+            textErrors: viewModel.textErrors
+        )
+        .focused($focusedField, equals: viewModel.field)
+        .submitLabel(.next)
+        .onTapGesture {
+            focusedField = .password
+        }
     }
 }
 
 // MARK: - Preview
 #Preview {
-    let parentCoordinator = RootCoordinator()
-    let coordinator = OnboardingCoordinator(parentCoordinator: parentCoordinator)
     let viewModel = PasswordInputViewModel(
-        coordinator: coordinator,
+        coordinator: OnboardingCoordinator.preview,
         onboardingInput: .init()
     )
     return PasswordOnboardingInputView(viewModel: viewModel)

@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct CommunitiesTabCoordinatorView: View {
-    @StateObject private var viewModel: CommunitiesTabCoordinator
+    @State private var viewModel: CommunitiesTabCoordinator
     
     init(viewModel: CommunitiesTabCoordinator) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
     }
     
     var body: some View {
-        CoordinatorView(router: $viewModel.router) {
+        CoordinatorView(router: viewModel.router) {
             CommunitiesTabMainView(viewModel: viewModel.communitiesTabMainViewModel())
         } secondaryScreen: { (path: CommunitiesTabPath) in
             createViewFromPath(path)
         }
     }
     
-    @ViewBuilder
+    @ViewBuilder @MainActor
     func createViewFromPath(_ path: CommunitiesTabPath) -> some View {
         switch path {
         case .goToCommunity(let community): 

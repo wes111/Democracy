@@ -8,6 +8,7 @@
 import Factory
 import Foundation
 
+@MainActor
 protocol CreateCandidateCoordinatorDelegate: AnyObject {
     func closeCreateCandidateView()
 }
@@ -20,7 +21,7 @@ protocol CreateCandidateViewModelProtocol: ObservableObject {
     var alert: CreateCandidateAlert? { get set }
     var isLoading: Bool { get set }
     
-    func close()
+    @MainActor func close()
     func submitCandidate()
 }
 
@@ -41,29 +42,30 @@ final class CreateCandidateViewModel: CreateCandidateViewModelProtocol {
         self.coordinator = coordinator
     }
     
+    @MainActor
     func close() {
         coordinator?.closeCreateCandidateView()
     }
     
     func submitCandidate() {
-        isLoading = true
-        Task {
-            do {
-                try await candidateInteractor.addCandidate(summary: summary, link: link, repType: repType)
-                await MainActor.run {
-                    close()
-                }
-            } catch {
-                await MainActor.run {
-                    alert = CreateCandidateAlert.missingBody
-                }
-                print("Failed to submit candidate, error: \(error)")
-            }
-            await MainActor.run {
-                isLoading = false
-            }
-            
-        }
+//        isLoading = true
+//        Task {
+//            do {
+//                try await candidateInteractor.addCandidate(summary: summary, link: link, repType: repType)
+//                await MainActor.run {
+//                    close()
+//                }
+//            } catch {
+//                await MainActor.run {
+//                    alert = CreateCandidateAlert.missingBody
+//                }
+//                print("Failed to submit candidate, error: \(error)")
+//            }
+//            await MainActor.run {
+//                isLoading = false
+//            }
+//            
+//        }
     }
     
 }

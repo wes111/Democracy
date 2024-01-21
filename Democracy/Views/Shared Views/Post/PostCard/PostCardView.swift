@@ -75,12 +75,12 @@ struct PostCardView: View {
                     
                     Text(viewModel.postTitle)
                         .font(.title)
-                    
-                    if let subtitle = viewModel.postSubtitle {
-                        Text(subtitle)
-                            .lineLimit(3)
-                            .foregroundColor(.secondaryText)
-                    }
+//                    
+//                    if let subtitle = viewModel.postSubtitle {
+//                        Text(subtitle)
+//                            .lineLimit(3)
+//                            .foregroundColor(.secondaryText)
+//                    }
                 }
                 
                 Spacer()

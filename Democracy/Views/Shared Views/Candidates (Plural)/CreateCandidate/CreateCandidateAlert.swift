@@ -7,7 +7,6 @@
 
 import Foundation
 
-// TODO: ...
 enum CreateCandidateAlert: Identifiable {
     case missingTitle
     case missingBody
