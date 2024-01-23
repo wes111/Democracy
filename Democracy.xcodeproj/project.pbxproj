@@ -264,6 +264,9 @@
 		EEE464482B5A0E1600E5DBFC /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE464472B5A0E1600E5DBFC /* CustomPicker.swift */; };
 		EEE4644A2B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE464492B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift */; };
 		EEE4644C2B5F533E00E5DBFC /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE4644B2B5F533E00E5DBFC /* PostViewModel.swift */; };
+		EEE4644E2B5F60E200E5DBFC /* SubmitPostFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE4644D2B5F60E200E5DBFC /* SubmitPostFlow.swift */; };
+		EEE464502B5FF2C000E5DBFC /* HorizontalProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE4644F2B5FF2C000E5DBFC /* HorizontalProgressView.swift */; };
+		EEE464522B6000F200E5DBFC /* CreateAccountFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE464512B6000F200E5DBFC /* CreateAccountFlow.swift */; };
 		EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF83460299C6824001EEA5E /* DemocracyApp.swift */; };
 		EEF83463299C6824001EEA5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF83462299C6824001EEA5E /* ContentView.swift */; };
 		EEF83465299C6827001EEA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEF83464299C6827001EEA5E /* Assets.xcassets */; };
@@ -526,6 +529,9 @@
 		EEE464472B5A0E1600E5DBFC /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
 		EEE464492B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissKeyboardOnDragModifier.swift; sourceTree = "<group>"; };
 		EEE4644B2B5F533E00E5DBFC /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		EEE4644D2B5F60E200E5DBFC /* SubmitPostFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitPostFlow.swift; sourceTree = "<group>"; };
+		EEE4644F2B5FF2C000E5DBFC /* HorizontalProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalProgressView.swift; sourceTree = "<group>"; };
+		EEE464512B6000F200E5DBFC /* CreateAccountFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountFlow.swift; sourceTree = "<group>"; };
 		EEF8345D299C6824001EEA5E /* Democracy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Democracy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF83460299C6824001EEA5E /* DemocracyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemocracyApp.swift; sourceTree = "<group>"; };
 		EEF83462299C6824001EEA5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -824,6 +830,7 @@
 				EEB5AF792ADC3D6C00310408 /* AlertModel.swift */,
 				EEB5AF742ADB1E9D00310408 /* OnboardingUserInputView */,
 				EE4DB8992AC9068000A6DC90 /* Navigation */,
+				EEE464512B6000F200E5DBFC /* CreateAccountFlow.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1074,6 +1081,7 @@
 				EE4987E02B2F96F100AB7522 /* PostTags */,
 				EE2B15C32B4C3C510046D5FC /* PostSuccess */,
 				EE4987CD2B2F820A00AB7522 /* Navigation */,
+				EEE4644D2B5F60E200E5DBFC /* SubmitPostFlow.swift */,
 			);
 			path = SubmitPost;
 			sourceTree = "<group>";
@@ -1182,6 +1190,7 @@
 				EE4988152B3F1E8F00AB7522 /* BackgroundGeometryView.swift */,
 				EE49881A2B406B2A00AB7522 /* CustomProgressView.swift */,
 				EE2B15C12B4B73B60046D5FC /* SuccessView.swift */,
+				EEE4644F2B5FF2C000E5DBFC /* HorizontalProgressView.swift */,
 			);
 			path = "Reusable SwiftUI";
 			sourceTree = "<group>";
@@ -1702,6 +1711,7 @@
 				EE80D91A29C9306A0000F8EF /* CandidateViewModel.swift in Sources */,
 				EE936CA92A789F6D00D49271 /* HistoryTabPath.swift in Sources */,
 				EEC61B5C2B408A7600F73509 /* UserInputViewModel.swift in Sources */,
+				EEE464502B5FF2C000E5DBFC /* HorizontalProgressView.swift in Sources */,
 				EED4A52129ABC86D00DDCCDA /* CommunityViewPicker.swift in Sources */,
 				EE5B93922A033A7D00B43381 /* Month.swift in Sources */,
 				EE5B938B29F7764E00B43381 /* BoundMenu.swift in Sources */,
@@ -1833,6 +1843,7 @@
 				EE80D8E029BC1A080000F8EF /* HistoryTabMainViewModel+Preview.swift in Sources */,
 				EE2B15BA2B4594540046D5FC /* PostService.swift in Sources */,
 				EE4524B32A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift in Sources */,
+				EEE4644E2B5F60E200E5DBFC /* SubmitPostFlow.swift in Sources */,
 				EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */,
 				EE70555D2B1390A800E40A89 /* EmailInputViewModel.swift in Sources */,
 				EE80D8CA29BC13C00000F8EF /* PostViewModel+Preview.swift in Sources */,
@@ -1867,6 +1878,7 @@
 				EE45248F2A5651FB00C7A2DD /* ResourcesSection.swift in Sources */,
 				EE70555F2B13917100E40A89 /* PhoneInputViewModel.swift in Sources */,
 				EE9760062AD07941003069CF /* InputRequirement.swift in Sources */,
+				EEE464522B6000F200E5DBFC /* CreateAccountFlow.swift in Sources */,
 				EE45249D2A5CE36B00C7A2DD /* RulesSectionViewModel.swift in Sources */,
 				EE5D3A0D2A45241200D0E312 /* Resource+Preview.swift in Sources */,
 				EE4988062B35D83B00AB7522 /* OnboardingAlert.swift in Sources */,

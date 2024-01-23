@@ -20,6 +20,7 @@ final class PostBodyViewModel: PostViewModel, UserTextInputViewModel {
     @ObservationIgnored private let submitPostInput: SubmitPostInput
     let skipAction: (() -> Void)? = nil // Not skippable.
     let field = SubmitPostField.body
+    let flowCase = SubmitPostFlow.body
     
     init(coordinator: SubmitPostCoordinatorDelegate, submitPostInput: SubmitPostInput) {
         self.submitPostInput = submitPostInput

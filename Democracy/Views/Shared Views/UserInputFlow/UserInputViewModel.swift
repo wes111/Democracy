@@ -7,7 +7,11 @@
 
 import Foundation
 
+protocol UserInputFlow: CaseIterable, RawRepresentable where RawValue == Int {}
+
 protocol UserInputViewModel: Hashable, Observable, AnyObject {
+    associatedtype Flow: UserInputFlow
+    var flowCase: Flow { get }
     var isShowingProgress: Bool { get set }
     var trailingButtons: [OnboardingTopButton] { get }
     var leadingButtons: [OnboardingTopButton] { get }

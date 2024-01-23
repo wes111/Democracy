@@ -20,6 +20,7 @@ final class PhoneInputViewModel: UserTextInputViewModel {
     @ObservationIgnored @Injected(\.accountService) private var accountService
     @ObservationIgnored private var onboardingInput: OnboardingInput
     
+    let flowCase = CreateAccountFlow.phone
     let field = OnboardingInputField.phone
     private weak var coordinator: OnboardingCoordinatorDelegate?
     

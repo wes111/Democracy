@@ -52,6 +52,10 @@ private extension UserInputScreen {
             // with keyboard appearance/disappearance.
             GeometryReader { _ in
                 VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+                    HorizontalProgressView(
+                        totalProgress: ViewModel.Flow.allCases.count,
+                        currentProgress: viewModel.flowCase.rawValue
+                    )
                     UserInputTitle(title: viewModel.title)
                     
                     content
