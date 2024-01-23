@@ -252,7 +252,7 @@
 		EED4A52629B810FF00DDCCDA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52529B810FF00DDCCDA /* Post.swift */; };
 		EED4A52A29B8187D00DDCCDA /* PostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52929B8187D00DDCCDA /* PostCoordinator.swift */; };
 		EED4A52C29B8190700DDCCDA /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52B29B8190700DDCCDA /* PostView.swift */; };
-		EED4A52E29B81A2E00DDCCDA /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52D29B81A2E00DDCCDA /* PostViewModel.swift */; };
+		EED4A52E29B81A2E00DDCCDA /* GARBAGEPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52D29B81A2E00DDCCDA /* GARBAGEPostViewModel.swift */; };
 		EED4A53329B81D6800DDCCDA /* CommunityHomeFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A53229B81D6800DDCCDA /* CommunityHomeFeedView.swift */; };
 		EED4A53529B81D8000DDCCDA /* CommunityInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A53429B81D8000DDCCDA /* CommunityInfoView.swift */; };
 		EED4A53729B81D9500DDCCDA /* CommunityArchiveFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A53629B81D9500DDCCDA /* CommunityArchiveFeedView.swift */; };
@@ -263,6 +263,7 @@
 		EED4A54329BAB60100DDCCDA /* Hashable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A54229BAB60100DDCCDA /* Hashable+Extensions.swift */; };
 		EEE464482B5A0E1600E5DBFC /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE464472B5A0E1600E5DBFC /* CustomPicker.swift */; };
 		EEE4644A2B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE464492B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift */; };
+		EEE4644C2B5F533E00E5DBFC /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE4644B2B5F533E00E5DBFC /* PostViewModel.swift */; };
 		EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF83460299C6824001EEA5E /* DemocracyApp.swift */; };
 		EEF83463299C6824001EEA5E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF83462299C6824001EEA5E /* ContentView.swift */; };
 		EEF83465299C6827001EEA5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EEF83464299C6827001EEA5E /* Assets.xcassets */; };
@@ -513,7 +514,7 @@
 		EED4A52529B810FF00DDCCDA /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		EED4A52929B8187D00DDCCDA /* PostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCoordinator.swift; sourceTree = "<group>"; };
 		EED4A52B29B8190700DDCCDA /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
-		EED4A52D29B81A2E00DDCCDA /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		EED4A52D29B81A2E00DDCCDA /* GARBAGEPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GARBAGEPostViewModel.swift; sourceTree = "<group>"; };
 		EED4A53229B81D6800DDCCDA /* CommunityHomeFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityHomeFeedView.swift; sourceTree = "<group>"; };
 		EED4A53429B81D8000DDCCDA /* CommunityInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityInfoView.swift; sourceTree = "<group>"; };
 		EED4A53629B81D9500DDCCDA /* CommunityArchiveFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityArchiveFeedView.swift; sourceTree = "<group>"; };
@@ -524,6 +525,7 @@
 		EED4A54229BAB60100DDCCDA /* Hashable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hashable+Extensions.swift"; sourceTree = "<group>"; };
 		EEE464472B5A0E1600E5DBFC /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
 		EEE464492B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissKeyboardOnDragModifier.swift; sourceTree = "<group>"; };
+		EEE4644B2B5F533E00E5DBFC /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		EEF8345D299C6824001EEA5E /* Democracy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Democracy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEF83460299C6824001EEA5E /* DemocracyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemocracyApp.swift; sourceTree = "<group>"; };
 		EEF83462299C6824001EEA5E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -1061,6 +1063,7 @@
 		EE80D8EE29BD37710000F8EF /* SubmitPost */ = {
 			isa = PBXGroup;
 			children = (
+				EEE4644B2B5F533E00E5DBFC /* PostViewModel.swift */,
 				EE49880B2B3E1E6E00AB7522 /* SubmitPostCoordinatorDelegate.swift */,
 				EE49880D2B3E1FE700AB7522 /* SubmitPostAlert.swift */,
 				EE49880F2B3E209700AB7522 /* SubmitPostInput.swift */,
@@ -1484,7 +1487,7 @@
 			children = (
 				EED4A52929B8187D00DDCCDA /* PostCoordinator.swift */,
 				EED4A52B29B8190700DDCCDA /* PostView.swift */,
-				EED4A52D29B81A2E00DDCCDA /* PostViewModel.swift */,
+				EED4A52D29B81A2E00DDCCDA /* GARBAGEPostViewModel.swift */,
 				EED4A53829B9623C00DDCCDA /* PostCard */,
 			);
 			path = Post;
@@ -1722,10 +1725,11 @@
 				EE2B15C02B4B18650046D5FC /* Decodable+Extension.swift in Sources */,
 				EE2B15BC2B499E1D0046D5FC /* PostRepository.swift in Sources */,
 				EE2B15DA2B50C9340046D5FC /* TextInputRequirementsModifier.swift in Sources */,
+				EEE4644C2B5F533E00E5DBFC /* PostViewModel.swift in Sources */,
 				EE5B938E2A03346C00B43381 /* Date+Extensions.swift in Sources */,
 				EE80D8DE29BC19ED0000F8EF /* HistoryTabCoordinator+Preview.swift in Sources */,
 				EED4A53529B81D8000DDCCDA /* CommunityInfoView.swift in Sources */,
-				EED4A52E29B81A2E00DDCCDA /* PostViewModel.swift in Sources */,
+				EED4A52E29B81A2E00DDCCDA /* GARBAGEPostViewModel.swift in Sources */,
 				EE4524A12A5CE46500C7A2DD /* RuleViewModel.swift in Sources */,
 				EE49880E2B3E1FE700AB7522 /* SubmitPostAlert.swift in Sources */,
 				EE4524AC2A5CED5100C7A2DD /* LeaderView.swift in Sources */,

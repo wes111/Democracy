@@ -10,26 +10,20 @@ import Foundation
 import Combine
 
 @Observable
-final class PostTagsViewModel: UserInputViewModel {
-    var isShowingProgress: Bool = false
-    var alertModel: NewAlertModel?
+final class PostTagsViewModel: PostViewModel, UserInputViewModel {
     var tags: [String] = Community.preview.tags // TODO: ...
     var selectedTags: Set<String> = []
     
     @ObservationIgnored @Injected(\.postService) private var postService
     @ObservationIgnored private let submitPostInput: SubmitPostInput
-    
     let title = "Add Tags"
     let subtitle = "Add community tags to your post to improve searchability."
-    private weak var coordinator: SubmitPostCoordinatorDelegate?
     let skipAction: (() -> Void)? = nil
     
-    init(
-        coordinator: SubmitPostCoordinatorDelegate,
-        submitPostInput: SubmitPostInput
+    init(coordinator: SubmitPostCoordinatorDelegate, submitPostInput: SubmitPostInput
     ) {
-        self.coordinator = coordinator
         self.submitPostInput = submitPostInput
+        super.init(coordinator: coordinator)
     }
 }
 
@@ -37,14 +31,6 @@ final class PostTagsViewModel: UserInputViewModel {
 extension PostTagsViewModel {
     var canSubmit: Bool {
         !selectedTags.isEmpty
-    }
-    
-    var leadingButtons: [OnboardingTopButton] {
-        [.back]
-    }
-    
-    var trailingButtons: [OnboardingTopButton] {
-        [.close(close)]
     }
 }
 
@@ -74,11 +60,6 @@ extension PostTagsViewModel {
         } else {
             selectedTags.insert(tag)
         }
-    }
-    
-    @MainActor
-    func close() {
-        coordinator?.close()
     }
     
     func onAppear() {

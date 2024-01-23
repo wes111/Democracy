@@ -9,39 +9,22 @@ import Factory
 import Foundation
 
 @Observable
-final class PostPrimaryLinkViewModel: UserTextInputViewModel {
+final class PostPrimaryLinkViewModel: PostViewModel, UserTextInputViewModel {
     typealias Requirement = PostLinkRequirement
-    
-    var isShowingProgress: Bool = false
-    var text: String = ""
     var textErrors: [Requirement] = []
-    var alertModel: NewAlertModel?
     
     @ObservationIgnored @Injected(\.richLinkService) private var richLinkService
     @ObservationIgnored private let submitPostInput: SubmitPostInput
-    
     let field = SubmitPostField.primaryLink
-    weak var coordinator: SubmitPostCoordinatorDelegate?
     
-    init(
-        coordinator: SubmitPostCoordinatorDelegate,
-        submitPostInput: SubmitPostInput
-    ) {
-        self.coordinator = coordinator
+    init(coordinator: SubmitPostCoordinatorDelegate, submitPostInput: SubmitPostInput) {
         self.submitPostInput = submitPostInput
+        super.init(coordinator: coordinator)
     }
 }
 
 // MARK: Computed Properties
 extension PostPrimaryLinkViewModel {
-    var trailingButtons: [OnboardingTopButton] {
-        [.close(close)]
-    }
-    
-    var leadingButtons: [OnboardingTopButton] {
-        [.back]
-    }
-    
     @MainActor
     var skipAction: (() -> Void)? {
         skip
@@ -50,7 +33,6 @@ extension PostPrimaryLinkViewModel {
 
 // MARK: - Methods
 extension PostPrimaryLinkViewModel {
-    
     @MainActor
     func submit() async {
         guard field.fullyValid(input: text) else {
@@ -64,16 +46,6 @@ extension PostPrimaryLinkViewModel {
         }
         submitPostInput.primaryLink = text
         coordinator?.didSubmitLink(input: submitPostInput)
-    }
-    
-    @MainActor
-    func close() {
-        coordinator?.close()
-    }
-    
-    @MainActor
-    func goBack() {
-        coordinator?.goBack()
     }
     
     func onAppear() {

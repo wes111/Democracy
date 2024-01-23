@@ -7,6 +7,6 @@
 
 import Foundation
 
-extension PostViewModel {
-    static let preview = PostViewModel(post: Post.preview)
+extension GARBAGEPostViewModel {
+    static let preview = GARBAGEPostViewModel(post: Post.preview)
 }

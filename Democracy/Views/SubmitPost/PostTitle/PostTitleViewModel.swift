@@ -5,36 +5,17 @@
 //  Created by Wesley Luntsford on 12/17/23.
 //
 
-import Factory
 import Foundation
-import Observation
 
-@Observable final class PostTitleViewModel: UserTextInputViewModel {
+@Observable final class PostTitleViewModel: PostViewModel, UserTextInputViewModel {
     typealias Requirement = NoneRequirement
-    
-    var isShowingProgress: Bool = false
-    var text: String = ""
     var textErrors: [Requirement] = []
-    var alertModel: NewAlertModel?
     
-    @ObservationIgnored let field = SubmitPostField.title
-    private let submitPostInput = SubmitPostInput()
-    private weak var coordinator: SubmitPostCoordinatorDelegate?
+    @ObservationIgnored private let submitPostInput = SubmitPostInput()
+    let field = SubmitPostField.title
     let skipAction: (() -> Void)? = nil
     
-    init(coordinator: SubmitPostCoordinatorDelegate?) {
-        self.coordinator = coordinator
-    }
-}
-
-// MARK: - Computed Properties
-extension PostTitleViewModel {
-    
-    var trailingButtons: [OnboardingTopButton] {
-        [.close(close)]
-    }
-    
-    var leadingButtons: [OnboardingTopButton] {
+    override var leadingButtons: [OnboardingTopButton] {
         []
     }
 }
@@ -49,16 +30,6 @@ extension PostTitleViewModel {
         }
         submitPostInput.title = text
         coordinator?.didSubmitTitle(input: submitPostInput)
-    }
-    
-    @MainActor
-    func close() {
-        coordinator?.close()
-    }
-    
-    @MainActor
-    func goBack() {
-        coordinator?.goBack()
     }
     
     func onAppear() {

@@ -12,36 +12,23 @@ enum PostBodyTab: String, CaseIterable, Equatable {
 }
 
 @Observable
-final class PostBodyViewModel: UserTextInputViewModel {
+final class PostBodyViewModel: PostViewModel, UserTextInputViewModel {
     typealias Requirement = NoneRequirement
-    
-    var isShowingProgress: Bool = false
-    var text: String = ""
     var textErrors: [Requirement] = []
-    var alertModel: NewAlertModel?
     var selectedTab: PostBodyTab = .editor
     
-    
     @ObservationIgnored private let submitPostInput: SubmitPostInput
-    private weak var coordinator: SubmitPostCoordinatorDelegate?
     let skipAction: (() -> Void)? = nil // Not skippable.
     let field = SubmitPostField.body
     
     init(coordinator: SubmitPostCoordinatorDelegate, submitPostInput: SubmitPostInput) {
-        self.coordinator = coordinator
         self.submitPostInput = submitPostInput
+        super.init(coordinator: coordinator)
     }
 }
 
 // MARK: - Computed Properties
 extension PostBodyViewModel {
-    var trailingButtons: [OnboardingTopButton] {
-        [.close(close)]
-    }
-    
-    var leadingButtons: [OnboardingTopButton] {
-        [.back]
-    }
     
     // https://forums.developer.apple.com/forums/thread/682957
     var markdown: AttributedString {
@@ -63,16 +50,6 @@ extension PostBodyViewModel {
         }
         submitPostInput.body = text
         coordinator?.didSubmitBody(input: submitPostInput)
-    }
-    
-    @MainActor
-    func close() {
-        coordinator?.close()
-    }
-    
-    @MainActor
-    func goBack() {
-        coordinator?.goBack()
     }
     
     func onAppear() {

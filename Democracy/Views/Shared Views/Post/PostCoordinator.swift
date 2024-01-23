@@ -36,8 +36,8 @@ struct PostCoordinator: View {
     }
     
     @MainActor
-    func createPostView() -> PostView<PostViewModel> {
-        let viewModel = PostViewModel(post: post)
+    func createPostView() -> PostView<GARBAGEPostViewModel> {
+        let viewModel = GARBAGEPostViewModel(post: post)
         return PostView(viewModel: viewModel)
     }
 }
