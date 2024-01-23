@@ -19,6 +19,7 @@ final class PostTagsViewModel: PostViewModel, UserInputViewModel {
     let title = "Add Tags"
     let subtitle = "Add community tags to your post to improve searchability."
     let skipAction: (() -> Void)? = nil
+    let flowCase = SubmitPostFlow.tags
     
     init(coordinator: SubmitPostCoordinatorDelegate, submitPostInput: SubmitPostInput
     ) {

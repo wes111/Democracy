@@ -13,6 +13,7 @@ import Foundation
     
     @ObservationIgnored private let submitPostInput = SubmitPostInput()
     let field = SubmitPostField.title
+    let flowCase = SubmitPostFlow.title
     let skipAction: (() -> Void)? = nil
     
     override var leadingButtons: [OnboardingTopButton] {

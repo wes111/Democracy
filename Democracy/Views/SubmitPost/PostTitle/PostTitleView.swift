@@ -27,5 +27,7 @@ struct PostTitleView<ViewModel: PostTitleViewModel>: View {
 // MARK: - Preview
 #Preview {
     let viewModel = PostTitleViewModel(coordinator: SubmitPostCoordinator.preview)
-    return PostTitleView(viewModel: viewModel)
+    return NavigationStack {
+        PostTitleView(viewModel: viewModel)
+    }
 }

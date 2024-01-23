@@ -16,6 +16,7 @@ final class PostPrimaryLinkViewModel: PostViewModel, UserTextInputViewModel {
     @ObservationIgnored @Injected(\.richLinkService) private var richLinkService
     @ObservationIgnored private let submitPostInput: SubmitPostInput
     let field = SubmitPostField.primaryLink
+    let flowCase = SubmitPostFlow.primaryLink
     
     init(coordinator: SubmitPostCoordinatorDelegate, submitPostInput: SubmitPostInput) {
         self.submitPostInput = submitPostInput

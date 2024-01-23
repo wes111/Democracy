@@ -20,6 +20,7 @@ final class UsernameInputViewModel: UserTextInputViewModel {
     @ObservationIgnored @Injected(\.accountService) private var accountService
     @ObservationIgnored private var onboardingInput = OnboardingInput()
     
+    let flowCase = CreateAccountFlow.username
     let field = OnboardingInputField.username
     private weak var coordinator: OnboardingCoordinatorDelegate?
     let skipAction: (() -> Void)? = nil
