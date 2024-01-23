@@ -25,5 +25,5 @@ struct PostView<ViewModel: PostViewModelProtocol>: View {
 
 // MARK: - Preview
 #Preview {
-    PostView(viewModel: PostViewModel.preview)
+    PostView(viewModel: GARBAGEPostViewModel.preview)
 }

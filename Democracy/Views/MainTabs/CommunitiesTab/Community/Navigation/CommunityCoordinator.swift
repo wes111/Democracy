@@ -76,8 +76,8 @@ extension CommunityCoordinator {
         CandidateViewModel(coordinator: self, candidate: candidate)
     }
     
-    func postViewModel(post: Post) -> PostViewModel {
-        PostViewModel(post: post)
+    func postViewModel(post: Post) -> GARBAGEPostViewModel {
+        GARBAGEPostViewModel(post: post)
     }
     
     func communityPostCategoryViewModel(category: String) -> CommunityCategoryPostsViewModel {

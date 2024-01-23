@@ -9,13 +9,13 @@ import Foundation
 
 @MainActor
 protocol SubmitPostCoordinatorDelegate: AnyObject {
-    func close()
-    func goBack()
-    
     func didSubmitTitle(input: SubmitPostInput)
     func didSubmitLink(input: SubmitPostInput)
     func didSubmitBody(input: SubmitPostInput)
     func didSubmitTags(input: SubmitPostInput)
     func didSubmitCategory(input: SubmitPostInput)
     func didFinish()
+    
+    func goBack()
+    func close()
 }

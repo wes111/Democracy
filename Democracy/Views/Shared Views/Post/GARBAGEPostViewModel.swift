@@ -14,7 +14,7 @@ protocol PostViewModelProtocol: ObservableObject, Identifiable {
     var post: Post { get }
 }
 
-final class PostViewModel: PostViewModelProtocol {
+final class GARBAGEPostViewModel: PostViewModelProtocol {
 
     // private weak var coordinator: PostCoordinatorDelegate?
     let post: Post
