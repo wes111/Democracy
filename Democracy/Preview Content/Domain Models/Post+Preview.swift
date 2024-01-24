@@ -15,6 +15,7 @@ extension Post {
         title: "Post Title",
         body: "Post Body",
         link: URL(string: "https://www.wired.com/story/seagrass-humble-ocean-plant-worth-trillions/")!,
+        category: "racing",
         tags: [ "Dog", "Cat", "Mouse", "Horse", "Elephant", "Zebra", "Donkey", "Chicken"],
         userId: "1234",
         community: .init(id: "12345"),

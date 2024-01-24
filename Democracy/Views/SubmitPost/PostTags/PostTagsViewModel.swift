@@ -45,14 +45,13 @@ extension PostTagsViewModel {
         }
         
         do {
+            submitPostInput.tags = selectedTags
             try await postService.submitPost(userInput: submitPostInput, communityId: "123") // TODO: ...
+            coordinator?.didSubmitTags(input: submitPostInput)
         } catch {
             print(error.localizedDescription)
             alertModel = SubmitPostAlert.createPostFailed.toNewAlertModel()
         }
-        
-        submitPostInput.tags = selectedTags
-        coordinator?.didSubmitTags(input: submitPostInput)
     }
     
     func toggleTag(_ tag: String) {
