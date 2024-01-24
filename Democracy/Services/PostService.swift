@@ -25,13 +25,14 @@ final class PostServiceDefault: PostService {
         guard let userId = await userRepository.currentValue?.id else {
             throw PostServiceError.userAccountMissing
         }
-        guard let title = userInput.title, let body = userInput.body else {
+        guard let title = userInput.title, let body = userInput.body, let category = userInput.category else {
             throw PostServiceError.invalidUserInput
         }
         try await postRepository.submitPost(.init(
             title: title,
             body: body,
             link: userInput.primaryLink,
+            category: category,
             tags: Array(userInput.tags),
             userId: userId,
             communityId: communityId

@@ -14,13 +14,14 @@ struct PostDTO: Encodable {
     let title: String
     let body: String
     let link: String?
+    let category: String
     let tags: [String]
     let userId: String
     let communityId: String
     var rootCommentIds: [String] = []
     
     enum CodingKeys: String, CodingKey {
-        case title, body, link, tags, userId
+        case title, body, link, category, tags, userId
         case communityId = "community"
         case rootCommentIds = "comment"
     }
@@ -32,6 +33,7 @@ struct Post: Identifiable, Hashable {
     let title: String
     let body: String
     let link: URL?
+    let category: String
     let tags: [String]
     let userId: String
     let community: TempCommunity
@@ -47,7 +49,7 @@ struct Post: Identifiable, Hashable {
 
 extension Post: Codable {
     enum CodingKeys: String, CodingKey {
-        case title, body, link, tags, userId, community, approvedDate
+        case title, body, link, category, tags, userId, community, approvedDate
         case id = "$id"
         case creationDate = "$createdAt"
         case rootCommentIds = "comment"
@@ -64,6 +66,7 @@ extension Post: Codable {
         id = try container.decode(String.self, forKey: .id)
         title = try container.decode(String.self, forKey: .title)
         body = try container.decode(String.self, forKey: .body)
+        category = try container.decode(String.self, forKey: .category)
         tags = try container.decode([String].self, forKey: .tags)
         userId = try container.decode(String.self, forKey: .userId)
         community = try container.decode(TempCommunity.self, forKey: .community)
@@ -92,7 +95,7 @@ extension Post: Codable {
         // Decode 'approvedDate'
         if let approvedDateString = try container.decodeIfPresent(String.self, forKey: .approvedDate) {
             guard let approvedDate =
-                    ISO8601DateFormatter.sharedWithFractionalSeconds.date(from: dateString) else
+                    ISO8601DateFormatter.sharedWithFractionalSeconds.date(from: approvedDateString) else
             {
                 throw dateFormatError
             }
@@ -109,6 +112,7 @@ extension Post: Codable {
         try container.encode(id, forKey: .id)
         try container.encode(title, forKey: .title)
         try container.encode(body, forKey: .body)
+        try container.encode(category, forKey: .category)
         try container.encode(tags, forKey: .tags)
         try container.encode(userId, forKey: .userId)
         try container.encode(community, forKey: .community)
