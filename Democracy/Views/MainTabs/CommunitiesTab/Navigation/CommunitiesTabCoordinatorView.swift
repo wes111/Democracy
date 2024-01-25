@@ -8,17 +8,26 @@
 import SwiftUI
 
 struct CommunitiesTabCoordinatorView: View {
-    @State private var viewModel: CommunitiesTabCoordinator
+    @State private var coordinator: CommunitiesTabCoordinator
     
-    init(viewModel: CommunitiesTabCoordinator) {
-        self.viewModel = viewModel
+    init(coordinator: CommunitiesTabCoordinator) {
+        self.coordinator = coordinator
     }
     
     var body: some View {
-        CoordinatorView(router: viewModel.router) {
-            CommunitiesTabMainView(viewModel: viewModel.communitiesTabMainViewModel())
+        CoordinatorView(router: coordinator.router) {
+            CommunitiesTabMainView(viewModel: coordinator.communitiesTabMainViewModel())
         } secondaryScreen: { (path: CommunitiesTabPath) in
             createViewFromPath(path)
+        }
+        // TODO: This should be a fullScreenCover not popover.
+        // This temporarily fixes an iOS 17 memory leak.
+        // https://developer.apple.com/forums/thread/736239
+        //            .fullScreenCover(isPresented: $coordinator.isShowingCreatePostView) {
+        //                SubmitPostCoordinatorView(coordinator: .init(parentCoordinator: coordinator))
+        //            }
+        .popover(isPresented: $coordinator.isShowingCreateCommunityView) {
+            CreateCommunityCoordinatorView(coordinator: .init(parentCoordinator: coordinator))
         }
     }
     
@@ -26,14 +35,12 @@ struct CommunitiesTabCoordinatorView: View {
     func createViewFromPath(_ path: CommunitiesTabPath) -> some View {
         switch path {
         case .goToCommunity(let community): 
-            CommunityCoordinatorView(viewModel: viewModel.communityCoordinatorViewModel(community: community))
-        case .goToCreateCommunity:
-            CreateCommunityView(viewModel: viewModel.createCommunityViewModel())
+            CommunityCoordinatorView(viewModel: coordinator.communityCoordinatorViewModel(community: community))
         }
     }
 }
 
 // MARK: - Preview
 #Preview {
-    CommunitiesTabCoordinatorView(viewModel: .preview)
+    CommunitiesTabCoordinatorView(coordinator: .preview)
 }

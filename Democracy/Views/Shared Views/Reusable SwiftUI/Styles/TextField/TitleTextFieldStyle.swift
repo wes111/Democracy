@@ -7,6 +7,25 @@
 
 import SwiftUI
 
+// TODO: Combine with below, only difference is trimming.
+struct DefaultTrimmedTextFieldStyle<Field: InputField>: TextFieldStyle {
+    @Binding var title: String
+    @FocusState.Binding var focusedField: Field?
+    let field: Field
+    
+    // swiftlint:disable:next all
+    func _body(configuration: TextField<_Label>) -> some View {
+        configuration
+            .keyboardType(.default)
+            .standardTextInputAppearance(
+                text: $title,
+                focusedField: $focusedField,
+                field: field
+            )
+    }
+}
+
+
 struct TitleTextFieldStyle<Field: InputField>: TextFieldStyle {
     @Binding var title: String
     @FocusState.Binding var focusedField: Field?

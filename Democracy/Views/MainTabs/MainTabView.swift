@@ -15,11 +15,11 @@ enum MainTab {
 final class MainTabViewModel: ObservableObject {
     @Published var selectedTab: MainTab = .updates
     
-    let communitiesViewModel = CommunitiesTabCoordinator()
-    let votingViewModel = VotingTabCoordinatorViewModel()
-    let eventsViewModel = EventsTabCoordinatorViewModel()
-    let updatesViewModel = UpdatesTabCoordinatorViewModel()
-    let historyViewModel = HistoryTabCoordinatorViewModel()
+    let communitiesTabCoordinator = CommunitiesTabCoordinator()
+    let votingTabCoordinator = VotingTabCoordinatorViewModel()
+    let eventsTabCoordinator = EventsTabCoordinatorViewModel()
+    let updatesTabCoordinator = UpdatesTabCoordinatorViewModel()
+    let historyTabCoordinator = HistoryTabCoordinatorViewModel()
 }
 
 struct MainTabView: View {
@@ -51,32 +51,32 @@ struct MainTabView: View {
     
     var body: some View {
         TabView(selection: $viewModel.selectedTab) {
-            VotingTabCoordinator(viewModel: viewModel.votingViewModel)
+            VotingTabCoordinator(viewModel: viewModel.votingTabCoordinator)
                 .tabItem {
                     Label("Voting", systemImage: "checklist")
                         .foregroundColor(.primaryText)
                 }
                 .tag(MainTab.voting)
             
-            EventsTabCoordinator(viewModel: viewModel.eventsViewModel)
+            EventsTabCoordinator(viewModel: viewModel.eventsTabCoordinator)
                 .tabItem {
                     Label("Events", systemImage: "calendar")
                 }
                 .tag(MainTab.events)
             
-            UpdatesTabCoordinator(viewModel: viewModel.updatesViewModel)
+            UpdatesTabCoordinator(viewModel: viewModel.updatesTabCoordinator)
                 .tabItem {
                     Label("Updates", systemImage: "newspaper.fill")
                 }
                 .tag(MainTab.updates)
             
-            CommunitiesTabCoordinatorView(viewModel: viewModel.communitiesViewModel)
+            CommunitiesTabCoordinatorView(coordinator: viewModel.communitiesTabCoordinator)
                 .tabItem {
                     Label("Communities", systemImage: "person.3.fill")
                 }
                 .tag(MainTab.communities)
             
-            HistoryTabCoordinator(viewModel: viewModel.historyViewModel)
+            HistoryTabCoordinator(viewModel: viewModel.historyTabCoordinator)
                 .tabItem {
                     Label("History", systemImage: "books.vertical.fill")
                 }
