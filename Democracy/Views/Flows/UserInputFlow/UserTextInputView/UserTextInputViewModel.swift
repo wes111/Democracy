@@ -8,15 +8,6 @@
 import Factory
 import Foundation
 
-enum PostBodyTab: String, CaseIterable, Equatable {
-    case editor, preview
-}
-
-protocol UserTextEditorInputViewModel: UserTextInputViewModel {
-    var selectedTab: PostBodyTab { get set }
-    var markdown: AttributedString { get }
-}
-
 // TODO: The use of a single protocol here exposes too much to the view.
 protocol UserTextInputViewModel: UserInputViewModel {
     associatedtype Requirement: InputRequirement

@@ -10,16 +10,11 @@ import Foundation
 @MainActor @Observable
 final class CommunitiesTabCoordinator {
     var isShowingCreateCommunityView = false
-    
     var router = Router()
 }
 
 // MARK: - Child ViewModels
 extension CommunitiesTabCoordinator {
-    
-//    func createCommunityViewModel() -> CreateCommunityViewModel {
-//        CreateCommunityViewModel(coordinator: self)
-//    }
     
     func communitiesTabMainViewModel() -> CommunitiesTabMainViewModel {
         CommunitiesTabMainViewModel(coordinator: self)
@@ -46,12 +41,6 @@ extension CommunitiesTabCoordinator: CommunitiesTabMainCoordinatorDelegate {
         router.push(CommunitiesTabPath.goToCommunity(.preview))
     }
 }
-
-//extension CommunitiesTabCoordinator: GARBAGECreateCommunityCoordinatorDelegate {
-//    func close() {
-//        router.pop()
-//    }
-//}
 
 extension CommunitiesTabCoordinator: CreateCommunityCoordinatorParent {
     func dismiss() {

@@ -214,6 +214,7 @@
 		EE80D94829D9DC040000F8EF /* CommunityCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D94729D9DC040000F8EF /* CommunityCard.swift */; };
 		EE80D95629E0B6D10000F8EF /* ReversedLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */; };
 		EE80D95B29E8EBD10000F8EF /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D95A29E8EBD10000F8EF /* WebView.swift */; };
+		EE8A95CF2B61FF49000D038E /* UserTextEditorInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8A95CE2B61FF49000D038E /* UserTextEditorInputViewModel.swift */; };
 		EE936CA02A7895B700D49271 /* CommunityPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE936C9F2A7895B700D49271 /* CommunityPath.swift */; };
 		EE936CA22A789B8F00D49271 /* CommunitiesTabPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE936CA12A789B8F00D49271 /* CommunitiesTabPath.swift */; };
 		EE936CA92A789F6D00D49271 /* HistoryTabPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE936CA82A789F6D00D49271 /* HistoryTabPath.swift */; };
@@ -500,6 +501,7 @@
 		EE80D94729D9DC040000F8EF /* CommunityCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCard.swift; sourceTree = "<group>"; };
 		EE80D95529E0B6D10000F8EF /* ReversedLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversedLabelStyle.swift; sourceTree = "<group>"; };
 		EE80D95A29E8EBD10000F8EF /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
+		EE8A95CE2B61FF49000D038E /* UserTextEditorInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTextEditorInputViewModel.swift; sourceTree = "<group>"; };
 		EE936C9F2A7895B700D49271 /* CommunityPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityPath.swift; sourceTree = "<group>"; };
 		EE936CA12A789B8F00D49271 /* CommunitiesTabPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitiesTabPath.swift; sourceTree = "<group>"; };
 		EE936CA82A789F6D00D49271 /* HistoryTabPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabPath.swift; sourceTree = "<group>"; };
@@ -1036,6 +1038,7 @@
 			isa = PBXGroup;
 			children = (
 				EE7EC29B2B61BB0300F62E90 /* FlowViewModel.swift */,
+				EE4988232B40871A00AB7522 /* UserInputFlow */,
 				EE7EC25F2B6144B700F62E90 /* Create Community */,
 				EE80D8EE29BD37710000F8EF /* SubmitPost */,
 			);
@@ -1136,6 +1139,7 @@
 			isa = PBXGroup;
 			children = (
 				EE7EC2A02B61EE1E00F62E90 /* UserTextEditorInputView.swift */,
+				EE8A95CE2B61FF49000D038E /* UserTextEditorInputViewModel.swift */,
 			);
 			path = UserTextEditorInputView;
 			sourceTree = "<group>";
@@ -1641,7 +1645,6 @@
 		EED4A52729B8185600DDCCDA /* Shared Views */ = {
 			isa = PBXGroup;
 			children = (
-				EE4988232B40871A00AB7522 /* UserInputFlow */,
 				EE80D95429E0B6B90000F8EF /* Reusable SwiftUI */,
 				EE80D94529D9DA5B0000F8EF /* Community */,
 				EE80D90629C926490000F8EF /* Candidates (Plural) */,
@@ -1908,6 +1911,7 @@
 				EE80D91829C930210000F8EF /* CandidateView.swift in Sources */,
 				EE80D90F29C92C190000F8EF /* CandidateCardViewModel.swift in Sources */,
 				EE4DB8AA2ACE457000A6DC90 /* PasswordRequirement.swift in Sources */,
+				EE8A95CF2B61FF49000D038E /* UserTextEditorInputViewModel.swift in Sources */,
 				EE7856132AAE75620004B7E4 /* NewFlowLayout.swift in Sources */,
 				EEB5AF982B0320D400310408 /* KeyChainStorage.swift in Sources */,
 				EE45248D2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift in Sources */,
