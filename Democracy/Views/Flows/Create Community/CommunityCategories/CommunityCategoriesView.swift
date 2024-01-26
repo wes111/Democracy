@@ -7,15 +7,85 @@
 
 import SwiftUI
 
+@MainActor
 struct CommunityCategoriesView: View {
     @Bindable var viewModel: CommunityCategoriesViewModel
+    @FocusState private var focusedField: CreateCommunityField?
     
     var body: some View {
-        EmptyView()
+        primaryContent
+    }
+}
+
+// MARK: - Subviews
+extension CommunityCategoriesView {
+    var primaryContent: some View {
+        UserTextInputView(
+            viewModel: viewModel,
+            focusedField: $focusedField) {
+                VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
+                    field
+                    VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+                        addCategoryButton
+                        scrollInput
+                    }
+                }
+            }
+    }
+    
+    var addCategoryButton: some View {
+        Button {
+            viewModel.addCategory()
+        } label: {
+            Text("Add Category")
+        }
+        .buttonStyle(SeconaryButtonStyle())
+        .disabled(viewModel.text.isEmpty)
+    }
+    
+    var scrollInput: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
+                ForEach(viewModel.categories, id: \.self) { category in
+                    categoryView(category)
+                }
+            }
+            .animation(.easeOut(duration: ViewConstants.animationLength), value: viewModel.categories)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+    
+    func categoryView(_ category: String) -> some View {
+        HStack(alignment: .center, spacing: ViewConstants.smallElementSpacing) {
+            Text(category)
+            
+            Spacer()
+            
+            Button {
+                viewModel.removeCategory(category)
+            } label: {
+                Image(systemName: SystemImage.xCircle.rawValue)
+            }
+        }
+        .padding(ViewConstants.innerBorder)
+        .background(Color.onBackground, in: RoundedRectangle(cornerRadius: ViewConstants.cornerRadius))
+        .foregroundStyle(Color.secondaryText)
+    }
+    
+    var field: some View {
+        DefaultTextInputField(
+            viewModel: viewModel,
+            textFieldStyle: TitleTextFieldStyle(
+                title: $viewModel.text,
+                focusedField: $focusedField,
+                field: viewModel.field
+            ))
     }
 }
 
 // MARK: - Preview
 #Preview {
-    CommunityCategoriesView(viewModel: .preview)
+    NavigationStack {
+        CommunityCategoriesView(viewModel: .preview)
+    }
 }

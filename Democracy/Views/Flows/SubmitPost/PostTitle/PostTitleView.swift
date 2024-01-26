@@ -12,15 +12,23 @@ struct PostTitleView<ViewModel: PostTitleViewModel>: View {
     @FocusState private var focusedField: SubmitPostField?
     
     var body: some View {
-        DefaultTextFieldInputView(
+        UserTextInputView(
             viewModel: viewModel,
-            focusedField: $focusedField,
+            focusedField: $focusedField) {
+                field
+            }
+    }
+}
+
+private extension PostTitleView {
+    var field: some View {
+        DefaultTextInputField(
+            viewModel: viewModel,
             textFieldStyle: TitleTextFieldStyle(
                 title: $viewModel.text,
                 focusedField: $focusedField,
                 field: .title
-            )
-        )
+            ))
     }
 }
 

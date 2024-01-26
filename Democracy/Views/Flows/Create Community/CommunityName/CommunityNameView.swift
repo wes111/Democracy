@@ -12,9 +12,19 @@ struct CommunityNameView: View {
     @FocusState private var focusedField: CreateCommunityField?
     
     var body: some View {
-        DefaultTextFieldInputView(
+        UserTextInputView(
             viewModel: viewModel,
-            focusedField: $focusedField,
+            focusedField: $focusedField) {
+                field
+            }
+    }
+}
+
+// MARK: - Subviews
+private extension CommunityNameView {
+    var field: some View {
+        DefaultTextInputField(
+            viewModel: viewModel,
             textFieldStyle: DefaultTrimmedTextFieldStyle(
                 title: $viewModel.text,
                 focusedField: $focusedField,

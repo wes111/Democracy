@@ -12,11 +12,15 @@ enum ViewConstants {
     static let extraSmallElementSpacing: CGFloat = 5
     static let smallElementSpacing: CGFloat = 10
     static let elementSpacing: CGFloat = 20
+    static let mediumElementSpacing: CGFloat = 30
     static let largeElementSpacing: CGFloat = 50
     
     // Padding between element and element's border
     static let innerBorder: CGFloat = 20
     static let smallInnerBorder: CGFloat = 10
+    
+    // Animation Constants
+    static let animationLength = 0.3
     
     // Other standard values
     static let cornerRadius: CGFloat = 10

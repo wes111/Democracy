@@ -12,18 +12,26 @@ struct PostPrimaryLinkView<ViewModel: PostPrimaryLinkViewModel>: View {
     @FocusState private var focusedField: SubmitPostField?
     
     var body: some View {
-        DefaultTextFieldInputView(
+        UserTextInputView(
             viewModel: viewModel,
-            focusedField: $focusedField,
+            focusedField: $focusedField) {
+                field
+            }
+            .onAppear {
+                viewModel.onAppear()
+            }
+    }
+}
+
+private extension PostPrimaryLinkView {
+    var field: some View {
+        DefaultTextInputField(
+            viewModel: viewModel,
             textFieldStyle: LinkTextFieldStyle(
                 link: $viewModel.text,
                 focusedField: $focusedField,
                 field: .primaryLink
-            )
-        )
-        .onAppear {
-            viewModel.onAppear()
-        }
+            ))
     }
 }
 

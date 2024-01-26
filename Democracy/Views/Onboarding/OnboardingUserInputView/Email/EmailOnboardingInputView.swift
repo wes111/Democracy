@@ -12,15 +12,24 @@ struct EmailOnboardingInputView<ViewModel: EmailInputViewModel>: View {
     @FocusState private var focusedField: ViewModel.Field?
     
     var body: some View {
-        DefaultTextFieldInputView(
+        UserTextInputView(
             viewModel: viewModel,
-            focusedField: $focusedField,
+            focusedField: $focusedField) {
+                field
+            }
+    }
+}
+
+// MARK: - Subviews
+private extension EmailOnboardingInputView {
+    var field: some View {
+        DefaultTextInputField(
+            viewModel: viewModel,
             textFieldStyle: EmailTextFieldStyle(
                 email: $viewModel.text,
                 focusedField: $focusedField,
                 field: .email
-            )
-        )
+            ))
     }
 }
 

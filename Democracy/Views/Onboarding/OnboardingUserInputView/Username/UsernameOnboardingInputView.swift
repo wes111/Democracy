@@ -13,29 +13,38 @@ struct UsernameOnboardingInputView<ViewModel: UsernameInputViewModel>: View {
     @State private var isFirstAppear = true
     
     var body: some View {
-        DefaultTextFieldInputView(
+        UserTextInputView(
             viewModel: viewModel,
             focusedField: $focusedField,
-            shouldOverrideOnAppear: true, // TODO: This should fix bug below
+            shouldOverrideOnAppear: true) {
+                field
+            }
+            .onAppear {
+                if isFirstAppear {
+                    focusedField = viewModel.field
+                    isFirstAppear = false
+                } else {
+                    Task {
+                        // Note: Keyboard jumps to mid screen without this sleep,
+                        // when dismissing a view above in the stack.
+                        try await Task.sleep(seconds: 0.5)
+                        focusedField = viewModel.field
+                    }
+                }
+            }
+    }
+}
+
+// MARK: - Subviews
+private extension UsernameOnboardingInputView {
+    var field: some View {
+        DefaultTextInputField(
+            viewModel: viewModel,
             textFieldStyle: UsernameTextFieldStyle(
                 username: $viewModel.text,
                 focusedField: $focusedField,
                 field: .username
-            )
-        )
-        .onAppear {
-            if isFirstAppear {
-                focusedField = viewModel.field
-                isFirstAppear = false
-            } else {
-                Task {
-                    // Note: Keyboard jumps to mid screen without this sleep,
-                    // when dismissing a view above in the stack.
-                    try await Task.sleep(seconds: 0.5)
-                    focusedField = viewModel.field
-                }
-            }
-        }
+            ))
     }
 }
 

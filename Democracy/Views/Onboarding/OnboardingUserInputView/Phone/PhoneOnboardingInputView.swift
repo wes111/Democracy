@@ -12,15 +12,22 @@ struct PhoneOnboardingInputView<ViewModel: PhoneInputViewModel>: View {
     @FocusState private var focusedField: ViewModel.Field?
     
     var body: some View {
-        DefaultTextFieldInputView(
+        UserTextInputView(
             viewModel: viewModel,
-            focusedField: $focusedField,
-            textFieldStyle: PhoneTextFieldStyle(
+            focusedField: $focusedField) {
+                field
+            }
+    }
+}
+
+private extension PhoneOnboardingInputView {
+    var field: some View {
+        DefaultTextInputField(
+            viewModel: viewModel, textFieldStyle: PhoneTextFieldStyle(
                 phone: $viewModel.text,
                 focusedField: $focusedField,
                 field: OnboardingInputField.phone
-            )
-        )
+            ))
     }
 }
 

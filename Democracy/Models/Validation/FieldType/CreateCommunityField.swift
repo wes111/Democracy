@@ -8,7 +8,7 @@
 import Foundation
 
 enum CreateCommunityField: InputField {
-    case name, description
+    case name, description, categories
     
     var title: String {
         switch self {
@@ -16,6 +16,8 @@ enum CreateCommunityField: InputField {
             "Community Name"
         case .description:
             "Community Description"
+        case .categories:
+            "Community Categories"
         }
     }
     
@@ -25,6 +27,8 @@ enum CreateCommunityField: InputField {
             "Create a name for the new community."
         case .description:
             "Add a description to the new community."
+        case .categories:
+            "Add at least one category to the community. Categories are used to organize posts. More categories can be added later."
         }
     }
     
@@ -34,12 +38,14 @@ enum CreateCommunityField: InputField {
             "Community Name"
         case .description:
             "Community Description"
+        case .categories:
+            "Community Categories"
         }
     }
     
     var required: Bool {
         switch self {
-        case .name, .description:
+        case .name, .description, .categories:
             true
         }
     }
@@ -50,6 +56,8 @@ enum CreateCommunityField: InputField {
             200
         case .description:
             2_000
+        case .categories:
+            100
         }
     }
     
@@ -62,6 +70,10 @@ enum CreateCommunityField: InputField {
             /// Checks if the string is between 1 and 1000 characters in length.
         case .description:
             "^.{1,1000}$"
+            
+            /// Checks if the string is between 1 and 200 characters in length.
+        case .categories:
+            "^.{1,200}$"
         }
     }
     
@@ -71,6 +83,8 @@ enum CreateCommunityField: InputField {
             .invalidName
         case .description:
             .invalidDescription
+        case .categories:
+                .invalidCategory
         }
     }
 }
