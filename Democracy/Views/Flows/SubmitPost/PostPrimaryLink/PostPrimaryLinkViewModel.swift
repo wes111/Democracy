@@ -35,7 +35,7 @@ extension PostPrimaryLinkViewModel {
 // MARK: - Methods
 extension PostPrimaryLinkViewModel {
     @MainActor
-    func submit() async {
+    func nextButtonAction() async {
         guard field.fullyValid(input: text) else {
             return presentInvalidInputAlert()
         }

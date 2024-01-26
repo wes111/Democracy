@@ -46,16 +46,14 @@ private extension PostCategoryView {
             Image(systemName: SystemImage.checkmarkCircleFill.rawValue)
                 .opacity(isSelected ? 1.0 : 0.0)
         }
-        .padding(ViewConstants.innerBorder)
+        .categoryModifier()
         .overlay(
             RoundedRectangle(cornerRadius: ViewConstants.cornerRadius)
                 .strokeBorder(
                     isSelected ? Color.tertiaryText : Color.primaryBackground,
                     lineWidth: ViewConstants.borderWidth
                 )
-                .fill(Color.onBackground)
         )
-        .foregroundStyle(Color.secondaryText)
         .onTapGesture {
             viewModel.toggleCategory(category)
         }

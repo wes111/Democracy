@@ -14,6 +14,9 @@ struct CommunityCategoriesView: View {
     
     var body: some View {
         primaryContent
+            .onAppear {
+                viewModel.onAppear()
+            }
     }
 }
 
@@ -35,7 +38,7 @@ extension CommunityCategoriesView {
     
     var addCategoryButton: some View {
         Button {
-            viewModel.addCategory()
+            viewModel.submit()
         } label: {
             Text("Add Category")
         }
@@ -67,9 +70,7 @@ extension CommunityCategoriesView {
                 Image(systemName: SystemImage.xCircle.rawValue)
             }
         }
-        .padding(ViewConstants.innerBorder)
-        .background(Color.onBackground, in: RoundedRectangle(cornerRadius: ViewConstants.cornerRadius))
-        .foregroundStyle(Color.secondaryText)
+        .categoryModifier()
     }
     
     var field: some View {

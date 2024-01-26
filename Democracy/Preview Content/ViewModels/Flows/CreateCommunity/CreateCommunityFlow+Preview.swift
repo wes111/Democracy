@@ -26,7 +26,10 @@ extension CommunityCategoriesViewModel {
 }
 
 extension CommunityTagsViewModel {
-    static let preview = CommunityTagsViewModel()
+    static let preview = CommunityTagsViewModel(
+        coordinator: CreateCommunityCoordinator.preview,
+        userInput: .init()
+    )
 }
 
 extension CommunityRulesViewModel {

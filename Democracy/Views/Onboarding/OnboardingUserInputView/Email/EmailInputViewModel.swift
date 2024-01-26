@@ -46,7 +46,7 @@ extension EmailInputViewModel {
 extension EmailInputViewModel {
     
     @MainActor
-    func submit() async {
+    func nextButtonAction() async {
         do {
             guard field.fullyValid(input: text) else {
                 return presentInvalidInputAlert()

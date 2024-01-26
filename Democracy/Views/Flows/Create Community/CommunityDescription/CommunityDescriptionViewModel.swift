@@ -35,7 +35,7 @@ extension CommunityDescriptionViewModel {
 // MARK: - Methods
 extension CommunityDescriptionViewModel {
     @MainActor
-    func submit() async {
+    func nextButtonAction() async {
         guard field.fullyValid(input: text) else {
             return presentInvalidInputAlert()
         }

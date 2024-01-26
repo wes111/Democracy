@@ -27,7 +27,7 @@ final class PostCategoryViewModel: FlowViewModel<SubmitPostCoordinator>, UserInp
 
 // MARK: - Computed Properties
 extension PostCategoryViewModel {
-    var canSubmit: Bool {
+    var canPerformNextAction: Bool {
         selectedCategory != nil
     }
 }
@@ -35,7 +35,7 @@ extension PostCategoryViewModel {
 // MARK: - Methods
 extension PostCategoryViewModel {
     @MainActor
-    func submit() async {
+    func nextButtonAction() async {
         guard canSubmit else {
             return alertModel = NewAlertModel.genericAlert
         }

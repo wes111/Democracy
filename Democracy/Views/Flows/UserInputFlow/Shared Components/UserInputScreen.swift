@@ -102,7 +102,7 @@ private extension UserInputScreen {
             isShowingProgress: $viewModel.isShowingProgress, 
             nextAction: {
                 await additionalSubmitAction()
-                await viewModel.submit()
+                await viewModel.nextButtonAction()
             },
             isDisabled: !viewModel.canSubmit
         )

@@ -37,7 +37,7 @@ struct UserTextInputView<ViewModel: UserTextInputViewModel, Content: View>: View
             }
         }
         .onSubmit {
-            if viewModel.canSubmit {
+            if viewModel.canPerformNextAction {
                 performAsnycTask(
                     action: {
                         await submit()

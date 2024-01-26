@@ -30,7 +30,7 @@ final class PostTagsViewModel: FlowViewModel<SubmitPostCoordinator>, UserInputVi
 
 // MARK: - Computed Properties
 extension PostTagsViewModel {
-    var canSubmit: Bool {
+    var canPerformNextAction: Bool {
         !selectedTags.isEmpty
     }
 }
@@ -39,7 +39,7 @@ extension PostTagsViewModel {
 extension PostTagsViewModel {
     
     @MainActor
-    func submit() async {
+    func nextButtonAction() async {
         guard canSubmit else {
             return alertModel = NewAlertModel.genericAlert
         }

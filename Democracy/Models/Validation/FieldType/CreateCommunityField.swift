@@ -8,7 +8,7 @@
 import Foundation
 
 enum CreateCommunityField: InputField {
-    case name, description, categories
+    case name, description, categories, tags
     
     var title: String {
         switch self {
@@ -18,6 +18,8 @@ enum CreateCommunityField: InputField {
             "Community Description"
         case .categories:
             "Community Categories"
+        case .tags:
+            "Community Tags"
         }
     }
     
@@ -29,6 +31,8 @@ enum CreateCommunityField: InputField {
             "Add a description to the new community."
         case .categories:
             "Add at least one category to the community. Categories are used to organize posts. More categories can be added later."
+        case .tags:
+            "Add tags to improve searchability of posts within the community."
         }
     }
     
@@ -40,12 +44,14 @@ enum CreateCommunityField: InputField {
             "Community Description"
         case .categories:
             "Community Categories"
+        case .tags:
+            "Community Tags"
         }
     }
     
     var required: Bool {
         switch self {
-        case .name, .description, .categories:
+        case .name, .description, .categories, .tags:
             true
         }
     }
@@ -58,6 +64,8 @@ enum CreateCommunityField: InputField {
             2_000
         case .categories:
             100
+        case .tags:
+            25 // TODO: ... ???
         }
     }
     
@@ -74,6 +82,10 @@ enum CreateCommunityField: InputField {
             /// Checks if the string is between 1 and 200 characters in length.
         case .categories:
             "^.{1,200}$"
+            
+            /// Checks if the string is between 1 and 25 characters in length.
+        case .tags:
+            "^.{1,25}$"
         }
     }
     
@@ -84,7 +96,9 @@ enum CreateCommunityField: InputField {
         case .description:
             .invalidDescription
         case .categories:
-                .invalidCategory
+            .invalidCategory
+        case .tags:
+            .invalidTag
         }
     }
 }

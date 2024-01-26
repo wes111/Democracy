@@ -25,7 +25,7 @@ final class CommunityNameViewModel: FlowViewModel<CreateCommunityCoordinator>, U
 extension CommunityNameViewModel {
     
     @MainActor
-    func submit() async {
+    func nextButtonAction() async {
         guard field.fullyValid(input: text) else {
             return presentInvalidInputAlert()
         }

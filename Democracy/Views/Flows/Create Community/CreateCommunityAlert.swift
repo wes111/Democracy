@@ -8,7 +8,8 @@
 import Foundation
 
 enum CreateCommunityAlert: AlertModelProtocol {
-    case invalidName, invalidDescription, invalidCategory, missingCategory, categoryAlreadyAdded
+    case invalidName, invalidDescription, invalidCategory, missingCategory, categoryAlreadyAdded,
+         invalidTag, missingTag, tagAlreadyAdded
     
     var title: String {
         switch self {
@@ -22,6 +23,12 @@ enum CreateCommunityAlert: AlertModelProtocol {
             "Missing Category"
         case .categoryAlreadyAdded:
             "Category Already Added"
+        case .invalidTag:
+            "Invalid Tag"
+        case .missingTag:
+            "Missing Tag"
+        case .tagAlreadyAdded:
+            "Tag Already Added"
         }
     }
     
@@ -37,6 +44,12 @@ enum CreateCommunityAlert: AlertModelProtocol {
             "Communities must have at least 1 category."
         case .categoryAlreadyAdded:
             "This category has already been added."
+        case .invalidTag:
+            "Please enter a tag that matches the requirements."
+        case .missingTag:
+            "Communities must have at least 1 tag."
+        case .tagAlreadyAdded:
+            "This tag has already been added."
         }
     }
 }

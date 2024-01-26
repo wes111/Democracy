@@ -37,12 +37,9 @@ private extension PostTagsView {
     }
     
     func tagView(_ tag: String) -> some View {
-        let backgroundColor: Color = viewModel.selectedTags.contains(tag) ? .otherRed : .onBackground
-        
+        let background: Color = viewModel.selectedTags.contains(tag) ? .otherRed : .onBackground
         return Text(tag)
-            .padding(ViewConstants.smallInnerBorder)
-            .background(backgroundColor, in: RoundedRectangle(cornerRadius: ViewConstants.cornerRadius))
-            .foregroundStyle(Color.secondaryText)
+            .tagModifier(backgroundColor: background)
             .onTapGesture {
                 viewModel.toggleTag(tag)
             }

@@ -31,7 +31,7 @@ extension CommunityCategoriesViewModel {
     }
     
     @MainActor
-    func submit() async {
+    func nextButtonAction() async {
         guard !categories.isEmpty else {
             return presentMissingCategoryAlert()
         }
@@ -39,8 +39,9 @@ extension CommunityCategoriesViewModel {
         coordinator?.didSubmitCategories(input: userInput)
     }
     
+    // Add category.
     @MainActor
-    func addCategory() {
+    func submit() {
         guard !categories.contains(text) else {
             return presentCategoryAlreadyAddedAlert()
         }
@@ -59,7 +60,7 @@ extension CommunityCategoriesViewModel {
     }
     
     func onAppear() {
-        text = userInput.name ?? ""
+        categories = Array(userInput.categories)
     }
     
     @MainActor

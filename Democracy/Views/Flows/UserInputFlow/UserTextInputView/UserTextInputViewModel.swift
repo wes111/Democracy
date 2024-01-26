@@ -43,7 +43,7 @@ extension UserTextInputViewModel {
         field.maxCharacterCount
     }
     
-    var canSubmit: Bool {
+    var canPerformNextAction: Bool {
         field.fullyValid(input: text)
     }
     

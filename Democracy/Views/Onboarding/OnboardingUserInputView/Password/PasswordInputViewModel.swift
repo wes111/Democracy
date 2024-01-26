@@ -46,7 +46,7 @@ extension PasswordInputViewModel {
 extension PasswordInputViewModel {
     
     @MainActor
-    func submit() async {
+    func nextButtonAction() async {
         guard field.fullyValid(input: text) else {
             return presentInvalidInputAlert()
         }
