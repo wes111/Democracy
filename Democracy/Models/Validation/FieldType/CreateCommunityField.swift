@@ -10,40 +10,6 @@ import Foundation
 enum CreateCommunityField: InputField {
     case name, description, categories, tags, ruleTitle, ruleDescription
     
-    var title: String {
-        switch self {
-        case .name:
-            "Community Name"
-        case .description:
-            "Community Description"
-        case .categories:
-            "Community Categories"
-        case .tags:
-            "Community Tags"
-        case .ruleTitle:
-            "Rule Title"
-        case .ruleDescription:
-            "Rule Description"
-        }
-    }
-    
-    var subtitle: String {
-        switch self {
-        case .name:
-            "Create a name for the new community."
-        case .description:
-            "Add a description to the new community."
-        case .categories:
-            "Add at least one category to the community. Categories are used to organize posts. More categories can be added later."
-        case .tags:
-            "Add tags to improve searchability of posts within the community."
-        case .ruleTitle:
-            "Add a title to the rule."
-        case .ruleDescription:
-            "Add a description to the rule."
-        }
-    }
-    
     var fieldTitle: String {
         switch self {
         case .name:
@@ -58,13 +24,6 @@ enum CreateCommunityField: InputField {
             "Rule Title"
         case .ruleDescription:
             "Rule Description"
-        }
-    }
-    
-    var required: Bool {
-        switch self {
-        case .name, .description, .categories, .tags, .ruleTitle, .ruleDescription:
-            true
         }
     }
     

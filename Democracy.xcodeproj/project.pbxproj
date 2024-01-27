@@ -241,7 +241,7 @@
 		EEB5AF672ADB186E00310408 /* UserTextInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF662ADB186E00310408 /* UserTextInputViewModel.swift */; };
 		EEB5AF762ADB1EFA00310408 /* OnboardingTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */; };
 		EEB5AF7A2ADC3D6D00310408 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF792ADC3D6C00310408 /* AlertModel.swift */; };
-		EEB5AF802AE0DE7000310408 /* OnboardingInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */; };
+		EEB5AF802AE0DE7000310408 /* CreateAccountField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF7F2AE0DE7000310408 /* CreateAccountField.swift */; };
 		EEB5AF8B2AFA7DD500310408 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF8A2AFA7DD500310408 /* Session.swift */; };
 		EEB5AF8F2AFBCD6B00310408 /* SwiftDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF8E2AFBCD6B00310408 /* SwiftDataService.swift */; };
 		EEB5AF912B017F0900310408 /* UserDefaultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF902B017F0900310408 /* UserDefaultStorage.swift */; };
@@ -530,7 +530,7 @@
 		EEB5AF662ADB186E00310408 /* UserTextInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTextInputViewModel.swift; sourceTree = "<group>"; };
 		EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTopButton.swift; sourceTree = "<group>"; };
 		EEB5AF792ADC3D6C00310408 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
-		EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInputField.swift; sourceTree = "<group>"; };
+		EEB5AF7F2AE0DE7000310408 /* CreateAccountField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountField.swift; sourceTree = "<group>"; };
 		EEB5AF8A2AFA7DD500310408 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		EEB5AF8E2AFBCD6B00310408 /* SwiftDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataService.swift; sourceTree = "<group>"; };
 		EEB5AF902B017F0900310408 /* UserDefaultStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultStorage.swift; sourceTree = "<group>"; };
@@ -839,7 +839,7 @@
 		EE4987F32B328B2600AB7522 /* FieldType */ = {
 			isa = PBXGroup;
 			children = (
-				EEB5AF7F2AE0DE7000310408 /* OnboardingInputField.swift */,
+				EEB5AF7F2AE0DE7000310408 /* CreateAccountField.swift */,
 				EE4987EF2B31D99300AB7522 /* SubmitPostField.swift */,
 				EE2B15E32B54383B0046D5FC /* LoginField.swift */,
 				EE7EC2992B61AA1A00F62E90 /* CreateCommunityField.swift */,
@@ -1932,7 +1932,7 @@
 				EE54ADEA29A712AE007C3E3F /* LoginView.swift in Sources */,
 				EED4A51A29ABC2D400DDCCDA /* Community.swift in Sources */,
 				EE54ADEC29A714E8007C3E3F /* LoginViewModel.swift in Sources */,
-				EEB5AF802AE0DE7000310408 /* OnboardingInputField.swift in Sources */,
+				EEB5AF802AE0DE7000310408 /* CreateAccountField.swift in Sources */,
 				EE7EC2942B619E1200F62E90 /* CreateCommunityCoordinator.swift in Sources */,
 				EED4A50D29AB18E400DDCCDA /* UpdatesTabMainViewModel.swift in Sources */,
 				EE7055562B1245A500E40A89 /* Repository.swift in Sources */,

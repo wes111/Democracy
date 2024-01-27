@@ -10,38 +10,6 @@ import Foundation
 enum SubmitPostField: InputField {
     case title, body, primaryLink, secondaryLinks
     
-    var title: String {
-        switch self {
-        case .title:
-            "Add a Title"
-        case .body:
-            "Add Content"
-        case .primaryLink:
-            "Add a Primary Link"
-        case .secondaryLinks:
-            "Add Secondary Links"
-        }
-    }
-    
-    var subtitle: String {
-        switch self {
-        case .title:
-            "Create a title for your post."
-        case .body:
-            """
-            Add text content to your post. Optionally, use markdown to add links, \
-            bold, italics, and more to your post
-            """
-        case .primaryLink:
-            """
-            Add a primary link to your post with previewable content. If we are unable to fetch the metadata
-            for the provided link, please try a different link or skip this step.
-            """
-        case .secondaryLinks:
-            "Optionally add secondary links to your post. These will appear at the bottom of your post."
-        }
-    }
-    
     var fieldTitle: String {
         switch self {
         case .title:
@@ -52,15 +20,6 @@ enum SubmitPostField: InputField {
             "Post Link"
         case .secondaryLinks:
             "Secondary Link"
-        }
-    }
-    
-    var required: Bool {
-        switch self {
-        case .title, .body:
-            true
-        case .primaryLink, .secondaryLinks:
-            false
         }
     }
     

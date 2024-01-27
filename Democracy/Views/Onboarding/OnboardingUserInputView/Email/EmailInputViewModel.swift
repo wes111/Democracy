@@ -18,7 +18,7 @@ final class EmailInputViewModel: UserTextInputViewModel {
     @ObservationIgnored private var onboardingInput: OnboardingInput
     
     let flowCase = CreateAccountFlow.email
-    let field = OnboardingInputField.email
+    let field = CreateAccountField.email
     private weak var coordinator: OnboardingCoordinatorDelegate?
     let skipAction: (() -> Void)? = nil
     

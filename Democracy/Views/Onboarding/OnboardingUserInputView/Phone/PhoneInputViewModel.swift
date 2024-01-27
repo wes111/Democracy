@@ -18,7 +18,7 @@ final class PhoneInputViewModel: UserTextInputViewModel {
     @ObservationIgnored private var onboardingInput: OnboardingInput
     
     let flowCase = CreateAccountFlow.phone
-    let field = OnboardingInputField.phone
+    let field = CreateAccountField.phone
     private weak var coordinator: OnboardingCoordinatorDelegate?
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {

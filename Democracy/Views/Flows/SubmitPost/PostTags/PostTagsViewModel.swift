@@ -16,8 +16,6 @@ final class PostTagsViewModel: FlowViewModel<SubmitPostCoordinator>, UserInputVi
     
     @ObservationIgnored @Injected(\.postService) private var postService
     @ObservationIgnored private let submitPostInput: SubmitPostInput
-    let title = "Add Tags"
-    let subtitle = "Add community tags to your post to improve searchability."
     let skipAction: (() -> Void)? = nil
     let flowCase = SubmitPostFlow.tags
     

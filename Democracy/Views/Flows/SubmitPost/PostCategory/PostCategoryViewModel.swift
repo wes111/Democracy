@@ -12,8 +12,6 @@ final class PostCategoryViewModel: FlowViewModel<SubmitPostCoordinator>, UserInp
     var selectedCategory: String?
     
     let categories: [String] = Community.preview.categories
-    let title = "Select a Category"
-    let subtitle = "Each post belongs to a single category within a Community."
     private let submitPostInput: SubmitPostInput
     let skipAction: (() -> Void)? = nil
     let flowCase = SubmitPostFlow.category

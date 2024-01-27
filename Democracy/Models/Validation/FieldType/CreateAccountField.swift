@@ -10,10 +10,7 @@ import Foundation
 protocol InputField: Hashable {
     associatedtype AlertModel: AlertModelProtocol
     
-    var title: String { get }
-    var subtitle: String { get }
     var fieldTitle: String { get }
-    var required: Bool { get }
     var maxCharacterCount: Int { get }
     var fullRegex: String { get }
     var alert: AlertModel { get }
@@ -38,38 +35,12 @@ extension InputField {
     }
 }
 
-enum OnboardingInputField: InputField {
+enum CreateAccountField: InputField {
     case username, password, email, phone
 }
 
 // MARK: - Computed Properties
-extension OnboardingInputField {
-    
-    var title: String {
-        switch self {
-        case .username:
-            "Create a Username"
-        case .password:
-            "Create a Password"
-        case .email:
-            "Add Your Email"
-        case .phone:
-            "Add Your Phone Number"
-        }
-    }
-    
-    var subtitle: String {
-        switch self {
-        case .username:
-            "Create a unique username for your account."
-        case .password:
-            "Create a password that meets the password requirements listed below."
-        case .email:
-            "Add a primary email for your account."
-        case .phone:
-            "Add a phone number to receive SMS notifications."
-        }
-    }
+extension CreateAccountField {
     
     var fieldTitle: String {
         switch self {
@@ -81,15 +52,6 @@ extension OnboardingInputField {
             "Email"
         case .phone:
             "Phone Number"
-        }
-    }
-    
-    var required: Bool {
-        switch self {
-        case .username, .password, .email:
-            true
-        case .phone:
-            false
         }
     }
     
@@ -166,7 +128,7 @@ extension OnboardingInputField {
 }
 
 // MARK: PasswordCaseRepresentable
-extension OnboardingInputField: PasswordCaseRepresentable {
+extension CreateAccountField: PasswordCaseRepresentable {
     var isPasswordCase: Bool {
         switch self {
         case .username, .email, .phone:
@@ -176,7 +138,7 @@ extension OnboardingInputField: PasswordCaseRepresentable {
         }
     }
     
-    static var passwordCase: OnboardingInputField {
+    static var passwordCase: CreateAccountField {
         Self.password
     }
 }

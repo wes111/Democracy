@@ -28,7 +28,7 @@ struct EmailTextFieldStyle<Field: InputField>: TextFieldStyle {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: OnboardingInputField?
+    @FocusState var focusedField: CreateAccountField?
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
@@ -38,7 +38,7 @@ struct EmailTextFieldStyle<Field: InputField>: TextFieldStyle {
         .textFieldStyle(EmailTextFieldStyle(
             email: .constant("Email"),
             focusedField: $focusedField,
-            field: OnboardingInputField.email
+            field: CreateAccountField.email
         ))
     }
 }

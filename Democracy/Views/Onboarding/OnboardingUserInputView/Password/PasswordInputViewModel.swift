@@ -23,7 +23,7 @@ final class PasswordInputViewModel: UserTextInputViewModel {
     private weak var coordinator: OnboardingCoordinatorDelegate?
     let skipAction: (() -> Void)? = nil
     let flowCase = CreateAccountFlow.password
-    let field = OnboardingInputField.password
+    let field = CreateAccountField.password
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator

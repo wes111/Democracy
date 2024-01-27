@@ -28,7 +28,7 @@ private extension PhoneOnboardingInputView {
             textFieldStyle: PhoneTextFieldStyle(
                 phone: $viewModel.text,
                 focusedField: $focusedField,
-                field: OnboardingInputField.phone
+                field: CreateAccountField.phone
             ))
     }
 }

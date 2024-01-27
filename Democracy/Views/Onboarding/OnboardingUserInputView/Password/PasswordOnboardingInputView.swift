@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PasswordOnboardingInputView: View {
     @Bindable var viewModel: PasswordInputViewModel
-    @FocusState private var focusedField: OnboardingInputField?
+    @FocusState private var focusedField: CreateAccountField?
     
     init(viewModel: PasswordInputViewModel) {
         self.viewModel = viewModel

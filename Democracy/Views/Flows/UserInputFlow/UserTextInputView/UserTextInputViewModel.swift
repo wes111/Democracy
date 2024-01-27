@@ -25,14 +25,6 @@ protocol UserTextInputViewModel: UserInputViewModel {
 
 extension UserTextInputViewModel {
     
-    var title: String {
-        field.title
-    }
-    
-    var subtitle: String {
-        field.subtitle
-    }
-    
     var fieldTitle: String {
         field.fieldTitle
     }

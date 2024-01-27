@@ -27,7 +27,7 @@ struct UsernameTextFieldStyle<Field: InputField>: TextFieldStyle {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: OnboardingInputField?
+    @FocusState var focusedField: CreateAccountField?
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
@@ -37,7 +37,7 @@ struct UsernameTextFieldStyle<Field: InputField>: TextFieldStyle {
         .textFieldStyle(UsernameTextFieldStyle(
             username: .constant("Username"),
             focusedField: $focusedField,
-            field: OnboardingInputField.username
+            field: CreateAccountField.username
         ))
     }
 }

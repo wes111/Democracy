@@ -61,7 +61,7 @@ private extension UserTextInputView {
 // MARK: - Preview
 #Preview {
     let viewModel = EmailInputViewModel(coordinator: OnboardingCoordinator.preview, onboardingInput: .init())
-    @FocusState var focusedField: OnboardingInputField?
+    @FocusState var focusedField: CreateAccountField?
     
     return UserTextInputView(
         viewModel: viewModel,
@@ -75,7 +75,7 @@ private extension UserTextInputView {
         .textFieldStyle(EmailTextFieldStyle(
             email: .constant("Email Text"),
             focusedField: $focusedField,
-            field: OnboardingInputField.email
+            field: CreateAccountField.email
         ))
     }
 }

@@ -19,7 +19,7 @@ enum EmailRequirement: InputRequirement {
     
     var regex: String {
         switch self {
-        case .invalidEmail: OnboardingInputField.email.fullRegex
+        case .invalidEmail: CreateAccountField.email.fullRegex
         }
     }
 }

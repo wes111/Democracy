@@ -7,7 +7,11 @@
 
 import Foundation
 
-protocol UserInputFlow: CaseIterable, RawRepresentable where RawValue == Int {}
+protocol UserInputFlow: CaseIterable, RawRepresentable where RawValue == Int {
+    var title: String { get }
+    var subtitle: String { get }
+    var required: Bool { get }
+}
 
 protocol UserInputViewModel: Hashable, Observable, AnyObject {
     associatedtype Flow: UserInputFlow
@@ -16,8 +20,6 @@ protocol UserInputViewModel: Hashable, Observable, AnyObject {
     var trailingButtons: [OnboardingTopButton] { get }
     var leadingButtons: [OnboardingTopButton] { get }
     var alertModel: NewAlertModel? { get set }
-    var title: String { get }
-    var subtitle: String { get }
     @MainActor var skipAction: (() -> Void)? { get }
     
     // In most cases, 'submit' and 'nextButtonAction' will be the same.
@@ -37,5 +39,13 @@ extension UserInputViewModel {
     
     var canSubmit: Bool {
         canPerformNextAction
+    }
+    
+    var title: String {
+        flowCase.title
+    }
+    
+    var subtitle: String {
+        flowCase.subtitle
     }
 }

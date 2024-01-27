@@ -65,6 +65,6 @@ extension View {
         .requirements(
             text: .constant("Hello World!"),
             requirementType: NoneRequirement.self,
-            field: OnboardingInputField.email
+            field: CreateAccountField.email
         )
 }
