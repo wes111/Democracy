@@ -39,7 +39,7 @@ struct UsernameOnboardingInputView<ViewModel: UsernameInputViewModel>: View {
 private extension UsernameOnboardingInputView {
     var field: some View {
         DefaultTextInputField(
-            viewModel: viewModel,
+            viewModel: viewModel, requirementType: UsernameRequirement.self,
             textFieldStyle: UsernameTextFieldStyle(
                 username: $viewModel.text,
                 focusedField: $focusedField,

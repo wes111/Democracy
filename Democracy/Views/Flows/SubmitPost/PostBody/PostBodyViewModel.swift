@@ -9,7 +9,6 @@ import Foundation
 
 @Observable
 final class PostBodyViewModel: FlowViewModel<SubmitPostCoordinator>, UserTextEditorInputViewModel {
-    var textErrors: [NoneRequirement] = []
     var selectedTab: PostBodyTab = .editor
     
     @ObservationIgnored private let submitPostInput: SubmitPostInput

@@ -8,8 +8,6 @@
 import Foundation
 
 @Observable final class PostTitleViewModel: FlowViewModel<SubmitPostCoordinator>, UserTextInputViewModel {
-    var textErrors: [NoneRequirement] = []
-    
     @ObservationIgnored private let submitPostInput = SubmitPostInput()
     let field = SubmitPostField.title
     let flowCase = SubmitPostFlow.title

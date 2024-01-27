@@ -23,7 +23,9 @@ struct PhoneOnboardingInputView<ViewModel: PhoneInputViewModel>: View {
 private extension PhoneOnboardingInputView {
     var field: some View {
         DefaultTextInputField(
-            viewModel: viewModel, textFieldStyle: PhoneTextFieldStyle(
+            viewModel: viewModel,
+            requirementType: PhoneRequirement.self,
+            textFieldStyle: PhoneTextFieldStyle(
                 phone: $viewModel.text,
                 focusedField: $focusedField,
                 field: OnboardingInputField.phone

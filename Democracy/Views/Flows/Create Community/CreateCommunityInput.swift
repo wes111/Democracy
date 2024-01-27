@@ -14,7 +14,7 @@ final class CreateCommunityInput {
     var description: String?
     var categories: Set<String>
     var tags: Set<String>
-    var rules: [String]
+    var rules: Set<Rule>
     var settings: [String]
     var leaders: [String]
     
@@ -23,7 +23,7 @@ final class CreateCommunityInput {
         description: String? = nil,
         categories: Set<String> = [],
         tags: Set<String> = [],
-        rules: [String] = [],
+        rules: Set<Rule> = [],
         settings: [String] = [],
         leaders: [String] = []
     ) {

@@ -75,6 +75,7 @@ private extension CommunityTagsView {
     var field: some View {
         DefaultTextInputField(
             viewModel: viewModel,
+            requirementType: NoneRequirement.self,
             textFieldStyle: TitleTextFieldStyle(
                 title: $viewModel.text,
                 focusedField: $focusedField,

@@ -29,13 +29,6 @@ struct UserTextInputView<ViewModel: UserTextInputViewModel, Content: View>: View
         UserInputScreen(viewModel: viewModel, additionalSubmitAction: submit) {
             content
         }
-        .onChange(of: viewModel.text) { _, newValue in
-            viewModel.textErrors = if newValue.isEmpty {
-                []
-            } else {
-                viewModel.field.getInputValidationErrors(input: newValue)
-            }
-        }
         .onSubmit {
             if viewModel.canPerformNextAction {
                 performAsnycTask(

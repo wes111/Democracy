@@ -10,10 +10,7 @@ import Foundation
 
 @Observable
 final class PhoneInputViewModel: UserTextInputViewModel {
-    typealias Requirement = PhoneRequirement
-    
     var text: String = ""
-    var textErrors: [Requirement] = []
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
     

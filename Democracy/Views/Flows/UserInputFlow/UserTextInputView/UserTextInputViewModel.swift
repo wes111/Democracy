@@ -10,14 +10,12 @@ import Foundation
 
 // TODO: The use of a single protocol here exposes too much to the view.
 protocol UserTextInputViewModel: UserInputViewModel {
-    associatedtype Requirement: InputRequirement
     associatedtype Field: InputField
     
     var text: String { get set }
     var field: Field { get }
     var fieldTitle: String { get }
     var maxCharacterCount: Int { get }
-    var textErrors: [Requirement] { get set }
     
     @MainActor func close()
     @MainActor func goBack()

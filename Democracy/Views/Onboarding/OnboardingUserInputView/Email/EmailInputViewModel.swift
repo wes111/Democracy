@@ -10,10 +10,7 @@ import Foundation
 
 @Observable
 final class EmailInputViewModel: UserTextInputViewModel {
-    typealias Requirement = EmailRequirement
-    
     var text: String = ""
-    var textErrors: [Requirement] = []
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
     

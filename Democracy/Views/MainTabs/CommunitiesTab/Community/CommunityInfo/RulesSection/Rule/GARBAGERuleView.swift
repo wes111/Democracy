@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RuleView: View {
+struct GARBAGERuleView: View {
 
     var viewModel: RuleViewModel
     
@@ -31,6 +31,6 @@ struct RuleView: View {
 
 // MARK: - Preview
 #Preview {
-    let viewModel = Rule.previewArray.first!.viewModel(index: 0)
-    return RuleView(viewModel: viewModel)
+    let viewModel = GARBAGERule.previewArray.first!.viewModel(index: 0)
+    return GARBAGERuleView(viewModel: viewModel)
 }

@@ -27,6 +27,7 @@ private extension PostPrimaryLinkView {
     var field: some View {
         DefaultTextInputField(
             viewModel: viewModel,
+            requirementType: PostLinkRequirement.self,
             textFieldStyle: LinkTextFieldStyle(
                 link: $viewModel.text,
                 focusedField: $focusedField,

@@ -53,7 +53,10 @@ extension CreateCommunityCoordinator: CreateCommunityCoordinatorDelegate {
     }
     
     func didSubmitTags(input: CreateCommunityInput) {
-        let viewModel = CommunityRulesViewModel()
+        let viewModel = CommunityRulesViewModel(
+            coordinator: self,
+            userInput: input
+        )
         router.push(CreateCommunityPath.goToCommunityRules(viewModel))
     }
     

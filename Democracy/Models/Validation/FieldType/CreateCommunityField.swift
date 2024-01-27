@@ -8,7 +8,7 @@
 import Foundation
 
 enum CreateCommunityField: InputField {
-    case name, description, categories, tags
+    case name, description, categories, tags, ruleTitle, ruleDescription
     
     var title: String {
         switch self {
@@ -20,6 +20,10 @@ enum CreateCommunityField: InputField {
             "Community Categories"
         case .tags:
             "Community Tags"
+        case .ruleTitle:
+            "Rule Title"
+        case .ruleDescription:
+            "Rule Description"
         }
     }
     
@@ -33,6 +37,10 @@ enum CreateCommunityField: InputField {
             "Add at least one category to the community. Categories are used to organize posts. More categories can be added later."
         case .tags:
             "Add tags to improve searchability of posts within the community."
+        case .ruleTitle:
+            "Add a title to the rule."
+        case .ruleDescription:
+            "Add a description to the rule."
         }
     }
     
@@ -46,12 +54,16 @@ enum CreateCommunityField: InputField {
             "Community Categories"
         case .tags:
             "Community Tags"
+        case .ruleTitle:
+            "Rule Title"
+        case .ruleDescription:
+            "Rule Description"
         }
     }
     
     var required: Bool {
         switch self {
-        case .name, .description, .categories, .tags:
+        case .name, .description, .categories, .tags, .ruleTitle, .ruleDescription:
             true
         }
     }
@@ -66,6 +78,10 @@ enum CreateCommunityField: InputField {
             100
         case .tags:
             25 // TODO: ... ???
+        case .ruleTitle:
+            100
+        case .ruleDescription:
+            200
         }
     }
     
@@ -86,6 +102,14 @@ enum CreateCommunityField: InputField {
             /// Checks if the string is between 1 and 25 characters in length.
         case .tags:
             "^.{1,25}$"
+            
+            /// Checks if the string is between 1 and 100 characters in length.
+        case .ruleTitle:
+            "^.{1,100}$"
+            
+            /// Checks if the string is between 1 and 200 characters in length.
+        case .ruleDescription:
+            "^.{1,200}$"
         }
     }
     
@@ -99,6 +123,10 @@ enum CreateCommunityField: InputField {
             .invalidCategory
         case .tags:
             .invalidTag
+        case .ruleTitle:
+            .invalidRuleTitle
+        case .ruleDescription:
+            .invalidRuleDescription
         }
     }
 }

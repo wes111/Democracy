@@ -33,8 +33,9 @@ extension PasswordOnboardingInputView {
             field: .password
         )
         .requirements(
-            text: viewModel.text,
-            textErrors: viewModel.textErrors
+            text: $viewModel.text,
+            requirementType: PasswordRequirement.self,
+            field: viewModel.field
         )
         .focused($focusedField, equals: viewModel.field)
         .submitLabel(.next)

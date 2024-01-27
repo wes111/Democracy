@@ -25,6 +25,7 @@ private extension EmailOnboardingInputView {
     var field: some View {
         DefaultTextInputField(
             viewModel: viewModel,
+            requirementType: EmailRequirement.self,
             textFieldStyle: EmailTextFieldStyle(
                 email: $viewModel.text,
                 focusedField: $focusedField,

@@ -9,8 +9,6 @@ import Foundation
 
 @Observable
 final class CommunityTagsViewModel: FlowViewModel<CreateCommunityCoordinator>, UserTextInputViewModel {
-    
-    var textErrors: [NoneRequirement] = []
     var tags: [String] = []
     
     @ObservationIgnored private let userInput: CreateCommunityInput
@@ -28,7 +26,7 @@ final class CommunityTagsViewModel: FlowViewModel<CreateCommunityCoordinator>, U
 extension CommunityTagsViewModel {
     
     var canSubmit: Bool {
-        !tags.isEmpty
+        !tags.isEmpty // TODO: This isn't correct???
     }
     
     @MainActor

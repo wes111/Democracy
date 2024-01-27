@@ -34,5 +34,7 @@ enum SystemImage: String {
     case arrowRight = "arrow.right"
     case asterisk = "asterisk"
     case exclamationmarkTriangle = "exclamationmark.triangle"
+    case exclamationmarkTriangleFill = "exclamationmark.triangle.fill"
     case xCircle = "x.circle"
+    case ellipsis
 }

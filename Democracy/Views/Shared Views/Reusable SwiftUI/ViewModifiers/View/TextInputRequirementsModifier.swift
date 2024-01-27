@@ -8,14 +8,31 @@
 import SwiftUI
 
 // Adds requirements directly below a text input element (field or editor).
-struct TextInputRequirementsModifier<Requirement: InputRequirement>: ViewModifier {
-    let text: String
-    let textErrors: [Requirement]
+struct TextInputRequirementsModifier<Requirement: InputRequirement, Field: InputField>: ViewModifier {
+    @Binding var text: String
+    @State private var textErrors: [Requirement] = []
+    let field: Field
+    
+    init(
+        text: Binding<String>,
+        field: Field,
+        requirementType: Requirement.Type
+    ) {
+        self._text = text
+        self.field = field
+    }
     
     func body(content: Content) -> some View {
         VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
             content
             requirements
+        }
+        .onChange(of: text) { _, newValue in
+            textErrors = if newValue.isEmpty {
+                []
+            } else {
+                field.getInputValidationErrors(input: newValue)
+            }
         }
     }
     
@@ -29,13 +46,15 @@ struct TextInputRequirementsModifier<Requirement: InputRequirement>: ViewModifie
 
 // MARK: - View Extension
 extension View {
-    func requirements<Requirement: InputRequirement>(
-        text: String,
-        textErrors: [Requirement]
+    func requirements<Requirement: InputRequirement, Field: InputField>(
+        text: Binding<String>,
+        requirementType: Requirement.Type,
+        field: Field
     ) -> some View {
-        modifier(TextInputRequirementsModifier<Requirement>(
+        modifier(TextInputRequirementsModifier(
             text: text,
-            textErrors: textErrors
+            field: field,
+            requirementType: requirementType
         ))
     }
 }
@@ -43,5 +62,9 @@ extension View {
 // MARK: - Preview
 #Preview {
     TextField("TextField", text: .constant("Hello World"))
-        .requirements(text: "Hello World", textErrors: [UsernameRequirement.length])
+        .requirements(
+            text: .constant("Hello World!"),
+            requirementType: NoneRequirement.self,
+            field: OnboardingInputField.email
+        )
 }

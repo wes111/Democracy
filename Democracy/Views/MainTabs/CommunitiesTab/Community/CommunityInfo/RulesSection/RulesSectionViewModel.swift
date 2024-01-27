@@ -13,7 +13,7 @@ struct RulesSectionViewModel {
     let title: String
     
     init(
-        rules: [Rule],
+        rules: [GARBAGERule],
         title: String
     ) {
         self.title = title

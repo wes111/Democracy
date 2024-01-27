@@ -25,6 +25,7 @@ private extension CommunityNameView {
     var field: some View {
         DefaultTextInputField(
             viewModel: viewModel,
+            requirementType: NoneRequirement.self,
             textFieldStyle: DefaultTrimmedTextFieldStyle(
                 title: $viewModel.text,
                 focusedField: $focusedField,

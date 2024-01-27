@@ -9,8 +9,6 @@ import Foundation
 
 @Observable
 final class CommunityNameViewModel: FlowViewModel<CreateCommunityCoordinator>, UserTextInputViewModel {
-    var textErrors: [NoneRequirement] = []
-    
     @ObservationIgnored private let userInput = CreateCommunityInput()
     let field = CreateCommunityField.name
     let flowCase = CreateCommunityFlow.name

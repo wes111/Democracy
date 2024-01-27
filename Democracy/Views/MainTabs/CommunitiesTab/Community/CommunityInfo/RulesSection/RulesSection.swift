@@ -19,7 +19,7 @@ struct RulesSection: View {
             
             ForEach(viewModel.ruleViewModels) { rule in
                 VStack {
-                    RuleView(viewModel: rule)
+                    GARBAGERuleView(viewModel: rule)
                     
                     Divider()
                         .overlay(Color.tertiaryBackground)
@@ -32,7 +32,7 @@ struct RulesSection: View {
 // MARK: - Preview
 #Preview {
     let viewModel = RulesSectionViewModel(
-        rules: Rule.previewArray,
+        rules: GARBAGERule.previewArray,
         title: "Rules"
     )
     return RulesSection(viewModel: viewModel)

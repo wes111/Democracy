@@ -10,10 +10,7 @@ import Foundation
 
 @Observable
 final class UsernameInputViewModel: UserTextInputViewModel {
-    typealias Requirement = UsernameRequirement
-    
     var text: String = ""
-    var textErrors: [Requirement] = []
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
     

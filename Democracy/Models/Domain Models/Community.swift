@@ -22,14 +22,14 @@ struct Community: Hashable, Identifiable, Codable {
     let foundedDate: Date
     var representatives: [Candidate]
     let memberCount: Int
-    var rules: [Rule]
+    var rules: [GARBAGERule]
     var resources: [Resource]
     var categories: [String]// Categories defined by community, cannot be enum.
     var tags: [String]
     var alliedCommunities: [Community]
 }
 
-struct Rule: Codable, Hashable {
+struct GARBAGERule: Codable, Hashable {
     let id: String
     let title: String
     let description: String

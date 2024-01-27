@@ -9,7 +9,8 @@ import Foundation
 
 enum CreateCommunityAlert: AlertModelProtocol {
     case invalidName, invalidDescription, invalidCategory, missingCategory, categoryAlreadyAdded,
-         invalidTag, missingTag, tagAlreadyAdded
+         invalidTag, missingTag, tagAlreadyAdded, missingRule, ruleAlreadyAdded, invalidRuleTitle,
+         invalidRuleDescription
     
     var title: String {
         switch self {
@@ -29,6 +30,14 @@ enum CreateCommunityAlert: AlertModelProtocol {
             "Missing Tag"
         case .tagAlreadyAdded:
             "Tag Already Added"
+        case .missingRule:
+            "Missing Rule"
+        case .ruleAlreadyAdded:
+            "Rule Already Added"
+        case .invalidRuleTitle:
+            "Invalid Rule Title"
+        case .invalidRuleDescription:
+            "Invalid Rule Description"
         }
     }
     
@@ -50,6 +59,14 @@ enum CreateCommunityAlert: AlertModelProtocol {
             "Communities must have at least 1 tag."
         case .tagAlreadyAdded:
             "This tag has already been added."
+        case .missingRule:
+            "Communities must have at least 1 rule."
+        case .ruleAlreadyAdded:
+            "This rule has already been added."
+        case .invalidRuleTitle:
+            "Please enter a rule title that matches the requirements."
+        case .invalidRuleDescription:
+            "Please enter a rule description that matches the requirements."
         }
     }
 }

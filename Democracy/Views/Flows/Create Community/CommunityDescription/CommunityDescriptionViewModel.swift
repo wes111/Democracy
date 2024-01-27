@@ -9,8 +9,6 @@ import Foundation
 
 @Observable
 final class CommunityDescriptionViewModel: FlowViewModel<CreateCommunityCoordinator>, UserTextEditorInputViewModel {
-    
-    var textErrors: [NoneRequirement] = []
     var selectedTab: PostBodyTab = .editor
     
     @ObservationIgnored private let userInput: CreateCommunityInput
