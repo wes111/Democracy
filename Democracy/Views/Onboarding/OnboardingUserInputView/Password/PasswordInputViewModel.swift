@@ -13,7 +13,6 @@ final class PasswordInputViewModel: UserTextInputViewModel {
     typealias Requirement = PasswordRequirement
     
     var text: String = ""
-    var textErrors: [Requirement] = []
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
     
@@ -21,9 +20,9 @@ final class PasswordInputViewModel: UserTextInputViewModel {
     @ObservationIgnored private var onboardingInput: OnboardingInput
     
     private weak var coordinator: OnboardingCoordinatorDelegate?
-    let skipAction: (() -> Void)? = nil
+    let skipAction: (() -> Void)? = nil // Not skippable.
     let flowCase = CreateAccountFlow.password
-    let field = CreateAccountField.password
+    let fieldTitle: String = Requirement.fieldTitle
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator
@@ -47,8 +46,8 @@ extension PasswordInputViewModel {
     
     @MainActor
     func nextButtonAction() async {
-        guard field.fullyValid(input: text) else {
-            return presentInvalidInputAlert()
+        guard Requirement.fullyValid(input: text) else {
+            return alertModel = Requirement.invalidAlert
         }
         onboardingInput.password = text
         coordinator?.submitPassword(input: onboardingInput)

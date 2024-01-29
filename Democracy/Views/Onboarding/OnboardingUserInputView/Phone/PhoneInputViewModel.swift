@@ -10,6 +10,8 @@ import Foundation
 
 @Observable
 final class PhoneInputViewModel: UserTextInputViewModel {
+    typealias Requirement = PhoneRequirement
+    
     var text: String = ""
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
@@ -18,7 +20,6 @@ final class PhoneInputViewModel: UserTextInputViewModel {
     @ObservationIgnored private var onboardingInput: OnboardingInput
     
     let flowCase = CreateAccountFlow.phone
-    let field = CreateAccountField.phone
     private weak var coordinator: OnboardingCoordinatorDelegate?
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
@@ -49,8 +50,8 @@ extension PhoneInputViewModel {
     @MainActor
     func nextButtonAction() async {
         do {
-            guard field.fullyValid(input: text) else {
-                return presentInvalidInputAlert()
+            guard Requirement.fullyValid(input: text) else {
+                return alertModel = Requirement.invalidAlert
             }
             guard let phoneBaseInt = Int(PhoneFormatter.format(with: "XXXXXXXXXX", phone: text)) else {
                 return // TODO: Throw an error?

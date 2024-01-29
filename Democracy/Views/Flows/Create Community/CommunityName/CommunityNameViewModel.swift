@@ -9,10 +9,12 @@ import Foundation
 
 @Observable
 final class CommunityNameViewModel: FlowViewModel<CreateCommunityCoordinator>, UserTextInputViewModel {
+    typealias Requirement = DefaultRequirement
+    
     @ObservationIgnored private let userInput = CreateCommunityInput()
-    let field = CreateCommunityField.name
     let flowCase = CreateCommunityFlow.name
     let skipAction: (() -> Void)? = nil
+    let fieldTitle: String = "Community Name"
     
     override var leadingButtons: [OnboardingTopButton] {
         []
@@ -24,8 +26,8 @@ extension CommunityNameViewModel {
     
     @MainActor
     func nextButtonAction() async {
-        guard field.fullyValid(input: text) else {
-            return presentInvalidInputAlert()
+        guard Requirement.fullyValid(input: text) else {
+            return alertModel = Requirement.invalidAlert
         }
         userInput.name = text
         coordinator?.didSubmitName(input: userInput)

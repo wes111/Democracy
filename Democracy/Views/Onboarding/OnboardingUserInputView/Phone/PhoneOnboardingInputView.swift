@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PhoneOnboardingInputView<ViewModel: PhoneInputViewModel>: View {
     @Bindable var viewModel: ViewModel
-    @FocusState private var focusedField: ViewModel.Field?
+    @FocusState private var focusedField: ViewModel.Flow?
     
     var body: some View {
         UserTextInputView(
@@ -23,13 +23,15 @@ struct PhoneOnboardingInputView<ViewModel: PhoneInputViewModel>: View {
 private extension PhoneOnboardingInputView {
     var field: some View {
         DefaultTextInputField(
-            viewModel: viewModel,
-            requirementType: PhoneRequirement.self,
+            text: $viewModel.text,
             textFieldStyle: PhoneTextFieldStyle(
                 phone: $viewModel.text,
                 focusedField: $focusedField,
-                field: CreateAccountField.phone
-            ))
+                field: CreateAccountFlow.phone
+            ),
+            fieldTitle: viewModel.fieldTitle,
+            requirementType: ViewModel.Requirement.self
+        )
     }
 }
 

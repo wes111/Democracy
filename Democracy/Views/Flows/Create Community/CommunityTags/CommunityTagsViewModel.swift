@@ -9,10 +9,11 @@ import Foundation
 
 @Observable
 final class CommunityTagsViewModel: FlowViewModel<CreateCommunityCoordinator>, UserTextInputViewModel {
+    typealias Requirement = DefaultRequirement
+    
     var tags: [String] = []
     
     @ObservationIgnored private let userInput: CreateCommunityInput
-    let field = CreateCommunityField.tags
     let flowCase = CreateCommunityFlow.tags
     let skipAction: (() -> Void)? = nil
     
@@ -44,8 +45,8 @@ extension CommunityTagsViewModel {
         guard !tags.contains(text) else {
             return presentTagAlreadyAddedAlert()
         }
-        guard field.fullyValid(input: text) else {
-            return presentInvalidInputAlert()
+        guard Requirement.fullyValid(input: text) else {
+            return alertModel = Requirement.invalidAlert
         }
         tags.insert(text, at: 0)
         text = ""

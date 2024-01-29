@@ -8,10 +8,12 @@
 import Foundation
 
 @Observable final class PostTitleViewModel: FlowViewModel<SubmitPostCoordinator>, UserTextInputViewModel {
+    typealias Requirement = DefaultRequirement
+    
     @ObservationIgnored private let submitPostInput = SubmitPostInput()
-    let field = SubmitPostField.title
     let flowCase = SubmitPostFlow.title
     let skipAction: (() -> Void)? = nil
+    let fieldTitle: String = "Post Title"
     
     override var leadingButtons: [OnboardingTopButton] {
         []
@@ -23,8 +25,8 @@ extension PostTitleViewModel {
     
     @MainActor
     func nextButtonAction() async {
-        guard field.fullyValid(input: text) else {
-            return presentInvalidInputAlert()
+        guard Requirement.fullyValid(input: text) else {
+            return alertModel = Requirement.invalidAlert
         }
         submitPostInput.title = text
         coordinator?.didSubmitTitle(input: submitPostInput)

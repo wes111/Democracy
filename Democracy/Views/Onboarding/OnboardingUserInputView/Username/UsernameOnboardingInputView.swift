@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UsernameOnboardingInputView<ViewModel: UsernameInputViewModel>: View {
     @Bindable var viewModel: ViewModel
-    @FocusState private var focusedField: ViewModel.Field?
+    @FocusState private var focusedField: ViewModel.Flow?
     @State private var isFirstAppear = true
     
     var body: some View {
@@ -21,14 +21,14 @@ struct UsernameOnboardingInputView<ViewModel: UsernameInputViewModel>: View {
             }
             .onAppear {
                 if isFirstAppear {
-                    focusedField = viewModel.field
+                    focusedField = viewModel.flowCase
                     isFirstAppear = false
                 } else {
                     Task {
                         // Note: Keyboard jumps to mid screen without this sleep,
                         // when dismissing a view above in the stack.
                         try await Task.sleep(seconds: 0.5)
-                        focusedField = viewModel.field
+                        focusedField = viewModel.flowCase
                     }
                 }
             }
@@ -39,12 +39,15 @@ struct UsernameOnboardingInputView<ViewModel: UsernameInputViewModel>: View {
 private extension UsernameOnboardingInputView {
     var field: some View {
         DefaultTextInputField(
-            viewModel: viewModel, requirementType: UsernameRequirement.self,
+            text: $viewModel.text,
             textFieldStyle: UsernameTextFieldStyle(
                 username: $viewModel.text,
                 focusedField: $focusedField,
                 field: .username
-            ))
+            ),
+            fieldTitle: viewModel.fieldTitle,
+            requirementType: ViewModel.Requirement.self
+        )
     }
 }
 

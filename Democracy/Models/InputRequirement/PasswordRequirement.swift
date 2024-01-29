@@ -8,10 +8,19 @@
 import Foundation
 
 enum PasswordRequirement: InputRequirement {
-    
     case hasUppercase, hasLowercase, hasDigit, hasSpecialChar, length
     
-    var descriptionText: String {
+    static let fieldTitle: String = "Password"
+}
+
+// MARK: - Computed Properties
+extension PasswordRequirement {
+    
+    static var maxCharacterCount: Int {
+        128 /// Not an Appwrite requirement.
+    }
+    
+    var descriptionText: String? {
         switch self {
         case .hasUppercase:
             "uppercase letter"
@@ -28,6 +37,7 @@ enum PasswordRequirement: InputRequirement {
     
     var regex: String {
         switch self {
+            
         /// At least one uppercase letter anywhere in the string.
         case .hasUppercase: ".*[A-Z]+.*"
             

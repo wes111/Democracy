@@ -8,7 +8,7 @@
 import Foundation
 
 @Observable
-final class PostCategoryViewModel: FlowViewModel<SubmitPostCoordinator>, UserInputViewModel {
+final class PostCategoryViewModel: FlowViewModel<SubmitPostCoordinator>, InputFlowViewModel {
     var selectedCategory: String?
     
     let categories: [String] = Community.preview.categories

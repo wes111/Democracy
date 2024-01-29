@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CreateAccountFlow: Int, UserInputFlow {
+enum CreateAccountFlow: Int, InputFlow {
     case username = 0
     case password = 1
     case email = 2
@@ -50,5 +50,21 @@ extension CreateAccountFlow {
         case .phone:
             false
         }
+    }
+}
+
+// MARK: - PasswordCaseRepresentable
+extension CreateAccountFlow: PasswordCaseRepresentable {
+    var isPasswordCase: Bool {
+        switch self {
+        case .username, .email, .phone:
+            false
+        case .password:
+            true
+        }
+    }
+    
+    static var passwordCase: CreateAccountFlow {
+        Self.password
     }
 }

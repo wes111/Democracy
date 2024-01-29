@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CreateCommunityFlow: Int, UserInputFlow {
+enum CreateCommunityFlow: Int, InputFlow {
     case name = 0
     case description = 1
     case categories = 2

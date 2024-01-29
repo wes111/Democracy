@@ -11,7 +11,7 @@ import SwiftUI
 extension TextEditor {
     private static let minFrameHeight: CGFloat = 200.0
     
-    func defaultStyle<Field: InputField>(
+    func defaultStyle<Field: Hashable>(
         field: Field,
         text: Binding<String>,
         focusedField: FocusState<Field?>.Binding

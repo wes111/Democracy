@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CommunityNameView: View {
     @Bindable var viewModel: CommunityNameViewModel
-    @FocusState private var focusedField: CreateCommunityField?
+    @FocusState private var focusedField: CreateCommunityFlow?
     
     var body: some View {
         UserTextInputView(
@@ -24,13 +24,15 @@ struct CommunityNameView: View {
 private extension CommunityNameView {
     var field: some View {
         DefaultTextInputField(
-            viewModel: viewModel,
-            requirementType: NoneRequirement.self,
+            text: $viewModel.text,
             textFieldStyle: DefaultTrimmedTextFieldStyle(
                 title: $viewModel.text,
                 focusedField: $focusedField,
                 field: .name
-            ))
+            ),
+            fieldTitle: viewModel.fieldTitle,
+            requirementType: CommunityNameViewModel.Requirement.self
+        )
     }
 }
 

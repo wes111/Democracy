@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PostTitleView<ViewModel: PostTitleViewModel>: View {
     @Bindable var viewModel: ViewModel
-    @FocusState private var focusedField: SubmitPostField?
+    @FocusState private var focusedField: SubmitPostFlow?
     
     var body: some View {
         UserTextInputView(
@@ -23,13 +23,15 @@ struct PostTitleView<ViewModel: PostTitleViewModel>: View {
 private extension PostTitleView {
     var field: some View {
         DefaultTextInputField(
-            viewModel: viewModel,
-            requirementType: NoneRequirement.self,
+            text: $viewModel.text,
             textFieldStyle: TitleTextFieldStyle(
                 title: $viewModel.text,
                 focusedField: $focusedField,
                 field: .title
-            ))
+            ),
+            fieldTitle: viewModel.fieldTitle,
+            requirementType: ViewModel.Requirement.self
+        )
     }
 }
 

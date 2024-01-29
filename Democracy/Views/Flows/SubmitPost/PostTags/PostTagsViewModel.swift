@@ -10,7 +10,7 @@ import Foundation
 import Combine
 
 @Observable
-final class PostTagsViewModel: FlowViewModel<SubmitPostCoordinator>, UserInputViewModel {
+final class PostTagsViewModel: FlowViewModel<SubmitPostCoordinator>, InputFlowViewModel {
     var tags: [String] = Community.preview.tags // TODO: ...
     var selectedTags: Set<String> = []
     

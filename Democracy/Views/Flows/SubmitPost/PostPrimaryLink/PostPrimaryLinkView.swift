@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PostPrimaryLinkView<ViewModel: PostPrimaryLinkViewModel>: View {
     @Bindable var viewModel: ViewModel
-    @FocusState private var focusedField: SubmitPostField?
+    @FocusState private var focusedField: SubmitPostFlow?
     
     var body: some View {
         UserTextInputView(
@@ -26,13 +26,15 @@ struct PostPrimaryLinkView<ViewModel: PostPrimaryLinkViewModel>: View {
 private extension PostPrimaryLinkView {
     var field: some View {
         DefaultTextInputField(
-            viewModel: viewModel,
-            requirementType: PostLinkRequirement.self,
+            text: $viewModel.text,
             textFieldStyle: LinkTextFieldStyle(
                 link: $viewModel.text,
                 focusedField: $focusedField,
                 field: .primaryLink
-            ))
+            ),
+            fieldTitle: viewModel.fieldTitle,
+            requirementType: ViewModel.Requirement.self
+        )
     }
 }
 

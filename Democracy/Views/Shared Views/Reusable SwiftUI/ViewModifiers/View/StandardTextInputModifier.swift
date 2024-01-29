@@ -9,25 +9,28 @@ import Foundation
 import SwiftUI
 
 /// Standard shared appearance of TextFields and TextEditors.
-struct StandardTextInputModifier<Field: InputField>: ViewModifier {
+struct StandardTextInputModifier<Field: Hashable>: ViewModifier {
     @Binding var text: String
     @FocusState.Binding var focusedField: Field?
     let field: Field
     let shouldTrimWhileTyping: Bool
     let isTextField: Bool // Either textField or textEditor
+    let maxCharacterCount: Int
     
     init(
         text: Binding<String>,
         focusedField: FocusState<Field?>.Binding,
         field: Field,
         shouldTrimWhileTyping: Bool,
-        isTextField: Bool
+        isTextField: Bool,
+        maxCharacterCount: Int
     ) {
         self._text = text
         self._focusedField = focusedField
         self.field = field
         self.shouldTrimWhileTyping = shouldTrimWhileTyping
         self.isTextField = isTextField
+        self.maxCharacterCount = maxCharacterCount
     }
     
     func body(content: Content) -> some View {
@@ -42,7 +45,7 @@ struct StandardTextInputModifier<Field: InputField>: ViewModifier {
             .padding(isTextField ? 17.5 : 15)
             .background(Color.onBackground)
             .clipShape(RoundedRectangle(cornerRadius: ViewConstants.cornerRadius, style: .circular))
-            .limitCharacters(text: $text, count: field.maxCharacterCount)
+            .limitCharacters(text: $text, count: maxCharacterCount)
             .focused($focusedField, equals: field)
             .submitLabel(.next)
             .onTapGesture {
@@ -54,7 +57,7 @@ struct StandardTextInputModifier<Field: InputField>: ViewModifier {
 // MARK: - View Extension
 extension View {
     
-    func standardTextInputAppearance<Field: InputField>(
+    func standardTextInputAppearance<Field: Hashable>(
         text: Binding<String>,
         focusedField: FocusState<Field?>.Binding,
         field: Field,
@@ -66,7 +69,8 @@ extension View {
             focusedField: focusedField,
             field: field,
             shouldTrimWhileTyping: shouldTrimWhileTyping,
-            isTextField: isTextField
+            isTextField: isTextField,
+            maxCharacterCount: 100
         ))
     }
 }

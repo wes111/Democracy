@@ -8,10 +8,19 @@
 import Foundation
 
 enum PostLinkRequirement: InputRequirement {
-    case https
-    case length
+    case https, length
     
-    var descriptionText: String {
+    static var fieldTitle: String = "Link"
+}
+
+// MARK: - Computed Properties
+extension PostLinkRequirement {
+    
+    static var maxCharacterCount: Int {
+        500
+    }
+    
+    var descriptionText: String? {
         switch self {
         case .https:
             "begins with \"https://\""
@@ -25,9 +34,9 @@ enum PostLinkRequirement: InputRequirement {
         switch self {
         // The String must begin with "https://"
         case .https:
-            "^https://"
+            "^https://.*"
             
-        /// The string must be between 9 and 500 characters long.
+        // The string must be between 9 and 500 characters long.
         case .length:
             "^.{9,500}$"
         }

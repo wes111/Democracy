@@ -8,10 +8,10 @@
 import SwiftUI
 import Combine
 
-struct PhoneTextFieldStyle<Field: InputField>: TextFieldStyle {
+struct PhoneTextFieldStyle<Flow: InputFlow>: TextFieldStyle {
     @Binding var phone: String
-    @FocusState.Binding var focusedField: Field?
-    let field: Field
+    @FocusState.Binding var focusedField: Flow?
+    let field: Flow
     
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {
@@ -58,7 +58,7 @@ enum PhoneFormatter {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: CreateAccountField?
+    @FocusState var focusedField: CreateAccountFlow?
     
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
@@ -69,7 +69,7 @@ enum PhoneFormatter {
         .textFieldStyle(PhoneTextFieldStyle(
             phone: .constant("123-456-7890"),
             focusedField: $focusedField,
-            field: CreateAccountField.phone
+            field: CreateAccountFlow.phone
         ))
     }
 }

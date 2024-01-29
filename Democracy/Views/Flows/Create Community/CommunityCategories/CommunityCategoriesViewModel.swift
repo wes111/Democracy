@@ -9,12 +9,14 @@ import Foundation
 
 @Observable
 final class CommunityCategoriesViewModel: FlowViewModel<CreateCommunityCoordinator>, UserTextInputViewModel {
+    typealias Requirement = DefaultRequirement
+    
     var categories: [String] = []
     
     @ObservationIgnored private let userInput: CreateCommunityInput
-    let field = CreateCommunityField.categories
     let flowCase = CreateCommunityFlow.categories
     let skipAction: (() -> Void)? = nil
+    let fieldTitle: String = "Category"
     
     init(coordinator: CreateCommunityCoordinator, userInput: CreateCommunityInput) {
         self.userInput = userInput
@@ -44,8 +46,8 @@ extension CommunityCategoriesViewModel {
         guard !categories.contains(text) else {
             return presentCategoryAlreadyAddedAlert()
         }
-        guard field.fullyValid(input: text) else {
-            return presentInvalidInputAlert()
+        guard Requirement.fullyValid(input: text) else {
+            return alertModel = Requirement.invalidAlert
         }
         categories.insert(text, at: 0)
         text = ""

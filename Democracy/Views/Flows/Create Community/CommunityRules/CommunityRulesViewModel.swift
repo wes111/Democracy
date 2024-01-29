@@ -13,7 +13,7 @@ struct Rule: Equatable, Hashable {
 }
 
 @Observable
-final class CommunityRulesViewModel: FlowViewModel<CreateCommunityCoordinator>, UserInputViewModel {
+final class CommunityRulesViewModel: FlowViewModel<CreateCommunityCoordinator>, InputFlowViewModel {
     var ruleTitle: String = ""
     var ruleDescription: String = ""
     var rules: [Rule] = [Rule(title: "Party Rule", description: "There will be no monkeys jumping on the bed because one fell off and bumped his head and the doctor said")]

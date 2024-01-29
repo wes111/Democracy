@@ -10,12 +10,12 @@ import SwiftUI
 struct UserTextInputView<ViewModel: UserTextInputViewModel, Content: View>: View {
     @Bindable var viewModel: ViewModel
     @ViewBuilder let content: Content
-    @FocusState.Binding var focusedField: ViewModel.Field?
+    @FocusState.Binding var focusedField: ViewModel.Flow?
     let shouldOverrideOnAppear: Bool
     
     init(
         viewModel: ViewModel,
-        focusedField: FocusState<ViewModel.Field?>.Binding,
+        focusedField: FocusState<ViewModel.Flow?>.Binding,
         shouldOverrideOnAppear: Bool = false,
         @ViewBuilder content: () -> Content
     ) {
@@ -42,7 +42,7 @@ struct UserTextInputView<ViewModel: UserTextInputViewModel, Content: View>: View
         }
         .onAppear {
             if !shouldOverrideOnAppear {
-                focusedField = viewModel.field
+                focusedField = viewModel.flowCase
             }
         }
         .dismissKeyboardOnDrag()
@@ -61,7 +61,7 @@ private extension UserTextInputView {
 // MARK: - Preview
 #Preview {
     let viewModel = EmailInputViewModel(coordinator: OnboardingCoordinator.preview, onboardingInput: .init())
-    @FocusState var focusedField: CreateAccountField?
+    @FocusState var focusedField: CreateAccountFlow?
     
     return UserTextInputView(
         viewModel: viewModel,
@@ -75,7 +75,7 @@ private extension UserTextInputView {
         .textFieldStyle(EmailTextFieldStyle(
             email: .constant("Email Text"),
             focusedField: $focusedField,
-            field: CreateAccountField.email
+            field: CreateAccountFlow.email
         ))
     }
 }

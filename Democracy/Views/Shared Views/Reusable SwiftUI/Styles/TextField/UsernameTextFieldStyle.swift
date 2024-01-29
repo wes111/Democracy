@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct UsernameTextFieldStyle<Field: InputField>: TextFieldStyle {
+struct UsernameTextFieldStyle<Flow: InputFlow>: TextFieldStyle {
     @Binding var username: String
-    @FocusState.Binding var focusedField: Field?
-    let field: Field
+    @FocusState.Binding var focusedField: Flow?
+    let field: Flow
     
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {
@@ -27,7 +27,7 @@ struct UsernameTextFieldStyle<Field: InputField>: TextFieldStyle {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: CreateAccountField?
+    @FocusState var focusedField: CreateAccountFlow?
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
@@ -37,7 +37,7 @@ struct UsernameTextFieldStyle<Field: InputField>: TextFieldStyle {
         .textFieldStyle(UsernameTextFieldStyle(
             username: .constant("Username"),
             focusedField: $focusedField,
-            field: CreateAccountField.username
+            field: CreateAccountFlow.username
         ))
     }
 }

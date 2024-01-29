@@ -8,7 +8,7 @@
 import SwiftUI
 
 // TODO: Combine with below, only difference is trimming.
-struct DefaultTrimmedTextFieldStyle<Field: InputField>: TextFieldStyle {
+struct DefaultTrimmedTextFieldStyle<Field: Hashable>: TextFieldStyle {
     @Binding var title: String
     @FocusState.Binding var focusedField: Field?
     let field: Field
@@ -25,8 +25,7 @@ struct DefaultTrimmedTextFieldStyle<Field: InputField>: TextFieldStyle {
     }
 }
 
-
-struct TitleTextFieldStyle<Field: InputField>: TextFieldStyle {
+struct TitleTextFieldStyle<Field: Hashable>: TextFieldStyle {
     @Binding var title: String
     @FocusState.Binding var focusedField: Field?
     let field: Field
@@ -46,7 +45,7 @@ struct TitleTextFieldStyle<Field: InputField>: TextFieldStyle {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: SubmitPostField?
+    @FocusState var focusedField: SubmitPostFlow?
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
@@ -56,7 +55,7 @@ struct TitleTextFieldStyle<Field: InputField>: TextFieldStyle {
         .textFieldStyle(TitleTextFieldStyle(
             title: .constant("Title"),
             focusedField: $focusedField,
-            field: SubmitPostField.title
+            field: SubmitPostFlow.title
         ))
         .padding()
     }

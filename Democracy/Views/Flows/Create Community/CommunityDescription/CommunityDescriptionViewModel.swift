@@ -9,12 +9,14 @@ import Foundation
 
 @Observable
 final class CommunityDescriptionViewModel: FlowViewModel<CreateCommunityCoordinator>, UserTextEditorInputViewModel {
+    typealias Requirement = DefaultRequirement
+    
     var selectedTab: PostBodyTab = .editor
     
     @ObservationIgnored private let userInput: CreateCommunityInput
     let skipAction: (() -> Void)? = nil // Not skippable.
-    let field = CreateCommunityField.description
     let flowCase = CreateCommunityFlow.description
+    let fieldTitle: String = "Description"
     
     init(coordinator: CreateCommunityCoordinator, userInput: CreateCommunityInput) {
         self.userInput = userInput
@@ -34,8 +36,8 @@ extension CommunityDescriptionViewModel {
 extension CommunityDescriptionViewModel {
     @MainActor
     func nextButtonAction() async {
-        guard field.fullyValid(input: text) else {
-            return presentInvalidInputAlert()
+        guard Requirement.fullyValid(input: text) else {
+            return alertModel = Requirement.invalidAlert
         }
         userInput.description = text
         coordinator?.didSubmitDescription(input: userInput)

@@ -7,14 +7,11 @@
 
 import Foundation
 
-protocol UserInputFlow: CaseIterable, RawRepresentable where RawValue == Int {
-    var title: String { get }
-    var subtitle: String { get }
-    var required: Bool { get }
-}
-
-protocol UserInputViewModel: Hashable, Observable, AnyObject {
-    associatedtype Flow: UserInputFlow
+// A viewModel for Views that are part of a user input flow.
+// User input can be text, selection, etc.
+protocol InputFlowViewModel: Hashable, Observable, AnyObject {
+    associatedtype Flow: InputFlow
+    
     var flowCase: Flow { get }
     var isShowingProgress: Bool { get set }
     var trailingButtons: [OnboardingTopButton] { get }
@@ -32,7 +29,7 @@ protocol UserInputViewModel: Hashable, Observable, AnyObject {
     func nextButtonAction() async
 }
 
-extension UserInputViewModel {
+extension InputFlowViewModel {
     func submit() async {
         await nextButtonAction()
     }

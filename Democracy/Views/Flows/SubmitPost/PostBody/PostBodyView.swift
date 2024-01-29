@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PostBodyView: View {
     @Bindable var viewModel: PostBodyViewModel
-    @FocusState private var focusedField: SubmitPostField?
+    @FocusState private var focusedField: SubmitPostFlow?
     
     var body: some View {
         UserTextEditorInputView(

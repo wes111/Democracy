@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EmailOnboardingInputView<ViewModel: EmailInputViewModel>: View {
     @Bindable var viewModel: ViewModel
-    @FocusState private var focusedField: ViewModel.Field?
+    @FocusState private var focusedField: ViewModel.Flow?
     
     var body: some View {
         UserTextInputView(
@@ -24,13 +24,15 @@ struct EmailOnboardingInputView<ViewModel: EmailInputViewModel>: View {
 private extension EmailOnboardingInputView {
     var field: some View {
         DefaultTextInputField(
-            viewModel: viewModel,
-            requirementType: EmailRequirement.self,
+            text: $viewModel.text,
             textFieldStyle: EmailTextFieldStyle(
                 email: $viewModel.text,
                 focusedField: $focusedField,
                 field: .email
-            ))
+            ),
+            fieldTitle: viewModel.fieldTitle,
+            requirementType: ViewModel.Requirement.self
+        )
     }
 }
 

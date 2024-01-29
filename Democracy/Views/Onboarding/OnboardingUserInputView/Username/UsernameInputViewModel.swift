@@ -10,6 +10,8 @@ import Foundation
 
 @Observable
 final class UsernameInputViewModel: UserTextInputViewModel {
+    typealias Requirement = UsernameRequirement
+    
     var text: String = ""
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
@@ -18,7 +20,6 @@ final class UsernameInputViewModel: UserTextInputViewModel {
     @ObservationIgnored private var onboardingInput = OnboardingInput()
     
     let flowCase = CreateAccountFlow.username
-    let field = CreateAccountField.username
     private weak var coordinator: OnboardingCoordinatorDelegate?
     let skipAction: (() -> Void)? = nil
     
@@ -44,8 +45,8 @@ extension UsernameInputViewModel {
     @MainActor
     func nextButtonAction() async {
         do {
-            guard field.fullyValid(input: text) else {
-                return presentInvalidInputAlert()
+            guard Requirement.fullyValid(input: text) else {
+                return alertModel = Requirement.invalidAlert
             }
             guard try await accountService.getUsernameAvailable(username: text) else {
                 return presentUsernameUnavailableAlert()

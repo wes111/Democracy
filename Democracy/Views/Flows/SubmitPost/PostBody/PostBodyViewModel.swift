@@ -9,12 +9,14 @@ import Foundation
 
 @Observable
 final class PostBodyViewModel: FlowViewModel<SubmitPostCoordinator>, UserTextEditorInputViewModel {
+    typealias Requirement = DefaultRequirement
+    
     var selectedTab: PostBodyTab = .editor
     
     @ObservationIgnored private let submitPostInput: SubmitPostInput
     let skipAction: (() -> Void)? = nil // Not skippable.
-    let field = SubmitPostField.body
     let flowCase = SubmitPostFlow.body
+    let fieldTitle: String = "Post Content"
     
     init(coordinator: SubmitPostCoordinator, submitPostInput: SubmitPostInput) {
         self.submitPostInput = submitPostInput
@@ -34,8 +36,8 @@ extension PostBodyViewModel {
 extension PostBodyViewModel {
     @MainActor
     func nextButtonAction() async {
-        guard field.fullyValid(input: text) else {
-            return presentInvalidInputAlert()
+        guard Requirement.fullyValid(input: text) else {
+            return alertModel = Requirement.invalidAlert
         }
         submitPostInput.body = text
         coordinator?.didSubmitBody(input: submitPostInput)

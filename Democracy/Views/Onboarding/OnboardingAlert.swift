@@ -8,20 +8,10 @@
 import Foundation
 
 enum OnboardingAlert: AlertModelProtocol {
-    case invalidUsername, invalidPassword, invalidEmail,
-         invalidPhone, emailUnavailable, phoneUnavailable, usernameUnavailable,
-         createAccountFailed
+    case emailUnavailable, phoneUnavailable, usernameUnavailable, createAccountFailed
     
     var title: String {
         switch self {
-        case .invalidUsername:
-            "Invalid Username"
-        case .invalidPassword:
-            "Invalid Password"
-        case .invalidEmail:
-            "Invalid Email"
-        case .invalidPhone:
-            "Invalid Phone Number"
         case .emailUnavailable:
             "Email Unavailable"
         case .phoneUnavailable:
@@ -35,14 +25,6 @@ enum OnboardingAlert: AlertModelProtocol {
     
     var description: String {
         switch self {
-        case .invalidUsername:
-            "Enter a username that meets the requirements."
-        case .invalidPassword:
-            "Enter a password that meets the requirements."
-        case .invalidEmail:
-            "Enter an email that meets the requirements."
-        case .invalidPhone:
-            "Enter a phone number that meets the requirements."
         case .emailUnavailable:
             "Please enter a different email to continue."
         case .phoneUnavailable:

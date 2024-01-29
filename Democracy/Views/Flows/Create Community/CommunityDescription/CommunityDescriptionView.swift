@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CommunityDescriptionView: View {
     @Bindable var viewModel: CommunityDescriptionViewModel
-    @FocusState private var focusedField: CreateCommunityField?
+    @FocusState private var focusedField: CreateCommunityFlow?
     
     var body: some View {
         UserTextEditorInputView(

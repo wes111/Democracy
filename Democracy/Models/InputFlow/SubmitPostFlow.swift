@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SubmitPostFlow: Int, UserInputFlow {
+enum SubmitPostFlow: Int, InputFlow {
     case title = 0
     case primaryLink = 1
     case body = 2

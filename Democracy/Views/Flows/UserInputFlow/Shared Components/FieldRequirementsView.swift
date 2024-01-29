@@ -14,25 +14,28 @@ struct FieldRequirementsView<Requirement: InputRequirement>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: ViewConstants.extraSmallElementSpacing) {
             ForEach(allRequirements, id: \.self) { error in
-                if text.isEmpty {
-                    requirementLabel(
-                        text: error.descriptionText,
-                        color: .primaryText,
-                        systemImage: SystemImage.asterisk.rawValue
-                    )
-                } else if currentInputErrors.contains(error) {
-                    requirementLabel(
-                        text: error.descriptionText,
-                        color: .yellow,
-                        systemImage: SystemImage.exclamationmarkTriangle.rawValue
-                    )
-                } else {
-                    requirementLabel(
-                        text: error.descriptionText,
-                        color: .green,
-                        systemImage: SystemImage.checkmarkCircleFill.rawValue
-                    )
+                if let description = error.descriptionText {
+                    if text.isEmpty {
+                        requirementLabel(
+                            text: description,
+                            color: .primaryText,
+                            systemImage: SystemImage.asterisk.rawValue
+                        )
+                    } else if currentInputErrors.contains(error) {
+                        requirementLabel(
+                            text: description,
+                            color: .yellow,
+                            systemImage: SystemImage.exclamationmarkTriangle.rawValue
+                        )
+                    } else {
+                        requirementLabel(
+                            text: description,
+                            color: .green,
+                            systemImage: SystemImage.checkmarkCircleFill.rawValue
+                        )
+                    }
                 }
+
             }
             .foregroundColor(.tertiaryText)
         }

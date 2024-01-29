@@ -8,33 +8,27 @@
 import Factory
 import Foundation
 
-// TODO: The use of a single protocol here exposes too much to the view.
-protocol UserTextInputViewModel: UserInputViewModel {
-    associatedtype Field: InputField
+protocol UserTextInputViewModel: InputFlowViewModel {
+    associatedtype Requirement: InputRequirement
     
     var text: String { get set }
-    var field: Field { get }
+    // var requirement: Requirement { get }
     var fieldTitle: String { get }
     var maxCharacterCount: Int { get }
     
     @MainActor func close()
     @MainActor func goBack()
     @MainActor func presentGenericAlert()
-    @MainActor func presentInvalidInputAlert()
 }
 
 extension UserTextInputViewModel {
     
-    var fieldTitle: String {
-        field.fieldTitle
-    }
-    
     var maxCharacterCount: Int {
-        field.maxCharacterCount
+        Requirement.maxCharacterCount
     }
     
     var canPerformNextAction: Bool {
-        field.fullyValid(input: text)
+        Requirement.getInputValidationErrors(input: text).isEmpty
     }
     
     @MainActor
@@ -42,8 +36,7 @@ extension UserTextInputViewModel {
         alertModel = NewAlertModel.genericAlert
     }
     
-    @MainActor
-    func presentInvalidInputAlert() {
-        alertModel = field.alert.toNewAlertModel()
+    var fieldTitle: String {
+        Requirement.fieldTitle
     }
 }

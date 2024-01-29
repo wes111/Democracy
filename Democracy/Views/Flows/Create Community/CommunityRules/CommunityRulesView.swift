@@ -10,17 +10,14 @@ import SwiftUI
 @MainActor
 struct CommunityRulesView: View {
     @Bindable var viewModel: CommunityRulesViewModel
-    @FocusState private var focusedField: CreateCommunityField?
-    
-    let titleFieldTitle = CreateCommunityField.ruleTitle.fieldTitle
-    let descriptionFieldTitle = CreateCommunityField.ruleDescription.fieldTitle
+    @FocusState private var focusedField: CommunityRulesField?
     
     var body: some View {
         UserInputScreen(viewModel: viewModel) {
             primaryContent
         }
         .onAppear {
-            focusedField = .ruleTitle
+            focusedField = .title
         }
         .dismissKeyboardOnDrag()
     }
@@ -62,46 +59,36 @@ private extension CommunityRulesView {
     }
     
     var titleField: some View {
-        TextField(
-            titleFieldTitle,
+        DefaultTextInputField(
             text: $viewModel.ruleTitle,
-            prompt: Text(titleFieldTitle).foregroundColor(.tertiaryBackground)
-        )
-        .textFieldStyle(TitleTextFieldStyle(
-            title: $viewModel.ruleTitle,
-            focusedField: $focusedField,
-            field: CreateCommunityField.ruleTitle
-        ))
-        .requirements(
-            text: $viewModel.ruleTitle,
-            requirementType: NoneRequirement.self,
-            field: CreateCommunityField.ruleTitle
+            textFieldStyle: TitleTextFieldStyle(
+                title: $viewModel.ruleTitle,
+                focusedField: $focusedField,
+                field: CommunityRulesField.title
+            ),
+            fieldTitle: CommunityRulesField.title.fieldTitle,
+            requirementType: DefaultRequirement.self
         )
         .onSubmit {
-            focusedField = .ruleDescription
+            focusedField = .description
         }
     }
     
     var descriptionField: some View {
-        TextField(
-            descriptionFieldTitle,
+        DefaultTextInputField(
             text: $viewModel.ruleDescription,
-            prompt: Text(descriptionFieldTitle).foregroundColor(.tertiaryBackground),
-            axis: .vertical
+            textFieldStyle: TitleTextFieldStyle(
+                title: $viewModel.ruleDescription,
+                focusedField: $focusedField,
+                field: CommunityRulesField.description
+            ),
+            fieldTitle: CommunityRulesField.description.fieldTitle,
+            requirementType: DefaultRequirement.self
         )
         .lineLimit(2...10)
-        .textFieldStyle(TitleTextFieldStyle(
-            title: $viewModel.ruleDescription,
-            focusedField: $focusedField,
-            field: CreateCommunityField.ruleDescription
-        ))
-        .requirements(
-            text: $viewModel.ruleDescription,
-            requirementType: NoneRequirement.self,
-            field: CreateCommunityField.ruleDescription
-        )
         .onSubmit {
             viewModel.submit()
+            focusedField = .title
         }
     }
     

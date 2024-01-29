@@ -8,18 +8,12 @@
 import SwiftUI
 
 // Adds requirements directly below a text input element (field or editor).
-struct TextInputRequirementsModifier<Requirement: InputRequirement, Field: InputField>: ViewModifier {
+struct TextInputRequirementsModifier<Requirement: InputRequirement>: ViewModifier {
     @Binding var text: String
     @State private var textErrors: [Requirement] = []
-    let field: Field
     
-    init(
-        text: Binding<String>,
-        field: Field,
-        requirementType: Requirement.Type
-    ) {
+    init(text: Binding<String>, requirementType: Requirement.Type) {
         self._text = text
-        self.field = field
     }
     
     func body(content: Content) -> some View {
@@ -31,7 +25,7 @@ struct TextInputRequirementsModifier<Requirement: InputRequirement, Field: Input
             textErrors = if newValue.isEmpty {
                 []
             } else {
-                field.getInputValidationErrors(input: newValue)
+                Requirement.getInputValidationErrors(input: newValue)
             }
         }
     }
@@ -46,14 +40,12 @@ struct TextInputRequirementsModifier<Requirement: InputRequirement, Field: Input
 
 // MARK: - View Extension
 extension View {
-    func requirements<Requirement: InputRequirement, Field: InputField>(
+    func requirements<Requirement: InputRequirement>(
         text: Binding<String>,
-        requirementType: Requirement.Type,
-        field: Field
+        requirementType: Requirement.Type
     ) -> some View {
         modifier(TextInputRequirementsModifier(
             text: text,
-            field: field,
             requirementType: requirementType
         ))
     }
@@ -64,7 +56,6 @@ extension View {
     TextField("TextField", text: .constant("Hello World"))
         .requirements(
             text: .constant("Hello World!"),
-            requirementType: NoneRequirement.self,
-            field: CreateAccountField.email
+            requirementType: DefaultRequirement.self
         )
 }

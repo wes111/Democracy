@@ -10,7 +10,7 @@ import SwiftUI
 @MainActor
 struct CommunityCategoriesView: View {
     @Bindable var viewModel: CommunityCategoriesViewModel
-    @FocusState private var focusedField: CreateCommunityField?
+    @FocusState private var focusedField: CreateCommunityFlow?
     
     var body: some View {
         primaryContent
@@ -75,13 +75,15 @@ extension CommunityCategoriesView {
     
     var field: some View {
         DefaultTextInputField(
-            viewModel: viewModel,
-            requirementType: NoneRequirement.self,
+            text: $viewModel.text,
             textFieldStyle: TitleTextFieldStyle(
                 title: $viewModel.text,
                 focusedField: $focusedField,
-                field: viewModel.field
-            ))
+                field: viewModel.flowCase
+            ),
+            fieldTitle: viewModel.fieldTitle,
+            requirementType: CommunityCategoriesViewModel.Requirement.self
+        )
     }
 }
 

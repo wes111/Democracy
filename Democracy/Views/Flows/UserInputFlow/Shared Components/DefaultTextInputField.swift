@@ -7,29 +7,31 @@
 
 import SwiftUI
 
-struct DefaultTextInputField<ViewModel: UserTextInputViewModel, Style: TextFieldStyle, Requirement: InputRequirement>: View {
-    @Bindable var viewModel: ViewModel
+struct DefaultTextInputField<Requirement: InputRequirement, Style: TextFieldStyle>: View {
+    @Binding var text: String
     let textFieldStyle: Style
+    let fieldTitle: String
     
     init(
-        viewModel: ViewModel,
-        requirementType: Requirement.Type,
-        textFieldStyle: Style
+        text: Binding<String>,
+        textFieldStyle: Style,
+        fieldTitle: String,
+        requirementType: Requirement.Type
     ) {
-        self.viewModel = viewModel
+        self._text = text
         self.textFieldStyle = textFieldStyle
+        self.fieldTitle = fieldTitle
     }
     
     var body: some View {
         TextField(
-            viewModel.fieldTitle,
-            text: $viewModel.text,
-            prompt: Text(viewModel.fieldTitle).foregroundColor(.tertiaryBackground)
+            fieldTitle,
+            text: $text,
+            prompt: Text(fieldTitle).foregroundColor(.tertiaryBackground)
         )
         .requirements(
-            text: $viewModel.text,
-            requirementType: Requirement.self,
-            field: viewModel.field
+            text: $text,
+            requirementType: Requirement.self
         )
         .textFieldStyle(textFieldStyle)
     }
@@ -37,18 +39,20 @@ struct DefaultTextInputField<ViewModel: UserTextInputViewModel, Style: TextField
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: CreateCommunityField?
+    @FocusState var focusedField: CreateCommunityFlow?
     
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
         DefaultTextInputField(
-            viewModel: CommunityNameViewModel.preview,
-            requirementType: NoneRequirement.self,
+            text: .constant("Hello World!"),
             textFieldStyle: TitleTextFieldStyle(
                 title: .constant("Community Title"),
                 focusedField: $focusedField,
-                field: CreateCommunityField.name
-            ))
+                field: CreateCommunityFlow.name
+            ),
+            fieldTitle: "Field Title",
+            requirementType: EmailRequirement.self
+        )
     }
 }

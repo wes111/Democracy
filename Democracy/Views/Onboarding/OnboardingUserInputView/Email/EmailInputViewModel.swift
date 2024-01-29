@@ -10,6 +10,8 @@ import Foundation
 
 @Observable
 final class EmailInputViewModel: UserTextInputViewModel {
+    typealias Requirement = EmailRequirement
+    
     var text: String = ""
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
@@ -18,9 +20,9 @@ final class EmailInputViewModel: UserTextInputViewModel {
     @ObservationIgnored private var onboardingInput: OnboardingInput
     
     let flowCase = CreateAccountFlow.email
-    let field = CreateAccountField.email
     private weak var coordinator: OnboardingCoordinatorDelegate?
     let skipAction: (() -> Void)? = nil
+    let fieldTitle: String = Requirement.fieldTitle
     
     init(coordinator: OnboardingCoordinatorDelegate?, onboardingInput: OnboardingInput) {
         self.coordinator = coordinator
@@ -45,8 +47,8 @@ extension EmailInputViewModel {
     @MainActor
     func nextButtonAction() async {
         do {
-            guard field.fullyValid(input: text) else {
-                return presentInvalidInputAlert()
+            guard Requirement.fullyValid(input: text) else {
+                return alertModel = Requirement.invalidAlert
             }
             guard try await accountService.getEmailAvailable(text) else {
                 return presentEmailUnavailableAlert()

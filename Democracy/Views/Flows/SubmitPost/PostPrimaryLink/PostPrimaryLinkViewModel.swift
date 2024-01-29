@@ -10,9 +10,10 @@ import Foundation
 
 @Observable
 final class PostPrimaryLinkViewModel: FlowViewModel<SubmitPostCoordinator>, UserTextInputViewModel {
+    typealias Requirement = PostLinkRequirement
+    
     @ObservationIgnored @Injected(\.richLinkService) private var richLinkService
     @ObservationIgnored private let submitPostInput: SubmitPostInput
-    let field = SubmitPostField.primaryLink
     let flowCase = SubmitPostFlow.primaryLink
     
     init(coordinator: SubmitPostCoordinator, submitPostInput: SubmitPostInput) {
@@ -33,8 +34,8 @@ extension PostPrimaryLinkViewModel {
 extension PostPrimaryLinkViewModel {
     @MainActor
     func nextButtonAction() async {
-        guard field.fullyValid(input: text) else {
-            return presentInvalidInputAlert()
+        guard Requirement.fullyValid(input: text) else {
+            return alertModel = Requirement.invalidAlert
         }
         do {
             try await fetchLinkMetadata(for: text)

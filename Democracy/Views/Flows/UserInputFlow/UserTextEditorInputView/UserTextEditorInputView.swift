@@ -10,7 +10,7 @@ import SwiftUI
 @MainActor
 struct UserTextEditorInputView<ViewModel: UserTextEditorInputViewModel>: View {
     @Bindable var viewModel: ViewModel
-    @FocusState.Binding var focusedField: ViewModel.Field?
+    @FocusState.Binding var focusedField: ViewModel.Flow?
     
     var body: some View {
         UserTextInputView(
@@ -44,7 +44,7 @@ private extension UserTextEditorInputView {
     var field: some View {
         TextEditor(text: $viewModel.text)
             .defaultStyle(
-                field: viewModel.field,
+                field: viewModel.flowCase,
                 text: $viewModel.text,
                 focusedField: $focusedField
             )
@@ -78,7 +78,7 @@ private extension UserTextEditorInputView {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: SubmitPostField?
+    @FocusState var focusedField: SubmitPostFlow?
     
     let viewModel = PostBodyViewModel(
         coordinator: SubmitPostCoordinator.preview,

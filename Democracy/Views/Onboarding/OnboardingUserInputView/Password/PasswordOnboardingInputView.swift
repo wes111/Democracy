@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PasswordOnboardingInputView: View {
     @Bindable var viewModel: PasswordInputViewModel
-    @FocusState private var focusedField: CreateAccountField?
+    @FocusState private var focusedField: CreateAccountFlow?
     
     init(viewModel: PasswordInputViewModel) {
         self.viewModel = viewModel
@@ -34,10 +34,9 @@ extension PasswordOnboardingInputView {
         )
         .requirements(
             text: $viewModel.text,
-            requirementType: PasswordRequirement.self,
-            field: viewModel.field
+            requirementType: PasswordRequirement.self
         )
-        .focused($focusedField, equals: viewModel.field)
+        .focused($focusedField, equals: viewModel.flowCase)
         .submitLabel(.next)
         .onTapGesture {
             focusedField = .password

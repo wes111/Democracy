@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct LinkTextFieldStyle<Field: InputField>: TextFieldStyle {
+struct LinkTextFieldStyle<Flow: InputFlow>: TextFieldStyle {
     @Binding var link: String
-    @FocusState.Binding var focusedField: Field?
-    let field: Field
+    @FocusState.Binding var focusedField: Flow?
+    let field: Flow
     
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {
@@ -26,7 +26,7 @@ struct LinkTextFieldStyle<Field: InputField>: TextFieldStyle {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: SubmitPostField?
+    @FocusState var focusedField: SubmitPostFlow?
     
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
@@ -37,7 +37,7 @@ struct LinkTextFieldStyle<Field: InputField>: TextFieldStyle {
         .textFieldStyle(LinkTextFieldStyle(
             link: .constant("Link"),
             focusedField: $focusedField,
-            field: SubmitPostField.primaryLink
+            field: SubmitPostFlow.primaryLink
         ))
         .padding()
     }

@@ -8,10 +8,19 @@
 import Foundation
 
 enum UsernameRequirement: InputRequirement {
-    
     case length, startChar, validChars
     
-    var descriptionText: String {
+    static var fieldTitle: String = "Username"
+}
+
+// MARK: Computed Properties
+extension UsernameRequirement {
+    
+    static var maxCharacterCount: Int {
+        36 /// Appwrite requirement.
+    }
+    
+    var descriptionText: String? {
         switch self {
         case .length:
             "1-36 characters"

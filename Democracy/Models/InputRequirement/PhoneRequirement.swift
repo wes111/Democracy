@@ -10,7 +10,17 @@ import Foundation
 enum PhoneRequirement: InputRequirement {
     case length
     
-    var descriptionText: String {
+    static var fieldTitle: String = "Phone"
+}
+
+// MARK: - Computed Properties
+extension PhoneRequirement {
+    
+    static var maxCharacterCount: Int {
+        14
+    }
+    
+    var descriptionText: String? {
         switch self {
         case .length:
             "10 digits"
@@ -26,3 +36,7 @@ enum PhoneRequirement: InputRequirement {
         }
     }
 }
+
+// TODO: Might need this regex?
+/// Must be 10 digits long.
+// "\\(\\d{3}\\) \\d{3}-\\d{4}"
