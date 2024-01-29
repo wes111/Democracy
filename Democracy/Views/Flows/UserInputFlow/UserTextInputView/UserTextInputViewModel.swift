@@ -12,7 +12,6 @@ protocol UserTextInputViewModel: InputFlowViewModel {
     associatedtype Requirement: InputRequirement
     
     var text: String { get set }
-    // var requirement: Requirement { get }
     var fieldTitle: String { get }
     var maxCharacterCount: Int { get }
     

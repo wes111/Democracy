@@ -104,7 +104,7 @@ private extension UserInputScreen {
                 await additionalSubmitAction()
                 await viewModel.nextButtonAction()
             },
-            isDisabled: !viewModel.canSubmit
+            isDisabled: !viewModel.canPerformNextAction
         )
     }
 }

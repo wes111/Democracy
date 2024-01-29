@@ -24,8 +24,8 @@ extension DefaultRequirement {
         nil
     }
     
-    // Matches any String.
+    // Matches any String that is at least one character long.
     var regex: String {
-        ".*"
+        "^.+"
     }
 }

@@ -27,7 +27,11 @@ final class CommunityTagsViewModel: FlowViewModel<CreateCommunityCoordinator>, U
 extension CommunityTagsViewModel {
     
     var canSubmit: Bool {
-        !tags.isEmpty // TODO: This isn't correct???
+        !text.isEmpty && !tags.contains(text)
+    }
+    
+    var canPerformNextAction: Bool {
+        !tags.isEmpty
     }
     
     @MainActor

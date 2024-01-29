@@ -28,6 +28,10 @@ final class CommunityCategoriesViewModel: FlowViewModel<CreateCommunityCoordinat
 extension CommunityCategoriesViewModel {
     
     var canSubmit: Bool {
+        !text.isEmpty && !categories.contains(text)
+    }
+    
+    var canPerformNextAction: Bool {
         !categories.isEmpty
     }
     
