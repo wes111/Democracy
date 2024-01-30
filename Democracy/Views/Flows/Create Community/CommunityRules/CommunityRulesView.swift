@@ -19,6 +19,7 @@ struct CommunityRulesView: View {
         .onAppear {
             focusedField = .title
         }
+        .animation(.easeOut(duration: ViewConstants.animationLength), value: viewModel.rules)
         .dismissKeyboardOnDrag()
     }
 }
@@ -27,27 +28,32 @@ struct CommunityRulesView: View {
 private extension CommunityRulesView {
     
     var primaryContent: some View {
-        VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-            VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
-                titleField
-                descriptionField
+        ScrollView(.vertical) {
+            VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+                VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
+                    titleField
+                    descriptionField
+                    addRuleButton
+                }
+                scrollContent
+                Spacer()
             }
-            addRuleButton
-            scrollContent
         }
     }
     
     var scrollContent: some View {
         ScrollView(.horizontal) {
-            HStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
+            HStack(alignment: .center, spacing: 0) {
                 ForEach(viewModel.rules, id: \.self) { rule in
                     ruleView(rule)
                         .containerRelativeFrame(.horizontal)
                 }
             }
+            .scrollTargetLayout()
         }
-        .scrollTargetBehavior(.paging)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .contentMargins(.horizontal, 25.0)
+        .scrollTargetBehavior(.viewAligned)
+        .frame(maxWidth: .infinity)
     }
     
     func ruleView(_ rule: Rule) -> some View {
@@ -56,6 +62,7 @@ private extension CommunityRulesView {
             Button("Edit") { viewModel.editRule(rule) }
             Button("Show Expanded") { viewModel.showExpandedRule(rule) }
         }
+        .frame(width: 300) // TODO: Geometry Reader instead with percent.
     }
     
     var titleField: some View {
@@ -75,17 +82,22 @@ private extension CommunityRulesView {
     }
     
     var descriptionField: some View {
-        DefaultTextInputField(
+        TextField(
+            CommunityRulesField.description.fieldTitle,
             text: $viewModel.ruleDescription,
-            textFieldStyle: TitleTextFieldStyle(
-                title: $viewModel.ruleDescription,
-                focusedField: $focusedField,
-                field: CommunityRulesField.description
-            ),
-            fieldTitle: CommunityRulesField.description.fieldTitle,
+            prompt: Text(CommunityRulesField.description.fieldTitle).foregroundColor(.tertiaryBackground),
+            axis: .vertical
+        )
+        .lineLimit(2...4)
+        .requirements(
+            text: $viewModel.text,
             requirementType: DefaultRequirement.self
         )
-        .lineLimit(2...10)
+        .textFieldStyle(TitleTextFieldStyle(
+            title: $viewModel.ruleDescription,
+            focusedField: $focusedField,
+            field: CommunityRulesField.description
+        ))
         .onSubmit {
             viewModel.submit()
             focusedField = .title

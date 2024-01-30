@@ -16,7 +16,11 @@ struct Rule: Equatable, Hashable {
 final class CommunityRulesViewModel: FlowViewModel<CreateCommunityCoordinator>, InputFlowViewModel {
     var ruleTitle: String = ""
     var ruleDescription: String = ""
-    var rules: [Rule] = [Rule(title: "Party Rule", description: "There will be no monkeys jumping on the bed because one fell off and bumped his head and the doctor said")]
+    var rules: [Rule] = [
+        Rule(title: "Party Rule", description: "There will be no monkeys jumping on the bed because one fell off and bumped his head and the doctor said"),
+        Rule(title: "A rule", description: "A rule Description"),
+        Rule(title: "Another Rule", description: "Another Description")
+    ]
     
     @ObservationIgnored private let userInput: CreateCommunityInput
     let flowCase = CreateCommunityFlow.rules

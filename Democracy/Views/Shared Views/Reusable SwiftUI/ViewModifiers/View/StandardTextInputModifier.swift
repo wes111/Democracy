@@ -70,7 +70,7 @@ extension View {
             field: field,
             shouldTrimWhileTyping: shouldTrimWhileTyping,
             isTextField: isTextField,
-            maxCharacterCount: 100
+            maxCharacterCount: 500 // TODO: Why is this hard coded value here?
         ))
     }
 }
