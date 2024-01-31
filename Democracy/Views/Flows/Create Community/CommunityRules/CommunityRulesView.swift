@@ -28,41 +28,17 @@ struct CommunityRulesView: View {
 private extension CommunityRulesView {
     
     var primaryContent: some View {
-        ScrollView(.vertical) {
-            VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-                VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
-                    titleField
-                    descriptionField
-                    addRuleButton
-                }
-                scrollContent
-                Spacer()
+        VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+            VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
+                titleField
+                descriptionField
+                addRuleButton
+            }
+            ViewThatFits(in: .vertical) {
+                scrollContent(ruleSize: .medium)
+                scrollContent(ruleSize: .small)
             }
         }
-    }
-    
-    var scrollContent: some View {
-        ScrollView(.horizontal) {
-            HStack(alignment: .center, spacing: 0) {
-                ForEach(viewModel.rules, id: \.self) { rule in
-                    ruleView(rule)
-                        .containerRelativeFrame(.horizontal)
-                }
-            }
-            .scrollTargetLayout()
-        }
-        .contentMargins(.horizontal, 25.0)
-        .scrollTargetBehavior(.viewAligned)
-        .frame(maxWidth: .infinity)
-    }
-    
-    func ruleView(_ rule: Rule) -> some View {
-        RuleView(rule: rule) {
-            Button("Delete") { viewModel.removeRule(rule) }
-            Button("Edit") { viewModel.editRule(rule) }
-            Button("Show Expanded") { viewModel.showExpandedRule(rule) }
-        }
-        .frame(width: 300) // TODO: Geometry Reader instead with percent.
     }
     
     var titleField: some View {
@@ -112,6 +88,52 @@ private extension CommunityRulesView {
         }
         .buttonStyle(SeconaryButtonStyle())
         .disabled(viewModel.isMissingContent)
+    }
+}
+
+// MARK: Scroll Content Subviews
+// Note: Hack-ish solution
+private extension CommunityRulesView {
+    func contentMargins(ruleSize: RuleViewSize) -> CGFloat {
+        switch ruleSize {
+        case .small:
+            40
+        case .medium:
+            25
+        }
+    }
+    
+    func frameWidth(ruleSize: RuleViewSize) -> CGFloat {
+        switch ruleSize {
+        case .small:
+            250
+        case .medium:
+            300
+        }
+    }
+    
+    func scrollContent(ruleSize: RuleViewSize) -> some View {
+        ScrollView(.horizontal) {
+            HStack(alignment: .center, spacing: 0) {
+                ForEach(viewModel.rules, id: \.self) { rule in
+                    ruleView(rule, size: ruleSize)
+                        .frame(width: frameWidth(ruleSize: ruleSize))
+                        .containerRelativeFrame(.horizontal)
+                }
+            }
+            .scrollTargetLayout()
+        }
+        .contentMargins(.horizontal, contentMargins(ruleSize: ruleSize))
+        .scrollTargetBehavior(.viewAligned)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+    
+    func ruleView(_ rule: Rule, size: RuleViewSize) -> some View {
+        RuleView(rule: rule, size: size) {
+            Button("Delete") { viewModel.removeRule(rule) }
+            Button("Edit") { viewModel.editRule(rule) }
+            Button("Show Expanded") { viewModel.showExpandedRule(rule) }
+        }
     }
 }
 
