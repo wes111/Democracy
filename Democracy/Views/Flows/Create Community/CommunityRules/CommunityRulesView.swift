@@ -92,40 +92,38 @@ private extension CommunityRulesView {
 }
 
 // MARK: Scroll Content Subviews
-// Note: Hack-ish solution
 private extension CommunityRulesView {
-    func contentMargins(ruleSize: RuleViewSize) -> CGFloat {
-        switch ruleSize {
-        case .small:
-            40
-        case .medium:
-            25
-        }
-    }
-    
-    func frameWidth(ruleSize: RuleViewSize) -> CGFloat {
-        switch ruleSize {
-        case .small:
-            250
-        case .medium:
-            300
-        }
-    }
     
     func scrollContent(ruleSize: RuleViewSize) -> some View {
-        ScrollView(.horizontal) {
-            HStack(alignment: .center, spacing: 0) {
-                ForEach(viewModel.rules, id: \.self) { rule in
-                    ruleView(rule, size: ruleSize)
-                        .frame(width: frameWidth(ruleSize: ruleSize))
-                        .containerRelativeFrame(.horizontal)
+        GeometryReader { geo in
+            let ruleWidth = geo.size.width * 0.75
+            let padding: CGFloat = 5.0
+            let totalWidth = ruleWidth + padding * 2
+            
+            ScrollView(.horizontal) {
+                HStack(alignment: .center, spacing: 0) {
+                    ForEach(viewModel.rules, id: \.self) { rule in
+                        ruleView(rule, size: ruleSize)
+                            .padding(.horizontal, padding)
+                            .frame(width: totalWidth)
+                            
+                            .scrollTransition(.animated.threshold(.visible(0.5))) { content, phase in
+                                content
+                                    .opacity(phase.isIdentity ? 1 : 0.5)
+                                    .scaleEffect(phase.isIdentity ? 1 : 0.8)
+                                    .blur(radius: phase.isIdentity ? 0 : 1)
+                            }
+                    }
                 }
+                .scrollTargetLayout()
             }
-            .scrollTargetLayout()
+            .contentMargins(.horizontal, (geo.size.width - totalWidth) / 2, for: .scrollContent)
+            .frame(maxHeight: .infinity)
+            .scrollTargetBehavior(.viewAligned)
+            .scrollClipDisabled()
+            .scrollIndicators(.hidden)
         }
-        .contentMargins(.horizontal, contentMargins(ruleSize: ruleSize))
-        .scrollTargetBehavior(.viewAligned)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+
     }
     
     func ruleView(_ rule: Rule, size: RuleViewSize) -> some View {
