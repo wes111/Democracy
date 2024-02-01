@@ -12,6 +12,8 @@ struct CommunityRulesView: View {
     @Bindable var viewModel: CommunityRulesViewModel
     @FocusState private var focusedField: CommunityRulesField?
     
+    @State private var scrollPosition: Rule?
+    
     var body: some View {
         UserInputScreen(viewModel: viewModel) {
             primaryContent
@@ -19,8 +21,14 @@ struct CommunityRulesView: View {
         .onAppear {
             focusedField = .title
         }
-        .animation(.easeOut(duration: ViewConstants.animationLength), value: viewModel.rules)
         .dismissKeyboardOnDrag()
+        .onChange(of: viewModel.rules) { oldValue, newValue in
+            if newValue.count > oldValue.count {
+                withAnimation {
+                    scrollPosition = newValue.first
+                }
+            }
+        }
     }
 }
 
@@ -34,11 +42,14 @@ private extension CommunityRulesView {
                 descriptionField
                 addRuleButton
             }
+            .layoutPriority(1)
+            
             ViewThatFits(in: .vertical) {
                 scrollContent(ruleSize: .medium)
                 scrollContent(ruleSize: .small)
             }
         }
+        .animation(.easeOut(duration: ViewConstants.animationLength), value: viewModel.ruleDescription)
     }
     
     var titleField: some View {
@@ -78,6 +89,10 @@ private extension CommunityRulesView {
             viewModel.submit()
             focusedField = .title
         }
+        // https://www.avanderlee.com/swiftui/disable-animations-transactions/
+        .transaction { transaction in
+            transaction.animation = nil
+        }
     }
     
     var addRuleButton: some View {
@@ -89,10 +104,6 @@ private extension CommunityRulesView {
         .buttonStyle(SeconaryButtonStyle())
         .disabled(viewModel.isMissingContent)
     }
-}
-
-// MARK: Scroll Content Subviews
-private extension CommunityRulesView {
     
     func scrollContent(ruleSize: RuleViewSize) -> some View {
         GeometryReader { geo in
@@ -106,7 +117,6 @@ private extension CommunityRulesView {
                         ruleView(rule, size: ruleSize)
                             .padding(.horizontal, padding)
                             .frame(width: totalWidth)
-                            
                             .scrollTransition(.animated.threshold(.visible(0.5))) { content, phase in
                                 content
                                     .opacity(phase.isIdentity ? 1 : 0.5)
@@ -117,13 +127,14 @@ private extension CommunityRulesView {
                 }
                 .scrollTargetLayout()
             }
+            .animation(.easeOut(duration: ViewConstants.animationLength), value: viewModel.rules)
             .contentMargins(.horizontal, (geo.size.width - totalWidth) / 2, for: .scrollContent)
-            .frame(maxHeight: .infinity)
+            .scrollPosition(id: $scrollPosition)
             .scrollTargetBehavior(.viewAligned)
             .scrollClipDisabled()
             .scrollIndicators(.hidden)
+            .frame(maxHeight: .infinity)
         }
-
     }
     
     func ruleView(_ rule: Rule, size: RuleViewSize) -> some View {
