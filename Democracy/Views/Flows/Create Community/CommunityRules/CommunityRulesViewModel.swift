@@ -72,7 +72,7 @@ extension CommunityRulesViewModel {
             return
         }
         let rule = Rule(title: ruleTitle, description: ruleDescription)
-        rules.insert(rule, at: 0)
+        rules.append(rule)
         ruleTitle = ""
         ruleDescription = ""
     }
@@ -88,10 +88,6 @@ extension CommunityRulesViewModel {
         removeRule(rule)
         ruleTitle = rule.title
         ruleDescription = rule.description
-    }
-    
-    func showExpandedRule(_ rule: Rule) {
-        // TODO: ...
     }
     
     func onAppear() {

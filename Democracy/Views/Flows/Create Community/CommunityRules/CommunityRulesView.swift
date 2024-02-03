@@ -12,8 +12,6 @@ struct CommunityRulesView: View {
     @Bindable var viewModel: CommunityRulesViewModel
     @FocusState private var focusedField: CommunityRulesField?
     
-    @State private var scrollPosition: Rule?
-    
     var body: some View {
         UserInputScreen(viewModel: viewModel) {
             primaryContent
@@ -22,13 +20,6 @@ struct CommunityRulesView: View {
             focusedField = .title
         }
         .dismissKeyboardOnDrag()
-        .onChange(of: viewModel.rules) { oldValue, newValue in
-            if newValue.count > oldValue.count {
-                withAnimation {
-                    scrollPosition = newValue.first
-                }
-            }
-        }
     }
 }
 
@@ -42,14 +33,8 @@ private extension CommunityRulesView {
                 descriptionField
                 addRuleButton
             }
-            .layoutPriority(1)
-            
-            ViewThatFits(in: .vertical) {
-                scrollContent(ruleSize: .medium)
-                scrollContent(ruleSize: .small)
-            }
+            scrollContent()
         }
-        .animation(.easeOut(duration: ViewConstants.animationLength), value: viewModel.ruleDescription)
     }
     
     var titleField: some View {
@@ -75,7 +60,7 @@ private extension CommunityRulesView {
             prompt: Text(CommunityRulesField.description.fieldTitle).foregroundColor(.tertiaryBackground),
             axis: .vertical
         )
-        .lineLimit(2...4)
+        .lineLimit(2...2)
         .requirements(
             text: $viewModel.text,
             requirementType: DefaultRequirement.self
@@ -89,10 +74,6 @@ private extension CommunityRulesView {
             viewModel.submit()
             focusedField = .title
         }
-        // https://www.avanderlee.com/swiftui/disable-animations-transactions/
-        .transaction { transaction in
-            transaction.animation = nil
-        }
     }
     
     var addRuleButton: some View {
@@ -105,17 +86,17 @@ private extension CommunityRulesView {
         .disabled(viewModel.isMissingContent)
     }
     
-    func scrollContent(ruleSize: RuleViewSize) -> some View {
+    func scrollContent() -> some View {
         GeometryReader { geo in
             let ruleWidth = geo.size.width * 0.75
             let padding: CGFloat = 5.0
             let totalWidth = ruleWidth + padding * 2
             
             ScrollView(.horizontal) {
-                HStack(alignment: .center, spacing: 0) {
+                LazyHStack(alignment: .center, spacing: 0) {
                     ForEach(viewModel.rules, id: \.self) { rule in
-                        ruleView(rule, size: ruleSize)
-                            .padding(.horizontal, padding)
+                        ruleView(rule)
+                            .frame(maxHeight: 200)
                             .frame(width: totalWidth)
                             .scrollTransition(.animated.threshold(.visible(0.5))) { content, phase in
                                 content
@@ -129,19 +110,17 @@ private extension CommunityRulesView {
             }
             .animation(.easeOut(duration: ViewConstants.animationLength), value: viewModel.rules)
             .contentMargins(.horizontal, (geo.size.width - totalWidth) / 2, for: .scrollContent)
-            .scrollPosition(id: $scrollPosition)
             .scrollTargetBehavior(.viewAligned)
             .scrollClipDisabled()
             .scrollIndicators(.hidden)
-            .frame(maxHeight: .infinity)
+            .frame(maxHeight: min(geo.size.height, 200))
         }
     }
     
-    func ruleView(_ rule: Rule, size: RuleViewSize) -> some View {
-        RuleView(rule: rule, size: size) {
+    func ruleView(_ rule: Rule) -> some View {
+        RuleView(rule: rule) {
             Button("Delete") { viewModel.removeRule(rule) }
             Button("Edit") { viewModel.editRule(rule) }
-            Button("Show Expanded") { viewModel.showExpandedRule(rule) }
         }
     }
 }
