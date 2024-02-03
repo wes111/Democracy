@@ -26,7 +26,7 @@ enum ViewConstants {
     static let cornerRadius: CGFloat = 10
     static let screenPadding: CGFloat = 15
     static let borderWidth: CGFloat = 3
-    static let smallButtonRadius: CGFloat = 40
+    static let smallButtonRadius: CGFloat = 35
 }
 
 // SF Symbols

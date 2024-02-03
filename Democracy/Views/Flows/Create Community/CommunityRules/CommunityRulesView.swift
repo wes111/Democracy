@@ -89,15 +89,14 @@ private extension CommunityRulesView {
     func scrollContent() -> some View {
         GeometryReader { geo in
             let ruleWidth = geo.size.width * 0.75
-            let padding: CGFloat = 5.0
-            let totalWidth = ruleWidth + padding * 2
+            let ruleHeight: CGFloat = 200
             
             ScrollView(.horizontal) {
                 LazyHStack(alignment: .center, spacing: 0) {
                     ForEach(viewModel.rules, id: \.self) { rule in
                         ruleView(rule)
-                            .frame(maxHeight: 200)
-                            .frame(width: totalWidth)
+                            .frame(maxHeight: ruleHeight)
+                            .frame(width: ruleWidth)
                             .scrollTransition(.animated.threshold(.visible(0.5))) { content, phase in
                                 content
                                     .opacity(phase.isIdentity ? 1 : 0.5)
@@ -109,11 +108,11 @@ private extension CommunityRulesView {
                 .scrollTargetLayout()
             }
             .animation(.easeOut(duration: ViewConstants.animationLength), value: viewModel.rules)
-            .contentMargins(.horizontal, (geo.size.width - totalWidth) / 2, for: .scrollContent)
+            .contentMargins(.horizontal, (geo.size.width - ruleWidth) / 2, for: .scrollContent)
             .scrollTargetBehavior(.viewAligned)
             .scrollClipDisabled()
             .scrollIndicators(.hidden)
-            .frame(maxHeight: min(geo.size.height, 200))
+            .frame(maxHeight: min(geo.size.height, ruleHeight))
         }
     }
     

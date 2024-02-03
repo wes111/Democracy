@@ -50,7 +50,7 @@ struct RuleView<MenuContent: View>: View {
         } label: {
             ZStack {
                 Circle()
-                    .stroke(Color.secondaryText, lineWidth: 1.5)
+                    .stroke(Color.tertiaryText, lineWidth: 1.5)
                     .frame(width: ViewConstants.smallButtonRadius)
                 Image(systemName: SystemImage.ellipsis.rawValue)
                     .font(.system(.title3, weight: .semibold))
