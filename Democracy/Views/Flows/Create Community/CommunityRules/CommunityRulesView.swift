@@ -18,6 +18,7 @@ struct CommunityRulesView: View {
         }
         .onAppear {
             focusedField = .title
+            viewModel.onAppear()
         }
         .dismissKeyboardOnDrag()
     }

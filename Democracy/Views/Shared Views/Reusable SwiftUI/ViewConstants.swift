@@ -25,8 +25,10 @@ enum ViewConstants {
     // Other standard values
     static let cornerRadius: CGFloat = 10
     static let screenPadding: CGFloat = 15
+    static let partialSheetTopPadding: CGFloat = 20
     static let borderWidth: CGFloat = 3
     static let smallButtonRadius: CGFloat = 35
+    static let dimmingBrightness = -0.1
 }
 
 // SF Symbols
@@ -38,4 +40,14 @@ enum SystemImage: String {
     case exclamationmarkTriangleFill = "exclamationmark.triangle.fill"
     case xCircle = "x.circle"
     case ellipsis
+    case chevronRight = "chevron.right"
+    case personThree = "person.3"
+    case person
+    case figureAndChildHoldingHands = "figure.and.child.holdinghands"
+    case eye
+    case eyeSlash = "eye.slash"
+    case booksVerticalFill = "books.vertical.fill"
+    case crown
+    case bolt
+    case checkmark
 }

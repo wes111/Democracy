@@ -15,7 +15,7 @@ final class CreateCommunityInput {
     var categories: Set<String>
     var tags: Set<String>
     var rules: Set<Rule>
-    var settings: [String]
+    var settings: CommunitySettings
     var leaders: [String]
     
     init(
@@ -24,7 +24,7 @@ final class CreateCommunityInput {
         categories: Set<String> = [],
         tags: Set<String> = [],
         rules: Set<Rule> = [],
-        settings: [String] = [],
+        settings: CommunitySettings = CommunitySettings(),
         leaders: [String] = []
     ) {
         self.name = name

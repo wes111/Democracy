@@ -7,6 +7,15 @@
 
 import Foundation
 
+// RULES:
+// 1.) Community Government Type: Autocracy vs Democracy (Is leadership elected or self-appointed?)
+// 2.) Community Visibility: Private vs public (who can view posts).
+// 3.) Allows adult content.
+// 4.) Which users can post? (anyone, leadership, experts/list )
+// 5.) Which users can comment (members, anyone)
+// 6.) Banned users
+// 7.) Submitted post approval process: Requires mod approval or auto-approval
+
 struct TempCommunity: Codable, Hashable {
     let id: String
     

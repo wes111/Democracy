@@ -40,7 +40,10 @@ extension CommunityRulesViewModel {
 }
 
 extension CommunitySettingsViewModel {
-    static let preview = CommunitySettingsViewModel()
+    static let preview = CommunitySettingsViewModel(
+        coordinator: CreateCommunityCoordinator.preview,
+        userInput: .init()
+    )
 }
 
 extension CommunityLeadersViewModel {

@@ -38,21 +38,9 @@ private extension PostCategoryView {
     }
     
     func categoryView(_ category: String) -> some View {
-        let isSelected = viewModel.selectedCategory == category
-        
-        return HStack {
-            Text(category)
-            Spacer()
-            Image(systemName: SystemImage.checkmarkCircleFill.rawValue)
-                .opacity(isSelected ? 1.0 : 0.0)
-        }
-        .categoryModifier()
-        .overlay(
-            RoundedRectangle(cornerRadius: ViewConstants.cornerRadius)
-                .strokeBorder(
-                    isSelected ? Color.tertiaryText : Color.primaryBackground,
-                    lineWidth: ViewConstants.borderWidth
-                )
+        SelectableCategory(
+            isSelected: viewModel.selectedCategory == category,
+            title: category
         )
         .onTapGesture {
             viewModel.toggleCategory(category)
