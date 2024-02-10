@@ -55,7 +55,7 @@ final class CommunityInfoViewModel: ObservableObject {
         )
         
         rulesSectionViewModel = .init(
-            rules: community.rules,
+            rules: [],
             title: "Rules"
         )
         

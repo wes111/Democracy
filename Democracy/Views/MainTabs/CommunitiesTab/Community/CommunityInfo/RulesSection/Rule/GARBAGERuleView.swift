@@ -28,9 +28,3 @@ struct GARBAGERuleView: View {
         }
     }
 }
-
-// MARK: - Preview
-#Preview {
-    let viewModel = GARBAGERule.previewArray.first!.viewModel(index: 0)
-    return GARBAGERuleView(viewModel: viewModel)
-}

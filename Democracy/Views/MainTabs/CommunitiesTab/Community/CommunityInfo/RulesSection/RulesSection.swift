@@ -28,12 +28,3 @@ struct RulesSection: View {
         }
     }
 }
-
-// MARK: - Preview
-#Preview {
-    let viewModel = RulesSectionViewModel(
-        rules: GARBAGERule.previewArray,
-        title: "Rules"
-    )
-    return RulesSection(viewModel: viewModel)
-}

@@ -17,7 +17,7 @@ struct TextInputRequirementsModifier<Requirement: InputRequirement>: ViewModifie
     }
     
     func body(content: Content) -> some View {
-        VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
+        VStack(alignment: .leading, spacing: 0) {
             content
             requirements
         }

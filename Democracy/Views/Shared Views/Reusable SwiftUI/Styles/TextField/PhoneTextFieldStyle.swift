@@ -8,10 +8,10 @@
 import SwiftUI
 import Combine
 
-struct PhoneTextFieldStyle<Flow: InputFlow>: TextFieldStyle {
+struct PhoneTextFieldStyle<Field: Hashable>: TextFieldStyle {
     @Binding var phone: String
-    @FocusState.Binding var focusedField: Flow?
-    let field: Flow
+    @FocusState.Binding var focusedField: Field?
+    let field: Field
     
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {

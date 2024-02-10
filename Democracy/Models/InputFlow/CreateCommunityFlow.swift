@@ -14,7 +14,7 @@ enum CreateCommunityFlow: Int, InputFlow {
     case tags = 3
     case rules = 4
     case settings = 5
-    case leaders = 6
+    case resources = 6
     
     var title: String {
         switch self {
@@ -30,8 +30,8 @@ enum CreateCommunityFlow: Int, InputFlow {
             "Community Rules"
         case .settings:
             "Community Settings"
-        case .leaders:
-            "Community Leaders"
+        case .resources:
+            "Community Resources"
         }
     }
     
@@ -49,15 +49,18 @@ enum CreateCommunityFlow: Int, InputFlow {
             "Add rules to the community that must be followed by all users."
         case .settings:
             "Choose the initial community settings. These can be updated later."
-        case .leaders:
-            "Choose the initial community leaders. These can be updated later."
+        case .resources:
+            "Add Community Resources, including websites, books, and movies"
         }
     }
     
     var required: Bool {
         switch self {
-        case .name, .description, .categories, .tags, .rules, .settings, .leaders:
+        case .name, .description, .categories, .tags, .rules, .settings:
             true
+            
+        case .resources:
+            false
         }
     }
 }

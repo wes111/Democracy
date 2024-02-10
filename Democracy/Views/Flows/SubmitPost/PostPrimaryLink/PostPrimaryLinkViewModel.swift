@@ -10,7 +10,7 @@ import Foundation
 
 @Observable
 final class PostPrimaryLinkViewModel: FlowViewModel<SubmitPostCoordinator>, UserTextInputViewModel {
-    typealias Requirement = PostLinkRequirement
+    typealias Requirement = LinkRequirement
     
     @ObservationIgnored @Injected(\.richLinkService) private var richLinkService
     @ObservationIgnored private let submitPostInput: SubmitPostInput

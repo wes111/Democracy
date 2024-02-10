@@ -15,5 +15,5 @@ protocol CreateCommunityCoordinatorDelegate: FlowCoordinatorDelegate {
     func didSubmitTags(input: CreateCommunityInput)
     func didSubmitRules(input: CreateCommunityInput)
     func didSubmitSettings(input: CreateCommunityInput)
-    func didSubmitLeaders(input: CreateCommunityInput)
+    func didSubmitResources(input: CreateCommunityInput)
 }

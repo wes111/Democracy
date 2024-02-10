@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Rule: Equatable, Hashable {
+struct Rule: Equatable, Hashable, Codable {
     let title: String
     let description: String
 }

@@ -13,6 +13,6 @@ enum CreateCommunityPath: Hashable {
     case goToCommunityTags(CommunityTagsViewModel)
     case goToCommunityRules(CommunityRulesViewModel)
     case goToCommunitySettings(CommunitySettingsViewModel)
-    case goToCommunityLeaders(CommunityLeadersViewModel)
+    case goToCommunityResources(CommunityResourcesViewModel)
     case goToCommunitySuccess // TODO: Should probably be the same view/viewModel as SubmitPost flow.
 }

@@ -34,6 +34,7 @@ private extension CommunityRulesView {
                 descriptionField
                 addRuleButton
             }
+            
             scrollContent()
         }
     }
@@ -88,39 +89,11 @@ private extension CommunityRulesView {
     }
     
     func scrollContent() -> some View {
-        GeometryReader { geo in
-            let ruleWidth = geo.size.width * 0.75
-            let ruleHeight: CGFloat = 200
-            
-            ScrollView(.horizontal) {
-                LazyHStack(alignment: .center, spacing: 0) {
-                    ForEach(viewModel.rules, id: \.self) { rule in
-                        ruleView(rule)
-                            .frame(maxHeight: ruleHeight)
-                            .frame(width: ruleWidth)
-                            .scrollTransition(.animated.threshold(.visible(0.5))) { content, phase in
-                                content
-                                    .opacity(phase.isIdentity ? 1 : 0.5)
-                                    .scaleEffect(phase.isIdentity ? 1 : 0.8)
-                                    .blur(radius: phase.isIdentity ? 0 : 1)
-                            }
-                    }
-                }
-                .scrollTargetLayout()
+        SnappingHorizontalScrollView(scrollContent: viewModel.rules) { rule in
+            RuleView(rule: rule) {
+                Button("Delete") { viewModel.removeRule(rule) }
+                Button("Edit") { viewModel.editRule(rule) }
             }
-            .animation(.easeOut(duration: ViewConstants.animationLength), value: viewModel.rules)
-            .contentMargins(.horizontal, (geo.size.width - ruleWidth) / 2, for: .scrollContent)
-            .scrollTargetBehavior(.viewAligned)
-            .scrollClipDisabled()
-            .scrollIndicators(.hidden)
-            .frame(maxHeight: min(geo.size.height, ruleHeight))
-        }
-    }
-    
-    func ruleView(_ rule: Rule) -> some View {
-        RuleView(rule: rule) {
-            Button("Delete") { viewModel.removeRule(rule) }
-            Button("Edit") { viewModel.editRule(rule) }
         }
     }
 }

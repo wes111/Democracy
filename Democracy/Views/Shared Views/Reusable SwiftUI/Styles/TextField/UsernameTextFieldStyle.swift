@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct UsernameTextFieldStyle<Flow: InputFlow>: TextFieldStyle {
+struct UsernameTextFieldStyle<Field: Hashable>: TextFieldStyle {
     @Binding var username: String
-    @FocusState.Binding var focusedField: Flow?
-    let field: Flow
+    @FocusState.Binding var focusedField: Field?
+    let field: Field
     
     // swiftlint:disable:next all
     func _body(configuration: TextField<_Label>) -> some View {

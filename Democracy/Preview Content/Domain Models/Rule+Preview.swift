@@ -7,10 +7,9 @@
 
 import Foundation
 
-extension GARBAGERule {
-    static let previewArray: [GARBAGERule] = [
-        GARBAGERule(
-            id: UUID().uuidString,
+extension Rule {
+    static let previewArray: [Rule] = [
+        .init(
             title: "Do not block Moderators or Admins.",
             description: """
                          You're not being clever by blocking mods or admins, we can still find
@@ -18,68 +17,61 @@ extension GARBAGERule {
                          you for us. Blocking modmins results in an immediate ban.
                          """
         ),
-        GARBAGERule(
-            id: UUID().uuidString,
-            title: "Do not block Moderators or Admins.",
+        .init(
+            title: "Do not block Moderators or Admins 1.",
             description: """
                          You're not being clever by blocking mods or admins, we can still find
                          you through the look up member function, or ask another mod to block
                          you for us. Blocking modmins results in an immediate ban.
                          """
         ),
-        GARBAGERule(
-            id: UUID().uuidString,
-            title: "Do not block Moderators or Admins.",
+        .init(
+            title: "Do not block Moderators or Admins 2.",
             description: """
                          You're not being clever by blocking mods or admins, we can still find
                          you through the look up member function, or ask another mod to block
                          you for us. Blocking modmins results in an immediate ban.
                          """
         ),
-        GARBAGERule(
-            id: UUID().uuidString,
-            title: "Do not block Moderators or Admins.",
+        .init(
+            title: "Do not block Moderators or Admins 3.",
             description: """
                          You're not being clever by blocking mods or admins, we can still find
                          you through the look up member function, or ask another mod to block
                          you for us. Blocking modmins results in an immediate ban.
                          """
         ),
-        GARBAGERule(
-            id: UUID().uuidString,
-            title: "Do not block Moderators or Admins.",
+        .init(
+            title: "Do not block Moderators or Admins 4.",
             description: """
                          You're not being clever by blocking mods or admins, we can still find
                          you through the look up member function, or ask another mod to block
                          you for us. Blocking modmins results in an immediate ban.
                          """
         ),
-        GARBAGERule(
-            id: UUID().uuidString,
-            title: "Do not block Moderators or Admins.",
+        .init(
+            title: "Do not block Moderators or Admins 5.",
             description: """
                          You're not being clever by blocking mods or admins, we can still find
                          you through the look up member function, or ask another mod to block
                          you for us. Blocking modmins results in an immediate ban.
                          """
         ),
-        GARBAGERule(
-            id: UUID().uuidString,
-            title: "Do not block Moderators or Admins.",
+        .init(
+            title: "Do not block Moderators or Admins 6.",
             description: """
                          You're not being clever by blocking mods or admins, we can still find
                          you through the look up member function, or ask another mod to block
                          you for us. Blocking modmins results in an immediate ban.
                          """
         ),
-        GARBAGERule(
-            id: UUID().uuidString,
-            title: "Do not block Moderators or Admins.",
-            description: """
+        .init(
+            title: "Do not block Moderators or Admins 7.",
+            description:  """
                          You're not being clever by blocking mods or admins, we can still find
                          you through the look up member function, or ask another mod to block
                          you for us. Blocking modmins results in an immediate ban.
                          """
-        )
+        ),
     ]
 }

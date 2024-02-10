@@ -20,7 +20,8 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.google.com")!
+            url: URL(string: "https://www.google.com")!,
+            category: .book
         ),
         Resource(
             id: UUID().uuidString,
@@ -32,7 +33,8 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.google.com")!
+            url: URL(string: "https://www.google.com")!,
+            category: .book
         ),
         Resource(
             id: UUID().uuidString,
@@ -44,7 +46,8 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.google.com")!
+            url: URL(string: "https://www.google.com")!,
+            category: .book
         ),
         Resource(
             id: UUID().uuidString,
@@ -56,7 +59,8 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.walmart.com")!
+            url: URL(string: "https://www.walmart.com")!,
+            category: .book
         ),
         Resource(
             id: UUID().uuidString,
@@ -68,7 +72,8 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.walmart.com")!
+            url: URL(string: "https://www.walmart.com")!,
+            category: .book
         ),
         Resource(
             id: UUID().uuidString,
@@ -80,7 +85,8 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.walmart.com")!
+            url: URL(string: "https://www.walmart.com")!,
+            category: .book
         ),
         Resource(
             id: UUID().uuidString,
@@ -92,7 +98,8 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.apple.com")!
+            url: URL(string: "https://www.apple.com")!,
+            category: .book
         ),
         Resource(
             id: UUID().uuidString,
@@ -104,7 +111,8 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.apple.com")!
+            url: URL(string: "https://www.apple.com")!,
+            category: .book
         ),
         Resource(
             id: UUID().uuidString,
@@ -116,7 +124,8 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.amazon.com")!
+            url: URL(string: "https://www.amazon.com")!,
+            category: .book
         ),
         Resource(
             id: UUID().uuidString,
@@ -128,7 +137,8 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.amazon.com")!
+            url: URL(string: "https://www.amazon.com")!,
+            category: .book
         )
     ]
 }

@@ -20,7 +20,7 @@ extension Community {
         foundedDate: Date(),
         representatives: Candidate.representativePreviewArray,
         memberCount: 255,
-        rules: GARBAGERule.previewArray,
+        rules: Rule.previewArray,
         resources: Resource.previewArray,
         categories: ["Racing", "Sports", "Weather", "Dog Grooming", "Vampires", "Fruit & Veggies"],
         tags: [

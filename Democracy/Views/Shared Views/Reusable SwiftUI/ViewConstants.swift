@@ -26,6 +26,7 @@ enum ViewConstants {
     static let cornerRadius: CGFloat = 10
     static let screenPadding: CGFloat = 15
     static let partialSheetTopPadding: CGFloat = 20
+    static let thinBorderWidth: CGFloat = 2 // For smaller elements like tags.
     static let borderWidth: CGFloat = 3
     static let smallButtonRadius: CGFloat = 35
     static let dimmingBrightness = -0.1
@@ -50,4 +51,8 @@ enum SystemImage: String {
     case crown
     case bolt
     case checkmark
+    case book
+    case bookClosed = "book.closed"
+    case laptopComputer = "laptopcomputer"
+    case movieClapper = "movieclapper"
 }

@@ -40,8 +40,8 @@ struct CreateCommunityCoordinatorView: View {
         case .goToCommunitySettings(let viewModel):
             CommunitySettingsView(viewModel: viewModel)
             
-        case .goToCommunityLeaders(let viewModel):
-            CommunityLeadersView(viewModel: viewModel)
+        case .goToCommunityResources(let viewModel):
+            CommunityResourcesView(viewModel: viewModel)
             
         case .goToCommunitySuccess:
             EmptyView() // TODO: ...

@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum PostLinkRequirement: InputRequirement {
+enum LinkRequirement: InputRequirement {
     case https, length
     
     static var fieldTitle: String = "Link"
 }
 
 // MARK: - Computed Properties
-extension PostLinkRequirement {
+extension LinkRequirement {
     
     static var maxCharacterCount: Int {
         500

@@ -46,6 +46,9 @@ extension CommunitySettingsViewModel {
     )
 }
 
-extension CommunityLeadersViewModel {
-    static let preview = CommunityLeadersViewModel()
+extension CommunityResourcesViewModel {
+    static let preview = CommunityResourcesViewModel(
+        coordinator: CreateCommunityCoordinator.preview,
+        userInput: .init()
+    )
 }
