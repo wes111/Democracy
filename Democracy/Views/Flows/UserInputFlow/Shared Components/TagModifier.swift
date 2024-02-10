@@ -27,7 +27,6 @@ extension View {
     }
 }
 
-
 // MARK: - Preview
 #Preview {
     ZStack {

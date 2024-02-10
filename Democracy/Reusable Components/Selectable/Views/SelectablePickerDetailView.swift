@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SelectableView<Category: Selectable>: View {
+struct SelectablePickerDetailView<Category: Selectable>: View {
     
     @Environment(\.dismiss) var dismiss
     @Binding var selectedCategory: Category
@@ -16,7 +16,7 @@ struct SelectableView<Category: Selectable>: View {
         VStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
             Text("Select a \(Category.metaTitle)")
                 .font(.system(.body, weight: .semibold))
-                .foregroundStyle(Color.secondaryText)
+                .foregroundStyle(Color.primaryText)
             
             selectableContent
             
@@ -25,21 +25,22 @@ struct SelectableView<Category: Selectable>: View {
         .frame(maxHeight: .infinity, alignment: .topLeading)
         .padding(.top, ViewConstants.partialSheetTopPadding)
         .padding([.horizontal, .bottom], ViewConstants.screenPadding)
-        .background(Color.primaryBackground.ignoresSafeArea())
+        .background(Color.otherRed.opacity(0.4).ignoresSafeArea())
     }
 }
 
 // MARK: - Subviews
-private extension SelectableView {
+private extension SelectablePickerDetailView {
     
     var selectableContent: some View {
         VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
             ForEach(Category.allCases, id: \.self) { category in
-                SelectableCategory(
+                SelectableView(
                     isSelected: selectedCategory == category,
                     title: category.title,
                     subtitle: category.subtitle,
-                    image: category.image
+                    image: category.image,
+                    colorScheme: .onRed
                 )
                 .onTapGesture {
                     selectedCategory = category
@@ -60,7 +61,11 @@ private extension SelectableView {
 
 // MARK: - Preview
 #Preview {
-    SelectableView(
-        selectedCategory: .constant(CommunityGovernment.democracy)
-    )
+    ZStack {
+        Color.primaryBackground.ignoresSafeArea()
+        
+        SelectablePickerDetailView(
+            selectedCategory: .constant(CommunityGovernment.democracy)
+        )
+    }
 }

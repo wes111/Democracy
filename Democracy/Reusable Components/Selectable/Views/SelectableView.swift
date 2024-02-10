@@ -7,22 +7,25 @@
 
 import SwiftUI
 
-struct SelectableCategory: View {
+struct SelectableView: View {
     var isSelected: Bool
     let title: String
     let subtitle: String?
     let image: SystemImage?
+    let colorScheme: ColorScheme
     
     init(
         isSelected: Bool,
         title: String,
         subtitle: String? = nil,
-        image: SystemImage? = nil
+        image: SystemImage? = nil,
+        colorScheme: ColorScheme = .init()
     ) {
         self.isSelected = isSelected
         self.title = title
         self.subtitle = subtitle
         self.image = image
+        self.colorScheme = colorScheme
     }
     
     var body: some View {
@@ -38,12 +41,12 @@ struct SelectableCategory: View {
             VStack(alignment: .leading, spacing: 0) {
                 Text(title)
                     .font(.system(.body, weight: .semibold))
-                    .foregroundStyle(Color.secondaryText)
+                    .foregroundStyle(colorScheme.secondaryText)
                 
                 if let subtitle {
                     Text(subtitle)
                         .font(.system(.caption, weight: .medium))
-                        .foregroundStyle(Color.secondaryText.opacity(0.5))
+                        .foregroundStyle(colorScheme.secondaryText.opacity(0.5))
                 }
             }
             
@@ -53,11 +56,11 @@ struct SelectableCategory: View {
                 .opacity(isSelected ? 1.0 : 0.0)
                 
         }
-        .categoryModifier()
+        .selectableModifier(colorScheme: colorScheme)
         .overlay(
             RoundedRectangle(cornerRadius: ViewConstants.cornerRadius)
                 .strokeBorder(
-                    isSelected ? Color.tertiaryText : Color.primaryBackground,
+                    isSelected ? colorScheme.tertiaryText : .clear, // colorScheme.primaryBackground,
                     lineWidth: ViewConstants.borderWidth
                 )
         )
@@ -70,16 +73,16 @@ struct SelectableCategory: View {
         Color.primaryBackground.ignoresSafeArea()
         
         VStack(spacing: ViewConstants.elementSpacing) {
-            SelectableCategory(isSelected: false, title: "Selectable Category")
+            SelectableView(isSelected: false, title: "Selectable Category")
             
-            SelectableCategory(
+            SelectableView(
                 isSelected: true,
                 title: "Selectable Category",
                 subtitle: "Subtitle",
                 image: .exclamationmarkTriangle
             )
             
-            SelectableCategory(
+            SelectableView(
                 isSelected: true,
                 title: "Selectable Category",
                 image: .personThree

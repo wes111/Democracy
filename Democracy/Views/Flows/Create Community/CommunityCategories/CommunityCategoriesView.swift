@@ -70,7 +70,7 @@ extension CommunityCategoriesView {
                 Image(systemName: SystemImage.xCircle.rawValue)
             }
         }
-        .categoryModifier()
+        .selectableModifier()
     }
     
     var field: some View {

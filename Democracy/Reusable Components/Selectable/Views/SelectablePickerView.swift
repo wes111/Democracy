@@ -7,24 +7,38 @@
 
 import SwiftUI
 
-struct SelectableSummaryView: View {
+struct SelectablePickerView<T: Selectable>: View {
     
     let action: () -> Void
-    let title: String
-    let currentSelection: String
+    let dismissAction: () -> Void
+    @Binding var selection: T
+    @State private var isPresented: Bool = false
     
     var body: some View {
+        primaryContent
+            .sheet(isPresented: $isPresented, onDismiss: dismissAction) {
+                SelectablePickerDetailView(selectedCategory: $selection)
+                    .presentationDetents([
+                        .fraction(detentsFraction(selectableType: T.self))
+                    ])
+                    .presentationDragIndicator(.visible)
+                    .background(Color.black, ignoresSafeAreaEdges: .all)
+            }
+    }
+    
+    var primaryContent: some View {
         VStack {
             Button {
+                isPresented = true
                 action()
             } label: {
                 HStack(alignment: .center, spacing: 0) {
                     VStack(alignment: .leading, spacing: 0) {
-                        Text(title)
+                        Text(T.metaTitle)
                             .font(.system(.body, weight: .semibold))
                             .foregroundStyle(Color.secondaryText)
                         
-                        Text(currentSelection)
+                        Text(selection.title)
                             .font(.system(.subheadline, weight: .medium))
                             .foregroundStyle(Color.secondaryText.opacity(0.5))
                     }
@@ -44,15 +58,34 @@ struct SelectableSummaryView: View {
     }
 }
 
+// MARK: - Helper Methods
+private extension SelectablePickerView {
+    
+    func detentsFraction(selectableType: T.Type) -> Double {
+        switch T.allCases.count {
+        case 2:
+            0.5
+        case 3:
+            0.6
+        case 4:
+            0.7
+        case 5:
+            0.8
+        default:
+            0.4
+        }
+    }
+}
+
 // MARK: - Preview
 #Preview {
     ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
-        SelectableSummaryView(
+        SelectablePickerView(
             action: {},
-            title: "Hello World",
-            currentSelection: "World"
+            dismissAction: {},
+            selection: .constant(CommunityCommenter.experts)
         )
         .padding()
     }

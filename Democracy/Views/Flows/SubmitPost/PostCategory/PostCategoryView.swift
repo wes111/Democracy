@@ -38,7 +38,7 @@ private extension PostCategoryView {
     }
     
     func categoryView(_ category: String) -> some View {
-        SelectableCategory(
+        SelectableView(
             isSelected: viewModel.selectedCategory == category,
             title: category
         )
