@@ -52,6 +52,13 @@ extension CommunityResourcesViewModel {
     func submit() {
         return // TODO: ...
     }
+    
+    func addResourceViewModel() -> AddResourceViewModel {
+        AddResourceViewModel(
+            resources: resources,
+            updateResourcesAction: newResourceAdded
+        )
+    }
 }
 
 // MARK: - Private Methods
@@ -61,5 +68,9 @@ private extension CommunityResourcesViewModel {
     func skip() {
         userInput.resources = []
         coordinator?.didSubmitResources(input: userInput)
+    }
+    
+    func newResourceAdded(_ resource: Resource) {
+        resources.append(resource)
     }
 }

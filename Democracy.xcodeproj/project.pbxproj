@@ -44,6 +44,10 @@
 		EE36FF9C2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE36FF9B2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift */; };
 		EE36FFA22B24F487009E8F86 /* Appwrite in Frameworks */ = {isa = PBXBuildFile; productRef = EE36FFA12B24F487009E8F86 /* Appwrite */; };
 		EE412B3E2B7830FA0007632B /* ColorScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B3D2B7830FA0007632B /* ColorScheme.swift */; };
+		EE412B412B79A94C0007632B /* HorizontalSelectableList.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B402B79A94C0007632B /* HorizontalSelectableList.swift */; };
+		EE412B432B79A9E20007632B /* AddResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B422B79A9E20007632B /* AddResourceView.swift */; };
+		EE412B452B79AA750007632B /* AddResourceViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B442B79AA750007632B /* AddResourceViewModel+Preview.swift */; };
+		EE412B472B79C6580007632B /* AddResourceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B462B79C6580007632B /* AddResourceViewModel.swift */; };
 		EE45248D2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45248C2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift */; };
 		EE45248F2A5651FB00C7A2DD /* ResourcesSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE45248E2A5651FB00C7A2DD /* ResourcesSection.swift */; };
 		EE4524912A56597400C7A2DD /* ResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524902A56597400C7A2DD /* ResourceView.swift */; };
@@ -347,6 +351,10 @@
 		EE36FF992B1ECB17009E8F86 /* UsernameTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameTextFieldStyle.swift; sourceTree = "<group>"; };
 		EE36FF9B2B1F64C3009E8F86 /* PhoneTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextFieldStyle.swift; sourceTree = "<group>"; };
 		EE412B3D2B7830FA0007632B /* ColorScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorScheme.swift; sourceTree = "<group>"; };
+		EE412B402B79A94C0007632B /* HorizontalSelectableList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSelectableList.swift; sourceTree = "<group>"; };
+		EE412B422B79A9E20007632B /* AddResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddResourceView.swift; sourceTree = "<group>"; };
+		EE412B442B79AA750007632B /* AddResourceViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddResourceViewModel+Preview.swift"; sourceTree = "<group>"; };
+		EE412B462B79C6580007632B /* AddResourceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddResourceViewModel.swift; sourceTree = "<group>"; };
 		EE45248C2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesSectionViewModel.swift; sourceTree = "<group>"; };
 		EE45248E2A5651FB00C7A2DD /* ResourcesSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesSection.swift; sourceTree = "<group>"; };
 		EE4524902A56597400C7A2DD /* ResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceView.swift; sourceTree = "<group>"; };
@@ -677,6 +685,7 @@
 				EE2B15E12B534AC40046D5FC /* DefaultTextInputField.swift */,
 				EEA2B4102B65552700063211 /* RuleView.swift */,
 				EEA2B4362B745BDF00063211 /* SnappingHorizontalScrollView.swift */,
+				EE412B402B79A94C0007632B /* HorizontalSelectableList.swift */,
 			);
 			path = "Shared Components";
 			sourceTree = "<group>";
@@ -761,6 +770,15 @@
 				EEA2B41D2B6FE36700063211 /* SelectableView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		EE412B3F2B79A91E0007632B /* AddResource */ = {
+			isa = PBXGroup;
+			children = (
+				EE412B422B79A9E20007632B /* AddResourceView.swift */,
+				EE412B462B79C6580007632B /* AddResourceViewModel.swift */,
+			);
+			path = AddResource;
 			sourceTree = "<group>";
 		};
 		EE45248B2A5651B600C7A2DD /* ResourceSection */ = {
@@ -1095,6 +1113,7 @@
 		EE7EC26A2B614BCE00F62E90 /* CommunityResources */ = {
 			isa = PBXGroup;
 			children = (
+				EE412B3F2B79A91E0007632B /* AddResource */,
 				EE7EC26B2B614BEB00F62E90 /* CommunityResourcesView.swift */,
 				EE7EC26D2B614BF800F62E90 /* CommunityResourcesViewModel.swift */,
 			);
@@ -1277,6 +1296,7 @@
 				EE5B93982A0866EA00B43381 /* CommunityPostCategoryViewModel+Preview.swift */,
 				EE5D39FC2A2ECB2A00D0E312 /* CommunityCoordinatorViewModel+Preview.swift */,
 				EE5D3A002A2EE0ED00D0E312 /* CommunitiesTabCoordinatorViewModel+Preview.swift */,
+				EE412B442B79AA750007632B /* AddResourceViewModel+Preview.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1938,6 +1958,7 @@
 				EEE464502B5FF2C000E5DBFC /* HorizontalProgressView.swift in Sources */,
 				EED4A52129ABC86D00DDCCDA /* CommunityViewPicker.swift in Sources */,
 				EE5B93922A033A7D00B43381 /* Month.swift in Sources */,
+				EE412B452B79AA750007632B /* AddResourceViewModel+Preview.swift in Sources */,
 				EE5B938B29F7764E00B43381 /* BoundMenu.swift in Sources */,
 				EE80D93729D289BB0000F8EF /* CreateCandidateAlert.swift in Sources */,
 				EE4988102B3E209700AB7522 /* SubmitPostInput.swift in Sources */,
@@ -2091,6 +2112,7 @@
 				EEA2B40F2B6416DB00063211 /* SelectableModifier.swift in Sources */,
 				EE4DB8942AC89F0800A6DC90 /* OnboardingCoordinatorView.swift in Sources */,
 				EE49881B2B406B2A00AB7522 /* CustomProgressView.swift in Sources */,
+				EE412B412B79A94C0007632B /* HorizontalSelectableList.swift in Sources */,
 				EE9760162AD09F67003069CF /* CreateAccountSuccessViewModel.swift in Sources */,
 				EE80D8E029BC1A080000F8EF /* HistoryTabMainViewModel+Preview.swift in Sources */,
 				EE2B15BA2B4594540046D5FC /* PostService.swift in Sources */,
@@ -2098,6 +2120,7 @@
 				EE7EC2732B614CB000F62E90 /* CommunitySettingsView.swift in Sources */,
 				EEE4644E2B5F60E200E5DBFC /* SubmitPostFlow.swift in Sources */,
 				EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */,
+				EE412B432B79A9E20007632B /* AddResourceView.swift in Sources */,
 				EE70555D2B1390A800E40A89 /* EmailInputViewModel.swift in Sources */,
 				EE80D8CA29BC13C00000F8EF /* PostViewModel+Preview.swift in Sources */,
 				EEB5AF952B03116000310408 /* Calendar+Extensions.swift in Sources */,
@@ -2142,6 +2165,7 @@
 				EE80D93929D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift in Sources */,
 				EE80D8BE29BC11240000F8EF /* CommunityCoordinator+Preview.swift in Sources */,
 				EE7856182AB7BACB0004B7E4 /* TagModifier.swift in Sources */,
+				EE412B472B79C6580007632B /* AddResourceViewModel.swift in Sources */,
 				EED4A50929AA8BC100DDCCDA /* EventsTabMainViewModel.swift in Sources */,
 				EE80D8C629BC12C70000F8EF /* CommunitiesTabMainViewModel+Preview.swift in Sources */,
 				EE80D8C329BC12720000F8EF /* CommunitiesTabCoordinator+Preview.swift in Sources */,

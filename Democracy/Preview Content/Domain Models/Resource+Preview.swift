@@ -11,7 +11,6 @@ extension Resource {
     
     static let previewArray: [Resource] = [
         Resource(
-            id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
                          At the Community Knowledge Hub, we recognize the power of shared resources
@@ -24,7 +23,6 @@ extension Resource {
             category: .book
         ),
         Resource(
-            id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
                          At the Community Knowledge Hub, we recognize the power of shared resources
@@ -37,7 +35,6 @@ extension Resource {
             category: .book
         ),
         Resource(
-            id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
                          At the Community Knowledge Hub, we recognize the power of shared resources
@@ -50,7 +47,6 @@ extension Resource {
             category: .book
         ),
         Resource(
-            id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
                          At the Community Knowledge Hub, we recognize the power of shared resources
@@ -63,7 +59,6 @@ extension Resource {
             category: .book
         ),
         Resource(
-            id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
                          At the Community Knowledge Hub, we recognize the power of shared resources
@@ -76,7 +71,6 @@ extension Resource {
             category: .book
         ),
         Resource(
-            id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
                          At the Community Knowledge Hub, we recognize the power of shared resources
@@ -89,7 +83,6 @@ extension Resource {
             category: .book
         ),
         Resource(
-            id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
                          At the Community Knowledge Hub, we recognize the power of shared resources
@@ -102,7 +95,6 @@ extension Resource {
             category: .book
         ),
         Resource(
-            id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
                          At the Community Knowledge Hub, we recognize the power of shared resources
@@ -115,7 +107,6 @@ extension Resource {
             category: .book
         ),
         Resource(
-            id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
                          At the Community Knowledge Hub, we recognize the power of shared resources
@@ -128,7 +119,6 @@ extension Resource {
             category: .book
         ),
         Resource(
-            id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
                          At the Community Knowledge Hub, we recognize the power of shared resources
