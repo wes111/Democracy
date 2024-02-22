@@ -35,9 +35,12 @@ struct FieldRequirementsView<Requirement: InputRequirement>: View {
                         )
                     }
                 }
-
             }
             .foregroundColor(.tertiaryText)
+        }
+        .if(!allRequirements.isEmpty) { view in
+            view
+                .padding(.top, ViewConstants.smallElementSpacing)
         }
     }
     
@@ -59,8 +62,12 @@ struct FieldRequirementsView<Requirement: InputRequirement>: View {
 
 // MARK: - Preview
 #Preview {
-    FieldRequirementsView(
-        text: "Hello World",
-        currentInputErrors: [EmailRequirement.invalidEmail]
-    )
+    ZStack {
+        Color.primaryBackground.ignoresSafeArea()
+        FieldRequirementsView(
+            text: "Hello World",
+            currentInputErrors: [LinkRequirement.https, LinkRequirement.length]
+        )
+    }
+
 }

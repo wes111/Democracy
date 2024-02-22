@@ -24,6 +24,33 @@ struct ToolbarNavigationModifier: ViewModifier {
     let trailingButtons: [OnboardingTopButton]
     let centerContent: ToolbarCenterContent?
     
+    init(
+        leadingButtons: [OnboardingTopButton],
+        trailingButtons: [OnboardingTopButton],
+        centerContent: ToolbarCenterContent?
+    ) {
+        self.leadingButtons = leadingButtons
+        self.trailingButtons = trailingButtons
+        self.centerContent = centerContent
+        
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithOpaqueBackground()
+        navigationBarAppearance.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(.primaryText)
+        ]
+        navigationBarAppearance.backgroundColor = UIColor(.primaryBackground)
+        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+        UINavigationBar.appearance().compactAppearance = navigationBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+        UINavigationBar.appearance().clipsToBounds = true
+        
+        let tabBarApperance = UITabBarAppearance()
+        tabBarApperance.configureWithOpaqueBackground()
+        tabBarApperance.backgroundColor = UIColor(.primaryBackground)
+        UITabBar.appearance().scrollEdgeAppearance = tabBarApperance
+        UITabBar.appearance().standardAppearance = tabBarApperance
+    }
+    
     func body(content: Content) -> some View {
         content
             .navigationBarTitleDisplayMode(.inline)
@@ -81,6 +108,7 @@ private extension ToolbarNavigationModifier {
 }
 
 // MARK: View extension
+@MainActor
 extension View {
     func toolbarNavigation(
         leadingButtons: [OnboardingTopButton] = [],

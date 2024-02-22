@@ -19,6 +19,7 @@ struct HorizontalSelectableList<T: Selectable>: View {
                 }
             }
         }
+        .scrollClipDisabled()
     }
     
     func optionView(_ option: T) -> some View {

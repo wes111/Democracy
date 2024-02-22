@@ -53,9 +53,20 @@ extension View {
 
 // MARK: - Preview
 #Preview {
-    TextField("TextField", text: .constant("Hello World"))
-        .requirements(
-            text: .constant("Hello World!"),
-            requirementType: DefaultRequirement.self
-        )
+    @FocusState var focusedField: CreateAccountFlow?
+    
+    return ZStack {
+        Color.primaryBackground.ignoresSafeArea()
+        
+        TextField("TextField", text: .constant("Hello World"))
+            .textFieldStyle(EmailTextFieldStyle(
+                email: .constant("Hello World"),
+                focusedField: $focusedField,
+                field: CreateAccountFlow.email)
+            )
+            .requirements(
+                text: .constant("Hello World!"),
+                requirementType: LinkRequirement.self
+            )
+    }
 }

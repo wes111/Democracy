@@ -26,6 +26,13 @@ struct AddResourceView: View {
                     trailingButtons: [.close({ dismiss() })]
                 )
                 .background(Color.primaryBackground.ignoresSafeArea())
+                .alert(item: $viewModel.alertModel) { alert in
+                    Alert(
+                        title: Text(alert.title),
+                        message: Text(alert.description),
+                        dismissButton: .default(Text("Okay"))
+                    )
+                }
         }
     }
 }
@@ -38,11 +45,14 @@ private extension AddResourceView {
             // The GeometryReader here prevents the view from moving
             // with keyboard appearance/disappearance.
             GeometryReader { _ in
-                VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-                    UserInputTitle(title: "Add Community Resource")
-                    userInputStack
+                ScrollView(.vertical) {
+                    VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+                        UserInputTitle(title: "Add Community Resource")
+                        userInputStack
+                    }
+                    .padding(ViewConstants.screenPadding)
                 }
-                .padding(ViewConstants.screenPadding)
+                .clipped()
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
         }
@@ -56,7 +66,6 @@ private extension AddResourceView {
             titleField
             urlField
             descriptionField
-            Spacer()
             addResourceButton
             cancelButton
         }
@@ -123,7 +132,7 @@ private extension AddResourceView {
             prompt: Text("Description").foregroundColor(.tertiaryBackground),
             axis: .vertical
         )
-        .lineLimit(2...4)
+        .lineLimit(3...4)
         .requirements(
             text: $viewModel.description,
             requirementType: DefaultRequirement.self

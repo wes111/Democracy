@@ -29,6 +29,8 @@ struct MainTabView: View {
     init(viewModel: MainTabViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
         
+        // TODO: Below has been moved to ToolBarNavigationModifier, but the same logic is needed
+        // for the bottom bar. Move out of this view and abstract away...
         UITabBar.appearance().unselectedItemTintColor = UIColor(Color.tertiaryBackground)
         
         let navigationBarAppearance = UINavigationBarAppearance()

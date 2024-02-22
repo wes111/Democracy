@@ -14,6 +14,7 @@ final class AddResourceViewModel {
     var description: String = ""
     var url: String = ""
     var category: ResourceCategory = .book
+    var alertModel: NewAlertModel?
     
     let resources: [Resource]
     let updateResourcesAction: (Resource) -> Void
@@ -23,11 +24,11 @@ final class AddResourceViewModel {
         self.resources = resources
     }
     
-    // Add category.
+    // Add resource.
     @MainActor
     func submit() {
         guard canSubmit else {
-            return // TODO Make this an alert
+            return alertModel = AddResourceAlert.invalid.toNewAlertModel()
         }
         let resource = Resource(
             title: title,
