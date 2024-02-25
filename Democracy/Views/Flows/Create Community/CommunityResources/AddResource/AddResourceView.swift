@@ -47,7 +47,7 @@ private extension AddResourceView {
             GeometryReader { _ in
                 ScrollView(.vertical) {
                     VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-                        UserInputTitle(title: "Add Community Resource")
+                        UserInputTitle(title: viewModel.viewTitle)
                         userInputStack
                     }
                     .padding(ViewConstants.screenPadding)
@@ -76,7 +76,7 @@ private extension AddResourceView {
             viewModel.submit()
             dismiss()
         } label: {
-            Text("Add Resource")
+            Text(viewModel.submitButtonTitle)
         }
         .buttonStyle(PrimaryButtonStyle())
         .disabled(!viewModel.canSubmit)

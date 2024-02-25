@@ -90,7 +90,11 @@ private extension CommunityRulesView {
     
     func scrollContent() -> some View {
         SnappingHorizontalScrollView(scrollContent: viewModel.rules) { rule in
-            RuleView(rule: rule) {
+            MenuCard(
+                title: rule.title,
+                description: rule.description,
+                image: .exclamationmarkTriangle
+            ) {
                 Button("Delete") { viewModel.removeRule(rule) }
                 Button("Edit") { viewModel.editRule(rule) }
             }

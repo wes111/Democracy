@@ -69,6 +69,7 @@ extension CommunityRulesViewModel {
         rules.append(rule)
         ruleTitle = ""
         ruleDescription = ""
+        userInput.rules = Set(rules)
     }
     
     func removeRule(_ rule: Rule) {
@@ -76,6 +77,7 @@ extension CommunityRulesViewModel {
             return
         }
         rules.remove(at: index)
+        userInput.rules = Set(rules)
     }
     
     func editRule(_ rule: Rule) {

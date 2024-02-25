@@ -56,7 +56,11 @@ struct SnappingHorizontalScrollView<T: Hashable, Content: View>: View {
     ZStack {
         Color.primaryBackground.ignoresSafeArea()
         SnappingHorizontalScrollView(scrollContent: Community.preview.rules) { rule in
-            RuleView(rule: rule) {
+            MenuCard(
+                title: rule.title,
+                description: rule.description,
+                image: .exclamationmarkTriangle
+            ) {
                 Button("Delete") { }
                 Button("Edit") { }
             }

@@ -8,7 +8,8 @@
 import Foundation
 
 enum CreateCommunityAlert: AlertModelProtocol {
-    case missingCategory, categoryAlreadyAdded, missingTag, tagAlreadyAdded, missingRule, ruleAlreadyAdded
+    case missingCategory, categoryAlreadyAdded, missingTag, tagAlreadyAdded, missingRule, ruleAlreadyAdded,
+         unableToEditResource
     
     var title: String {
         switch self {
@@ -24,6 +25,8 @@ enum CreateCommunityAlert: AlertModelProtocol {
             "Missing Rule"
         case .ruleAlreadyAdded:
             "Rule Already Added"
+        case .unableToEditResource:
+            "Resource Unavailable"
         }
     }
     
@@ -41,6 +44,8 @@ enum CreateCommunityAlert: AlertModelProtocol {
             "Communities must have at least 1 rule."
         case .ruleAlreadyAdded:
             "This rule has already been added."
+        case .unableToEditResource:
+            "The resource is not available to edit."
         }
     }
 }

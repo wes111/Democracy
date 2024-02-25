@@ -7,32 +7,33 @@
 
 import SwiftUI
 
-enum RuleViewSize {
-    case small, medium
-}
-
-struct RuleView<MenuContent: View>: View {
+struct MenuCard<MenuContent: View>: View {
     @ViewBuilder let menuContent: MenuContent
-    let rule: Rule
+    let title: String
+    let description: String?
+    let image: SystemImage
     
     init(
-        rule: Rule,
-        size: RuleViewSize = .medium,
+        title: String,
+        description: String?,
+        image: SystemImage,
         @ViewBuilder menuContent: () -> MenuContent
     ) {
+        self.title = title
+        self.description = description
+        self.image = image
         self.menuContent = menuContent()
-        self.rule = rule
     }
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
             VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
                 HStack(alignment: .top, spacing: ViewConstants.smallElementSpacing) {
-                    ruleImage
-                    ruleTitle
+                    formattedImage
+                    formattedTitle
                     Spacer()
                 }
-                ruleDescription
+                formattedDescription
             }
             .padding(ViewConstants.innerBorder)
             
@@ -59,20 +60,20 @@ struct RuleView<MenuContent: View>: View {
         }
     }
     
-    var ruleImage: some View {
-        Image(systemName: SystemImage.exclamationmarkTriangleFill.rawValue)
+    var formattedImage: some View {
+        Image(systemName: image.rawValue)
             .font(.system(size: 25))
             .font(.system(.largeTitle, weight: .semibold))
     }
     
-    var ruleTitle: some View {
-        Text(rule.title)
+    var formattedTitle: some View {
+        Text(title)
             .font(.system(.title2, weight: .semibold))
             .lineLimit(1)
     }
     
-    var ruleDescription: some View {
-        Text(rule.description)
+    var formattedDescription: some View {
+        Text(description ?? "")
             .foregroundStyle(Color.tertiaryText)
     }
 }
@@ -81,7 +82,11 @@ struct RuleView<MenuContent: View>: View {
 #Preview {
     ZStack {
         Color.primaryBackground.ignoresSafeArea()
-        RuleView(rule: .init(title: "Rule Title", description: "Rule Description Rule Description")) {
+        MenuCard(
+            title: "Menu Card Title",
+            description: "Menu Card Description",
+            image: .exclamationmarkTriangle
+        ) {
             EmptyView()
         }
         .frame(height: 250)

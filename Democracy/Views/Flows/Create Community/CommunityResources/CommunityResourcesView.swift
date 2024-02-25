@@ -29,16 +29,21 @@ struct CommunityResourcesView: View {
 private extension CommunityResourcesView {
     
     var primaryContent: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+            addedResources
             addResourceButton
-            // TODO: ...
-            SnappingHorizontalScrollView(scrollContent: ["hello world"]) { text in
-                Text(text)
-            }
-            
-            ForEach(viewModel.resources, id: \.self) { resource in
-                Text(resource.title)
-            }
+        }
+    }
+    
+    var addedResources: some View {
+        SnappingHorizontalScrollView(scrollContent: viewModel.resources) { resource in
+            MenuCard(
+                title: resource.title,
+                description: resource.description,
+                image: resource.category.image) {
+                    Button("Delete") { viewModel.removeResource(resource) }
+                    Button("Edit") { viewModel.editResource(resource) }
+                }
         }
     }
     

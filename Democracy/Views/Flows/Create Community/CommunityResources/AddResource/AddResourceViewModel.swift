@@ -18,42 +18,50 @@ final class AddResourceViewModel {
     
     let resources: [Resource]
     let updateResourcesAction: (Resource) -> Void
+    let editingResource: Resource?
     
-    init(resources: [Resource], updateResourcesAction: @escaping (Resource) -> Void) {
+    init(
+        resources: [Resource],
+        updateResourcesAction: @escaping (Resource) -> Void,
+        editingResource: Resource? = nil
+    ) {
         self.updateResourcesAction = updateResourcesAction
         self.resources = resources
-    }
-    
-    // Add resource.
-    @MainActor
-    func submit() {
-        guard canSubmit else {
-            return alertModel = AddResourceAlert.invalid.toNewAlertModel()
+        self.editingResource = editingResource
+        
+        if let editingResource {
+            setupFields(using: editingResource)
         }
-        let resource = Resource(
-            title: title,
-            description: description,
-            url: url.isEmpty ? nil : URL(string: url),
-            category: category
-        )
-        updateResourcesAction(resource)
     }
 }
 
 // MARK: - Computed Properties
 extension AddResourceViewModel {
     
+    var viewTitle: String {
+        "\(editingResource == nil ? "Add" : "Edit") Community Resource"
+    }
+    
+    var submitButtonTitle: String {
+        "\(editingResource == nil ? "Add" : "Update") Resource"
+    }
+    
     var canSubmit: Bool {
         guard titleIsSubmittable && descriptionIsSubmittable && urlIsSubmittable else {
             return false
         }
         let resource = Resource(
+            id: UUID().uuidString,
             title: title,
             description: description,
             url: url.isEmpty ? nil : URL(string: url),
             category: category
         )
-        return !resources.contains(resource)
+        if editingResource != nil {
+            return true // Can alway submit, even if no changes.
+        } else {
+            return !resources.contains(where: { $0.title == resource.title })
+        }
     }
 }
 
@@ -70,5 +78,36 @@ private extension AddResourceViewModel {
     
     var urlIsSubmittable: Bool {
         url.isEmpty || LinkRequirement.fullyValid(input: url)
+    }
+}
+
+// MARK: - Methods {
+extension AddResourceViewModel {
+    
+    // Add resource.
+    @MainActor
+    func submit() {
+        guard canSubmit else {
+            return alertModel = AddResourceAlert.invalid.toNewAlertModel()
+        }
+        let resource = Resource(
+            id: editingResource?.id ?? UUID().uuidString,
+            title: title,
+            description: description,
+            url: url.isEmpty ? nil : URL(string: url),
+            category: category
+        )
+        updateResourcesAction(resource)
+    }
+}
+
+// MARK: - Private Methods
+private extension AddResourceViewModel {
+    
+    func setupFields(using resource: Resource) {
+        title = resource.title
+        description = resource.description ?? ""
+        url = resource.url?.absoluteString ?? ""
+        category = resource.category
     }
 }

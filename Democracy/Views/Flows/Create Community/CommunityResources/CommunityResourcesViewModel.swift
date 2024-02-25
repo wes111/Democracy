@@ -12,8 +12,9 @@ final class CommunityResourcesViewModel: FlowViewModel<CreateCommunityCoordinato
     
     var resources: [Resource] = []
     var isShowingAddResourceSheet = false
+    @ObservationIgnored var editingResource: Resource?
     
-    @ObservationIgnored private let userInput: CreateCommunityInput
+    let userInput: CreateCommunityInput
     let flowCase = CreateCommunityFlow.resources
     
     init(coordinator: CreateCommunityCoordinator, userInput: CreateCommunityInput) {
@@ -24,39 +25,48 @@ final class CommunityResourcesViewModel: FlowViewModel<CreateCommunityCoordinato
 
 // MARK: - Computed Properties
 extension CommunityResourcesViewModel {
-    @MainActor
-    var skipAction: (() -> Void)? {
-        skip
+    var canPerformNextAction: Bool {
+        // Show "skip" button if resources is empty, otherwise show "next" button.
+        !resources.isEmpty
     }
     
-    var canPerformNextAction: Bool {
-        false // TODO: ...
+    @MainActor
+    var skipAction: (() -> Void)? {
+        nextButtonAction
     }
 }
 
 // MARK: - Methods
 extension CommunityResourcesViewModel {
     
-    @MainActor
-    func nextButtonAction() async {
+    func removeResource(_ resource: Resource) {
+        guard let index = resources.firstIndex(where: { $0.id == resource.id }) else {
+            return
+        }
+        resources.remove(at: index)
         userInput.resources = resources
-        coordinator?.didSubmitSettings(input: userInput)
+    }
+    
+    func editResource(_ resource: Resource) {
+        editingResource = resource
+        isShowingAddResourceSheet = true
+    }
+    
+    @MainActor
+    func nextButtonAction() {
+        userInput.resources = resources
+        coordinator?.didSubmitResources(input: userInput)
     }
     
     func onAppear() {
         resources = userInput.resources
     }
     
-    // Add resource.
-    @MainActor
-    func submit() {
-        return // TODO: ...
-    }
-    
     func addResourceViewModel() -> AddResourceViewModel {
         AddResourceViewModel(
             resources: resources,
-            updateResourcesAction: newResourceAdded
+            updateResourcesAction: newResourceAdded,
+            editingResource: editingResource
         )
     }
 }
@@ -64,13 +74,16 @@ extension CommunityResourcesViewModel {
 // MARK: - Private Methods
 private extension CommunityResourcesViewModel {
     
-    @MainActor
-    func skip() {
-        userInput.resources = []
-        coordinator?.didSubmitResources(input: userInput)
-    }
-    
     func newResourceAdded(_ resource: Resource) {
-        resources.append(resource)
+        if let editingResource {
+            guard let index = resources.firstIndex(where: { $0.id == resource.id }) else {
+                return alertModel = CreateCommunityAlert.unableToEditResource.toNewAlertModel()
+            }
+            resources[index] = resource
+            self.editingResource = nil
+        } else {
+            resources.append(resource)
+        }
+        userInput.resources = resources
     }
 }
