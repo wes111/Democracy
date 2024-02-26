@@ -14,25 +14,12 @@ struct ButtonInfo {
 
 // Generic success view.
 @MainActor
-struct SuccessView: View {
-    let primaryText: Text
-    let secondaryText: Text
-    let image: Image
-    let primaryButtonInfo: ButtonInfo
-    let secondaryButtonInfo: ButtonInfo?
+struct SuccessView<ViewModel: SuccessViewModel>: View {
     
-    init(
-        primaryText: Text,
-        secondaryText: Text,
-        image: Image,
-        primaryButtonInfo: ButtonInfo,
-        secondaryButtonInfo: ButtonInfo?
-    ) {
-        self.primaryText = primaryText
-        self.secondaryText = secondaryText
-        self.image = image
-        self.primaryButtonInfo = primaryButtonInfo
-        self.secondaryButtonInfo = secondaryButtonInfo
+    private let viewModel: ViewModel
+    
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
     }
     
     var body: some View {
@@ -43,13 +30,14 @@ struct SuccessView: View {
         }
         .padding(ViewConstants.screenPadding)
         .background(Color.primaryBackground, ignoresSafeAreaEdges: .all)
+        .toolbarNavigation(trailingButtons: [.close(viewModel.closeAction)])
         
     }
     
     // MARK: - Subviews
     var topLogo: some View { // TODO: This could be more generic.
         VStack {
-            image
+            viewModel.imageType.image
                 .resizable()
                 .scaledToFit()
                 .frame(maxWidth: 100)
@@ -63,13 +51,13 @@ struct SuccessView: View {
     var centerContent: some View {
         VStack(alignment: .center, spacing: ViewConstants.smallElementSpacing) {
             Spacer()
-            primaryText
+            Text(viewModel.primaryText)
                 .font(.system(.title, weight: .semibold))
                 .foregroundColor(.primaryText)
                 .lineLimit(nil)
                 .multilineTextAlignment(.center)
             
-            secondaryText
+            Text(viewModel.secondaryText)
                 .font(.system(.body, weight: .regular))
                 .foregroundColor(.tertiaryText)
                 .multilineTextAlignment(.center)
@@ -84,7 +72,7 @@ struct SuccessView: View {
             Spacer()
             primaryButton
             
-            if let secondaryButtonInfo {
+            if let secondaryButtonInfo = viewModel.secondaryButtonInfo {
                 secondaryButton(info: secondaryButtonInfo)
             }
         }
@@ -92,10 +80,10 @@ struct SuccessView: View {
     
     var primaryButton: some View {
         Button {
-            primaryButtonInfo.action()
+            viewModel.primaryButtonInfo.action()
         } label: {
             Label {
-                Text(primaryButtonInfo.title)
+                Text(viewModel.primaryButtonInfo.title)
             } icon: {
                 Image(systemName: "arrow.right")
             }
@@ -116,11 +104,5 @@ struct SuccessView: View {
 
 // MARK: - Preview
 #Preview {
-    SuccessView(
-        primaryText: Text("Welcome to Democracy,\n Hamlin111"),
-        secondaryText: Text("Hello World!"),
-        image: Image("BMW"),
-        primaryButtonInfo: .init(title: "Next", action: {}),
-        secondaryButtonInfo: .init(title: "Continue", action: {})
-    )
+    SuccessView(viewModel: PostSuccessViewModel(closeAction: {}))
 }

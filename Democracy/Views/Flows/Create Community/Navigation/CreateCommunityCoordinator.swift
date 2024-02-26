@@ -77,7 +77,11 @@ extension CreateCommunityCoordinator: CreateCommunityCoordinatorDelegate {
     }
     
     func didSubmitResources(input: CreateCommunityInput) {
-        print("Add success View and viewModel")
+        let viewModel = CreateCommunitySuccessViewModel(
+            communityName: input.name ?? "", // TODO: Handle missing name better.
+            closeAction: close
+        )
+        router.push(CreateCommunityPath.goToCommunitySuccess(viewModel))
     }
     
     func goBack() {

@@ -7,43 +7,33 @@
 
 import Foundation
 
-final class CreateAccountSuccessViewModel: Hashable {
+final class CreateAccountSuccessViewModel: SuccessViewModel {
     
-    private weak var coordinator: OnboardingCoordinatorDelegate?
+    let secondaryText: String = "Your account was created successfully!"
+    let imageType: AppImage = .customImage(.bmw)
+    let closeAction: () -> Void
+    let continueAction: () -> Void
     let username: String
     
-    init(coordinator: OnboardingCoordinatorDelegate?, username: String) {
-        self.coordinator = coordinator
+    init(
+        closeAction: @escaping () -> Void,
+        continueAction: @escaping () -> Void,
+        username: String
+    ) {
+        self.closeAction = closeAction
+        self.continueAction = continueAction
         self.username = username
     }
-}
-
-// MARK: - Computed Properties
-extension CreateAccountSuccessViewModel {
+    
+    var primaryText: String {
+        "Welcome to Democracy,\n \(username)"
+    }
     
     var primaryButtonInfo: ButtonInfo {
         .init(title: "Continue Account Setup", action: continueAction)
     }
     
-    var secondaryButtonInfo: ButtonInfo {
-        .init(title: "Skip", action: close)
-    }
-    
-    var trailingButtons: [OnboardingTopButton] {
-        [.close(close)]
-    }
-}
-
-// MARK: - Methods
-extension CreateAccountSuccessViewModel {
-    
-    @MainActor
-    func continueAction() {
-        coordinator?.continueAccountSetup()
-    }
-    
-    @MainActor
-    func close() {
-        coordinator?.close()
+    var secondaryButtonInfo: ButtonInfo? {
+        .init(title: "Skip", action: closeAction)
     }
 }

@@ -11,7 +11,6 @@ enum OnboardingPath: Hashable {
     case goToCreatePassword(PasswordInputViewModel)
     case goToCreateEmail(EmailInputViewModel)
     case goToCreatePhone(PhoneInputViewModel)
-    
     case goToCreateAccountSuccess(CreateAccountSuccessViewModel)
     case goToAcceptTerms(AcceptTermsViewModel)
 }

@@ -7,30 +7,21 @@
 
 import Foundation
 
-final class PostSuccessViewModel: ObservableObject, Hashable {
-    private weak var coordinator: SubmitPostCoordinator?
+final class PostSuccessViewModel: SuccessViewModel, Hashable {
+    let closeAction: () -> Void
+    let imageType: AppImage = .systemImage(.checkmarkDiamondFill)
+    let secondaryButtonInfo: ButtonInfo? = nil
+    let primaryText: String = "Your post has been submitted!"
+    let secondaryText: String =  """
+    Your post has been submitted and is currently under review. \
+    Once approved, your post will be visible to the entire community.
+    """
     
-    init(coordinator: SubmitPostCoordinator?) {
-        self.coordinator = coordinator
+    init(closeAction: @escaping () -> Void) {
+        self.closeAction = closeAction
     }
-}
-
-// MARK: - Computed Properties
-extension PostSuccessViewModel {
     
     var primaryButtonInfo: ButtonInfo {
-        .init(title: "Finish", action: close)
-    }
-    
-    var trailingButtons: [OnboardingTopButton] {
-        [.close(close)]
-    }
-}
-
-// MARK: - Methods
-extension PostSuccessViewModel {
-    
-    @MainActor func close() {
-        coordinator?.close()
+        .init(title: "Finish", action: closeAction)
     }
 }

@@ -62,7 +62,7 @@ extension SubmitPostCoordinator: SubmitPostCoordinatorDelegate {
     }
     
     func didSubmitTags(input: SubmitPostInput) {
-        let viewModel = PostSuccessViewModel(coordinator: self)
+        let viewModel = PostSuccessViewModel(closeAction: self.close)
         router.push(SubmitPostPath.goToPostSuccess(viewModel))
     }
 }

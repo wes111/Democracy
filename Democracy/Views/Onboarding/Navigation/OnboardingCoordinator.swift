@@ -55,7 +55,11 @@ extension OnboardingCoordinator: OnboardingCoordinatorDelegate {
     }
     
     func agreeToTerms(username: String) {
-        let viewModel = CreateAccountSuccessViewModel(coordinator: self, username: username)
+        let viewModel = CreateAccountSuccessViewModel(
+            closeAction: close,
+            continueAction: continueAccountSetup,
+            username: username
+        )
         router.push(OnboardingPath.goToCreateAccountSuccess(viewModel))
     }
     

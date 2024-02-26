@@ -55,4 +55,26 @@ enum SystemImage: String {
     case bookClosed = "book.closed"
     case laptopComputer = "laptopcomputer"
     case movieClapper = "movieclapper"
+    case checkmarkDiamondFill = "checkmark.diamond.fill"
+}
+
+// Image assets
+enum CustomImage: String {
+    case bmw = "BMW"
+}
+
+import SwiftUI
+// Any SystemImage or Image Asset
+enum AppImage {
+    case systemImage(SystemImage)
+    case customImage(CustomImage)
+    
+    var image: Image {
+        switch self {
+        case .systemImage(let systemImage):
+            Image(systemName: systemImage.rawValue)
+        case .customImage(let customImage):
+            Image(customImage.rawValue)
+        }
+    }
 }
