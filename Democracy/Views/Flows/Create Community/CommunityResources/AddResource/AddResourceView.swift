@@ -9,7 +9,7 @@ import SwiftUI
 
 // Text fields of the AddResourceView
 enum AddResourceField: Hashable {
-    case title, description, url
+    case title, description, link
 }
 
 @MainActor
@@ -20,7 +20,9 @@ struct AddResourceView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        NavigationStack { // Remove if this view needs navigation beyond closing.
+        // Note: Using NavigationView instead of NavigationStack to fix bug with @FocusState
+        // https://developer.apple.com/forums/thread/737399
+        NavigationView { // Remove if this view needs navigation beyond closing.
             primaryContent
                 .toolbarNavigation(
                     trailingButtons: [.close({ dismiss() })]
@@ -34,6 +36,7 @@ struct AddResourceView: View {
                     )
                 }
         }
+        .navigationViewStyle(.stack)
     }
 }
 
@@ -64,7 +67,7 @@ private extension AddResourceView {
                 .titledElement(title: "Category")
             
             titleField
-            urlField
+            linkField
             descriptionField
             addResourceButton
             cancelButton
@@ -104,17 +107,17 @@ private extension AddResourceView {
         )
         .titledElement(title: "Title")
         .onSubmit {
-            focusedField = .description
+            focusedField = .link
         }
     }
     
-    var urlField: some View {
+    var linkField: some View {
         DefaultTextInputField(
             text: $viewModel.url,
             textFieldStyle: LinkTextFieldStyle(
                 link: $viewModel.url,
                 focusedField: $focusedField,
-                field: .url
+                field: .link
             ),
             fieldTitle: "URL",
             requirementType: LinkRequirement.self
@@ -144,7 +147,9 @@ private extension AddResourceView {
         ))
         .titledElement(title: "Description")
         .onSubmit {
-            focusedField = .title
+            focusedField = nil
+            viewModel.submit()
+            dismiss()
         }
     }
 }
