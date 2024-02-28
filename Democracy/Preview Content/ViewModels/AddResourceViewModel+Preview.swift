@@ -8,5 +8,5 @@
 import Foundation
 
 extension AddResourceViewModel {
-    static let preview = AddResourceViewModel(resources: [], updateResourcesAction: {_ in })
+    static let preview = AddResourceViewModel(resources: [], updateResourcesAction: {_ in }, cancelEditingAction: {})
 }

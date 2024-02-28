@@ -18,15 +18,18 @@ final class AddResourceViewModel {
     
     let resources: [Resource]
     let updateResourcesAction: (Resource) -> Void
+    let cancelEditingAction: () -> Void
     let editingResource: Resource?
     
     init(
         resources: [Resource],
         updateResourcesAction: @escaping (Resource) -> Void,
+        cancelEditingAction: @escaping () -> Void,
         editingResource: Resource? = nil
     ) {
-        self.updateResourcesAction = updateResourcesAction
         self.resources = resources
+        self.updateResourcesAction = updateResourcesAction
+        self.cancelEditingAction = cancelEditingAction
         self.editingResource = editingResource
         
         if let editingResource {
@@ -57,10 +60,10 @@ extension AddResourceViewModel {
             url: url.isEmpty ? nil : URL(string: url),
             category: category
         )
-        if editingResource != nil {
-            return true // Can alway submit, even if no changes.
-        } else {
+        if editingResource == nil {
             return !resources.contains(where: { $0.title == resource.title })
+        } else {
+            return true // Can alway submit, even if no changes.
         }
     }
 }

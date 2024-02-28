@@ -10,6 +10,7 @@ import Foundation
 extension Rule {
     static let previewArray: [Rule] = [
         .init(
+            id: UUID().uuidString,
             title: "Do not block Moderators or Admins.",
             description: """
                          You're not being clever by blocking mods or admins, we can still find
@@ -18,6 +19,7 @@ extension Rule {
                          """
         ),
         .init(
+            id: UUID().uuidString,
             title: "Do not block Moderators or Admins 1.",
             description: """
                          You're not being clever by blocking mods or admins, we can still find
@@ -26,6 +28,7 @@ extension Rule {
                          """
         ),
         .init(
+            id: UUID().uuidString,
             title: "Do not block Moderators or Admins 2.",
             description: """
                          You're not being clever by blocking mods or admins, we can still find
@@ -34,6 +37,7 @@ extension Rule {
                          """
         ),
         .init(
+            id: UUID().uuidString,
             title: "Do not block Moderators or Admins 3.",
             description: """
                          You're not being clever by blocking mods or admins, we can still find
@@ -42,6 +46,7 @@ extension Rule {
                          """
         ),
         .init(
+            id: UUID().uuidString,
             title: "Do not block Moderators or Admins 4.",
             description: """
                          You're not being clever by blocking mods or admins, we can still find
@@ -50,6 +55,7 @@ extension Rule {
                          """
         ),
         .init(
+            id: UUID().uuidString,
             title: "Do not block Moderators or Admins 5.",
             description: """
                          You're not being clever by blocking mods or admins, we can still find
@@ -58,6 +64,7 @@ extension Rule {
                          """
         ),
         .init(
+            id: UUID().uuidString,
             title: "Do not block Moderators or Admins 6.",
             description: """
                          You're not being clever by blocking mods or admins, we can still find
@@ -66,6 +73,7 @@ extension Rule {
                          """
         ),
         .init(
+            id: UUID().uuidString,
             title: "Do not block Moderators or Admins 7.",
             description:  """
                          You're not being clever by blocking mods or admins, we can still find

@@ -7,36 +7,14 @@
 
 import SwiftUI
 
-// Text fields of the AddResourceView
-enum AddResourceField: Hashable {
-    case title, description, link
-}
-
 @MainActor
 struct AddResourceView: View {
     @Bindable var viewModel: AddResourceViewModel
     @FocusState private var focusedField: AddResourceField?
-    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        // Note: Using NavigationView instead of NavigationStack to fix bug with @FocusState
-        // https://developer.apple.com/forums/thread/737399
-        NavigationView { // Remove if this view needs navigation beyond closing.
-            primaryContent
-                .toolbarNavigation(
-                    trailingButtons: [.close({ dismiss() })]
-                )
-                .background(Color.primaryBackground.ignoresSafeArea())
-                .alert(item: $viewModel.alertModel) { alert in
-                    Alert(
-                        title: Text(alert.title),
-                        message: Text(alert.description),
-                        dismissButton: .default(Text("Okay"))
-                    )
-                }
-        }
-        .navigationViewStyle(.stack)
+        primaryContent
     }
 }
 
@@ -44,20 +22,11 @@ struct AddResourceView: View {
 private extension AddResourceView {
     
     var primaryContent: some View {
-        ZStack(alignment: .center) {
-            // The GeometryReader here prevents the view from moving
-            // with keyboard appearance/disappearance.
-            GeometryReader { _ in
-                ScrollView(.vertical) {
-                    VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-                        UserInputTitle(title: viewModel.viewTitle)
-                        userInputStack
-                    }
-                    .padding(ViewConstants.screenPadding)
-                }
-                .clipped()
-            }
-            .ignoresSafeArea(.keyboard, edges: .bottom)
+        UserFormInputView(
+            title: viewModel.viewTitle,
+            alertModel: $viewModel.alertModel
+        ) {
+            userInputStack
         }
     }
     
@@ -87,6 +56,7 @@ private extension AddResourceView {
     
     var cancelButton: some View {
         Button {
+            viewModel.cancelEditingAction()
             dismiss()
         } label: {
             Text("Cancel")
@@ -95,57 +65,33 @@ private extension AddResourceView {
     }
     
     var titleField: some View {
-        DefaultTextInputField(
-            text: $viewModel.title,
-            textFieldStyle: TitleTextFieldStyle(
-                title: $viewModel.title,
-                focusedField: $focusedField,
-                field: AddResourceField.title
-            ),
-            fieldTitle: "Title",
-            requirementType: DefaultRequirement.self
+        TitleField(
+            title: $viewModel.title,
+            focusedField: $focusedField,
+            field: AddResourceField.title
         )
-        .titledElement(title: "Title")
         .onSubmit {
             focusedField = .link
         }
     }
     
     var linkField: some View {
-        DefaultTextInputField(
-            text: $viewModel.url,
-            textFieldStyle: LinkTextFieldStyle(
-                link: $viewModel.url,
-                focusedField: $focusedField,
-                field: .link
-            ),
-            fieldTitle: "URL",
-            requirementType: LinkRequirement.self
+        LinkField(
+            link: $viewModel.url,
+            focusedField: $focusedField,
+            field: AddResourceField.link
         )
-        .titledElement(title: "Link")
         .onSubmit {
             focusedField = .description
         }
     }
     
     var descriptionField: some View {
-        TextField(
-            "Description",
-            text: $viewModel.description,
-            prompt: Text("Description").foregroundColor(.tertiaryBackground),
-            axis: .vertical
-        )
-        .lineLimit(3...4)
-        .requirements(
-            text: $viewModel.description,
-            requirementType: DefaultRequirement.self
-        )
-        .textFieldStyle(TitleTextFieldStyle(
-            title: $viewModel.description,
+        DescriptionField(
+            description: $viewModel.description,
             focusedField: $focusedField,
             field: AddResourceField.description
-        ))
-        .titledElement(title: "Description")
+        )
         .onSubmit {
             focusedField = nil
             viewModel.submit()

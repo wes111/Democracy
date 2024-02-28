@@ -65,7 +65,8 @@ extension CommunityResourcesViewModel {
     func addResourceViewModel() -> AddResourceViewModel {
         AddResourceViewModel(
             resources: resources,
-            updateResourcesAction: newResourceAdded,
+            updateResourcesAction: newResourceAdded, 
+            cancelEditingAction: didCancelEditing,
             editingResource: editingResource
         )
     }
@@ -74,13 +75,17 @@ extension CommunityResourcesViewModel {
 // MARK: - Private Methods
 private extension CommunityResourcesViewModel {
     
+    func didCancelEditing() {
+        editingResource = nil
+    }
+    
     func newResourceAdded(_ resource: Resource) {
-        if let editingResource {
+        if editingResource != nil {
             guard let index = resources.firstIndex(where: { $0.id == resource.id }) else {
                 return alertModel = CreateCommunityAlert.unableToEditResource.toNewAlertModel()
             }
             resources[index] = resource
-            self.editingResource = nil
+            editingResource = nil
         } else {
             resources.append(resource)
         }

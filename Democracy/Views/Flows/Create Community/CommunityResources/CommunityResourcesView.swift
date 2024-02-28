@@ -22,6 +22,7 @@ struct CommunityResourcesView: View {
         .onAppear {
             viewModel.onAppear()
         }
+        .dismissKeyboardOnDrag()
     }
 }
 

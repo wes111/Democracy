@@ -7,18 +7,13 @@
 
 import Foundation
 
-struct Rule: Equatable, Hashable, Codable {
-    let title: String
-    let description: String
-}
-
 @Observable
 final class CommunityRulesViewModel: FlowViewModel<CreateCommunityCoordinator>, InputFlowViewModel {
-    var ruleTitle: String = ""
-    var ruleDescription: String = ""
     var rules: [Rule] = []
+    var isShowingAddRuleSheet = false
+    @ObservationIgnored var editingRule: Rule?
     
-    @ObservationIgnored private let userInput: CreateCommunityInput
+    let userInput: CreateCommunityInput
     let flowCase = CreateCommunityFlow.rules
     let skipAction: (() -> Void)? = nil
     
@@ -28,52 +23,19 @@ final class CommunityRulesViewModel: FlowViewModel<CreateCommunityCoordinator>, 
     }
 }
 
+// MARK: - Computed Properties
+extension CommunityRulesViewModel {
+    var canPerformNextAction: Bool {
+        // Show "skip" button if resources is empty, otherwise show "next" button.
+        !rules.isEmpty
+    }
+}
+
 // MARK: - Methods
 extension CommunityRulesViewModel {
     
-    var isMissingContent: Bool {
-        ruleTitle.isEmpty || ruleDescription.isEmpty
-    }
-    
-    var canSubmit: Bool {
-        guard !isMissingContent else {
-            return false
-        }
-        let rule = Rule(title: ruleTitle, description: ruleDescription)
-        guard !rules.contains(rule) else {
-            return false
-        }
-        return true
-    }
-    
-    var canPerformNextAction: Bool {
-        !rules.isEmpty
-    }
-    
-    @MainActor
-    func nextButtonAction() async {
-        guard !rules.isEmpty else {
-            return presentMissingRuleAlert()
-        }
-        userInput.rules = Set(rules)
-        coordinator?.didSubmitRules(input: userInput)
-    }
-    
-    // Add rule.
-    @MainActor
-    func submit() {
-        guard canSubmit else {
-            return
-        }
-        let rule = Rule(title: ruleTitle, description: ruleDescription)
-        rules.append(rule)
-        ruleTitle = ""
-        ruleDescription = ""
-        userInput.rules = Set(rules)
-    }
-    
     func removeRule(_ rule: Rule) {
-        guard let index = rules.firstIndex(of: rule) else {
+        guard let index = rules.firstIndex(where: { $0.id == rule.id }) else {
             return
         }
         rules.remove(at: index)
@@ -81,22 +43,55 @@ extension CommunityRulesViewModel {
     }
     
     func editRule(_ rule: Rule) {
-        removeRule(rule)
-        ruleTitle = rule.title
-        ruleDescription = rule.description
+        editingRule = rule
+        isShowingAddRuleSheet = true
+    }
+    
+    @MainActor
+    func nextButtonAction() {
+        guard !rules.isEmpty else {
+            return presentMissingRuleAlert()
+        }
+        userInput.rules = Set(rules)
+        coordinator?.didSubmitRules(input: userInput)
     }
     
     func onAppear() {
         rules = Array(userInput.rules)
     }
     
+    func addRuleViewModel() -> AddRuleViewModel {
+        AddRuleViewModel(
+            rules: rules,
+            updateRulesAction: newRuleAdded,
+            cancelEditingAction: didCancelEditing,
+            editingRule: editingRule
+        )
+    }
+    
     @MainActor
     private func presentMissingRuleAlert() {
         alertModel = CreateCommunityAlert.missingRule.toNewAlertModel()
     }
+}
+
+// MARK: - Private Methods
+private extension CommunityRulesViewModel {
     
-    @MainActor
-    private func presentRuleAlreadyAddedAlert() {
-        alertModel = CreateCommunityAlert.ruleAlreadyAdded.toNewAlertModel()
+    func didCancelEditing() {
+        editingRule = nil
+    }
+    
+    func newRuleAdded(_ rule: Rule) {
+        if editingRule != nil {
+            guard let index = rules.firstIndex(where: { $0.id == rule.id }) else {
+                return alertModel = CreateCommunityAlert.unableToEditRule.toNewAlertModel()
+            }
+            rules[index] = rule
+            self.editingRule = nil
+        } else {
+            rules.append(rule)
+        }
+        userInput.rules = Set(rules)
     }
 }
