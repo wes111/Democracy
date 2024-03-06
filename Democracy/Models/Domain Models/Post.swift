@@ -8,6 +8,14 @@
 import Foundation
 import SharedResourcesClientAndServer
 
+struct TempCommunity: Codable, Hashable {
+    let id: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "$id"
+    }
+}
+
 // The Post object sent to the Appwrite database.
 // Note that 'id', 'creationDate', and 'approvedDate' are not part of this object.
 struct PostDTO: Encodable {

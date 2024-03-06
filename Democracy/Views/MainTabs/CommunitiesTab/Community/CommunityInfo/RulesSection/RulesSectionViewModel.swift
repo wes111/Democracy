@@ -27,3 +27,17 @@ struct RulesSectionViewModel {
         }()
     }
 }
+
+struct GARBAGERule: Codable, Hashable {
+    let id: String
+    let title: String
+    let description: String
+    
+    func viewModel(index: Int) -> RuleViewModel {
+        .init(
+            title: title,
+            description: description,
+            index: index
+        )
+    }
+}

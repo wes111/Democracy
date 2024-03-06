@@ -56,7 +56,7 @@ protocol AppwriteService {
     
     // Post/Database Methods
     @discardableResult func submitNewPost(_ newPost: PostDTO) async throws -> Post
-    @discardableResult func submitCommunity(_ community: CommunityDTO) async throws -> Community
+    @discardableResult func submitCommunity(_ community: CommunityCreationRequest) async throws -> Community
 }
 
 final class AppwriteServiceDefault: AppwriteService {
@@ -147,14 +147,14 @@ extension AppwriteServiceDefault {
         return try Post(document.data.toDictionary())
     }
     
-    func submitCommunity(_ community: CommunityDTO) async throws -> Community {
+    func submitCommunity(_ community: CommunityCreationRequest) async throws -> Community {
         let document = try await databases.createDocument(
             databaseId: databaseId,
             collectionId: communityCollectionId,
             documentId: community.name,
             data: try community.toDictionary()
         )
-        return try Community(document.data.toDictionary())
+        return try CommunityDTO(document.data.toDictionary()).toCommunity()
     }
     
 }

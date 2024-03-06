@@ -9,13 +9,13 @@ import Factory
 import Foundation
 
 protocol CommunityRepository {
-    func submitCommunity(_ community: CommunityDTO) async throws
+    func submitCommunity(_ community: CommunityCreationRequest) async throws
 }
 
 final class CommunityRepositoryDefault: CommunityRepository {
     @Injected(\.appwriteService) private var appwriteService
     
-    func submitCommunity(_ community: CommunityDTO) async throws {
+    func submitCommunity(_ community: CommunityCreationRequest) async throws {
         try await appwriteService.submitCommunity(community)
     }
 }

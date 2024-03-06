@@ -20,25 +20,17 @@ import Foundation
 // 1.) A community has leaders. For the first 30? days the creator is the leader and can appoint other
 //     leaders. After that time is when the voting starts?
 
-struct TempCommunity: Codable, Hashable {
-    let id: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id = "$id"
-    }
-}
 
 // The Community object sent to the Appwrite database.
 // Note that 'id', 'creationDate', 'representatives' are not part of this object.
-struct CommunityDTO: Encodable {
+struct CommunityCreationRequest: Encodable {
     let creatorId: String
     let name: String // This should be the same as id...
     let description: String
-    let rules: [RuleDTO]
-    let resources: [ResourceDTO]
+    let rules: [RuleCreationRequest]
+    let resources: [ResourceCreationRequest]
     let categories: [String]
     let tags: [String]
-    // let alliedCommunities: [Community]
     
     enum CodingKeys: String, CodingKey {
         case creatorId, name, description, categories, tags
@@ -47,7 +39,51 @@ struct CommunityDTO: Encodable {
     }
 }
 
-struct Community: Hashable, Identifiable, Codable {
+// The Community object received from the Appwrite database.
+struct CommunityDTO: Decodable {
+    let id: String
+    let creatorId: String
+    let name: String
+    let description: String
+    let creationDateWrapper: DateWrapper
+    var representatives: [Candidate]? // TODO: Add as attribute in Appwrite Database.
+    let memberCount: Int
+    var rules: [RuleDTO]
+    var resources: [ResourceDTO]
+    var categories: [String]
+    var tags: [String]
+    var alliedCommunities: [CommunityDTO]? // TODO: Add as attribute in Appwrite Database.
+    
+    enum CodingKeys: String, CodingKey {
+        case creatorId, name, description, representatives, memberCount, categories, tags,
+             alliedCommunities
+        
+        case id = "$id"
+        case rules = "rule"
+        case resources = "resource"
+        case creationDateWrapper = "$createdAt"
+    }
+    
+    func toCommunity() -> Community {
+        .init(
+            id: id,
+            creatorId: creatorId,
+            name: name,
+            description: description,
+            creationDate: creationDateWrapper.date,
+            representatives: representatives ?? [],
+            memberCount: memberCount,
+            rules: rules.map { $0.toRule() },
+            resources: resources.map { $0.toResource() },
+            categories: categories,
+            tags: tags,
+            alliedCommunities: alliedCommunities?.compactMap { $0.toCommunity() } ?? []
+        )
+    }
+}
+
+// Domain Object.
+struct Community: Hashable, Identifiable {
     let id: String
     let creatorId: String
     let name: String
@@ -87,56 +123,5 @@ struct Community: Hashable, Identifiable, Codable {
         self.categories = categories
         self.tags = tags
         self.alliedCommunities = alliedCommunities
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case creatorId, name, description, representatives, memberCount, categories, tags,
-             alliedCommunities
-        
-        case id = "$id"
-        case rules = "rule"
-        case resources = "resource"
-        case creationDate = "$createdAt"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        id = try container.decode(String.self, forKey: .id)
-        creatorId = try container.decode(String.self, forKey: .creatorId)
-        name = try container.decode(String.self, forKey: .name)
-        description = try container.decode(String.self, forKey: .description)
-        
-        // Parse creationDate as Date
-        let dateString = try container.decode(String.self, forKey: .creationDate)
-        guard let date = ISO8601DateFormatter.sharedWithFractionalSeconds.date(from: dateString) else {
-            throw DecodingError.dataCorruptedError(
-                forKey: .creationDate,
-                in: container, debugDescription: "Invalid date format"
-            )
-        }
-        creationDate = date
-        
-        representatives = try container.decodeIfPresent([Candidate].self, forKey: .representatives) ?? []
-        memberCount = try container.decode(Int.self, forKey: .memberCount)
-        rules = try container.decode([Rule].self, forKey: .rules)
-        resources = try container.decode([Resource].self, forKey: .resources)
-        categories = try container.decode([String].self, forKey: .categories)
-        tags = try container.decode([String].self, forKey: .tags)
-        alliedCommunities = try container.decodeIfPresent([Community].self, forKey: .alliedCommunities) ?? []
-    }
-}
-
-struct GARBAGERule: Codable, Hashable {
-    let id: String
-    let title: String
-    let description: String
-    
-    func viewModel(index: Int) -> RuleViewModel {
-        .init(
-            title: title,
-            description: description,
-            index: index
-        )
     }
 }

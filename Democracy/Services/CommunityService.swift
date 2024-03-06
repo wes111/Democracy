@@ -35,8 +35,8 @@ final class CommunityServiceDefault: CommunityService {
             creatorId: userId,
             name: name,
             description: description,
-            rules: Array(userInput.rules).map { $0.toDTO() },
-            resources: userInput.resources.map { $0.toDTO() },
+            rules: Array(userInput.rules).map { $0.toCreationRequest() },
+            resources: userInput.resources.map { $0.toCreationRequest() },
             categories: Array(userInput.categories),
             tags: Array(userInput.tags)
         ))
