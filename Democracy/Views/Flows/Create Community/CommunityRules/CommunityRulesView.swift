@@ -58,8 +58,16 @@ private extension CommunityRulesView {
         }
     }
     
+    // TODO: There should be a better way to handle nil here...
     var addRuleSheet: some View {
-        AddRuleView(viewModel: viewModel.addRuleViewModel())
+        Group {
+            if let viewModel = viewModel.addRuleViewModel() {
+                AddRuleView(viewModel: viewModel)
+            } else {
+                EmptyView()
+            }
+        }
+        
     }
 }
 

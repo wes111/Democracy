@@ -9,7 +9,7 @@ import Foundation
 
 enum CreateCommunityAlert: AlertModelProtocol {
     case missingCategory, categoryAlreadyAdded, missingTag, tagAlreadyAdded, missingRule, ruleAlreadyAdded,
-         unableToEditResource, unableToEditRule
+         unableToEditResource, unableToEditRule, createCommunityFailed, missingName
     
     var title: String {
         switch self {
@@ -29,6 +29,10 @@ enum CreateCommunityAlert: AlertModelProtocol {
             "Resource Unavailable"
         case .unableToEditRule:
             "Rule Unavailable"
+        case .createCommunityFailed:
+            "Create Community Failed"
+        case .missingName:
+            "Missing Name"
         }
     }
     
@@ -50,6 +54,10 @@ enum CreateCommunityAlert: AlertModelProtocol {
             "The resource is not available to edit."
         case .unableToEditRule:
             "The rule is not available to edit."
+        case .createCommunityFailed:
+            "Try again later."
+        case .missingName:
+            "Community Name is missing."
         }
     }
 }

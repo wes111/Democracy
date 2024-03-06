@@ -56,14 +56,15 @@ protocol AppwriteService {
     
     // Post/Database Methods
     @discardableResult func submitNewPost(_ newPost: PostDTO) async throws -> Post
+    @discardableResult func submitCommunity(_ community: CommunityDTO) async throws -> Community
 }
 
 final class AppwriteServiceDefault: AppwriteService {
-    private let projectEndpoint = "http://192.168.86.67/v1"
+    private let projectEndpoint = "http://192.168.86.106/v1"
     private let projectID = "65466f560e77e46a903e"
-    
     private let databaseId = "65956325b9edac11832a"
     private let postCollectionId = "6595636e9fae941f4374"
+    private let communityCollectionId = "65980c47b96a51cbd280"
     
     private lazy var client: Client = {
         Client()
@@ -145,6 +146,17 @@ extension AppwriteServiceDefault {
         )
         return try Post(document.data.toDictionary())
     }
+    
+    func submitCommunity(_ community: CommunityDTO) async throws -> Community {
+        let document = try await databases.createDocument(
+            databaseId: databaseId,
+            collectionId: communityCollectionId,
+            documentId: community.name,
+            data: try community.toDictionary()
+        )
+        return try Community(document.data.toDictionary())
+    }
+    
 }
 
 // MARK: - Private Methods

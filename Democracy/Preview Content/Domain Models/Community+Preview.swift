@@ -10,14 +10,15 @@ import Foundation
 extension Community {
     static let preview = Community(
         id: UUID().uuidString,
+        creatorId: UUID().uuidString,
         name: "Test Community",
-        summary: """
+        description: """
                  Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah,
                  blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah,
                  blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community,
                  blah, blah, blah
                  """,
-        foundedDate: Date(),
+        creationDate: Date(),
         representatives: Candidate.representativePreviewArray,
         memberCount: 255,
         rules: Rule.previewArray,
@@ -112,14 +113,15 @@ extension Community {
             array.append(
                 Community(
                     id: UUID().uuidString,
+                    creatorId: UUID().uuidString,
                     name: "My Community \(index)",
-                    summary: """
+                    description: """
                              Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah,
                              blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah,
                              blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community,
                              blah, blah, blah
                              """,
-                    foundedDate: Community.preview.foundedDate,
+                    creationDate: Community.preview.creationDate,
                     representatives: Community.preview.representatives,
                     memberCount: 255,
                     rules: Community.preview.rules,
@@ -139,14 +141,15 @@ extension Community {
             array.append(
                 Community(
                     id: UUID().uuidString,
+                    creatorId: UUID().uuidString,
                     name: "Recommended Community \(index)",
-                    summary: """
+                    description: """
                              Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah,
                              blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah,
                              blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community,
                              blah, blah, blah
                              """,
-                    foundedDate: Community.preview.foundedDate,
+                    creationDate: Community.preview.creationDate,
                     representatives: Community.preview.representatives,
                     memberCount: 255,
                     rules: Community.preview.rules,
@@ -166,14 +169,15 @@ extension Community {
             array.append(
                 Community(
                     id: UUID().uuidString,
+                    creatorId: UUID().uuidString,
                     name: "Top Community \(index)",
-                    summary: """
+                    description: """
                              Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, 
                              blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah,
                              blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community,
                              blah, blah, blah
                              """,
-                    foundedDate: Community.preview.foundedDate,
+                    creationDate: Community.preview.creationDate,
                     representatives: Community.preview.representatives,
                     memberCount: 255,
                     rules: Community.preview.rules,

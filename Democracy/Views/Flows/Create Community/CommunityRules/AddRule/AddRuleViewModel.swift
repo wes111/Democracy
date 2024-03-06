@@ -14,17 +14,20 @@ final class AddRuleViewModel {
     var alertModel: NewAlertModel?
     
     let rules: [Rule]
+    let communityName: String
     let updateRulesAction: (Rule) -> Void
     let cancelEditingAction: () -> Void
     let editingRule: Rule?
     
     init(
         rules: [Rule],
+        communityName: String,
         updateRulesAction: @escaping (Rule) -> Void,
         cancelEditingAction: @escaping () -> Void,
         editingRule: Rule? = nil
     ) {
         self.rules = rules
+        self.communityName = communityName
         self.updateRulesAction = updateRulesAction
         self.cancelEditingAction = cancelEditingAction
         self.editingRule = editingRule
@@ -53,7 +56,8 @@ extension AddRuleViewModel {
         let rule = Rule(
             id: UUID().uuidString,
             title: title,
-            description: description
+            description: description,
+            communityId: communityName
         )
         
         if editingRule == nil {
@@ -76,7 +80,8 @@ extension AddRuleViewModel {
         let rule = Rule(
             id: editingRule?.id ?? UUID().uuidString,
             title: title,
-            description: description
+            description: description,
+            communityId: communityName
         )
         
         updateRulesAction(rule)

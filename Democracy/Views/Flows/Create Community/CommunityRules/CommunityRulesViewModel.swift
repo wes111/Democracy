@@ -60,9 +60,14 @@ extension CommunityRulesViewModel {
         rules = Array(userInput.rules)
     }
     
-    func addRuleViewModel() -> AddRuleViewModel {
-        AddRuleViewModel(
+    func addRuleViewModel() -> AddRuleViewModel? {
+        guard let communityName = userInput.name else {
+            alertModel = CreateCommunityAlert.missingName.toNewAlertModel()
+            return nil
+        }
+        return AddRuleViewModel(
             rules: rules,
+            communityName: communityName,
             updateRulesAction: newRuleAdded,
             cancelEditingAction: didCancelEditing,
             editingRule: editingRule

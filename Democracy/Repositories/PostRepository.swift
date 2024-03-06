@@ -12,7 +12,7 @@ protocol PostRepository {
     func submitPost(_ newPost: PostDTO) async throws
 }
 
-actor PostRepositoryDefault: PostRepository {
+final class PostRepositoryDefault: PostRepository {
     @Injected(\.appwriteService) private var appwriteService
     
     func submitPost(_ newPost: PostDTO) async throws {

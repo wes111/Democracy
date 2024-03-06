@@ -8,5 +8,5 @@
 import Foundation
 
 extension AddRuleViewModel {
-    static let preview = AddRuleViewModel(rules: [], updateRulesAction: {_ in }, cancelEditingAction: {})
+    static let preview = AddRuleViewModel(rules: [], communityName: "Community Name", updateRulesAction: {_ in }, cancelEditingAction: {})
 }

@@ -17,17 +17,20 @@ final class AddResourceViewModel {
     var alertModel: NewAlertModel?
     
     let resources: [Resource]
+    let communityName: String
     let updateResourcesAction: (Resource) -> Void
     let cancelEditingAction: () -> Void
     let editingResource: Resource?
     
     init(
         resources: [Resource],
+        communityName: String,
         updateResourcesAction: @escaping (Resource) -> Void,
         cancelEditingAction: @escaping () -> Void,
         editingResource: Resource? = nil
     ) {
         self.resources = resources
+        self.communityName = communityName
         self.updateResourcesAction = updateResourcesAction
         self.cancelEditingAction = cancelEditingAction
         self.editingResource = editingResource
@@ -57,8 +60,9 @@ extension AddResourceViewModel {
             id: UUID().uuidString,
             title: title,
             description: description,
-            url: url.isEmpty ? nil : URL(string: url),
-            category: category
+            link: url.isEmpty ? nil : URL(string: url),
+            category: category,
+            communityId: communityName
         )
         if editingResource == nil {
             return !resources.contains(where: { $0.title == resource.title })
@@ -97,8 +101,9 @@ extension AddResourceViewModel {
             id: editingResource?.id ?? UUID().uuidString,
             title: title,
             description: description,
-            url: url.isEmpty ? nil : URL(string: url),
-            category: category
+            link: url.isEmpty ? nil : URL(string: url),
+            category: category,
+            communityId: communityName
         )
         updateResourcesAction(resource)
     }
@@ -110,7 +115,7 @@ private extension AddResourceViewModel {
     func setupFields(using resource: Resource) {
         title = resource.title
         description = resource.description ?? ""
-        url = resource.url?.absoluteString ?? ""
+        url = resource.link?.absoluteString ?? ""
         category = resource.category
     }
 }

@@ -5,6 +5,7 @@
 //  Created by Wesley Luntsford on 1/24/24.
 //
 
+import Factory
 import Foundation
 
 @Observable
@@ -12,27 +13,18 @@ final class CommunityResourcesViewModel: FlowViewModel<CreateCommunityCoordinato
     
     var resources: [Resource] = []
     var isShowingAddResourceSheet = false
+    
     @ObservationIgnored var editingResource: Resource?
+    @ObservationIgnored @Injected(\.communityService) private var communityService
     
     let userInput: CreateCommunityInput
     let flowCase = CreateCommunityFlow.resources
+    let canPerformNextAction: Bool = true
+    var skipAction: (() -> Void)? = nil // Not skippable (can always perform next action).
     
     init(coordinator: CreateCommunityCoordinator, userInput: CreateCommunityInput) {
         self.userInput = userInput
         super.init(coordinator: coordinator)
-    }
-}
-
-// MARK: - Computed Properties
-extension CommunityResourcesViewModel {
-    var canPerformNextAction: Bool {
-        // Show "skip" button if resources is empty, otherwise show "next" button.
-        !resources.isEmpty
-    }
-    
-    @MainActor
-    var skipAction: (() -> Void)? {
-        nextButtonAction
     }
 }
 
@@ -53,19 +45,34 @@ extension CommunityResourcesViewModel {
     }
     
     @MainActor
-    func nextButtonAction() {
-        userInput.resources = resources
-        coordinator?.didSubmitResources(input: userInput)
+    func nextButtonAction() async {
+        guard canSubmit else {
+            return alertModel = NewAlertModel.genericAlert
+        }
+        
+        do {
+            userInput.resources = resources
+            try await communityService.submitCommunity(userInput: userInput)
+            coordinator?.didSubmitResources(input: userInput)
+        } catch {
+            print(error.localizedDescription)
+            alertModel = CreateCommunityAlert.createCommunityFailed.toNewAlertModel()
+        }
     }
     
     func onAppear() {
         resources = userInput.resources
     }
     
-    func addResourceViewModel() -> AddResourceViewModel {
-        AddResourceViewModel(
+    func addResourceViewModel() -> AddResourceViewModel? {
+        guard let communityName = userInput.name else {
+            alertModel = CreateCommunityAlert.missingName.toNewAlertModel()
+            return nil
+        }
+        return AddResourceViewModel(
             resources: resources,
-            updateResourcesAction: newResourceAdded, 
+            communityName: communityName,
+            updateResourcesAction: newResourceAdded,
             cancelEditingAction: didCancelEditing,
             editingResource: editingResource
         )

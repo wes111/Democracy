@@ -57,8 +57,16 @@ private extension CommunityResourcesView {
         .buttonStyle(SeconaryButtonStyle())
     }
     
+    // TODO: Should be a better way to handle nil here
     var addResourceSheet: some View {
-        AddResourceView(viewModel: viewModel.addResourceViewModel())
+        Group {
+            if let viewModel = viewModel.addResourceViewModel() {
+                AddResourceView(viewModel: viewModel)
+            } else {
+                EmptyView()
+            }
+        }
+        
     }
 }
 

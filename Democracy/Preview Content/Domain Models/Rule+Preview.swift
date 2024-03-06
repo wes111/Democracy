@@ -16,7 +16,8 @@ extension Rule {
                          You're not being clever by blocking mods or admins, we can still find
                          you through the look up member function, or ask another mod to block
                          you for us. Blocking modmins results in an immediate ban.
-                         """
+                         """,
+            communityId: UUID().uuidString
         ),
         .init(
             id: UUID().uuidString,
@@ -25,7 +26,8 @@ extension Rule {
                          You're not being clever by blocking mods or admins, we can still find
                          you through the look up member function, or ask another mod to block
                          you for us. Blocking modmins results in an immediate ban.
-                         """
+                         """,
+            communityId: UUID().uuidString
         ),
         .init(
             id: UUID().uuidString,
@@ -34,7 +36,8 @@ extension Rule {
                          You're not being clever by blocking mods or admins, we can still find
                          you through the look up member function, or ask another mod to block
                          you for us. Blocking modmins results in an immediate ban.
-                         """
+                         """,
+            communityId: UUID().uuidString
         ),
         .init(
             id: UUID().uuidString,
@@ -43,7 +46,8 @@ extension Rule {
                          You're not being clever by blocking mods or admins, we can still find
                          you through the look up member function, or ask another mod to block
                          you for us. Blocking modmins results in an immediate ban.
-                         """
+                         """,
+            communityId: UUID().uuidString
         ),
         .init(
             id: UUID().uuidString,
@@ -52,7 +56,8 @@ extension Rule {
                          You're not being clever by blocking mods or admins, we can still find
                          you through the look up member function, or ask another mod to block
                          you for us. Blocking modmins results in an immediate ban.
-                         """
+                         """,
+            communityId: UUID().uuidString
         ),
         .init(
             id: UUID().uuidString,
@@ -61,7 +66,8 @@ extension Rule {
                          You're not being clever by blocking mods or admins, we can still find
                          you through the look up member function, or ask another mod to block
                          you for us. Blocking modmins results in an immediate ban.
-                         """
+                         """,
+            communityId: UUID().uuidString
         ),
         .init(
             id: UUID().uuidString,
@@ -70,7 +76,8 @@ extension Rule {
                          You're not being clever by blocking mods or admins, we can still find
                          you through the look up member function, or ask another mod to block
                          you for us. Blocking modmins results in an immediate ban.
-                         """
+                         """,
+            communityId: UUID().uuidString
         ),
         .init(
             id: UUID().uuidString,
@@ -79,7 +86,8 @@ extension Rule {
                          You're not being clever by blocking mods or admins, we can still find
                          you through the look up member function, or ask another mod to block
                          you for us. Blocking modmins results in an immediate ban.
-                         """
-        ),
+                         """,
+            communityId: UUID().uuidString
+        )
     ]
 }
