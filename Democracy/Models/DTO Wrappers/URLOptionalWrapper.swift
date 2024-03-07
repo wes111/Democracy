@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct URLWrapper: Decodable {
+struct URLOptionalWrapper: Decodable {
     let url: URL?
 
     init(from decoder: Decoder) throws {

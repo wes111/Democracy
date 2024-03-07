@@ -82,46 +82,18 @@ struct CommunityDTO: Decodable {
     }
 }
 
-// Domain Object.
+// The domain model.
 struct Community: Hashable, Identifiable {
     let id: String
     let creatorId: String
     let name: String
     let description: String
     let creationDate: Date
-    var representatives: [Candidate] // TODO: Add as attribute in Appwrite Database.
+    var representatives: [Candidate]
     let memberCount: Int
     var rules: [Rule]
     var resources: [Resource]
     var categories: [String]
     var tags: [String]
-    var alliedCommunities: [Community] // TODO: Add as attribute in Appwrite Database.
-    
-    init(
-        id: String,
-        creatorId: String,
-        name: String,
-        description: String,
-        creationDate: Date,
-        representatives: [Candidate],
-        memberCount: Int,
-        rules: [Rule],
-        resources: [Resource],
-        categories: [String],
-        tags: [String],
-        alliedCommunities: [Community]
-    ) {
-        self.id = id
-        self.creatorId = creatorId
-        self.name = name
-        self.description = description
-        self.creationDate = creationDate
-        self.representatives = representatives
-        self.memberCount = memberCount
-        self.rules = rules
-        self.resources = resources
-        self.categories = categories
-        self.tags = tags
-        self.alliedCommunities = alliedCommunities
-    }
+    var alliedCommunities: [Community]
 }

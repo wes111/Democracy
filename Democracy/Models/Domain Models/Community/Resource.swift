@@ -12,7 +12,7 @@ struct ResourceDTO: Decodable {
     let id: String
     let title: String
     let description: String?
-    let link: URLWrapper
+    let link: URLOptionalWrapper
     let category: ResourceCategory
     let communityId: String
     

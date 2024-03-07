@@ -55,7 +55,7 @@ protocol AppwriteService {
     func getEmailAvailable(_ email: String) async throws -> Bool
     
     // Post/Database Methods
-    @discardableResult func submitNewPost(_ newPost: PostDTO) async throws -> Post
+    @discardableResult func submitNewPost(_ newPost: PostCreationRequest) async throws -> Post
     @discardableResult func submitCommunity(_ community: CommunityCreationRequest) async throws -> Community
 }
 
@@ -137,14 +137,14 @@ extension AppwriteServiceDefault {
 // MARK: - Post/Database Methods
 extension AppwriteServiceDefault {
     
-    @discardableResult func submitNewPost(_ newPost: PostDTO) async throws -> Post {
+    @discardableResult func submitNewPost(_ newPost: PostCreationRequest) async throws -> Post {
         let document = try await databases.createDocument(
             databaseId: databaseId,
             collectionId: postCollectionId,
             documentId: ID.unique(),
             data: try newPost.toDictionary()
         )
-        return try Post(document.data.toDictionary())
+        return try PostDTO(document.data.toDictionary()).toPost()
     }
     
     func submitCommunity(_ community: CommunityCreationRequest) async throws -> Community {
