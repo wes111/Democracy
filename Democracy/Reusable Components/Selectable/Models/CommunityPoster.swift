@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CommunityPoster: Selectable {
+enum CommunityPoster: String, Codable, Selectable {
     case all, leadership, experts
     
     static let metaTitle = "Allowed Posters"

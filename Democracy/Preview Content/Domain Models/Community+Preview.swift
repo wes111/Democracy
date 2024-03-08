@@ -104,7 +104,13 @@ extension Community {
             "Hannah Montana",
             "Sun Glasses"
         ],
-        alliedCommunities: []
+        alliedCommunities: [],
+        governmentType: .autocracy,
+        contentType: .adultContent,
+        visibilityType: .member,
+        allowedPosterType: .experts,
+        allowedCommenterType: .experts,
+        postApprovalType: .automatic
     )
     
     static var myCommunitiesPreviewArray: [Community] {
@@ -129,7 +135,13 @@ extension Community {
                     categories: ["Racing", "Sports", "Weather",
                                  "Dog Grooming", "Vampires", "Fruit & Veggies"],
                     tags: [],
-                    alliedCommunities: []
+                    alliedCommunities: [],
+                    governmentType: .autocracy,
+                    contentType: .adultContent,
+                    visibilityType: .member,
+                    allowedPosterType: .experts,
+                    allowedCommenterType: .experts,
+                    postApprovalType: .automatic
                 ))
         }
         return array
@@ -157,7 +169,13 @@ extension Community {
                     categories: ["Racing", "Sports", "Weather",
                                  "Dog Grooming", "Vampires", "Fruit & Veggies"],
                     tags: [],
-                    alliedCommunities: []
+                    alliedCommunities: [],
+                    governmentType: .autocracy,
+                    contentType: .adultContent,
+                    visibilityType: .member,
+                    allowedPosterType: .experts,
+                    allowedCommenterType: .experts,
+                    postApprovalType: .automatic
                 ))
         }
         return array
@@ -184,7 +202,13 @@ extension Community {
                     resources: Community.preview.resources,
                     categories: ["Racing", "Sports", "Weather", "Dog Grooming", "Vampires", "Fruit & Veggies"],
                     tags: [],
-                    alliedCommunities: []
+                    alliedCommunities: [],
+                    governmentType: .autocracy,
+                    contentType: .adultContent,
+                    visibilityType: .member,
+                    allowedPosterType: .experts,
+                    allowedCommenterType: .experts,
+                    postApprovalType: .automatic
                 ))
         }
         return array

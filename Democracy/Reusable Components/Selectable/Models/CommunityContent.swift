@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CommunityContent: Selectable {
+enum CommunityContent: String, Codable, Selectable {
     
     case familyFriendly, adultContent
     

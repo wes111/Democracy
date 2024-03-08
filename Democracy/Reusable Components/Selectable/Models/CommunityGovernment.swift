@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CommunityGovernment: Selectable {
+enum CommunityGovernment: String, Codable, Selectable {
     case autocracy, democracy
     
     static let metaTitle: String = "Government Type"

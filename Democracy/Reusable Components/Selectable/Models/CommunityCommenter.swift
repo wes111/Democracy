@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CommunityCommenter: Selectable {
+enum CommunityCommenter: String, Codable, Selectable {
     case all, leadership, experts
     
     static let metaTitle = "Allowed Commenters"

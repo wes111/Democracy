@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CommunityPostApproval: Selectable {
+enum CommunityPostApproval: String, Codable, Selectable {
     case automatic, mod
     
     static let metaTitle = "Post Approval Process"

@@ -30,7 +30,7 @@ final class CommunityServiceDefault: CommunityService {
         else {
             throw CommunityServiceError.invalidUserInput
         }
-        // TODO: ...
+        
         try await communityRepository.submitCommunity(.init(
             creatorId: userId,
             name: name,
@@ -38,7 +38,13 @@ final class CommunityServiceDefault: CommunityService {
             rules: Array(userInput.rules).map { $0.toCreationRequest() },
             resources: userInput.resources.map { $0.toCreationRequest() },
             categories: Array(userInput.categories),
-            tags: Array(userInput.tags)
+            tags: Array(userInput.tags),
+            governmentType: userInput.settings.government,
+            contentType: userInput.settings.content,
+            visibilityType: userInput.settings.visibility,
+            allowedPosterType: userInput.settings.poster,
+            allowedCommenterType: userInput.settings.commenter,
+            postApprovalType: userInput.settings.postApproval
         ))
         
     }

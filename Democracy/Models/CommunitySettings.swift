@@ -8,6 +8,12 @@
 import Foundation
 
 struct CommunitySettings {
+    var government: CommunityGovernment
+    var content: CommunityContent
+    var visibility: CommunityVisibility
+    var poster: CommunityPoster
+    var commenter: CommunityCommenter
+    var postApproval: CommunityPostApproval
     
     init(
         government: CommunityGovernment = .autocracy,
@@ -24,11 +30,4 @@ struct CommunitySettings {
         self.commenter = commenter
         self.postApproval = postApproval
     }
-    
-    var government: CommunityGovernment
-    var content: CommunityContent
-    var visibility: CommunityVisibility
-    var poster: CommunityPoster
-    var commenter: CommunityCommenter
-    var postApproval: CommunityPostApproval
 }

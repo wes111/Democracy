@@ -32,8 +32,18 @@ struct CommunityCreationRequest: Encodable {
     let categories: [String]
     let tags: [String]
     
+    // Settings:
+    var governmentType: CommunityGovernment
+    var contentType: CommunityContent
+    var visibilityType: CommunityVisibility
+    var allowedPosterType: CommunityPoster
+    var allowedCommenterType: CommunityCommenter
+    var postApprovalType: CommunityPostApproval
+    
     enum CodingKeys: String, CodingKey {
-        case creatorId, name, description, categories, tags
+        case creatorId, name, description, categories, tags, governmentType, contentType, visibilityType,
+             allowedPosterType, allowedCommenterType, postApprovalType
+        
         case rules = "rule"
         case resources = "resource"
     }
@@ -54,9 +64,18 @@ struct CommunityDTO: Decodable {
     var tags: [String]
     var alliedCommunities: [CommunityDTO]? // TODO: Add as attribute in Appwrite Database.
     
+    // Settings:
+    var governmentType: CommunityGovernment
+    var contentType: CommunityContent
+    var visibilityType: CommunityVisibility
+    var allowedPosterType: CommunityPoster
+    var allowedCommenterType: CommunityCommenter
+    var postApprovalType: CommunityPostApproval
+    
     enum CodingKeys: String, CodingKey {
         case creatorId, name, description, representatives, memberCount, categories, tags,
-             alliedCommunities
+             alliedCommunities, governmentType, contentType, visibilityType, allowedPosterType,
+             allowedCommenterType, postApprovalType
         
         case id = "$id"
         case rules = "rule"
@@ -77,13 +96,19 @@ struct CommunityDTO: Decodable {
             resources: resources.map { $0.toResource() },
             categories: categories,
             tags: tags,
-            alliedCommunities: alliedCommunities?.compactMap { $0.toCommunity() } ?? []
+            alliedCommunities: alliedCommunities?.compactMap { $0.toCommunity() } ?? [],
+            governmentType: governmentType,
+            contentType: contentType,
+            visibilityType: visibilityType,
+            allowedPosterType: allowedPosterType,
+            allowedCommenterType: allowedCommenterType,
+            postApprovalType: postApprovalType
         )
     }
 }
 
 // The domain model.
-struct Community: Hashable, Identifiable {
+struct Community: Identifiable, Hashable {
     let id: String
     let creatorId: String
     let name: String
@@ -96,4 +121,12 @@ struct Community: Hashable, Identifiable {
     var categories: [String]
     var tags: [String]
     var alliedCommunities: [Community]
+    
+    // Settings:
+    var governmentType: CommunityGovernment
+    var contentType: CommunityContent
+    var visibilityType: CommunityVisibility
+    var allowedPosterType: CommunityPoster
+    var allowedCommenterType: CommunityCommenter
+    var postApprovalType: CommunityPostApproval
 }

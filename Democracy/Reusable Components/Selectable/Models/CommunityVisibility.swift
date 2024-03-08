@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CommunityVisibility: Selectable {
+enum CommunityVisibility: String, Codable, Selectable {
     case all, member
     
     static let metaTitle = "Community Visibility"

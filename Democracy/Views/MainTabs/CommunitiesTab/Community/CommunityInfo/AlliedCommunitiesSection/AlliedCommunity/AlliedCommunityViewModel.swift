@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AlliedCommunityViewModel: Identifiable, Hashable {
+struct AlliedCommunityViewModel: Identifiable {
     
     private let community: Community
     let id = UUID().uuidString
