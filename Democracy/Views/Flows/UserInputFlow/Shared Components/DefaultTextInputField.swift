@@ -39,7 +39,7 @@ struct DefaultTextInputField<Requirement: InputRequirement, Style: TextFieldStyl
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: CreateCommunityFlow?
+    @FocusState var focusedField: CommunityFlow.ID?
     
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
@@ -49,7 +49,7 @@ struct DefaultTextInputField<Requirement: InputRequirement, Style: TextFieldStyl
             textFieldStyle: TitleTextFieldStyle(
                 title: .constant("Community Title"),
                 focusedField: $focusedField,
-                field: CreateCommunityFlow.name
+                field: .name
             ),
             fieldTitle: "Field Title",
             requirementType: EmailRequirement.self

@@ -9,40 +9,32 @@ import Foundation
 
 // A viewModel for Views that are part of a user input flow.
 // User input can be text, selection, etc.
-protocol InputFlowViewModel: Hashable, Observable, AnyObject {
-    associatedtype Flow: InputFlow
+protocol InputFlowViewModel: Observable, AnyObject {
+    associatedtype Flow: UserInputFlow
     
-    var flowCase: Flow { get }
-    var isShowingProgress: Bool { get set }
-    var trailingButtons: [OnboardingTopButton] { get }
+    var flowPath: Flow? { get }
     var leadingButtons: [OnboardingTopButton] { get }
-    var alertModel: NewAlertModel? { get set }
-    @MainActor var skipAction: (() -> Void)? { get }
-    
-    // In most cases, 'submit' and 'nextButtonAction' will be the same.
-    // Override the 'submit' function if it should have different behavior.
-    // See 'CommunityTagsView' as an example for when behavior should differ.
-    var canSubmit: Bool { get }
-    func submit() async
-    
-    var canPerformNextAction: Bool { get }
-    func nextButtonAction() async
+    var trailingButtons: [OnboardingTopButton] { get }
+    var totalProgress: Int { get }
+    var currentProgress: Int { get }
+    var viewTitle: String { get }
+    var viewSubtitle: String { get }
 }
 
 extension InputFlowViewModel {
-    func submit() async {
-        await nextButtonAction()
+    var currentProgress: Int {
+        flowPath?.progress ?? 0
     }
     
-    var canSubmit: Bool {
-        canPerformNextAction
+    var viewTitle: String {
+        flowPath?.title ?? ""
     }
     
-    var title: String {
-        flowCase.title
+    var viewSubtitle: String {
+        flowPath?.subtitle ?? ""
     }
     
-    var subtitle: String {
-        flowCase.subtitle
+    var totalProgress: Int {
+        Flow.ID.allCases.count
     }
 }

@@ -58,7 +58,7 @@ enum PhoneFormatter {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: CreateAccountFlow?
+    @FocusState var focusedField: AccountFlow.ID?
     
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
@@ -69,7 +69,7 @@ enum PhoneFormatter {
         .textFieldStyle(PhoneTextFieldStyle(
             phone: .constant("123-456-7890"),
             focusedField: $focusedField,
-            field: CreateAccountFlow.phone
+            field: .phone
         ))
     }
 }

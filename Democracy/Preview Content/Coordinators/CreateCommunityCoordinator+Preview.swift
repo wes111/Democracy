@@ -7,6 +7,6 @@
 
 import Foundation
 
-extension CreateCommunityCoordinator {
-    static let preview: CreateCommunityCoordinator = .init(parentCoordinator: CommunitiesTabCoordinator.preview)
+extension SubmitCommunityCoordinator {
+    static let preview: SubmitCommunityCoordinator = .init(parentCoordinator: CommunitiesTabCoordinator.preview)
 }

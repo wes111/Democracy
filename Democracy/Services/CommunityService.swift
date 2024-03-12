@@ -14,14 +14,14 @@ enum CommunityServiceError: Error {
 }
 
 protocol CommunityService {
-    func submitCommunity(userInput: CreateCommunityInput) async throws
+    func submitCommunity(userInput: SubmitCommunityInput) async throws
 }
 
 final class CommunityServiceDefault: CommunityService {
     @Injected(\.communityRepository) private var communityRepository
     @Injected(\.userRepository) private var userRepository
     
-    func submitCommunity(userInput: CreateCommunityInput) async throws {
+    func submitCommunity(userInput: SubmitCommunityInput) async throws {
         guard let userId = await userRepository.currentValue?.id else {
             throw CommunityServiceError.userAccountMissing
         }

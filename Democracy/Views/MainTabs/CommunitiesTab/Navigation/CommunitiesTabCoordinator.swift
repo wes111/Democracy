@@ -42,7 +42,7 @@ extension CommunitiesTabCoordinator: CommunitiesTabMainCoordinatorDelegate {
     }
 }
 
-extension CommunitiesTabCoordinator: CreateCommunityCoordinatorParent {
+extension CommunitiesTabCoordinator: SubmitCommunityCoordinatorParent {
     func dismiss() {
         isShowingCreateCommunityView = false
     }

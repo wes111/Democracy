@@ -45,7 +45,7 @@ struct TitleTextFieldStyle<Field: Hashable>: TextFieldStyle {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: SubmitPostFlow?
+    @FocusState var focusedField: PostFlow.ID?
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
@@ -55,7 +55,7 @@ struct TitleTextFieldStyle<Field: Hashable>: TextFieldStyle {
         .textFieldStyle(TitleTextFieldStyle(
             title: .constant("Title"),
             focusedField: $focusedField,
-            field: SubmitPostFlow.title
+            field: .title
         ))
         .padding()
     }

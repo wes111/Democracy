@@ -26,7 +26,7 @@ struct LinkTextFieldStyle<Field: Hashable>: TextFieldStyle {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: SubmitPostFlow?
+    @FocusState var focusedField: PostFlow.ID?
     
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
@@ -37,7 +37,7 @@ struct LinkTextFieldStyle<Field: Hashable>: TextFieldStyle {
         .textFieldStyle(LinkTextFieldStyle(
             link: .constant("Link"),
             focusedField: $focusedField,
-            field: SubmitPostFlow.primaryLink
+            field: .primaryLink
         ))
         .padding()
     }

@@ -28,7 +28,8 @@ struct EmailTextFieldStyle<Field: Hashable>: TextFieldStyle {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: CreateAccountFlow?
+    @FocusState var focusedField: AccountFlow.ID?
+    
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
@@ -38,7 +39,7 @@ struct EmailTextFieldStyle<Field: Hashable>: TextFieldStyle {
         .textFieldStyle(EmailTextFieldStyle(
             email: .constant("Email"),
             focusedField: $focusedField,
-            field: CreateAccountFlow.email
+            field: .email
         ))
     }
 }

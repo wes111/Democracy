@@ -27,7 +27,8 @@ struct UsernameTextFieldStyle<Field: Hashable>: TextFieldStyle {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: CreateAccountFlow?
+    @FocusState var focusedField: AccountFlow.ID?
+    
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
@@ -37,7 +38,7 @@ struct UsernameTextFieldStyle<Field: Hashable>: TextFieldStyle {
         .textFieldStyle(UsernameTextFieldStyle(
             username: .constant("Username"),
             focusedField: $focusedField,
-            field: CreateAccountFlow.username
+            field: .username
         ))
     }
 }

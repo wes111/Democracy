@@ -53,7 +53,7 @@ extension View {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: CreateAccountFlow?
+    @FocusState var focusedField: AccountFlow.ID?
     
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
@@ -62,7 +62,8 @@ extension View {
             .textFieldStyle(EmailTextFieldStyle(
                 email: .constant("Hello World"),
                 focusedField: $focusedField,
-                field: CreateAccountFlow.email)
+                field: .email
+            )
             )
             .requirements(
                 text: .constant("Hello World!"),

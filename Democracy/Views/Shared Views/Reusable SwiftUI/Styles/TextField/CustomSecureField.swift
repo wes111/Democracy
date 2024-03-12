@@ -128,7 +128,7 @@ private extension CustomSecureField {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: CreateAccountFlow?
+    @FocusState var focusedField: AccountFlow.ID?
     
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
@@ -136,7 +136,7 @@ private extension CustomSecureField {
             secureText: .constant("Hello World"),
             loginField: $focusedField,
             isNewPassword: false,
-            field: CreateAccountFlow.password
+            field: .password
         )
         .padding()
     }

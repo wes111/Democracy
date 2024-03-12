@@ -27,7 +27,7 @@ struct CommunitiesTabCoordinatorView: View {
         //                SubmitPostCoordinatorView(coordinator: .init(parentCoordinator: coordinator))
         //            }
         .popover(isPresented: $coordinator.isShowingCreateCommunityView) {
-            CreateCommunityCoordinatorView(coordinator: .init(parentCoordinator: coordinator))
+            SubmitCommunityCoordinatorView(coordinator: .init(parentCoordinator: coordinator))
         }
     }
     

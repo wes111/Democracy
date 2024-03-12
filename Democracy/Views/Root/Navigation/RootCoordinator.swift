@@ -17,7 +17,7 @@ final class RootCoordinator {
     
     let mainTabViewModel = MainTabViewModel()
     
-    func onboardingCoordinator() -> OnboardingCoordinator {
+    func createAccountCoordinator() -> CreateAccountCoordinator {
         .init(parentCoordinator: self)
     }
     
@@ -38,7 +38,7 @@ extension RootCoordinator: LoginCoordinatorDelegate {
     }
 }
 
-extension RootCoordinator: OnboardingCoordinatorParent {
+extension RootCoordinator: CreateAccountCoordinatorParent {
     func dismiss() {
         isShowingOnboardingFlow = false
     }
