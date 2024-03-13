@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class CommunityCategoriesViewModel: SubmittableMultiTextInputViewModel {
     typealias Requirement = DefaultRequirement
     typealias FocusedField = CommunityFlow.ID

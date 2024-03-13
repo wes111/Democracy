@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct PostTitleView<ViewModel: PostTitleViewModel>: View {
     @Bindable var viewModel: ViewModel
     @FocusState private var focusedField: ViewModel.FocusedField?

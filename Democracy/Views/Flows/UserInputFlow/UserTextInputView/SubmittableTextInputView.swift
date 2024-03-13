@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct SubmittableTextInputView<ViewModel: SubmittableTextInputViewModel, Content: View>: View {
     @Bindable var viewModel: ViewModel
     @ViewBuilder let content: Content

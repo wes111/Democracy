@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 final class CreateCommunitySuccessViewModel: SuccessViewModel, Hashable {
     
     let secondaryText: String = "The community was created successfully!"

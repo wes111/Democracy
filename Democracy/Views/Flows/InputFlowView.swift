@@ -8,6 +8,7 @@
 import SwiftUI
 
 // Generic. Shows an entire InputFlow, e.g. CreateCommunity, CreatePost, etc.
+@MainActor
 struct InputFlowView<ViewModel: InputFlowViewModel, FlowContent: View>: View {
     @Bindable var viewModel: ViewModel
     @ViewBuilder let content: FlowContent

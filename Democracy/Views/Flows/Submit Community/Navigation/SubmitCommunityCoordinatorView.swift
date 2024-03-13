@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct SubmitCommunityCoordinatorView: View {
     @State private var coordinator: SubmitCommunityCoordinator
     

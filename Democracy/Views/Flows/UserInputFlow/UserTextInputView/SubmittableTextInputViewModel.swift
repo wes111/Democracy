@@ -8,11 +8,13 @@
 import Factory
 import Foundation
 
+@MainActor
 protocol SubmittableMultiTextInputViewModel: SubmittableTextInputViewModel {
     var canSubmit: Bool { get }
     func submit() async
 }
 
+@MainActor
 protocol SubmittableTextInputViewModel: SubmittableNextButtonViewModel {
     associatedtype Requirement: InputRequirement
     associatedtype FocusedField: Hashable
@@ -22,7 +24,7 @@ protocol SubmittableTextInputViewModel: SubmittableNextButtonViewModel {
     var maxCharacterCount: Int { get }
     var alertModel: NewAlertModel? { get set }
     
-    @MainActor func presentGenericAlert()
+    func presentGenericAlert()
 }
 
 extension SubmittableTextInputViewModel {

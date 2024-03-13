@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct CommunitySettingsView: View {
     @Bindable var viewModel: CommunitySettingsViewModel
     

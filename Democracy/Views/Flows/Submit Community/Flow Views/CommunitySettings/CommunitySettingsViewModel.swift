@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class CommunitySettingsViewModel: SubmittableNextButtonViewModel {
     var settings: CommunitySettings
     var selectedSetting: CommunitySetting?

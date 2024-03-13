@@ -11,6 +11,7 @@ enum PostBodyTab: String, CaseIterable, Equatable {
     case editor, preview
 }
 
+@MainActor
 protocol SubmittableTextEditorInputViewModel: SubmittableTextInputViewModel {
     var selectedTab: PostBodyTab { get set }
     var markdown: AttributedString { get }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct PostInputFlowView: View {
     @Bindable var viewModel: PostInputFlowViewModel
     

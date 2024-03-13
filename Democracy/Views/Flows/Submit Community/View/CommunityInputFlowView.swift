@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct CommunityInputFlowView: View {
     @Bindable var viewModel: CommunityInputFlowViewModel
     
@@ -26,7 +27,7 @@ struct CommunityInputFlowView: View {
 
 // MARK: - Subviews
 private extension CommunityInputFlowView {
-    @ViewBuilder @MainActor
+    @ViewBuilder
     var flowScren: some View {
         switch viewModel.flowPath {
         case .name(let viewModel):

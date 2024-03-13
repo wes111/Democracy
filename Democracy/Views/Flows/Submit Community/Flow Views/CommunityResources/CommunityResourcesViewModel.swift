@@ -8,23 +8,7 @@
 import Factory
 import Foundation
 
-//@Observable
-//final class CommunityRulesViewModel: SubmittableNextButtonViewModel {
-//    var rules: [Rule] = []
-//    var isShowingAddRuleSheet = false
-//    @ObservationIgnored var editingRule: Rule?
-//    var alertModel: NewAlertModel?
-//    var isShowingProgress: Bool = false
-//    private let submitCommunityInput: SubmitCommunityInput
-//    private weak var flowCoordinator: SubmitCommunityFlowCoordinator?
-//    
-//    init(submitCommunityInput: SubmitCommunityInput, flowCoordinator: SubmitCommunityFlowCoordinator?) {
-//        self.submitCommunityInput = submitCommunityInput
-//        self.flowCoordinator = flowCoordinator
-//    }
-//}
-
-@Observable
+@MainActor @Observable
 final class CommunityResourcesViewModel: SubmittableNextButtonViewModel {
     var resources: [Resource] = []
     var isShowingAddResourceSheet = false

@@ -7,12 +7,13 @@
 
 import Foundation
 
+@MainActor
 protocol SubmitCommunityFlowCoordinator: AnyObject {
-    @MainActor func didSubmit(flow: CommunityFlow.ID)
+    func didSubmit(flow: CommunityFlow.ID)
 }
 
 // The InputFlowViewModel for creating new Community objects.
-@Observable
+@MainActor @Observable
 final class CommunityInputFlowViewModel: InputFlowViewModel, SubmitCommunityFlowCoordinator {
     var flowPath: CommunityFlow?
     private let input = SubmitCommunityInput()

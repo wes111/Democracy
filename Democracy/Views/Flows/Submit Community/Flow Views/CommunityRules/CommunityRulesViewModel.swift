@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class CommunityRulesViewModel: SubmittableNextButtonViewModel {
     var rules: [Rule] = []
     var isShowingAddRuleSheet = false

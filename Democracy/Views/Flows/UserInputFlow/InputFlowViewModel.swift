@@ -9,6 +9,7 @@ import Foundation
 
 // A viewModel for Views that are part of a user input flow.
 // User input can be text, selection, etc.
+@MainActor
 protocol InputFlowViewModel: Observable, AnyObject {
     associatedtype Flow: UserInputFlow
     
