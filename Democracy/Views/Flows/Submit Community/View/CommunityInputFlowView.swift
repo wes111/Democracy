@@ -18,6 +18,9 @@ struct CommunityInputFlowView: View {
         InputFlowView(viewModel: viewModel) {
             flowScren
         }
+        .onAppear {
+            viewModel.onAppear()
+        }
     }
 }
 

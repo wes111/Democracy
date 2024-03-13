@@ -22,6 +22,10 @@ final class CommunityInputFlowViewModel: InputFlowViewModel, SubmitCommunityFlow
         self.coordinator = coordinator
     }
     
+    func onAppear() {
+        flowPath = .name(.init(submitCommunityInput: input, flowCoordinator: self))
+    }
+    
     @MainActor
     func didSubmit(flow: CommunityFlow.ID) {
         switch flow {
