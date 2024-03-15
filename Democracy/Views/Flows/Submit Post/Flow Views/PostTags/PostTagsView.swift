@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct PostTagsView: View {
     @Bindable var viewModel: PostTagsViewModel
     

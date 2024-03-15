@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 protocol SubmittableNextButtonViewModel: Observable, AnyObject {
     var isShowingProgress: Bool { get set }
     var canPerformNextAction: Bool { get }
@@ -15,6 +16,7 @@ protocol SubmittableNextButtonViewModel: Observable, AnyObject {
 }
 
 // A NextButton to be used as part of a user input flow.
+@MainActor
 struct SubmittableNextButton<ViewModel: SubmittableNextButtonViewModel>: View {
     @Bindable var viewModel: ViewModel
     
@@ -22,7 +24,6 @@ struct SubmittableNextButton<ViewModel: SubmittableNextButtonViewModel>: View {
         NextButton(
             isShowingProgress: $viewModel.isShowingProgress,
             nextAction: {
-                //await additionalSubmitAction()
                 await viewModel.nextButtonAction()
             },
             isDisabled: !viewModel.canPerformNextAction
@@ -30,9 +31,10 @@ struct SubmittableNextButton<ViewModel: SubmittableNextButtonViewModel>: View {
     }
 }
 
+@MainActor
 struct NextButton: View {
     @Binding var isShowingProgress: Bool
-    var nextAction: () async -> Void
+    var nextAction: @MainActor () async -> Void
     var isDisabled: Bool
     
     var body: some View {

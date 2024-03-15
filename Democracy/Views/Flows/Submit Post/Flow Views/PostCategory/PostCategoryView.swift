@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct PostCategoryView: View {
     @Bindable var viewModel: PostCategoryViewModel
     

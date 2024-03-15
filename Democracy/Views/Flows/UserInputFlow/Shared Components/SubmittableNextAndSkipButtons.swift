@@ -7,10 +7,12 @@
 
 import SwiftUI
 
+@MainActor
 protocol SubmittableSkipableViewModel: SubmittableNextButtonViewModel {
-    @MainActor var skipAction: () -> Void { get }
+    var skipAction: () -> Void { get }
 }
 
+@MainActor
 struct SubmittableNextAndSkipButtons<ViewModel: SubmittableSkipableViewModel>: View {
     @Bindable var viewModel: ViewModel
     
