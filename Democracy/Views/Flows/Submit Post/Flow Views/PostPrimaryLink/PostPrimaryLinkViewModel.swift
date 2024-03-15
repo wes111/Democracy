@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class PostPrimaryLinkViewModel: SubmittableSkipableViewModel, SubmittableTextInputViewModel {
     typealias Requirement = LinkRequirement
     typealias FocusedField = PostFlow.ID
@@ -30,7 +30,7 @@ final class PostPrimaryLinkViewModel: SubmittableSkipableViewModel, SubmittableT
 
 // MARK: - Methods
 extension PostPrimaryLinkViewModel {
-    @MainActor
+
     func nextButtonAction() async {
         guard Requirement.fullyValid(input: text) else {
             return alertModel = Requirement.invalidAlert
@@ -42,6 +42,7 @@ extension PostPrimaryLinkViewModel {
             return alertModel = SubmitPostAlert.failedFetchingLinkMetadata.toNewAlertModel()
         }
         submitPostInput.primaryLink = text
+        try? await Task.sleep(nanoseconds: 150_000)
         flowCoordinator?.didSubmit(flow: .primaryLink)
     }
     
@@ -68,7 +69,6 @@ private extension PostPrimaryLinkViewModel {
         _ = try await richLinkService.getMetadata(for: url)
     }
     
-    @MainActor
     func skip() {
         submitPostInput.primaryLink = nil
         flowCoordinator?.didSubmit(flow: .primaryLink)

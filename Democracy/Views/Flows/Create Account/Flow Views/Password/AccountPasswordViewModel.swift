@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class AccountPasswordViewModel: SubmittableTextInputViewModel {
     typealias Requirement = PasswordRequirement
     typealias FocusedField = AccountFlow.ID
@@ -30,12 +30,12 @@ final class AccountPasswordViewModel: SubmittableTextInputViewModel {
 // MARK: - Methods
 extension AccountPasswordViewModel {
     
-    @MainActor
     func nextButtonAction() async {
         guard Requirement.fullyValid(input: text) else {
             return alertModel = Requirement.invalidAlert
         }
         createAccountInput.password = text
+        try? await Task.sleep(nanoseconds: 150_000)
         flowCoordinator?.didSubmit(flow: .password)
     }
     

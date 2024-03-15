@@ -47,12 +47,12 @@ extension CommunityRulesViewModel {
         isShowingAddRuleSheet = true
     }
     
-    @MainActor
-    func nextButtonAction() {
+    func nextButtonAction() async {
         guard !rules.isEmpty else {
             return presentMissingRuleAlert()
         }
         submitCommunityInput.rules = Set(rules)
+        try? await Task.sleep(nanoseconds: 150_000)
         flowCoordinator?.didSubmit(flow: .rules)
     }
     
@@ -74,7 +74,6 @@ extension CommunityRulesViewModel {
         )
     }
     
-    @MainActor
     private func presentMissingRuleAlert() {
         alertModel = CreateCommunityAlert.missingRule.toNewAlertModel()
     }

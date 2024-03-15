@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class PostTitleViewModel: SubmittableTextInputViewModel {
     
     typealias Requirement = DefaultRequirement
@@ -29,12 +29,12 @@ final class PostTitleViewModel: SubmittableTextInputViewModel {
 // MARK: - Methods
 extension PostTitleViewModel {
     
-    @MainActor
     func nextButtonAction() async {
         guard Requirement.fullyValid(input: text) else {
             return alertModel = Requirement.invalidAlert
         }
         submitPostInput.title = text
+        try? await Task.sleep(nanoseconds: 150_000)
         flowCoordinator?.didSubmit(flow: .title)
     }
     

@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class AccountPhoneViewModel: SubmittableTextInputViewModel, SubmittableSkipableViewModel {
     typealias Requirement = PhoneRequirement
     typealias FocusedField = AccountFlow.ID
@@ -30,7 +30,6 @@ final class AccountPhoneViewModel: SubmittableTextInputViewModel, SubmittableSki
 // MARK: - Computed Properties
 extension AccountPhoneViewModel {
     
-    @MainActor
     var skipAction: (() -> Void) {
         { self.flowCoordinator?.didSubmit(flow: .phone) }
     }
@@ -39,7 +38,6 @@ extension AccountPhoneViewModel {
 // MARK: - Methods
 extension AccountPhoneViewModel {
     
-    @MainActor
     func nextButtonAction() async {
         do {
             guard Requirement.fullyValid(input: text) else {
@@ -53,6 +51,7 @@ extension AccountPhoneViewModel {
                 return presentPhoneUnavailableAlert()
             }
             createAccountInput.phone = text
+            try? await Task.sleep(nanoseconds: 150_000)
             flowCoordinator?.didSubmit(flow: .phone)
         } catch {
             print(error.localizedDescription)
@@ -60,7 +59,6 @@ extension AccountPhoneViewModel {
         }
     }
     
-    @MainActor
     func presentPhoneUnavailableAlert() {
         alertModel = CreateAccountAlert.phoneUnavailable.toNewAlertModel()
     }

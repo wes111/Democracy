@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class AccountEmailViewModel: SubmittableTextInputViewModel {
     typealias Requirement = EmailRequirement
     typealias FocusedField = AccountFlow.ID
@@ -30,7 +30,6 @@ final class AccountEmailViewModel: SubmittableTextInputViewModel {
 // MARK: - Methods
 extension AccountEmailViewModel {
     
-    @MainActor
     func nextButtonAction() async {
         do {
             guard Requirement.fullyValid(input: text) else {
@@ -40,6 +39,7 @@ extension AccountEmailViewModel {
                 return presentEmailUnavailableAlert()
             }
             createAccountInput.email = text
+            try? await Task.sleep(nanoseconds: 150_000)
             flowCoordinator?.didSubmit(flow: .email)
         } catch {
             print(error.localizedDescription)

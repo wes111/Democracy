@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class PostBodyViewModel: SubmittableTextEditorInputViewModel {
     typealias Requirement = DefaultRequirement
     typealias FocusedField = PostFlow.ID
@@ -36,12 +36,13 @@ extension PostBodyViewModel {
 
 // MARK: - Methods
 extension PostBodyViewModel {
-    @MainActor
+    
     func nextButtonAction() async {
         guard Requirement.fullyValid(input: text) else {
             return alertModel = Requirement.invalidAlert
         }
         submitPostInput.body = text
+        try? await Task.sleep(nanoseconds: 150_000)
         flowCoordinator?.didSubmit(flow: .body)
     }
     

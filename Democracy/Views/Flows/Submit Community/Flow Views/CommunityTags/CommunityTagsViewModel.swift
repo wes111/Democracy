@@ -37,16 +37,15 @@ extension CommunityTagsViewModel {
         !tags.isEmpty
     }
     
-    @MainActor
     func nextButtonAction() async {
         guard !tags.isEmpty else {
             return presentMissingTagAlert()
         }
         submitCommunityInput.tags = Set(tags)
+        try? await Task.sleep(nanoseconds: 150_000)
         flowCoordinator?.didSubmit(flow: .tags)
     }
     
-    @MainActor
     func submit() {
         guard !tags.contains(text) else {
             return presentTagAlreadyAddedAlert()
@@ -69,12 +68,10 @@ extension CommunityTagsViewModel {
         tags = Array(submitCommunityInput.tags)
     }
     
-    @MainActor
     private func presentMissingTagAlert() {
         alertModel = CreateCommunityAlert.missingTag.toNewAlertModel()
     }
     
-    @MainActor
     private func presentTagAlreadyAddedAlert() {
         alertModel = CreateCommunityAlert.tagAlreadyAdded.toNewAlertModel()
     }

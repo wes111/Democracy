@@ -9,7 +9,7 @@ import Factory
 import Foundation
 import Combine
 
-@Observable
+@MainActor @Observable
 final class PostTagsViewModel: SubmittableNextButtonViewModel {
     let tags: [String] = Community.preview.tags // TODO: ...
     var selectedTags: Set<String> = []
@@ -36,7 +36,6 @@ extension PostTagsViewModel {
 // MARK: - Methods
 extension PostTagsViewModel {
     
-    @MainActor
     func nextButtonAction() async {
         guard canPerformNextAction else {
             return alertModel = NewAlertModel.genericAlert
@@ -45,6 +44,7 @@ extension PostTagsViewModel {
         do {
             submitPostInput.tags = selectedTags
             try await postService.submitPost(userInput: submitPostInput, communityId: "123") // TODO: ...
+            try? await Task.sleep(nanoseconds: 150_000)
             flowCoordinator?.didSubmit(flow: .tags)
         } catch {
             print(error.localizedDescription)

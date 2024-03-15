@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class AccountUsernameViewModel: SubmittableTextInputViewModel {
     typealias Requirement = UsernameRequirement
     typealias FocusedField = AccountFlow.ID
@@ -30,7 +30,6 @@ final class AccountUsernameViewModel: SubmittableTextInputViewModel {
 // MARK: - Methods
 extension AccountUsernameViewModel {
     
-    @MainActor
     func nextButtonAction() async {
         do {
             guard Requirement.fullyValid(input: text) else {
@@ -40,6 +39,7 @@ extension AccountUsernameViewModel {
                 return presentUsernameUnavailableAlert()
             }
             createAccountInput.username = text
+            try? await Task.sleep(nanoseconds: 150_000)
             flowCoordinator?.didSubmit(flow: .username)
         } catch {
             print(error.localizedDescription)
@@ -47,7 +47,6 @@ extension AccountUsernameViewModel {
         }
     }
     
-    @MainActor
     func presentUsernameUnavailableAlert() {
         alertModel = CreateAccountAlert.usernameUnavailable.toNewAlertModel()
     }

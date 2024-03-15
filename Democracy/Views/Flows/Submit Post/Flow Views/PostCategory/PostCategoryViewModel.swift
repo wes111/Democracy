@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class PostCategoryViewModel: SubmittableNextButtonViewModel {
     var selectedCategory: String?
     var alertModel: NewAlertModel?
@@ -31,13 +31,14 @@ extension PostCategoryViewModel {
 
 // MARK: - Methods
 extension PostCategoryViewModel {
-    @MainActor
+    
     func nextButtonAction() async {
         guard canPerformNextAction else {
             return alertModel = NewAlertModel.genericAlert
         }
         
         submitPostInput.category = selectedCategory
+        try? await Task.sleep(nanoseconds: 150_000)
         flowCoordinator?.didSubmit(flow: .category)
     }
     

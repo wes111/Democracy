@@ -8,7 +8,7 @@
 import Factory
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class AccountAcceptTermsViewModel {
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
@@ -25,10 +25,10 @@ final class AccountAcceptTermsViewModel {
 // MARK: - Methods
 extension AccountAcceptTermsViewModel {
     
-    @MainActor
     func agreeToTerms() async {
         do {
             try await accountService.acceptTerms(input: createAccountInput)
+            try? await Task.sleep(nanoseconds: 150_000)
             flowCoordinator?.didSubmit(flow: .acceptTerms)
         } catch {
             print(error)
@@ -36,7 +36,6 @@ extension AccountAcceptTermsViewModel {
         }
     }
     
-    @MainActor
     private func presentAlert() {
         alertModel = CreateAccountAlert.createAccountFailed.toNewAlertModel()
     }

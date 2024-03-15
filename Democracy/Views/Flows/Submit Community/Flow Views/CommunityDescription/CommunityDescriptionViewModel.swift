@@ -36,12 +36,12 @@ extension CommunityDescriptionViewModel {
 
 // MARK: - Methods
 extension CommunityDescriptionViewModel {
-    @MainActor
     func nextButtonAction() async {
         guard Requirement.fullyValid(input: text) else {
             return alertModel = Requirement.invalidAlert
         }
         submitCommunityInput.description = text
+        try? await Task.sleep(nanoseconds: 150_000)
         flowCoordinator?.didSubmit(flow: .description)
     }
     

@@ -37,17 +37,16 @@ extension CommunityCategoriesViewModel {
         !categories.isEmpty
     }
     
-    @MainActor
     func nextButtonAction() async {
         guard !categories.isEmpty else {
             return presentMissingCategoryAlert()
         }
         submitCommunityInput.categories = Set(categories)
+        try? await Task.sleep(nanoseconds: 150_000)
         flowCoordinator?.didSubmit(flow: .categories)
     }
     
     // Add category.
-    @MainActor
     func submit() {
         guard !categories.contains(text) else {
             return presentCategoryAlreadyAddedAlert()
@@ -70,12 +69,10 @@ extension CommunityCategoriesViewModel {
         categories = Array(submitCommunityInput.categories)
     }
     
-    @MainActor
     private func presentMissingCategoryAlert() {
         alertModel = CreateCommunityAlert.missingCategory.toNewAlertModel()
     }
     
-    @MainActor
     private func presentCategoryAlreadyAddedAlert() {
         alertModel = CreateCommunityAlert.categoryAlreadyAdded.toNewAlertModel()
     }

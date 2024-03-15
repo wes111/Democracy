@@ -27,13 +27,13 @@ final class CommunityNameViewModel: SubmittableTextInputViewModel {
 
 // MARK: - Methods
 extension CommunityNameViewModel {
-    
-    @MainActor
     func nextButtonAction() async {
         guard Requirement.fullyValid(input: text) else {
             return alertModel = Requirement.invalidAlert
         }
         submitCommunityInput.name = text
+        // Unclear why this is needed... Possibly a View somewhere missing an @MainActor annotation?
+        try? await Task.sleep(nanoseconds: 150_000)
         flowCoordinator?.didSubmit(flow: .name)
     }
     

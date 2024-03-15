@@ -58,6 +58,7 @@ extension CommunityResourcesViewModel {
         do {
             submitCommunityInput.resources = resources
             try await communityService.submitCommunity(userInput: submitCommunityInput)
+            try? await Task.sleep(nanoseconds: 150_000)
             flowCoordinator?.didSubmit(flow: .resources)
         } catch {
             print(error.localizedDescription)

@@ -34,9 +34,9 @@ extension CommunitySettingsViewModel {
 // MARK: - Methods
 extension CommunitySettingsViewModel {
     
-    @MainActor
     func nextButtonAction() async {
         submitCommunityInput.settings = settings
+        try? await Task.sleep(nanoseconds: 150_000)
         flowCoordinator?.didSubmit(flow: .settings)
     }
     
