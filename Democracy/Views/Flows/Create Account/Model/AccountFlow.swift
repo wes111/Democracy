@@ -14,8 +14,18 @@ enum AccountFlow: UserInputFlow {
     case phone(AccountPhoneViewModel)
     case acceptTerms(AccountAcceptTermsViewModel)
     
-    enum ID: CaseIterable, Hashable {
+    enum ID: CaseIterable, Hashable, Equatable {
         case username, email, password, phone, acceptTerms
+    }
+    
+    var id: ID {
+        switch self {
+        case .username: .username
+        case .email: .email
+        case .password: .password
+        case .phone: .phone
+        case .acceptTerms: .acceptTerms
+        }
     }
     
     var progress: Int {

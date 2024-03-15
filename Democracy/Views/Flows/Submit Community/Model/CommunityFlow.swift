@@ -16,8 +16,20 @@ enum CommunityFlow: UserInputFlow {
     case settings(CommunitySettingsViewModel)
     case resources(CommunityResourcesViewModel)
     
-    enum ID: CaseIterable, Hashable {
+    enum ID: CaseIterable, Hashable, Equatable {
         case name, description, categories, tags, rules, settings, resources
+    }
+    
+    var id: ID {
+        switch self {
+        case .name: .name
+        case .description: .description
+        case .categories: .categories
+        case .tags: .tags
+        case .rules: .rules
+        case .settings: .settings
+        case .resources: .resources
+        }
     }
     
     var progress: Int {

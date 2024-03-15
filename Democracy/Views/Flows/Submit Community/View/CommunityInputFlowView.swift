@@ -19,6 +19,7 @@ struct CommunityInputFlowView: View {
         InputFlowView(viewModel: viewModel) {
             flowScren
         }
+        .animation(.easeInOut, value: viewModel.flowPath?.id)
         .onAppear {
             viewModel.onAppear()
         }

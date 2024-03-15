@@ -14,8 +14,18 @@ enum PostFlow: UserInputFlow {
     case category(PostCategoryViewModel)
     case tags(PostTagsViewModel)
     
-    enum ID: CaseIterable, Hashable {
+    enum ID: CaseIterable, Hashable, Equatable {
         case title, primaryLink, body, category, tags
+    }
+    
+    var id: ID {
+        switch self {
+        case .title: .title
+        case .primaryLink: .primaryLink
+        case .body: .body
+        case .category: .category
+        case .tags: .tags
+        }
     }
     
     var progress: Int {

@@ -13,4 +13,5 @@ protocol UserInputFlow {
     var progress: Int { get }
     var title: String { get }
     var subtitle: String { get }
+    var id: ID { get }
 }
