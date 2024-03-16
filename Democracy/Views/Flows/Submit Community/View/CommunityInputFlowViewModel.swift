@@ -47,7 +47,7 @@ final class CommunityInputFlowViewModel: InputFlowViewModel, SubmitCommunityFlow
         case .tags: toRules()
         case .rules: toSettings()
         case .settings: toResources()
-        case .resources: coordinator?.goToSuccess()
+        case .resources: coordinator?.goToSuccess(communityName: input.name ?? "") // TODO: Should not be empty String...
         }
     }
     

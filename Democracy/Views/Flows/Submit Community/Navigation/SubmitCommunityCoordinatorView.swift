@@ -23,7 +23,7 @@ struct SubmitCommunityCoordinatorView: View {
         }
     }
     
-    @ViewBuilder @MainActor
+    @ViewBuilder
     func createViewFromPath(_ path: SubmitCommunityPath) -> some View {
         switch path {
         case .goToSuccess(let viewModel):

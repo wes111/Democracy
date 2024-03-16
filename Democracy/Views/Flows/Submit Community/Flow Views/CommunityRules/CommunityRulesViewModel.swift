@@ -60,14 +60,10 @@ extension CommunityRulesViewModel {
         rules = Array(submitCommunityInput.rules)
     }
     
-    func addRuleViewModel() -> AddRuleViewModel? {
-        guard let communityName = submitCommunityInput.name else {
-            alertModel = CreateCommunityAlert.missingName.toNewAlertModel()
-            return nil
-        }
+    func addRuleViewModel() -> AddRuleViewModel {
         return AddRuleViewModel(
             rules: rules,
-            communityName: communityName,
+            communityName: submitCommunityInput.name ?? "", // TODO: Should not need empty String here...
             updateRulesAction: newRuleAdded,
             cancelEditingAction: didCancelEditing,
             editingRule: editingRule

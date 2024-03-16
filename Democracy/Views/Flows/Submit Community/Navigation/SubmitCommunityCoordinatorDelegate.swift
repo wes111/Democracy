@@ -9,5 +9,5 @@ import Foundation
 
 @MainActor
 protocol SubmitCommunityCoordinatorDelegate: FlowCoordinatorDelegate {
-    func goToSuccess()
+    func goToSuccess(communityName: String)
 }

@@ -35,8 +35,8 @@ extension SubmitCommunityCoordinator: SubmitCommunityCoordinatorDelegate {
         parentCoordinator?.dismiss()
     }
     
-    func goToSuccess() {
-        let viewModel = CreateCommunitySuccessViewModel(communityName: "", closeAction: close) // TODO: Add Community Name here...
+    func goToSuccess(communityName: String) {
+        let viewModel = CreateCommunitySuccessViewModel(communityName: communityName, closeAction: close)
         router.push(SubmitCommunityPath.goToSuccess(viewModel))
     }
 }

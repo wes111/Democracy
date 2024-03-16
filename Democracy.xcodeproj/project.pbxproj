@@ -277,7 +277,6 @@
 		EEA2B4232B7173D600063211 /* Selectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4222B7173D600063211 /* Selectable.swift */; };
 		EEA2B4252B71745D00063211 /* CommunityContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4242B71745D00063211 /* CommunityContent.swift */; };
 		EEA2B4272B71747500063211 /* CommunityGovernment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4262B71747500063211 /* CommunityGovernment.swift */; };
-		EEA2B4292B71753400063211 /* CommunitySetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4282B71753400063211 /* CommunitySetting.swift */; };
 		EEA2B42B2B71811300063211 /* SelectablePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B42A2B71811300063211 /* SelectablePickerView.swift */; };
 		EEA2B42D2B718BB100063211 /* CommunityVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B42C2B718BB100063211 /* CommunityVisibility.swift */; };
 		EEA2B42F2B71915000063211 /* CommunityPoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B42E2B71915000063211 /* CommunityPoster.swift */; };
@@ -610,7 +609,6 @@
 		EEA2B4222B7173D600063211 /* Selectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selectable.swift; sourceTree = "<group>"; };
 		EEA2B4242B71745D00063211 /* CommunityContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityContent.swift; sourceTree = "<group>"; };
 		EEA2B4262B71747500063211 /* CommunityGovernment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityGovernment.swift; sourceTree = "<group>"; };
-		EEA2B4282B71753400063211 /* CommunitySetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySetting.swift; sourceTree = "<group>"; };
 		EEA2B42A2B71811300063211 /* SelectablePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectablePickerView.swift; sourceTree = "<group>"; };
 		EEA2B42C2B718BB100063211 /* CommunityVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityVisibility.swift; sourceTree = "<group>"; };
 		EEA2B42E2B71915000063211 /* CommunityPoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityPoster.swift; sourceTree = "<group>"; };
@@ -1361,7 +1359,6 @@
 			children = (
 				EE7EC2702B614C2800F62E90 /* CommunitySettingsViewModel.swift */,
 				EE7EC2722B614CB000F62E90 /* CommunitySettingsView.swift */,
-				EEA2B4282B71753400063211 /* CommunitySetting.swift */,
 			);
 			path = CommunitySettings;
 			sourceTree = "<group>";
@@ -2265,7 +2262,6 @@
 				EE7EC2A12B61EE1E00F62E90 /* SubmittableTextEditorInputView.swift in Sources */,
 				EE4DB8982AC8A13C00A6DC90 /* CreateAccountPath.swift in Sources */,
 				EE80D91129C92C670000F8EF /* Candidate.swift in Sources */,
-				EEA2B4292B71753400063211 /* CommunitySetting.swift in Sources */,
 				EE4987CF2B2F823300AB7522 /* SubmitPostCoordinator.swift in Sources */,
 				EE80D8C829BC13930000F8EF /* PostCoordinator+Preview.swift in Sources */,
 				EE7EC28C2B61514C00F62E90 /* CommunityNameView.swift in Sources */,

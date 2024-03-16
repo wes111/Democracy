@@ -18,7 +18,7 @@ struct CommunityRulesView: View {
     var body: some View {
         primaryContent
             .fullScreenCover(isPresented: $viewModel.isShowingAddRuleSheet) {
-                addRuleSheet
+                AddRuleView(viewModel: viewModel.addRuleViewModel())
             }
             .animation(.easeInOut, value: viewModel.isShowingAddRuleSheet)
             .onAppear {
@@ -60,18 +60,6 @@ private extension CommunityRulesView {
                 Button("Edit") { viewModel.editRule(rule) }
             }
         }
-    }
-    
-    // TODO: There should be a better way to handle nil here...
-    var addRuleSheet: some View {
-        Group {
-            if let viewModel = viewModel.addRuleViewModel() {
-                AddRuleView(viewModel: viewModel)
-            } else {
-                EmptyView()
-            }
-        }
-        
     }
 }
 

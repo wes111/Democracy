@@ -49,7 +49,6 @@ extension CommunityResourcesViewModel {
         isShowingAddResourceSheet = true
     }
     
-    @MainActor
     func nextButtonAction() async {
         guard canPerformNextAction else {
             return alertModel = NewAlertModel.genericAlert

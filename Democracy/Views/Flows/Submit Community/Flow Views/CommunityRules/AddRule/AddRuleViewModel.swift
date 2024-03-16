@@ -7,7 +7,7 @@
 
 import Foundation
 
-@Observable
+@MainActor @Observable
 final class AddRuleViewModel {
     var title: String = ""
     var description: String = ""
@@ -71,7 +71,6 @@ extension AddRuleViewModel {
 // MARK: - Methods {
 extension AddRuleViewModel {
     
-    @MainActor
     func submit() {
         guard canSubmit else {
             return alertModel = AddRuleAlert.invalid.toNewAlertModel()

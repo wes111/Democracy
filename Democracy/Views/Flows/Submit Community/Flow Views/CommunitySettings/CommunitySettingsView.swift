@@ -22,7 +22,6 @@ struct CommunitySettingsView: View {
 // MARK: - Subviews
 private extension CommunitySettingsView {
     
-    @MainActor
     var primaryContent: some View {
         VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
             settingsView

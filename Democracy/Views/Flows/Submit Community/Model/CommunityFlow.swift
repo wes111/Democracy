@@ -16,6 +16,7 @@ enum CommunityFlow: UserInputFlow {
     case settings(CommunitySettingsViewModel)
     case resources(CommunityResourcesViewModel)
     
+    // swiftlint:disable:next all
     enum ID: CaseIterable, Hashable, Equatable {
         case name, description, categories, tags, rules, settings, resources
     }
