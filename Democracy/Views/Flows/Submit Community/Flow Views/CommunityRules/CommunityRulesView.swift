@@ -34,8 +34,8 @@ private extension CommunityRulesView {
     var primaryContent: some View {
         VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
             scrollContent()
-            addRuleButton
             Spacer()
+            addRuleButton
             SubmittableNextButton(viewModel: viewModel)
         }
     }

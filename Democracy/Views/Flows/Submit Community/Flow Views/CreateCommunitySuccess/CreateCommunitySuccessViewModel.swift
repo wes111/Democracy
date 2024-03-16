@@ -9,7 +9,6 @@ import Foundation
 
 @MainActor
 final class CreateCommunitySuccessViewModel: SuccessViewModel, Hashable {
-    
     let secondaryText: String = "The community was created successfully!"
     let imageType: AppImage = .systemImage(.checkmarkDiamondFill)
     let secondaryButtonInfo: ButtonInfo? = nil
@@ -20,6 +19,10 @@ final class CreateCommunitySuccessViewModel: SuccessViewModel, Hashable {
         self.communityName = communityName
         self.closeAction = closeAction
     }
+}
+
+// MARK: - Computed Properties
+extension CreateCommunitySuccessViewModel {
     
     var primaryText: String {
         "\(communityName)\n was created successfully!"

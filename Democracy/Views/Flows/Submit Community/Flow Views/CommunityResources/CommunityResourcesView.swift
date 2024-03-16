@@ -14,7 +14,7 @@ struct CommunityResourcesView: View {
     var body: some View {
         primaryContent
             .fullScreenCover(isPresented: $viewModel.isShowingAddResourceSheet) {
-                addResourceSheet
+                AddResourceView(viewModel: viewModel.addResourceViewModel())
             }
             .animation(.easeInOut, value: viewModel.isShowingAddResourceSheet)
             .onAppear {
@@ -30,8 +30,8 @@ private extension CommunityResourcesView {
     var primaryContent: some View {
         VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
             addedResources
-            addResourceButton
             Spacer()
+            addResourceButton
             SubmittableNextButton(viewModel: viewModel)
         }
     }
@@ -55,18 +55,6 @@ private extension CommunityResourcesView {
             Text("Add Resource")
         }
         .buttonStyle(SeconaryButtonStyle())
-    }
-    
-    // TODO: Should be a better way to handle nil here
-    var addResourceSheet: some View {
-        Group {
-            if let viewModel = viewModel.addResourceViewModel() {
-                AddResourceView(viewModel: viewModel)
-            } else {
-                EmptyView()
-            }
-        }
-        
     }
 }
 

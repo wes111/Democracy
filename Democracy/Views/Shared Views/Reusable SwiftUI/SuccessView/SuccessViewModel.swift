@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 protocol SuccessViewModel: Hashable {
     var primaryText: String { get }
     var secondaryText: String { get }

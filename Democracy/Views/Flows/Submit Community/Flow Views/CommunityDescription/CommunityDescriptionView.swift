@@ -23,12 +23,12 @@ struct CommunityDescriptionView<ViewModel: CommunityDescriptionViewModel>: View 
 // MARK: - Subviews
 private extension CommunityDescriptionView {
     var primaryContent: some View {
-        SubmittableTextEditorInputView(viewModel: viewModel) {
-            VStack {
+        VStack(alignment: .leading, spacing: 0) {
+            SubmittableTextEditorInputView(viewModel: viewModel) {
                 field
-                Spacer()
-                SubmittableNextButton(viewModel: viewModel)
             }
+            Spacer()
+            SubmittableNextButton(viewModel: viewModel)
         }
     }
     

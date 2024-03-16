@@ -69,14 +69,10 @@ extension CommunityResourcesViewModel {
         resources = submitCommunityInput.resources
     }
     
-    func addResourceViewModel() -> AddResourceViewModel? {
-        guard let communityName = submitCommunityInput.name else {
-            alertModel = CreateCommunityAlert.missingName.toNewAlertModel()
-            return nil
-        }
-        return AddResourceViewModel(
+    func addResourceViewModel() -> AddResourceViewModel {
+        AddResourceViewModel(
             resources: resources,
-            communityName: communityName,
+            communityName: submitCommunityInput.name ?? "", // TODO: Should not be empty String here...
             updateResourcesAction: newResourceAdded,
             cancelEditingAction: didCancelEditing,
             editingResource: editingResource

@@ -9,7 +9,6 @@ import Foundation
 
 @Observable
 final class AddResourceViewModel {
-    
     var title: String = ""
     var description: String = ""
     var url: String = ""
