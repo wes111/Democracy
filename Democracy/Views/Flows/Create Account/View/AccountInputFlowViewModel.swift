@@ -12,7 +12,7 @@ protocol CreateAccountFlowCoordinator: AnyObject {
 }
 
 // The InputFlowViewModel for creating new Account/User objects.
-@Observable
+@MainActor @Observable
 final class AccountInputFlowViewModel: InputFlowViewModel, CreateAccountFlowCoordinator {
     var flowPath: AccountFlow?
     private let input = CreateAccountInput()
@@ -22,27 +22,23 @@ final class AccountInputFlowViewModel: InputFlowViewModel, CreateAccountFlowCoor
         self.coordinator = coordinator
     }
     
-    @MainActor
+    func goBack() {
+        switch flowPath {
+        case .username, nil: return
+        case .email: toUsername()
+        case .password: toEmail()
+        case .phone: toPassword()
+        case .acceptTerms: toPhone()
+        }
+    }
+    
     func didSubmit(flow: AccountFlow.ID) {
         switch flow {
-        case .username:
-            let viewModel = AccountEmailViewModel(createAccountInput: input, flowCoordinator: self)
-            flowPath = .email(viewModel)
-            
-        case .email:
-            let viewModel = AccountPasswordViewModel(createAccountInput: input, flowCoordinator: self)
-            flowPath = .password(viewModel)
-            
-        case .password:
-            let viewModel = AccountPhoneViewModel(createAccountInput: input, flowCoordinator: self)
-            flowPath = .phone(viewModel)
-            
-        case .phone:
-            let viewModel = AccountAcceptTermsViewModel(createAccountInput: input, flowCoordinator: self)
-            flowPath = .acceptTerms(viewModel)
-            
-        case .acceptTerms:
-            coordinator?.goToSuccess()
+        case .username: toEmail()
+        case .email: toPassword()
+        case .password: toPhone()
+        case .phone: toAcceptTerms()
+        case .acceptTerms: coordinator?.goToSuccess()
         }
     }
     
@@ -51,7 +47,7 @@ final class AccountInputFlowViewModel: InputFlowViewModel, CreateAccountFlowCoor
     }
     
     var leadingButtons: [OnboardingTopButton] {
-        shouldShowBackButton ? [.back] : []
+        shouldShowBackButton ? [.back(goBack)] : []
     }
     
     var shouldShowBackButton: Bool {
@@ -67,8 +63,36 @@ final class AccountInputFlowViewModel: InputFlowViewModel, CreateAccountFlowCoor
         }
     }
     
-    @MainActor
     func close() {
         coordinator?.close()
+    }
+}
+
+// MARK: - Private Methods
+private extension AccountInputFlowViewModel {
+    
+    func toUsername() {
+        let viewModel = AccountUsernameViewModel(createAccountInput: input, flowCoordinator: self)
+        flowPath = .username(viewModel)
+    }
+    
+    func toEmail() {
+        let viewModel = AccountEmailViewModel(createAccountInput: input, flowCoordinator: self)
+        flowPath = .email(viewModel)
+    }
+    
+    func toPassword() {
+        let viewModel = AccountPasswordViewModel(createAccountInput: input, flowCoordinator: self)
+        flowPath = .password(viewModel)
+    }
+    
+    func toPhone() {
+        let viewModel = AccountPhoneViewModel(createAccountInput: input, flowCoordinator: self)
+        flowPath = .phone(viewModel)
+    }
+    
+    func toAcceptTerms() {
+        let viewModel = AccountAcceptTermsViewModel(createAccountInput: input, flowCoordinator: self)
+        flowPath = .acceptTerms(viewModel)
     }
 }

@@ -12,7 +12,7 @@ protocol SubmitPostFlowCoordinator: AnyObject {
 }
 
 // The InputFlowViewModel for creating new Post objects.
-@Observable 
+@MainActor @Observable
 final class PostInputFlowViewModel: InputFlowViewModel, SubmitPostFlowCoordinator {
     var flowPath: PostFlow?
     private let input = SubmitPostInput()
@@ -23,27 +23,23 @@ final class PostInputFlowViewModel: InputFlowViewModel, SubmitPostFlowCoordinato
         flowPath = .title(.init(input: input, flowCoordinator: self))
     }
     
-    @MainActor
     func didSubmit(flow: PostFlow.ID) {
         switch flow {
-        case .title:
-            let viewModel = PostPrimaryLinkViewModel(submitPostInput: input, flowCoordinator: self)
-            flowPath = .primaryLink(viewModel)
-            
-        case .primaryLink:
-            let viewModel = PostBodyViewModel(submitPostInput: input, flowCoordinator: self)
-            flowPath = .body(viewModel)
-            
-        case .body:
-            let viewModel = PostCategoryViewModel(submitPostInput: input, flowCoordinator: self)
-            flowPath = .category(viewModel)
-            
-        case .category:
-            let viewModel = PostTagsViewModel(submitPostInput: input, flowCoordinator: self)
-            flowPath = .tags(viewModel)
-            
-        case .tags:
-            coordinator?.goToSuccess()
+        case .title: toPrimaryLink()
+        case .primaryLink: toBody()
+        case .body: toCategory()
+        case .category: toTags()
+        case .tags: coordinator?.goToSuccess()
+        }
+    }
+    
+    func goBack() {
+        switch flowPath {
+        case .title, nil: return
+        case .primaryLink: toTitle()
+        case .body: toPrimaryLink()
+        case .category: toBody()
+        case .tags: toTags()
         }
     }
     
@@ -65,11 +61,39 @@ final class PostInputFlowViewModel: InputFlowViewModel, SubmitPostFlowCoordinato
     }
     
     var leadingButtons: [OnboardingTopButton] {
-        shouldShowBackButton ? [.back] : []
+        shouldShowBackButton ? [.back(goBack)] : []
     }
     
-    @MainActor
     func close() {
         coordinator?.close()
+    }
+}
+
+// MARK: - Private Methods
+private extension PostInputFlowViewModel {
+    
+    func toTitle() {
+        let viewModel = PostTitleViewModel(input: input, flowCoordinator: self)
+        flowPath = .title(viewModel)
+    }
+    
+    func toPrimaryLink() {
+        let viewModel = PostPrimaryLinkViewModel(submitPostInput: input, flowCoordinator: self)
+        flowPath = .primaryLink(viewModel)
+    }
+    
+    func toBody() {
+        let viewModel = PostBodyViewModel(submitPostInput: input, flowCoordinator: self)
+        flowPath = .body(viewModel)
+    }
+    
+    func toCategory() {
+        let viewModel = PostCategoryViewModel(submitPostInput: input, flowCoordinator: self)
+        flowPath = .category(viewModel)
+    }
+    
+    func toTags() {
+        let viewModel = PostTagsViewModel(submitPostInput: input, flowCoordinator: self)
+        flowPath = .tags(viewModel)
     }
 }

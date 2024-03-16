@@ -27,35 +27,27 @@ final class CommunityInputFlowViewModel: InputFlowViewModel, SubmitCommunityFlow
         flowPath = .name(.init(submitCommunityInput: input, flowCoordinator: self))
     }
     
-    @MainActor
+    func goBack() {
+        switch flowPath {
+        case .name, nil: return
+        case .description: toName()
+        case .categories: toDescription()
+        case .tags: toCategories()
+        case .rules: toTags()
+        case .settings: toRules()
+        case .resources: toSettings()
+        }
+    }
+    
     func didSubmit(flow: CommunityFlow.ID) {
         switch flow {
-        case .name:
-            let viewModel = CommunityDescriptionViewModel(submitCommunityInput: input, flowCoordinator: self)
-            flowPath = .description(viewModel)
-            
-        case .description:
-            let viewModel = CommunityCategoriesViewModel(submitCommunityInput: input, flowCoordinator: self)
-            flowPath = .categories(viewModel)
-            
-        case .categories:
-            let viewModel = CommunityTagsViewModel(submitCommunityInput: input, flowCoordinator: self)
-            flowPath = .tags(viewModel)
-            
-        case .tags:
-            let viewModel = CommunityRulesViewModel(submitCommunityInput: input, flowCoordinator: self)
-            flowPath = .rules(viewModel)
-            
-        case .rules:
-            let viewModel = CommunitySettingsViewModel(submitCommunityInput: input, flowCoordinator: self)
-            flowPath = .settings(viewModel)
-            
-        case .settings:
-            let viewModel = CommunityResourcesViewModel(submitCommunityInput: input, flowCoordinator: self)
-            flowPath = .resources(viewModel)
-            
-        case .resources:
-            coordinator?.goToSuccess()
+        case .name: toDescription()
+        case .description: toCategories()
+        case .categories: toTags()
+        case .tags: toRules()
+        case .rules: toSettings()
+        case .settings: toResources()
+        case .resources: coordinator?.goToSuccess()
         }
     }
     
@@ -64,7 +56,7 @@ final class CommunityInputFlowViewModel: InputFlowViewModel, SubmitCommunityFlow
     }
     
     var leadingButtons: [OnboardingTopButton] {
-        shouldShowBackButton ? [.back] : []
+        shouldShowBackButton ? [.back(goBack)] : []
     }
     
     var shouldShowBackButton: Bool {
@@ -80,8 +72,45 @@ final class CommunityInputFlowViewModel: InputFlowViewModel, SubmitCommunityFlow
         }
     }
     
-    @MainActor
     func close() {
         coordinator?.close()
+    }
+}
+
+private extension CommunityInputFlowViewModel {
+    
+    func toName() {
+        let viewModel = CommunityNameViewModel(submitCommunityInput: input, flowCoordinator: self)
+        flowPath = .name(viewModel)
+    }
+    
+    func toDescription() {
+        let viewModel = CommunityDescriptionViewModel(submitCommunityInput: input, flowCoordinator: self)
+        flowPath = .description(viewModel)
+    }
+    
+    func toCategories() {
+        let viewModel = CommunityCategoriesViewModel(submitCommunityInput: input, flowCoordinator: self)
+        flowPath = .categories(viewModel)
+    }
+    
+    func toTags() {
+        let viewModel = CommunityTagsViewModel(submitCommunityInput: input, flowCoordinator: self)
+        flowPath = .tags(viewModel)
+    }
+    
+    func toRules() {
+        let viewModel = CommunityRulesViewModel(submitCommunityInput: input, flowCoordinator: self)
+        flowPath = .rules(viewModel)
+    }
+    
+    func toSettings() {
+        let viewModel = CommunitySettingsViewModel(submitCommunityInput: input, flowCoordinator: self)
+        flowPath = .settings(viewModel)
+    }
+    
+    func toResources() {
+        let viewModel = CommunityResourcesViewModel(submitCommunityInput: input, flowCoordinator: self)
+        flowPath = .resources(viewModel)
     }
 }

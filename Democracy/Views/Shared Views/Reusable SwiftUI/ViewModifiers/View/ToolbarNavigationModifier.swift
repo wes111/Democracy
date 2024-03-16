@@ -18,8 +18,6 @@ enum ToolbarCenterContent: Hashable, Identifiable {
 
 @MainActor
 struct ToolbarNavigationModifier: ViewModifier {
-    @Environment(\.dismiss) private var dismiss
-    
     let leadingButtons: [OnboardingTopButton]
     let trailingButtons: [OnboardingTopButton]
     let centerContent: ToolbarCenterContent?
@@ -86,9 +84,9 @@ private extension ToolbarNavigationModifier {
         ToolbarItemGroup(placement: placement) {
             ForEach(buttons) { button in
                 switch button {
-                case .back:
+                case .back(let action):
                     Button {
-                        dismiss()
+                        action()
                     } label: {
                         Image(systemName: "chevron.left")
                             .foregroundColor(.tertiaryText)
