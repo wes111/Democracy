@@ -20,8 +20,6 @@ protocol SubmittableTextInputViewModel: SubmittableNextButtonViewModel {
     associatedtype FocusedField: Hashable
     
     var text: String { get set }
-    var fieldTitle: String { get }
-    var maxCharacterCount: Int { get }
     var alertModel: NewAlertModel? { get set }
     
     func presentGenericAlert()
@@ -29,15 +27,10 @@ protocol SubmittableTextInputViewModel: SubmittableNextButtonViewModel {
 
 extension SubmittableTextInputViewModel {
     
-    var maxCharacterCount: Int {
-        Requirement.maxCharacterCount
-    }
-    
     var canPerformNextAction: Bool {
         Requirement.getInputValidationErrors(input: text).isEmpty
     }
     
-    @MainActor
     func presentGenericAlert() {
         alertModel = NewAlertModel.genericAlert
     }
