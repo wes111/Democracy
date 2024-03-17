@@ -17,6 +17,7 @@ struct CommunityResourcesView: View {
                 AddResourceView(viewModel: viewModel.addResourceViewModel())
             }
             .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
+            .alertableModifier(alertModel: $viewModel.alertModel)
             .animation(.easeInOut, value: viewModel.isShowingAddResourceSheet)
             .onAppear {
                 viewModel.onAppear()

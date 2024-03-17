@@ -13,6 +13,7 @@ struct AccountAcceptTermsView<ViewModel: AccountAcceptTermsViewModel>: View {
     
     var body: some View {
         primaryContent
+            .alertableModifier(alertModel: $viewModel.alertModel)
     }
 }
 

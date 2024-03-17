@@ -44,7 +44,7 @@ extension AccountEmailViewModel {
             flowCoordinator?.didSubmit(flow: .email)
         } catch {
             print(error.localizedDescription)
-            presentGenericAlert()
+            alertModel = NewAlertModel.genericAlert
         }
     }
     

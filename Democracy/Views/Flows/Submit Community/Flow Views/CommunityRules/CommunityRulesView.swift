@@ -21,6 +21,7 @@ struct CommunityRulesView: View {
                 AddRuleView(viewModel: viewModel.addRuleViewModel())
             }
             .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
+            .alertableModifier(alertModel: $viewModel.alertModel)
             .animation(.easeInOut, value: viewModel.isShowingAddRuleSheet)
             .onAppear {
                 viewModel.onAppear()

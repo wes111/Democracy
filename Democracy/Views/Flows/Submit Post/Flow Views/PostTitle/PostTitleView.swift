@@ -18,6 +18,7 @@ struct PostTitleView<ViewModel: PostTitleViewModel>: View {
                 viewModel.onAppear()
             }
             .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
+            .alertableModifier(alertModel: $viewModel.alertModel)
     }
 }
 

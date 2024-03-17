@@ -18,6 +18,7 @@ struct PostPrimaryLinkView<ViewModel: PostPrimaryLinkViewModel>: View {
                 viewModel.onAppear()
             }
             .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
+            .alertableModifier(alertModel: $viewModel.alertModel)
     }
 }
 

@@ -21,19 +21,12 @@ protocol SubmittableTextInputViewModel: SubmittableNextButtonViewModel {
     
     var field: FocusedField { get }
     var text: String { get set }
-    var alertModel: NewAlertModel? { get set }
-    
-    func presentGenericAlert()
 }
 
 extension SubmittableTextInputViewModel {
     
     var canPerformNextAction: Bool {
         Requirement.getInputValidationErrors(input: text).isEmpty
-    }
-    
-    func presentGenericAlert() {
-        alertModel = NewAlertModel.genericAlert
     }
     
     var fieldTitle: String {

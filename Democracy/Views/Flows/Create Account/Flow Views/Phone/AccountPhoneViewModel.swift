@@ -56,7 +56,7 @@ extension AccountPhoneViewModel {
             flowCoordinator?.didSubmit(flow: .phone)
         } catch {
             print(error.localizedDescription)
-            presentGenericAlert()
+            alertModel = NewAlertModel.genericAlert
         }
     }
     

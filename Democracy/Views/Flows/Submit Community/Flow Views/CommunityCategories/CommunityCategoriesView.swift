@@ -18,6 +18,7 @@ struct CommunityCategoriesView<ViewModel: CommunityCategoriesViewModel>: View {
                 viewModel.onAppear()
             }
             .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
+            .alertableModifier(alertModel: $viewModel.alertModel)
     }
 }
 

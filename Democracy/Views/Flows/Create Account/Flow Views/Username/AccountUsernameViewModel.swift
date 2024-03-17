@@ -44,7 +44,7 @@ extension AccountUsernameViewModel {
             flowCoordinator?.didSubmit(flow: .username)
         } catch {
             print(error.localizedDescription)
-            presentGenericAlert()
+            alertModel = NewAlertModel.genericAlert
         }
     }
     
