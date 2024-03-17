@@ -17,6 +17,7 @@ struct PostBodyView<ViewModel: PostBodyViewModel>: View {
             .onAppear {
                 viewModel.onAppear()
             }
+            .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
     }
 }
 

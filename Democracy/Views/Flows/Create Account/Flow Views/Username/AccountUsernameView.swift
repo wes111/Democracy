@@ -17,6 +17,7 @@ struct AccountUsernameView<ViewModel: AccountUsernameViewModel>: View {
             .onAppear {
                 viewModel.onAppear()
             }
+            .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
     }
 }
 

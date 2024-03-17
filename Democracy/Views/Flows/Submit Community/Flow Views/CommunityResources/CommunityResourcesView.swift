@@ -16,6 +16,7 @@ struct CommunityResourcesView: View {
             .fullScreenCover(isPresented: $viewModel.isShowingAddResourceSheet) {
                 AddResourceView(viewModel: viewModel.addResourceViewModel())
             }
+            .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
             .animation(.easeInOut, value: viewModel.isShowingAddResourceSheet)
             .onAppear {
                 viewModel.onAppear()

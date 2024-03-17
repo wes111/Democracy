@@ -17,6 +17,7 @@ struct AccountPasswordView<ViewModel: AccountPasswordViewModel>: View {
             .onAppear {
                 viewModel.onAppear()
             }
+            .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
     }
 }
 

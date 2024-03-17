@@ -17,6 +17,7 @@ struct CommunityTagsView<ViewModel: CommunityTagsViewModel>: View {
             .onAppear {
                 viewModel.onAppear()
             }
+            .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
     }
 }
 

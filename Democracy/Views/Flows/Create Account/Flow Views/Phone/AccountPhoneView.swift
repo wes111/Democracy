@@ -17,6 +17,7 @@ struct AccountPhoneView<ViewModel: AccountPhoneViewModel>: View {
             .onAppear {
                 viewModel.onAppear()
             }
+            .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
     }
 }
 

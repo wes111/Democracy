@@ -17,6 +17,7 @@ struct CommunityCategoriesView<ViewModel: CommunityCategoriesViewModel>: View {
             .onAppear {
                 viewModel.onAppear()
             }
+            .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
     }
 }
 

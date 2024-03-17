@@ -17,6 +17,7 @@ struct AccountEmailView<ViewModel: AccountEmailViewModel>: View {
             .onAppear {
                 viewModel.onAppear()
             }
+            .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
     }
 }
 

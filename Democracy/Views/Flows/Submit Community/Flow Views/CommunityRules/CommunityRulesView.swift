@@ -20,6 +20,7 @@ struct CommunityRulesView: View {
             .fullScreenCover(isPresented: $viewModel.isShowingAddRuleSheet) {
                 AddRuleView(viewModel: viewModel.addRuleViewModel())
             }
+            .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
             .animation(.easeInOut, value: viewModel.isShowingAddRuleSheet)
             .onAppear {
                 viewModel.onAppear()

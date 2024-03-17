@@ -50,10 +50,6 @@ private extension InputFlowView {
                 .padding(ViewConstants.screenPadding)
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
-            
-//            if viewModel.isShowingProgress {
-//                CustomProgressView()
-//            }
         }
     }
 }
