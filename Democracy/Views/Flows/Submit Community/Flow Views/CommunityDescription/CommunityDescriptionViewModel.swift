@@ -17,6 +17,7 @@ final class CommunityDescriptionViewModel: SubmittableTextEditorInputViewModel {
     var isShowingProgress: Bool = false
     var selectedTab: PostBodyTab = .editor
     let fieldTitle: String = "Description"
+    let field: CommunityFlow.ID = .description
     private let submitCommunityInput: SubmitCommunityInput
     private weak var flowCoordinator: SubmitCommunityFlowCoordinator?
     

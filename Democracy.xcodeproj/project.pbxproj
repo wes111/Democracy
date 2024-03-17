@@ -758,8 +758,8 @@
 		EE36FF8D2B1E14CD009E8F86 /* Username */ = {
 			isa = PBXGroup;
 			children = (
-				EE36FF8E2B1E14E3009E8F86 /* AccountUsernameView.swift */,
 				EE7055582B138F4F00E40A89 /* AccountUsernameViewModel.swift */,
+				EE36FF8E2B1E14E3009E8F86 /* AccountUsernameView.swift */,
 			);
 			path = Username;
 			sourceTree = "<group>";
@@ -767,8 +767,8 @@
 		EE36FF902B1E1694009E8F86 /* Password */ = {
 			isa = PBXGroup;
 			children = (
-				EE36FF912B1E16CB009E8F86 /* AccountPasswordView.swift */,
 				EE70555A2B138FB600E40A89 /* AccountPasswordViewModel.swift */,
+				EE36FF912B1E16CB009E8F86 /* AccountPasswordView.swift */,
 			);
 			path = Password;
 			sourceTree = "<group>";
@@ -776,8 +776,8 @@
 		EE36FF932B1E1718009E8F86 /* Email */ = {
 			isa = PBXGroup;
 			children = (
-				EE36FF942B1E17F3009E8F86 /* AccountEmailView.swift */,
 				EE70555C2B1390A800E40A89 /* AccountEmailViewModel.swift */,
+				EE36FF942B1E17F3009E8F86 /* AccountEmailView.swift */,
 			);
 			path = Email;
 			sourceTree = "<group>";
@@ -785,8 +785,8 @@
 		EE36FF962B1E1825009E8F86 /* Phone */ = {
 			isa = PBXGroup;
 			children = (
-				EE36FF972B1E183E009E8F86 /* AccountPhoneView.swift */,
 				EE70555E2B13917100E40A89 /* AccountPhoneViewModel.swift */,
+				EE36FF972B1E183E009E8F86 /* AccountPhoneView.swift */,
 			);
 			path = Phone;
 			sourceTree = "<group>";
@@ -1112,8 +1112,8 @@
 		EE4987D42B2F8E0E00AB7522 /* PostTitle */ = {
 			isa = PBXGroup;
 			children = (
-				EE4987D52B2F8E2300AB7522 /* PostTitleView.swift */,
 				EE4987D72B2F8E3200AB7522 /* PostTitleViewModel.swift */,
+				EE4987D52B2F8E2300AB7522 /* PostTitleView.swift */,
 			);
 			path = PostTitle;
 			sourceTree = "<group>";
@@ -1121,8 +1121,8 @@
 		EE4987D92B2F90F000AB7522 /* PostBody */ = {
 			isa = PBXGroup;
 			children = (
-				EE4987DA2B2F917500AB7522 /* PostBodyView.swift */,
 				EE4987DC2B2F917F00AB7522 /* PostBodyViewModel.swift */,
+				EE4987DA2B2F917500AB7522 /* PostBodyView.swift */,
 			);
 			path = PostBody;
 			sourceTree = "<group>";
@@ -1384,8 +1384,8 @@
 		EE7EC2762B614E6A00F62E90 /* CommunityRules */ = {
 			isa = PBXGroup;
 			children = (
-				EE7EC2772B614E7B00F62E90 /* CommunityRulesView.swift */,
 				EE7EC2792B614E8600F62E90 /* CommunityRulesViewModel.swift */,
+				EE7EC2772B614E7B00F62E90 /* CommunityRulesView.swift */,
 				EE412B502B8D7BC00007632B /* AddRule */,
 			);
 			path = CommunityRules;
@@ -1403,8 +1403,8 @@
 		EE7EC2802B614F1500F62E90 /* CommunityCategories */ = {
 			isa = PBXGroup;
 			children = (
-				EE7EC2812B614F8900F62E90 /* CommunityCategoriesView.swift */,
 				EE7EC2832B614F9500F62E90 /* CommunityCategoriesViewModel.swift */,
+				EE7EC2812B614F8900F62E90 /* CommunityCategoriesView.swift */,
 			);
 			path = CommunityCategories;
 			sourceTree = "<group>";
@@ -1421,8 +1421,8 @@
 		EE7EC28A2B6150A200F62E90 /* CommunityName */ = {
 			isa = PBXGroup;
 			children = (
-				EE7EC28B2B61514C00F62E90 /* CommunityNameView.swift */,
 				EE7EC28D2B61515900F62E90 /* CommunityNameViewModel.swift */,
+				EE7EC28B2B61514C00F62E90 /* CommunityNameView.swift */,
 			);
 			path = CommunityName;
 			sourceTree = "<group>";
@@ -1796,8 +1796,8 @@
 		EEC61B5D2B40F41600F73509 /* PostCategory */ = {
 			isa = PBXGroup;
 			children = (
-				EEC61B5E2B40F43400F73509 /* PostCategoryView.swift */,
 				EEC61B602B40F45000F73509 /* PostCategoryViewModel.swift */,
+				EEC61B5E2B40F43400F73509 /* PostCategoryView.swift */,
 			);
 			path = PostCategory;
 			sourceTree = "<group>";

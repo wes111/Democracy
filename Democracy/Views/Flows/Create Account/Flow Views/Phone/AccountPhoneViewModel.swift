@@ -17,6 +17,7 @@ final class AccountPhoneViewModel: SubmittableTextInputViewModel, SubmittableSki
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
     let fieldTitle: String = "Add Phone"
+    let field: AccountFlow.ID = .phone
     private let createAccountInput: CreateAccountInput
     private weak var flowCoordinator: CreateAccountFlowCoordinator?
     @ObservationIgnored @Injected(\.accountService) private var accountService

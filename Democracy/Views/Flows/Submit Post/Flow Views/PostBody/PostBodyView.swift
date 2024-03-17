@@ -23,7 +23,7 @@ struct PostBodyView<ViewModel: PostBodyViewModel>: View {
 // MARK: - Subviews
 private extension PostBodyView {
     var primaryContent: some View {
-        SubmittableTextEditorInputView(viewModel: viewModel) {
+        SubmittableTextEditorInputView(viewModel: viewModel, focusedField: $focusedField) {
             VStack {
                 field
                 Spacer()

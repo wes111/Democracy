@@ -17,6 +17,7 @@ final class CommunityCategoriesViewModel: SubmittableMultiTextInputViewModel {
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
     let fieldTitle: String = "Category"
+    let field: CommunityFlow.ID = .categories
     private let submitCommunityInput: SubmitCommunityInput
     private weak var flowCoordinator: SubmitCommunityFlowCoordinator?
     

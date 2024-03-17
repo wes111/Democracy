@@ -24,7 +24,7 @@ struct CommunityDescriptionView<ViewModel: CommunityDescriptionViewModel>: View 
 private extension CommunityDescriptionView {
     var primaryContent: some View {
         VStack(alignment: .leading, spacing: 0) {
-            SubmittableTextEditorInputView(viewModel: viewModel) {
+            SubmittableTextEditorInputView(viewModel: viewModel, focusedField: $focusedField) {
                 field
             }
             Spacer()

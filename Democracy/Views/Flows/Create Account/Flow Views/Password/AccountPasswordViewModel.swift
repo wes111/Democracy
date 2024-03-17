@@ -17,6 +17,7 @@ final class AccountPasswordViewModel: SubmittableTextInputViewModel {
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
     let fieldTitle: String = "Create Password"
+    let field: AccountFlow.ID = .password
     private let createAccountInput: CreateAccountInput
     private weak var flowCoordinator: CreateAccountFlowCoordinator?
     @ObservationIgnored @Injected(\.accountService) private var accountService

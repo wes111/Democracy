@@ -21,10 +21,10 @@ struct AccountUsernameView<ViewModel: AccountUsernameViewModel>: View {
 }
 
 // MARK: - Subviews
-private extension AccountUsernameView{
+private extension AccountUsernameView {
     
     var primaryContent: some View {
-        SubmittableTextInputView(viewModel: viewModel) {
+        SubmittableTextInputView(viewModel: viewModel, focusedField: $focusedField) {
             VStack {
                 field
                 Spacer()

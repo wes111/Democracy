@@ -19,6 +19,7 @@ protocol SubmittableTextInputViewModel: SubmittableNextButtonViewModel {
     associatedtype Requirement: InputRequirement
     associatedtype FocusedField: Hashable
     
+    var field: FocusedField { get }
     var text: String { get set }
     var alertModel: NewAlertModel? { get set }
     

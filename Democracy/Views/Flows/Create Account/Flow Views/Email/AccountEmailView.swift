@@ -24,7 +24,7 @@ struct AccountEmailView<ViewModel: AccountEmailViewModel>: View {
 private extension AccountEmailView {
     
     var primaryContent: some View {
-        SubmittableTextInputView(viewModel: viewModel) {
+        SubmittableTextInputView(viewModel: viewModel, focusedField: $focusedField) {
             VStack {
                 field
                 Spacer()

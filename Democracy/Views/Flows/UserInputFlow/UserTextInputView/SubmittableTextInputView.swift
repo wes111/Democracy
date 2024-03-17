@@ -10,10 +10,16 @@ import SwiftUI
 @MainActor
 struct SubmittableTextInputView<ViewModel: SubmittableTextInputViewModel, Content: View>: View {
     @Bindable var viewModel: ViewModel
+    @FocusState.Binding var focusedField: ViewModel.FocusedField?
     @ViewBuilder let content: Content
     
-    init(viewModel: ViewModel, @ViewBuilder content: () -> Content) {
+    init(
+        viewModel: ViewModel,
+        focusedField: FocusState<ViewModel.FocusedField?>.Binding,
+        @ViewBuilder content: () -> Content
+    ) {
         self.viewModel = viewModel
+        self._focusedField = focusedField
         self.content = content()
     }
     
@@ -29,6 +35,9 @@ struct SubmittableTextInputView<ViewModel: SubmittableTextInputViewModel, Conten
                         isShowingProgress: $viewModel.isShowingProgress
                     )
                 }
+            }
+            .onAppear {
+                focusedField = viewModel.field
             }
             .dismissKeyboardOnDrag()
     }
@@ -47,7 +56,7 @@ private extension SubmittableTextInputView {
 #Preview {
     @FocusState var focusedField: AccountFlow.ID?
     
-    return SubmittableTextInputView(viewModel: AccountEmailViewModel.preview) {
+    return SubmittableTextInputView(viewModel: AccountEmailViewModel.preview, focusedField: $focusedField) {
         TextField(
             "Field Title",
             text: .constant("Hello World"),

@@ -17,6 +17,7 @@ final class AccountEmailViewModel: SubmittableTextInputViewModel {
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
     let fieldTitle: String = "Add Email"
+    let field: AccountFlow.ID = .email
     private let createAccountInput: CreateAccountInput
     private weak var flowCoordinator: CreateAccountFlowCoordinator?
     @ObservationIgnored @Injected(\.accountService) private var accountService

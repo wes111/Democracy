@@ -24,7 +24,7 @@ struct PostPrimaryLinkView<ViewModel: PostPrimaryLinkViewModel>: View {
 private extension PostPrimaryLinkView {
     
     var primaryContent: some View {
-        SubmittableTextInputView(viewModel: viewModel) {
+        SubmittableTextInputView(viewModel: viewModel, focusedField: $focusedField) {
             VStack {
                 field
                 Spacer()

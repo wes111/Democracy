@@ -17,6 +17,7 @@ final class PostBodyViewModel: SubmittableTextEditorInputViewModel {
     var isShowingProgress: Bool = false
     var selectedTab: PostBodyTab = .editor
     let fieldTitle: String = "Post Content"
+    let field: PostFlow.ID = .body
     private let submitPostInput: SubmitPostInput
     private weak var flowCoordinator: SubmitPostFlowCoordinator?
     

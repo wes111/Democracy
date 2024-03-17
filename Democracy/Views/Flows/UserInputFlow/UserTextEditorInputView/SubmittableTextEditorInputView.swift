@@ -10,10 +10,16 @@ import SwiftUI
 @MainActor
 struct SubmittableTextEditorInputView<ViewModel: SubmittableTextEditorInputViewModel, Field: View>: View {
     @Bindable var viewModel: ViewModel
+    @FocusState.Binding var focusedField: ViewModel.FocusedField?
     @ViewBuilder let field: Field
     
-    init(viewModel: ViewModel, @ViewBuilder field: () -> Field) {
+    init(
+        viewModel: ViewModel,
+        focusedField: FocusState<ViewModel.FocusedField?>.Binding,
+        @ViewBuilder field: () -> Field
+    ) {
         self.viewModel = viewModel
+        self._focusedField = focusedField
         self.field = field()
     }
     
@@ -26,7 +32,7 @@ struct SubmittableTextEditorInputView<ViewModel: SubmittableTextEditorInputViewM
 private extension SubmittableTextEditorInputView {
     
     var primaryContent: some View {
-        SubmittableTextInputView(viewModel: viewModel) {
+        SubmittableTextInputView(viewModel: viewModel, focusedField: $focusedField) {
             VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
                 picker
                 tabView
@@ -75,7 +81,7 @@ private extension SubmittableTextEditorInputView {
     @FocusState var focusedField: PostFlow.ID?
     
     return NavigationStack {
-        SubmittableTextEditorInputView(viewModel: PostBodyViewModel.preview) {
+        SubmittableTextEditorInputView(viewModel: PostBodyViewModel.preview, focusedField: $focusedField) {
             EmptyView()
         }
     }

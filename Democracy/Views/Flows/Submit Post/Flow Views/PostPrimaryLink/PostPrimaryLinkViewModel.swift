@@ -19,6 +19,7 @@ final class PostPrimaryLinkViewModel: SubmittableSkipableViewModel, SubmittableT
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
     let fieldTitle: String = "Post Primary Link"
+    let field: PostFlow.ID = .primaryLink
     private let submitPostInput: SubmitPostInput
     private weak var flowCoordinator: SubmitPostFlowCoordinator?
     

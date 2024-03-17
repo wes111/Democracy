@@ -24,7 +24,7 @@ struct AccountPasswordView<ViewModel: AccountPasswordViewModel>: View {
 extension AccountPasswordView {
     
     var primaryContent: some View {
-        SubmittableTextInputView(viewModel: viewModel) {
+        SubmittableTextInputView(viewModel: viewModel, focusedField: $focusedField) {
             VStack {
                 field
                 Spacer()

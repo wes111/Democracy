@@ -24,7 +24,7 @@ struct CommunityTagsView<ViewModel: CommunityTagsViewModel>: View {
 private extension CommunityTagsView {
     
     var primaryContent: some View {
-        SubmittableTextInputView(viewModel: viewModel) {
+        SubmittableTextInputView(viewModel: viewModel, focusedField: $focusedField) {
             VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
                 field
                 VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {

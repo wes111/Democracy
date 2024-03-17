@@ -17,6 +17,7 @@ final class PostTitleViewModel: SubmittableTextInputViewModel {
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
     let fieldTitle: String = "Post Title"
+    let field: PostFlow.ID = .title
     private let submitPostInput: SubmitPostInput
     private weak var flowCoordinator: SubmitPostFlowCoordinator?
     

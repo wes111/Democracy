@@ -16,6 +16,7 @@ final class CommunityNameViewModel: SubmittableTextInputViewModel {
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
     let fieldTitle: String = "Community Name"
+    let field: CommunityFlow.ID = .name
     private let submitCommunityInput: SubmitCommunityInput
     private weak var flowCoordinator: SubmitCommunityFlowCoordinator?
     
