@@ -7,7 +7,25 @@
 
 import SwiftUI
 
-struct TitleTextFieldStyle<Field: InputField>: TextFieldStyle {
+// TODO: Combine with below, only difference is trimming.
+struct DefaultTrimmedTextFieldStyle<Field: Hashable>: TextFieldStyle {
+    @Binding var title: String
+    @FocusState.Binding var focusedField: Field?
+    let field: Field
+    
+    // swiftlint:disable:next all
+    func _body(configuration: TextField<_Label>) -> some View {
+        configuration
+            .keyboardType(.default)
+            .standardTextInputAppearance(
+                text: $title,
+                focusedField: $focusedField,
+                field: field
+            )
+    }
+}
+
+struct TitleTextFieldStyle<Field: Hashable>: TextFieldStyle {
     @Binding var title: String
     @FocusState.Binding var focusedField: Field?
     let field: Field
@@ -27,7 +45,7 @@ struct TitleTextFieldStyle<Field: InputField>: TextFieldStyle {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: SubmitPostField?
+    @FocusState var focusedField: PostFlow.ID?
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
@@ -37,7 +55,7 @@ struct TitleTextFieldStyle<Field: InputField>: TextFieldStyle {
         .textFieldStyle(TitleTextFieldStyle(
             title: .constant("Title"),
             focusedField: $focusedField,
-            field: SubmitPostField.title
+            field: .title
         ))
         .padding()
     }

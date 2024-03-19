@@ -10,14 +10,15 @@ import Foundation
 extension Community {
     static let preview = Community(
         id: UUID().uuidString,
+        creatorId: UUID().uuidString,
         name: "Test Community",
-        summary: """
+        description: """
                  Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah,
                  blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah,
                  blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community,
                  blah, blah, blah
                  """,
-        foundedDate: Date(),
+        creationDate: Date(),
         representatives: Candidate.representativePreviewArray,
         memberCount: 255,
         rules: Rule.previewArray,
@@ -103,7 +104,13 @@ extension Community {
             "Hannah Montana",
             "Sun Glasses"
         ],
-        alliedCommunities: []
+        alliedCommunities: [],
+        governmentType: .autocracy,
+        contentType: .adultContent,
+        visibilityType: .member,
+        allowedPosterType: .experts,
+        allowedCommenterType: .experts,
+        postApprovalType: .automatic
     )
     
     static var myCommunitiesPreviewArray: [Community] {
@@ -112,14 +119,15 @@ extension Community {
             array.append(
                 Community(
                     id: UUID().uuidString,
+                    creatorId: UUID().uuidString,
                     name: "My Community \(index)",
-                    summary: """
+                    description: """
                              Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah,
                              blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah,
                              blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community,
                              blah, blah, blah
                              """,
-                    foundedDate: Community.preview.foundedDate,
+                    creationDate: Community.preview.creationDate,
                     representatives: Community.preview.representatives,
                     memberCount: 255,
                     rules: Community.preview.rules,
@@ -127,7 +135,13 @@ extension Community {
                     categories: ["Racing", "Sports", "Weather",
                                  "Dog Grooming", "Vampires", "Fruit & Veggies"],
                     tags: [],
-                    alliedCommunities: []
+                    alliedCommunities: [],
+                    governmentType: .autocracy,
+                    contentType: .adultContent,
+                    visibilityType: .member,
+                    allowedPosterType: .experts,
+                    allowedCommenterType: .experts,
+                    postApprovalType: .automatic
                 ))
         }
         return array
@@ -139,14 +153,15 @@ extension Community {
             array.append(
                 Community(
                     id: UUID().uuidString,
+                    creatorId: UUID().uuidString,
                     name: "Recommended Community \(index)",
-                    summary: """
+                    description: """
                              Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah,
                              blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah,
                              blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community,
                              blah, blah, blah
                              """,
-                    foundedDate: Community.preview.foundedDate,
+                    creationDate: Community.preview.creationDate,
                     representatives: Community.preview.representatives,
                     memberCount: 255,
                     rules: Community.preview.rules,
@@ -154,7 +169,13 @@ extension Community {
                     categories: ["Racing", "Sports", "Weather",
                                  "Dog Grooming", "Vampires", "Fruit & Veggies"],
                     tags: [],
-                    alliedCommunities: []
+                    alliedCommunities: [],
+                    governmentType: .autocracy,
+                    contentType: .adultContent,
+                    visibilityType: .member,
+                    allowedPosterType: .experts,
+                    allowedCommenterType: .experts,
+                    postApprovalType: .automatic
                 ))
         }
         return array
@@ -166,21 +187,28 @@ extension Community {
             array.append(
                 Community(
                     id: UUID().uuidString,
+                    creatorId: UUID().uuidString,
                     name: "Top Community \(index)",
-                    summary: """
+                    description: """
                              Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, 
                              blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah,
                              blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community,
                              blah, blah, blah
                              """,
-                    foundedDate: Community.preview.foundedDate,
+                    creationDate: Community.preview.creationDate,
                     representatives: Community.preview.representatives,
                     memberCount: 255,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
                     categories: ["Racing", "Sports", "Weather", "Dog Grooming", "Vampires", "Fruit & Veggies"],
                     tags: [],
-                    alliedCommunities: []
+                    alliedCommunities: [],
+                    governmentType: .autocracy,
+                    contentType: .adultContent,
+                    visibilityType: .member,
+                    allowedPosterType: .experts,
+                    allowedCommenterType: .experts,
+                    postApprovalType: .automatic
                 ))
         }
         return array

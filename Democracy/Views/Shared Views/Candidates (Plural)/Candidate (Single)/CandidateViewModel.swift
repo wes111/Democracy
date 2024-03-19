@@ -52,3 +52,10 @@ final class CandidateViewModel: CandidateViewModelProtocol {
         self.candidate = candidate
     }
 }
+
+extension Post {
+    // TODO: Remove
+    func toViewModel(coordinator: PostCardCoordinatorDelegate?) -> PostCardViewModel {
+        .init(coordinator: coordinator, post: self)
+    }
+}

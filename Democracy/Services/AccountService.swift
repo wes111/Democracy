@@ -22,7 +22,7 @@ protocol AccountService {
     func login(email: String, password: String) async throws
     func logout() async throws
     func updatePhone(phone: PhoneNumber, password: String) async throws
-    func acceptTerms(input: OnboardingInput) async throws
+    func acceptTerms(input: CreateAccountInput) async throws
     
     var sessionStream: SharedAsyncSequence<AsyncStream<Session?>> { get async }
     var currentSession: Session? { get async }
@@ -68,7 +68,7 @@ extension AccountServiceDefault {
 extension AccountServiceDefault {
     
     // At this point we can create the account and log-in.
-    func acceptTerms(input: OnboardingInput) async throws {
+    func acceptTerms(input: CreateAccountInput) async throws {
         guard let userName = input.username,
               let password = input.password,
               let email = input.email

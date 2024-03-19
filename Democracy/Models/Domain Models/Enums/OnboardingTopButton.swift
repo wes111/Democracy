@@ -10,7 +10,7 @@ import Foundation
 enum OnboardingTopButton: Identifiable {
     typealias Action = @MainActor () -> Void
     
-    case back
+    case back(Action)
     case close(Action)
     
     var id: String {

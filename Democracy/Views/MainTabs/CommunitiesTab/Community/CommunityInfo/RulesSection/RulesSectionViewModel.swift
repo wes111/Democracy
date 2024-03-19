@@ -13,7 +13,7 @@ struct RulesSectionViewModel {
     let title: String
     
     init(
-        rules: [Rule],
+        rules: [GARBAGERule],
         title: String
     ) {
         self.title = title
@@ -25,5 +25,19 @@ struct RulesSectionViewModel {
             }
             return viewModels
         }()
+    }
+}
+
+struct GARBAGERule: Codable, Hashable {
+    let id: String
+    let title: String
+    let description: String
+    
+    func viewModel(index: Int) -> RuleViewModel {
+        .init(
+            title: title,
+            description: description,
+            index: index
+        )
     }
 }

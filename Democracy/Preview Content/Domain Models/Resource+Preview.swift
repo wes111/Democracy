@@ -20,7 +20,9 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.google.com")!
+            link: URL(string: "https://www.google.com")!,
+            category: .book,
+            communityId: "CommunityId"
         ),
         Resource(
             id: UUID().uuidString,
@@ -32,7 +34,9 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.google.com")!
+            link: URL(string: "https://www.google.com")!,
+            category: .book,
+            communityId: "CommunityId"
         ),
         Resource(
             id: UUID().uuidString,
@@ -44,7 +48,9 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.google.com")!
+            link: URL(string: "https://www.google.com")!,
+            category: .book,
+            communityId: "CommunityId"
         ),
         Resource(
             id: UUID().uuidString,
@@ -56,7 +62,9 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.walmart.com")!
+            link: URL(string: "https://www.walmart.com")!,
+            category: .book,
+            communityId: "CommunityId"
         ),
         Resource(
             id: UUID().uuidString,
@@ -68,7 +76,9 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.walmart.com")!
+            link: URL(string: "https://www.walmart.com")!,
+            category: .book,
+            communityId: "CommunityId"
         ),
         Resource(
             id: UUID().uuidString,
@@ -80,7 +90,9 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.walmart.com")!
+            link: URL(string: "https://www.walmart.com")!,
+            category: .book,
+            communityId: "CommunityId"
         ),
         Resource(
             id: UUID().uuidString,
@@ -92,7 +104,9 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.apple.com")!
+            link: URL(string: "https://www.apple.com")!,
+            category: .book,
+            communityId: "CommunityId"
         ),
         Resource(
             id: UUID().uuidString,
@@ -104,7 +118,9 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.apple.com")!
+            link: URL(string: "https://www.apple.com")!,
+            category: .book,
+            communityId: "CommunityId"
         ),
         Resource(
             id: UUID().uuidString,
@@ -116,7 +132,9 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.amazon.com")!
+            link: URL(string: "https://www.amazon.com")!,
+            category: .book,
+            communityId: "CommunityId"
         ),
         Resource(
             id: UUID().uuidString,
@@ -128,7 +146,9 @@ extension Resource {
                          both in print and digital formats, ensuring that everyone has equal access
                          to this invaluable resource.
                          """,
-            url: URL(string: "https://www.amazon.com")!
+            link: URL(string: "https://www.amazon.com")!,
+            category: .book,
+            communityId: "CommunityId"
         )
     ]
 }

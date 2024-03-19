@@ -20,4 +20,14 @@ extension String {
         self
             .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
     }
+    
+    // https://forums.developer.apple.com/forums/thread/682957
+    func toAttributedString() -> AttributedString {
+        (try? AttributedString(
+            markdown: self,
+            options: AttributedString.MarkdownParsingOptions(
+                interpretedSyntax: .inlineOnlyPreservingWhitespace
+            )
+        )) ?? .init()
+    }
 }

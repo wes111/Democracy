@@ -18,7 +18,7 @@ extension Post {
         category: "racing",
         tags: [ "Dog", "Cat", "Mouse", "Horse", "Elephant", "Zebra", "Donkey", "Chicken"],
         userId: "1234",
-        community: .init(id: "12345"),
+        communityId: "12345",
         creationDate: .now,
         rootCommentIds: [],
         approvedDate: .now

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol PasswordCaseRepresentable: InputField {
+protocol PasswordCaseRepresentable: Hashable {
     var isPasswordCase: Bool { get }
     static var passwordCase: Self { get }
 }
@@ -128,7 +128,7 @@ private extension CustomSecureField {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: OnboardingInputField?
+    @FocusState var focusedField: AccountFlow.ID?
     
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
@@ -136,7 +136,7 @@ private extension CustomSecureField {
             secureText: .constant("Hello World"),
             loginField: $focusedField,
             isNewPassword: false,
-            field: OnboardingInputField.password
+            field: .password
         )
         .padding()
     }

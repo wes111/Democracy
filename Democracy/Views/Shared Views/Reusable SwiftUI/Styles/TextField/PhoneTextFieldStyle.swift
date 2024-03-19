@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct PhoneTextFieldStyle<Field: InputField>: TextFieldStyle {
+struct PhoneTextFieldStyle<Field: Hashable>: TextFieldStyle {
     @Binding var phone: String
     @FocusState.Binding var focusedField: Field?
     let field: Field
@@ -58,7 +58,7 @@ enum PhoneFormatter {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: OnboardingInputField?
+    @FocusState var focusedField: AccountFlow.ID?
     
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
@@ -69,7 +69,7 @@ enum PhoneFormatter {
         .textFieldStyle(PhoneTextFieldStyle(
             phone: .constant("123-456-7890"),
             focusedField: $focusedField,
-            field: OnboardingInputField.phone
+            field: .phone
         ))
     }
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UsernameTextFieldStyle<Field: InputField>: TextFieldStyle {
+struct UsernameTextFieldStyle<Field: Hashable>: TextFieldStyle {
     @Binding var username: String
     @FocusState.Binding var focusedField: Field?
     let field: Field
@@ -27,7 +27,8 @@ struct UsernameTextFieldStyle<Field: InputField>: TextFieldStyle {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: OnboardingInputField?
+    @FocusState var focusedField: AccountFlow.ID?
+    
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
@@ -37,7 +38,7 @@ struct UsernameTextFieldStyle<Field: InputField>: TextFieldStyle {
         .textFieldStyle(UsernameTextFieldStyle(
             username: .constant("Username"),
             focusedField: $focusedField,
-            field: OnboardingInputField.username
+            field: .username
         ))
     }
 }

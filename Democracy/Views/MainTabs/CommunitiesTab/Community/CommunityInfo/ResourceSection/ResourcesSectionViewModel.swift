@@ -7,6 +7,7 @@
 
 import Foundation
 
+// TODO: DELETE
 struct ResourcesSectionViewModel {
     
     let title: String
@@ -27,5 +28,17 @@ struct ResourcesSectionViewModel {
             }
             return viewModels
         }()
+    }
+}
+
+extension Resource {
+    // TODO: Remove below.
+    func viewModel(index: Int) -> ResourceViewModel {
+        .init(
+            title: title,
+            description: description ?? "",
+            index: index,
+            url: link
+        )
     }
 }

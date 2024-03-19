@@ -49,13 +49,13 @@ final class CommunityInfoViewModel: ObservableObject {
         )
         
         aboutSectionViewModel = .init(
-            summary: community.summary,
+            summary: community.description,
             memberCount: community.memberCount,
-            foundedDate: community.foundedDate
+            foundedDate: community.creationDate
         )
         
         rulesSectionViewModel = .init(
-            rules: community.rules,
+            rules: [],
             title: "Rules"
         )
         

@@ -53,6 +53,10 @@ extension Container {
         self { PostServiceDefault() }.scope(.shared)
     }
     
+    var communityService: Factory<CommunityService> {
+        self { CommunityServiceDefault() }.scope(.shared)
+    }
+    
     var passwordLocalRepository: Factory<PasswordRepository> {
         self { PasswordRepositoryDefault() }.scope(.shared)
     }
@@ -69,5 +73,9 @@ extension Container {
     
     var postRepository: Factory<PostRepository> {
         self { PostRepositoryDefault() }.scope(.shared)
+    }
+    
+    var communityRepository: Factory<CommunityRepository> {
+        self { CommunityRepositoryDefault() }.scope(.shared)
     }
 }

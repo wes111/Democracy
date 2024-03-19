@@ -29,7 +29,7 @@ final class CommunityViewModel: ObservableObject {
     }
     
     lazy var leadingButtons: [OnboardingTopButton] = {
-        [.back]
+        [.back(goBack)]
     }()
     
     lazy var trailingButtons: [OnboardingTopButton] = {

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EmailTextFieldStyle<Field: InputField>: TextFieldStyle {
+struct EmailTextFieldStyle<Field: Hashable>: TextFieldStyle {
     @Binding var email: String
     @FocusState.Binding var focusedField: Field?
     let field: Field
@@ -28,7 +28,8 @@ struct EmailTextFieldStyle<Field: InputField>: TextFieldStyle {
 
 // MARK: - Preview
 #Preview {
-    @FocusState var focusedField: OnboardingInputField?
+    @FocusState var focusedField: AccountFlow.ID?
+    
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
@@ -38,7 +39,7 @@ struct EmailTextFieldStyle<Field: InputField>: TextFieldStyle {
         .textFieldStyle(EmailTextFieldStyle(
             email: .constant("Email"),
             focusedField: $focusedField,
-            field: OnboardingInputField.email
+            field: .email
         ))
     }
 }

@@ -9,13 +9,24 @@ import SwiftUI
 
 // Adds requirements directly below a text input element (field or editor).
 struct TextInputRequirementsModifier<Requirement: InputRequirement>: ViewModifier {
-    let text: String
-    let textErrors: [Requirement]
+    @Binding var text: String
+    @State private var textErrors: [Requirement] = []
+    
+    init(text: Binding<String>, requirementType: Requirement.Type) {
+        self._text = text
+    }
     
     func body(content: Content) -> some View {
-        VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
+        VStack(alignment: .leading, spacing: 0) {
             content
             requirements
+        }
+        .onChange(of: text) { _, newValue in
+            textErrors = if newValue.isEmpty {
+                []
+            } else {
+                Requirement.getInputValidationErrors(input: newValue)
+            }
         }
     }
     
@@ -30,18 +41,33 @@ struct TextInputRequirementsModifier<Requirement: InputRequirement>: ViewModifie
 // MARK: - View Extension
 extension View {
     func requirements<Requirement: InputRequirement>(
-        text: String,
-        textErrors: [Requirement]
+        text: Binding<String>,
+        requirementType: Requirement.Type
     ) -> some View {
-        modifier(TextInputRequirementsModifier<Requirement>(
+        modifier(TextInputRequirementsModifier(
             text: text,
-            textErrors: textErrors
+            requirementType: requirementType
         ))
     }
 }
 
 // MARK: - Preview
 #Preview {
-    TextField("TextField", text: .constant("Hello World"))
-        .requirements(text: "Hello World", textErrors: [UsernameRequirement.length])
+    @FocusState var focusedField: AccountFlow.ID?
+    
+    return ZStack {
+        Color.primaryBackground.ignoresSafeArea()
+        
+        TextField("TextField", text: .constant("Hello World"))
+            .textFieldStyle(EmailTextFieldStyle(
+                email: .constant("Hello World"),
+                focusedField: $focusedField,
+                field: .email
+            )
+            )
+            .requirements(
+                text: .constant("Hello World!"),
+                requirementType: LinkRequirement.self
+            )
+    }
 }
