@@ -53,6 +53,7 @@ protocol AppwriteService {
     func getUserNameAvailable(username: String) async throws -> Bool
     func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool
     func getEmailAvailable(_ email: String) async throws -> Bool
+    func isCommunityNameAvailable(_ name: String) async throws -> Bool
     
     // Post/Database Methods
     @discardableResult func submitNewPost(_ newPost: PostCreationRequest) async throws -> Post
@@ -157,6 +158,16 @@ extension AppwriteServiceDefault {
         return try CommunityDTO(document.data.toDictionary()).toCommunity()
     }
     
+    func isCommunityNameAvailable(_ name: String) async throws -> Bool {
+        let response = try await databases.listDocuments(
+            databaseId: databaseId,
+            collectionId: communityCollectionId,
+            queries: [
+                Query.equal("$id", value: name)
+            ]
+        )
+        return response.total == 0
+    }
 }
 
 // MARK: - Private Methods

@@ -25,7 +25,7 @@ import Foundation
 // Note that 'id', 'creationDate', 'representatives' are not part of this object.
 struct CommunityCreationRequest: Encodable {
     let creatorId: String
-    let name: String // This should be the same as id...
+    let name: String // Name is the same as Id.
     let description: String
     let rules: [RuleCreationRequest]
     let resources: [ResourceCreationRequest]

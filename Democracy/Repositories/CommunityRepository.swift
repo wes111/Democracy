@@ -10,6 +10,7 @@ import Foundation
 
 protocol CommunityRepository {
     func submitCommunity(_ community: CommunityCreationRequest) async throws
+    func isCommunityNameAvailable(_ name: String) async throws -> Bool
 }
 
 final class CommunityRepositoryDefault: CommunityRepository {
@@ -17,5 +18,9 @@ final class CommunityRepositoryDefault: CommunityRepository {
     
     func submitCommunity(_ community: CommunityCreationRequest) async throws {
         try await appwriteService.submitCommunity(community)
+    }
+    
+    func isCommunityNameAvailable(_ name: String) async throws -> Bool {
+        try await appwriteService.isCommunityNameAvailable(name)
     }
 }

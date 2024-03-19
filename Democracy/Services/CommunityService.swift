@@ -15,6 +15,7 @@ enum CommunityServiceError: Error {
 
 protocol CommunityService {
     func submitCommunity(userInput: SubmitCommunityInput) async throws
+    func isCommunityNameAvailable(_ name: String) async throws -> Bool
 }
 
 final class CommunityServiceDefault: CommunityService {
@@ -46,6 +47,9 @@ final class CommunityServiceDefault: CommunityService {
             allowedCommenterType: userInput.settings.commenter,
             postApprovalType: userInput.settings.postApproval
         ))
-        
+    }
+    
+    func isCommunityNameAvailable(_ name: String) async throws -> Bool {
+        try await communityRepository.isCommunityNameAvailable(name)
     }
 }
