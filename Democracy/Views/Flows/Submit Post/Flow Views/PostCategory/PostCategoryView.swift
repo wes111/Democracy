@@ -16,7 +16,7 @@ struct PostCategoryView: View {
     }
     
     var body: some View {
-        categoryList
+        primaryContent
             .onAppear {
                 viewModel.onAppear()
             }
