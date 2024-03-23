@@ -21,26 +21,10 @@ final class AccountInputFlowViewModel: InputFlowViewModel, CreateAccountFlowCoor
     init(coordinator: CreateAccountCoordinator?) {
         self.coordinator = coordinator
     }
-    
-    func goBack() {
-        switch flowPath {
-        case .username, nil: return
-        case .email: toUsername()
-        case .password: toEmail()
-        case .phone: toPassword()
-        case .acceptTerms: toPhone()
-        }
-    }
-    
-    func didSubmit(flow: AccountFlow.ID) {
-        switch flow {
-        case .username: toEmail()
-        case .email: toPassword()
-        case .password: toPhone()
-        case .phone: toAcceptTerms()
-        case .acceptTerms: coordinator?.goToSuccess()
-        }
-    }
+}
+
+// MARK: - Computed Properties
+extension AccountInputFlowViewModel {
     
     var trailingButtons: [OnboardingTopButton] {
         [.close(close)]
@@ -60,6 +44,34 @@ final class AccountInputFlowViewModel: InputFlowViewModel, CreateAccountFlowCoor
             false
         case .email, .password, .phone, .acceptTerms:
             true
+        }
+    }
+}
+
+// MARK: - Methods
+extension AccountInputFlowViewModel {
+    
+    func onAppear() {
+        flowPath = .username(.init(createAccountInput: input, flowCoordinator: self))
+    }
+    
+    func goBack() {
+        switch flowPath {
+        case .username, nil: return
+        case .email: toUsername()
+        case .password: toEmail()
+        case .phone: toPassword()
+        case .acceptTerms: toPhone()
+        }
+    }
+    
+    func didSubmit(flow: AccountFlow.ID) {
+        switch flow {
+        case .username: toEmail()
+        case .email: toPassword()
+        case .password: toPhone()
+        case .phone: toAcceptTerms()
+        case .acceptTerms: coordinator?.goToSuccess()
         }
     }
     
