@@ -54,6 +54,7 @@ protocol AppwriteService {
     func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool
     func getEmailAvailable(_ email: String) async throws -> Bool
     func isCommunityNameAvailable(_ name: String) async throws -> Bool
+    func fetchAllCommunities() async throws -> [Community]
     
     // Post/Database Methods
     @discardableResult func submitNewPost(_ newPost: PostCreationRequest) async throws -> Post
@@ -167,6 +168,15 @@ extension AppwriteServiceDefault {
             ]
         )
         return response.total == 0
+    }
+    
+    // TODO: I don't think we actually want a method that fetches all communities. This is just a starting point.
+    func fetchAllCommunities() async throws -> [Community] {
+        let documentList = try await databases.listDocuments(
+            databaseId: databaseId,
+            collectionId: communityCollectionId
+        )
+        return try documentList.documents.map { try CommunityDTO($0.data.toDictionary()).toCommunity() }
     }
 }
 

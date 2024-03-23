@@ -17,9 +17,6 @@ extension Container {
     var candidateInteractor: Factory<CandidateInteractorProtocol> {
          self { CandidateInteractor() }
     }
-    var communityInteractor: Factory<CommunityInteractorProtocol> {
-        self { CommunityInteractor() }
-    }
     
     // MARK: - Repositories
     // TODO: Get rid of these repositories!

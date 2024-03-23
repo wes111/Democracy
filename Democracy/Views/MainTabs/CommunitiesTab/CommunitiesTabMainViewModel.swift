@@ -14,46 +14,30 @@ protocol CommunitiesTabMainCoordinatorDelegate: AnyObject {
     @MainActor func showCreateCommunityView()
 }
 
-final class CommunitiesTabMainViewModel: ObservableObject {
-
-    @Injected(\.communityInteractor) var communityInteractor
+@MainActor @Observable
+final class CommunitiesTabMainViewModel {
     
-    @Published var myCommunities: [Community] = []
-    @Published var recommendedCommunities: [Community] = []
-    @Published var topCommunities: [Community] = []
+//    @Published var myCommunities: [Community] = []
+//    @Published var recommendedCommunities: [Community] = []
+//    @Published var topCommunities: [Community] = []
+    var allCommunities: [Community] = []
+    @ObservationIgnored @Injected(\.communityService) private var communityService
     
     private weak var coordinator: CommunitiesTabMainCoordinatorDelegate?
     
     init(coordinator: CommunitiesTabMainCoordinatorDelegate?) {
         self.coordinator = coordinator
         
-        communityInteractor.subscribeToMyCommunities().assign(to: &$myCommunities)
-        communityInteractor.subscribeToRecommendedCommunities().assign(to: &$recommendedCommunities)
-        communityInteractor.subscribeToTopCommunities().assign(to: &$topCommunities)
-        
-        communityInteractor.refreshMyCommunities()
-        communityInteractor.refreshRecommendedCommunities()
-        communityInteractor.refreshTopCommunities()
+        Task {
+            let communities = try await self.communityService.fetchAllCommunities() // TODO: This fetch should probably be in the repository...
+            allCommunities = communities
+        }
     }
     
-    @MainActor
     func goToCommunity(_ community: Community) {
         coordinator?.goToCommunity(communityId: community.id)
     }
-
-    func refreshMyCommunities() {
-        communityInteractor.refreshMyCommunities()
-    }
     
-    func refreshRecommendedCommunities() {
-        communityInteractor.refreshRecommendedCommunities()
-    }
-    
-    func refreshTopCommunities() {
-        communityInteractor.refreshTopCommunities()
-    }
-    
-    @MainActor
     func showCreateCommunityView() {
         coordinator?.showCreateCommunityView()
     }

@@ -223,7 +223,6 @@
 		EE80D8EB29BD15640000F8EF /* ProjectNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8EA29BD15640000F8EF /* ProjectNotes.swift */; };
 		EE80D8ED29BD180E0000F8EF /* Container+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8EC29BD180E0000F8EF /* Container+Extensions.swift */; };
 		EE80D8F829C01F1D0000F8EF /* UserLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8F729C01F1D0000F8EF /* UserLocalRepository.swift */; };
-		EE80D8FC29C01FF00000F8EF /* CommunityInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8FB29C01FF00000F8EF /* CommunityInteractor.swift */; };
 		EE80D8FE29C020780000F8EF /* CommunityLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8FD29C020780000F8EF /* CommunityLocalRepository.swift */; };
 		EE80D90429C923960000F8EF /* CommunityInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D90329C923960000F8EF /* CommunityInfoViewModel.swift */; };
 		EE80D90829C926600000F8EF /* CandidatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D90729C926600000F8EF /* CandidatesView.swift */; };
@@ -556,7 +555,6 @@
 		EE80D8EA29BD15640000F8EF /* ProjectNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectNotes.swift; sourceTree = "<group>"; };
 		EE80D8EC29BD180E0000F8EF /* Container+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Container+Extensions.swift"; sourceTree = "<group>"; };
 		EE80D8F729C01F1D0000F8EF /* UserLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocalRepository.swift; sourceTree = "<group>"; };
-		EE80D8FB29C01FF00000F8EF /* CommunityInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityInteractor.swift; sourceTree = "<group>"; };
 		EE80D8FD29C020780000F8EF /* CommunityLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityLocalRepository.swift; sourceTree = "<group>"; };
 		EE80D90329C923960000F8EF /* CommunityInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityInfoViewModel.swift; sourceTree = "<group>"; };
 		EE80D90729C926600000F8EF /* CandidatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandidatesView.swift; sourceTree = "<group>"; };
@@ -1459,7 +1457,6 @@
 			isa = PBXGroup;
 			children = (
 				EE80D8E129BC1DD80000F8EF /* PostInteractor.swift */,
-				EE80D8FB29C01FF00000F8EF /* CommunityInteractor.swift */,
 				EE80D92129C9557D0000F8EF /* CandidateInteractor.swift */,
 			);
 			path = Interactors;
@@ -2378,7 +2375,6 @@
 				EE97601B2AD0B0B9003069CF /* AccountAcceptTermsViewModel.swift in Sources */,
 				EEA2B42D2B718BB100063211 /* CommunityVisibility.swift in Sources */,
 				EE7856262AB948E50004B7E4 /* CharacterLimiterModifier.swift in Sources */,
-				EE80D8FC29C01FF00000F8EF /* CommunityInteractor.swift in Sources */,
 				EE80D8DA29BC176E0000F8EF /* CommunityViewModel+Preview.swift in Sources */,
 				EE4987F22B32773300AB7522 /* String+Extensions.swift in Sources */,
 				EE80D91C29C930C40000F8EF /* CandidateViewModel+Preview.swift in Sources */,

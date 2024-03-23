@@ -9,12 +9,12 @@ import SwiftUI
 
 struct CommunitiesTabMainView: View {
     
-    @StateObject var viewModel: CommunitiesTabMainViewModel
+    @Bindable var viewModel: CommunitiesTabMainViewModel
     @State private var multiSelection = Set<String>()
     @State private var bob = ""
     
     init(viewModel: CommunitiesTabMainViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
     }
     
     var body: some View {
@@ -23,28 +23,28 @@ struct CommunitiesTabMainView: View {
             
             CommunitiesScrollView(
                 title: "My Communities",
-                communities: viewModel.myCommunities,
+                communities: viewModel.allCommunities,
                 onTapAction: viewModel.goToCommunity
             )
             .padding(.bottom)
             
-            CommunitiesScrollView(
-                title: "Recommended Communities",
-                communities: viewModel.recommendedCommunities,
-                onTapAction: viewModel.goToCommunity
-            )
-            .padding(.bottom)
-            
-            CommunitiesScrollView(
-                title: "Top Communities",
-                communities: viewModel.topCommunities,
-                onTapAction: viewModel.goToCommunity
-            )
+//            CommunitiesScrollView(
+//                title: "Recommended Communities",
+//                communities: viewModel.recommendedCommunities,
+//                onTapAction: viewModel.goToCommunity
+//            )
+//            .padding(.bottom)
+//            
+//            CommunitiesScrollView(
+//                title: "Top Communities",
+//                communities: viewModel.topCommunities,
+//                onTapAction: viewModel.goToCommunity
+//            )
             
         }
         .navigationTitle("Communities")
         .refreshable {
-            viewModel.refreshMyCommunities()
+            //viewModel.refreshMyCommunities()
         }
         .searchable(text: $bob)
         .toolbar {

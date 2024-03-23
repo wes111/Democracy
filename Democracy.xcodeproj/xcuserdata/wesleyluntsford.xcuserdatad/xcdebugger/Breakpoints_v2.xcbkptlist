@@ -176,5 +176,98 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "49F7B6DA-5FF2-40BE-9E91-B2FE98D7BBCD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Democracy/Views/MainTabs/CommunitiesTab/CommunitiesTabMainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "init(coordinator:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "49F7B6DA-5FF2-40BE-9E91-B2FE98D7BBCD - d25a85bc38513d46"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in Democracy.CommunitiesTabMainViewModel.init(coordinator: Swift.Optional&lt;Democracy.CommunitiesTabMainCoordinatorDelegate&gt;) -&gt; Democracy.CommunitiesTabMainViewModel"
+                  moduleName = "Democracy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/MainTabs/CommunitiesTab/CommunitiesTabMainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "49F7B6DA-5FF2-40BE-9E91-B2FE98D7BBCD - bc9a4dc44a146151"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async throws -&gt; () in Democracy.CommunitiesTabMainViewModel.init(coordinator: Swift.Optional&lt;Democracy.CommunitiesTabMainCoordinatorDelegate&gt;) -&gt; Democracy.CommunitiesTabMainViewModel"
+                  moduleName = "Democracy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/MainTabs/CommunitiesTab/CommunitiesTabMainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "49F7B6DA-5FF2-40BE-9E91-B2FE98D7BBCD - 1c509623558ae158"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in Democracy.CommunitiesTabMainViewModel.init(coordinator: Swift.Optional&lt;Democracy.CommunitiesTabMainCoordinatorDelegate&gt;) -&gt; Democracy.CommunitiesTabMainViewModel"
+                  moduleName = "Democracy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/MainTabs/CommunitiesTab/CommunitiesTabMainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "49F7B6DA-5FF2-40BE-9E91-B2FE98D7BBCD - 7b4b9ee2071f075b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in Democracy.CommunitiesTabMainViewModel.init(coordinator: Swift.Optional&lt;Democracy.CommunitiesTabMainCoordinatorDelegate&gt;) -&gt; Democracy.CommunitiesTabMainViewModel"
+                  moduleName = "Democracy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/MainTabs/CommunitiesTab/CommunitiesTabMainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "49F7B6DA-5FF2-40BE-9E91-B2FE98D7BBCD - 7b4b9ee2071f075b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in Democracy.CommunitiesTabMainViewModel.init(coordinator: Swift.Optional&lt;Democracy.CommunitiesTabMainCoordinatorDelegate&gt;) -&gt; Democracy.CommunitiesTabMainViewModel"
+                  moduleName = "Democracy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/MainTabs/CommunitiesTab/CommunitiesTabMainViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
