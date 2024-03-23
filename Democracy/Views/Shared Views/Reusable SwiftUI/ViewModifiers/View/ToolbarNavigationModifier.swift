@@ -85,22 +85,59 @@ private extension ToolbarNavigationModifier {
             ForEach(buttons) { button in
                 switch button {
                 case .back(let action):
-                    Button {
-                        action()
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.tertiaryText)
-                    }
+                    backButton(action: action)
                     
                 case .close(let action):
-                    Button {
-                        action()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.tertiaryText)
-                    }
+                    closeButton(action: action)
+                    
+                case .search(let action):
+                    searchButton(action: action)
+                    
+                case .menu(let options):
+                    menuButton(options)
                 }
             }
+        }
+    }
+}
+
+// MARK: Buttons
+private extension ToolbarNavigationModifier {
+    func backButton(action: @MainActor @escaping () -> Void) -> some View {
+        Button {
+            action()
+        } label: {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.tertiaryText)
+        }
+    }
+    
+    func closeButton(action: @MainActor @escaping () -> Void) -> some View {
+        Button {
+            action()
+        } label: {
+            Image(systemName: "xmark")
+                .foregroundColor(.tertiaryText)
+        }
+    }
+    
+    func searchButton(action: @MainActor @escaping () -> Void) -> some View {
+        Button {
+            action()
+        } label: {
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(.tertiaryText)
+        }
+    }
+    
+    func menuButton(_ options: [MenuButtonOption]) -> some View {
+        Menu {
+            ForEach(options) { option in
+                Button(option.title) { option.action() }
+            }
+        } label: {
+            Image(systemName: "ellipsis")
+                .foregroundColor(.tertiaryText)
         }
     }
 }

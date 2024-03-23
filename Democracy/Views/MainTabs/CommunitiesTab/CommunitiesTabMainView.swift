@@ -11,7 +11,6 @@ struct CommunitiesTabMainView: View {
     
     @Bindable var viewModel: CommunitiesTabMainViewModel
     @State private var multiSelection = Set<String>()
-    @State private var bob = ""
     
     init(viewModel: CommunitiesTabMainViewModel) {
         self.viewModel = viewModel
@@ -42,22 +41,17 @@ struct CommunitiesTabMainView: View {
 //            )
             
         }
-        .navigationTitle("Communities")
-        .refreshable {
-            //viewModel.refreshMyCommunities()
-        }
-        .searchable(text: $bob)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    viewModel.showCreateCommunityView()
-                } label: {
-                    Image(systemName: "plus")
-                }
-            }
-        }
+        .toolbarNavigation(
+            trailingButtons: [.search({}), .menu(menuOptions)],
+            centerContent: .title("Communities")
+        )
     }
-    
+}
+
+private extension CommunitiesTabMainView {
+    var menuOptions: [MenuButtonOption] {
+        [.init(title: "CreateCommunity", action: viewModel.showCreateCommunityView)]
+    }
 }
 
 struct CommunitiesScrollView: View {
