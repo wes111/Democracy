@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct CommunitiesTabMainView: View {
     
     @Bindable var viewModel: CommunitiesTabMainViewModel
@@ -17,40 +18,33 @@ struct CommunitiesTabMainView: View {
     }
     
     var body: some View {
-        
+        content
+            .toolbarNavigation(trailingButtons: trailingButtons, centerContent: .title("Communities"))
+            .background(Color.primaryBackground, ignoresSafeAreaEdges: .all)
+    }
+}
+
+// MARK: - Subviews
+private extension CommunitiesTabMainView {
+    
+    var menuOptions: [MenuButtonOption] {
+        [.init(title: "CreateCommunity", action: viewModel.showCreateCommunityView)]
+    }
+    
+    var trailingButtons: [OnboardingTopButton] {
+        [.search({}), .menu(menuOptions)]
+    }
+    
+    var content: some View {
         ScrollView(.vertical) {
-            
             CommunitiesScrollView(
                 title: "My Communities",
                 communities: viewModel.allCommunities,
                 onTapAction: viewModel.goToCommunity
             )
             .padding(.bottom)
-            
-//            CommunitiesScrollView(
-//                title: "Recommended Communities",
-//                communities: viewModel.recommendedCommunities,
-//                onTapAction: viewModel.goToCommunity
-//            )
-//            .padding(.bottom)
-//            
-//            CommunitiesScrollView(
-//                title: "Top Communities",
-//                communities: viewModel.topCommunities,
-//                onTapAction: viewModel.goToCommunity
-//            )
-            
         }
-        .toolbarNavigation(
-            trailingButtons: [.search({}), .menu(menuOptions)],
-            centerContent: .title("Communities")
-        )
-    }
-}
-
-private extension CommunitiesTabMainView {
-    var menuOptions: [MenuButtonOption] {
-        [.init(title: "CreateCommunity", action: viewModel.showCreateCommunityView)]
+        .clipped()
     }
 }
 
