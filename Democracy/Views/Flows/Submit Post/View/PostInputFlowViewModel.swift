@@ -60,7 +60,7 @@ final class PostInputFlowViewModel: InputFlowViewModel, SubmitPostFlowCoordinato
         [.close(close)]
     }
     
-    var leadingButtons: [OnboardingTopButton] {
+    var leadingButtons: [ToolBarLeadingContent] {
         shouldShowBackButton ? [.back(goBack)] : []
     }
     

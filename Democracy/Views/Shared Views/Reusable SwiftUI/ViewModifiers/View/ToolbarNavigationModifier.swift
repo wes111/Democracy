@@ -8,28 +8,37 @@
 import Foundation
 import SwiftUI
 
-enum ToolbarCenterContent: Hashable, Identifiable {
-    case title(String)
+enum ToolBarLeadingContent: Identifiable {
+    typealias Action = @MainActor () -> Void
     
-    var id: Self {
-        self
+    case title(String)
+    case back(Action)
+    
+    var name: String {
+        switch self {
+        case .title:
+            "title"
+        case .back:
+            "back"
+        }
+    }
+    
+    var id: String {
+        name
     }
 }
 
 @MainActor
 struct ToolbarNavigationModifier: ViewModifier {
-    let leadingButtons: [OnboardingTopButton]
+    let leadingButtons: [ToolBarLeadingContent]
     let trailingButtons: [OnboardingTopButton]
-    let centerContent: ToolbarCenterContent?
     
     init(
-        leadingButtons: [OnboardingTopButton],
-        trailingButtons: [OnboardingTopButton],
-        centerContent: ToolbarCenterContent?
+        leadingButtons: [ToolBarLeadingContent],
+        trailingButtons: [OnboardingTopButton]
     ) {
         self.leadingButtons = leadingButtons
         self.trailingButtons = trailingButtons
-        self.centerContent = centerContent
         
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithOpaqueBackground()
@@ -54,34 +63,32 @@ struct ToolbarNavigationModifier: ViewModifier {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
             .toolbar {
-                toolbarSideContent(placement: .topBarLeading, buttons: leadingButtons)
-                if let centerContent {
-                    toolbarCenterContent(centerContent)
-                }
-                toolbarSideContent(placement: .topBarTrailing, buttons: trailingButtons)
+                toolbarLeadingContent(content: leadingButtons)
+                toolbarTrailingContent(buttons: trailingButtons)
             }
     }
 }
 
 // MARK: - Subviews
 private extension ToolbarNavigationModifier {
-    func toolbarCenterContent(_ content: ToolbarCenterContent) -> some ToolbarContent {
-        ToolbarItem(placement: .principal) {
-            switch content {
-            case .title(let string):
-                Text(string)
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.tertiaryText)
+    
+    func toolbarLeadingContent(content: [ToolBarLeadingContent]) -> some ToolbarContent {
+        ToolbarItemGroup(placement: .topBarLeading) {
+            ForEach(content) { item in
+                switch item {
+                case .back(let action):
+                    backButton(action: action)
+                    
+                case .title(let title):
+                    Text(title)
+                        .primaryTitle()
+                }
             }
         }
     }
     
-    func toolbarSideContent(
-        placement: ToolbarItemPlacement,
-        buttons: [OnboardingTopButton]
-    ) -> some ToolbarContent {
-        ToolbarItemGroup(placement: placement) {
+    func toolbarTrailingContent(buttons: [OnboardingTopButton]) -> some ToolbarContent {
+        ToolbarItemGroup(placement: .topBarTrailing) {
             ForEach(buttons) { button in
                 switch button {
                 case .back(let action):
@@ -146,14 +153,12 @@ private extension ToolbarNavigationModifier {
 @MainActor
 extension View {
     func toolbarNavigation(
-        leadingButtons: [OnboardingTopButton] = [],
-        trailingButtons: [OnboardingTopButton] = [],
-        centerContent: ToolbarCenterContent? = nil
+        leadingButtons: [ToolBarLeadingContent] = [],
+        trailingButtons: [OnboardingTopButton] = []
     ) -> some View {
         modifier(ToolbarNavigationModifier(
             leadingButtons: leadingButtons,
-            trailingButtons: trailingButtons,
-            centerContent: centerContent
+            trailingButtons: trailingButtons
         ))
     }
 }

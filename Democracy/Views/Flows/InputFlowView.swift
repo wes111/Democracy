@@ -42,7 +42,9 @@ private extension InputFlowView {
                         totalProgress: viewModel.totalProgress,
                         currentProgress: viewModel.currentProgress
                     )
-                    UserInputTitle(title: viewModel.viewTitle)
+                    
+                    Text(viewModel.viewTitle)
+                        .primaryTitle()
                     
                     content
                         .titledElement(title: viewModel.viewSubtitle)

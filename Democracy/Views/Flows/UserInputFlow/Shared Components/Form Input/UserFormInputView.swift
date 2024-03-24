@@ -53,7 +53,8 @@ private extension UserFormInputView {
             GeometryReader { _ in
                 ScrollView(.vertical) {
                     VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-                        UserInputTitle(title: title)
+                        Text(title)
+                            .primaryTitle()
                         formContent
                     }
                     .padding(ViewConstants.screenPadding)

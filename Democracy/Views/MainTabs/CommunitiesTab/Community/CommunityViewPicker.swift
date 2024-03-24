@@ -71,8 +71,7 @@ struct CommunityViewPicker: View {
         .navigationBarHidden(!viewModel.isShowingNavigationBar)
         .toolbarNavigation(
             leadingButtons: viewModel.leadingButtons,
-            trailingButtons: viewModel.trailingButtons,
-            centerContent: .title(viewModel.community.name)
+            trailingButtons: viewModel.trailingButtons
         )
         .toolbar {
             if tabSelection == .feed {

@@ -9,7 +9,6 @@ import SwiftUI
 
 @MainActor
 struct CommunitiesTabMainView: View {
-    
     @Bindable var viewModel: CommunitiesTabMainViewModel
     @State private var multiSelection = Set<String>()
     
@@ -19,7 +18,7 @@ struct CommunitiesTabMainView: View {
     
     var body: some View {
         content
-            .toolbarNavigation(trailingButtons: trailingButtons, centerContent: .title("Communities"))
+            .toolbarNavigation(leadingButtons: leadingButtons, trailingButtons: trailingButtons)
             .background(Color.primaryBackground, ignoresSafeAreaEdges: .all)
     }
 }
@@ -35,42 +34,34 @@ private extension CommunitiesTabMainView {
         [.search({}), .menu(menuOptions)]
     }
     
-    var content: some View {
-        ScrollView(.vertical) {
-            CommunitiesScrollView(
-                title: "My Communities",
-                communities: viewModel.allCommunities,
-                onTapAction: viewModel.goToCommunity
-            )
-            .padding(.bottom)
-        }
-        .clipped()
+    var leadingButtons: [ToolBarLeadingContent] {
+        [.title("Communities")]
     }
-}
-
-struct CommunitiesScrollView: View {
     
-    let title: String
-    var communities: [Community]
-    let onTapAction: @MainActor (Community) -> Void
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text(title)
-                .font(.title2)
-                .padding(.leading)
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack {
-                    ForEach(communities) { community in
-                        CommunityCard(community: community)
-                            .padding(.leading)
-                            .onTapGesture {
-                                onTapAction(community)
-                            }
-                    }
-                }
-            }
+    var content: some View {
+        VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+            HorizontalSelectableList(selection: $viewModel.category)
+            communityList
         }
+        .padding(.horizontal, ViewConstants.screenPadding)
+    }
+    
+    var communityList: some View {
+        List(viewModel.allCommunities) { community in
+            TappableListItem(
+                title: community.name,
+                subtitle: "TODO: What should go here?") {
+                    viewModel.goToCommunity(community)
+                }
+                .listRowInsets(.init(
+                    top: 0,
+                    leading: 0,
+                    bottom: ViewConstants.smallElementSpacing,
+                    trailing: 0
+                ))
+                .listRowBackground(Color.primaryBackground)
+        }
+        .listStyle(.plain)
     }
 }
 
@@ -78,6 +69,5 @@ struct CommunitiesScrollView: View {
 #Preview {
     NavigationStack {
         CommunitiesTabMainView(viewModel: CommunitiesTabMainViewModel.preview)
-            .background(Color.primaryBackground)
     }
 }

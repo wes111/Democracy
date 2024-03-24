@@ -30,7 +30,7 @@ extension AccountInputFlowViewModel {
         [.close(close)]
     }
     
-    var leadingButtons: [OnboardingTopButton] {
+    var leadingButtons: [ToolBarLeadingContent] {
         shouldShowBackButton ? [.back(goBack)] : []
     }
     

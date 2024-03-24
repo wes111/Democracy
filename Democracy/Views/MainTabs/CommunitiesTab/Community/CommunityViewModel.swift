@@ -28,8 +28,8 @@ final class CommunityViewModel: ObservableObject {
         // Communityinteractor.canMakePostsInThisCommunity
     }
     
-    lazy var leadingButtons: [OnboardingTopButton] = {
-        [.back(goBack)]
+    lazy var leadingButtons: [ToolBarLeadingContent] = {
+        [.title(community.name), .back(goBack)]
     }()
     
     lazy var trailingButtons: [OnboardingTopButton] = {

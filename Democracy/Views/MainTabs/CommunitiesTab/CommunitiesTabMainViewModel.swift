@@ -17,10 +17,8 @@ protocol CommunitiesTabMainCoordinatorDelegate: AnyObject {
 @MainActor @Observable
 final class CommunitiesTabMainViewModel {
     
-//    @Published var myCommunities: [Community] = []
-//    @Published var recommendedCommunities: [Community] = []
-//    @Published var topCommunities: [Community] = []
     var allCommunities: [Community] = []
+    var category: CommunitiesCategory = .isMemberOf
     @ObservationIgnored @Injected(\.communityService) private var communityService
     
     private weak var coordinator: CommunitiesTabMainCoordinatorDelegate?

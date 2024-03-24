@@ -14,7 +14,7 @@ protocol InputFlowViewModel: Observable, AnyObject {
     associatedtype Flow: UserInputFlow
     
     var flowPath: Flow? { get }
-    var leadingButtons: [OnboardingTopButton] { get }
+    var leadingButtons: [ToolBarLeadingContent] { get }
     var trailingButtons: [OnboardingTopButton] { get }
     var totalProgress: Int { get }
     var currentProgress: Int { get }

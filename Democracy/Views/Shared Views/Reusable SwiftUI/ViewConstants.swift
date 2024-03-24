@@ -56,6 +56,9 @@ enum SystemImage: String {
     case laptopComputer = "laptopcomputer"
     case movieClapper = "movieclapper"
     case checkmarkDiamondFill = "checkmark.diamond.fill"
+    case shuffle
+    case starFill = "star.fill"
+    case link
 }
 
 // Image assets

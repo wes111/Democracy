@@ -20,8 +20,8 @@ final class VoteViewModel: ObservableObject {
         self.coordinator = coordinator
     }
     
-    lazy var leadingButtons: [OnboardingTopButton] = {
-        []
+    lazy var leadingButtons: [ToolBarLeadingContent] = {
+        [.title(navigationTitle)]
     }()
     
     lazy var trailingButtons: [OnboardingTopButton] = {

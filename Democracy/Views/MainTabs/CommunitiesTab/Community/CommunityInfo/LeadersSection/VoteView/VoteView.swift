@@ -115,8 +115,7 @@ struct VoteView: View {
         .padding()
         .toolbarNavigation(
             leadingButtons: viewModel.leadingButtons,
-            trailingButtons: viewModel.trailingButtons,
-            centerContent: .title(viewModel.navigationTitle)
+            trailingButtons: viewModel.trailingButtons
         )
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
