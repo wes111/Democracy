@@ -55,6 +55,7 @@ protocol AppwriteService {
     func getEmailAvailable(_ email: String) async throws -> Bool
     func isCommunityNameAvailable(_ name: String) async throws -> Bool
     func fetchAllCommunities() async throws -> [Community]
+    func fetchUserMemberships(userId: String) async throws -> [Membership]
     
     // Post/Database Methods
     @discardableResult func submitNewPost(_ newPost: PostCreationRequest) async throws -> Post
@@ -67,6 +68,7 @@ final class AppwriteServiceDefault: AppwriteService {
     private let databaseId = "65956325b9edac11832a"
     private let postCollectionId = "6595636e9fae941f4374"
     private let communityCollectionId = "65980c47b96a51cbd280"
+    private let membershipCollectionId = "66009a851fea59c9dcbc"
     
     private lazy var client: Client = {
         Client()
@@ -177,6 +179,18 @@ extension AppwriteServiceDefault {
             collectionId: communityCollectionId
         )
         return try documentList.documents.map { try CommunityDTO($0.data.toDictionary()).toCommunity() }
+    }
+    
+    // Fetch a user's memberships in different Communities.
+    func fetchUserMemberships(userId: String) async throws -> [Membership] {
+        let documentList = try await databases.listDocuments(
+            databaseId: databaseId,
+            collectionId: membershipCollectionId,
+            queries: [
+                Query.equal("userId", value: userId)
+            ]
+        )
+        return try documentList.documents.map { try MembershipDTO($0.data.toDictionary()).toMembership() }
     }
 }
 

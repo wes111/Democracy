@@ -16,7 +16,7 @@ protocol PostInteractorProtocol {
 
 struct PostInteractor: PostInteractorProtocol {
     
-    @Injected(\.postLocalRepository) var localRepository
+    //@Injected(\.postLocalRepository) var localRepository
     
     private var postsPublisher = PassthroughSubject<[Post], Never>()
     

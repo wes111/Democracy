@@ -108,7 +108,7 @@ struct CommunityDTO: Decodable {
 }
 
 // The domain model.
-struct Community: Identifiable, Hashable {
+struct Community: Identifiable, Hashable, Sendable {
     let id: String
     let creatorId: String
     let name: String

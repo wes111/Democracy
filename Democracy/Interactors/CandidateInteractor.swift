@@ -23,7 +23,7 @@ protocol CandidateInteractorProtocol {
 struct CandidateInteractor: CandidateInteractorProtocol {
 
     // Repositories:
-    @Injected(\.candidateLocalRepository) var localRepository
+    //@Injected(\.candidateLocalRepository) var localRepository
     
     // Interactors:
    // @Injected(\.accountService) var accountService
@@ -54,17 +54,18 @@ struct CandidateInteractor: CandidateInteractorProtocol {
     }
     
     func upVoteCandidate(_ candidate: Candidate) async throws {
-        try await localRepository.upVoteCandidate(candidate)
+        //try await localRepository.upVoteCandidate(candidate)
         updateCandidates()
     }
     
     func downVoteCandidate(_ candidate: Candidate) async throws {
-        try await localRepository.downVoteCandidate(candidate)
+        //try await localRepository.downVoteCandidate(candidate)
         updateCandidates()
     }
     
     func getCandidate(id: String) async throws -> Candidate? {
-        try await localRepository.getCandidate(id: id)
+        //try await localRepository.getCandidate(id: id)
+        return nil
     }
     
     func addCandidate(summary: String, link: String?, repType: RepresentativeType) async throws {
@@ -86,7 +87,7 @@ struct CandidateInteractor: CandidateInteractorProtocol {
             badges: [.candidate, .currentRep, .popular]
         )
         
-        try await localRepository.addCandidate(candidate)
+        //try await localRepository.addCandidate(candidate)
         updateCandidates()
     }
     

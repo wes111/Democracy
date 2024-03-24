@@ -18,20 +18,6 @@ extension Container {
          self { CandidateInteractor() }
     }
     
-    // MARK: - Repositories
-    // TODO: Get rid of these repositories!
-    var postLocalRepository: Factory<PostLocalRepositoryProtocol> {
-         self { PostLocalRepository() }
-    }
-    
-    var communityLocalRepository: Factory<CommunityLocalRepositoryProtocol> {
-         self { CommunityLocalRepository() }
-    }
-    
-    var candidateLocalRepository: Factory<CandidateLocalRepositoryProtocol> {
-         self { CandidateLocalRepository() }
-    }
-    
     // MARK: - Services
     
     var appwriteService: Factory<AppwriteService> {
@@ -54,6 +40,10 @@ extension Container {
         self { CommunityServiceDefault() }.scope(.shared)
     }
     
+    var membershipService: Factory<MembershipService> {
+        self { MembershipServiceDefault() }.scope(.shared)
+    }
+    
     var passwordLocalRepository: Factory<PasswordRepository> {
         self { PasswordRepositoryDefault() }.scope(.shared)
     }
@@ -74,5 +64,9 @@ extension Container {
     
     var communityRepository: Factory<CommunityRepository> {
         self { CommunityRepositoryDefault() }.scope(.shared)
+    }
+    
+    var membershipRepository: Factory<MembershipRepository> {
+        self { MembershipRepositoryDefault() }.scope(.shared)
     }
 }

@@ -27,7 +27,7 @@ struct CommunitiesTabMainView: View {
 private extension CommunitiesTabMainView {
     
     var menuOptions: [MenuButtonOption] {
-        [.init(title: "CreateCommunity", action: viewModel.showCreateCommunityView)]
+        [.init(title: "Create Community", action: viewModel.showCreateCommunityView)]
     }
     
     var trailingButtons: [OnboardingTopButton] {
