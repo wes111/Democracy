@@ -16,25 +16,22 @@ protocol CommunityCoordinatorDelegate:
     @MainActor func goBack()
 }
 
-final class CommunityViewModel: ObservableObject {
-    
-    @Published var isShowingNavigationBar = true
-    private var cancellables = Set<AnyCancellable>()
+@MainActor @Observable
+final class CommunityViewModel {
 
+    var selectedTab: CommunityTab = .feed
     private weak var coordinator: CommunityCoordinatorDelegate?
     let community: Community
-    var canCreatePost: Bool {
-        return true
-        // Communityinteractor.canMakePostsInThisCommunity
+    
+    var leadingButtons: [ToolBarLeadingContent] {
+        [.title(community.name), .back(goBack)]
     }
     
-    lazy var leadingButtons: [ToolBarLeadingContent] = {
-        [.title(community.name), .back(goBack)]
-    }()
-    
-    lazy var trailingButtons: [OnboardingTopButton] = {
-        []
-    }()
+    var trailingButtons: [OnboardingTopButton] {
+        [.menu([
+            .init(title: "Create Post", action: showCreatePostView)
+        ])]
+    }
     
     init(coordinator: CommunityCoordinatorDelegate,
          community: Community

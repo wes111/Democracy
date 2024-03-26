@@ -35,7 +35,9 @@ struct CommunitiesTabCoordinatorView: View {
     func createViewFromPath(_ path: CommunitiesTabPath) -> some View {
         switch path {
         case .goToCommunity(let community): 
-            CommunityCoordinatorView(viewModel: coordinator.communityCoordinatorViewModel(community: community))
+            CommunityCoordinatorView(
+                viewModel: coordinator.communityCoordinatorViewModel(community: community)
+            )
         }
     }
 }

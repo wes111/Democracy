@@ -7,85 +7,45 @@
 
 import SwiftUI
 
-enum CommunityTab: String {
-    case feed = "Feed"
-    case info = "Info"
-    case archive = "Archive"
-}
-
+@MainActor
 struct CommunityViewPicker: View {
+    @Bindable private var viewModel: CommunityViewModel
     
-    @StateObject private var viewModel: CommunityViewModel
-    @State private var tabSelection: CommunityTab = .feed
-    
-    init(viewModel: CommunityViewModel
-    ) {
-        _viewModel = StateObject(wrappedValue: viewModel)
-        
-        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor.init(.otherRed)
-        UISegmentedControl.appearance().setTitleTextAttributes(
-            [.foregroundColor: UIColor.init(.primaryText)],
-            for: .normal
-        )
-        UISegmentedControl.appearance().setTitleTextAttributes(
-            [.foregroundColor: UIColor.init(.primaryText)],
-            for: .selected
-        )
-        UISegmentedControl.appearance().backgroundColor = UIColor.init(.secondaryBackground)
+    init(viewModel: CommunityViewModel) {
+        self.viewModel = viewModel
     }
     
     var body: some View {
-        VStack {
-            if viewModel.isShowingNavigationBar {
-                Picker(selection: $tabSelection, label: Text("Picker")) {
-                    Text(CommunityTab.info.rawValue).tag(CommunityTab.info)
-                    Text(CommunityTab.feed.rawValue).tag(CommunityTab.feed)
-                    Text(CommunityTab.archive.rawValue).tag(CommunityTab.archive)
-                }
-                .pickerStyle(.segmented)
-                .padding(.horizontal)
-                .padding(.bottom, 10)
-            }
-            
-            TabView(selection: $tabSelection) {
-                CommunityInfoView(viewModel: viewModel.getCommunityInfoViewModel())
-                    .tabItem {
-                        Text(CommunityTab.info.rawValue)
-                    }
-                    .tag(CommunityTab.info)
-                
-                CommunityHomeFeedView(viewModel: viewModel.getCommunityHomeFeedViewModel())
-                    .tabItem {
-                        Text(CommunityTab.feed.rawValue)
-                    }
-                    .tag(CommunityTab.feed)
-                
-                CommunityArchiveFeedView(viewModel: viewModel.getCommunityArchiveFeedViewModel())
-                    .tabItem {
-                        Text(CommunityTab.archive.rawValue)
-                    }
-                    .tag(CommunityTab.archive)
-            }
-            .tabViewStyle(.page)
+        ZStack {
+            Color.primaryBackground.ignoresSafeArea(.all)
+            content
         }
-        .navigationBarHidden(!viewModel.isShowingNavigationBar)
         .toolbarNavigation(
             leadingButtons: viewModel.leadingButtons,
             trailingButtons: viewModel.trailingButtons
         )
-        .toolbar {
-            if tabSelection == .feed {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        viewModel.showCreatePostView()
-                    } label: {
-                        Image(systemName: "plus")
-                            .foregroundColor(.tertiaryText)
-                    }
-                }
+    }
+}
+
+// MARK: - Subviews
+private extension CommunityViewPicker {
+    var content: some View {
+        VStack {
+            HorizontalSelectableList(selection: $viewModel.selectedTab)
+            
+            switch viewModel.selectedTab {
+            case .feed:
+                CommunityHomeFeedView(viewModel: viewModel.getCommunityHomeFeedViewModel())
+                
+            case .info:
+                CommunityInfoView(viewModel: viewModel.getCommunityInfoViewModel())
+                
+            case .archive:
+                CommunityArchiveFeedView(viewModel: viewModel.getCommunityArchiveFeedViewModel())
             }
+            
+            Spacer()
         }
-        .background(Color.primaryBackground)
     }
 }
 

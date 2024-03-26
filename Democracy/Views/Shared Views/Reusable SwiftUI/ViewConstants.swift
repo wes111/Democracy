@@ -34,31 +34,33 @@ enum ViewConstants {
 
 // SF Symbols
 enum SystemImage: String {
-    case checkmarkCircleFill = "checkmark.circle.fill"
     case arrowRight = "arrow.right"
     case asterisk = "asterisk"
-    case exclamationmarkTriangle = "exclamationmark.triangle"
-    case exclamationmarkTriangleFill = "exclamationmark.triangle.fill"
-    case xCircle = "x.circle"
-    case ellipsis
-    case chevronRight = "chevron.right"
-    case personThree = "person.3"
-    case person
-    case figureAndChildHoldingHands = "figure.and.child.holdinghands"
-    case eye
-    case eyeSlash = "eye.slash"
-    case booksVerticalFill = "books.vertical.fill"
-    case crown
     case bolt
-    case checkmark
     case book
     case bookClosed = "book.closed"
-    case laptopComputer = "laptopcomputer"
-    case movieClapper = "movieclapper"
+    case booksVerticalFill = "books.vertical.fill"
+    case checkmark
+    case checkmarkCircleFill = "checkmark.circle.fill"
     case checkmarkDiamondFill = "checkmark.diamond.fill"
+    case chevronRight = "chevron.right"
+    case crown
+    case ellipsis
+    case eye
+    case eyeSlash = "eye.slash"
+    case exclamationmarkTriangle = "exclamationmark.triangle"
+    case exclamationmarkTriangleFill = "exclamationmark.triangle.fill"
+    case figureAndChildHoldingHands = "figure.and.child.holdinghands"
+    case infoCircle = "info.circle"
+    case laptopComputer = "laptopcomputer"
+    case link
+    case movieClapper = "movieclapper"
+    case newspaperFill = "newspaper.fill"
+    case person
+    case personThree = "person.3"
     case shuffle
     case starFill = "star.fill"
-    case link
+    case xCircle = "x.circle"    
 }
 
 // Image assets
