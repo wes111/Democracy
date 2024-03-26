@@ -24,7 +24,7 @@ final class CommunityViewModel {
     let community: Community
     
     var leadingButtons: [ToolBarLeadingContent] {
-        [.title(community.name), .back(goBack)]
+        [.back(goBack)]
     }
     
     var trailingButtons: [OnboardingTopButton] {

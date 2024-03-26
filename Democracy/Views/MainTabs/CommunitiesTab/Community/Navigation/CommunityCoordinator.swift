@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CommunityCoordinatorParent {
-    @MainActor func goToCommunity(communityId: String)
+    @MainActor func goToCommunity(community: Community)
 }
 
 @MainActor @Observable
@@ -128,8 +128,8 @@ extension CommunityCoordinator: PostCoordinatorDelegate {}
 
 extension CommunityCoordinator: AlliedDelegate {
     
-    func goToCommunityView(id: String) {
-        parentCoordinator.goToCommunity(communityId: id)
+    func goToCommunityView(community: Community) {
+        parentCoordinator.goToCommunity(community: community)
     }
 }
 

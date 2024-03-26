@@ -11,7 +11,7 @@ import Foundation
 protocol CommunityInfoCoordinatorDelegate: 
     CandidateCardCoordinatorDelegate, LeadersCoordinatorDelegate, AlliedDelegate, AnyObject {
     @MainActor func showCandidates()
-    @MainActor func goToCommunityView(id: String)
+    @MainActor func goToCommunityView(community: Community)
     @MainActor func openResourceURL(_ url: URL)
 }
 
@@ -72,7 +72,7 @@ final class CommunityInfoViewModel: ObservableObject {
     
     @MainActor
     func onTapCommunityCard(_ community: Community) {
-        coordinator?.goToCommunityView(id: community.id)
+        coordinator?.goToCommunityView(community: community)
     }
     
     @MainActor

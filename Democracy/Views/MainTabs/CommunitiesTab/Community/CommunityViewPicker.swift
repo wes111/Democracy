@@ -32,6 +32,8 @@ private extension CommunityViewPicker {
     var content: some View {
         VStack {
             HorizontalSelectableList(selection: $viewModel.selectedTab)
+            Text(viewModel.community.name)
+                .primaryTitle()
             
             switch viewModel.selectedTab {
             case .feed:

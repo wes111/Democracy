@@ -9,7 +9,7 @@ import Foundation
 
 protocol AlliedDelegate: AnyObject {
     
-    @MainActor func goToCommunityView(id: String)
+    @MainActor func goToCommunityView(community: Community)
 }
 
 class AlliedCommunitiesSectionViewModel {
@@ -26,8 +26,8 @@ class AlliedCommunitiesSectionViewModel {
     }
     
     @MainActor
-    func onTapCommunity(id: String) {
-        coordinator?.goToCommunityView(id: id)
+    func onTapCommunity(community: Community) {
+        coordinator?.goToCommunityView(community: community)
     }
     
 }

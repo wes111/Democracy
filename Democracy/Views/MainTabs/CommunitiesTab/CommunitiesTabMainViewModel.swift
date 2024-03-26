@@ -10,7 +10,7 @@ import Foundation
 import Factory
 
 protocol CommunitiesTabMainCoordinatorDelegate: AnyObject {
-    @MainActor func goToCommunity(communityId: String)
+    @MainActor func goToCommunity(community: Community)
     @MainActor func showCreateCommunityView()
 }
 
@@ -37,7 +37,7 @@ final class CommunitiesTabMainViewModel {
     }
     
     func goToCommunity(_ community: Community) {
-        coordinator?.goToCommunity(communityId: community.id)
+        coordinator?.goToCommunity(community: community)
     }
     
     func showCreateCommunityView() {

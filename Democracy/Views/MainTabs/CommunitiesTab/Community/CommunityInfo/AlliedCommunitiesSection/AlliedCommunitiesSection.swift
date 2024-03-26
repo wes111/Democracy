@@ -24,7 +24,7 @@ struct AlliedCommunitiesSection: View {
                     ForEach(viewModel.alliedCommunities) { community in
                         AlliedCommunityView(viewModel: community)
                             .onTapGesture {
-                                viewModel.onTapCommunity(id: community.id)
+                                viewModel.onTapCommunity(community: community.community)
                             }
                             .padding(.leading)
                     }

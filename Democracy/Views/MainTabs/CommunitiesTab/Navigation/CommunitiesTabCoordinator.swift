@@ -37,8 +37,8 @@ extension CommunitiesTabCoordinator: CommunitiesTabMainCoordinatorDelegate {
         isShowingCreateCommunityView = true
     }
     
-    func goToCommunity(communityId: String) {
-        router.push(CommunitiesTabPath.goToCommunity(.preview))
+    func goToCommunity(community: Community) {
+        router.push(CommunitiesTabPath.goToCommunity(community))
     }
 }
 
