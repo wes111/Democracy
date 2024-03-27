@@ -8,19 +8,12 @@
 import Factory
 import Foundation
 
-protocol CommunityInfoCoordinatorDelegate: 
-    CandidateCardCoordinatorDelegate, LeadersCoordinatorDelegate, AlliedDelegate, AnyObject {
-    @MainActor func showCandidates()
-    @MainActor func goToCommunityView(community: Community)
-    @MainActor func openResourceURL(_ url: URL)
-}
-
 final class CommunityInfoViewModel: ObservableObject {
 
     @Published var representatives: [Candidate] = Candidate.previewArray
     @Published var alliedCommunities: [Community] = Community.myCommunitiesPreviewArray
     
-    private weak var coordinator: CommunityInfoCoordinatorDelegate?
+    private weak var coordinator: CommunitiesCoordinatorDelegate?
     let community: Community
     
     let resourcesSectionViewModel: ResourcesSectionViewModel
@@ -37,9 +30,7 @@ final class CommunityInfoViewModel: ObservableObject {
         )
     }
     
-    init(coordinator: CommunityInfoCoordinatorDelegate?,
-         community: Community
-    ) {
+    init(coordinator: CommunitiesCoordinatorDelegate?, community: Community) {
         self.coordinator = coordinator
         self.community = community
         
@@ -72,7 +63,7 @@ final class CommunityInfoViewModel: ObservableObject {
     
     @MainActor
     func onTapCommunityCard(_ community: Community) {
-        coordinator?.goToCommunityView(community: community)
+        coordinator?.goToCommunity(community: community)
     }
     
     @MainActor

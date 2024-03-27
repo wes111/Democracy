@@ -7,12 +7,6 @@
 
 import Foundation
 
-protocol LeadersCoordinatorDelegate: AnyObject {
-    
-    @MainActor func goToCandidateView(candidateId: String)
-    @MainActor func goToVoteView()
-}
-
 struct LeadersScrollViewModel {
     
     let leaders: [LeaderViewModel]
@@ -23,12 +17,12 @@ struct LeadersScrollViewModel {
     
     private let candidates: [Candidate]
     private let repType: RepresentativeType
-    private weak var coordinator: LeadersCoordinatorDelegate?
+    private weak var coordinator: CommunitiesCoordinatorDelegate?
     
     init(
         candidates: [Candidate],
         repType: RepresentativeType,
-        coordinator: LeadersCoordinatorDelegate?
+        coordinator: CommunitiesCoordinatorDelegate?
     ) {
         self.candidates = candidates
         self.repType = repType

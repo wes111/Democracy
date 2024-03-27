@@ -9,7 +9,7 @@ import Foundation
 
 extension CandidateViewModel {
     static let preview = CandidateViewModel(
-        coordinator: CommunityCoordinator.preview,
+        coordinator: CommunitiesCoordinator.preview,
         candidate: Candidate.preview
     )
 }

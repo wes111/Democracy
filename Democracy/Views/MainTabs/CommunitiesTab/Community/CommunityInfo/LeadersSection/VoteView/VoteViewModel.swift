@@ -7,16 +7,12 @@
 
 import Foundation
 
-protocol VoteViewCoordinator: AnyObject {
-    @MainActor func goBack()
-}
-
 final class VoteViewModel: ObservableObject {
     
     @Published var role: RepresentativeType = .legislator
-    private weak var coordinator: VoteViewCoordinator?
+    private weak var coordinator: CommunitiesCoordinatorDelegate?
     
-    init(coordinator: VoteViewCoordinator) {
+    init(coordinator: CommunitiesCoordinatorDelegate) {
         self.coordinator = coordinator
     }
     

@@ -9,11 +9,6 @@ import Combine
 import Foundation
 import Factory
 
-protocol CommunitiesTabMainCoordinatorDelegate: AnyObject {
-    @MainActor func goToCommunity(community: Community)
-    @MainActor func showCreateCommunityView()
-}
-
 @MainActor @Observable
 final class CommunitiesTabMainViewModel {
     
@@ -23,9 +18,9 @@ final class CommunitiesTabMainViewModel {
     @ObservationIgnored @Injected(\.communityService) private var communityService
     @ObservationIgnored @Injected(\.membershipService) private var membershipService
     
-    private weak var coordinator: CommunitiesTabMainCoordinatorDelegate?
+    private weak var coordinator: CommunitiesCoordinatorDelegate?
     
-    init(coordinator: CommunitiesTabMainCoordinatorDelegate?) {
+    init(coordinator: CommunitiesCoordinatorDelegate?) {
         self.coordinator = coordinator
         
         Task {

@@ -9,14 +9,8 @@ import Foundation
 import Combine
 import Factory
 
-@MainActor
-protocol CandidatesCoordinatorDelegate: CandidateCardCoordinatorDelegate, AnyObject {
-    func showCreateCandidateView()
-    func closeCreateCandidateView()
-}
-
 protocol CandidatesViewModelProtocol: ObservableObject {
-    var coordinator: CandidatesCoordinatorDelegate? { get }
+    var coordinator: CommunitiesCoordinatorDelegate? { get }
     var candidates: [Candidate] { get }
     var representatives: [Candidate] { get }
     var candidatesFilter: RepresentativeType { get set }
@@ -37,7 +31,7 @@ final class CandidatesViewModel: CandidatesViewModelProtocol {
     @Published var representativesFilter: RepresentativeType = .legislator
     // @Published var isShowingCreateCandidateView = false
     
-    weak var coordinator: CandidatesCoordinatorDelegate?
+    weak var coordinator: CommunitiesCoordinatorDelegate?
     private var cancellables = Set<AnyCancellable>()
     
     var candidates: [Candidate] {
@@ -49,7 +43,7 @@ final class CandidatesViewModel: CandidatesViewModelProtocol {
     }
     
     init(
-        coordinator: CandidatesCoordinatorDelegate?
+        coordinator: CommunitiesCoordinatorDelegate?
     ) {
         self.coordinator = coordinator
         candidateInteractor

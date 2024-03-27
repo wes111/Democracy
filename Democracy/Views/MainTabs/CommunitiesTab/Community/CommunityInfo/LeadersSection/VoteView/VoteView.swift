@@ -135,7 +135,7 @@ struct VoteView: View {
 
 // MARK: - Preview
 #Preview {
-    let viewModel = VoteViewModel(coordinator: CommunityCoordinator.preview)
+    let viewModel = VoteViewModel(coordinator: CommunitiesCoordinator.preview)
     
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()

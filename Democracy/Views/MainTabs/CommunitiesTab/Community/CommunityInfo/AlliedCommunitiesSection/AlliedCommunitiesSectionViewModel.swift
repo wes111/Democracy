@@ -7,27 +7,19 @@
 
 import Foundation
 
-protocol AlliedDelegate: AnyObject {
-    
-    @MainActor func goToCommunityView(community: Community)
-}
-
 class AlliedCommunitiesSectionViewModel {
     
     let alliedCommunities: [AlliedCommunityViewModel]
     let title = "Allied Communities"
-    private weak var coordinator: AlliedDelegate?
+    private weak var coordinator: CommunitiesCoordinatorDelegate?
     
-    init(alliedCommunities: [Community],
-         coordinator: AlliedDelegate?
-    ) {
+    init(alliedCommunities: [Community], coordinator: CommunitiesCoordinatorDelegate?) {
         self.alliedCommunities = alliedCommunities.map { .init($0) }
         self.coordinator = coordinator
     }
     
     @MainActor
     func onTapCommunity(community: Community) {
-        coordinator?.goToCommunityView(community: community)
+        coordinator?.goToCommunity(community: community)
     }
-    
 }

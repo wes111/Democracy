@@ -15,7 +15,7 @@ enum MainTab {
 final class MainTabViewModel: ObservableObject {
     @Published var selectedTab: MainTab = .updates
     
-    let communitiesTabCoordinator = CommunitiesTabCoordinator()
+    let communitiesTabCoordinator = CommunitiesCoordinator()
     let votingTabCoordinator = VotingTabCoordinatorViewModel()
     let eventsTabCoordinator = EventsTabCoordinatorViewModel()
     let updatesTabCoordinator = UpdatesTabCoordinatorViewModel()

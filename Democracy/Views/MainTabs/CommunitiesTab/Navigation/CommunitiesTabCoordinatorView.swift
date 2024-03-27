@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct CommunitiesTabCoordinatorView: View {
-    @State private var coordinator: CommunitiesTabCoordinator
+    @State private var coordinator: CommunitiesCoordinator
     
-    init(coordinator: CommunitiesTabCoordinator) {
+    init(coordinator: CommunitiesCoordinator) {
         self.coordinator = coordinator
     }
     
@@ -35,9 +35,26 @@ struct CommunitiesTabCoordinatorView: View {
     func createViewFromPath(_ path: CommunitiesTabPath) -> some View {
         switch path {
         case .goToCommunity(let community): 
-            CommunityCoordinatorView(
-                viewModel: coordinator.communityCoordinatorViewModel(community: community)
+            CommunityViewPicker(viewModel: coordinator.communityViewModel(community: community))
+            
+        case .postView(let post):
+            PostView(viewModel: coordinator.postViewModel(post: post))
+            
+        case .candidates:
+            CandidatesView(viewModel: coordinator.candidatesViewModel())
+            
+        case .singleCandidate(let candidate):
+            CandidateView(viewModel: coordinator.candidateViewModel(candidate: candidate))
+            
+        case .goToCommunityPostCategory(let category, let community):
+            let viewModel = coordinator.communityPostCategoryViewModel(
+                category: category,
+                community: community
             )
+            CommunityCategoryPostsView(viewModel: viewModel)
+            
+        case .voteView:
+            VoteView(viewModel: coordinator.voteViewModel())
         }
     }
 }

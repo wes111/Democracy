@@ -9,6 +9,6 @@ import Foundation
 
 extension CommunityViewModel {
     static let preview = CommunityViewModel(
-        coordinator: CommunityCoordinator.preview, community: Community.preview
+        coordinator: CommunitiesCoordinator.preview, community: Community.preview
     )
 }

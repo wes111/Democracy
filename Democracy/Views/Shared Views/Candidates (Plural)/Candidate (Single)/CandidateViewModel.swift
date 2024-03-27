@@ -21,9 +21,6 @@ enum CandidateBadge: Codable, Identifiable {
     case oneYearMember
 }
 
-protocol CandidateCoordinatorDelegate: PostCardCoordinatorDelegate, AnyObject {
-}
-
 protocol CandidateViewModelProtocol: ObservableObject {
     var candidate: Candidate { get }
 }
@@ -31,7 +28,7 @@ protocol CandidateViewModelProtocol: ObservableObject {
 final class CandidateViewModel: CandidateViewModelProtocol {
     
     let candidate: Candidate
-    private weak var coordinator: CandidateCoordinatorDelegate?
+    private weak var coordinator: CommunitiesCoordinatorDelegate?
     
     lazy var candidateBadges: [CandidateBadge] = {
         candidate.badges
@@ -45,7 +42,7 @@ final class CandidateViewModel: CandidateViewModelProtocol {
         Post.previewArray.map { $0.toViewModel(coordinator: self.coordinator) }
     }()
     
-    init(coordinator: CandidateCoordinatorDelegate,
+    init(coordinator: CommunitiesCoordinatorDelegate,
          candidate: Candidate
     ) {
         self.coordinator = coordinator
@@ -55,7 +52,7 @@ final class CandidateViewModel: CandidateViewModelProtocol {
 
 extension Post {
     // TODO: Remove
-    func toViewModel(coordinator: PostCardCoordinatorDelegate?) -> PostCardViewModel {
+    func toViewModel(coordinator: CommunitiesCoordinatorDelegate?) -> PostCardViewModel {
         .init(coordinator: coordinator, post: self)
     }
 }

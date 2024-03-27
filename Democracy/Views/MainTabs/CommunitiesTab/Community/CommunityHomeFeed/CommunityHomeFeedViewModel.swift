@@ -9,10 +9,6 @@ import Combine
 import Foundation
 import Factory
 
-protocol CommunityHomeFeedCoordinatorDelegate: PostCardCoordinatorDelegate, AnyObject {
-    var community: Community { get }
-}
-
 final class CommunityHomeFeedViewModel: ObservableObject {
     
     @Injected(\.postInteractor) var postInteractor
@@ -22,14 +18,13 @@ final class CommunityHomeFeedViewModel: ObservableObject {
 
     private var cancellables = Set<AnyCancellable>()
     
-    private weak var coordinator: CommunityHomeFeedCoordinatorDelegate?
+    private weak var coordinator: CommunitiesCoordinatorDelegate?
     
     func getPostCardViewModel(post: Post) -> PostCardViewModel {
         PostCardViewModel(coordinator: coordinator, post: post)
     }
 
-    init(coordinator: CommunityHomeFeedCoordinatorDelegate?
-    ) {
+    init(coordinator: CommunitiesCoordinatorDelegate?) {
         self.coordinator = coordinator
         postInteractor.subscribeToPosts().assign(to: &$posts)
     }

@@ -38,7 +38,7 @@ struct AlliedCommunitiesSection: View {
 #Preview {
     let viewModel = AlliedCommunitiesSectionViewModel(
         alliedCommunities: Community.myCommunitiesPreviewArray,
-        coordinator: CommunityCoordinator.preview
+        coordinator: CommunitiesCoordinator.preview
     )
     return AlliedCommunitiesSection(viewModel: viewModel)
 }

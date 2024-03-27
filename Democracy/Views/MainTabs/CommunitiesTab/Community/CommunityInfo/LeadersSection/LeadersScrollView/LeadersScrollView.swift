@@ -39,7 +39,7 @@ struct LeadersScrollView: View {
     let viewModel = LeadersScrollViewModel(
         candidates: Candidate.previewArray,
         repType: .mod,
-        coordinator: CommunityCoordinator.preview
+        coordinator: CommunitiesCoordinator.preview
     )
     return LeadersScrollView(viewModel: viewModel)
 }

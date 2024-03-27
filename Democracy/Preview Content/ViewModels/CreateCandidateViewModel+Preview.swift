@@ -8,11 +8,5 @@
 import Foundation
 
 extension CreateCandidateViewModel {
-    
-    class PreviewHelper: CreateCandidateCoordinatorDelegate {
-        func closeCreateCandidateView() {
-        }
-    }
-    
-    @MainActor static let preview = CreateCandidateViewModel(coordinator: PreviewHelper())
+    static let preview = CreateCandidateViewModel(coordinator: CommunitiesCoordinator.preview)
 }

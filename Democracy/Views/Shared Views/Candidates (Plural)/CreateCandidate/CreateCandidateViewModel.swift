@@ -8,11 +8,6 @@
 import Factory
 import Foundation
 
-@MainActor
-protocol CreateCandidateCoordinatorDelegate: AnyObject {
-    func closeCreateCandidateView()
-}
-
 protocol CreateCandidateViewModelProtocol: ObservableObject {
     var summary: String { get set }
     var link: String { get set }
@@ -36,9 +31,9 @@ final class CreateCandidateViewModel: CreateCandidateViewModelProtocol {
     
     @Injected(\.candidateInteractor) var candidateInteractor
     
-    weak var coordinator: CreateCandidateCoordinatorDelegate?
+    weak var coordinator: CommunitiesCoordinatorDelegate?
     
-    init(coordinator: CreateCandidateCoordinatorDelegate?) {
+    init(coordinator: CommunitiesCoordinatorDelegate?) {
         self.coordinator = coordinator
     }
     

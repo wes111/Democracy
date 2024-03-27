@@ -9,18 +9,11 @@ import Combine
 import Factory
 import Foundation
 
-protocol CommunityCoordinatorDelegate: 
-    CommunityHomeFeedCoordinatorDelegate, CommunityInfoCoordinatorDelegate,
-        CommunityArchiveFeedCoordinatorDelegate, AnyObject {
-    @MainActor func showCreatePostView()
-    @MainActor func goBack()
-}
-
 @MainActor @Observable
 final class CommunityViewModel {
 
     var selectedTab: CommunityTab = .feed
-    private weak var coordinator: CommunityCoordinatorDelegate?
+    private weak var coordinator: CommunitiesCoordinatorDelegate?
     let community: Community
     
     var leadingButtons: [ToolBarLeadingContent] {
@@ -33,14 +26,11 @@ final class CommunityViewModel {
         ])]
     }
     
-    init(coordinator: CommunityCoordinatorDelegate,
-         community: Community
-    ) {
+    init(coordinator: CommunitiesCoordinatorDelegate, community: Community) {
         self.coordinator = coordinator
         self.community = community
     }
     
-    @MainActor
     func showCreatePostView() {
         coordinator?.showCreatePostView()
     }
@@ -57,7 +47,6 @@ final class CommunityViewModel {
         CommunityArchiveFeedViewModel(coordinator: coordinator, community: community)
     }
     
-    @MainActor
     func goBack() {
         coordinator?.goBack()
     }

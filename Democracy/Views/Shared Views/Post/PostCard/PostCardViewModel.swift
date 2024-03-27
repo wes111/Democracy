@@ -9,15 +9,11 @@ import Factory
 import Foundation
 import LinkPresentation
 
-protocol PostCardCoordinatorDelegate: AnyObject {
-    @MainActor func goToPostView(_ post: Post)
-}
-
 final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
     
     // MARK: - Private Variables
     @Injected(\.richLinkService) private var richLinkService
-    private weak var coordinator: PostCardCoordinatorDelegate?
+    private weak var coordinator: CommunitiesCoordinatorDelegate?
     let post: Post
     
     // MARK: - Protocol Variables
@@ -64,9 +60,7 @@ final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
     
     // MARK: - Init
     
-    init(coordinator: PostCardCoordinatorDelegate?,
-         post: Post
-    ) {
+    init(coordinator: CommunitiesCoordinatorDelegate?, post: Post) {
         self.coordinator = coordinator
         self.post = post
     }
