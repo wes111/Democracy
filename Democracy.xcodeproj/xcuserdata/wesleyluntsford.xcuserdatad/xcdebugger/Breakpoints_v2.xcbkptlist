@@ -18,98 +18,6 @@
             endingLineNumber = "36"
             landmarkName = "body"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "7BE980F5-7335-48A2-8400-85EFE7EDF7AB - 2187b1b94778fd36"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 () -&gt; () in Democracy.AsyncButton.body.getter : some"
-                  moduleName = "Democracy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/Shared%20Views/Reusable%20SwiftUI/AsyncButton.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "252">
-               </Location>
-               <Location
-                  uuid = "7BE980F5-7335-48A2-8400-85EFE7EDF7AB - 480c05e3d68a5c48"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 () -&gt; () in Democracy.AsyncButton.body.getter : some"
-                  moduleName = "Democracy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/Shared%20Views/Reusable%20SwiftUI/AsyncButton.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "7BE980F5-7335-48A2-8400-85EFE7EDF7AB - b8e984ea4da13130"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 () -&gt; () in Democracy.AsyncButton.body.getter : some"
-                  moduleName = "Democracy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/Shared%20Views/Reusable%20SwiftUI/AsyncButton.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "33"
-                  endingLineNumber = "33"
-                  offsetFromSymbolStart = "56">
-               </Location>
-               <Location
-                  uuid = "7BE980F5-7335-48A2-8400-85EFE7EDF7AB - 2187b1b94778fdd5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 () -&gt; () in Democracy.AsyncButton.body.getter : some"
-                  moduleName = "Democracy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/Shared%20Views/Reusable%20SwiftUI/AsyncButton.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "252">
-               </Location>
-               <Location
-                  uuid = "7BE980F5-7335-48A2-8400-85EFE7EDF7AB - 480c05e3d68a5cab"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 () -&gt; () in Democracy.AsyncButton.body.getter : some"
-                  moduleName = "Democracy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/Shared%20Views/Reusable%20SwiftUI/AsyncButton.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "7BE980F5-7335-48A2-8400-85EFE7EDF7AB - b8e984ea4da131d3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in closure #1 () -&gt; () in Democracy.AsyncButton.body.getter : some"
-                  moduleName = "Democracy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/Shared%20Views/Reusable%20SwiftUI/AsyncButton.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "56">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -126,38 +34,6 @@
             endingLineNumber = "54"
             landmarkName = "body"
             landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "804579FF-200F-4AE0-8769-2944FFDC2C90 - d98847fef8d46581"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 @Swift.MainActor @Sendable () -&gt; () in closure #1 @Sendable () async -&gt; () in closure #1 () -&gt; () in Democracy.AsyncButton.body.getter : some"
-                  moduleName = "Democracy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/Shared%20Views/Reusable%20SwiftUI/AsyncButton.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "46"
-                  endingLineNumber = "46"
-                  offsetFromSymbolStart = "136">
-               </Location>
-               <Location
-                  uuid = "804579FF-200F-4AE0-8769-2944FFDC2C90 - b95c938a8b8f0f80"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor @Sendable () -&gt; () in closure #1 @Sendable () async -&gt; () in closure #1 () -&gt; () in Democracy.AsyncButton.body.getter : some"
-                  moduleName = "Democracy"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/Shared%20Views/Reusable%20SwiftUI/AsyncButton.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "46"
-                  endingLineNumber = "46"
-                  offsetFromSymbolStart = "136">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

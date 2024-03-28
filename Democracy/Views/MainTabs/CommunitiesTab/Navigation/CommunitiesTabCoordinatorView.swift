@@ -7,31 +7,23 @@
 
 import SwiftUI
 
+@MainActor
 struct CommunitiesTabCoordinatorView: View {
-    @State private var coordinator: CommunitiesCoordinator
+    @State private var coordinator = CommunitiesCoordinator()
     
-    init(coordinator: CommunitiesCoordinator) {
-        self.coordinator = coordinator
-    }
-    
+    // https://developer.apple.com/forums/thread/736239
     var body: some View {
         CoordinatorView(router: coordinator.router) {
             CommunitiesTabMainView(viewModel: coordinator.communitiesTabMainViewModel())
         } secondaryScreen: { (path: CommunitiesTabPath) in
             createViewFromPath(path)
         }
-        // TODO: This should be a fullScreenCover not popover.
-        // This temporarily fixes an iOS 17 memory leak.
-        // https://developer.apple.com/forums/thread/736239
-        //            .fullScreenCover(isPresented: $coordinator.isShowingCreatePostView) {
-        //                SubmitPostCoordinatorView(coordinator: .init(parentCoordinator: coordinator))
-        //            }
-        .popover(isPresented: $coordinator.isShowingCreateCommunityView) {
+        .fullScreenCover(isPresented: $coordinator.isShowingCreateCommunityView) {
             SubmitCommunityCoordinatorView(coordinator: .init(parentCoordinator: coordinator))
         }
     }
     
-    @ViewBuilder @MainActor
+    @ViewBuilder
     func createViewFromPath(_ path: CommunitiesTabPath) -> some View {
         switch path {
         case .goToCommunity(let community): 
@@ -61,5 +53,5 @@ struct CommunitiesTabCoordinatorView: View {
 
 // MARK: - Preview
 #Preview {
-    CommunitiesTabCoordinatorView(coordinator: .preview)
+    CommunitiesTabCoordinatorView()
 }
