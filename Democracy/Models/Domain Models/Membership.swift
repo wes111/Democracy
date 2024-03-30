@@ -7,6 +7,20 @@
 
 import Foundation
 
+// The Membership object sent to the Appwrite database.
+// Note that id, creationDate, and
+struct MembershipCreationRequest: Encodable {
+    let community: String // TODO: Is this right?
+    let userId: String
+    let communityId: String
+    
+    init(userId: String, communityId: String) {
+        self.community = communityId
+        self.userId = userId
+        self.communityId = communityId
+    }
+}
+
 // The Membership object received from the Appwrite database.
 struct MembershipDTO: Decodable {
     let id: String

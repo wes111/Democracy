@@ -14,6 +14,7 @@ enum MembershipServiceError: Error {
 
 protocol MembershipService {
     func userMemberships() async throws -> [Membership]
+    func joinCommunity(_ community: Community) async throws
 }
 
 final class MembershipServiceDefault: MembershipService {
@@ -25,5 +26,12 @@ final class MembershipServiceDefault: MembershipService {
             throw MembershipServiceError.userAccountMissing
         }
         return try await membershipRepository.fetchUserMemberships(userId: userId)
+    }
+    
+    func joinCommunity(_ community: Community) async throws {
+        guard let userId = await userRepository.currentValue?.id else {
+            throw MembershipServiceError.userAccountMissing
+        }
+        try await membershipRepository.joinCommunity(.init(userId: userId, communityId: community.id))
     }
 }

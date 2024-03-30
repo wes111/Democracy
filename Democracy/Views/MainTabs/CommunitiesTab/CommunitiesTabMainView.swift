@@ -10,7 +10,6 @@ import SwiftUI
 @MainActor
 struct CommunitiesTabMainView: View {
     @Bindable var viewModel: CommunitiesTabMainViewModel
-    @State private var multiSelection = Set<String>()
     
     init(viewModel: CommunitiesTabMainViewModel) {
         self.viewModel = viewModel

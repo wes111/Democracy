@@ -60,6 +60,7 @@ protocol AppwriteService {
     // Post/Database Methods
     @discardableResult func submitNewPost(_ newPost: PostCreationRequest) async throws -> Post
     @discardableResult func submitCommunity(_ community: CommunityCreationRequest) async throws -> Community
+    @discardableResult func joinCommunity(_ membership: MembershipCreationRequest) async throws -> Membership
 }
 
 final class AppwriteServiceDefault: AppwriteService {
@@ -159,6 +160,16 @@ extension AppwriteServiceDefault {
             data: try community.toDictionary()
         )
         return try CommunityDTO(document.data.toDictionary()).toCommunity()
+    }
+    
+    func joinCommunity(_ membership: MembershipCreationRequest) async throws -> Membership {
+        let document = try await databases.createDocument(
+            databaseId: databaseId,
+            collectionId: membershipCollectionId,
+            documentId: ID.unique(),
+            data: try membership.toDictionary()
+        )
+        return try MembershipDTO(document.data.toDictionary()).toMembership()
     }
     
     func isCommunityNameAvailable(_ name: String) async throws -> Bool {
