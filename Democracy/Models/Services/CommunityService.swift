@@ -13,7 +13,7 @@ enum CommunityServiceError: Error {
     case invalidUserInput
 }
 
-protocol CommunityService {
+protocol CommunityService: Sendable {
     func submitCommunity(userInput: SubmitCommunityInput) async throws
     func isCommunityNameAvailable(_ name: String) async throws -> Bool
     func fetchAllCommunities() async throws -> [Community]

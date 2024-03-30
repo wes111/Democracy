@@ -16,7 +16,7 @@ enum AppwriteError: String, Error {
 }
 
 enum AppwriteServiceError: Error {
-    case badCreationDate
+    case unsuccessfulDeletion
 }
 
 struct PhoneNumber {
@@ -61,6 +61,7 @@ protocol AppwriteService {
     @discardableResult func submitNewPost(_ newPost: PostCreationRequest) async throws -> Post
     @discardableResult func submitCommunity(_ community: CommunityCreationRequest) async throws -> Community
     @discardableResult func joinCommunity(_ membership: MembershipCreationRequest) async throws -> Membership
+    func leaveCommunity(_ membership: Membership) async throws
 }
 
 final class AppwriteServiceDefault: AppwriteService {
@@ -170,6 +171,17 @@ extension AppwriteServiceDefault {
             data: try membership.toDictionary()
         )
         return try MembershipDTO(document.data.toDictionary()).toMembership()
+    }
+    
+    func leaveCommunity(_ membership: Membership) async throws {
+        let wasSuccessful = try await databases.deleteDocument(
+            databaseId: databaseId,
+            collectionId: membershipCollectionId,
+            documentId: membership.id
+        ) 
+        guard let wasSuccessful = wasSuccessful as? Bool, wasSuccessful else {
+            throw AppwriteServiceError.unsuccessfulDeletion
+        }
     }
     
     func isCommunityNameAvailable(_ name: String) async throws -> Bool {

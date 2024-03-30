@@ -28,7 +28,7 @@ struct CommunityView: View {
 // MARK: - Subviews
 private extension CommunityView {
     var content: some View {
-        VStack() {
+        VStack {
             header
             communitySection
             Spacer()
@@ -38,19 +38,29 @@ private extension CommunityView {
     var header: some View {
         VStack(spacing: 0) {
             HStack {
-                Text(viewModel.community.name)
-                    .primaryTitle()
-                
+                viewTitle
                 Spacer()
-                
-                AsyncButton(action: viewModel.joinCommunity, label: {
-                    Text("Join")
-                }, showProgressView: $viewModel.isShowingProgress)
-                .buttonStyle(SmallSecondaryButtonStyle())
-                .disabled(false)
+                joinLeaveButton
             }
             HorizontalSelectableList(selection: $viewModel.selectedTab)
         }
+    }
+    
+    var viewTitle: some View {
+        Text(viewModel.community.name)
+            .primaryTitle()
+    }
+    
+    var joinLeaveButton: some View {
+        AsyncButton(
+            action: viewModel.toggleCommunityMembership,
+            label: {
+                Text(viewModel.membership == nil ? "Join" : "Leave")
+            },
+            showProgressView: $viewModel.isShowingProgress
+        )
+        .buttonStyle(SmallSecondaryButtonStyle())
+        .disabled(false)
     }
     
     @ViewBuilder

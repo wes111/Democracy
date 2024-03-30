@@ -36,5 +36,67 @@
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "307D0B3C-4F70-4800-8A5D-62F75640F565"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Democracy/Views/MainTabs/CommunitiesTab/Community/CommunityViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "toggleCommunityMembership()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "307D0B3C-4F70-4800-8A5D-62F75640F565 - 566d38d881191df9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for Democracy.CommunityViewModel.toggleCommunityMembership() async -&gt; ()"
+                  moduleName = "Democracy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/MainTabs/CommunitiesTab/Community/CommunityViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56">
+               </Location>
+               <Location
+                  uuid = "307D0B3C-4F70-4800-8A5D-62F75640F565 - ba67903baeedeff8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for Democracy.CommunityViewModel.toggleCommunityMembership() async -&gt; ()"
+                  moduleName = "Democracy"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/MainTabs/CommunitiesTab/Community/CommunityViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "56"
+                  endingLineNumber = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E3273F5F-7014-401A-A302-B75B15CA125B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Democracy/Models/Services/AppwriteService/AppwriteService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "leaveCommunity(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

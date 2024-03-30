@@ -13,14 +13,18 @@ import Foundation
 final class CommunityViewModel {
 
     var isShowingProgress: Bool = false
+    var membership: Membership?
     var selectedTab: CommunityTab = .feed
     private weak var coordinator: CommunitiesCoordinatorDelegate?
     let community: Community
+    
     @ObservationIgnored @Injected(\.membershipService) private var membershipService
     
     init(coordinator: CommunitiesCoordinatorDelegate, community: Community) {
         self.coordinator = coordinator
         self.community = community
+        
+        getMemberships() // TODO: Temp... see note below.
     }
 }
 
@@ -40,11 +44,28 @@ extension CommunityViewModel {
 
 // MARK: - Methods
 extension CommunityViewModel {
-    func joinCommunity() async {
+    
+    func toggleCommunityMembership() async {
         do {
-            try await membershipService.joinCommunity(community)
+            if let membership {
+                try await membershipService.leaveCommunity(membership: membership)
+            } else {
+                try await membershipService.joinCommunity(community)
+            }
         } catch {
-            print(error)
+            print(error.localizedDescription)
+        }
+    }
+    
+    // TODO: We need to subscribe to a stream of memberships... This is temporary.
+    func getMemberships() {
+        Task {
+            do {
+                let memberships = try await membershipService.userMemberships()
+                membership = memberships.first(where: { $0.community == community })
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
     

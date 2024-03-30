@@ -12,9 +12,10 @@ enum MembershipServiceError: Error {
     case userAccountMissing
 }
 
-protocol MembershipService {
+protocol MembershipService: Sendable {
     func userMemberships() async throws -> [Membership]
     func joinCommunity(_ community: Community) async throws
+    func leaveCommunity(membership: Membership) async throws
 }
 
 final class MembershipServiceDefault: MembershipService {
@@ -33,5 +34,12 @@ final class MembershipServiceDefault: MembershipService {
             throw MembershipServiceError.userAccountMissing
         }
         try await membershipRepository.joinCommunity(.init(userId: userId, communityId: community.id))
+    }
+    
+    func leaveCommunity(membership: Membership) async throws {
+        guard let userId = await userRepository.currentValue?.id else {
+            throw MembershipServiceError.userAccountMissing
+        }
+        try await membershipRepository.leaveCommunity(membership)
     }
 }

@@ -13,6 +13,7 @@ import Foundation
 protocol MembershipRepository {
     func fetchUserMemberships(userId: String) async throws -> [Membership]
     func joinCommunity(_ membership: MembershipCreationRequest) async throws
+    func leaveCommunity(_ membership: Membership) async throws
 }
 
 final class MembershipRepositoryDefault: MembershipRepository {
@@ -24,5 +25,9 @@ final class MembershipRepositoryDefault: MembershipRepository {
     
     func joinCommunity(_ membership: MembershipCreationRequest) async throws {
         try await appwriteService.joinCommunity(membership)
+    }
+    
+    func leaveCommunity(_ membership: Membership) async throws {
+        try await appwriteService.leaveCommunity(membership)
     }
 }
