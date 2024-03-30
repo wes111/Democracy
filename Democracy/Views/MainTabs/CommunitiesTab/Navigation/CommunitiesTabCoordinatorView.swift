@@ -14,7 +14,7 @@ struct CommunitiesTabCoordinatorView: View {
     // https://developer.apple.com/forums/thread/736239
     var body: some View {
         CoordinatorView(router: coordinator.router) {
-            CommunitiesTabMainView(viewModel: coordinator.communitiesTabMainViewModel())
+            CommunitiesTabMainView(viewModel: coordinator.communitiesTabMainViewModel)
         } secondaryScreen: { (path: CommunitiesTabPath) in
             createViewFromPath(path)
         }

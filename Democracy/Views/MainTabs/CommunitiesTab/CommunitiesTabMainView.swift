@@ -19,6 +19,13 @@ struct CommunitiesTabMainView: View {
         content
             .toolbarNavigation(leadingButtons: leadingButtons, trailingButtons: trailingButtons)
             .background(Color.primaryBackground, ignoresSafeAreaEdges: .all)
+            .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
+            .onChange(of: viewModel.category) { _, category in
+                viewModel.fetchCommunitiesByCategory(category)
+            }
+            .onAppear {
+                viewModel.onAppear()
+            }
     }
 }
 
@@ -59,6 +66,7 @@ private extension CommunitiesTabMainView {
                     trailing: 0
                 ))
                 .listRowBackground(Color.primaryBackground)
+                .listRowSeparator(.hidden)
         }
         .listStyle(.plain)
     }

@@ -31,6 +31,10 @@ final class CommunitiesCoordinator: CommunitiesCoordinatorDelegate {
     var isShowingWebView = false
     var isShowingCreatePostView = false
     var isShowingCreateCandidateView = false
+    
+    @ObservationIgnored lazy var communitiesTabMainViewModel: CommunitiesTabMainViewModel = {
+        CommunitiesTabMainViewModel(coordinator: self)
+    }()
 }
 
 // MARK: - Coordinating functions
@@ -101,10 +105,7 @@ extension CommunitiesCoordinator {
 // MARK: - Child ViewModels
 extension CommunitiesCoordinator {
     
-    func communitiesTabMainViewModel() -> CommunitiesTabMainViewModel {
-        CommunitiesTabMainViewModel(coordinator: self)
-    }
-    
+    // TODO: Using these functions in views will cause multiple inits and bugs...
     func candidateViewModel(candidate: Candidate) -> CandidateViewModel {
         CandidateViewModel(coordinator: self, candidate: candidate)
     }
@@ -113,10 +114,7 @@ extension CommunitiesCoordinator {
         GARBAGEPostViewModel(post: post)
     }
     
-    func communityPostCategoryViewModel(
-        category: String,
-        community: Community
-    ) -> CommunityCategoryPostsViewModel {
+    func communityPostCategoryViewModel(category: String, community: Community) -> CommunityCategoryPostsViewModel {
         CommunityCategoryPostsViewModel(community: community, category: category)
     }
     
