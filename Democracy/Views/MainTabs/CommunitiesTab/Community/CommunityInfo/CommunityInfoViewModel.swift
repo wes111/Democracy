@@ -40,7 +40,7 @@ final class CommunityInfoViewModel: ObservableObject {
         )
         
         aboutSectionViewModel = .init(
-            summary: community.description,
+            summary: community.descriptionText,
             memberCount: community.memberCount,
             foundedDate: community.creationDate
         )

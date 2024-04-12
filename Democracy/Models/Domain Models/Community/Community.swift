@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftData
 
 // SETTINGS:
 // 1.) Community Government Type: Autocracy vs Democracy (Is leadership elected or self-appointed?)
@@ -26,7 +27,7 @@ import Foundation
 struct CommunityCreationRequest: Encodable {
     let creatorId: String
     let name: String // Name is the same as Id.
-    let description: String
+    let descriptionText: String
     let rules: [RuleCreationRequest]
     let resources: [ResourceCreationRequest]
     let categories: [String]
@@ -41,11 +42,12 @@ struct CommunityCreationRequest: Encodable {
     var postApprovalType: CommunityPostApproval
     
     enum CodingKeys: String, CodingKey {
-        case creatorId, name, description, categories, tags, governmentType, contentType, visibilityType,
+        case creatorId, name, categories, tags, governmentType, contentType, visibilityType,
              allowedPosterType, allowedCommenterType, postApprovalType
         
         case rules = "rule"
         case resources = "resource"
+        case descriptionText = "description"
     }
 }
 
@@ -54,7 +56,7 @@ struct CommunityDTO: Decodable {
     let id: String
     let creatorId: String
     let name: String
-    let description: String
+    let descriptionText: String
     let creationDateWrapper: DateWrapper
     var representatives: [Candidate]? // TODO: Add as attribute in Appwrite Database.
     let memberCount: Int
@@ -73,7 +75,7 @@ struct CommunityDTO: Decodable {
     var postApprovalType: CommunityPostApproval
     
     enum CodingKeys: String, CodingKey {
-        case creatorId, name, description, representatives, memberCount, categories, tags,
+        case creatorId, name, representatives, memberCount, categories, tags,
              alliedCommunities, governmentType, contentType, visibilityType, allowedPosterType,
              allowedCommenterType, postApprovalType
         
@@ -81,6 +83,7 @@ struct CommunityDTO: Decodable {
         case rules = "rule"
         case resources = "resource"
         case creationDateWrapper = "$createdAt"
+        case descriptionText = "description"
     }
     
     func toCommunity() -> Community {
@@ -88,7 +91,7 @@ struct CommunityDTO: Decodable {
             id: id,
             creatorId: creatorId,
             name: name,
-            description: description,
+            descriptionText: descriptionText,
             creationDate: creationDateWrapper.date,
             representatives: representatives ?? [],
             memberCount: memberCount,
@@ -112,7 +115,7 @@ struct Community: Identifiable, Hashable, Sendable {
     let id: String
     let creatorId: String
     let name: String
-    let description: String
+    let descriptionText: String
     let creationDate: Date
     var representatives: [Candidate]
     let memberCount: Int
@@ -129,4 +132,29 @@ struct Community: Identifiable, Hashable, Sendable {
     var allowedPosterType: CommunityPoster
     var allowedCommenterType: CommunityCommenter
     var postApprovalType: CommunityPostApproval
+}
+
+// MARK: - Data model
+
+typealias CommunityData = SchemaV1.CommunityData
+
+extension SchemaV1 {
+    @Model
+    final class CommunityData: PersistableData {
+        @Attribute(.unique) let remoteId: String // Seems to be preventing adding memberships... hmm...
+        @Relationship(deleteRule: .cascade, inverse: \MembershipData.community)
+        var membership: MembershipData?
+        
+        init(id: String) {
+            remoteId = id
+        }
+        
+        init(community: Community) {
+            self.remoteId = community.id
+        }
+        
+        func update(_ model: Community) {
+            // Nothing to update yet...
+        }
+    }
 }

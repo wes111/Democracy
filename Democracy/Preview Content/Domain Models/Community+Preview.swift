@@ -12,7 +12,7 @@ extension Community {
         id: UUID().uuidString,
         creatorId: UUID().uuidString,
         name: "Test Community",
-        description: """
+        descriptionText: """
                  Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah,
                  blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah,
                  blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community,
@@ -121,7 +121,7 @@ extension Community {
                     id: UUID().uuidString,
                     creatorId: UUID().uuidString,
                     name: "My Community \(index)",
-                    description: """
+                    descriptionText: """
                              Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah,
                              blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah,
                              blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community,
@@ -155,7 +155,7 @@ extension Community {
                     id: UUID().uuidString,
                     creatorId: UUID().uuidString,
                     name: "Recommended Community \(index)",
-                    description: """
+                    descriptionText: """
                              Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah,
                              blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah,
                              blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community,
@@ -189,7 +189,7 @@ extension Community {
                     id: UUID().uuidString,
                     creatorId: UUID().uuidString,
                     name: "Top Community \(index)",
-                    description: """
+                    descriptionText: """
                              Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, 
                              blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah,
                              blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community,

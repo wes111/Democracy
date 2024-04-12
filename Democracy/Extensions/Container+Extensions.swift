@@ -48,7 +48,7 @@ extension Container {
         self { PasswordRepositoryDefault() }.scope(.shared)
     }
     
-    // MARK: - New Repositories
+    // MARK: - Repositories
     
     var userRepository: Factory<any UserRepository> {
         self { UserRepositoryDefault() }.scope(.shared)

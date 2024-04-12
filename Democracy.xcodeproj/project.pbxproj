@@ -15,6 +15,8 @@
 		EE11729B2A6F3D0300E529AF /* AlliedCommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729A2A6F3D0300E529AF /* AlliedCommunityView.swift */; };
 		EE11729D2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729C2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift */; };
 		EE11729F2A71C3C700E529AF /* CommunityCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729E2A71C3C700E529AF /* CommunityCategoryViewModel.swift */; };
+		EE2477CF2BB9C6B800661A0A /* TestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477CE2BB9C6B800661A0A /* TestRepository.swift */; };
+		EE2477D22BBCD95000661A0A /* CurrentScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477D12BBCD95000661A0A /* CurrentScheme.swift */; };
 		EE28E35D2B24FACC00EC4E6F /* SharedResourcesClientAndServer in Frameworks */ = {isa = PBXBuildFile; productRef = EE28E35C2B24FACC00EC4E6F /* SharedResourcesClientAndServer */; };
 		EE2B15B42B43592E0046D5FC /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B32B43592E0046D5FC /* GenericError.swift */; };
 		EE2B15B62B4443CC0046D5FC /* LinkRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */; };
@@ -346,6 +348,8 @@
 		EE11729A2A6F3D0300E529AF /* AlliedCommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlliedCommunityView.swift; sourceTree = "<group>"; };
 		EE11729C2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlliedCommunityViewModel.swift; sourceTree = "<group>"; };
 		EE11729E2A71C3C700E529AF /* CommunityCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCategoryViewModel.swift; sourceTree = "<group>"; };
+		EE2477CE2BB9C6B800661A0A /* TestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRepository.swift; sourceTree = "<group>"; };
+		EE2477D12BBCD95000661A0A /* CurrentScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentScheme.swift; sourceTree = "<group>"; };
 		EE2B15B32B43592E0046D5FC /* GenericError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericError.swift; sourceTree = "<group>"; };
 		EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkRequirement.swift; sourceTree = "<group>"; };
 		EE2B15B72B4449BE0046D5FC /* LinkTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextFieldStyle.swift; sourceTree = "<group>"; };
@@ -707,6 +711,14 @@
 				EE11729C2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift */,
 			);
 			path = AlliedCommunity;
+			sourceTree = "<group>";
+		};
+		EE2477D02BBCD8B200661A0A /* SwiftData */ = {
+			isa = PBXGroup;
+			children = (
+				EE2477D12BBCD95000661A0A /* CurrentScheme.swift */,
+			);
+			path = SwiftData;
 			sourceTree = "<group>";
 		};
 		EE2B15C32B4C3C510046D5FC /* PostSuccess */ = {
@@ -1465,6 +1477,7 @@
 				EE2B15BB2B499E1D0046D5FC /* PostRepository.swift */,
 				EE412B682B9029F60007632B /* CommunityRepository.swift */,
 				EE412BAD2BB0E2C50007632B /* MembershipRepository.swift */,
+				EE2477CE2BB9C6B800661A0A /* TestRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1878,6 +1891,7 @@
 		EED4A52429B80F7700DDCCDA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EE2477D02BBCD8B200661A0A /* SwiftData */,
 				EE80D8B829BC0EFA0000F8EF /* Repositories */,
 				EE80D92A29D0D48D0000F8EF /* Services */,
 				EE412B6D2B9811D40007632B /* DTO Wrappers */,
@@ -2293,6 +2307,7 @@
 				EE9760162AD09F67003069CF /* CreateAccountSuccessViewModel.swift in Sources */,
 				EE80D8E029BC1A080000F8EF /* HistoryTabMainViewModel+Preview.swift in Sources */,
 				EE2B15BA2B4594540046D5FC /* PostService.swift in Sources */,
+				EE2477D22BBCD95000661A0A /* CurrentScheme.swift in Sources */,
 				EE4524B32A5CF0BE00C7A2DD /* LeadersScrollViewModel.swift in Sources */,
 				EE7EC2732B614CB000F62E90 /* CommunitySettingsView.swift in Sources */,
 				EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */,
@@ -2312,6 +2327,7 @@
 				EE80D8DC29BC18EE0000F8EF /* CommunityHomeFeedViewModel+Preview.swift in Sources */,
 				EE5B93992A0866EA00B43381 /* CommunityPostCategoryViewModel+Preview.swift in Sources */,
 				EE1172982A6F3C9100E529AF /* AlliedCommunitiesSectionViewModel.swift in Sources */,
+				EE2477CF2BB9C6B800661A0A /* TestRepository.swift in Sources */,
 				EE4987CA2B2F5B3900AB7522 /* TitleTextFieldStyle.swift in Sources */,
 				EE80D90429C923960000F8EF /* CommunityInfoViewModel.swift in Sources */,
 				EE936CB12A78A01200D49271 /* HistoryTabCoordinatorViewModel.swift in Sources */,

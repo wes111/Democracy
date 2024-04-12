@@ -36,7 +36,7 @@ final class CommunityServiceDefault: CommunityService {
         try await communityRepository.submitCommunity(.init(
             creatorId: userId,
             name: name,
-            description: description,
+            descriptionText: description,
             rules: Array(userInput.rules).map { $0.toCreationRequest() },
             resources: userInput.resources.map { $0.toCreationRequest() },
             categories: Array(userInput.categories),

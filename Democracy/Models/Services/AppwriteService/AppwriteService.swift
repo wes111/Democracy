@@ -39,7 +39,7 @@ struct Token {
     let expiresAt: Date?
 }
 
-protocol AppwriteService {
+protocol AppwriteService: Sendable {
     // Account Methods
     func createUser(userName: String, password: String, email: String)
         async throws -> SharedResourcesClientAndServer.User

@@ -5,8 +5,6 @@
 //  Created by Wesley Luntsford on 3/24/24.
 //
 
-import Foundation
-
 import Factory
 import Foundation
 
@@ -14,13 +12,25 @@ protocol MembershipRepository {
     func fetchUserMemberships(userId: String) async throws -> [Membership]
     func joinCommunity(_ membership: MembershipCreationRequest) async throws
     func leaveCommunity(_ membership: Membership) async throws
+    func values() async -> AsyncStream<Membership>
 }
 
-final class MembershipRepositoryDefault: MembershipRepository {
+actor MembershipRepositoryDefault: MembershipRepository, Streamable {
+    
     @Injected(\.appwriteService) private var appwriteService
+    let bob = DataProvider.shared.dataHandlerCreator()
+    var continuations: [UUID: AsyncStream<Membership>.Continuation] = [:]
     
     func fetchUserMemberships(userId: String) async throws -> [Membership] {
-        try await appwriteService.fetchUserMemberships(userId: userId)
+        let memberships = try await appwriteService.fetchUserMemberships(userId: userId)
+        Task {
+            do {
+                try await bob().replaceAll(memberships: memberships)
+            } catch {
+                print(error)
+            }
+        }
+        return memberships
     }
     
     func joinCommunity(_ membership: MembershipCreationRequest) async throws {
