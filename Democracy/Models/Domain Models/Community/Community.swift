@@ -143,7 +143,7 @@ extension SchemaV1 {
     final class CommunityData: PersistableData {
         @Attribute(.unique) let remoteId: String // Seems to be preventing adding memberships... hmm...
         @Relationship(deleteRule: .cascade, inverse: \MembershipData.community)
-        var membership: MembershipData?
+        var membership: MembershipData? 
         
         init(id: String) {
             remoteId = id

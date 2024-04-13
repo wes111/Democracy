@@ -53,57 +53,30 @@ struct Membership: Identifiable, Hashable, Sendable {
     let userId: String
 }
 
-// MARK: - Data Model
-typealias MembershipData = SchemaV1.MembershipData
-
-extension SchemaV1 {
-    
-    @Model
-    final class MembershipData: PersistableData {
-        @Attribute(.unique) let remoteId: String
-        var community: CommunityData
-        let joinDate: Date
-        let userId: String
-        
-        init(id: String, joinDate: Date, community: CommunityData, userId: String) {
-            self.remoteId = id
-            self.joinDate = joinDate
-            self.community = community
-            self.userId = userId
-        }
-        
-        func update(_ model: Membership) {
-            // A Membership cannot be updated currently. But possibly in the future with more fields?
-        }
-    }
-}
-
 enum DataHandlerError: Error {
     case fetchItemError
-    case idNotString
 }
 
 protocol DataHandlerProtocol: ModelActor {
     associatedtype DataModel: PersistableData
+    typealias DomainModel = DataModel.DomainModel
     
-    func deleteItem(model: DataModel.DomainModel) throws
-    func updateItem(model: DataModel.DomainModel) throws
+    func deleteItem(model: DomainModel) throws
+    func updateItem(model: DomainModel) throws
     
-    @discardableResult func newItem(model: DataModel.DomainModel, shouldSave: Bool) throws -> PersistentIdentifier
-    @discardableResult func replaceAll(memberships: [Membership]) async throws -> [PersistentIdentifier]
+    @discardableResult
+    func newDataModel(domainModel: DomainModel, shouldSave: Bool) throws -> PersistentIdentifier
+    
+    @discardableResult
+    func replaceAll(memberships: [DomainModel]) async throws -> [PersistentIdentifier]
 }
 
 extension DataHandlerProtocol {
     
-    func fetchIdentifier(model: DataModel.DomainModel) throws -> PersistentIdentifier {
-        guard let id = model.id as? String else {
-            throw DataHandlerError.idNotString
-        }
+    func fetchDataModel(for model: DomainModel) throws -> DataModel? {
+        let id = model.id
         let fetchDescriptor = FetchDescriptor<DataModel>(predicate: #Predicate { $0.remoteId == id })
-        guard let item = try modelContext.fetch(fetchDescriptor).first else {
-            throw DataHandlerError.fetchItemError
-        }
-        return item.id
+        return try modelContext.fetch(fetchDescriptor).first
     }
     
     // Fetch all instances of DataModel, with no filtering or sorting applied.
@@ -112,33 +85,25 @@ extension DataHandlerProtocol {
         return try modelContext.fetch(fetchDescriptor)
     }
     
-    func updateItem(model: DataModel.DomainModel) throws {
-        let id = try fetchIdentifier(model: model)
-        guard let item = self[id, as: DataModel.self] else {
+    func updateItem(model: DomainModel) throws {
+        guard let dataModel = try fetchDataModel(for: model) else {
             return
         }
-        item.update(model)
+        dataModel.update(model)
         try modelContext.save()
     }
     
     // Delete the DataModel of the provided DomainModel
-    func deleteItem(model: DataModel.DomainModel) throws {
-        let id = try fetchIdentifier(model: model)
-        guard let item = self[id, as: DataModel.self] else {
+    func deleteItem(model: DomainModel) throws {
+        guard let dataModel = try fetchDataModel(for: model) else {
             return
         }
-        modelContext.delete(item)
-        try modelContext.save()
-    }
-    
-    // Delete the PersistableData.
-    func deleteItem<T: PersistableData>(model: T) throws {
-        modelContext.delete(model)
+        modelContext.delete(dataModel)
         try modelContext.save()
     }
 }
 
-protocol PersistableData: PersistentModel {
+protocol PersistableData: PersistentModel where DomainModel: Identifiable, DomainModel.ID == String {
     associatedtype DomainModel: Identifiable
     
     var remoteId: String { get }
@@ -150,60 +115,54 @@ protocol PersistableData: PersistentModel {
 actor DataHandler: DataHandlerProtocol {
     
     typealias DataModel = MembershipData
+    typealias DomainModel = DataModel.DomainModel
     
     @discardableResult
-    func replaceAll(memberships: [Membership]) throws -> [PersistentIdentifier] {
-        let persistedMemberships = try fetchAll()
-        for membership in persistedMemberships {
-            let persistedCommunity = membership.community
-            try deleteItem(model: membership)
-            try deleteItem(model: persistedCommunity)
-        }
+    func replaceAll(memberships: [DomainModel]) throws -> [PersistentIdentifier] {
+        try modelContext.delete(model: DataModel.self)
         var identifiers: [PersistentIdentifier] = []
         for membership in memberships {
-            let updatedCommunity = CommunityData(community: membership.community)
-            let updatedMembership = MembershipData(
-                id: membership.id,
-                joinDate: membership.joinDate,
-                community: updatedCommunity,
-                userId: membership.userId
-            )
-            identifiers.append(updatedMembership.persistentModelID)
-            modelContext.insert(updatedCommunity)
-            modelContext.insert(updatedMembership)
+            let persistentId = try newDataModel(domainModel: membership, shouldSave: false)
+            identifiers.append(persistentId)
         }
         try modelContext.save()
         return identifiers
     }
     
     @discardableResult
-    func newItem(model: DataModel.DomainModel, shouldSave: Bool = true) throws -> PersistentIdentifier {
-        let dataItem = try membershipData(from: model)
-        modelContext.insert(dataItem)
+    func newDataModel(domainModel: DomainModel, shouldSave: Bool = true) throws -> PersistentIdentifier {
+        let fetchedCommunity = try fetchCommunityData(for: domainModel)
+        let communityData = fetchedCommunity ?? communityData(from: domainModel.community)
+        let membershipData = membershipData(from: domainModel, communityData: communityData)
+        if fetchedCommunity == nil {
+            modelContext.insert(communityData)
+        }
+        modelContext.insert(membershipData)
         if shouldSave {
             try modelContext.save()
         }
-        return dataItem.persistentModelID
+        return membershipData.persistentModelID
     }
 }
 
-// MARK: - Private Methods
 private extension DataHandler {
-    func communityData(from membership: DataModel.DomainModel) throws -> CommunityData {
-        let id = membership.id
+    
+    func fetchCommunityData(for membership: Membership) throws -> CommunityData? {
+        let id = membership.community.id
         let fetchDescriptor = FetchDescriptor<CommunityData>(predicate: #Predicate { $0.remoteId == id })
-        let bob = try modelContext.fetch(fetchDescriptor).first ?? .init(id: membership.community.id)
-        print(bob.remoteId)
-        return bob
+        return try modelContext.fetch(fetchDescriptor).first
     }
     
-    func membershipData(from model: DataModel.DomainModel) throws -> DataModel {
-        let communityData = try communityData(from: model)
-        return MembershipData(
+    func membershipData(from model: Membership, communityData: CommunityData) -> MembershipData {
+        MembershipData(
             id: model.id,
             joinDate: model.joinDate,
             community: communityData,
             userId: model.userId
         )
+    }
+    
+    func communityData(from model: Community) -> CommunityData {
+        CommunityData(id: model.id)
     }
 }

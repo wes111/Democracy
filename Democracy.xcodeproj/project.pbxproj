@@ -17,6 +17,7 @@
 		EE11729F2A71C3C700E529AF /* CommunityCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729E2A71C3C700E529AF /* CommunityCategoryViewModel.swift */; };
 		EE2477CF2BB9C6B800661A0A /* TestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477CE2BB9C6B800661A0A /* TestRepository.swift */; };
 		EE2477D22BBCD95000661A0A /* CurrentScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477D12BBCD95000661A0A /* CurrentScheme.swift */; };
+		EE2477D52BCA060600661A0A /* MembershipData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477D42BCA060600661A0A /* MembershipData.swift */; };
 		EE28E35D2B24FACC00EC4E6F /* SharedResourcesClientAndServer in Frameworks */ = {isa = PBXBuildFile; productRef = EE28E35C2B24FACC00EC4E6F /* SharedResourcesClientAndServer */; };
 		EE2B15B42B43592E0046D5FC /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B32B43592E0046D5FC /* GenericError.swift */; };
 		EE2B15B62B4443CC0046D5FC /* LinkRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */; };
@@ -350,6 +351,7 @@
 		EE11729E2A71C3C700E529AF /* CommunityCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCategoryViewModel.swift; sourceTree = "<group>"; };
 		EE2477CE2BB9C6B800661A0A /* TestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRepository.swift; sourceTree = "<group>"; };
 		EE2477D12BBCD95000661A0A /* CurrentScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentScheme.swift; sourceTree = "<group>"; };
+		EE2477D42BCA060600661A0A /* MembershipData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipData.swift; sourceTree = "<group>"; };
 		EE2B15B32B43592E0046D5FC /* GenericError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericError.swift; sourceTree = "<group>"; };
 		EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkRequirement.swift; sourceTree = "<group>"; };
 		EE2B15B72B4449BE0046D5FC /* LinkTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextFieldStyle.swift; sourceTree = "<group>"; };
@@ -717,8 +719,17 @@
 			isa = PBXGroup;
 			children = (
 				EE2477D12BBCD95000661A0A /* CurrentScheme.swift */,
+				EE2477D32BCA05F100661A0A /* Data Models */,
 			);
 			path = SwiftData;
+			sourceTree = "<group>";
+		};
+		EE2477D32BCA05F100661A0A /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				EE2477D42BCA060600661A0A /* MembershipData.swift */,
+			);
+			path = "Data Models";
 			sourceTree = "<group>";
 		};
 		EE2B15C32B4C3C510046D5FC /* PostSuccess */ = {
@@ -2346,6 +2357,7 @@
 				EE5D3A0F2A45246400D0E312 /* Rule+Preview.swift in Sources */,
 				EEB5AF672ADB186E00310408 /* SubmittableTextInputViewModel.swift in Sources */,
 				EEB5AF8B2AFA7DD500310408 /* Session.swift in Sources */,
+				EE2477D52BCA060600661A0A /* MembershipData.swift in Sources */,
 				EE2B15C92B4C3EA30046D5FC /* CreateAccountCoordinator+Preview.swift in Sources */,
 				EED4A50329AA86C900DDCCDA /* VotingTabMainView.swift in Sources */,
 				EE412B942B9E4C4D0007632B /* CommunityInputFlowView.swift in Sources */,

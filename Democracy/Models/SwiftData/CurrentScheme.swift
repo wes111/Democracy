@@ -17,7 +17,10 @@ enum SchemaV1: VersionedSchema {
     }
     
     static var models: [any PersistentModel.Type] {
-        [MembershipData.self]
+        [
+            MembershipData.self,
+            CommunityData.self
+        ]
     }
 }
 
