@@ -12,17 +12,18 @@ protocol DataHandler: ModelActor {
     associatedtype DataModel: PersistableData
     typealias DomainModel = DataModel.DomainModel
     
-    func deleteItem(model: DomainModel) throws
     func updateItem(model: DomainModel) throws
 }
 
 extension DataHandler {
     
-    func fetchDataModel(for model: DomainModel) throws -> DataModel? {
-        let id = model.id
-        let fetchDescriptor = FetchDescriptor<DataModel>(predicate: #Predicate { $0.remoteId == id })
-        return try modelContext.fetch(fetchDescriptor).first
-    }
+    // TODO: Generics seem to cause an error with the Predicate...
+    // https://www.reddit.com/r/SwiftUI/comments/17eqgbz/use_generic_keypath_with_swiftdata_query/
+//    func fetchDataModel(for model: DomainModel) throws -> DataModel? {
+//        let id = model.id
+//        let fetchDescriptor = FetchDescriptor<DataModel>(predicate: #Predicate { $0.remoteId == id })
+//        return try modelContext.fetch(fetchDescriptor).first
+//    }
     
     func fetchIdentifier(id: String) throws -> PersistentIdentifier? {
         let id = id
@@ -47,14 +48,5 @@ extension DataHandler {
     
     func deleteAll() throws {
         try modelContext.delete(model: DataModel.self)
-    }
-    
-    // Delete the DataModel of the provided DomainModel
-    func deleteItem(model: DomainModel) throws {
-        guard let dataModel: DataModel = try fetchDataModel(for: model) else {
-            return
-        }
-        modelContext.delete(dataModel)
-        try modelContext.save()
     }
 }

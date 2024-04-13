@@ -13,6 +13,8 @@ enum MembershipServiceError: Error {
 }
 
 protocol MembershipService: Sendable {
+    var currentValue: [Membership] { get async }
+    
     func fetchMemberships(refresh: Bool) async throws
     func joinCommunity(_ community: Community) async throws
     func leaveCommunity(membership: Membership) async throws
@@ -22,6 +24,12 @@ protocol MembershipService: Sendable {
 final class MembershipServiceDefault: MembershipService {
     @Injected(\.membershipRepository) private var membershipRepository
     @Injected(\.userRepository) private var userRepository
+    
+    var currentValue: [Membership] {
+        get async {
+            return await membershipRepository.currentValue
+        }
+    }
     
     func fetchMemberships(refresh: Bool) async throws {
         guard let userId = await userRepository.currentValue?.id else {

@@ -60,7 +60,7 @@ extension CommunitiesTabMainViewModel {
                 try await Task.sleep(seconds: 1.0)
                 switch category {
                 case .isMemberOf:
-                    try await membershipService.fetchMemberships(refresh: false)
+                    allCommunities = await membershipService.currentValue.map { $0.community } // TODO:
                     
                 case .isLeaderOf:
                     break // TODO: ...
@@ -87,6 +87,7 @@ private extension CommunitiesTabMainViewModel {
         Task {
             for await membershipsArray in await membershipService.membershipsStream() {
                 allCommunities = membershipsArray.map { $0.community }
+                print("Wesley count: \(membershipsArray.count)")
             }
         }
     }

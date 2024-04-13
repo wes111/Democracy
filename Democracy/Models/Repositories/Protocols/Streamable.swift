@@ -12,6 +12,7 @@ protocol Streamable: Actor {
     associatedtype Object: Sendable
     
     var continuations: [UUID: AsyncStream<[Object]>.Continuation] { get set }
+    var currentValue: [Object] { get set }
     
     func values() -> AsyncStream<[Object]>
     func send(_ values: [Object])
@@ -34,6 +35,7 @@ extension Streamable {
         for continuation in continuations.values {
             continuation.yield(values)
         }
+        currentValue = values
     }
 }
 

@@ -82,11 +82,10 @@ extension CommunityViewModel {
 private extension CommunityViewModel {
     func startMembershipsTask() {
         Task {
+            membership = await membershipService.currentValue.first(where: { $0.community == community })
             for await membershipsArray in await membershipService.membershipsStream() {
                 membership = membershipsArray.first(where: { $0.community == community })
             }
-            print("Did we make it here?")
         }
-        
     }
 }

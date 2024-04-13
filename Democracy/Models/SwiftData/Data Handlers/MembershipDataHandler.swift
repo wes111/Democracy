@@ -28,9 +28,6 @@ actor MembershipDataHandler: DataHandler {
     func fetchPersistedMemberships() throws -> [Membership] {
         try fetchAll().map { $0.toMembership() }
     }
-}
-
-private extension MembershipDataHandler {
     
     @discardableResult
     func insertNewMembershipData(domainModel: DomainModel, shouldSave: Bool = true)
@@ -47,6 +44,17 @@ private extension MembershipDataHandler {
         }
         return membershipData.persistentModelID
     }
+    
+    func newDelete(model: Membership) throws {
+        guard let dataModel = try newFetch(for: model) else {
+            return
+        }
+        modelContext.delete(dataModel)
+        try modelContext.save()
+    }
+}
+
+private extension MembershipDataHandler {
     
     func fetchCommunityData(for membership: Membership) throws -> CommunityData? {
         let id = membership.community.id
@@ -84,5 +92,11 @@ private extension MembershipDataHandler {
             allowedCommenterType: model.allowedCommenterType,
             postApprovalType: model.postApprovalType
         )
+    }
+    
+    func newFetch(for model: Membership) throws -> MembershipData? {
+        let id = model.id
+        let fetchDescriptor = FetchDescriptor<MembershipData>(predicate: #Predicate { $0.remoteId == id })
+        return try modelContext.fetch(fetchDescriptor).first
     }
 }
