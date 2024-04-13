@@ -18,6 +18,9 @@
 		EE2477CF2BB9C6B800661A0A /* TestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477CE2BB9C6B800661A0A /* TestRepository.swift */; };
 		EE2477D22BBCD95000661A0A /* CurrentScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477D12BBCD95000661A0A /* CurrentScheme.swift */; };
 		EE2477D52BCA060600661A0A /* MembershipData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477D42BCA060600661A0A /* MembershipData.swift */; };
+		EE2477D82BCA292300661A0A /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477D72BCA292300661A0A /* DataHandler.swift */; };
+		EE2477DB2BCA297200661A0A /* MembershipDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477DA2BCA297200661A0A /* MembershipDataHandler.swift */; };
+		EE2477DD2BCA29AC00661A0A /* PersistableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477DC2BCA29AB00661A0A /* PersistableData.swift */; };
 		EE28E35D2B24FACC00EC4E6F /* SharedResourcesClientAndServer in Frameworks */ = {isa = PBXBuildFile; productRef = EE28E35C2B24FACC00EC4E6F /* SharedResourcesClientAndServer */; };
 		EE2B15B42B43592E0046D5FC /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B32B43592E0046D5FC /* GenericError.swift */; };
 		EE2B15B62B4443CC0046D5FC /* LinkRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */; };
@@ -352,6 +355,9 @@
 		EE2477CE2BB9C6B800661A0A /* TestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRepository.swift; sourceTree = "<group>"; };
 		EE2477D12BBCD95000661A0A /* CurrentScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentScheme.swift; sourceTree = "<group>"; };
 		EE2477D42BCA060600661A0A /* MembershipData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipData.swift; sourceTree = "<group>"; };
+		EE2477D72BCA292300661A0A /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
+		EE2477DA2BCA297200661A0A /* MembershipDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipDataHandler.swift; sourceTree = "<group>"; };
+		EE2477DC2BCA29AB00661A0A /* PersistableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistableData.swift; sourceTree = "<group>"; };
 		EE2B15B32B43592E0046D5FC /* GenericError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericError.swift; sourceTree = "<group>"; };
 		EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkRequirement.swift; sourceTree = "<group>"; };
 		EE2B15B72B4449BE0046D5FC /* LinkTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextFieldStyle.swift; sourceTree = "<group>"; };
@@ -718,6 +724,8 @@
 		EE2477D02BBCD8B200661A0A /* SwiftData */ = {
 			isa = PBXGroup;
 			children = (
+				EE2477D92BCA295F00661A0A /* Data Handlers */,
+				EE2477D62BCA291000661A0A /* Protocols */,
 				EE2477D12BBCD95000661A0A /* CurrentScheme.swift */,
 				EE2477D32BCA05F100661A0A /* Data Models */,
 			);
@@ -730,6 +738,23 @@
 				EE2477D42BCA060600661A0A /* MembershipData.swift */,
 			);
 			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		EE2477D62BCA291000661A0A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EE2477D72BCA292300661A0A /* DataHandler.swift */,
+				EE2477DC2BCA29AB00661A0A /* PersistableData.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		EE2477D92BCA295F00661A0A /* Data Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				EE2477DA2BCA297200661A0A /* MembershipDataHandler.swift */,
+			);
+			path = "Data Handlers";
 			sourceTree = "<group>";
 		};
 		EE2B15C32B4C3C510046D5FC /* PostSuccess */ = {
@@ -2186,6 +2211,7 @@
 				EE80D90F29C92C190000F8EF /* CandidateCardViewModel.swift in Sources */,
 				EE4DB8AA2ACE457000A6DC90 /* PasswordRequirement.swift in Sources */,
 				EE8A95CF2B61FF49000D038E /* SubmittableTextEditorInputViewModel.swift in Sources */,
+				EE2477DD2BCA29AC00661A0A /* PersistableData.swift in Sources */,
 				EE412B672B901E6E0007632B /* CommunityService.swift in Sources */,
 				EE7856132AAE75620004B7E4 /* NewFlowLayout.swift in Sources */,
 				EEB5AF982B0320D400310408 /* KeyChainStorage.swift in Sources */,
@@ -2382,6 +2408,7 @@
 				EED4A54029BAB3E800DDCCDA /* Comment.swift in Sources */,
 				EE7EC27D2B614ED300F62E90 /* CommunityTagsViewModel.swift in Sources */,
 				EEB5AFA82B103AC100310408 /* SessionRepository.swift in Sources */,
+				EE2477D82BCA292300661A0A /* DataHandler.swift in Sources */,
 				EE936CB92A81DA2700D49271 /* CoordinatorView.swift in Sources */,
 				EE412B802B9D24700007632B /* InputFlowView.swift in Sources */,
 				EE97601E2AD767EF003069CF /* RootCoordinator.swift in Sources */,
@@ -2434,6 +2461,7 @@
 				EEA2B4232B7173D600063211 /* Selectable.swift in Sources */,
 				EED4A51C29ABC2FE00DDCCDA /* User.swift in Sources */,
 				EE2B15C22B4B73B60046D5FC /* SuccessView.swift in Sources */,
+				EE2477DB2BCA297200661A0A /* MembershipDataHandler.swift in Sources */,
 				EED4A53A29B9629900DDCCDA /* PostCardView.swift in Sources */,
 				EE7055502B11476E00E40A89 /* AccountService.swift in Sources */,
 				EE7EC27A2B614E8600F62E90 /* CommunityRulesViewModel.swift in Sources */,

@@ -17,7 +17,7 @@ extension SchemaV1 {
         @Attribute(.unique) let remoteId: String
         var community: CommunityData
         let joinDate: Date
-        let userId: String
+        let userId: String // TODO: We don't need to persist this lol.
         
         init(id: String, joinDate: Date, community: CommunityData, userId: String) {
             self.remoteId = id

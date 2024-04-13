@@ -111,7 +111,7 @@ struct CommunityDTO: Decodable {
 }
 
 // The domain model.
-struct Community: Identifiable, Hashable, Sendable {
+struct Community: StringIdentifiable, Hashable, Sendable {
     let id: String
     let creatorId: String
     let name: String
@@ -141,7 +141,7 @@ typealias CommunityData = SchemaV1.CommunityData
 extension SchemaV1 {
     @Model
     final class CommunityData: PersistableData {
-        @Attribute(.unique) let remoteId: String // Seems to be preventing adding memberships... hmm...
+        @Attribute(.unique) let remoteId: String
         @Relationship(deleteRule: .cascade, inverse: \MembershipData.community)
         var membership: MembershipData? 
         

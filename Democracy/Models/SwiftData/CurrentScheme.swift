@@ -38,9 +38,9 @@ final class DataProvider: Sendable {
         }
     }()
     
-    func dataHandlerCreator() -> @Sendable () async -> DataHandler {
+    func dataHandlerCreator() -> @Sendable () async -> MembershipDataHandler {
         let container = sharedModelContainer
-        return { DataHandler(modelContainer: container) }
+        return { MembershipDataHandler(modelContainer: container) }
     }
     
     init() {}
