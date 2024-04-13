@@ -11,15 +11,15 @@ import Foundation
 protocol Streamable: Actor {
     associatedtype Object: Sendable
     
-    var continuations: [UUID: AsyncStream<Object>.Continuation] { get set }
+    var continuations: [UUID: AsyncStream<[Object]>.Continuation] { get set }
     
-    func values() -> AsyncStream<Object>
-    func send(_ value: Object)
+    func values() -> AsyncStream<[Object]>
+    func send(_ values: [Object])
 }
 
 extension Streamable {
     
-    func values() -> AsyncStream<Object> {
+    func values() -> AsyncStream<[Object]> {
         AsyncStream { continuation in
             let id = UUID()
             continuations[id] = continuation
@@ -30,9 +30,9 @@ extension Streamable {
         }
     }
 
-    func send(_ value: Object) {
+    func send(_ values: [Object]) {
         for continuation in continuations.values {
-            continuation.yield(value)
+            continuation.yield(values)
         }
     }
 }

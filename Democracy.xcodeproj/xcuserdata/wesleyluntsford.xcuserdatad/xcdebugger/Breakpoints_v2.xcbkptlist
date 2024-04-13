@@ -101,16 +101,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B6273149-4FE0-4C7C-B79B-711BB6460C9E"
-            shouldBeEnabled = "No"
+            uuid = "297D74FD-0F40-45F7-BBD3-929999337ABE"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Democracy/Models/Repositories/MembershipRepository.swift"
+            filePath = "Democracy/Views/MainTabs/CommunitiesTab/Community/CommunityViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "fetchUserMemberships(userId:)"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "startMembershipsTask()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9AE20C91-8E00-47C9-9EA0-2B01ABB47372"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Democracy/Views/MainTabs/CommunitiesTab/CommunitiesTabMainViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "forceRefreshMemberships()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

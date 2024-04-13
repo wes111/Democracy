@@ -34,7 +34,7 @@ struct ResourceDTO: Decodable {
 }
 
 // Domain Object.
-struct Resource: Hashable {
+struct Resource: Hashable, Codable {
     let id: String
     let title: String
     let description: String?

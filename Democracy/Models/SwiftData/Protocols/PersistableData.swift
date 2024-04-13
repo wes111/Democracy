@@ -14,6 +14,4 @@ protocol PersistableData: PersistentModel {
     associatedtype DomainModel: StringIdentifiable
     
     var remoteId: String { get }
-    
-    func update(_ model: DomainModel)
 }

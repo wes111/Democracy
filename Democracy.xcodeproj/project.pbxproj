@@ -15,7 +15,7 @@
 		EE11729B2A6F3D0300E529AF /* AlliedCommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729A2A6F3D0300E529AF /* AlliedCommunityView.swift */; };
 		EE11729D2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729C2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift */; };
 		EE11729F2A71C3C700E529AF /* CommunityCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729E2A71C3C700E529AF /* CommunityCategoryViewModel.swift */; };
-		EE2477CF2BB9C6B800661A0A /* TestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477CE2BB9C6B800661A0A /* TestRepository.swift */; };
+		EE2477CF2BB9C6B800661A0A /* Streamable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477CE2BB9C6B800661A0A /* Streamable.swift */; };
 		EE2477D22BBCD95000661A0A /* CurrentScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477D12BBCD95000661A0A /* CurrentScheme.swift */; };
 		EE2477D52BCA060600661A0A /* MembershipData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477D42BCA060600661A0A /* MembershipData.swift */; };
 		EE2477D82BCA292300661A0A /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477D72BCA292300661A0A /* DataHandler.swift */; };
@@ -352,7 +352,7 @@
 		EE11729A2A6F3D0300E529AF /* AlliedCommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlliedCommunityView.swift; sourceTree = "<group>"; };
 		EE11729C2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlliedCommunityViewModel.swift; sourceTree = "<group>"; };
 		EE11729E2A71C3C700E529AF /* CommunityCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCategoryViewModel.swift; sourceTree = "<group>"; };
-		EE2477CE2BB9C6B800661A0A /* TestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRepository.swift; sourceTree = "<group>"; };
+		EE2477CE2BB9C6B800661A0A /* Streamable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Streamable.swift; sourceTree = "<group>"; };
 		EE2477D12BBCD95000661A0A /* CurrentScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentScheme.swift; sourceTree = "<group>"; };
 		EE2477D42BCA060600661A0A /* MembershipData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipData.swift; sourceTree = "<group>"; };
 		EE2477D72BCA292300661A0A /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
@@ -755,6 +755,14 @@
 				EE2477DA2BCA297200661A0A /* MembershipDataHandler.swift */,
 			);
 			path = "Data Handlers";
+			sourceTree = "<group>";
+		};
+		EE2477DE2BCB0BE400661A0A /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EE2477CE2BB9C6B800661A0A /* Streamable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		EE2B15C32B4C3C510046D5FC /* PostSuccess */ = {
@@ -1505,6 +1513,7 @@
 		EE80D8B829BC0EFA0000F8EF /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				EE2477DE2BCB0BE400661A0A /* Protocols */,
 				EEB5AF902B017F0900310408 /* UserDefaultStorage.swift */,
 				EEB5AF972B0320D400310408 /* KeyChainStorage.swift */,
 				EEB5AFA72B103AC100310408 /* SessionRepository.swift */,
@@ -1513,7 +1522,6 @@
 				EE2B15BB2B499E1D0046D5FC /* PostRepository.swift */,
 				EE412B682B9029F60007632B /* CommunityRepository.swift */,
 				EE412BAD2BB0E2C50007632B /* MembershipRepository.swift */,
-				EE2477CE2BB9C6B800661A0A /* TestRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -2364,7 +2372,7 @@
 				EE80D8DC29BC18EE0000F8EF /* CommunityHomeFeedViewModel+Preview.swift in Sources */,
 				EE5B93992A0866EA00B43381 /* CommunityPostCategoryViewModel+Preview.swift in Sources */,
 				EE1172982A6F3C9100E529AF /* AlliedCommunitiesSectionViewModel.swift in Sources */,
-				EE2477CF2BB9C6B800661A0A /* TestRepository.swift in Sources */,
+				EE2477CF2BB9C6B800661A0A /* Streamable.swift in Sources */,
 				EE4987CA2B2F5B3900AB7522 /* TitleTextFieldStyle.swift in Sources */,
 				EE80D90429C923960000F8EF /* CommunityInfoViewModel.swift in Sources */,
 				EE936CB12A78A01200D49271 /* HistoryTabCoordinatorViewModel.swift in Sources */,

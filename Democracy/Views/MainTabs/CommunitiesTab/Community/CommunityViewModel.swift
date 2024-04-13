@@ -24,7 +24,7 @@ final class CommunityViewModel {
         self.coordinator = coordinator
         self.community = community
         
-        getMemberships() // TODO: Temp... see note below.
+        startMembershipsTask()
     }
 }
 
@@ -57,18 +57,6 @@ extension CommunityViewModel {
         }
     }
     
-    // TODO: We need to subscribe to a stream of memberships... This is temporary.
-    func getMemberships() {
-        Task {
-            do {
-                let memberships = try await membershipService.userMemberships()
-                membership = memberships.first(where: { $0.community == community })
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
     func showCreatePostView() {
         coordinator?.showCreatePostView()
     }
@@ -87,5 +75,18 @@ extension CommunityViewModel {
     
     func goBack() {
         coordinator?.goBack()
+    }
+}
+
+// MARK: - Private Methods
+private extension CommunityViewModel {
+    func startMembershipsTask() {
+        Task {
+            for await membershipsArray in await membershipService.membershipsStream() {
+                membership = membershipsArray.first(where: { $0.community == community })
+            }
+            print("Did we make it here?")
+        }
+        
     }
 }

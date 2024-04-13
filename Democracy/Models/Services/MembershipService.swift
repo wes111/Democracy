@@ -13,20 +13,25 @@ enum MembershipServiceError: Error {
 }
 
 protocol MembershipService: Sendable {
-    func userMemberships() async throws -> [Membership]
+    func fetchMemberships(refresh: Bool) async throws
     func joinCommunity(_ community: Community) async throws
     func leaveCommunity(membership: Membership) async throws
+    func membershipsStream() async -> AsyncStream<[Membership]>
 }
 
 final class MembershipServiceDefault: MembershipService {
     @Injected(\.membershipRepository) private var membershipRepository
     @Injected(\.userRepository) private var userRepository
     
-    func userMemberships() async throws -> [Membership] {
+    func fetchMemberships(refresh: Bool) async throws {
         guard let userId = await userRepository.currentValue?.id else {
-            throw MembershipServiceError.userAccountMissing
+            return print("Failed fetching memberships")
         }
-        return try await membershipRepository.fetchUserMemberships(userId: userId)
+        try await membershipRepository.fetchUserMemberships(userId: userId, refresh: refresh)
+    }
+    
+    func membershipsStream() async -> AsyncStream<[Membership]> {
+        await membershipRepository.values()
     }
     
     func joinCommunity(_ community: Community) async throws {

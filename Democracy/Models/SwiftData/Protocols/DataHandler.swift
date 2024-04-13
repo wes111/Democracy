@@ -37,11 +37,12 @@ extension DataHandler {
     }
     
     func updateItem(model: DomainModel) throws {
-        guard let dataModel: DataModel = try fetchDataModel(for: model) else {
-            return
-        }
-        dataModel.update(model)
-        try modelContext.save()
+        // TODO: ...
+//        guard let dataModel: DataModel = try fetchDataModel(for: model) else {
+//            return
+//        }
+//        dataModel.update(model)
+//        try modelContext.save()
     }
     
     func deleteAll() throws {

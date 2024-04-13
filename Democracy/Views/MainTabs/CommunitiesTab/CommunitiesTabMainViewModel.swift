@@ -24,6 +24,7 @@ final class CommunitiesTabMainViewModel {
     
     init(coordinator: CommunitiesCoordinatorDelegate?) {
         self.coordinator = coordinator
+        startMembershipsTask()
     }
 }
 
@@ -41,6 +42,14 @@ extension CommunitiesTabMainViewModel {
         fetchCommunitiesByCategory(category)
     }
     
+    nonisolated func forceRefreshMemberships() async {
+        do {
+            try await membershipService.fetchMemberships(refresh: true)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     func fetchCommunitiesByCategory(_ category: CommunitiesCategory) {
         fetchCommunitiesTask?.cancel()
         allCommunities = []
@@ -51,7 +60,7 @@ extension CommunitiesTabMainViewModel {
                 try await Task.sleep(seconds: 1.0)
                 switch category {
                 case .isMemberOf:
-                    allCommunities = try await membershipService.userMemberships().map { $0.community }
+                    try await membershipService.fetchMemberships(refresh: false)
                     
                 case .isLeaderOf:
                     break // TODO: ...
@@ -68,6 +77,17 @@ extension CommunitiesTabMainViewModel {
                 print(error.localizedDescription)
             }
             isShowingProgress = false
+        }
+    }
+}
+
+// MARK: - Private Methods
+private extension CommunitiesTabMainViewModel {
+    func startMembershipsTask() {
+        Task {
+            for await membershipsArray in await membershipService.membershipsStream() {
+                allCommunities = membershipsArray.map { $0.community }
+            }
         }
     }
 }

@@ -9,28 +9,27 @@ import Factory
 import Foundation
 
 protocol MembershipRepository {
-    func fetchUserMemberships(userId: String) async throws -> [Membership]
+    func fetchUserMemberships(userId: String, refresh: Bool) async throws // -> [Membership]
     func joinCommunity(_ membership: MembershipCreationRequest) async throws
     func leaveCommunity(_ membership: Membership) async throws
-    func values() async -> AsyncStream<Membership>
+    func values() async -> AsyncStream<[Membership]>
 }
 
 actor MembershipRepositoryDefault: MembershipRepository, Streamable {
     
     @Injected(\.appwriteService) private var appwriteService
-    let bob = DataProvider.shared.dataHandlerCreator()
-    var continuations: [UUID: AsyncStream<Membership>.Continuation] = [:]
+    let createMembershipDataHandler = DataProvider.shared.membershipDataHandlerCreator()
+    var continuations: [UUID: AsyncStream<[Membership]>.Continuation] = [:]
     
-    func fetchUserMemberships(userId: String) async throws -> [Membership] {
-        let memberships = try await appwriteService.fetchUserMemberships(userId: userId)
-        Task {
-            do {
-                try await bob().replaceAll(memberships: memberships)
-            } catch {
-                print(error)
-            }
+    func fetchUserMemberships(userId: String, refresh: Bool) async throws {
+        if refresh {
+            let memberships = try await appwriteService.fetchUserMemberships(userId: userId)
+            try await createMembershipDataHandler().replaceAll(newMemberships: memberships)
+            send(memberships)
+        } else {
+            let memberships = try await createMembershipDataHandler().fetchPersistedMemberships()
+            send(memberships)
         }
-        return memberships
     }
     
     func joinCommunity(_ membership: MembershipCreationRequest) async throws {

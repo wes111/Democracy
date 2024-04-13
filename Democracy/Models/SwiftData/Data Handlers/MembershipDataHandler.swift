@@ -13,15 +13,20 @@ actor MembershipDataHandler: DataHandler {
     typealias DataModel = MembershipData
     
     @discardableResult
-    func replaceAll(memberships: [Membership]) throws -> [PersistentIdentifier] {
+    func replaceAll(newMemberships: [Membership]) throws -> [PersistentIdentifier] {
+        // TODO: We might want to delete the CommunityData too (prevent unnecessary community storage)
         try modelContext.delete(model: MembershipData.self)
         var identifiers: [PersistentIdentifier] = []
-        for membership in memberships {
+        for membership in newMemberships {
             let persistentId = try insertNewMembershipData(domainModel: membership, shouldSave: false)
             identifiers.append(persistentId)
         }
         try modelContext.save()
         return identifiers
+    }
+    
+    func fetchPersistedMemberships() throws -> [Membership] {
+        try fetchAll().map { $0.toMembership() }
     }
 }
 
@@ -59,7 +64,25 @@ private extension MembershipDataHandler {
     }
     
     func communityData(from model: Community) -> CommunityData {
-        CommunityData(id: model.id)
+        CommunityData(
+            remoteId: model.id,
+            creatorId: model.creatorId,
+            name: model.name,
+            descriptionText: model.descriptionText,
+            creationDate: model.creationDate,
+            // representatives: model.representatives,
+            memberCount: model.memberCount,
+            rules: model.rules,
+            resources: model.resources,
+            categories: model.categories,
+            tags: model.tags,
+            // alliedCommunities: model.alliedCommunities,
+            governmentType: model.governmentType,
+            contentType: model.contentType,
+            visibilityType: model.visibilityType,
+            allowedPosterType: model.allowedPosterType,
+            allowedCommenterType: model.allowedCommenterType,
+            postApprovalType: model.postApprovalType
+        )
     }
 }
-

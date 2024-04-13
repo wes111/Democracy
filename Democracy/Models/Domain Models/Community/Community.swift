@@ -21,7 +21,6 @@ import SwiftData
 // 1.) A community has leaders. For the first 30? days the creator is the leader and can appoint other
 //     leaders. After that time is when the voting starts?
 
-
 // The Community object sent to the Appwrite database.
 // Note that 'id', 'creationDate', 'representatives' are not part of this object.
 struct CommunityCreationRequest: Encodable {
@@ -93,13 +92,13 @@ struct CommunityDTO: Decodable {
             name: name,
             descriptionText: descriptionText,
             creationDate: creationDateWrapper.date,
-            representatives: representatives ?? [],
+            // representatives: representatives ?? [],
             memberCount: memberCount,
             rules: rules.map { $0.toRule() },
             resources: resources.map { $0.toResource() },
             categories: categories,
             tags: tags,
-            alliedCommunities: alliedCommunities?.compactMap { $0.toCommunity() } ?? [],
+            // alliedCommunities: alliedCommunities?.compactMap { $0.toCommunity() } ?? [],
             governmentType: governmentType,
             contentType: contentType,
             visibilityType: visibilityType,
@@ -117,13 +116,13 @@ struct Community: StringIdentifiable, Hashable, Sendable {
     let name: String
     let descriptionText: String
     let creationDate: Date
-    var representatives: [Candidate]
+    // var representatives: [Candidate]
     let memberCount: Int
     var rules: [Rule]
     var resources: [Resource]
     var categories: [String]
     var tags: [String]
-    var alliedCommunities: [Community]
+    // var alliedCommunities: [Community]
     
     // Settings:
     var governmentType: CommunityGovernment
@@ -141,20 +140,97 @@ typealias CommunityData = SchemaV1.CommunityData
 extension SchemaV1 {
     @Model
     final class CommunityData: PersistableData {
+        // swiftlint:disable:next nesting
+        typealias DomainModel = Community
+        
         @Attribute(.unique) let remoteId: String
+        
         @Relationship(deleteRule: .cascade, inverse: \MembershipData.community)
-        var membership: MembershipData? 
+        var membership: MembershipData?
         
-        init(id: String) {
-            remoteId = id
+        let creatorId: String
+        var name: String
+        var descriptionText: String
+        let creationDate: Date
+        // var representatives: [Candidate]
+        var memberCount: Int
+        var rules: [Rule]
+        var resources: [Resource]
+        var categories: [String]
+        var tags: [String]
+        // var alliedCommunities: [CommunityData]
+        
+        // Settings:
+        var governmentType: CommunityGovernment
+        var contentType: CommunityContent
+        var visibilityType: CommunityVisibility
+        var allowedPosterType: CommunityPoster
+        var allowedCommenterType: CommunityCommenter
+        var postApprovalType: CommunityPostApproval
+        
+        init(
+            remoteId: String,
+            membership: MembershipData? = nil,
+            creatorId: String,
+            name: String,
+            descriptionText: String,
+            creationDate: Date,
+            // representatives: [Candidate],
+            memberCount: Int,
+            rules: [Rule],
+            resources: [Resource],
+            categories: [String],
+            tags: [String],
+            // alliedCommunities: [CommunityData],
+            governmentType: CommunityGovernment,
+            contentType: CommunityContent,
+            visibilityType: CommunityVisibility,
+            allowedPosterType: CommunityPoster,
+            allowedCommenterType: CommunityCommenter,
+            postApprovalType: CommunityPostApproval
+        ) {
+            self.remoteId = remoteId
+            self.membership = membership
+            self.creatorId = creatorId
+            self.name = name
+            self.descriptionText = descriptionText
+            self.creationDate = creationDate
+            // self.representatives = representatives
+            self.memberCount = memberCount
+            self.rules = rules
+            self.resources = resources
+            self.categories = categories
+            self.tags = tags
+            // self.alliedCommunities = alliedCommunities
+            self.governmentType = governmentType
+            self.contentType = contentType
+            self.visibilityType = visibilityType
+            self.allowedPosterType = allowedPosterType
+            self.allowedCommenterType = allowedCommenterType
+            self.postApprovalType = postApprovalType
         }
         
-        init(community: Community) {
-            self.remoteId = community.id
-        }
-        
-        func update(_ model: Community) {
-            // Nothing to update yet...
+        func toCommunity() -> Community {
+            Community(
+                id: remoteId,
+                creatorId: creatorId,
+                name: name,
+                descriptionText: descriptionText,
+                creationDate: creationDate,
+                // representatives: representatives,
+                memberCount: memberCount,
+                rules: rules,
+                resources: resources,
+                categories: categories,
+                tags: tags,
+                // alliedCommunities: alliedCommunities.map { $0.toCommunity() },
+                governmentType: governmentType,
+                contentType: contentType,
+                visibilityType: visibilityType,
+                allowedPosterType: allowedPosterType,
+                allowedCommenterType: allowedCommenterType,
+                postApprovalType: postApprovalType
+            )
         }
     }
 }

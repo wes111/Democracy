@@ -14,6 +14,8 @@ extension SchemaV1 {
     
     @Model
     final class MembershipData: PersistableData {
+        typealias DomainModel = Membership
+        
         @Attribute(.unique) let remoteId: String
         var community: CommunityData
         let joinDate: Date
@@ -28,6 +30,10 @@ extension SchemaV1 {
         
         func update(_ model: Membership) {
             // A Membership cannot be updated currently. But possibly in the future with more fields?
+        }
+        
+        func toMembership() -> Membership {
+            Membership(id: remoteId, joinDate: joinDate, community: community.toCommunity(), userId: userId)
         }
     }
 }

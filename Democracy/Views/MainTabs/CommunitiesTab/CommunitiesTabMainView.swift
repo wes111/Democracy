@@ -26,6 +26,9 @@ struct CommunitiesTabMainView: View {
             .onAppear {
                 viewModel.onAppear()
             }
+            .refreshable {
+                await viewModel.forceRefreshMemberships()
+            }
     }
 }
 
