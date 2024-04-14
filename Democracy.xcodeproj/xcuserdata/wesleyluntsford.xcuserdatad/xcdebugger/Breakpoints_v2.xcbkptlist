@@ -32,8 +32,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "54"
             endingLineNumber = "54"
-            landmarkName = "body"
-            landmarkType = "24">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -46,13 +46,13 @@
             filePath = "Democracy/Views/MainTabs/CommunitiesTab/Community/CommunityViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "toggleCommunityMembership()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "307D0B3C-4F70-4800-8A5D-62F75640F565 - 566d38d881191d65"
+                  uuid = "307D0B3C-4F70-4800-8A5D-62F75640F565 - 566d38d881191ce1"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -62,11 +62,11 @@
                   urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/MainTabs/CommunitiesTab/Community/CommunityViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60">
+                  startingLineNumber = "64"
+                  endingLineNumber = "64">
                </Location>
                <Location
-                  uuid = "307D0B3C-4F70-4800-8A5D-62F75640F565 - ba67903baeedef64"
+                  uuid = "307D0B3C-4F70-4800-8A5D-62F75640F565 - ba67903baeedeee0"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -76,8 +76,8 @@
                   urlString = "file:///Users/wesleyluntsford/Development/Democracy/Democracy/Views/MainTabs/CommunitiesTab/Community/CommunityViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60">
+                  startingLineNumber = "64"
+                  endingLineNumber = "64">
                </Location>
             </Locations>
          </BreakpointContent>

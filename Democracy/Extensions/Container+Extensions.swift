@@ -11,9 +11,6 @@ import Factory
 extension Container {
     
     // MARK: - Interactors
-    var postInteractor: Factory<PostInteractorProtocol> {
-         self { PostInteractor() }
-    }
     var candidateInteractor: Factory<CandidateInteractorProtocol> {
          self { CandidateInteractor() }
     }

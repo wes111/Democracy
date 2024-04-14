@@ -15,6 +15,9 @@ enum ViewConstants {
     static let mediumElementSpacing: CGFloat = 30
     static let largeElementSpacing: CGFloat = 50
     
+    // Section Spacing
+    static let sectionSpacing: CGFloat = 15
+    
     // Padding between element and element's border
     static let innerBorder: CGFloat = 20
     static let smallInnerBorder: CGFloat = 10

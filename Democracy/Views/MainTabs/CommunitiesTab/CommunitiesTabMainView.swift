@@ -56,22 +56,11 @@ private extension CommunitiesTabMainView {
     }
     
     var communityList: some View {
-        List(viewModel.allCommunities) { community in
-            TappableListItem(
-                title: community.name,
-                subtitle: community.tagline) {
-                    viewModel.goToCommunity(community)
-                }
-                .listRowInsets(.init(
-                    top: 0,
-                    leading: 0,
-                    bottom: ViewConstants.smallElementSpacing,
-                    trailing: 0
-                ))
-                .listRowBackground(Color.primaryBackground)
-                .listRowSeparator(.hidden)
+        PlainListView(items: viewModel.allCommunities) { community in
+            TappableListItem(title: community.name, subtitle: community.tagline) {
+                viewModel.goToCommunity(community)
+            }
         }
-        .listStyle(.plain)
     }
 }
 

@@ -44,6 +44,10 @@ extension CommunityViewModel {
             .init(title: "Create Post", action: showCreatePostView)
         ])]
     }
+    
+    var membershipButtonTitle: String {
+        membership == nil ? "Join" : "Leave"
+    }
 }
 
 // MARK: - Methods
@@ -65,15 +69,15 @@ extension CommunityViewModel {
         coordinator?.showCreatePostView()
     }
     
-    func getCommunityHomeFeedViewModel() -> CommunityHomeFeedViewModel {
+    func communityHomeFeedViewModel() -> CommunityHomeFeedViewModel {
         CommunityHomeFeedViewModel(coordinator: coordinator)
     }
     
-    func getCommunityInfoViewModel() -> CommunityInfoViewModel {
+    func communityInfoViewModel() -> CommunityInfoViewModel {
         CommunityInfoViewModel(coordinator: coordinator, community: community)
     }
     
-    func getCommunityArchiveFeedViewModel() -> CommunityArchiveFeedViewModel {
+    func communityArchiveFeedViewModel() -> CommunityArchiveFeedViewModel {
         CommunityArchiveFeedViewModel(coordinator: coordinator, community: community)
     }
     

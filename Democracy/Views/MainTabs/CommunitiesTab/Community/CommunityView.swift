@@ -29,34 +29,29 @@ struct CommunityView: View {
 // MARK: - Subviews
 private extension CommunityView {
     var content: some View {
-        VStack {
-            header
-            communitySection
-            Spacer()
-        }
-    }
-    
-    var header: some View {
-        VStack(spacing: 0) {
-            HStack {
-                viewTitle
-                Spacer()
-                joinLeaveButton
+        ZStack(alignment: .topLeading) {
+            Color.clear
+            
+            VStack(alignment: .leading, spacing: ViewConstants.sectionSpacing) {
+                headerButtons
+                    .padding(.horizontal, ViewConstants.screenPadding)
+                communitySection
             }
-            HorizontalSelectableList(selection: $viewModel.selectedTab)
         }
     }
     
-    var viewTitle: some View {
-        Text(viewModel.community.name)
-            .primaryTitle()
+    var headerButtons: some View {
+        HStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
+            HorizontalSelectableList(selection: $viewModel.selectedTab)
+            joinLeaveButton
+        }
     }
     
     var joinLeaveButton: some View {
         AsyncButton(
             action: viewModel.toggleCommunityMembership,
             label: {
-                Text(viewModel.membership == nil ? "Join" : "Leave")
+                Text(viewModel.membershipButtonTitle)
             },
             showProgressView: $viewModel.isShowingProgress
         )
@@ -68,13 +63,13 @@ private extension CommunityView {
     var communitySection: some View {
         switch viewModel.selectedTab {
         case .feed:
-            CommunityHomeFeedView(viewModel: viewModel.getCommunityHomeFeedViewModel())
+            CommunityHomeFeedView(viewModel: viewModel.communityHomeFeedViewModel())
             
         case .info:
-            CommunityInfoView(viewModel: viewModel.getCommunityInfoViewModel())
+            CommunityInfoView(viewModel: viewModel.communityInfoViewModel())
             
         case .archive:
-            CommunityArchiveFeedView(viewModel: viewModel.getCommunityArchiveFeedViewModel())
+            CommunityArchiveFeedView(viewModel: viewModel.communityArchiveFeedViewModel())
         }
     }
 }
@@ -83,6 +78,5 @@ private extension CommunityView {
 #Preview {
     NavigationStack {
         CommunityView(viewModel: CommunityViewModel.preview)
-            .accentColor(.secondaryText)
     }
 }
