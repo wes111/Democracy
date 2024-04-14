@@ -21,6 +21,8 @@
 		EE2477D82BCA292300661A0A /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477D72BCA292300661A0A /* DataHandler.swift */; };
 		EE2477DB2BCA297200661A0A /* MembershipDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477DA2BCA297200661A0A /* MembershipDataHandler.swift */; };
 		EE2477DD2BCA29AC00661A0A /* PersistableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477DC2BCA29AB00661A0A /* PersistableData.swift */; };
+		EE2477E12BCB68D100661A0A /* CommunityTaglineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477E02BCB68D100661A0A /* CommunityTaglineViewModel.swift */; };
+		EE2477E32BCB6A4100661A0A /* CommunityTaglineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477E22BCB6A4100661A0A /* CommunityTaglineView.swift */; };
 		EE28E35D2B24FACC00EC4E6F /* SharedResourcesClientAndServer in Frameworks */ = {isa = PBXBuildFile; productRef = EE28E35C2B24FACC00EC4E6F /* SharedResourcesClientAndServer */; };
 		EE2B15B42B43592E0046D5FC /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B32B43592E0046D5FC /* GenericError.swift */; };
 		EE2B15B62B4443CC0046D5FC /* LinkRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */; };
@@ -358,6 +360,8 @@
 		EE2477D72BCA292300661A0A /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
 		EE2477DA2BCA297200661A0A /* MembershipDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipDataHandler.swift; sourceTree = "<group>"; };
 		EE2477DC2BCA29AB00661A0A /* PersistableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistableData.swift; sourceTree = "<group>"; };
+		EE2477E02BCB68D100661A0A /* CommunityTaglineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTaglineViewModel.swift; sourceTree = "<group>"; };
+		EE2477E22BCB6A4100661A0A /* CommunityTaglineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTaglineView.swift; sourceTree = "<group>"; };
 		EE2B15B32B43592E0046D5FC /* GenericError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericError.swift; sourceTree = "<group>"; };
 		EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkRequirement.swift; sourceTree = "<group>"; };
 		EE2B15B72B4449BE0046D5FC /* LinkTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextFieldStyle.swift; sourceTree = "<group>"; };
@@ -765,6 +769,15 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		EE2477DF2BCB68BE00661A0A /* CommunityTagline */ = {
+			isa = PBXGroup;
+			children = (
+				EE2477E02BCB68D100661A0A /* CommunityTaglineViewModel.swift */,
+				EE2477E22BCB6A4100661A0A /* CommunityTaglineView.swift */,
+			);
+			path = CommunityTagline;
+			sourceTree = "<group>";
+		};
 		EE2B15C32B4C3C510046D5FC /* PostSuccess */ = {
 			isa = PBXGroup;
 			children = (
@@ -983,6 +996,7 @@
 		EE412B8F2B9DFEC80007632B /* Flow Views */ = {
 			isa = PBXGroup;
 			children = (
+				EE2477DF2BCB68BE00661A0A /* CommunityTagline */,
 				EE7EC28A2B6150A200F62E90 /* CommunityName */,
 				EE7EC2852B614FDC00F62E90 /* CommunityDescription */,
 				EE7EC2802B614F1500F62E90 /* CommunityCategories */,
@@ -2180,6 +2194,7 @@
 				EE412B522B8D82730007632B /* UserFormInputView.swift in Sources */,
 				EEE464502B5FF2C000E5DBFC /* HorizontalProgressView.swift in Sources */,
 				EED4A52129ABC86D00DDCCDA /* CommunityView.swift in Sources */,
+				EE2477E32BCB6A4100661A0A /* CommunityTaglineView.swift in Sources */,
 				EE5B93922A033A7D00B43381 /* Month.swift in Sources */,
 				EE412B452B79AA750007632B /* AddResourceViewModel+Preview.swift in Sources */,
 				EE5B938B29F7764E00B43381 /* BoundMenu.swift in Sources */,
@@ -2295,6 +2310,7 @@
 				EE7EC2902B6151BC00F62E90 /* CreateCommunityFlow+Preview.swift in Sources */,
 				EE4524942A565CA400C7A2DD /* ResourceViewModel.swift in Sources */,
 				EE9760192AD0B066003069CF /* AccountAcceptTermsView.swift in Sources */,
+				EE2477E12BCB68D100661A0A /* CommunityTaglineViewModel.swift in Sources */,
 				EE412B712B9812290007632B /* DateWrapper.swift in Sources */,
 				EE1172962A6F3C5C00E529AF /* AlliedCommunitiesSection.swift in Sources */,
 				EE936CA22A789B8F00D49271 /* CommunitiesTabPath.swift in Sources */,

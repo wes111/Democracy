@@ -14,6 +14,7 @@ final class SubmitCommunityInput {
     var description: String?
     var categories: Set<String>
     var tags: Set<String>
+    var tagline: String?
     var rules: Set<Rule>
     var settings: CommunitySettings
     var resources: [Resource]
@@ -23,6 +24,7 @@ final class SubmitCommunityInput {
         description: String? = nil,
         categories: Set<String> = [],
         tags: Set<String> = [],
+        tagline: String? = nil,
         rules: Set<Rule> = [],
         settings: CommunitySettings = CommunitySettings(),
         resources: [Resource] = []
@@ -31,6 +33,7 @@ final class SubmitCommunityInput {
         self.description = description
         self.categories = categories
         self.tags = tags
+        self.tagline = tagline
         self.rules = rules
         self.settings = settings
         self.resources = resources

@@ -27,7 +27,7 @@ final class CommunityServiceDefault: CommunityService {
         guard let userId = await userRepository.currentValue?.id else {
             throw CommunityServiceError.userAccountMissing
         }
-        guard let name = userInput.name, let description = userInput.description,
+        guard let name = userInput.name, let description = userInput.description, let tagline = userInput.tagline,
               !userInput.categories.isEmpty, !userInput.tags.isEmpty, !userInput.rules.isEmpty
         else {
             throw CommunityServiceError.invalidUserInput
@@ -41,6 +41,7 @@ final class CommunityServiceDefault: CommunityService {
             resources: userInput.resources.map { $0.toCreationRequest() },
             categories: Array(userInput.categories),
             tags: Array(userInput.tags),
+            tagline: tagline,
             governmentType: userInput.settings.government,
             contentType: userInput.settings.content,
             visibilityType: userInput.settings.visibility,

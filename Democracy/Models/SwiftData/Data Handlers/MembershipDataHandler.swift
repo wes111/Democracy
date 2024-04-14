@@ -85,6 +85,7 @@ private extension MembershipDataHandler {
             categories: model.categories,
             tags: model.tags,
             // alliedCommunities: model.alliedCommunities,
+            tagline: model.tagline,
             governmentType: model.governmentType,
             contentType: model.contentType,
             visibilityType: model.visibilityType,

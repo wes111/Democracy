@@ -31,6 +31,7 @@ struct CommunityCreationRequest: Encodable {
     let resources: [ResourceCreationRequest]
     let categories: [String]
     let tags: [String]
+    let tagline: String
     
     // Settings:
     var governmentType: CommunityGovernment
@@ -42,7 +43,7 @@ struct CommunityCreationRequest: Encodable {
     
     enum CodingKeys: String, CodingKey {
         case creatorId, name, categories, tags, governmentType, contentType, visibilityType,
-             allowedPosterType, allowedCommenterType, postApprovalType
+             allowedPosterType, allowedCommenterType, postApprovalType, tagline
         
         case rules = "rule"
         case resources = "resource"
@@ -63,6 +64,7 @@ struct CommunityDTO: Decodable {
     var resources: [ResourceDTO]
     var categories: [String]
     var tags: [String]
+    var tagline: String
     var alliedCommunities: [CommunityDTO]? // TODO: Add as attribute in Appwrite Database.
     
     // Settings:
@@ -74,7 +76,7 @@ struct CommunityDTO: Decodable {
     var postApprovalType: CommunityPostApproval
     
     enum CodingKeys: String, CodingKey {
-        case creatorId, name, representatives, memberCount, categories, tags,
+        case creatorId, name, representatives, memberCount, categories, tags, tagline,
              alliedCommunities, governmentType, contentType, visibilityType, allowedPosterType,
              allowedCommenterType, postApprovalType
         
@@ -98,6 +100,7 @@ struct CommunityDTO: Decodable {
             resources: resources.map { $0.toResource() },
             categories: categories,
             tags: tags,
+            tagline: tagline,
             // alliedCommunities: alliedCommunities?.compactMap { $0.toCommunity() } ?? [],
             governmentType: governmentType,
             contentType: contentType,
@@ -111,6 +114,7 @@ struct CommunityDTO: Decodable {
 
 // The domain model.
 struct Community: StringIdentifiable, Hashable, Sendable {
+    //var tagline: String
     let id: String
     let creatorId: String
     let name: String
@@ -122,6 +126,7 @@ struct Community: StringIdentifiable, Hashable, Sendable {
     var resources: [Resource]
     var categories: [String]
     var tags: [String]
+    var tagline: String
     // var alliedCommunities: [Community]
     
     // Settings:
@@ -158,6 +163,7 @@ extension SchemaV1 {
         var resources: [Resource]
         var categories: [String]
         var tags: [String]
+        var tagline: String
         // var alliedCommunities: [CommunityData]
         
         // Settings:
@@ -181,6 +187,7 @@ extension SchemaV1 {
             resources: [Resource],
             categories: [String],
             tags: [String],
+            tagline: String,
             // alliedCommunities: [CommunityData],
             governmentType: CommunityGovernment,
             contentType: CommunityContent,
@@ -201,6 +208,7 @@ extension SchemaV1 {
             self.resources = resources
             self.categories = categories
             self.tags = tags
+            self.tagline = tagline
             // self.alliedCommunities = alliedCommunities
             self.governmentType = governmentType
             self.contentType = contentType
@@ -223,6 +231,7 @@ extension SchemaV1 {
                 resources: resources,
                 categories: categories,
                 tags: tags,
+                tagline: tagline,
                 // alliedCommunities: alliedCommunities.map { $0.toCommunity() },
                 governmentType: governmentType,
                 contentType: contentType,

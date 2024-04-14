@@ -59,7 +59,7 @@ private extension CommunitiesTabMainView {
         List(viewModel.allCommunities) { community in
             TappableListItem(
                 title: community.name,
-                subtitle: "TODO: What should go here?") {
+                subtitle: community.tagline) {
                     viewModel.goToCommunity(community)
                 }
                 .listRowInsets(.init(
