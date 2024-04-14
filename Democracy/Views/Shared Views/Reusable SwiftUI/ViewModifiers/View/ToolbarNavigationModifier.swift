@@ -8,11 +8,23 @@
 import Foundation
 import SwiftUI
 
-enum ToolBarLeadingContent: Identifiable {
+struct MenuButtonOption: Identifiable {
+    let title: String
+    let action: @MainActor () -> Void
+    
+    var id: String {
+        title
+    }
+}
+
+enum TopBarContent: Identifiable {
     typealias Action = @MainActor () -> Void
     
     case title(String)
     case back(Action)
+    case close(Action)
+    case search(Action)
+    case menu([MenuButtonOption])
     
     var name: String {
         switch self {
@@ -20,6 +32,12 @@ enum ToolBarLeadingContent: Identifiable {
             "title"
         case .back:
             "back"
+        case .close:
+            "close"
+        case .search:
+            "search"
+        case .menu:
+            "menu"
         }
     }
     
@@ -30,15 +48,18 @@ enum ToolBarLeadingContent: Identifiable {
 
 @MainActor
 struct ToolbarNavigationModifier: ViewModifier {
-    let leadingButtons: [ToolBarLeadingContent]
-    let trailingButtons: [OnboardingTopButton]
+    let leadingContent: [TopBarContent]
+    let centerContent: [TopBarContent]
+    let trailingContent: [TopBarContent]
     
     init(
-        leadingButtons: [ToolBarLeadingContent],
-        trailingButtons: [OnboardingTopButton]
+        leadingContent: [TopBarContent],
+        centerContent: [TopBarContent],
+        trailingContent: [TopBarContent]
     ) {
-        self.leadingButtons = leadingButtons
-        self.trailingButtons = trailingButtons
+        self.leadingContent = leadingContent
+        self.centerContent = centerContent
+        self.trailingContent = trailingContent
         
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithOpaqueBackground()
@@ -63,8 +84,9 @@ struct ToolbarNavigationModifier: ViewModifier {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
             .toolbar {
-                toolbarLeadingContent(content: leadingButtons)
-                toolbarTrailingContent(buttons: trailingButtons)
+                toolBarContent(content: leadingContent, placement: .topBarLeading)
+                toolBarContent(content: centerContent, placement: .principal)
+                toolBarContent(content: trailingContent, placement: .topBarTrailing)
             }
     }
 }
@@ -72,8 +94,8 @@ struct ToolbarNavigationModifier: ViewModifier {
 // MARK: - Subviews
 private extension ToolbarNavigationModifier {
     
-    func toolbarLeadingContent(content: [ToolBarLeadingContent]) -> some ToolbarContent {
-        ToolbarItemGroup(placement: .topBarLeading) {
+    func toolBarContent(content: [TopBarContent], placement: ToolbarItemPlacement) -> some ToolbarContent {
+        ToolbarItemGroup(placement: placement) {
             ForEach(content) { item in
                 switch item {
                 case .back(let action):
@@ -82,17 +104,6 @@ private extension ToolbarNavigationModifier {
                 case .title(let title):
                     Text(title)
                         .primaryTitle()
-                }
-            }
-        }
-    }
-    
-    func toolbarTrailingContent(buttons: [OnboardingTopButton]) -> some ToolbarContent {
-        ToolbarItemGroup(placement: .topBarTrailing) {
-            ForEach(buttons) { button in
-                switch button {
-                case .back(let action):
-                    backButton(action: action)
                     
                 case .close(let action):
                     closeButton(action: action)
@@ -153,12 +164,14 @@ private extension ToolbarNavigationModifier {
 @MainActor
 extension View {
     func toolbarNavigation(
-        leadingButtons: [ToolBarLeadingContent] = [],
-        trailingButtons: [OnboardingTopButton] = []
+        leadingContent: [TopBarContent] = [],
+        centerContent: [TopBarContent] = [],
+        trailingContent: [TopBarContent] = []
     ) -> some View {
         modifier(ToolbarNavigationModifier(
-            leadingButtons: leadingButtons,
-            trailingButtons: trailingButtons
+            leadingContent: leadingContent,
+            centerContent: centerContent,
+            trailingContent: trailingContent
         ))
     }
 }

@@ -31,11 +31,15 @@ final class CommunityViewModel {
 // MARK: - Computed Properties
 extension CommunityViewModel {
     
-    var leadingButtons: [ToolBarLeadingContent] {
+    var leadingContent: [TopBarContent] {
         [.back(goBack)]
     }
     
-    var trailingButtons: [OnboardingTopButton] {
+    var centerContent: [TopBarContent] {
+        [.title(community.name)]
+    }
+    
+    var trailingContent: [TopBarContent] {
         [.menu([
             .init(title: "Create Post", action: showCreatePostView)
         ])]

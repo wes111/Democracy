@@ -17,7 +17,7 @@ struct CommunitiesTabMainView: View {
     
     var body: some View {
         content
-            .toolbarNavigation(leadingButtons: leadingButtons, trailingButtons: trailingButtons)
+            .toolbarNavigation(leadingContent: leadingButtons, trailingContent: trailingButtons)
             .background(Color.primaryBackground, ignoresSafeAreaEdges: .all)
             .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
             .onChange(of: viewModel.category) { _, category in
@@ -39,11 +39,11 @@ private extension CommunitiesTabMainView {
         [.init(title: "Create Community", action: viewModel.showCreateCommunityView)]
     }
     
-    var trailingButtons: [OnboardingTopButton] {
+    var trailingButtons: [TopBarContent] {
         [.search({}), .menu(menuOptions)]
     }
     
-    var leadingButtons: [ToolBarLeadingContent] {
+    var leadingButtons: [TopBarContent] {
         [.title("Communities")]
     }
     

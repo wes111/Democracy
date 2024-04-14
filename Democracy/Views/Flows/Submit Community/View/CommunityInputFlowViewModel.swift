@@ -53,11 +53,11 @@ final class CommunityInputFlowViewModel: InputFlowViewModel, SubmitCommunityFlow
         }
     }
     
-    var trailingButtons: [OnboardingTopButton] {
+    var trailingButtons: [TopBarContent] {
         [.close(close)]
     }
     
-    var leadingButtons: [ToolBarLeadingContent] {
+    var leadingButtons: [TopBarContent] {
         shouldShowBackButton ? [.back(goBack)] : []
     }
     

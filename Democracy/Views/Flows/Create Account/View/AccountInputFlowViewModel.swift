@@ -26,11 +26,11 @@ final class AccountInputFlowViewModel: InputFlowViewModel, CreateAccountFlowCoor
 // MARK: - Computed Properties
 extension AccountInputFlowViewModel {
     
-    var trailingButtons: [OnboardingTopButton] {
+    var trailingButtons: [TopBarContent] {
         [.close(close)]
     }
     
-    var leadingButtons: [ToolBarLeadingContent] {
+    var leadingButtons: [TopBarContent] {
         shouldShowBackButton ? [.back(goBack)] : []
     }
     

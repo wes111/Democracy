@@ -19,8 +19,9 @@ struct CommunityView: View {
         content
             .background(Color.primaryBackground, ignoresSafeAreaEdges: .all)
             .toolbarNavigation(
-                leadingButtons: viewModel.leadingButtons,
-                trailingButtons: viewModel.trailingButtons
+                leadingContent: viewModel.leadingContent,
+                centerContent: viewModel.centerContent,
+                trailingContent: viewModel.trailingContent
             )
     }
 }

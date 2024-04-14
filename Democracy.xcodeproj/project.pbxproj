@@ -290,7 +290,6 @@
 		EEA2B4352B71BB4C00063211 /* CommunitySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4342B71BB4C00063211 /* CommunitySettings.swift */; };
 		EEA2B4372B745BDF00063211 /* SnappingHorizontalScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4362B745BDF00063211 /* SnappingHorizontalScrollView.swift */; };
 		EEB5AF672ADB186E00310408 /* SubmittableTextInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF662ADB186E00310408 /* SubmittableTextInputViewModel.swift */; };
-		EEB5AF762ADB1EFA00310408 /* OnboardingTopButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */; };
 		EEB5AF7A2ADC3D6D00310408 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF792ADC3D6C00310408 /* AlertModel.swift */; };
 		EEB5AF8B2AFA7DD500310408 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF8A2AFA7DD500310408 /* Session.swift */; };
 		EEB5AF8F2AFBCD6B00310408 /* SwiftDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEB5AF8E2AFBCD6B00310408 /* SwiftDataService.swift */; };
@@ -626,7 +625,6 @@
 		EEA2B4342B71BB4C00063211 /* CommunitySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunitySettings.swift; sourceTree = "<group>"; };
 		EEA2B4362B745BDF00063211 /* SnappingHorizontalScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnappingHorizontalScrollView.swift; sourceTree = "<group>"; };
 		EEB5AF662ADB186E00310408 /* SubmittableTextInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmittableTextInputViewModel.swift; sourceTree = "<group>"; };
-		EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTopButton.swift; sourceTree = "<group>"; };
 		EEB5AF792ADC3D6C00310408 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		EEB5AF8A2AFA7DD500310408 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		EEB5AF8E2AFBCD6B00310408 /* SwiftDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataService.swift; sourceTree = "<group>"; };
@@ -1288,7 +1286,6 @@
 				EE5B938F2A03396700B43381 /* TimeGranularity.swift */,
 				EE5B93912A033A7D00B43381 /* Month.swift */,
 				EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */,
-				EEB5AF752ADB1EFA00310408 /* OnboardingTopButton.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -2514,7 +2511,6 @@
 				EED4A50129AA859500DDCCDA /* UpdatesTabCoordinator.swift in Sources */,
 				EE4987DF2B2F958800AB7522 /* SubmitPostCoordinator+Preview.swift in Sources */,
 				EE80D8D629BC16D90000F8EF /* UpdatesTabCoordinator+Preview.swift in Sources */,
-				EEB5AF762ADB1EFA00310408 /* OnboardingTopButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

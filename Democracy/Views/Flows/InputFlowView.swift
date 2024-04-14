@@ -21,8 +21,8 @@ struct InputFlowView<ViewModel: InputFlowViewModel, FlowContent: View>: View {
     var body: some View {
         primaryContent
             .toolbarNavigation(
-                leadingButtons: viewModel.leadingButtons,
-                trailingButtons: viewModel.trailingButtons
+                leadingContent: viewModel.leadingButtons,
+                trailingContent: viewModel.trailingButtons
             )
     }
 }
