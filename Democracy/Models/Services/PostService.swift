@@ -13,8 +13,14 @@ enum PostServiceError: Error {
     case invalidUserInput
 }
 
-protocol PostService {
+protocol PostService: Sendable {
     func submitPost(userInput: SubmitPostInput, communityId: String) async throws
+    
+    func fetchPostsForCommunity(
+        communityId: String,
+        oldestDate: Date,
+        option: CursorPaginationOption
+    ) async throws -> [Post]
 }
 
 final class PostServiceDefault: PostService {
@@ -37,5 +43,17 @@ final class PostServiceDefault: PostService {
             userId: userId,
             communityId: communityId
         ))
+    }
+    
+    func fetchPostsForCommunity(
+        communityId: String,
+        oldestDate: Date,
+        option: CursorPaginationOption
+    ) async throws -> [Post] {
+        try await postRepository.fetchPostsForCommunity(
+            communityId: communityId,
+            oldestDate: oldestDate,
+            option: option
+        )
     }
 }

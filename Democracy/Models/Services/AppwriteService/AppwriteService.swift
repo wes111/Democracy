@@ -57,6 +57,12 @@ protocol AppwriteService: Sendable {
     func fetchAllCommunities() async throws -> [Community]
     func fetchUserMemberships(userId: String) async throws -> [Membership]
     
+    func fetchPostsForCommunity(
+        communityId: String,
+        oldestDate: Date,
+        option: CursorPaginationOption
+    ) async throws -> [Post]
+    
     // Post/Database Methods
     @discardableResult func submitNewPost(_ newPost: PostCreationRequest) async throws -> Post
     @discardableResult func submitCommunity(_ community: CommunityCreationRequest) async throws -> Community
@@ -214,6 +220,32 @@ extension AppwriteServiceDefault {
             ]
         )
         return try documentList.documents.map { try MembershipDTO($0.data.toDictionary()).toMembership() }
+    }
+    
+    func fetchPostsForCommunity(communityId: String, oldestDate: Date, option: CursorPaginationOption) async throws -> [Post] {
+        
+        let cursorQuery: String? = switch option {
+        case .after(let id): Query.cursorAfter(id)
+        case .before(let id): Query.cursorBefore(id)
+        case .initial: nil
+        }
+        
+        var queries = [
+            Query.equal("communityId", value: communityId),
+            Query.greaterThanEqual("approvedDate", value: oldestDate.ISO8601Format()),
+            Query.limit(25)
+        ]
+        
+        if let cursorQuery {
+            queries.append(cursorQuery)
+        }
+        
+        let documentList = try await databases.listDocuments(
+            databaseId: databaseId,
+            collectionId: postCollectionId,
+            queries: queries
+        )
+        return try documentList.documents.map { try PostDTO($0.data.toDictionary()).toPost() }
     }
 }
 

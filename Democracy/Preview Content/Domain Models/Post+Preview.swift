@@ -20,7 +20,7 @@ extension Post {
         userId: "1234",
         communityId: "12345",
         creationDate: .now,
-        rootCommentIds: [],
+        // rootCommentIds: [],
         approvedDate: .now
     )
     

@@ -35,14 +35,14 @@ struct PlainListView<ItemView: View, Item: Identifiable>: View {
 }
 
 // MARK: - Preview
-#Preview {
-    ZStack {
-        Color.primaryBackground.ignoresSafeArea(.all)
-        
-        PlainListView(
-            items: Post.previewArray.map { $0.toViewModel(coordinator: nil) },
-            content: { post in
-                PostCardView(viewModel: post)
-            })
-    }
-}
+//#Preview {
+//    ZStack {
+//        Color.primaryBackground.ignoresSafeArea(.all)
+//        
+//        PlainListView(
+//            items: Post.previewArray.map { $0.toViewModel(coordinator: nil) },
+//            content: { post in
+//                PostCardView(viewModel: post)
+//            })
+//    }
+//}

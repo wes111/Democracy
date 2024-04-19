@@ -24,6 +24,7 @@
 		EE2477E12BCB68D100661A0A /* CommunityTaglineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477E02BCB68D100661A0A /* CommunityTaglineViewModel.swift */; };
 		EE2477E32BCB6A4100661A0A /* CommunityTaglineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477E22BCB6A4100661A0A /* CommunityTaglineView.swift */; };
 		EE2477E52BCC81D800661A0A /* PlainListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477E42BCC81D800661A0A /* PlainListView.swift */; };
+		EE2477E82BCE126700661A0A /* CursorPaginationOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477E72BCE126700661A0A /* CursorPaginationOption.swift */; };
 		EE28E35D2B24FACC00EC4E6F /* SharedResourcesClientAndServer in Frameworks */ = {isa = PBXBuildFile; productRef = EE28E35C2B24FACC00EC4E6F /* SharedResourcesClientAndServer */; };
 		EE2B15B42B43592E0046D5FC /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B32B43592E0046D5FC /* GenericError.swift */; };
 		EE2B15B62B4443CC0046D5FC /* LinkRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */; };
@@ -362,6 +363,7 @@
 		EE2477E02BCB68D100661A0A /* CommunityTaglineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTaglineViewModel.swift; sourceTree = "<group>"; };
 		EE2477E22BCB6A4100661A0A /* CommunityTaglineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTaglineView.swift; sourceTree = "<group>"; };
 		EE2477E42BCC81D800661A0A /* PlainListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainListView.swift; sourceTree = "<group>"; };
+		EE2477E72BCE126700661A0A /* CursorPaginationOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CursorPaginationOption.swift; sourceTree = "<group>"; };
 		EE2B15B32B43592E0046D5FC /* GenericError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericError.swift; sourceTree = "<group>"; };
 		EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkRequirement.swift; sourceTree = "<group>"; };
 		EE2B15B72B4449BE0046D5FC /* LinkTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextFieldStyle.swift; sourceTree = "<group>"; };
@@ -1286,6 +1288,7 @@
 				EE5B938F2A03396700B43381 /* TimeGranularity.swift */,
 				EE5B93912A033A7D00B43381 /* Month.swift */,
 				EE4DB8902AC899ED00A6DC90 /* LoginStatus.swift */,
+				EE2477E72BCE126700661A0A /* CursorPaginationOption.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -2278,6 +2281,7 @@
 				EE7EC27F2B614EE900F62E90 /* CommunityTagsView.swift in Sources */,
 				EE412BA52BA676180007632B /* AlertableModifier.swift in Sources */,
 				EEA2B41A2B66CCD700063211 /* AddRuleField.swift in Sources */,
+				EE2477E82BCE126700661A0A /* CursorPaginationOption.swift in Sources */,
 				EE7EC2A12B61EE1E00F62E90 /* SubmittableTextEditorInputView.swift in Sources */,
 				EE4DB8982AC8A13C00A6DC90 /* CreateAccountPath.swift in Sources */,
 				EE80D91129C92C670000F8EF /* Candidate.swift in Sources */,

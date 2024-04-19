@@ -21,6 +21,9 @@ struct CommunitiesTabCoordinatorView: View {
         .fullScreenCover(isPresented: $coordinator.isShowingCreateCommunityView) {
             SubmitCommunityCoordinatorView(coordinator: .init(parentCoordinator: coordinator))
         }
+        .fullScreenCover(isPresented: $coordinator.isShowingCreatePostView) {
+            SubmitPostCoordinatorView(coordinator: .init(parentCoordinator: coordinator))
+        }
     }
     
     @ViewBuilder

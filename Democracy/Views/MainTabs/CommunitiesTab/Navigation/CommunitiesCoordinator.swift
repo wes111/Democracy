@@ -137,4 +137,9 @@ extension CommunitiesCoordinator {
 
 // MARK: - Child Coordinators
 extension CommunitiesCoordinator: SubmitCommunityCoordinatorParent {}
-extension CommunitiesCoordinator: SubmitPostCoordinatorParent {}
+
+extension CommunitiesCoordinator: SubmitPostCoordinatorParent {
+    func dismissSubmitPostView() {
+        isShowingCreatePostView = false
+    }
+}

@@ -17,11 +17,11 @@ struct PostCreationRequest: Encodable {
     let tags: [String]
     let userId: String
     let communityId: String
-    var rootCommentIds: [String] = []
+    //var rootCommentIds: [String] = []
     
     enum CodingKeys: String, CodingKey {
         case title, body, link, category, tags, userId, communityId
-        case rootCommentIds = "comment"
+        //case rootCommentIds = "comment"
     }
 }
 
@@ -36,14 +36,14 @@ struct PostDTO: Decodable {
     let userId: String
     let communityId: String
     let creationDate: DateWrapper
-    let rootCommentIds: [String]? // TODO: Add as attribute in Appwrite Database.
+    //let rootCommentIds: [String]? // TODO: Add as attribute in Appwrite Database.
     let approvedDate: DateOptionalWrapper
     
     enum CodingKeys: String, CodingKey {
         case title, body, link, category, tags, userId, communityId, approvedDate
         case id = "$id"
         case creationDate = "$createdAt"
-        case rootCommentIds = "comment"
+        //case rootCommentIds = "comment"
     }
     
     func toPost() -> Post {
@@ -57,7 +57,7 @@ struct PostDTO: Decodable {
             userId: userId,
             communityId: communityId,
             creationDate: creationDate.date,
-            rootCommentIds: rootCommentIds ?? [],
+            //rootCommentIds: rootCommentIds ?? [],
             approvedDate: approvedDate.date
         )
     }
@@ -74,6 +74,6 @@ struct Post: Identifiable, Hashable {
     let userId: String
     let communityId: String
     let creationDate: Date
-    let rootCommentIds: [String]
+    //let rootCommentIds: [String]
     let approvedDate: Date?
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 extension CommunityHomeFeedViewModel {
-    static let preview = CommunityHomeFeedViewModel(coordinator: CommunitiesCoordinator.preview)
+    static let preview = CommunityHomeFeedViewModel(community: .preview, coordinator: CommunitiesCoordinator.preview)
 }

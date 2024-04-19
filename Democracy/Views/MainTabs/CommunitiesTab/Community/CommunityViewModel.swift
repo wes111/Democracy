@@ -70,7 +70,7 @@ extension CommunityViewModel {
     }
     
     func communityHomeFeedViewModel() -> CommunityHomeFeedViewModel {
-        CommunityHomeFeedViewModel(coordinator: coordinator)
+        CommunityHomeFeedViewModel(community: community, coordinator: coordinator)
     }
     
     func communityInfoViewModel() -> CommunityInfoViewModel {
