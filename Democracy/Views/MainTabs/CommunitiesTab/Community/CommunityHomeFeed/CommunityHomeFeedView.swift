@@ -11,7 +11,6 @@ import SwiftUI
 @MainActor
 struct CommunityHomeFeedView: View {
     @Bindable var viewModel: CommunityHomeFeedViewModel
-    @State private var viewScrollId: Post?
     
     init(viewModel: CommunityHomeFeedViewModel) {
         self.viewModel = viewModel
@@ -20,15 +19,7 @@ struct CommunityHomeFeedView: View {
     var body: some View {
         primaryContent
             .background(Color.primaryBackground, ignoresSafeAreaEdges: .all)
-            .refreshable {
-                await viewModel.refreshPosts()
-            }
             .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
-            .onChange(of: viewModel.scrollId) { _, newValue in
-                withAnimation {
-                    viewScrollId = newValue
-                }
-            }
     }
 }
 
@@ -37,24 +28,19 @@ private extension CommunityHomeFeedView {
     
     var primaryContent: some View {
         ScrollView(.vertical, showsIndicators: true) {
-            LazyVStack(alignment: .leading, spacing: 10) {
+            LazyVStack(alignment: .leading, spacing: 0) {
                 ForEach(viewModel.posts, id: \.self) { post in
-                    PostCardView(viewModel: post.toViewModel(coordinator: viewModel.coordinator))
+                    PostCardView(viewModel: viewModel.getPostCardViewModel(post: post))
                         .border(Color.yellow, width: 2)
+                        .padding(.vertical, 5)
                         .task {
-                            if post == viewModel.posts.last {
-                                await viewModel.fetchNextPage()
-                            } else if post == viewModel.posts.first {
-                                await viewModel.fetchPreviousPage()
-                            }
+                            await viewModel.onAppear(post)
                         }
                 }
             }
             .scrollTargetLayout()
         }
-        .scrollTargetBehavior(.viewAligned)
-        .scrollPosition(id: $viewScrollId, anchor: .top)
-        .id(viewModel.postsArrayId) // Redraw scrollView b/c we're changing both ends of the posts array.
+        .scrollPosition(id: $viewModel.scrollId, anchor: .top)
     }
 }
 

@@ -11,27 +11,45 @@ import Factory
 
 @MainActor @Observable
 final class CommunityHomeFeedViewModel {
-    private let community: Community
-    private let communityPostsManager: CommunityPostsManager
-    var postViewModels: [PostCardViewModel] = []
     var posts: [Post] = []
     var scrollId: Post?
-    var isShowingProgress: Bool = false
-    var postsArrayId = 0
+    var isShowingProgress: Bool = true
     
-    @ObservationIgnored weak var coordinator: CommunitiesCoordinatorDelegate?
-
+    @ObservationIgnored @Injected(\.postService) private var postService
+    @ObservationIgnored private weak var coordinator: CommunitiesCoordinatorDelegate?
+    
+    // We use these variables to determine if the last/first post in the database is in memory.
+    // If it is, then we do not need to try to fetch any more posts from the database.
+    @ObservationIgnored private var lastPostInDatabase: Post?
+    @ObservationIgnored private var firstPostInDatabase: Post?
+    
+    private static let maxInMemoryPostCount = 50
+    private static let pageCount = 25
+    
+    // TODO: Should this be a community setting? To choose how old of posts are displayed? day, month, year, etc...
+    private let oldestFeedDate = Date.now
+    private let community: Community
+    
     init(community: Community, coordinator: CommunitiesCoordinatorDelegate?) {
         self.community = community
-        self.communityPostsManager = CommunityPostsManager(community: community)
         self.coordinator = coordinator
         
-        streamPostsTask()
+        Task {
+            await refreshPosts()
+        }
     }
 }
 
 // MARK: - Methods
 extension CommunityHomeFeedViewModel {
+    
+    func onAppear(_ post: Post) async {
+        if post == posts.last {
+            await fetchNextPage()
+        } else if post == posts.first {
+            await fetchPreviousPage()
+        }
+    }
     
     func getPostCardViewModel(post: Post) -> PostCardViewModel {
         PostCardViewModel(coordinator: coordinator, post: post)
@@ -41,38 +59,37 @@ extension CommunityHomeFeedViewModel {
         coordinator?.goToPostView(Post.preview)
     }
     
-    func refreshPosts() async {
-        do {
-            isShowingProgress = true
-            try await communityPostsManager.refresh()
-        } catch {
-            print(error.localizedDescription)
-        }
-        isShowingProgress = false
-    }
-    
     func fetchNextPage() async { // Maybe this needs to be a task on the vm? Then only one task can happen at a time?
         do {
+            guard let lastPost = posts.last, lastPostInDatabase != lastPost else {
+                return
+            }
             isShowingProgress = true
-            let newScrollId = self.posts.last
+            removeLeadingPostsIfNecessary()
             try? await Task.sleep(seconds: 2.0)
-            try await communityPostsManager.fetchNextPage()
-            self.scrollId = newScrollId
+            let newPosts = try await postsPage(option: .after(id: lastPost.id))
+            posts.append(contentsOf: newPosts)
+            updateLastPostInDatabase(from: newPosts)
         } catch {
-            print(error.localizedDescription)
+            print("Fetch next page error")
+            //print(error.localizedDescription)
         }
         isShowingProgress = false
     }
     
     func fetchPreviousPage() async {
         do {
+            guard let firstPost = posts.first, firstPostInDatabase != firstPost else {
+                return
+            }
             isShowingProgress = true
-            let newScrollId = self.posts.first
+            removeTrailingPostsIfNecessary()
             try? await Task.sleep(seconds: 2.0)
-            try await communityPostsManager.fetchPreviousPage()
-            self.scrollId = newScrollId
+            let newPosts = try await postsPage(option: .before(id: firstPost.id))
+            posts = newPosts + posts
         } catch {
-            print(error.localizedDescription)
+            print("Fetch previous page error")
+            //print(error.localizedDescription)
         }
         isShowingProgress = false
     }
@@ -81,83 +98,45 @@ extension CommunityHomeFeedViewModel {
 // MARK: - Private Methods
 private extension CommunityHomeFeedViewModel {
     
-    func streamPostsTask() {
-        Task {
-            for await posts in communityPostsManager.stream {
-                self.posts = posts
-                self.postViewModels = posts.map { $0.toViewModel(coordinator: coordinator) }
-                self.postsArrayId += 1
+    func refreshPosts() async {
+        do {
+            posts = try await postsPage(option: .initial)
+            firstPostInDatabase = posts.first
+            if posts.count < Self.pageCount {
+                lastPostInDatabase = posts.last
             }
+        } catch {
+            print("Refresh Post error")
+            //print(error.localizedDescription)
         }
-        
-        Task {
-            await refreshPosts()
-        }
-    }
-}
-
-// Using Cursor pagination (for Appwrite)
-actor CommunityPostsManager {
-    @ObservationIgnored @Injected(\.postService) private var postService
-    
-    private static let maxInMemoryPostCount = 50
-    private static let pageCount = 25
-    private var posts: [Post] = []
-    private let community: Community
-    
-    private let continuation: AsyncStream<[Post]>.Continuation
-    let stream: AsyncStream<[Post]>
-    
-    // TODO: Should this be a community setting? To choose how old of posts are displayed? day, month, year, etc...
-    private let oldestFeedDate = Date.now
-    
-    init(community: Community) {
-        self.community = community
-        
-        let (stream, continuation) = AsyncStream.makeStream(of: [Post].self)
-        self.stream = stream
-        self.continuation = continuation
+        isShowingProgress = false
     }
     
-    func refresh() async throws {
-        let newPosts = try await newPosts(option: .initial)
-        posts = newPosts
-        continuation.yield(posts)
+    func removeLeadingPostsIfNecessary() {
+        if posts.count >= Self.maxInMemoryPostCount {
+            posts.removeFirst(Self.pageCount)
+            scrollId = self.posts.last
+        }
     }
     
-    // TODO: Need to see what Appwrite returns once we have requested all posts. (Empty Array or the same posts?)
-    func fetchNextPage() async throws {
-        guard let lastPostInMemory = posts.last else {
-            return // No more to fetch.
-        }
-        
-        let newPosts = try await newPosts(option: .after(id: lastPostInMemory.id))
-        //print("Next page count: \(newPosts.count)")
-        
-        if !newPosts.isEmpty {
-            if posts.count >= Self.maxInMemoryPostCount {
-                posts.removeFirst(Self.pageCount)
-            }
-            posts.append(contentsOf: newPosts)
-        }
-        continuation.yield(posts)
-    }
-    
-    func fetchPreviousPage() async throws {
-        guard let firstPostInMemory = posts.first else {
-            return // No previous to fetch.
-        }
-        
-        let newPosts = try await newPosts(option: .before(id: firstPostInMemory.id))
-        
+    func removeTrailingPostsIfNecessary() {
         if posts.count >= Self.maxInMemoryPostCount {
             posts.removeLast(Self.pageCount)
+            scrollId = self.posts.first
         }
-        posts = newPosts + posts
-        continuation.yield(posts)
     }
     
-    func newPosts(option: CursorPaginationOption) async throws -> [Post] {
+    func updateLastPostInDatabase(from page: [Post]) {
+        if page.count < Self.pageCount {
+            if page.isEmpty {
+                lastPostInDatabase = posts.last
+            } else {
+                lastPostInDatabase = page.last
+            }
+        }
+    }
+    
+    func postsPage(option: CursorPaginationOption) async throws -> [Post] {
         try await postService.fetchPostsForCommunity(
             communityId: community.id,
             oldestDate: oldestFeedDate,
