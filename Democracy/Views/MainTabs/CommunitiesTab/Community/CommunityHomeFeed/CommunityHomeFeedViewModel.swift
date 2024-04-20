@@ -52,6 +52,14 @@ extension CommunityHomeFeedViewModel {
         }
     }
     
+    func postShouldShowBottomProgress(_ post: Post) -> Bool {
+        isShowingBottomProgress && (post == posts.last)
+    }
+    
+    func postShouldShowTopProgress(_ post: Post) -> Bool {
+        isShowingTopProgress && (post == posts.first)
+    }
+    
     func getPostCardViewModel(post: Post) -> PostCardViewModel {
         PostCardViewModel(coordinator: coordinator, post: post)
     }

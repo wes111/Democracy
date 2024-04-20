@@ -7,6 +7,7 @@
 
 import Foundation
 
+// TODO: update to 4, 8, 12, 16, 20, 24, 28, 32, etc...
 enum ViewConstants {
     // Element Spacing
     static let extraSmallElementSpacing: CGFloat = 5
