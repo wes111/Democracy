@@ -13,7 +13,8 @@ import Factory
 final class CommunityHomeFeedViewModel {
     var posts: [Post] = []
     var scrollId: Post?
-    var isShowingProgress: Bool = true
+    var isShowingTopProgress: Bool = true
+    var isShowingBottomProgress: Bool = false
     
     @ObservationIgnored @Injected(\.postService) private var postService
     @ObservationIgnored private weak var coordinator: CommunitiesCoordinatorDelegate?
@@ -59,22 +60,23 @@ extension CommunityHomeFeedViewModel {
         coordinator?.goToPostView(Post.preview)
     }
     
-    func fetchNextPage() async { // Maybe this needs to be a task on the vm? Then only one task can happen at a time?
+    func fetchNextPage() async {
         do {
             guard let lastPost = posts.last, lastPostInDatabase != lastPost else {
                 return
             }
-            isShowingProgress = true
+            isShowingBottomProgress = true
             removeLeadingPostsIfNecessary()
-            try? await Task.sleep(seconds: 2.0)
+            try? await Task.sleep(seconds: 3.0)
             let newPosts = try await postsPage(option: .after(id: lastPost.id))
             posts.append(contentsOf: newPosts)
             updateLastPostInDatabase(from: newPosts)
         } catch {
-            print("Fetch next page error")
-            //print(error.localizedDescription)
+            print("Fetch next page error: \(error.localizedDescription)")
         }
-        isShowingProgress = false
+        if !Task.isCancelled {
+            isShowingBottomProgress = false
+        }
     }
     
     func fetchPreviousPage() async {
@@ -82,16 +84,17 @@ extension CommunityHomeFeedViewModel {
             guard let firstPost = posts.first, firstPostInDatabase != firstPost else {
                 return
             }
-            isShowingProgress = true
+            isShowingTopProgress = true
             removeTrailingPostsIfNecessary()
-            try? await Task.sleep(seconds: 2.0)
+            try? await Task.sleep(seconds: 3.0)
             let newPosts = try await postsPage(option: .before(id: firstPost.id))
             posts = newPosts + posts
         } catch {
-            print("Fetch previous page error")
-            //print(error.localizedDescription)
+            print("Fetch previous page error: \(error.localizedDescription)")
         }
-        isShowingProgress = false
+        if !Task.isCancelled {
+            isShowingTopProgress = false
+        }
     }
 }
 
@@ -106,26 +109,31 @@ private extension CommunityHomeFeedViewModel {
                 lastPostInDatabase = posts.last
             }
         } catch {
-            print("Refresh Post error")
-            //print(error.localizedDescription)
+            print("Refresh posts error: \(error.localizedDescription)")
         }
-        isShowingProgress = false
+        if !Task.isCancelled {
+            isShowingTopProgress = false
+        }
     }
     
+    // As the user is scrolling down, if there are too many posts in memory,
+    // remove them from the front of the `posts` array.
     func removeLeadingPostsIfNecessary() {
         if posts.count >= Self.maxInMemoryPostCount {
             posts.removeFirst(Self.pageCount)
-            scrollId = self.posts.last
         }
     }
     
+    // As the user is scrolling up, if there are too many posts in memory,
+    // remove them from the end of the `posts` array.
     func removeTrailingPostsIfNecessary() {
         if posts.count >= Self.maxInMemoryPostCount {
             posts.removeLast(Self.pageCount)
-            scrollId = self.posts.first
         }
     }
     
+    // If we find the last post in the database, assign it to `lastPostInDatabase`
+    // so that we can use it to prevent unnecessary fetches.
     func updateLastPostInDatabase(from page: [Post]) {
         if page.count < Self.pageCount {
             if page.isEmpty {
