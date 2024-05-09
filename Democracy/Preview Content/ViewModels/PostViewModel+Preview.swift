@@ -7,6 +7,9 @@
 
 import Foundation
 
-extension GARBAGEPostViewModel {
-    static let preview = GARBAGEPostViewModel(post: Post.preview)
+extension PostViewModel {
+    static let preview = PostViewModel(
+        coordinator: CommunitiesCoordinator.preview,
+        post: Post.preview
+    )
 }

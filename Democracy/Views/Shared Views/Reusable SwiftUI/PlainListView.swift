@@ -8,6 +8,8 @@
 import SwiftUI
 
 // A plain `List` View that removes the standard formatting from a default `List`.
+// Make user to use `List` instead of `LazyVStack` for reusable cells (memory).
+// https://www.reddit.com/r/SwiftUI/comments/xzluon/list_is_a_pain_in_the_ass/
 @MainActor
 struct PlainListView<ItemView: View, Item: Identifiable>: View {
     var items: [Item]
@@ -31,6 +33,33 @@ struct PlainListView<ItemView: View, Item: Identifiable>: View {
                 .listRowSeparator(.hidden)
         }
         .listStyle(.plain)
+    }
+}
+
+// A `ViewModifier` version of `PlainListView`
+struct PlainListModifier: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        List {
+            content
+                .listRowInsets(.init(
+                    top: 0,
+                    leading: 0,
+                    bottom: ViewConstants.smallElementSpacing,
+                    trailing: 0
+                ))
+                .listRowBackground(Color.primaryBackground)
+                .listRowSeparator(.hidden)
+        }
+        .listStyle(.plain)
+        .clipped()
+    }
+}
+
+// MARK: View Extension
+extension View {
+    func plainListModifier() -> some View {
+        modifier(PlainListModifier())
     }
 }
 

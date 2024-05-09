@@ -18,6 +18,7 @@ enum ViewConstants {
     
     // Section Spacing
     static let sectionSpacing: CGFloat = 15
+    static let sectionIndent: CGFloat = 20
     
     // Padding between element and element's border
     static let innerBorder: CGFloat = 20
@@ -48,6 +49,8 @@ enum SystemImage: String {
     case checkmarkCircleFill = "checkmark.circle.fill"
     case checkmarkDiamondFill = "checkmark.diamond.fill"
     case chevronRight = "chevron.right"
+    case chevronDown = "chevron.down"
+    case chevronUp = "chevron.up"
     case crown
     case ellipsis
     case eye

@@ -25,6 +25,8 @@
 		EE2477E32BCB6A4100661A0A /* CommunityTaglineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477E22BCB6A4100661A0A /* CommunityTaglineView.swift */; };
 		EE2477E52BCC81D800661A0A /* PlainListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477E42BCC81D800661A0A /* PlainListView.swift */; };
 		EE2477E82BCE126700661A0A /* CursorPaginationOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477E72BCE126700661A0A /* CursorPaginationOption.swift */; };
+		EE2477EA2BD9D02E00661A0A /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477E92BD9D02E00661A0A /* Node.swift */; };
+		EE2477EC2BE5BE8800661A0A /* Comment+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477EB2BE5BE8800661A0A /* Comment+Preview.swift */; };
 		EE28E35D2B24FACC00EC4E6F /* SharedResourcesClientAndServer in Frameworks */ = {isa = PBXBuildFile; productRef = EE28E35C2B24FACC00EC4E6F /* SharedResourcesClientAndServer */; };
 		EE2B15B42B43592E0046D5FC /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B32B43592E0046D5FC /* GenericError.swift */; };
 		EE2B15B62B4443CC0046D5FC /* LinkRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */; };
@@ -216,7 +218,6 @@
 		EE80D8C129BC120A0000F8EF /* Router+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8C029BC120A0000F8EF /* Router+Preview.swift */; };
 		EE80D8C329BC12720000F8EF /* CommunitiesTabCoordinator+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8C229BC12720000F8EF /* CommunitiesTabCoordinator+Preview.swift */; };
 		EE80D8C629BC12C70000F8EF /* CommunitiesTabMainViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8C529BC12C70000F8EF /* CommunitiesTabMainViewModel+Preview.swift */; };
-		EE80D8C829BC13930000F8EF /* PostCoordinator+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8C729BC13930000F8EF /* PostCoordinator+Preview.swift */; };
 		EE80D8CA29BC13C00000F8EF /* PostViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8C929BC13C00000F8EF /* PostViewModel+Preview.swift */; };
 		EE80D8CC29BC14560000F8EF /* PostCardViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8CB29BC14560000F8EF /* PostCardViewModel+Preview.swift */; };
 		EE80D8CE29BC15550000F8EF /* VotingTabCoordinator+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE80D8CD29BC15550000F8EF /* VotingTabCoordinator+Preview.swift */; };
@@ -324,9 +325,8 @@
 		EED4A52129ABC86D00DDCCDA /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52029ABC86D00DDCCDA /* CommunityView.swift */; };
 		EED4A52329ABC87B00DDCCDA /* CommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52229ABC87B00DDCCDA /* CommunityViewModel.swift */; };
 		EED4A52629B810FF00DDCCDA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52529B810FF00DDCCDA /* Post.swift */; };
-		EED4A52A29B8187D00DDCCDA /* PostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52929B8187D00DDCCDA /* PostCoordinator.swift */; };
 		EED4A52C29B8190700DDCCDA /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52B29B8190700DDCCDA /* PostView.swift */; };
-		EED4A52E29B81A2E00DDCCDA /* GARBAGEPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52D29B81A2E00DDCCDA /* GARBAGEPostViewModel.swift */; };
+		EED4A52E29B81A2E00DDCCDA /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A52D29B81A2E00DDCCDA /* PostViewModel.swift */; };
 		EED4A53329B81D6800DDCCDA /* CommunityHomeFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A53229B81D6800DDCCDA /* CommunityHomeFeedView.swift */; };
 		EED4A53529B81D8000DDCCDA /* CommunityInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A53429B81D8000DDCCDA /* CommunityInfoView.swift */; };
 		EED4A53729B81D9500DDCCDA /* CommunityArchiveFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A53629B81D9500DDCCDA /* CommunityArchiveFeedView.swift */; };
@@ -364,6 +364,8 @@
 		EE2477E22BCB6A4100661A0A /* CommunityTaglineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTaglineView.swift; sourceTree = "<group>"; };
 		EE2477E42BCC81D800661A0A /* PlainListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainListView.swift; sourceTree = "<group>"; };
 		EE2477E72BCE126700661A0A /* CursorPaginationOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CursorPaginationOption.swift; sourceTree = "<group>"; };
+		EE2477E92BD9D02E00661A0A /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		EE2477EB2BE5BE8800661A0A /* Comment+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+Preview.swift"; sourceTree = "<group>"; };
 		EE2B15B32B43592E0046D5FC /* GenericError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericError.swift; sourceTree = "<group>"; };
 		EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkRequirement.swift; sourceTree = "<group>"; };
 		EE2B15B72B4449BE0046D5FC /* LinkTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextFieldStyle.swift; sourceTree = "<group>"; };
@@ -552,7 +554,6 @@
 		EE80D8C029BC120A0000F8EF /* Router+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Router+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8C229BC12720000F8EF /* CommunitiesTabCoordinator+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunitiesTabCoordinator+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8C529BC12C70000F8EF /* CommunitiesTabMainViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunitiesTabMainViewModel+Preview.swift"; sourceTree = "<group>"; };
-		EE80D8C729BC13930000F8EF /* PostCoordinator+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostCoordinator+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8C929BC13C00000F8EF /* PostViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostViewModel+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8CB29BC14560000F8EF /* PostCardViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostCardViewModel+Preview.swift"; sourceTree = "<group>"; };
 		EE80D8CD29BC15550000F8EF /* VotingTabCoordinator+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VotingTabCoordinator+Preview.swift"; sourceTree = "<group>"; };
@@ -660,9 +661,8 @@
 		EED4A52029ABC86D00DDCCDA /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
 		EED4A52229ABC87B00DDCCDA /* CommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewModel.swift; sourceTree = "<group>"; };
 		EED4A52529B810FF00DDCCDA /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		EED4A52929B8187D00DDCCDA /* PostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCoordinator.swift; sourceTree = "<group>"; };
 		EED4A52B29B8190700DDCCDA /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
-		EED4A52D29B81A2E00DDCCDA /* GARBAGEPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GARBAGEPostViewModel.swift; sourceTree = "<group>"; };
+		EED4A52D29B81A2E00DDCCDA /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		EED4A53229B81D6800DDCCDA /* CommunityHomeFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityHomeFeedView.swift; sourceTree = "<group>"; };
 		EED4A53429B81D8000DDCCDA /* CommunityInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityInfoView.swift; sourceTree = "<group>"; };
 		EED4A53629B81D9500DDCCDA /* CommunityArchiveFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityArchiveFeedView.swift; sourceTree = "<group>"; };
@@ -1511,6 +1511,7 @@
 				EE80D93C29D882F70000F8EF /* User+Preview.swift */,
 				EE5D3A0C2A45241200D0E312 /* Resource+Preview.swift */,
 				EE5D3A0E2A45246400D0E312 /* Rule+Preview.swift */,
+				EE2477EB2BE5BE8800661A0A /* Comment+Preview.swift */,
 			);
 			path = "Domain Models";
 			sourceTree = "<group>";
@@ -1544,7 +1545,6 @@
 			children = (
 				EE5D3A002A2EE0ED00D0E312 /* CommunitiesCoordinator+Preview.swift */,
 				EE80D8C229BC12720000F8EF /* CommunitiesTabCoordinator+Preview.swift */,
-				EE80D8C729BC13930000F8EF /* PostCoordinator+Preview.swift */,
 				EE80D8CD29BC15550000F8EF /* VotingTabCoordinator+Preview.swift */,
 				EE80D8D129BC15DF0000F8EF /* EventsTabCoordinator+Preview.swift */,
 				EE80D8D529BC16D90000F8EF /* UpdatesTabCoordinator+Preview.swift */,
@@ -1638,10 +1638,10 @@
 				EE70554F2B11476E00E40A89 /* AccountService.swift */,
 				EE2B15B92B4594540046D5FC /* PostService.swift */,
 				EEB5AF8E2AFBCD6B00310408 /* SwiftDataService.swift */,
-				EE4DB8882AC50AB500A6DC90 /* AppwriteService */,
-				EE5D39F42A2BDAD100D0E312 /* RichLinkService */,
 				EE412B662B901E6E0007632B /* CommunityService.swift */,
 				EE412BAF2BB0E7970007632B /* MembershipService.swift */,
+				EE4DB8882AC50AB500A6DC90 /* AppwriteService */,
+				EE5D39F42A2BDAD100D0E312 /* RichLinkService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1922,6 +1922,7 @@
 		EED4A51829ABC2B800DDCCDA /* Domain Models */ = {
 			isa = PBXGroup;
 			children = (
+				EE2477E92BD9D02E00661A0A /* Node.swift */,
 				EE412B6A2B96BA700007632B /* Community */,
 				EED4A51B29ABC2FE00DDCCDA /* User.swift */,
 				EED4A52529B810FF00DDCCDA /* Post.swift */,
@@ -1973,9 +1974,8 @@
 		EED4A52829B8186F00DDCCDA /* Post */ = {
 			isa = PBXGroup;
 			children = (
-				EED4A52929B8187D00DDCCDA /* PostCoordinator.swift */,
 				EED4A52B29B8190700DDCCDA /* PostView.swift */,
-				EED4A52D29B81A2E00DDCCDA /* GARBAGEPostViewModel.swift */,
+				EED4A52D29B81A2E00DDCCDA /* PostViewModel.swift */,
 				EED4A53829B9623C00DDCCDA /* PostCard */,
 			);
 			path = Post;
@@ -2224,7 +2224,7 @@
 				EED4A53529B81D8000DDCCDA /* CommunityInfoView.swift in Sources */,
 				EE412B872B9D28750007632B /* SubmitPostFlow+Preview.swift in Sources */,
 				EEA2B41E2B6FE36700063211 /* SelectableView.swift in Sources */,
-				EED4A52E29B81A2E00DDCCDA /* GARBAGEPostViewModel.swift in Sources */,
+				EED4A52E29B81A2E00DDCCDA /* PostViewModel.swift in Sources */,
 				EE4524A12A5CE46500C7A2DD /* RuleViewModel.swift in Sources */,
 				EE49880E2B3E1FE700AB7522 /* SubmitPostAlert.swift in Sources */,
 				EE4524AC2A5CED5100C7A2DD /* LeaderView.swift in Sources */,
@@ -2286,7 +2286,6 @@
 				EE4DB8982AC8A13C00A6DC90 /* CreateAccountPath.swift in Sources */,
 				EE80D91129C92C670000F8EF /* Candidate.swift in Sources */,
 				EE4987CF2B2F823300AB7522 /* SubmitPostCoordinator.swift in Sources */,
-				EE80D8C829BC13930000F8EF /* PostCoordinator+Preview.swift in Sources */,
 				EE7EC28C2B61514C00F62E90 /* CommunityNameView.swift in Sources */,
 				EED4A53729B81D9500DDCCDA /* CommunityArchiveFeedView.swift in Sources */,
 				EE5B93902A03396700B43381 /* TimeGranularity.swift in Sources */,
@@ -2361,7 +2360,6 @@
 				EE11729D2A6F3D0E00E529AF /* AlliedCommunityViewModel.swift in Sources */,
 				EE80D93D29D882F70000F8EF /* User+Preview.swift in Sources */,
 				EE5D3A032A30204D00D0E312 /* CommunitiesCoordinator.swift in Sources */,
-				EED4A52A29B8187D00DDCCDA /* PostCoordinator.swift in Sources */,
 				EEA2B40F2B6416DB00063211 /* SelectableModifier.swift in Sources */,
 				EE4DB8942AC89F0800A6DC90 /* CreateAccountCoordinatorView.swift in Sources */,
 				EE49881B2B406B2A00AB7522 /* CustomProgressView.swift in Sources */,
@@ -2379,6 +2377,7 @@
 				EE80D8CA29BC13C00000F8EF /* PostViewModel+Preview.swift in Sources */,
 				EEB5AF952B03116000310408 /* Calendar+Extensions.swift in Sources */,
 				EE412B632B8ECA3A0007632B /* AddRuleAlert.swift in Sources */,
+				EE2477EC2BE5BE8800661A0A /* Comment+Preview.swift in Sources */,
 				EE412B9D2B9F3A560007632B /* AccountInputFlowViewModel.swift in Sources */,
 				EEA2B4202B716D1500063211 /* SelectablePickerDetailView.swift in Sources */,
 				EE412B752B9965FB0007632B /* DateOptionalWrapper.swift in Sources */,
@@ -2423,6 +2422,7 @@
 				EE412BB02BB0E7970007632B /* MembershipService.swift in Sources */,
 				EE7856212AB90E200004B7E4 /* ToolbarNavigationModifier.swift in Sources */,
 				EE80D93929D28B0E0000F8EF /* CreateCandidateViewModel+Preview.swift in Sources */,
+				EE2477EA2BD9D02E00661A0A /* Node.swift in Sources */,
 				EE7856182AB7BACB0004B7E4 /* TagModifier.swift in Sources */,
 				EE412B472B79C6580007632B /* AddResourceViewModel.swift in Sources */,
 				EED4A50929AA8BC100DDCCDA /* EventsTabMainViewModel.swift in Sources */,

@@ -110,11 +110,14 @@ extension CommunitiesCoordinator {
         CandidateViewModel(coordinator: self, candidate: candidate)
     }
     
-    func postViewModel(post: Post) -> GARBAGEPostViewModel {
-        GARBAGEPostViewModel(post: post)
+    func postViewModel(post: Post) -> PostViewModel {
+        PostViewModel(coordinator: self, post: post)
     }
     
-    func communityPostCategoryViewModel(category: String, community: Community) -> CommunityCategoryPostsViewModel {
+    func communityPostCategoryViewModel(
+        category: String,
+        community: Community
+    ) -> CommunityCategoryPostsViewModel {
         CommunityCategoryPostsViewModel(community: community, category: category)
     }
     
@@ -142,4 +145,8 @@ extension CommunitiesCoordinator: SubmitPostCoordinatorParent {
     func dismissSubmitPostView() {
         isShowingCreatePostView = false
     }
+}
+
+extension CommunitiesCoordinator: PostCoordinatorDelegate {
+    
 }
