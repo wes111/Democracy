@@ -30,11 +30,11 @@ final class PostViewModel {
     let post: Post
     let testComments: [Node<Comment>] = [
         .init(
-            value: .init(value: "Hello World!"),
+            value: .init(value: "1: In the ethereal twilight of a summer evening, fireflies danced in the warm breeze, casting their fleeting glow upon the verdant meadows."),
             children: [
-                .init(value: .init(value: "My Name is Jesus"), children: [
-                    .init(value: .init(value: "My name is God")),
-                    .init(value: .init(value: "My name is the Holy Ghost"))
+                .init(value: .init(value: "2: In the ethereal twilight of a summer evening, fireflies danced in the warm breeze, casting their fleeting glow upon the verdant meadows."), children: [
+                    .init(value: .init(value: "3: In the ethereal twilight of a summer evening, fireflies danced in the warm breeze, casting their fleeting glow upon the verdant meadows.")),
+                    .init(value: .init(value: "4: In the ethereal twilight of a summer evening, fireflies danced in the warm breeze, casting their fleeting glow upon the verdant meadows."))
                 ]),
                 .init(value: .init(value: "My Name is Rudy"))
             ]

@@ -10,11 +10,11 @@ import Foundation
 // TODO: update to 4, 8, 12, 16, 20, 24, 28, 32, etc...
 enum ViewConstants {
     // Element Spacing
-    static let extraSmallElementSpacing: CGFloat = 5
-    static let smallElementSpacing: CGFloat = 10
-    static let elementSpacing: CGFloat = 20
-    static let mediumElementSpacing: CGFloat = 30
-    static let largeElementSpacing: CGFloat = 50
+    static let extraSmallElementSpacing: CGFloat = 4
+    static let smallElementSpacing: CGFloat = 8
+    static let elementSpacing: CGFloat = 12
+    static let largeElementSpacing: CGFloat = 16
+    static let extraLargeElementSpacing: CGFloat = 20
     
     // Section Spacing
     static let sectionSpacing: CGFloat = 15
@@ -39,35 +39,39 @@ enum ViewConstants {
 
 // SF Symbols
 enum SystemImage: String {
-    case arrowRight = "arrow.right"
-    case asterisk = "asterisk"
-    case bolt
-    case book
-    case bookClosed = "book.closed"
-    case booksVerticalFill = "books.vertical.fill"
-    case checkmark
-    case checkmarkCircleFill = "checkmark.circle.fill"
-    case checkmarkDiamondFill = "checkmark.diamond.fill"
-    case chevronRight = "chevron.right"
-    case chevronDown = "chevron.down"
-    case chevronUp = "chevron.up"
-    case crown
-    case ellipsis
-    case eye
-    case eyeSlash = "eye.slash"
-    case exclamationmarkTriangle = "exclamationmark.triangle"
-    case exclamationmarkTriangleFill = "exclamationmark.triangle.fill"
-    case figureAndChildHoldingHands = "figure.and.child.holdinghands"
-    case infoCircle = "info.circle"
-    case laptopComputer = "laptopcomputer"
-    case link
-    case movieClapper = "movieclapper"
-    case newspaperFill = "newspaper.fill"
-    case person
-    case personThree = "person.3"
-    case shuffle
-    case starFill = "star.fill"
-    case xCircle = "x.circle"    
+    case arrowRight = "arrow.right"                                    // 􀄫
+    case arrowshapeUp = "arrowshape.up"                                // 􁾨
+    case arrowshapeDown = "arrowshape.down"                            // 􁾬
+    case arrowshapeTurnUpLeft = "arrowshape.turn.up.left"              // 􀉌
+    case asterisk = "asterisk"                                         // 􀸓
+    case bolt                                                          // 􀋥
+    case book                                                          // 􀉚
+    case bookClosed = "book.closed"                                    // 􀤞
+    case booksVerticalFill = "books.vertical.fill"                     // 􀬓
+    case checkmark                                                     // 􀆅
+    case checkmarkCircleFill = "checkmark.circle.fill"                 // 􀁣
+    case checkmarkDiamondFill = "checkmark.diamond.fill"               // 􁁛
+    case chevronRight = "chevron.right"                                // 􀆊
+    case chevronDown = "chevron.down"                                  // 􀆈
+    case chevronUp = "chevron.up"                                      // 􀆇
+    case crown                                                         // 􀦅
+    case ellipsis                                                      // 􀍠
+    case eye                                                           // 􀋭
+    case eyeSlash = "eye.slash"                                        // 􀋯
+    case exclamationmarkTriangle = "exclamationmark.triangle"          // 􀇾
+    case exclamationmarkTriangleFill = "exclamationmark.triangle.fill" // 􀇿
+    case figureAndChildHoldingHands = "figure.and.child.holdinghands"  // 􁘁
+    case infoCircle = "info.circle"                                    // 􀅴
+    case laptopComputer = "laptopcomputer"                             // 􀟛
+    case link                                                          // 􀉣
+    case movieClapper = "movieclapper"                                 // 􀜤
+    case newspaperFill = "newspaper.fill"                              // 􀥅
+    case person                                                        // 􀉩
+    case personThree = "person.3"                                      // 􀝊
+    case shuffle                                                       // 􀊝
+    case starFill = "star.fill"                                        // 􀋃
+    case squareAndArrowUp = "square.and.arrow.up"                      // 􀈂
+    case xCircle = "x.circle"                                          // 􀀲
 }
 
 // Image assets

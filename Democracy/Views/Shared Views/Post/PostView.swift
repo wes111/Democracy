@@ -29,24 +29,34 @@ struct PostView: View {
 // MARK: - Subviews
 private extension PostView {
     var content: some View {
-        OutlineGroup(viewModel.testComments, id: \.value, children: \.children) { commentNode in
-            Text(commentNode.value.content)
-                .padding(40)
-                .frame(maxWidth: .infinity)
-                .border(Color.yellow)
+        ScrollView(.vertical) {
+            // TODO: Ideally this would be a list...
+            OutlineGroup(viewModel.testComments, id: \.value, children: \.children) { commentNode in
+                CommentCell(comment: commentNode.value)
+                    .padding(.horizontal, ViewConstants.screenPadding)
+                    .padding(.vertical, ViewConstants.screenPadding / 2)
+            }
+            .disclosureGroupStyle(CustomDisclosureGroupStyle())
         }
-        .plainListModifier()
-        .padding(.horizontal, ViewConstants.screenPadding)
-        .disclosureGroupStyle(CustomDisclosureGroupStyle())
-        .border(Color.blue)
+        .clipped()
+    }
+    
+    func comment(_ node: Node<Comment>) -> some View {
+        Text(node.value.content)
+            .foregroundStyle(Color.secondaryText)
+            .font(.caption)
+            .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
+// Custom style for CommentCells.
 struct CustomDisclosureGroupStyle: DisclosureGroupStyle {
     func makeBody(configuration: Configuration) -> some View {
-        VStack(alignment: .leading, spacing: 0) {
+        ZStack(alignment: .bottomLeading) {
             configuration.label
             loadRepliesButton(configuration)
+                .padding(.leading, ViewConstants.screenPadding)
+                .padding(.vertical, ViewConstants.screenPadding / 2)
         }
         
         if configuration.isExpanded {
@@ -57,17 +67,14 @@ struct CustomDisclosureGroupStyle: DisclosureGroupStyle {
     func replies(_ configuration: Configuration) -> some View {
         HStack {
             Divider()
-                .overlay(.pink)
-                .padding(.leading, 4)
+                .overlay(Color.tertiaryText)
+                .padding(.leading, ViewConstants.screenPadding)
             
             VStack {
                 configuration.content
-                    .padding(.leading, 8)
                     .disclosureGroupStyle(self)
             }
-
         }
-
     }
     
     func loadRepliesButton(_ configuration: Configuration) -> some View {
@@ -75,7 +82,6 @@ struct CustomDisclosureGroupStyle: DisclosureGroupStyle {
             withAnimation {
                 configuration.isExpanded.toggle()
             }
-            
         } label: {
             Label(
                 title: { Text("\(configuration.isExpanded ? "Hide" : "View") Replies") },
@@ -84,10 +90,9 @@ struct CustomDisclosureGroupStyle: DisclosureGroupStyle {
                 }
             )
             .labelStyle(ReversedLabelStyle())
-            .contentShape(Rectangle())
-            .font(.caption2)
+            .font(.footnote)
         }
-        .foregroundStyle(Color.yellow)
+        .foregroundStyle(Color.white)
     }
 }
 
@@ -95,5 +100,115 @@ struct CustomDisclosureGroupStyle: DisclosureGroupStyle {
 #Preview {
     NavigationStack {
         PostView(viewModel: PostViewModel.preview)
+    }
+}
+
+// MARK: - CommentCell
+struct CommentCell: View {
+    
+    let comment: Comment
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
+            header
+            commentText
+            footer
+        }
+    }
+    
+    var commentText: some View {
+        Text(comment.content)
+            .foregroundStyle(Color.secondaryText)
+            .font(.footnote)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+// MARK: - Header
+private extension CommentCell {
+    var header: some View {
+        HStack(alignment: .center, spacing: ViewConstants.smallElementSpacing) {
+           userIcon
+            
+            VStack(alignment: .leading, spacing: 0) {
+                headerTopLine
+                headerBottomLine
+            }
+        }
+    }
+    
+    var headerTopLine: some View {
+        HStack {
+            Text("Bernie Sanders")
+            Spacer()
+            Image(systemName: SystemImage.ellipsis.rawValue)
+        }
+        .foregroundStyle(Color.secondaryText)
+        .font(.caption2)
+    }
+    
+    var headerBottomLine: some View {
+        HStack(alignment: .center, spacing: ViewConstants.extraSmallElementSpacing) {
+            Text("New York City")
+            Text("•")
+            Text("10 January 2025")
+        }
+        .foregroundStyle(Color.secondaryText)
+        .font(.caption2)
+    }
+    
+    var userIcon: some View {
+        Circle()
+            .frame(width: 25, height: 25)
+            .foregroundStyle(Color.secondaryText)
+    }
+}
+
+// MARK: - Footer
+private extension CommentCell {
+    
+    var footer: some View {
+        HStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
+            Spacer()
+            replyButton
+            upVoteButton
+            downVoteButton
+        }
+        .font(.footnote)
+        .foregroundStyle(Color.secondaryText)
+    }
+    
+    var replyButton: some View {
+        Button {
+            // TODO: ...
+        } label: {
+            Label {
+                Text("Reply")
+            } icon: {
+                Image(systemName: SystemImage.arrowshapeTurnUpLeft.rawValue)
+            }
+        }
+    }
+    
+    var upVoteButton: some View {
+        Button {
+            // TODO: ...
+        } label: {
+            HStack(alignment: .center, spacing: ViewConstants.extraSmallElementSpacing) {
+                Image(systemName: SystemImage.arrowshapeUp.rawValue)
+                Text("329")
+            }
+        }
+    }
+    
+    var downVoteButton: some View {
+        Button {
+            // TODO: ...
+        } label: {
+            HStack(alignment: .center, spacing: ViewConstants.extraSmallElementSpacing) {
+                Image(systemName: SystemImage.arrowshapeDown.rawValue)
+                Text("329")
+            }
+        }
     }
 }
