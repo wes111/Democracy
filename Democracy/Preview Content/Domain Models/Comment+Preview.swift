@@ -14,6 +14,8 @@ extension Comment {
         postId: "",
         userId: "",
         creationDate: .now,
-        content: "Post body Content - Hello World!"
+        content: "Post body Content - Hello World!",
+        upVoteCount: 10,
+        downVoteCount: 5
     )
 }

@@ -27,6 +27,9 @@
 		EE2477E82BCE126700661A0A /* CursorPaginationOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477E72BCE126700661A0A /* CursorPaginationOption.swift */; };
 		EE2477EA2BD9D02E00661A0A /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477E92BD9D02E00661A0A /* Node.swift */; };
 		EE2477EC2BE5BE8800661A0A /* Comment+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477EB2BE5BE8800661A0A /* Comment+Preview.swift */; };
+		EE2477EF2BF00CFD00661A0A /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477EE2BF00CFD00661A0A /* CommentView.swift */; };
+		EE2477F12BF00DDE00661A0A /* CommentDisclosureGroupStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477F02BF00DDE00661A0A /* CommentDisclosureGroupStyle.swift */; };
+		EE2477F32BF0617500661A0A /* CommentViewModel +Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477F22BF0617500661A0A /* CommentViewModel +Preview.swift */; };
 		EE28E35D2B24FACC00EC4E6F /* SharedResourcesClientAndServer in Frameworks */ = {isa = PBXBuildFile; productRef = EE28E35C2B24FACC00EC4E6F /* SharedResourcesClientAndServer */; };
 		EE2B15B42B43592E0046D5FC /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B32B43592E0046D5FC /* GenericError.swift */; };
 		EE2B15B62B4443CC0046D5FC /* LinkRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */; };
@@ -366,6 +369,9 @@
 		EE2477E72BCE126700661A0A /* CursorPaginationOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CursorPaginationOption.swift; sourceTree = "<group>"; };
 		EE2477E92BD9D02E00661A0A /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		EE2477EB2BE5BE8800661A0A /* Comment+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+Preview.swift"; sourceTree = "<group>"; };
+		EE2477EE2BF00CFD00661A0A /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		EE2477F02BF00DDE00661A0A /* CommentDisclosureGroupStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDisclosureGroupStyle.swift; sourceTree = "<group>"; };
+		EE2477F22BF0617500661A0A /* CommentViewModel +Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommentViewModel +Preview.swift"; sourceTree = "<group>"; };
 		EE2B15B32B43592E0046D5FC /* GenericError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericError.swift; sourceTree = "<group>"; };
 		EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkRequirement.swift; sourceTree = "<group>"; };
 		EE2B15B72B4449BE0046D5FC /* LinkTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextFieldStyle.swift; sourceTree = "<group>"; };
@@ -776,6 +782,15 @@
 				EE2477E22BCB6A4100661A0A /* CommunityTaglineView.swift */,
 			);
 			path = CommunityTagline;
+			sourceTree = "<group>";
+		};
+		EE2477ED2BF00CDE00661A0A /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				EE2477EE2BF00CFD00661A0A /* CommentView.swift */,
+				EE2477F02BF00DDE00661A0A /* CommentDisclosureGroupStyle.swift */,
+			);
+			path = Comment;
 			sourceTree = "<group>";
 		};
 		EE2B15C32B4C3C510046D5FC /* PostSuccess */ = {
@@ -1587,6 +1602,7 @@
 				EE5B93982A0866EA00B43381 /* CommunityPostCategoryViewModel+Preview.swift */,
 				EE412B442B79AA750007632B /* AddResourceViewModel+Preview.swift */,
 				EE412B5E2B8EC3840007632B /* AddRuleViewModel+Preview.swift */,
+				EE2477F22BF0617500661A0A /* CommentViewModel +Preview.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1964,6 +1980,7 @@
 		EED4A52729B8185600DDCCDA /* Shared Views */ = {
 			isa = PBXGroup;
 			children = (
+				EE2477ED2BF00CDE00661A0A /* Comment */,
 				EE80D95429E0B6B90000F8EF /* Reusable SwiftUI */,
 				EE80D90629C926490000F8EF /* Candidates (Plural) */,
 				EED4A52829B8186F00DDCCDA /* Post */,
@@ -2237,7 +2254,9 @@
 				EE2477DD2BCA29AC00661A0A /* PersistableData.swift in Sources */,
 				EE412B672B901E6E0007632B /* CommunityService.swift in Sources */,
 				EE7856132AAE75620004B7E4 /* NewFlowLayout.swift in Sources */,
+				EE2477EF2BF00CFD00661A0A /* CommentView.swift in Sources */,
 				EEB5AF982B0320D400310408 /* KeyChainStorage.swift in Sources */,
+				EE2477F12BF00DDE00661A0A /* CommentDisclosureGroupStyle.swift in Sources */,
 				EE45248D2A5651CB00C7A2DD /* ResourcesSectionViewModel.swift in Sources */,
 				EEA2B4312B71935A00063211 /* CommunityCommenter.swift in Sources */,
 				EE412BA82BAF79C70007632B /* CommunitiesCategory.swift in Sources */,
@@ -2318,6 +2337,7 @@
 				EE80D8CE29BC15550000F8EF /* VotingTabCoordinator+Preview.swift in Sources */,
 				EE7055522B1147EE00E40A89 /* UserRepository.swift in Sources */,
 				EE412B9F2B9F3D7B0007632B /* CreateAccountFlow+Preview.swift in Sources */,
+				EE2477F32BF0617500661A0A /* CommentViewModel +Preview.swift in Sources */,
 				EE2B15E82B5615E90046D5FC /* DisabledAnimationModifier.swift in Sources */,
 				EE4988082B35D8BA00AB7522 /* CreateAccountCoordinatorDelegate.swift in Sources */,
 				EEA2B42B2B71811300063211 /* SelectablePickerView.swift in Sources */,

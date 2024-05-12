@@ -13,9 +13,11 @@ extension Comment {
         id = value
         parentId = value
         postId = value
-        userId = value
+        userId = "Bernie Sanders"
         creationDate = .now
         content = value
+        upVoteCount = 10
+        downVoteCount = 2
     }
 }
 

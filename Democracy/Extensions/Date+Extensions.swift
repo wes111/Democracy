@@ -9,6 +9,10 @@ import Foundation
 
 extension Date {
     
+    enum Format: String {
+        case ddMMMyyyy = "dd MMM yyyy"
+    }
+    
     var yearInt: Int {
         return Calendar.current.dateComponents([.year], from: self).year!
     }
@@ -18,9 +22,9 @@ extension Date {
         return Month(rawValue: monthInt)!
     }
     
-    func getFormattedDate(format: String) -> String {
+    func getFormattedDate(format: Date.Format) -> String {
         let dateformat = DateFormatter()
-        dateformat.dateFormat = format
+        dateformat.dateFormat = format.rawValue
         return dateformat.string(from: self)
     }
     

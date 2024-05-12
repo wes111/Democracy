@@ -71,7 +71,7 @@ protocol AppwriteService: Sendable {
 }
 
 final class AppwriteServiceDefault: AppwriteService {
-    private let projectEndpoint = "http://192.168.86.106/v1"
+    private let projectEndpoint = "http://192.168.86.209/v1"
     private let projectID = "65466f560e77e46a903e"
     private let databaseId = "65956325b9edac11832a"
     private let postCollectionId = "6595636e9fae941f4374"

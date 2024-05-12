@@ -15,6 +15,8 @@ struct Comment: Identifiable, Hashable {
     let userId: String
     let creationDate: Date
     let content: String
+    let upVoteCount: Int
+    let downVoteCount: Int
 }
 
 // The Comment object received from the Appwrite database.
@@ -25,9 +27,11 @@ struct CommentDTO: Decodable {
     let userId: String
     let creationDate: DateWrapper
     let content: String
+    let upVoteCount: Int // Note: This value is only an estimate. Could change in the future...
+    let downVoteCount: Int // Note: This value is only an estimate. Could change in the future...
     
     enum CodingKeys: String, CodingKey {
-        case parentId, postId, userId, content
+        case parentId, postId, userId, content, upVoteCount, downVoteCount
         case id = "$id"
         case creationDate = "$createdAt"
     }
@@ -39,7 +43,9 @@ struct CommentDTO: Decodable {
             postId: postId,
             userId: userId,
             creationDate: creationDate.date,
-            content: content
+            content: content,
+            upVoteCount: upVoteCount,
+            downVoteCount: downVoteCount
         )
     }
 }
