@@ -9,7 +9,6 @@ import Factory
 import Foundation
 
 enum CommunityServiceError: Error {
-    case userAccountMissing
     case invalidUserInput
 }
 
@@ -24,9 +23,6 @@ final class CommunityServiceDefault: CommunityService {
     @Injected(\.userRepository) private var userRepository
     
     func submitCommunity(userInput: SubmitCommunityInput) async throws {
-        guard let userId = await userRepository.currentValue?.id else {
-            throw CommunityServiceError.userAccountMissing
-        }
         guard let name = userInput.name, let description = userInput.description, let tagline = userInput.tagline,
               !userInput.categories.isEmpty, !userInput.tags.isEmpty, !userInput.rules.isEmpty
         else {
@@ -34,7 +30,7 @@ final class CommunityServiceDefault: CommunityService {
         }
         
         try await communityRepository.submitCommunity(.init(
-            creatorId: userId,
+            creatorId: try await userRepository.userId(),
             name: name,
             descriptionText: description,
             rules: Array(userInput.rules).map { $0.toCreationRequest() },

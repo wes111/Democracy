@@ -8,6 +8,7 @@
 import Foundation
 import Factory
 
+// TODO: This is tempory. DELETE later.
 extension Comment {
     init(value: String) {
         id = value
@@ -29,6 +30,8 @@ protocol PostCoordinatorDelegate: AnyObject {
 final class PostViewModel {
 
     private weak var coordinator: PostCoordinatorDelegate?
+    @ObservationIgnored @Injected(\.commentService) private var commentService
+    
     let post: Post
     let testComments: [Node<Comment>] = [
         .init(
@@ -70,6 +73,20 @@ extension PostViewModel {
     
     var trailingContent: [TopBarContent] {
         [.menu([])]
+    }
+}
+
+// MARK: - Methods
+extension PostViewModel {
+    func test() {
+        Task {
+            do {
+                try await commentService.submitComment(parentId: "", postId: "", content: "")
+            } catch {
+                print(error)
+                print()
+            }
+        }
     }
 }
 

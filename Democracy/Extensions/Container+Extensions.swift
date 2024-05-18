@@ -41,6 +41,10 @@ extension Container {
         self { MembershipServiceDefault() }.scope(.shared)
     }
     
+    var commentService: Factory<CommentService> {
+        self { CommentServiceDefault() }.scope(.shared)
+    }
+    
     var passwordLocalRepository: Factory<PasswordRepository> {
         self { PasswordRepositoryDefault() }.scope(.shared)
     }
@@ -65,5 +69,9 @@ extension Container {
     
     var membershipRepository: Factory<MembershipRepository> {
         self { MembershipRepositoryDefault() }.scope(.shared)
+    }
+    
+    var commentRepository: Factory<CommentRepository> {
+        self { CommentRepositoryDefault() }.scope(.shared)
     }
 }

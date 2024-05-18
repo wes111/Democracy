@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedResourcesClientAndServer
 
 // The Post object sent to the Appwrite database.
 // Note that 'id', 'creationDate', and 'approvedDate' are not part of this object.

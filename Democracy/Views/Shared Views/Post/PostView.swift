@@ -23,6 +23,9 @@ struct PostView: View {
                 centerContent: viewModel.centerContent,
                 trailingContent: viewModel.trailingContent
             )
+            .onAppear {
+                viewModel.test()
+            }
     }
 }
 

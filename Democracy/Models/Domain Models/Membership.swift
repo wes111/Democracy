@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedResourcesClientAndServer
 import SwiftData
 
 // The Membership object sent to the Appwrite database.

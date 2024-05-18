@@ -28,9 +28,6 @@ final class PostServiceDefault: PostService {
     @Injected(\.userRepository) private var userRepository
     
     func submitPost(userInput: SubmitPostInput, communityId: String) async throws {
-        guard let userId = await userRepository.currentValue?.id else {
-            throw PostServiceError.userAccountMissing
-        }
         guard let title = userInput.title, let body = userInput.body, let category = userInput.category else {
             throw PostServiceError.invalidUserInput
         }
@@ -40,7 +37,7 @@ final class PostServiceDefault: PostService {
             link: userInput.primaryLink,
             category: category,
             tags: Array(userInput.tags),
-            userId: userId,
+            userId: try await userRepository.userId(),
             communityId: communityId
         ))
     }

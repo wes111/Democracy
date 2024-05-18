@@ -56,6 +56,7 @@ protocol AppwriteService: Sendable {
     func isCommunityNameAvailable(_ name: String) async throws -> Bool
     func fetchAllCommunities() async throws -> [Community]
     func fetchUserMemberships(userId: String) async throws -> [Membership]
+    func fetchTopLevelComments(for post: Post) async throws -> [Comment]
     
     func fetchPostsForCommunity(
         communityId: String,
@@ -68,15 +69,14 @@ protocol AppwriteService: Sendable {
     @discardableResult func submitCommunity(_ community: CommunityCreationRequest) async throws -> Community
     @discardableResult func joinCommunity(_ membership: MembershipCreationRequest) async throws -> Membership
     func leaveCommunity(_ membership: Membership) async throws
+    
+    // Functions
+    func submitComment(_ comment: CommentCreationRequest) async throws -> Comment
 }
 
 final class AppwriteServiceDefault: AppwriteService {
     private let projectEndpoint = "http://192.168.86.209/v1"
     private let projectID = "65466f560e77e46a903e"
-    private let databaseId = "65956325b9edac11832a"
-    private let postCollectionId = "6595636e9fae941f4374"
-    private let communityCollectionId = "65980c47b96a51cbd280"
-    private let membershipCollectionId = "66009a851fea59c9dcbc"
     
     private lazy var client: Client = {
         Client()
@@ -151,8 +151,8 @@ extension AppwriteServiceDefault {
     
     @discardableResult func submitNewPost(_ newPost: PostCreationRequest) async throws -> Post {
         let document = try await databases.createDocument(
-            databaseId: databaseId,
-            collectionId: postCollectionId,
+            databaseId: Database.id,
+            collectionId: Collection.post.id,
             documentId: ID.unique(),
             data: try newPost.toDictionary()
         )
@@ -161,8 +161,8 @@ extension AppwriteServiceDefault {
     
     func submitCommunity(_ community: CommunityCreationRequest) async throws -> Community {
         let document = try await databases.createDocument(
-            databaseId: databaseId,
-            collectionId: communityCollectionId,
+            databaseId: Database.id,
+            collectionId: Collection.community.id,
             documentId: community.name,
             data: try community.toDictionary()
         )
@@ -171,8 +171,8 @@ extension AppwriteServiceDefault {
     
     func joinCommunity(_ membership: MembershipCreationRequest) async throws -> Membership {
         let document = try await databases.createDocument(
-            databaseId: databaseId,
-            collectionId: membershipCollectionId,
+            databaseId: Database.id,
+            collectionId: Collection.membership.id,
             documentId: ID.unique(),
             data: try membership.toDictionary()
         )
@@ -181,8 +181,8 @@ extension AppwriteServiceDefault {
     
     func leaveCommunity(_ membership: Membership) async throws {
         let wasSuccessful = try await databases.deleteDocument(
-            databaseId: databaseId,
-            collectionId: membershipCollectionId,
+            databaseId: Database.id,
+            collectionId: Collection.membership.id,
             documentId: membership.id
         ) 
         guard let wasSuccessful = wasSuccessful as? Bool, wasSuccessful else {
@@ -192,8 +192,8 @@ extension AppwriteServiceDefault {
     
     func isCommunityNameAvailable(_ name: String) async throws -> Bool {
         let response = try await databases.listDocuments(
-            databaseId: databaseId,
-            collectionId: communityCollectionId,
+            databaseId: Database.id,
+            collectionId: Collection.community.id,
             queries: [
                 Query.equal("$id", value: name)
             ]
@@ -204,8 +204,8 @@ extension AppwriteServiceDefault {
     // TODO: I don't think we actually want a method that fetches all communities. This is just a starting point.
     func fetchAllCommunities() async throws -> [Community] {
         let documentList = try await databases.listDocuments(
-            databaseId: databaseId,
-            collectionId: communityCollectionId
+            databaseId: Database.id,
+            collectionId: Collection.community.id
         )
         return try documentList.documents.map { try CommunityDTO($0.data.toDictionary()).toCommunity() }
     }
@@ -213,8 +213,8 @@ extension AppwriteServiceDefault {
     // Fetch a user's memberships in different Communities.
     func fetchUserMemberships(userId: String) async throws -> [Membership] {
         let documentList = try await databases.listDocuments(
-            databaseId: databaseId,
-            collectionId: membershipCollectionId,
+            databaseId: Database.id,
+            collectionId: Collection.membership.id,
             queries: [
                 Query.equal("userId", value: userId)
             ]
@@ -241,11 +241,19 @@ extension AppwriteServiceDefault {
         }
         
         let documentList = try await databases.listDocuments(
-            databaseId: databaseId,
-            collectionId: postCollectionId,
+            databaseId: Database.id,
+            collectionId: Collection.post.id,
             queries: queries
         )
         return try documentList.documents.map { try PostDTO($0.data.toDictionary()).toPost() }
+    }
+    
+    func submitComment(_ comment: CommentCreationRequest) async throws -> Comment {
+        try await postComment(comment)
+    }
+    
+    func fetchTopLevelComments(for post: Post) async throws -> [Comment] {
+        return []
     }
 }
 
@@ -264,5 +272,16 @@ private extension AppwriteServiceDefault {
         )
         let isAvailable: UniqueAccountFieldAvailable = try execution.responseBody.decode()
         return isAvailable.isAvailable
+    }
+    
+    func postComment(_ comment: CommentCreationRequest) async throws -> Comment {
+        let jsonString = ""
+        
+        let execution = try await functions.createExecution(
+            functionId: "postComment",
+            body: jsonString,
+            method: "POST"
+        )
+        return .preview
     }
 }

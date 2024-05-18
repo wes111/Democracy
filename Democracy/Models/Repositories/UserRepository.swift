@@ -10,6 +10,10 @@ import Factory
 import Foundation
 import SharedResourcesClientAndServer
 
+enum UserRepositoryError: Error {
+    case missingUser
+}
+
 /// Stores the single logged-in user. If there is no session, there is no user.
 protocol UserRepository: Repository where Object == User {
     func createUser(userName: String, password: String, email: String) async throws
@@ -19,6 +23,8 @@ protocol UserRepository: Repository where Object == User {
     func getUsernameAvailable(username: String) async throws -> Bool
     func getPhoneIsAvailable(_ phone: PhoneNumber) async throws -> Bool
     func getEmailAvailable(_ email: String) async throws -> Bool
+    
+    func userId() async throws -> String
 }
 
 actor UserRepositoryDefault: UserRepository, UserDefaultsStorable {
@@ -90,5 +96,12 @@ extension UserRepositoryDefault {
     
     func getEmailAvailable(_ email: String) async throws -> Bool {
         try await appwriteService.getEmailAvailable(email)
+    }
+    
+    func userId() async throws -> String {
+        guard let userId = currentValue?.id else {
+            throw UserRepositoryError.missingUser
+        }
+        return userId
     }
 }

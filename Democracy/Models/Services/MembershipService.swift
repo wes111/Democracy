@@ -32,10 +32,10 @@ final class MembershipServiceDefault: MembershipService {
     }
     
     func fetchMemberships(refresh: Bool) async throws {
-        guard let userId = await userRepository.currentValue?.id else {
-            return print("Failed fetching memberships")
-        }
-        try await membershipRepository.fetchUserMemberships(userId: userId, refresh: refresh)
+        try await membershipRepository.fetchUserMemberships(
+            userId: try await userRepository.userId(),
+            refresh: refresh
+        )
     }
     
     func membershipsStream() async -> AsyncStream<[Membership]> {
@@ -43,16 +43,13 @@ final class MembershipServiceDefault: MembershipService {
     }
     
     func joinCommunity(_ community: Community) async throws {
-        guard let userId = await userRepository.currentValue?.id else {
-            throw MembershipServiceError.userAccountMissing
-        }
-        try await membershipRepository.joinCommunity(.init(userId: userId, communityId: community.id))
+        try await membershipRepository.joinCommunity(.init(
+            userId: try await userRepository.userId(),
+            communityId: community.id
+        ))
     }
     
     func leaveCommunity(membership: Membership) async throws {
-        guard let userId = await userRepository.currentValue?.id else {
-            throw MembershipServiceError.userAccountMissing
-        }
         try await membershipRepository.leaveCommunity(membership)
     }
 }

@@ -30,6 +30,8 @@
 		EE2477EF2BF00CFD00661A0A /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477EE2BF00CFD00661A0A /* CommentView.swift */; };
 		EE2477F12BF00DDE00661A0A /* CommentDisclosureGroupStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477F02BF00DDE00661A0A /* CommentDisclosureGroupStyle.swift */; };
 		EE2477F32BF0617500661A0A /* CommentViewModel +Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477F22BF0617500661A0A /* CommentViewModel +Preview.swift */; };
+		EE2477F52BF10B3200661A0A /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477F42BF10B3200661A0A /* CommentService.swift */; };
+		EE2477F72BF10E8C00661A0A /* CommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477F62BF10E8C00661A0A /* CommentRepository.swift */; };
 		EE28E35D2B24FACC00EC4E6F /* SharedResourcesClientAndServer in Frameworks */ = {isa = PBXBuildFile; productRef = EE28E35C2B24FACC00EC4E6F /* SharedResourcesClientAndServer */; };
 		EE2B15B42B43592E0046D5FC /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B32B43592E0046D5FC /* GenericError.swift */; };
 		EE2B15B62B4443CC0046D5FC /* LinkRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */; };
@@ -77,7 +79,6 @@
 		EE412B692B9029F60007632B /* CommunityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B682B9029F60007632B /* CommunityRepository.swift */; };
 		EE412B6C2B96BC390007632B /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B6B2B96BC390007632B /* Resource.swift */; };
 		EE412B6F2B9811EB0007632B /* URLOptionalWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B6E2B9811EB0007632B /* URLOptionalWrapper.swift */; };
-		EE412B712B9812290007632B /* DateWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B702B9812290007632B /* DateWrapper.swift */; };
 		EE412B732B981B220007632B /* ResourceCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B722B981B220007632B /* ResourceCategory.swift */; };
 		EE412B752B9965FB0007632B /* DateOptionalWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B742B9965FB0007632B /* DateOptionalWrapper.swift */; };
 		EE412B772B9D21680007632B /* PostFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B762B9D21680007632B /* PostFlow.swift */; };
@@ -372,6 +373,8 @@
 		EE2477EE2BF00CFD00661A0A /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		EE2477F02BF00DDE00661A0A /* CommentDisclosureGroupStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDisclosureGroupStyle.swift; sourceTree = "<group>"; };
 		EE2477F22BF0617500661A0A /* CommentViewModel +Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommentViewModel +Preview.swift"; sourceTree = "<group>"; };
+		EE2477F42BF10B3200661A0A /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
+		EE2477F62BF10E8C00661A0A /* CommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepository.swift; sourceTree = "<group>"; };
 		EE2B15B32B43592E0046D5FC /* GenericError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericError.swift; sourceTree = "<group>"; };
 		EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkRequirement.swift; sourceTree = "<group>"; };
 		EE2B15B72B4449BE0046D5FC /* LinkTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextFieldStyle.swift; sourceTree = "<group>"; };
@@ -417,7 +420,6 @@
 		EE412B682B9029F60007632B /* CommunityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRepository.swift; sourceTree = "<group>"; };
 		EE412B6B2B96BC390007632B /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		EE412B6E2B9811EB0007632B /* URLOptionalWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLOptionalWrapper.swift; sourceTree = "<group>"; };
-		EE412B702B9812290007632B /* DateWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateWrapper.swift; sourceTree = "<group>"; };
 		EE412B722B981B220007632B /* ResourceCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceCategory.swift; sourceTree = "<group>"; };
 		EE412B742B9965FB0007632B /* DateOptionalWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOptionalWrapper.swift; sourceTree = "<group>"; };
 		EE412B762B9D21680007632B /* PostFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFlow.swift; sourceTree = "<group>"; };
@@ -952,7 +954,6 @@
 			isa = PBXGroup;
 			children = (
 				EE412B6E2B9811EB0007632B /* URLOptionalWrapper.swift */,
-				EE412B702B9812290007632B /* DateWrapper.swift */,
 				EE412B742B9965FB0007632B /* DateOptionalWrapper.swift */,
 			);
 			path = "DTO Wrappers";
@@ -1250,14 +1251,6 @@
 			path = UserInputFlow;
 			sourceTree = "<group>";
 		};
-		EE4DB8882AC50AB500A6DC90 /* AppwriteService */ = {
-			isa = PBXGroup;
-			children = (
-				EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */,
-			);
-			path = AppwriteService;
-			sourceTree = "<group>";
-		};
 		EE4DB8922AC89ECB00A6DC90 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -1324,14 +1317,6 @@
 				EE7055652B18C37300E40A89 /* View+Extensions.swift */,
 			);
 			path = "SwiftUI Extensions";
-			sourceTree = "<group>";
-		};
-		EE5D39F42A2BDAD100D0E312 /* RichLinkService */ = {
-			isa = PBXGroup;
-			children = (
-				EE5D39F02A2BB5DC00D0E312 /* RichLinkService.swift */,
-			);
-			path = RichLinkService;
 			sourceTree = "<group>";
 		};
 		EE7856142AB7BA970004B7E4 /* ViewModifiers */ = {
@@ -1543,14 +1528,15 @@
 			isa = PBXGroup;
 			children = (
 				EE2477DE2BCB0BE400661A0A /* Protocols */,
-				EEB5AF902B017F0900310408 /* UserDefaultStorage.swift */,
-				EEB5AF972B0320D400310408 /* KeyChainStorage.swift */,
-				EEB5AFA72B103AC100310408 /* SessionRepository.swift */,
-				EE7055512B1147EE00E40A89 /* UserRepository.swift */,
-				EE7055552B1245A500E40A89 /* Repository.swift */,
-				EE2B15BB2B499E1D0046D5FC /* PostRepository.swift */,
 				EE412B682B9029F60007632B /* CommunityRepository.swift */,
+				EEB5AF972B0320D400310408 /* KeyChainStorage.swift */,
 				EE412BAD2BB0E2C50007632B /* MembershipRepository.swift */,
+				EE2B15BB2B499E1D0046D5FC /* PostRepository.swift */,
+				EE7055552B1245A500E40A89 /* Repository.swift */,
+				EEB5AFA72B103AC100310408 /* SessionRepository.swift */,
+				EEB5AF902B017F0900310408 /* UserDefaultStorage.swift */,
+				EE7055512B1147EE00E40A89 /* UserRepository.swift */,
+				EE2477F62BF10E8C00661A0A /* CommentRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1652,12 +1638,13 @@
 			isa = PBXGroup;
 			children = (
 				EE70554F2B11476E00E40A89 /* AccountService.swift */,
-				EE2B15B92B4594540046D5FC /* PostService.swift */,
-				EEB5AF8E2AFBCD6B00310408 /* SwiftDataService.swift */,
+				EE4DB8892AC50AD200A6DC90 /* AppwriteService.swift */,
+				EE2477F42BF10B3200661A0A /* CommentService.swift */,
 				EE412B662B901E6E0007632B /* CommunityService.swift */,
 				EE412BAF2BB0E7970007632B /* MembershipService.swift */,
-				EE4DB8882AC50AB500A6DC90 /* AppwriteService */,
-				EE5D39F42A2BDAD100D0E312 /* RichLinkService */,
+				EE2B15B92B4594540046D5FC /* PostService.swift */,
+				EE5D39F02A2BB5DC00D0E312 /* RichLinkService.swift */,
+				EEB5AF8E2AFBCD6B00310408 /* SwiftDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2305,6 +2292,7 @@
 				EE4DB8982AC8A13C00A6DC90 /* CreateAccountPath.swift in Sources */,
 				EE80D91129C92C670000F8EF /* Candidate.swift in Sources */,
 				EE4987CF2B2F823300AB7522 /* SubmitPostCoordinator.swift in Sources */,
+				EE2477F52BF10B3200661A0A /* CommentService.swift in Sources */,
 				EE7EC28C2B61514C00F62E90 /* CommunityNameView.swift in Sources */,
 				EED4A53729B81D9500DDCCDA /* CommunityArchiveFeedView.swift in Sources */,
 				EE5B93902A03396700B43381 /* TimeGranularity.swift in Sources */,
@@ -2330,7 +2318,6 @@
 				EE4524942A565CA400C7A2DD /* ResourceViewModel.swift in Sources */,
 				EE9760192AD0B066003069CF /* AccountAcceptTermsView.swift in Sources */,
 				EE2477E12BCB68D100661A0A /* CommunityTaglineViewModel.swift in Sources */,
-				EE412B712B9812290007632B /* DateWrapper.swift in Sources */,
 				EE1172962A6F3C5C00E529AF /* AlliedCommunitiesSection.swift in Sources */,
 				EE936CA22A789B8F00D49271 /* CommunitiesTabPath.swift in Sources */,
 				EE0CC2032A9EDA00003A10C3 /* VoteView.swift in Sources */,
@@ -2429,6 +2416,7 @@
 				EEB5AF8B2AFA7DD500310408 /* Session.swift in Sources */,
 				EE2477D52BCA060600661A0A /* MembershipData.swift in Sources */,
 				EE2B15C92B4C3EA30046D5FC /* CreateAccountCoordinator+Preview.swift in Sources */,
+				EE2477F72BF10E8C00661A0A /* CommentRepository.swift in Sources */,
 				EED4A50329AA86C900DDCCDA /* VotingTabMainView.swift in Sources */,
 				EE412B942B9E4C4D0007632B /* CommunityInputFlowView.swift in Sources */,
 				EE45248F2A5651FB00C7A2DD /* ResourcesSection.swift in Sources */,
