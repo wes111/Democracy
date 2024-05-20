@@ -16,6 +16,7 @@ extension Comment {
         creationDate: .now,
         content: "Post body Content - Hello World!",
         upVoteCount: 10,
-        downVoteCount: 5
+        downVoteCount: 5,
+        responseCount: 11
     )
 }

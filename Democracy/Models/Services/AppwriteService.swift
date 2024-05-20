@@ -275,7 +275,7 @@ private extension AppwriteServiceDefault {
     }
     
     func postComment(_ comment: CommentCreationRequest) async throws -> Comment {
-        let jsonString = ""
+        let jsonString = try comment.toJSONString()
         
         let execution = try await functions.createExecution(
             functionId: "postComment",

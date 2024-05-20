@@ -18,6 +18,7 @@ struct Comment: Identifiable, Hashable {
     let content: String
     let upVoteCount: Int
     let downVoteCount: Int
+    let responseCount: Int
 }
 
 extension CommentDTO {
@@ -30,7 +31,8 @@ extension CommentDTO {
             creationDate: creationDate.date,
             content: content,
             upVoteCount: upVoteCount,
-            downVoteCount: downVoteCount
+            downVoteCount: downVoteCount,
+            responseCount: responseCount
         )
     }
 }

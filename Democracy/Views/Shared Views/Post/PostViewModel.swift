@@ -19,6 +19,7 @@ extension Comment {
         content = value
         upVoteCount = 10
         downVoteCount = 2
+        responseCount = 3
     }
 }
 
@@ -81,7 +82,7 @@ extension PostViewModel {
     func test() {
         Task {
             do {
-                try await commentService.submitComment(parentId: "", postId: "", content: "")
+                try await commentService.submitComment(parentId: "664a6a4a582f78b81b19", postId: "123", content: "rts")
             } catch {
                 print(error)
                 print()

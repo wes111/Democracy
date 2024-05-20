@@ -38,7 +38,6 @@
 		EE2B15B82B4449BE0046D5FC /* LinkTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B72B4449BE0046D5FC /* LinkTextFieldStyle.swift */; };
 		EE2B15BA2B4594540046D5FC /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B92B4594540046D5FC /* PostService.swift */; };
 		EE2B15BC2B499E1D0046D5FC /* PostRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15BB2B499E1D0046D5FC /* PostRepository.swift */; };
-		EE2B15C02B4B18650046D5FC /* Decodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15BF2B4B18650046D5FC /* Decodable+Extension.swift */; };
 		EE2B15C22B4B73B60046D5FC /* SuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15C12B4B73B60046D5FC /* SuccessView.swift */; };
 		EE2B15C72B4C3C7D0046D5FC /* PostSuccessViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15C62B4C3C7D0046D5FC /* PostSuccessViewModel.swift */; };
 		EE2B15C92B4C3EA30046D5FC /* CreateAccountCoordinator+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15C82B4C3EA30046D5FC /* CreateAccountCoordinator+Preview.swift */; };
@@ -380,7 +379,6 @@
 		EE2B15B72B4449BE0046D5FC /* LinkTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextFieldStyle.swift; sourceTree = "<group>"; };
 		EE2B15B92B4594540046D5FC /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		EE2B15BB2B499E1D0046D5FC /* PostRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRepository.swift; sourceTree = "<group>"; };
-		EE2B15BF2B4B18650046D5FC /* Decodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Extension.swift"; sourceTree = "<group>"; };
 		EE2B15C12B4B73B60046D5FC /* SuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessView.swift; sourceTree = "<group>"; };
 		EE2B15C62B4C3C7D0046D5FC /* PostSuccessViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSuccessViewModel.swift; sourceTree = "<group>"; };
 		EE2B15C82B4C3EA30046D5FC /* CreateAccountCoordinator+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateAccountCoordinator+Preview.swift"; sourceTree = "<group>"; };
@@ -2038,7 +2036,6 @@
 				EE5B938D2A03346C00B43381 /* Date+Extensions.swift */,
 				EE9760032AD07314003069CF /* NSPredicate+Extensions.swift */,
 				EE4987F12B32773300AB7522 /* String+Extensions.swift */,
-				EE2B15BF2B4B18650046D5FC /* Decodable+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2219,7 +2216,6 @@
 				EEB5AF912B017F0900310408 /* UserDefaultStorage.swift in Sources */,
 				EE7EC29E2B61C00400F62E90 /* SubmitPostCoordinatorDelegate.swift in Sources */,
 				EE4524992A56656B00C7A2DD /* AboutSection.swift in Sources */,
-				EE2B15C02B4B18650046D5FC /* Decodable+Extension.swift in Sources */,
 				EE412BAE2BB0E2C50007632B /* MembershipRepository.swift in Sources */,
 				EE2B15BC2B499E1D0046D5FC /* PostRepository.swift in Sources */,
 				EE2B15DA2B50C9340046D5FC /* TextInputRequirementsModifier.swift in Sources */,
