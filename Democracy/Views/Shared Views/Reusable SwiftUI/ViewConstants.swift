@@ -24,6 +24,11 @@ enum ViewConstants {
     static let innerBorder: CGFloat = 20
     static let smallInnerBorder: CGFloat = 10
     
+    // Text (field or editor) padding
+    static let textFieldPadding: CGFloat = 15
+    static let textEditorPadding: CGFloat = 17.5
+    static let smallTextInputPadding: CGFloat = 5
+    
     // Animation Constants
     static let animationLength = 0.3
     
@@ -33,8 +38,10 @@ enum ViewConstants {
     static let partialSheetTopPadding: CGFloat = 20
     static let thinBorderWidth: CGFloat = 2 // For smaller elements like tags.
     static let borderWidth: CGFloat = 3
-    static let smallButtonRadius: CGFloat = 35
     static let dimmingBrightness = -0.1
+    
+    // Buttons
+    static let smallButtonRadius: CGFloat = 35
 }
 
 // SF Symbols
@@ -66,8 +73,10 @@ enum SystemImage: String {
     case link                                                          // 􀉣
     case movieClapper = "movieclapper"                                 // 􀜤
     case newspaperFill = "newspaper.fill"                              // 􀥅
+    case paperPlane = "paperplane"                                     // 􀈟
     case person                                                        // 􀉩
     case personThree = "person.3"                                      // 􀝊
+    case plus                                                          // 􀅼
     case shuffle                                                       // 􀊝
     case starFill = "star.fill"                                        // 􀋃
     case squareAndArrowUp = "square.and.arrow.up"                      // 􀈂

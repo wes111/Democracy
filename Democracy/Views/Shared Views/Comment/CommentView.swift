@@ -95,9 +95,10 @@ private extension CommentView {
     }
     
     var headerTopLine: some View {
-        HStack {
+        HStack(spacing: ViewConstants.elementSpacing) {
             Text(viewModel.username)
             Spacer()
+            replyButton
             Image(systemName: SystemImage.ellipsis.rawValue)
         }
         .foregroundStyle(Color.secondaryText)
@@ -127,7 +128,6 @@ private extension CommentView {
     var footer: some View {
         HStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
             Spacer()
-            replyButton
             upVoteButton
             downVoteButton
         }

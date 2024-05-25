@@ -32,6 +32,14 @@ struct PostView: View {
 // MARK: - Subviews
 private extension PostView {
     var content: some View {
+        ZStack(alignment: .bottomLeading) {
+            commentScrollView
+            AddCommentView(viewModel: viewModel.addCommentViewModel)
+        }
+        .dismissKeyboardOnDrag()
+    }
+    
+    var commentScrollView: some View {
         ScrollView(.vertical) {
             // TODO: Ideally ScrollView would be a List...
             OutlineGroup(viewModel.testComments, id: \.value, children: \.children) { commentNode in
@@ -42,13 +50,7 @@ private extension PostView {
             .disclosureGroupStyle(CommentDisclosureGroupStyle())
         }
         .clipped()
-    }
-    
-    func comment(_ node: Node<Comment>) -> some View {
-        Text(node.value.content)
-            .foregroundStyle(Color.secondaryText)
-            .font(.caption)
-            .frame(maxWidth: .infinity, alignment: .leading)
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 
@@ -56,5 +58,74 @@ private extension PostView {
 #Preview {
     NavigationStack {
         PostView(viewModel: PostViewModel.preview)
+    }
+}
+
+@MainActor @Observable
+final class AddCommentViewModel {
+    var commentText: String = ""
+    let replyText: String
+    
+    init(replyText: String) {
+        self.replyText = replyText
+    }
+}
+
+@MainActor
+struct AddCommentView: View {
+    @State private var viewModel: AddCommentViewModel
+    @FocusState private var isAddCommentFieldFocused: Bool?
+    
+    init(viewModel: AddCommentViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    var body: some View {
+        content
+            .onAppear {
+                isAddCommentFieldFocused = true
+            }
+    }
+    
+    var content: some View {
+        VStack {
+            if let isAddCommentFieldFocused, isAddCommentFieldFocused {
+                HStack {
+                    Text(viewModel.replyText)
+                    Text("Cancel Button")
+                }
+                
+            }
+            HStack {
+                textEditor
+                if !viewModel.commentText.isEmpty {
+                    Image(systemName: SystemImage.paperPlane.rawValue)
+                }
+            }
+        }
+        .padding(ViewConstants.screenPadding)
+        .background(Color.primaryBackground)
+    }
+    
+    var textEditor: some View {
+        ZStack(alignment: .topLeading) {
+            if viewModel.commentText.isEmpty {
+                TextEditor(text: .constant("Add your comment..."))
+                    .aboveKeyboardStyle(
+                        field: true,
+                        text: $viewModel.commentText,
+                        focusedField: $isAddCommentFieldFocused
+                    )
+                    //.disabled(!viewModel.commentText.isEmpty)
+            }
+            
+            TextEditor(text: $viewModel.commentText)
+                .aboveKeyboardStyle(
+                    field: true,
+                    text: $viewModel.commentText,
+                    focusedField: $isAddCommentFieldFocused
+                )
+                .opacity(viewModel.commentText.isEmpty ? 0.0 : 1)
+        }
     }
 }

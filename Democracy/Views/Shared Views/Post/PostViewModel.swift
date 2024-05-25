@@ -75,6 +75,10 @@ extension PostViewModel {
     var trailingContent: [TopBarContent] {
         [.menu([])]
     }
+    
+    var addCommentViewModel: AddCommentViewModel {
+        .init(replyText: "Replying to Post") // TODO: e.g. Replying to user..
+    }
 }
 
 // MARK: - Methods

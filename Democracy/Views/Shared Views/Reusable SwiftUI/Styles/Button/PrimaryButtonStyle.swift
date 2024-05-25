@@ -43,6 +43,26 @@ struct SeconaryButtonStyle: ButtonStyle {
     }
 }
 
+struct SmallImageButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) private var isEnabled: Bool
+    
+    func makeBody(configuration: Configuration) -> some View {
+        Circle()
+            .fill(Color.otherRed)
+            .frame(height: ViewConstants.smallButtonRadius)
+            .overlay(
+                configuration.label
+                    .fontWeight(.bold)
+                    .foregroundStyle(Color.primaryText)
+            )
+            .foregroundStyle(Color.primaryText)
+            .fontWeight(.bold)
+            .contentShape(Circle())
+            .opacity(configuration.isPressed || !isEnabled ? 0.5 : 1.0)
+    }
+}
+
+
 struct PrimaryButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled: Bool
     
@@ -63,14 +83,13 @@ struct PrimaryButtonStyle: ButtonStyle {
     ZStack {
         Color.primaryBackground
         
-        VStack {
+        VStack(spacing: 25) {
             Button {
                 print()
             } label: {
                 Text("Submit")
             }
             .buttonStyle(PrimaryButtonStyle())
-            .padding()
             
             Button {
                 print()
@@ -78,7 +97,6 @@ struct PrimaryButtonStyle: ButtonStyle {
                 Text("Join")
             }
             .buttonStyle(SmallSecondaryButtonStyle())
-            .padding()
             
             Button {
                 print()
@@ -86,7 +104,11 @@ struct PrimaryButtonStyle: ButtonStyle {
                 Text("Submit")
             }
             .buttonStyle(SeconaryButtonStyle())
-            .padding()
+            
+            Button(action: {}) {
+                Image(systemName: SystemImage.plus.rawValue)
+            }
+            .buttonStyle(SmallImageButtonStyle())
         }
     }
     .ignoresSafeArea()

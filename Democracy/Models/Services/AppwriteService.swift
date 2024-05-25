@@ -75,7 +75,7 @@ protocol AppwriteService: Sendable {
 }
 
 final class AppwriteServiceDefault: AppwriteService {
-    private let projectEndpoint = "http://192.168.86.209/v1"
+    private let projectEndpoint = "http://192.168.86.236/v1"
     private let projectID = "65466f560e77e46a903e"
     
     private lazy var client: Client = {
@@ -266,9 +266,9 @@ private extension AppwriteServiceDefault {
         ).toJSONString()
         
         let execution = try await functions.createExecution(
-            functionId: "UniqueAccountFieldIsAvailable",
+            functionId: AppwriteFunction.uniqueAccountFieldIsAvailable.id,
             body: jsonString,
-            method: "GET"
+            method: AppwriteMethod.get.name
         )
         let isAvailable: UniqueAccountFieldAvailable = try execution.responseBody.decode()
         return isAvailable.isAvailable
@@ -278,10 +278,34 @@ private extension AppwriteServiceDefault {
         let jsonString = try comment.toJSONString()
         
         let execution = try await functions.createExecution(
-            functionId: "postComment",
+            functionId: AppwriteFunction.postComment.id,
             body: jsonString,
-            method: "POST"
+            method: AppwriteMethod.post.name
         )
-        return .preview
+        let response: CommentDTO = try execution.responseBody.decode()
+        return response.toComment()
+    }
+}
+
+enum AppwriteMethod: String {
+    case get
+    case post
+    
+    var name: String {
+        switch self {
+        case .get:
+            "GET"
+        case .post:
+            "POST"
+        }
+    }
+}
+
+enum AppwriteFunction: String {
+    case postComment
+    case uniqueAccountFieldIsAvailable = "UniqueAccountFieldIsAvailable"
+    
+    var id: String {
+        self.rawValue
     }
 }
