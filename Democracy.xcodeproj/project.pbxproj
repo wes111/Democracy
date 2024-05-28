@@ -32,6 +32,7 @@
 		EE2477F32BF0617500661A0A /* CommentViewModel +Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477F22BF0617500661A0A /* CommentViewModel +Preview.swift */; };
 		EE2477F52BF10B3200661A0A /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477F42BF10B3200661A0A /* CommentService.swift */; };
 		EE2477F72BF10E8C00661A0A /* CommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477F62BF10E8C00661A0A /* CommentRepository.swift */; };
+		EE2477F92C069A3B00661A0A /* StandardCommentStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477F82C069A3B00661A0A /* StandardCommentStyle.swift */; };
 		EE28E35D2B24FACC00EC4E6F /* SharedResourcesClientAndServer in Frameworks */ = {isa = PBXBuildFile; productRef = EE28E35C2B24FACC00EC4E6F /* SharedResourcesClientAndServer */; };
 		EE2B15B42B43592E0046D5FC /* GenericError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B32B43592E0046D5FC /* GenericError.swift */; };
 		EE2B15B62B4443CC0046D5FC /* LinkRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */; };
@@ -374,6 +375,7 @@
 		EE2477F22BF0617500661A0A /* CommentViewModel +Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommentViewModel +Preview.swift"; sourceTree = "<group>"; };
 		EE2477F42BF10B3200661A0A /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		EE2477F62BF10E8C00661A0A /* CommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepository.swift; sourceTree = "<group>"; };
+		EE2477F82C069A3B00661A0A /* StandardCommentStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardCommentStyle.swift; sourceTree = "<group>"; };
 		EE2B15B32B43592E0046D5FC /* GenericError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericError.swift; sourceTree = "<group>"; };
 		EE2B15B52B4443CC0046D5FC /* LinkRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkRequirement.swift; sourceTree = "<group>"; };
 		EE2B15B72B4449BE0046D5FC /* LinkTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextFieldStyle.swift; sourceTree = "<group>"; };
@@ -1226,6 +1228,7 @@
 			isa = PBXGroup;
 			children = (
 				EE4987EB2B30861000AB7522 /* DefaultTextEditorStyle.swift */,
+				EE2477F82C069A3B00661A0A /* StandardCommentStyle.swift */,
 			);
 			path = TextEditor;
 			sourceTree = "<group>";
@@ -2474,6 +2477,7 @@
 				EEC61B5F2B40F43400F73509 /* PostCategoryView.swift in Sources */,
 				EE412B5D2B8EC10C0007632B /* LinkField.swift in Sources */,
 				EE11729F2A71C3C700E529AF /* CommunityCategoryViewModel.swift in Sources */,
+				EE2477F92C069A3B00661A0A /* StandardCommentStyle.swift in Sources */,
 				EE9760202AD76800003069CF /* RootPath.swift in Sources */,
 				EE4DB8962AC89F6800A6DC90 /* CreateAccountCoordinator.swift in Sources */,
 				EE70555B2B138FB600E40A89 /* AccountPasswordViewModel.swift in Sources */,

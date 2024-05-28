@@ -94,8 +94,8 @@ struct AddCommentView: View {
                     Text(viewModel.replyText)
                     Text("Cancel Button")
                 }
-                
             }
+            
             HStack {
                 textEditor
                 if !viewModel.commentText.isEmpty {
@@ -108,24 +108,12 @@ struct AddCommentView: View {
     }
     
     var textEditor: some View {
-        ZStack(alignment: .topLeading) {
-            if viewModel.commentText.isEmpty {
-                TextEditor(text: .constant("Add your comment..."))
-                    .aboveKeyboardStyle(
-                        field: true,
-                        text: $viewModel.commentText,
-                        focusedField: $isAddCommentFieldFocused
-                    )
-                    //.disabled(!viewModel.commentText.isEmpty)
-            }
-            
-            TextEditor(text: $viewModel.commentText)
-                .aboveKeyboardStyle(
-                    field: true,
-                    text: $viewModel.commentText,
-                    focusedField: $isAddCommentFieldFocused
-                )
-                .opacity(viewModel.commentText.isEmpty ? 0.0 : 1)
-        }
+        TextEditor(text: $viewModel.commentText)
+            .standarCommentStyle(
+                field: true,
+                text: $viewModel.commentText,
+                focusedField: $isAddCommentFieldFocused,
+                placeHolder: "Add your comment..."
+            )
     }
 }

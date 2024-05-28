@@ -35,25 +35,3 @@ extension TextEditor {
         }
     }
 }
-
-extension TextEditor {
-    
-    func aboveKeyboardStyle<Field: Hashable>(
-        field: Field,
-        text: Binding<String>,
-        focusedField: FocusState<Field?>.Binding
-    ) -> some View {
-        self
-            .standardTextInputAppearance(
-                text: text,
-                focusedField: focusedField,
-                field: field,
-                shouldTrimWhileTyping: false,
-                isTextField: .smallTextInput
-            )
-            .scrollContentBackground(.hidden)
-            .cornerRadius(ViewConstants.cornerRadius)
-            .frame(minHeight: 50, maxHeight: 200)
-            .fixedSize(horizontal: false, vertical: true)
-    }
-}
