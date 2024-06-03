@@ -9,11 +9,8 @@ import SwiftUI
 
 @MainActor @Observable
 final class CommentViewModel {
-    private let comment: Comment
-    
-    func didTapReplyButton() {
-        
-    }
+    let comment: Comment
+    let didTapReply: (Comment) -> Void
     
     func didTapUpVoteButton() {
         
@@ -46,10 +43,11 @@ final class CommentViewModel {
     var upVoteCount: Int
     var downVoteCount: Int
     
-    init(comment: Comment) {
+    init(comment: Comment, didTapReply: @escaping (Comment) -> Void) {
         self.comment = comment
         upVoteCount = comment.upVoteCount
         downVoteCount = comment.downVoteCount
+        self.didTapReply = didTapReply
     }
 }
 
@@ -136,7 +134,9 @@ private extension CommentView {
     }
     
     var replyButton: some View {
-        Button(action: viewModel.didTapReplyButton) {
+        Button {
+            viewModel.didTapReply(viewModel.comment)
+        } label: {
             Label {
                 Text("Reply")
             } icon: {

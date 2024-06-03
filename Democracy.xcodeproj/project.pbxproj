@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE0696B32C095B9F00DABDDF /* AddCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0696B22C095B9F00DABDDF /* AddCommentView.swift */; };
 		EE0CC2012A9ED9C8003A10C3 /* VoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2002A9ED9C8003A10C3 /* VoteViewModel.swift */; };
 		EE0CC2032A9EDA00003A10C3 /* VoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2022A9EDA00003A10C3 /* VoteView.swift */; };
 		EE0CC2052AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2042AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift */; };
@@ -350,6 +351,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE0696B22C095B9F00DABDDF /* AddCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentView.swift; sourceTree = "<group>"; };
 		EE0CC2002A9ED9C8003A10C3 /* VoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewModel.swift; sourceTree = "<group>"; };
 		EE0CC2022A9EDA00003A10C3 /* VoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteView.swift; sourceTree = "<group>"; };
 		EE0CC2042AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CandidateListItemViewModel+Preview.swift"; sourceTree = "<group>"; };
@@ -1968,7 +1970,6 @@
 		EED4A52729B8185600DDCCDA /* Shared Views */ = {
 			isa = PBXGroup;
 			children = (
-				EE2477ED2BF00CDE00661A0A /* Comment */,
 				EE80D95429E0B6B90000F8EF /* Reusable SwiftUI */,
 				EE80D90629C926490000F8EF /* Candidates (Plural) */,
 				EED4A52829B8186F00DDCCDA /* Post */,
@@ -1981,7 +1982,9 @@
 			children = (
 				EED4A52B29B8190700DDCCDA /* PostView.swift */,
 				EED4A52D29B81A2E00DDCCDA /* PostViewModel.swift */,
+				EE2477ED2BF00CDE00661A0A /* Comment */,
 				EED4A53829B9623C00DDCCDA /* PostCard */,
+				EE0696B22C095B9F00DABDDF /* AddCommentView.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -2516,6 +2519,7 @@
 				EED4A53C29B965AF00DDCCDA /* PostCardViewModel.swift in Sources */,
 				EE4987DB2B2F917500AB7522 /* PostBodyView.swift in Sources */,
 				EE36FF922B1E16CB009E8F86 /* AccountPasswordView.swift in Sources */,
+				EE0696B32C095B9F00DABDDF /* AddCommentView.swift in Sources */,
 				EE2477E52BCC81D800661A0A /* PlainListView.swift in Sources */,
 				EE7EC26E2B614BF800F62E90 /* CommunityResourcesViewModel.swift in Sources */,
 				EE80D93329D286180000F8EF /* CreateCandidateView.swift in Sources */,

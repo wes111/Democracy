@@ -7,6 +7,25 @@
 
 import SwiftUI
 
+struct ExtraSmallSecondaryButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) private var isEnabled: Bool
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundStyle(Color.primaryText)
+            .font(.caption)
+            .fontWeight(.bold)
+            .padding(.vertical, ViewConstants.extraSmallInnerBorder)
+            .padding(.horizontal, ViewConstants.smallInnerBorder)
+            .overlay(
+                Capsule()
+                    .stroke(Color.tertiaryText, style: StrokeStyle(lineWidth: 1))
+             )
+            .contentShape(Capsule())
+            .opacity(configuration.isPressed || !isEnabled ? 0.5 : 1.0)
+    }
+}
+
 struct SmallSecondaryButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled: Bool
     
@@ -62,7 +81,6 @@ struct SmallImageButtonStyle: ButtonStyle {
     }
 }
 
-
 struct PrimaryButtonStyle: ButtonStyle {
     @Environment(\.isEnabled) private var isEnabled: Bool
     
@@ -97,6 +115,13 @@ struct PrimaryButtonStyle: ButtonStyle {
                 Text("Join")
             }
             .buttonStyle(SmallSecondaryButtonStyle())
+            
+            Button {
+                print()
+            } label: {
+                Text("Join")
+            }
+            .buttonStyle(ExtraSmallSecondaryButtonStyle())
             
             Button {
                 print()

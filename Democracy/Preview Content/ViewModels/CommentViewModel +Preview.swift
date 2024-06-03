@@ -8,5 +8,5 @@
 import Foundation
 
 extension CommentViewModel {
-    static let preview = CommentViewModel(comment: .preview)
+    static let preview = CommentViewModel(comment: .preview, didTapReply: {_ in})
 }

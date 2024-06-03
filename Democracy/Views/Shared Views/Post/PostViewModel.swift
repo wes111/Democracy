@@ -30,6 +30,10 @@ protocol PostCoordinatorDelegate: AnyObject {
 @MainActor @Observable
 final class PostViewModel {
 
+    var isFocused: Bool = false
+    var replyingToComment: Comment?
+    var commentText: String = ""
+    
     private weak var coordinator: PostCoordinatorDelegate?
     @ObservationIgnored @Injected(\.commentService) private var commentService
     
@@ -59,6 +63,23 @@ final class PostViewModel {
         self.coordinator = coordinator
         self.post = post
     }
+    
+    var replyText: String {
+        if let replyingToComment {
+            "Replying to \(replyingToComment.userId)"
+        } else {
+            "Adding a top-level comment"
+        }
+    }
+    
+    func cancelAddingComment() {
+        replyingToComment = nil
+    }
+    
+    func submitComment() {
+        // use the service...
+        replyingToComment = nil
+    }
 }
 
 // MARK: - Computed Properties
@@ -75,10 +96,6 @@ extension PostViewModel {
     var trailingContent: [TopBarContent] {
         [.menu([])]
     }
-    
-    var addCommentViewModel: AddCommentViewModel {
-        .init(replyText: "Replying to Post") // TODO: e.g. Replying to user..
-    }
 }
 
 // MARK: - Methods
@@ -92,6 +109,10 @@ extension PostViewModel {
                 print()
             }
         }
+    }
+    
+    func onTapCommentReply(comment: Comment) {
+        replyingToComment = comment
     }
 }
 

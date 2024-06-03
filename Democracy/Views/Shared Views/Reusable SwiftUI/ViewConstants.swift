@@ -21,8 +21,9 @@ enum ViewConstants {
     static let sectionIndent: CGFloat = 20
     
     // Padding between element and element's border
-    static let innerBorder: CGFloat = 20
-    static let smallInnerBorder: CGFloat = 10
+    static let innerBorder: CGFloat = 16
+    static let smallInnerBorder: CGFloat = 8
+    static let extraSmallInnerBorder: CGFloat = 4
     
     // Text (field or editor) padding
     static let textFieldPadding: CGFloat = 15
