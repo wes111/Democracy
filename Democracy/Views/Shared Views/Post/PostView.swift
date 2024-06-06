@@ -23,9 +23,7 @@ struct PostView: View {
                 centerContent: viewModel.centerContent,
                 trailingContent: viewModel.trailingContent
             )
-            .onAppear {
-                viewModel.test()
-            }
+            .alertableModifier(alertModel: $viewModel.alertModel)
             .onChange(of: viewModel.replyingToComment) { _, newValue in
                 isAddCommentFieldFocused = newValue != nil
             }
@@ -33,6 +31,9 @@ struct PostView: View {
                 if !isFocused {
                     viewModel.replyingToComment = nil
                 }
+            }
+            .task {
+                await viewModel.fetchInitialPosts()
             }
     }
 }
@@ -51,18 +52,34 @@ private extension PostView {
     var commentScrollView: some View {
         ScrollView(.vertical) {
             // TODO: Ideally ScrollView would be a List...
-            OutlineGroup(viewModel.testComments, id: \.value, children: \.children) { commentNode in
-                CommentView(viewModel: .init(
-                    comment: commentNode.value,
-                    didTapReply: viewModel.onTapCommentReply
-                ))
-                .padding(.horizontal, ViewConstants.screenPadding)
-                .padding(.vertical, ViewConstants.screenPadding / 2)
+            OutlineGroup(viewModel.comments, id: \.value, children: \.children) { commentNode in
+                let commentNode = commentNode as! CommentNode
+                let viewModel = CommentViewModel(comment: commentNode)
+                CommentView(viewModel: viewModel)
+                    .padding(.horizontal, ViewConstants.screenPadding)
+                    .padding(.vertical, ViewConstants.screenPadding / 2)
+                    .onAppear {
+                        viewModel.delegate = self.viewModel
+                    }
+                
+                if !commentNode.hasLoadedAllReplies { // TODO: Work-in-progress...
+                    loadRepliesButton(for: commentNode)
+                }
             }
             .disclosureGroupStyle(CommentDisclosureGroupStyle())
+            .animation(.easeInOut)
         }
         .clipped()
         .ignoresSafeArea(.keyboard, edges: .bottom)
+    }
+    
+    func loadRepliesButton(for comment: CommentNode) -> some View {
+        AsyncButton(
+            action: { await viewModel.onTapLoadReplies(comment: comment)},
+            label: { Text("Load Replies") },
+            showProgressView: .constant(false)
+        )
+        .buttonStyle(PrimaryButtonStyle())
     }
 }
 

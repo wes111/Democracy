@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct CommentDisclosureGroupStyle: DisclosureGroupStyle {
+    
     func makeBody(configuration: Configuration) -> some View {
         ZStack(alignment: .bottomLeading) {
             configuration.label
-            viewRepliesButton(configuration)
-                .padding(.leading, ViewConstants.screenPadding)
-                .padding(.vertical, ViewConstants.screenPadding / 2)
+            LoadRepliesButton(
+                isArrowDown: !configuration.isExpanded,
+                title: "\(configuration.isExpanded ? "Hide" : "View") Replies",
+                action: { configuration.isExpanded.toggle() }
+            )
+            .padding(.leading, ViewConstants.screenPadding)
+            .padding(.vertical, ViewConstants.screenPadding / 2)
+        }
+        .onAppear {
+            configuration.isExpanded = true
         }
         
         if configuration.isExpanded {
@@ -33,23 +41,28 @@ struct CommentDisclosureGroupStyle: DisclosureGroupStyle {
             }
         }
     }
+}
+
+struct LoadRepliesButton: View { // TODO: Move to own file...
     
-    func viewRepliesButton(_ configuration: Configuration) -> some View {
-        Button {
-            withAnimation {
-                configuration.isExpanded.toggle()
-            }
-        } label: {
-            Label {
-                Text("\(configuration.isExpanded ? "Hide" : "View") Replies")
-            } icon: {
-                Image(systemName: configuration.isExpanded ?
-                      SystemImage.chevronUp.rawValue : SystemImage.chevronDown.rawValue
-                )
-            }
-            .labelStyle(ReversedLabelStyle())
-            .font(.footnote)
-        }
+    var isArrowDown: Bool
+    var title: String
+    let action: () async -> Void
+    
+    var body: some View {
+        AsyncButton(
+            action: action,
+            label: {
+                Label {
+                    Text(title)
+                } icon: {
+                    Image(systemName: isArrowDown ? SystemImage.chevronDown.rawValue : SystemImage.chevronUp.rawValue)
+                }
+                .labelStyle(ReversedLabelStyle())
+                .font(.footnote)
+            },
+            showProgressView: .constant(false)
+        )
         .foregroundStyle(Color.white)
     }
 }

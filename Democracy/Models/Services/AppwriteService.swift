@@ -56,7 +56,7 @@ protocol AppwriteService: Sendable {
     func isCommunityNameAvailable(_ name: String) async throws -> Bool
     func fetchAllCommunities() async throws -> [Community]
     func fetchUserMemberships(userId: String) async throws -> [Membership]
-    func fetchTopLevelComments(for post: Post) async throws -> [Comment]
+    func fetchComments(request: CommentFetchRequest) async throws -> [Comment]
     
     func fetchPostsForCommunity(
         communityId: String,
@@ -75,7 +75,7 @@ protocol AppwriteService: Sendable {
 }
 
 final class AppwriteServiceDefault: AppwriteService {
-    private let projectEndpoint = "http://192.168.86.236/v1"
+    private let projectEndpoint = "http://192.168.86.209/v1"
     private let projectID = "65466f560e77e46a903e"
     
     private lazy var client: Client = {
@@ -222,6 +222,35 @@ extension AppwriteServiceDefault {
         return try documentList.documents.map { try MembershipDTO($0.data.toDictionary()).toMembership() }
     }
     
+    func fetchComments(request: CommentFetchRequest) async throws -> [Comment] {
+        var queries = [Query.limit(FetchLimit.comment.rawValue)]
+        
+        switch request {
+        case .initialRootComments(let postId):
+            queries.append(Query.equal("postId", value: postId))
+            queries.append(Query.isNull("parentId"))
+            
+        case .rootComments(let postId, let afterCommentId):
+            queries.append(Query.equal("postId", value: postId))
+            queries.append(Query.cursorAfter(afterCommentId))
+            queries.append(Query.isNull("parentId"))
+            
+        case .initialChildComments(let parentId):
+            queries.append(Query.equal("parentId", value: parentId))
+        
+        case .childComments(let parentId, let afterCommentId):
+            queries.append(Query.equal("parentId", value: parentId))
+            queries.append(Query.cursorAfter(afterCommentId))
+        }
+        
+        let documentList = try await databases.listDocuments(
+            databaseId: Database.id,
+            collectionId: Collection.comment.id,
+            queries: queries
+        )
+        return try documentList.documents.map { try CommentDTO($0.data.toDictionary()).toComment() }
+    }
+    
     func fetchPostsForCommunity(communityId: String, oldestDate: Date, option: CursorPaginationOption) async throws -> [Post] {
         
         let cursorQuery: String? = switch option {
@@ -250,10 +279,6 @@ extension AppwriteServiceDefault {
     
     func submitComment(_ comment: CommentCreationRequest) async throws -> Comment {
         try await postComment(comment)
-    }
-    
-    func fetchTopLevelComments(for post: Post) async throws -> [Comment] {
-        return []
     }
 }
 
@@ -287,6 +312,10 @@ private extension AppwriteServiceDefault {
     }
 }
 
+enum FetchLimit: Int {
+    case comment = 5
+}
+
 enum AppwriteMethod: String {
     case get
     case post
@@ -308,4 +337,11 @@ enum AppwriteFunction: String {
     var id: String {
         self.rawValue
     }
+}
+
+enum CommentFetchRequest {
+    case initialRootComments(postId: String)
+    case rootComments(postId: String, afterCommentId: String)
+    case initialChildComments(parentId: String)
+    case childComments(parentId: String, afterCommentId: String)
 }

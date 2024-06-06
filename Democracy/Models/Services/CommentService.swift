@@ -11,7 +11,7 @@ import SharedResourcesClientAndServer
 
 protocol CommentService: Sendable {
     func submitComment(parentId: String?, postId: String, content: String) async throws -> Comment
-    func fetchTopLevelComments(for post: Post) async throws -> [Comment]
+    func fetchComments(request: CommentFetchRequest) async throws -> [Comment]
 }
 
 final class CommentServiceDefault: CommentService {
@@ -27,7 +27,7 @@ final class CommentServiceDefault: CommentService {
         ))
     }
     
-    func fetchTopLevelComments(for post: Post) async throws -> [Comment] {
-        try await commentRepository.fetchTopLevelComments(for: post)
+    func fetchComments(request: CommentFetchRequest) async throws -> [Comment] {
+        try await commentRepository.fetchComments(request: request)
     }
 }

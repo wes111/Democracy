@@ -7,10 +7,12 @@
 
 import Foundation
 
+@Observable
 class Node<Value> {
     var value: Value
     var children: [Node]? // This needs to be optional for SwiftUI's `OutlineGroup`.
     weak var parent: Node?
+    var isEnd: Bool = false // Indicates if this is the last fetchable node of its generation.
     
     init(value: Value) {
         self.value = value
@@ -74,9 +76,17 @@ extension Node: Equatable where Value: Equatable {
     }
 }
 
-extension Node: Hashable where Value: Hashable {
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(value)
-        hasher.combine(children)
+@Observable
+final class CommentNode: Node<Comment> {
+    var hasLoadedInitialReplies: Bool {
+        value.responseCount == 0 || !(children?.isEmpty ?? true)
+    }
+    
+    var hasLoadedAllReplies: Bool {
+        if let lastChild = children?.last {
+            lastChild.isEnd
+        } else {
+            hasLoadedInitialReplies
+        }
     }
 }

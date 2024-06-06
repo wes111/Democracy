@@ -7,10 +7,20 @@
 
 import SwiftUI
 
+@MainActor
+protocol CommentViewModelDelegate: AnyObject {
+    func onTapLoadReplies(comment: CommentNode) async
+    func onTapCommentReply(comment: CommentNode)
+}
+
 @MainActor @Observable
 final class CommentViewModel {
-    let comment: Comment
-    let didTapReply: (Comment) -> Void
+    let commentNode: CommentNode
+    @ObservationIgnored weak var delegate: CommentViewModelDelegate?
+    
+    var comment: Comment {
+        commentNode.value
+    }
     
     func didTapUpVoteButton() {
         
@@ -36,18 +46,24 @@ final class CommentViewModel {
         "New York City"
     }
     
+    var loadRepliesTitle: String {
+        "Load \(commentNode.value.responseCount)+ Replies"
+    }
+    
     var date: String {
         comment.creationDate.getFormattedDate(format: .ddMMMyyyy)
     }
     
-    var upVoteCount: Int
-    var downVoteCount: Int
+    var upVoteCount: Int {
+        comment.upVoteCount
+    }
     
-    init(comment: Comment, didTapReply: @escaping (Comment) -> Void) {
-        self.comment = comment
-        upVoteCount = comment.upVoteCount
-        downVoteCount = comment.downVoteCount
-        self.didTapReply = didTapReply
+    var downVoteCount: Int {
+        comment.downVoteCount
+    }
+    
+    init(comment: CommentNode) {
+        self.commentNode = comment
     }
 }
 
@@ -76,6 +92,7 @@ private extension CommentView {
             .foregroundStyle(Color.secondaryText)
             .font(.footnote)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .fixedSize(horizontal: false, vertical: true)
     }
 }
 
@@ -125,6 +142,7 @@ private extension CommentView {
     
     var footer: some View {
         HStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
+            // loadRepliesButton
             Spacer()
             upVoteButton
             downVoteButton
@@ -133,9 +151,16 @@ private extension CommentView {
         .foregroundStyle(Color.secondaryText)
     }
     
+    var loadRepliesButton: some View {
+        LoadRepliesButton(isArrowDown: true, title: viewModel.loadRepliesTitle) {
+            await viewModel.delegate?.onTapLoadReplies(comment: viewModel.commentNode)
+        }
+        .opacity(viewModel.commentNode.hasLoadedInitialReplies ? 0.0 : 1.0)
+    }
+    
     var replyButton: some View {
         Button {
-            viewModel.didTapReply(viewModel.comment)
+            viewModel.delegate?.onTapCommentReply(comment: viewModel.commentNode)
         } label: {
             Label {
                 Text("Reply")
