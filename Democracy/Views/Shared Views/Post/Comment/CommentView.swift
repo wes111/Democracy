@@ -9,7 +9,7 @@ import SwiftUI
 
 @MainActor
 protocol CommentViewModelDelegate: AnyObject {
-    func onTapLoadReplies(comment: CommentNode) async
+    func onTapLoadReplies(comment: CommentNode?) async
     func onTapCommentReply(comment: CommentNode)
 }
 

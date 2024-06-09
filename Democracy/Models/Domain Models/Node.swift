@@ -12,7 +12,7 @@ class Node<Value> {
     var value: Value
     var children: [Node]? // This needs to be optional for SwiftUI's `OutlineGroup`.
     weak var parent: Node?
-    var isEnd: Bool = false // Indicates if this is the last fetchable node of its generation.
+    //var isEnd: Bool = false // Indicates if this is the last fetchable node of its generation.
     
     init(value: Value) {
         self.value = value
@@ -21,6 +21,11 @@ class Node<Value> {
     init(value: Value, children: [Node]) {
         self.value = value
         self.children = children
+    }
+    
+    init(value: Value, parent: Node?) {
+        self.value = value
+        self.parent = parent
     }
 }
 
@@ -78,15 +83,33 @@ extension Node: Equatable where Value: Equatable {
 
 @Observable
 final class CommentNode: Node<Comment> {
+    
+    var replies: [CommentNode]? {
+        children as! [CommentNode]?
+    }
+    
+    var parentComment: CommentNode? {
+        parent as! CommentNode?
+    }
+    
     var hasLoadedInitialReplies: Bool {
         value.responseCount == 0 || !(children?.isEmpty ?? true)
     }
     
     var hasLoadedAllReplies: Bool {
-        if let lastChild = children?.last {
-            lastChild.isEnd
+        if let lastChild = replies?.last {
+            lastChild.isLoadMoreNode
         } else {
-            hasLoadedInitialReplies
+            false
         }
+    }
+    
+    static func loadMoreNode(parent: CommentNode?) -> CommentNode {
+        let comment = Comment(id: "end", parentId: "", postId: "", userId: "", creationDate: .now, content: "", upVoteCount: 0, downVoteCount: 0, responseCount: 0)
+        return CommentNode(value: comment, parent: parent)
+    }
+    
+    var isLoadMoreNode: Bool {
+        value.id == "end"
     }
 }

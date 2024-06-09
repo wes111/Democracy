@@ -313,7 +313,7 @@ private extension AppwriteServiceDefault {
 }
 
 enum FetchLimit: Int {
-    case comment = 5
+    case comment = 2
 }
 
 enum AppwriteMethod: String {

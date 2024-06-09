@@ -33,7 +33,7 @@ struct PostView: View {
                 }
             }
             .task {
-                await viewModel.fetchInitialPosts()
+                await viewModel.fetchInitialComments()
             }
     }
 }
@@ -52,28 +52,30 @@ private extension PostView {
     var commentScrollView: some View {
         ScrollView(.vertical) {
             // TODO: Ideally ScrollView would be a List...
-            OutlineGroup(viewModel.comments, id: \.value, children: \.children) { commentNode in
-                let commentNode = commentNode as! CommentNode
-                let viewModel = CommentViewModel(comment: commentNode)
-                CommentView(viewModel: viewModel)
-                    .padding(.horizontal, ViewConstants.screenPadding)
-                    .padding(.vertical, ViewConstants.screenPadding / 2)
-                    .onAppear {
-                        viewModel.delegate = self.viewModel
-                    }
+            OutlineGroup(viewModel.comments, id: \.value, children: \.replies) { commentNode in
                 
-                if !commentNode.hasLoadedAllReplies { // TODO: Work-in-progress...
-                    loadRepliesButton(for: commentNode)
+                if commentNode.isLoadMoreNode {
+                    loadRepliesButton(for: commentNode.parentComment)
+                } else {
+                    let viewModel = CommentViewModel(comment: commentNode)
+                    CommentView(viewModel: viewModel)
+                        .padding(.horizontal, ViewConstants.screenPadding)
+                        .padding(.vertical, ViewConstants.screenPadding / 2)
+                        .onAppear {
+                            viewModel.delegate = self.viewModel
+                        }
                 }
             }
             .disclosureGroupStyle(CommentDisclosureGroupStyle())
             .animation(.easeInOut)
+            
+            AddCommentView(viewModel: viewModel, focusState: $isAddCommentFieldFocused).hidden()
         }
         .clipped()
         .ignoresSafeArea(.keyboard, edges: .bottom)
     }
     
-    func loadRepliesButton(for comment: CommentNode) -> some View {
+    func loadRepliesButton(for comment: CommentNode?) -> some View {
         AsyncButton(
             action: { await viewModel.onTapLoadReplies(comment: comment)},
             label: { Text("Load Replies") },
