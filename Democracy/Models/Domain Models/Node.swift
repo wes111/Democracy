@@ -12,7 +12,6 @@ class Node<Value> {
     var value: Value
     var children: [Node]? // This needs to be optional for SwiftUI's `OutlineGroup`.
     weak var parent: Node?
-    //var isEnd: Bool = false // Indicates if this is the last fetchable node of its generation.
     
     init(value: Value) {
         self.value = value
@@ -49,7 +48,6 @@ extension Node {
             children = []
         }
         children?.append(child)
-
         child.parent = self
     }
     
@@ -90,18 +88,6 @@ final class CommentNode: Node<Comment> {
     
     var parentComment: CommentNode? {
         parent as! CommentNode?
-    }
-    
-    var hasLoadedInitialReplies: Bool {
-        value.responseCount == 0 || !(children?.isEmpty ?? true)
-    }
-    
-    var hasLoadedAllReplies: Bool {
-        if let lastChild = replies?.last {
-            lastChild.isLoadMoreNode
-        } else {
-            false
-        }
     }
     
     static func loadMoreNode(parent: CommentNode?) -> CommentNode {

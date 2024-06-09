@@ -56,6 +56,7 @@ private extension PostView {
                 
                 if commentNode.isLoadMoreNode {
                     loadRepliesButton(for: commentNode.parentComment)
+                        .padding(.horizontal, ViewConstants.screenPadding)
                 } else {
                     let viewModel = CommentViewModel(comment: commentNode)
                     CommentView(viewModel: viewModel)
@@ -76,12 +77,12 @@ private extension PostView {
     }
     
     func loadRepliesButton(for comment: CommentNode?) -> some View {
-        AsyncButton(
+        return AsyncButton(
             action: { await viewModel.onTapLoadReplies(comment: comment)},
-            label: { Text("Load Replies") },
+            label: { Text(viewModel.loadButtonText(for: comment)) },
             showProgressView: .constant(false)
         )
-        .buttonStyle(PrimaryButtonStyle())
+        .buttonStyle(TertiaryButtonStyle())
     }
 }
 

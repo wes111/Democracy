@@ -111,6 +111,22 @@ extension PostViewModel {
             alertModel = PostAlert.fetchInitialCommentsFailed.toNewAlertModel()
         }
     }
+    
+    func loadButtonText(for node: CommentNode?) -> String {
+        if let node {
+            if let replies = node.replies, replies.count > 1 {
+                "Load More Replies"
+            } else {
+                "Load Replies"
+            }
+        } else {
+            if comments.count > 1 {
+                "Load More Comments"
+            } else {
+                "Load Comments"
+            }
+        }
+    }
 }
 
 private extension PostViewModel {

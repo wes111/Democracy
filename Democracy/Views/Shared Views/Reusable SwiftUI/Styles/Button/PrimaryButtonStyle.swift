@@ -96,6 +96,26 @@ struct PrimaryButtonStyle: ButtonStyle {
     }
 }
 
+struct TertiaryButtonStyle: ButtonStyle {
+    @Environment(\.isEnabled) private var isEnabled: Bool
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundStyle(Color.secondaryText)
+            .font(.caption)
+            .fontWeight(.semibold)
+            .padding(.horizontal, ViewConstants.innerBorder)
+            .padding(.vertical, ViewConstants.smallInnerBorder)
+            .frame(maxWidth: .infinity)
+            .background(
+                Capsule()
+                    .fill(Color.secondaryBackground)
+            )
+            .contentShape(Capsule())
+            .opacity(configuration.isPressed ? 0.3 : 1.0)
+    }
+}
+
 // MARK: - Preview
 #Preview {
     ZStack {
@@ -112,6 +132,13 @@ struct PrimaryButtonStyle: ButtonStyle {
             Button {
                 print()
             } label: {
+                Text("Submit")
+            }
+            .buttonStyle(SeconaryButtonStyle())
+            
+            Button {
+                print()
+            } label: {
                 Text("Join")
             }
             .buttonStyle(SmallSecondaryButtonStyle())
@@ -123,17 +150,17 @@ struct PrimaryButtonStyle: ButtonStyle {
             }
             .buttonStyle(ExtraSmallSecondaryButtonStyle())
             
-            Button {
-                print()
-            } label: {
-                Text("Submit")
-            }
-            .buttonStyle(SeconaryButtonStyle())
-            
             Button(action: {}) {
                 Image(systemName: SystemImage.plus.rawValue)
             }
             .buttonStyle(SmallImageButtonStyle())
+            
+            Button {
+                print()
+            } label: {
+                Text("Load Replies")
+            }
+            .buttonStyle(TertiaryButtonStyle())
         }
     }
     .ignoresSafeArea()
