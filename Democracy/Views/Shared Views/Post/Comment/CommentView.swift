@@ -142,20 +142,12 @@ private extension CommentView {
     
     var footer: some View {
         HStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
-            // loadRepliesButton
             Spacer()
             upVoteButton
             downVoteButton
         }
         .font(.footnote)
         .foregroundStyle(Color.secondaryText)
-    }
-    
-    var loadRepliesButton: some View {
-        LoadRepliesButton(isArrowDown: true, title: viewModel.loadRepliesTitle) {
-            await viewModel.delegate?.onTapLoadReplies(comment: viewModel.commentNode)
-        }
-        .opacity(viewModel.commentNode.hasLoadedInitialReplies ? 0.0 : 1.0)
     }
     
     var replyButton: some View {

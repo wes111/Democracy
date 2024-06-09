@@ -106,7 +106,7 @@ extension PostViewModel {
     
     func fetchInitialComments() async {
         do {
-            try await commentsManager.fetchInitialComments()
+            try await commentsManager.fetchReplies()
         } catch {
             alertModel = PostAlert.fetchInitialCommentsFailed.toNewAlertModel()
         }
@@ -153,6 +153,8 @@ extension PostViewModel: CommentViewModelDelegate {
 }
 
 // MARK: - CommentsManager
+// Note: `LoadMore` nodes are inserted into the `commentsTree` to identify where
+// more comments or replies can be fetched.
 @MainActor @Observable
 final class CommentsManager {
     var commentsTree: [CommentNode] = [CommentNode.loadMoreNode(parent: nil)]
@@ -202,23 +204,20 @@ final class CommentsManager {
     }
     
     func fetchReplies(for parent: CommentNode? = nil) async throws {
-        guard let nodeArray = nodeArray(for: parent), let lastNode = nodeArray.last, lastNode.isLoadMoreNode else {
-            return // If the last node is not the `loadMoreNode`, all comments have been fetched.
+        guard let nodeArray = nodeArray(for: parent) else {
+            return
         }
         
-        if nodeArray.count == 1 {
-            try await fetchInitialComments(for: parent)
-        } else {
-            guard let lastFetchedNode = nodeArray.dropLast().last else {
-                return // FATAL ERROR
-            }
+        if let lastFetchedNode = nodeArray.dropLast().last {
             try await fetchAdditionalComments(for: parent, lastFetchedComment: lastFetchedNode)
+        } else {
+            try await fetchInitialComments(for: parent)
         }
     }
     
     // For root comments, the `parent` is nil.
     // Call this method once for root comments and no more than once per node.
-    func fetchInitialComments(for parent: CommentNode? = nil) async throws {
+    private func fetchInitialComments(for parent: CommentNode? = nil) async throws {
         let request: CommentFetchRequest = if let parent {
             .initialChildComments(parentId: parent.value.id)
         } else {
@@ -226,9 +225,6 @@ final class CommentsManager {
         }
         let comments = try await commentService.fetchComments(request: request)
         updateCommentsTree(comments, parent: parent)
-        // We do not need to check if the initial comments are empty.
-        // If the post has no root comments, there is no action to take.
-        // If a node has no children comments, we do not call this method, and so comments will not be empty.
     }
     
     private func fetchAdditionalComments(for parent: CommentNode? = nil, lastFetchedComment: CommentNode) async throws {
@@ -240,16 +236,15 @@ final class CommentsManager {
         let comments = try await commentService.fetchComments(request: request)
         
         if comments.isEmpty {
-            removeEndNode(for: parent)
+            removeLoadMoreNode(for: parent)
             return
         }
         updateCommentsTree(comments, parent: parent)
     }
     
-    // Removing the end node signifies that all replies have been fetched.
-    private func removeEndNode(for parent: CommentNode? = nil) {
+    // Removing the `loadMore` node signifies that all replies have been fetched.
+    private func removeLoadMoreNode(for parent: CommentNode? = nil) {
         guard let nodeArray = nodeArray(for: parent), let lastNode = nodeArray.last, lastNode.isLoadMoreNode else {
-            print("FATAL ERROR")
             return
         }
         let updatedArray = Array(nodeArray.dropLast())
@@ -262,32 +257,32 @@ final class CommentsManager {
     }
     
     private func updateCommentsTree(_ comments: [Comment], parent: CommentNode? = nil) {
-        var nodeArray = comments.map { CommentNode(value: $0, parent: parent) }
+        let nodeArray = comments.map { CommentNode(value: $0, parent: parent) }
         
         nodeArray.forEach { node in
             if node.value.responseCount > 0, node.children == nil {
-                node.children = [CommentNode.loadMoreNode(parent: node)] // This is causing issues... hmm....
+                node.children = [CommentNode.loadMoreNode(parent: node)]
             }
         }
         
         if let parent {
-            var newArray: [CommentNode] = []
+            var updatedChildren: [CommentNode] = []
             if let replies = parent.replies {
-                newArray = Array(replies.dropLast())
+                updatedChildren = Array(replies.dropLast())
             }
-            newArray.append(contentsOf: nodeArray)
+            updatedChildren.append(contentsOf: nodeArray)
             if comments.count == FetchLimit.comment.rawValue {
-                newArray.append(CommentNode.loadMoreNode(parent: parent))
+                updatedChildren.append(CommentNode.loadMoreNode(parent: parent))
             }
             
-            parent.children = newArray
+            parent.children = updatedChildren
         } else {
-            var newArray: [CommentNode] = Array(commentsTree.dropLast())
-            newArray.append(contentsOf: nodeArray)
+            var updatedRootComments: [CommentNode] = Array(commentsTree.dropLast())
+            updatedRootComments.append(contentsOf: nodeArray)
             if comments.count == FetchLimit.comment.rawValue {
-                newArray.append(CommentNode.loadMoreNode(parent: nil))
+                updatedRootComments.append(CommentNode.loadMoreNode(parent: nil))
             }
-            commentsTree = newArray
+            commentsTree = updatedRootComments
         }
     }
 }
