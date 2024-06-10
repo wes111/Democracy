@@ -165,43 +165,10 @@ final class CommentsManager {
     init(post: Post) {
         self.post = post
     }
-    
-    func submitComment(text: String, parent: CommentNode?) async throws {
-//        let comment = try await commentService.submitComment(
-//            parentId: parent?.value.id,
-//            postId: post.id,
-//            content: text
-//        )
-//        
-//        let node = CommentNode(value: comment)
-//        
-//        if let parent {
-//            if parent.hasLoadedAllReplies {
-//                node.isEnd = true
-//            }
-//            
-//            if let children = parent.children {
-//                // NOTE: Appending directly to `children` breaks observation,
-//                // so we need to assign an array to `parent.children`.
-//                var newChildren = children
-//                newChildren.append(node)
-//                
-//                parent.children = newChildren
-//            } else {
-//                parent.children = [node]
-//            }
-//        } else {
-//            commentsTree.append(node)
-//        }
-    }
-    
-    private func nodeArray(for parent: CommentNode? = nil) -> [CommentNode]? {
-        if let parent {
-            parent.replies
-        } else {
-            commentsTree
-        }
-    }
+}
+
+// MARK: - Methods
+extension CommentsManager {
     
     func fetchReplies(for parent: CommentNode? = nil) async throws {
         guard let nodeArray = nodeArray(for: parent) else {
@@ -215,9 +182,48 @@ final class CommentsManager {
         }
     }
     
+    func submitComment(text: String, parent: CommentNode?) async throws {
+        let comment = try await commentService.submitComment(
+            parentId: parent?.value.id,
+            postId: post.id,
+            content: text
+        )
+        
+        // This node cannot have replies, bc it was just created.
+        let node = CommentNode(value: comment, parent: parent)
+        
+        if let parent {
+            if let replies = parent.replies {
+                if let lastComment = replies.last, lastComment.isLoadMoreNode {
+                    parent.children = updatedChildrenWithLoadMore(
+                        replies: replies, newNode: node, lastNode: lastComment
+                    )
+                } else {
+                    // NOTE: Appending directly to `children` breaks observation,
+                    // so we need to assign an array to `parent.children`.
+                    parent.children = updatedChildrenWithoutLoadMore(replies: replies, newNode: node)
+                }
+            } else {
+                parent.children = [node]
+            }
+        } else {
+            if let lastComment = commentsTree.last, lastComment.isLoadMoreNode {
+                commentsTree = updatedChildrenWithLoadMore(
+                    replies: commentsTree, newNode: node, lastNode: lastComment
+                )
+            } else {
+                commentsTree.append(node)
+            }
+        }
+    }
+}
+
+// MARK: - Private Methods
+private extension CommentsManager {
+    
     // For root comments, the `parent` is nil.
     // Call this method once for root comments and no more than once per node.
-    private func fetchInitialComments(for parent: CommentNode? = nil) async throws {
+    func fetchInitialComments(for parent: CommentNode? = nil) async throws {
         let request: CommentFetchRequest = if let parent {
             .initialChildComments(parentId: parent.value.id)
         } else {
@@ -227,7 +233,7 @@ final class CommentsManager {
         updateCommentsTree(comments, parent: parent)
     }
     
-    private func fetchAdditionalComments(for parent: CommentNode? = nil, lastFetchedComment: CommentNode) async throws {
+    func fetchAdditionalComments(for parent: CommentNode? = nil, lastFetchedComment: CommentNode) async throws {
         let request: CommentFetchRequest = if let parent {
             .childComments(parentId: parent.value.id, afterCommentId: lastFetchedComment.value.id)
         } else {
@@ -242,8 +248,16 @@ final class CommentsManager {
         updateCommentsTree(comments, parent: parent)
     }
     
+    func nodeArray(for parent: CommentNode? = nil) -> [CommentNode]? {
+        if let parent {
+            parent.replies
+        } else {
+            commentsTree
+        }
+    }
+    
     // Removing the `loadMore` node signifies that all replies have been fetched.
-    private func removeLoadMoreNode(for parent: CommentNode? = nil) {
+    func removeLoadMoreNode(for parent: CommentNode? = nil) {
         guard let nodeArray = nodeArray(for: parent), let lastNode = nodeArray.last, lastNode.isLoadMoreNode else {
             return
         }
@@ -256,7 +270,7 @@ final class CommentsManager {
         }
     }
     
-    private func updateCommentsTree(_ comments: [Comment], parent: CommentNode? = nil) {
+    func updateCommentsTree(_ comments: [Comment], parent: CommentNode? = nil) {
         let nodeArray = comments.map { CommentNode(value: $0, parent: parent) }
         
         nodeArray.forEach { node in
@@ -284,5 +298,18 @@ final class CommentsManager {
             }
             commentsTree = updatedRootComments
         }
+    }
+    
+    func updatedChildrenWithLoadMore(replies: [CommentNode], newNode: CommentNode, lastNode: CommentNode) -> [CommentNode] {
+        var updatedReplies = Array(replies.dropLast())
+        updatedReplies.append(newNode)
+        updatedReplies.append(lastNode)
+        return updatedReplies
+    }
+    
+    func updatedChildrenWithoutLoadMore(replies: [CommentNode], newNode: CommentNode) -> [CommentNode] {
+        var updatedReplies = replies
+        updatedReplies.append(newNode)
+        return updatedReplies
     }
 }
