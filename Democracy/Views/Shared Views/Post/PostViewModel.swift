@@ -157,7 +157,7 @@ extension PostViewModel: CommentViewModelDelegate {
 // more comments or replies can be fetched.
 @MainActor @Observable
 final class CommentsManager {
-    var commentsTree: [CommentNode] = [CommentNode.loadMoreNode(parent: nil)]
+    var commentsTree: [CommentNode] = []
     
     @ObservationIgnored @Injected(\.commentService) private var commentService
     private let post: Post

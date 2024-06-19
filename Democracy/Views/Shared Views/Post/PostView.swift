@@ -41,48 +41,66 @@ struct PostView: View {
 // MARK: - Subviews
 private extension PostView {
     var content: some View {
-        ZStack(alignment: .bottomLeading) {
-            commentScrollView
-            AddCommentView(viewModel: viewModel, focusState: $isAddCommentFieldFocused)
-        }
-        .background(Color.primaryBackground, ignoresSafeAreaEdges: .all)
-        .dismissKeyboardOnDrag()
+        commentList
+            .background(Color.primaryBackground, ignoresSafeAreaEdges: .all)
+            .dismissKeyboardOnDrag()
     }
     
-    var commentScrollView: some View {
-        ScrollView(.vertical) {
-            // TODO: Ideally ScrollView would be a List...
-            OutlineGroup(viewModel.comments, id: \.value, children: \.replies) { commentNode in
-                
-                if commentNode.isLoadMoreNode {
-                    loadRepliesButton(for: commentNode.parentComment)
-                        .padding(.horizontal, ViewConstants.screenPadding)
-                } else {
-                    let viewModel = CommentViewModel(comment: commentNode)
-                    CommentView(viewModel: viewModel)
-                        .padding(.horizontal, ViewConstants.screenPadding)
-                        .padding(.vertical, ViewConstants.screenPadding / 2)
-                        .onAppear {
-                            viewModel.delegate = self.viewModel
-                        }
-                }
+    func listNode(_ commentNode: CommentNode) -> some View {
+        Group {
+            if commentNode.isLoadMoreNode {
+                loadRepliesButton(for: commentNode.parentComment)
+            } else {
+                commentView(commentNode)
             }
-            .disclosureGroupStyle(CommentDisclosureGroupStyle())
-            .animation(.easeInOut)
-            
-            AddCommentView(viewModel: viewModel, focusState: $isAddCommentFieldFocused).hidden()
         }
+        .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+        .listRowBackground(Color.primaryBackground)
+        .listRowSeparator(.hidden)
+    }
+    
+    var commentList: some View {
+        List(viewModel.comments, children: \.replies) { commentNode in
+            listNode(commentNode)
+        }
+        .safeAreaInset(edge: .bottom) {
+            AddCommentView(viewModel: viewModel, focusState: $isAddCommentFieldFocused)
+        }
+        .safeAreaPadding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+        .listStyle(.plain)
         .clipped()
-        .ignoresSafeArea(.keyboard, edges: .bottom)
+        .disclosureGroupStyle(CommentDisclosureGroupStyle())
+        .animation(.easeInOut)
+    }
+    
+    func commentView(_ commentNode: CommentNode) -> some View {
+        let viewModel = CommentViewModel(comment: commentNode)
+        return CommentView(viewModel: viewModel)
+            .padding(.horizontal, ViewConstants.screenPadding)
+            .onAppear {
+                viewModel.delegate = self.viewModel
+            }
     }
     
     func loadRepliesButton(for comment: CommentNode?) -> some View {
-        return AsyncButton(
-            action: { await viewModel.onTapLoadReplies(comment: comment)},
-            label: { Text(viewModel.loadButtonText(for: comment)) },
-            showProgressView: .constant(false)
-        )
-        .buttonStyle(TertiaryButtonStyle())
+        HStack {
+            if let comment {
+                ForEach(0...comment.depth, id: \.self) { _ in
+                    Divider()
+                        .overlay(Color.tertiaryText)
+                        .padding(.trailing, ViewConstants.smallInnerBorder)
+                }
+            }
+            
+            AsyncButton(
+                action: { await viewModel.onTapLoadReplies(comment: comment)},
+                label: { Text(viewModel.loadButtonText(for: comment)) },
+                showProgressView: .constant(false)
+            )
+            .buttonStyle(TertiaryButtonStyle())
+            .padding(.vertical, ViewConstants.smallElementSpacing)
+        }
+        .padding(.horizontal, ViewConstants.screenPadding)
     }
 }
 

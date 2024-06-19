@@ -26,6 +26,13 @@ class Node<Value> {
         self.value = value
         self.parent = parent
     }
+    
+    var isLastChild: Bool {
+        guard let parent = parent, let siblings = parent.children else {
+            return false
+        }
+        return siblings.last === self
+    }
 }
 
 // MARK: - Computed Properties
@@ -59,7 +66,7 @@ extension Node {
         newChildren.forEach { $0.parent = self }
     }
     
-    func depth() -> Int {
+    var depth: Int {
         var depth = 0
         var currentNode: Node? = self
         
@@ -80,7 +87,11 @@ extension Node: Equatable where Value: Equatable {
 }
 
 @Observable
-final class CommentNode: Node<Comment> {
+final class CommentNode: Node<Comment>, Identifiable {
+    
+    var id: String {
+        value.id + (parent?.value.id ?? "")
+    }
     
     var replies: [CommentNode]? {
         children as! [CommentNode]?
@@ -96,6 +107,6 @@ final class CommentNode: Node<Comment> {
     }
     
     var isLoadMoreNode: Bool {
-        value.id == "end"
+        id.hasPrefix("end")
     }
 }

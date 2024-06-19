@@ -80,10 +80,19 @@ struct CommentView: View {
 private extension CommentView {
     
     var primaryContent: some View {
-        VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
-            header
-            commentText
-            footer
+        HStack {
+            ForEach(0..<viewModel.commentNode.depth, id: \.self) { _ in
+                Divider()
+                    .overlay(Color.tertiaryText)
+                    .padding(.trailing, ViewConstants.smallInnerBorder)
+            }
+            
+            VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
+                header
+                commentText
+                footer
+            }
+            .padding(.vertical, ViewConstants.smallElementSpacing)
         }
     }
     
@@ -142,9 +151,9 @@ private extension CommentView {
     
     var footer: some View {
         HStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
-            Spacer()
             upVoteButton
             downVoteButton
+            Spacer()
         }
         .font(.footnote)
         .foregroundStyle(Color.secondaryText)
