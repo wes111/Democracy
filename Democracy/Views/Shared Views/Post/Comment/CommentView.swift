@@ -123,7 +123,7 @@ private extension CommentView {
             Text(viewModel.username)
             Spacer()
             replyButton
-            Image(systemName: SystemImage.ellipsis.rawValue)
+            menuButton
         }
         .foregroundStyle(Color.secondaryText)
         .font(.caption2)
@@ -144,6 +144,33 @@ private extension CommentView {
             .frame(width: 25, height: 25)
             .foregroundStyle(Color.secondaryText)
     }
+    
+    var replyButton: some View {
+        Button {
+            viewModel.delegate?.onTapCommentReply(comment: viewModel.commentNode)
+        } label: {
+            Label {
+                Text("Reply")
+            } icon: {
+                Image(systemName: SystemImage.arrowshapeTurnUpLeft.rawValue)
+            }
+            .labelStyle(TightLabelStyle())
+        }
+        .buttonStyle(.plain)
+        /*
+         Hack: `.buttonStyle(.plain)` prevents the disclosure group from expanding/collapsing.
+         Read more here: https://stackoverflow.com/questions/56561064/swiftui-multiple-buttons-in-a-list-row
+         */
+    }
+    
+    var menuButton: some View {
+        Button {
+            viewModel.didTapMenuButton()
+        } label: {
+            Image(systemName: SystemImage.ellipsis.rawValue)
+        }
+        .buttonStyle(.plain)
+    }
 }
 
 // MARK: - Footer
@@ -159,34 +186,28 @@ private extension CommentView {
         .foregroundStyle(Color.secondaryText)
     }
     
-    var replyButton: some View {
-        Button {
-            viewModel.delegate?.onTapCommentReply(comment: viewModel.commentNode)
-        } label: {
-            Label {
-                Text("Reply")
-            } icon: {
-                Image(systemName: SystemImage.arrowshapeTurnUpLeft.rawValue)
-            }
-        }
-    }
-    
     var upVoteButton: some View {
         Button(action: viewModel.didTapUpVoteButton) {
-            HStack(alignment: .center, spacing: ViewConstants.extraSmallElementSpacing) {
-                Image(systemName: SystemImage.arrowshapeUp.rawValue)
+            Label {
                 Text("\(viewModel.upVoteCount)")
+            } icon: {
+                Image(systemName: SystemImage.arrowshapeUp.rawValue)
             }
+            .labelStyle(TightLabelStyle())
         }
+        .buttonStyle(.plain)
     }
     
     var downVoteButton: some View {
         Button(action: viewModel.didTapDownVoteButton) {
-            HStack(alignment: .center, spacing: ViewConstants.extraSmallElementSpacing) {
-                Image(systemName: SystemImage.arrowshapeDown.rawValue)
+            Label {
                 Text("\(viewModel.downVoteCount)")
+            } icon: {
+                Image(systemName: SystemImage.arrowshapeDown.rawValue)
             }
+            .labelStyle(TightLabelStyle())
         }
+        .buttonStyle(.plain)
     }
 }
 
