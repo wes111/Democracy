@@ -28,9 +28,6 @@ struct CommentDisclosureGroupStyle: DisclosureGroupStyle {
             .padding(.trailing, ViewConstants.screenPadding)
             .padding(.bottom, ViewConstants.smallElementSpacing)
         }
-        .onAppear {
-            configuration.isExpanded = true
-        }
         .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
         .listRowBackground(Color.primaryBackground)
         .listRowSeparator(.hidden)

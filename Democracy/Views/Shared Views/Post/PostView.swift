@@ -60,8 +60,12 @@ private extension PostView {
     }
     
     var commentList: some View {
-        List(viewModel.comments, children: \.replies) { commentNode in
-            listNode(commentNode)
+        List {
+            ForEach(viewModel.comments) { commentNode in
+                NodeOutlineGroup(node: commentNode, childKeyPath: \.replies) { commentNode in
+                    listNode(commentNode)
+                }
+            }
         }
         .safeAreaInset(edge: .bottom) {
             AddCommentView(viewModel: viewModel, focusState: $isAddCommentFieldFocused)

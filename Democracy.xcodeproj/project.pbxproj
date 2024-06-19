@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EE0696B32C095B9F00DABDDF /* AddCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0696B22C095B9F00DABDDF /* AddCommentView.swift */; };
+		EE0696B52C22795300DABDDF /* NodeOutlineGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0696B42C22795300DABDDF /* NodeOutlineGroup.swift */; };
 		EE0CC2012A9ED9C8003A10C3 /* VoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2002A9ED9C8003A10C3 /* VoteViewModel.swift */; };
 		EE0CC2032A9EDA00003A10C3 /* VoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2022A9EDA00003A10C3 /* VoteView.swift */; };
 		EE0CC2052AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2042AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift */; };
@@ -352,6 +353,7 @@
 
 /* Begin PBXFileReference section */
 		EE0696B22C095B9F00DABDDF /* AddCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentView.swift; sourceTree = "<group>"; };
+		EE0696B42C22795300DABDDF /* NodeOutlineGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeOutlineGroup.swift; sourceTree = "<group>"; };
 		EE0CC2002A9ED9C8003A10C3 /* VoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewModel.swift; sourceTree = "<group>"; };
 		EE0CC2022A9EDA00003A10C3 /* VoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteView.swift; sourceTree = "<group>"; };
 		EE0CC2042AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CandidateListItemViewModel+Preview.swift"; sourceTree = "<group>"; };
@@ -1690,6 +1692,7 @@
 				EEE4644F2B5FF2C000E5DBFC /* HorizontalProgressView.swift */,
 				EE412B3D2B7830FA0007632B /* ColorScheme.swift */,
 				EE2477E42BCC81D800661A0A /* PlainListView.swift */,
+				EE0696B42C22795300DABDDF /* NodeOutlineGroup.swift */,
 			);
 			path = "Reusable SwiftUI";
 			sourceTree = "<group>";
@@ -2356,6 +2359,7 @@
 				EE412B7E2B9D232E0007632B /* PostInputFlowView.swift in Sources */,
 				EE2B15C72B4C3C7D0046D5FC /* PostSuccessViewModel.swift in Sources */,
 				EE412B592B8D89120007632B /* DescriptionField.swift in Sources */,
+				EE0696B52C22795300DABDDF /* NodeOutlineGroup.swift in Sources */,
 				EE7055592B138F4F00E40A89 /* AccountUsernameViewModel.swift in Sources */,
 				EE7EC28E2B61515900F62E90 /* CommunityNameViewModel.swift in Sources */,
 				EE412B5F2B8EC3840007632B /* AddRuleViewModel+Preview.swift in Sources */,

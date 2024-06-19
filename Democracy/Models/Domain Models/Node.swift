@@ -86,7 +86,13 @@ extension Node: Equatable where Value: Equatable {
     }
 }
 
-@Observable
+extension Node: Hashable where Value: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(value)
+        hasher.combine(children?.map { $0.value })
+    }
+}
+
 final class CommentNode: Node<Comment>, Identifiable {
     
     var id: String {
@@ -94,15 +100,27 @@ final class CommentNode: Node<Comment>, Identifiable {
     }
     
     var replies: [CommentNode]? {
+        // swiftlint:disable:next force_cast
         children as! [CommentNode]?
     }
     
     var parentComment: CommentNode? {
+        // swiftlint:disable:next force_cast
         parent as! CommentNode?
     }
     
     static func loadMoreNode(parent: CommentNode?) -> CommentNode {
-        let comment = Comment(id: "end", parentId: "", postId: "", userId: "", creationDate: .now, content: "", upVoteCount: 0, downVoteCount: 0, responseCount: 0)
+        let comment = Comment(
+            id: "end",
+            parentId: "",
+            postId: "",
+            userId: "",
+            creationDate: .now,
+            content: "",
+            upVoteCount: 0,
+            downVoteCount: 0,
+            responseCount: 0
+        )
         return CommentNode(value: comment, parent: parent)
     }
     
