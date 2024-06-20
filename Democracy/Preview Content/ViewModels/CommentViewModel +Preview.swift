@@ -8,5 +8,5 @@
 import Foundation
 
 extension CommentViewModel {
-    static let preview = CommentViewModel(comment: CommentNode(value: Comment.preview))
+    static let preview = CommentViewModel(comment: CommentNode(value: Comment.preview), delegate: nil)
 }

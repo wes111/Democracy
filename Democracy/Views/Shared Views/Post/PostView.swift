@@ -78,12 +78,8 @@ private extension PostView {
     }
     
     func commentView(_ commentNode: CommentNode) -> some View {
-        let viewModel = CommentViewModel(comment: commentNode)
-        return CommentView(viewModel: viewModel)
+        CommentView(viewModel: .init(comment: commentNode, delegate: viewModel))
             .padding(.horizontal, ViewConstants.screenPadding)
-            .onAppear {
-                viewModel.delegate = self.viewModel
-            }
     }
     
     func loadRepliesButton(for comment: CommentNode?) -> some View {

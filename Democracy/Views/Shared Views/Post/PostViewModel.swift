@@ -84,11 +84,6 @@ extension PostViewModel {
 // MARK: - Methods
 extension PostViewModel {
     
-    func cancelAddingComment() {
-        isFocused = false
-        replyingToComment = nil
-    }
-    
     func submitComment() async {
         guard !commentText.isEmpty else {
             return

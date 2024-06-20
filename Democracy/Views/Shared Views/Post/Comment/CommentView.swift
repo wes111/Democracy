@@ -34,6 +34,10 @@ final class CommentViewModel {
         
     }
     
+    func didTapReplyButton() {
+        delegate?.onTapCommentReply(comment: commentNode)
+    }
+    
     var content: String {
         comment.content
     }
@@ -62,8 +66,9 @@ final class CommentViewModel {
         comment.downVoteCount
     }
     
-    init(comment: CommentNode) {
+    init(comment: CommentNode, delegate: CommentViewModelDelegate?) {
         self.commentNode = comment
+        self.delegate = delegate
     }
 }
 
@@ -147,7 +152,7 @@ private extension CommentView {
     
     var replyButton: some View {
         Button {
-            viewModel.delegate?.onTapCommentReply(comment: viewModel.commentNode)
+            viewModel.didTapReplyButton()
         } label: {
             Label {
                 Text("Reply")
