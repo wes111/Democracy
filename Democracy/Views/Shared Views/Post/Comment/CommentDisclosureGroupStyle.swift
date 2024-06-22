@@ -19,7 +19,9 @@ struct CommentDisclosureGroupStyle: DisclosureGroupStyle {
                 Label {
                     Text("\(configuration.isExpanded ? "Hide" : "View") Replies")
                 } icon: {
-                    Image(systemName: !configuration.isExpanded ? SystemImage.chevronDown.rawValue : SystemImage.chevronUp.rawValue)
+                    Image(systemName: !configuration.isExpanded ? 
+                          SystemImage.chevronDown.rawValue : SystemImage.chevronUp.rawValue
+                    )
                 }
                 .labelStyle(ReversedLabelStyle())
                 .font(.footnote)

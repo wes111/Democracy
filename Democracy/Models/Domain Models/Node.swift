@@ -7,6 +7,8 @@
 
 import Foundation
 
+// TODO: This isn't a domain object and should be moved in the project folder hierarchy
+// , i.e. it's only a model used by views and view models.
 @Observable
 class Node<Value> {
     var value: Value

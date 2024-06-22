@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/wes111/SharedResourcesClientAndServer",
       "state" : {
-        "revision" : "a4ecfee863acd9de3bb6b070351330f2943c8160",
-        "version" : "1.0.29"
+        "revision" : "1cfa59f3a896f7e313b91b2ed82904deadeb0c99",
+        "version" : "1.0.32"
       }
     },
     {

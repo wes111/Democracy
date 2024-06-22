@@ -9,16 +9,39 @@ import Foundation
 import SharedResourcesClientAndServer
 
 // Domain model
-struct Comment: Identifiable, Hashable {
+@Observable
+final class Comment: Identifiable, Hashable {
     let id: String
     let parentId: String?
     let postId: String
     let userId: String
     let creationDate: Date
     let content: String
-    let upVoteCount: Int
-    let downVoteCount: Int
+    var upVoteCount: Int
+    var downVoteCount: Int
     let responseCount: Int
+    
+    init(
+        id: String,
+        parentId: String?,
+        postId: String,
+        userId: String,
+        creationDate: Date,
+        content: String,
+        upVoteCount: Int,
+        downVoteCount: Int,
+        responseCount: Int
+    ) {
+        self.id = id
+        self.parentId = parentId
+        self.postId = postId
+        self.userId = userId
+        self.creationDate = creationDate
+        self.content = content
+        self.upVoteCount = upVoteCount
+        self.downVoteCount = downVoteCount
+        self.responseCount = responseCount
+    }
 }
 
 extension CommentDTO {

@@ -72,6 +72,7 @@ protocol AppwriteService: Sendable {
     
     // Functions
     func submitComment(_ comment: CommentCreationRequest) async throws -> Comment
+    func voteOnComment(_ commentVote: CommentVoteRequest) async throws -> CommentVote
 }
 
 final class AppwriteServiceDefault: AppwriteService {
@@ -278,7 +279,28 @@ extension AppwriteServiceDefault {
     }
     
     func submitComment(_ comment: CommentCreationRequest) async throws -> Comment {
-        try await postComment(comment)
+        let jsonString = try comment.toJSONString()
+        
+        let execution = try await functions.createExecution(
+            functionId: AppwriteFunction.postComment.id,
+            body: jsonString,
+            method: AppwriteMethod.post.name
+        )
+        let response: CommentDTO = try execution.responseBody.decode()
+        return response.toComment()
+    }
+    
+    func voteOnComment(_ commentVote: CommentVoteRequest) async throws -> CommentVote {
+        let jsonString = try commentVote.toJSONString()
+        
+        let execution = try await functions.createExecution(
+            functionId: AppwriteFunction.voteComment.id,
+            body: jsonString,
+            method: AppwriteMethod.post.name
+        )
+        
+        let response: CommentVoteDTO = try execution.responseBody.decode()
+        return response.toCommentVote()
     }
 }
 
@@ -297,18 +319,6 @@ private extension AppwriteServiceDefault {
         )
         let isAvailable: UniqueAccountFieldAvailable = try execution.responseBody.decode()
         return isAvailable.isAvailable
-    }
-    
-    func postComment(_ comment: CommentCreationRequest) async throws -> Comment {
-        let jsonString = try comment.toJSONString()
-        
-        let execution = try await functions.createExecution(
-            functionId: AppwriteFunction.postComment.id,
-            body: jsonString,
-            method: AppwriteMethod.post.name
-        )
-        let response: CommentDTO = try execution.responseBody.decode()
-        return response.toComment()
     }
 }
 
@@ -332,6 +342,7 @@ enum AppwriteMethod: String {
 
 enum AppwriteFunction: String {
     case postComment
+    case voteComment
     case uniqueAccountFieldIsAvailable = "UniqueAccountFieldIsAvailable"
     
     var id: String {

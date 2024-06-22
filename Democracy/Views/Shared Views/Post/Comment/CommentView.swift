@@ -6,28 +6,85 @@
 //
 
 import SwiftUI
+import Factory
+import SharedResourcesClientAndServer
 
 @MainActor
 protocol CommentViewModelDelegate: AnyObject {
-    func onTapLoadReplies(comment: CommentNode?) async
     func onTapCommentReply(comment: CommentNode)
 }
 
 @MainActor @Observable
 final class CommentViewModel {
     let commentNode: CommentNode
+    private var currentVote: VoteType?
+    
+    @ObservationIgnored @Injected(\.commentService) private var commentService
     @ObservationIgnored weak var delegate: CommentViewModelDelegate?
     
     var comment: Comment {
         commentNode.value
     }
     
-    func didTapUpVoteButton() {
-        
+    init(commentNode: CommentNode) {
+        self.commentNode = commentNode
+        print("Hello World")
     }
     
-    func didTapDownVoteButton() {
-        
+    deinit {
+        print("Goodbye World")
+    }
+    
+    // TODO: Need to persist locally upvotes/downvotes....
+    // Current vote will be fetched from local storage on init.
+    // This really will need to be abstracted and generic because there is a lot of voting in the app...
+    // The vote type we send to the backend needs to be optional. If nil, backend deletes...
+    // Maybe change Comment object back to struct and define up and down vote counts on the view?
+    // Initial values for the counts would come from the comment on init
+    func didTapVoteButton(_ vote: VoteType) {
+        if let currentVote {
+            if currentVote == vote {
+                self.currentVote = nil
+                switch vote {
+                case .up:
+                    commentNode.value.upVoteCount -= 1
+                case .down:
+                    
+                    commentNode.value.downVoteCount -= 1
+                }
+                // send nil to backend
+            } else {
+                self.currentVote = vote
+                switch vote {
+                case .up:
+                    commentNode.value.upVoteCount += 1
+                    commentNode.value.downVoteCount -= 1
+                case .down:
+                    
+                    commentNode.value.upVoteCount -= 1
+                    commentNode.value.downVoteCount += 1
+                }
+                // send updated vote to backend
+            }
+        } else {
+            currentVote = vote
+            switch vote {
+            case .up:
+                commentNode.value.upVoteCount += 1
+                
+            case .down:
+                commentNode.value.downVoteCount += 1
+            }
+            
+//            Task {
+//                do {
+//                    try await Task.sleep(seconds: 1.0)
+//                    try await commentService.voteOnComment(commentId: comment.id, vote: vote)
+//                } catch {
+//                    
+//                }
+//            }
+        }
     }
     
     func didTapMenuButton() {
@@ -192,7 +249,7 @@ private extension CommentView {
     }
     
     var upVoteButton: some View {
-        Button(action: viewModel.didTapUpVoteButton) {
+        Button(action: { viewModel.didTapVoteButton(.up) }) {
             Label {
                 Text("\(viewModel.upVoteCount)")
             } icon: {
@@ -204,7 +261,7 @@ private extension CommentView {
     }
     
     var downVoteButton: some View {
-        Button(action: viewModel.didTapDownVoteButton) {
+        Button(action: { viewModel.didTapVoteButton(.down) }) {
             Label {
                 Text("\(viewModel.downVoteCount)")
             } icon: {

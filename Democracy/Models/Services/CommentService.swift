@@ -12,6 +12,7 @@ import SharedResourcesClientAndServer
 protocol CommentService: Sendable {
     func submitComment(parentId: String?, postId: String, content: String) async throws -> Comment
     func fetchComments(request: CommentFetchRequest) async throws -> [Comment]
+    func voteOnComment(commentId: String, vote: VoteType) async throws -> CommentVote
 }
 
 final class CommentServiceDefault: CommentService {
@@ -24,6 +25,14 @@ final class CommentServiceDefault: CommentService {
             postId: postId,
             userId: try await userRepository.userId(),
             content: content
+        ))
+    }
+    
+    func voteOnComment(commentId: String, vote: VoteType) async throws -> CommentVote {
+        try await commentRepository.voteOnComment(request: .init(
+            commentId: commentId,
+            userId: try await userRepository.userId(),
+            vote: vote
         ))
     }
     

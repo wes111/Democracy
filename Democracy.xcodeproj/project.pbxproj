@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EE0696B32C095B9F00DABDDF /* AddCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0696B22C095B9F00DABDDF /* AddCommentView.swift */; };
 		EE0696B52C22795300DABDDF /* NodeOutlineGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0696B42C22795300DABDDF /* NodeOutlineGroup.swift */; };
+		EE0696B72C25008000DABDDF /* CommentVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0696B62C25008000DABDDF /* CommentVote.swift */; };
 		EE0CC2012A9ED9C8003A10C3 /* VoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2002A9ED9C8003A10C3 /* VoteViewModel.swift */; };
 		EE0CC2032A9EDA00003A10C3 /* VoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2022A9EDA00003A10C3 /* VoteView.swift */; };
 		EE0CC2052AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2042AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift */; };
@@ -354,6 +355,7 @@
 /* Begin PBXFileReference section */
 		EE0696B22C095B9F00DABDDF /* AddCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentView.swift; sourceTree = "<group>"; };
 		EE0696B42C22795300DABDDF /* NodeOutlineGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeOutlineGroup.swift; sourceTree = "<group>"; };
+		EE0696B62C25008000DABDDF /* CommentVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentVote.swift; sourceTree = "<group>"; };
 		EE0CC2002A9ED9C8003A10C3 /* VoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewModel.swift; sourceTree = "<group>"; };
 		EE0CC2022A9EDA00003A10C3 /* VoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteView.swift; sourceTree = "<group>"; };
 		EE0CC2042AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CandidateListItemViewModel+Preview.swift"; sourceTree = "<group>"; };
@@ -1940,6 +1942,7 @@
 				EE80D91029C92C670000F8EF /* Candidate.swift */,
 				EE412BAB2BB0D9A30007632B /* Membership.swift */,
 				EE5B938C29F776A400B43381 /* Enums */,
+				EE0696B62C25008000DABDDF /* CommentVote.swift */,
 			);
 			path = "Domain Models";
 			sourceTree = "<group>";
@@ -2494,6 +2497,7 @@
 				EE5D39F12A2BB5DC00D0E312 /* RichLinkService.swift in Sources */,
 				EE80D8C129BC120A0000F8EF /* Router+Preview.swift in Sources */,
 				EE80D90D29C92C0B0000F8EF /* CandidateCardView.swift in Sources */,
+				EE0696B72C25008000DABDDF /* CommentVote.swift in Sources */,
 				EE4DB88A2AC50AD200A6DC90 /* AppwriteService.swift in Sources */,
 				EE80D8CC29BC14560000F8EF /* PostCardViewModel+Preview.swift in Sources */,
 				EE78561B2AB7BB4D0004B7E4 /* StandardTextInputModifier.swift in Sources */,
