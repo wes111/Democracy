@@ -28,62 +28,20 @@ final class CommentViewModel {
     
     init(commentNode: CommentNode) {
         self.commentNode = commentNode
-        print("Hello World")
-    }
-    
-    deinit {
-        print("Goodbye World")
     }
     
     // TODO: Need to persist locally upvotes/downvotes....
+    // Leaving this comment here, because the postViewModel should have a dictionary of
+    // up/down votes for all comments...
     // Current vote will be fetched from local storage on init.
-    // This really will need to be abstracted and generic because there is a lot of voting in the app...
-    // The vote type we send to the backend needs to be optional. If nil, backend deletes...
-    // Maybe change Comment object back to struct and define up and down vote counts on the view?
-    // Initial values for the counts would come from the comment on init
     func didTapVoteButton(_ vote: VoteType) {
-        if let currentVote {
-            if currentVote == vote {
-                self.currentVote = nil
-                switch vote {
-                case .up:
-                    commentNode.value.upVoteCount -= 1
-                case .down:
-                    
-                    commentNode.value.downVoteCount -= 1
-                }
-                // send nil to backend
-            } else {
-                self.currentVote = vote
-                switch vote {
-                case .up:
-                    commentNode.value.upVoteCount += 1
-                    commentNode.value.downVoteCount -= 1
-                case .down:
-                    
-                    commentNode.value.upVoteCount -= 1
-                    commentNode.value.downVoteCount += 1
-                }
-                // send updated vote to backend
+        Task {
+            do {
+                try await commentService.voteOnComment(comment, vote: vote)
+            } catch {
+                print(error)
+                print()
             }
-        } else {
-            currentVote = vote
-            switch vote {
-            case .up:
-                commentNode.value.upVoteCount += 1
-                
-            case .down:
-                commentNode.value.downVoteCount += 1
-            }
-            
-//            Task {
-//                do {
-//                    try await Task.sleep(seconds: 1.0)
-//                    try await commentService.voteOnComment(commentId: comment.id, vote: vote)
-//                } catch {
-//                    
-//                }
-//            }
         }
     }
     

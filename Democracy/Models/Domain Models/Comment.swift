@@ -20,6 +20,7 @@ final class Comment: Identifiable, Hashable {
     var upVoteCount: Int
     var downVoteCount: Int
     let responseCount: Int
+    var userVote: CommentVote?
     
     init(
         id: String,
