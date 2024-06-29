@@ -19,7 +19,7 @@ final class CommentViewModel {
     let commentNode: CommentNode
     private var currentVote: VoteType?
     
-    @ObservationIgnored @Injected(\.commentService) private var commentService
+    @ObservationIgnored @Injected(\.voteService) private var voteService
     @ObservationIgnored weak var delegate: CommentViewModelDelegate?
     
     init(comment: CommentNode, delegate: CommentViewModelDelegate?) {
@@ -38,7 +38,7 @@ extension CommentViewModel {
     func didTapVoteButton(_ vote: VoteType) {
         Task {
             do {
-                try await commentService.voteOnComment(comment, vote: vote)
+                try await voteService.voteOnObject(comment, vote: vote)
             } catch {
                 print(error)
                 print()

@@ -349,6 +349,8 @@
 		EEE08C162C2E101000993422 /* LinkProviderViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE08C152C2E101000993422 /* LinkProviderViewModel+Preview.swift */; };
 		EEE08C192C2F64D900993422 /* PostHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE08C182C2F64D900993422 /* PostHeaderViewModel.swift */; };
 		EEE08C1B2C2F990A00993422 /* VoteButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE08C1A2C2F990A00993422 /* VoteButtons.swift */; };
+		EEE08C1D2C30B88900993422 /* VoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE08C1C2C30B88900993422 /* VoteRepository.swift */; };
+		EEE08C1F2C30B96200993422 /* VoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE08C1E2C30B96200993422 /* VoteService.swift */; };
 		EEE464482B5A0E1600E5DBFC /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE464472B5A0E1600E5DBFC /* CustomPicker.swift */; };
 		EEE4644A2B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE464492B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift */; };
 		EEE464502B5FF2C000E5DBFC /* HorizontalProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE4644F2B5FF2C000E5DBFC /* HorizontalProgressView.swift */; };
@@ -699,6 +701,8 @@
 		EEE08C152C2E101000993422 /* LinkProviderViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LinkProviderViewModel+Preview.swift"; sourceTree = "<group>"; };
 		EEE08C182C2F64D900993422 /* PostHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostHeaderViewModel.swift; sourceTree = "<group>"; };
 		EEE08C1A2C2F990A00993422 /* VoteButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteButtons.swift; sourceTree = "<group>"; };
+		EEE08C1C2C30B88900993422 /* VoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteRepository.swift; sourceTree = "<group>"; };
+		EEE08C1E2C30B96200993422 /* VoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteService.swift; sourceTree = "<group>"; };
 		EEE464472B5A0E1600E5DBFC /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
 		EEE464492B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissKeyboardOnDragModifier.swift; sourceTree = "<group>"; };
 		EEE4644F2B5FF2C000E5DBFC /* HorizontalProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalProgressView.swift; sourceTree = "<group>"; };
@@ -1559,6 +1563,7 @@
 				EEB5AF902B017F0900310408 /* UserDefaultStorage.swift */,
 				EE7055512B1147EE00E40A89 /* UserRepository.swift */,
 				EE2477F62BF10E8C00661A0A /* CommentRepository.swift */,
+				EEE08C1C2C30B88900993422 /* VoteRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1669,6 +1674,7 @@
 				EE2B15B92B4594540046D5FC /* PostService.swift */,
 				EE5D39F02A2BB5DC00D0E312 /* RichLinkService.swift */,
 				EEB5AF8E2AFBCD6B00310408 /* SwiftDataService.swift */,
+				EEE08C1E2C30B96200993422 /* VoteService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2330,6 +2336,7 @@
 				EE80D90A29C926BF0000F8EF /* CommunityInfoViewModel+Preview.swift in Sources */,
 				EE2B15E62B545C300046D5FC /* DefaultRequirement.swift in Sources */,
 				EE412B3E2B7830FA0007632B /* ColorScheme.swift in Sources */,
+				EEE08C1F2C30B96200993422 /* VoteService.swift in Sources */,
 				EE7EC27F2B614EE900F62E90 /* CommunityTagsView.swift in Sources */,
 				EE412BA52BA676180007632B /* AlertableModifier.swift in Sources */,
 				EEA2B41A2B66CCD700063211 /* AddRuleField.swift in Sources */,
@@ -2528,6 +2535,7 @@
 				EE80D8D429BC15FC0000F8EF /* EventsTabMainViewModel+Preview.swift in Sources */,
 				EE36FF862B1C15FD009E8F86 /* CustomSecureField.swift in Sources */,
 				EE412BA12B9F3DD40007632B /* AccountInputFlowView.swift in Sources */,
+				EEE08C1D2C30B88900993422 /* VoteRepository.swift in Sources */,
 				EEC61B5F2B40F43400F73509 /* PostCategoryView.swift in Sources */,
 				EE412B5D2B8EC10C0007632B /* LinkField.swift in Sources */,
 				EE11729F2A71C3C700E529AF /* CommunityCategoryViewModel.swift in Sources */,

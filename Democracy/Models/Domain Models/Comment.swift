@@ -10,7 +10,7 @@ import SharedResourcesClientAndServer
 
 // Domain model
 @Observable
-final class Comment: Identifiable, Hashable {
+final class Comment: Identifiable, Hashable, Votable {
     let id: String
     let parentId: String?
     let postId: String

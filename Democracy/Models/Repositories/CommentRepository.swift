@@ -12,7 +12,6 @@ import SharedResourcesClientAndServer
 protocol CommentRepository {
     func submitComment(_ comment: CommentCreationRequest) async throws -> Comment
     func fetchComments(request: CommentFetchRequest) async throws -> [Comment]
-    func voteOnComment(request: CommentVoteRequest) async throws -> CommentVote
 }
 
 final class CommentRepositoryDefault: CommentRepository {
@@ -24,9 +23,5 @@ final class CommentRepositoryDefault: CommentRepository {
     
     func fetchComments(request: CommentFetchRequest) async throws -> [Comment] {
         try await appwriteService.fetchComments(request: request)
-    }
-    
-    func voteOnComment(request: CommentVoteRequest) async throws -> CommentVote {
-        try await appwriteService.voteOnComment(request)
     }
 }
