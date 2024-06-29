@@ -61,6 +61,11 @@ private extension PostView {
     
     var commentList: some View {
         List {
+            PostHeaderView(viewModel: viewModel.postHeaderViewModel)
+                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                .listRowBackground(Color.primaryBackground)
+                .listRowSeparator(.hidden)
+            
             ForEach(viewModel.comments) { commentNode in
                 NodeOutlineGroup(node: commentNode, childKeyPath: \.replies) { commentNode in
                     listNode(commentNode)

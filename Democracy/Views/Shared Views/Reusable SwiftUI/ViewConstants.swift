@@ -33,6 +33,9 @@ enum ViewConstants {
     // Animation Constants
     static let animationLength = 0.3
     
+    // Scaling
+    static let minTextScale = 0.75
+    
     // Other standard values
     static let cornerRadius: CGFloat = 10
     static let screenPadding: CGFloat = 15
@@ -51,6 +54,7 @@ enum SystemImage: String {
     case arrowshapeUp = "arrowshape.up"                                // 􁾨
     case arrowshapeDown = "arrowshape.down"                            // 􁾬
     case arrowshapeTurnUpLeft = "arrowshape.turn.up.left"              // 􀉌
+    case arrowUpRightSquare = "arrow.up.right.square"                  // 􀄔
     case asterisk = "asterisk"                                         // 􀸓
     case bolt                                                          // 􀋥
     case book                                                          // 􀉚

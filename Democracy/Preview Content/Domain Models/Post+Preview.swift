@@ -12,12 +12,12 @@ extension Post {
     
     static let preview = Post(
         id: "123",
-        title: "Post Title",
-        body: "Post Body",
+        title: "Elon Musk May Have Lost More Than a $55 Billion",
+        body: "In this bonus Elon, Inc. episode, we take a long look at the scathing, 200-page ruling by a Delaware judge that could reshape Musk's empire.",
         link: URL(string: "https://www.wired.com/story/seagrass-humble-ocean-plant-worth-trillions/")!,
         category: "racing",
         tags: [ "Dog", "Cat", "Mouse", "Horse", "Elephant", "Zebra", "Donkey", "Chicken"],
-        userId: "1234",
+        userId: "DonaldTrump JoeBiden",
         communityId: "12345",
         creationDate: .now,
         // rootCommentIds: [],

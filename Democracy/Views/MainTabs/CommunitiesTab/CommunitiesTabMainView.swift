@@ -44,7 +44,7 @@ private extension CommunitiesTabMainView {
     }
     
     var leadingButtons: [TopBarContent] {
-        [.title("Communities")]
+        [.title("Communities", size: .large)]
     }
     
     var content: some View {

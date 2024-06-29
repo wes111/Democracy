@@ -10,8 +10,6 @@ import Foundation
 import LinkPresentation
 
 final class PostCardViewModel: ObservableObject, Hashable {
-    
-    @Injected(\.richLinkService) private var richLinkService
     private weak var coordinator: CommunitiesCoordinatorDelegate?
     let post: Post
     

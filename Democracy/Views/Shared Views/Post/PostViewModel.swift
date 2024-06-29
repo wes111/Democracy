@@ -45,11 +45,13 @@ final class PostViewModel {
     private weak var coordinator: PostCoordinatorDelegate?
     private let post: Post
     private let commentsManager: CommentsManager
+    let postHeaderViewModel: PostHeaderViewModel
     
     init(coordinator: PostCoordinatorDelegate?, post: Post) {
         self.coordinator = coordinator
         self.post = post
         commentsManager = CommentsManager(post: post)
+        postHeaderViewModel = PostHeaderViewModel(post: post)
     }
 }
 
@@ -61,7 +63,7 @@ extension PostViewModel {
     }
     
     var centerContent: [TopBarContent] {
-        [.title("Todo - Title")]
+        [.title(post.communityId, size: .small)]
     }
     
     var trailingContent: [TopBarContent] {

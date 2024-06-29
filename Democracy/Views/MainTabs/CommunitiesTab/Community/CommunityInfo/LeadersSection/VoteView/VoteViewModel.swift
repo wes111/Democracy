@@ -17,7 +17,7 @@ final class VoteViewModel: ObservableObject {
     }
     
     lazy var leadingButtons: [TopBarContent] = {
-        [.title(navigationTitle)]
+        [.title(navigationTitle, size: .large)]
     }()
     
     lazy var trailingButtons: [TopBarContent] = {

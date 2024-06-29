@@ -17,10 +17,15 @@ struct MenuButtonOption: Identifiable {
     }
 }
 
+enum NavigationTitleSize {
+    
+    case small, medium, large
+}
+
 enum TopBarContent: Identifiable {
     typealias Action = @MainActor () -> Void
     
-    case title(String)
+    case title(String, size: NavigationTitleSize)
     case back(Action)
     case close(Action)
     case search(Action)
@@ -101,9 +106,21 @@ private extension ToolbarNavigationModifier {
                 case .back(let action):
                     backButton(action: action)
                     
-                case .title(let title):
-                    Text(title)
-                        .primaryTitle()
+                case .title(let title, let size):
+                    switch size {
+                    case .small:
+                        Text(title)
+                            .font(.headline)
+                            .foregroundColor(.primaryText)
+                        
+                    case .medium:
+                        Text(title)
+                            .primaryTitle()
+                        
+                    case .large:
+                        Text(title)
+                            .primaryTitle()
+                    }
                     
                 case .close(let action):
                     closeButton(action: action)

@@ -86,10 +86,6 @@ struct PostCardView: View {
                 Spacer()
             }
             .padding(.horizontal, 10)
-            
-            if let metadata = viewModel.linkMetadata {
-                LPLinkViewRepresented(metadata: metadata)
-            }
         }
     }
     

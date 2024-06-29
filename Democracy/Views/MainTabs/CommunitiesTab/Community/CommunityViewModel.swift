@@ -36,7 +36,7 @@ extension CommunityViewModel {
     }
     
     var centerContent: [TopBarContent] {
-        [.title(community.name)]
+        [.title(community.name, size: .large)]
     }
     
     var trailingContent: [TopBarContent] {

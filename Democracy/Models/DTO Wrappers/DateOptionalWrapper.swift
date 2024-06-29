@@ -7,6 +7,7 @@
 
 import Foundation
 
+// TODO: This should be deleted and use `shared` decoder...
 struct DateOptionalWrapper: Decodable {
     let date: Date?
     

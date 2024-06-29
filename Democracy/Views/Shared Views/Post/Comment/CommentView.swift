@@ -6,86 +6,6 @@
 //
 
 import SwiftUI
-import Factory
-import SharedResourcesClientAndServer
-
-@MainActor
-protocol CommentViewModelDelegate: AnyObject {
-    func onTapCommentReply(comment: CommentNode)
-}
-
-@MainActor @Observable
-final class CommentViewModel {
-    let commentNode: CommentNode
-    private var currentVote: VoteType?
-    
-    @ObservationIgnored @Injected(\.commentService) private var commentService
-    @ObservationIgnored weak var delegate: CommentViewModelDelegate?
-    
-    var comment: Comment {
-        commentNode.value
-    }
-    
-    init(commentNode: CommentNode) {
-        self.commentNode = commentNode
-    }
-    
-    // TODO: Need to persist locally upvotes/downvotes....
-    // Leaving this comment here, because the postViewModel should have a dictionary of
-    // up/down votes for all comments...
-    // Current vote will be fetched from local storage on init.
-    func didTapVoteButton(_ vote: VoteType) {
-        Task {
-            do {
-                try await commentService.voteOnComment(comment, vote: vote)
-            } catch {
-                print(error)
-                print()
-            }
-        }
-    }
-    
-    func didTapMenuButton() {
-        
-    }
-    
-    func didTapReplyButton() {
-        delegate?.onTapCommentReply(comment: commentNode)
-    }
-    
-    var content: String {
-        comment.content
-    }
-    
-    var username: String {
-        comment.userId
-    }
-    
-    var userTagline: String {
-        "New York City"
-    }
-    
-    var loadRepliesTitle: String {
-        "Load \(commentNode.value.responseCount)+ Replies"
-    }
-    
-    var date: String {
-        comment.creationDate.getFormattedDate(format: .ddMMMyyyy)
-    }
-    
-    var upVoteCount: Int {
-        comment.upVoteCount
-    }
-    
-    var downVoteCount: Int {
-        comment.downVoteCount
-    }
-    
-    init(comment: CommentNode, delegate: CommentViewModelDelegate?) {
-        self.commentNode = comment
-        self.delegate = delegate
-    }
-}
 
 @MainActor
 struct CommentView: View {
@@ -197,37 +117,15 @@ private extension CommentView {
 private extension CommentView {
     
     var footer: some View {
-        HStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
-            upVoteButton
-            downVoteButton
+        HStack {
+            VoteButtons(
+                didTapVoteButton: viewModel.didTapVoteButton(_:),
+                upVoteCount: viewModel.upVoteCount,
+                downVoteCount: viewModel.downVoteCount
+            )
+            
             Spacer()
         }
-        .font(.footnote)
-        .foregroundStyle(Color.secondaryText)
-    }
-    
-    var upVoteButton: some View {
-        Button(action: { viewModel.didTapVoteButton(.up) }) {
-            Label {
-                Text("\(viewModel.upVoteCount)")
-            } icon: {
-                Image(systemName: SystemImage.arrowshapeUp.rawValue)
-            }
-            .labelStyle(TightLabelStyle())
-        }
-        .buttonStyle(.plain)
-    }
-    
-    var downVoteButton: some View {
-        Button(action: { viewModel.didTapVoteButton(.down) }) {
-            Label {
-                Text("\(viewModel.downVoteCount)")
-            } icon: {
-                Image(systemName: SystemImage.arrowshapeDown.rawValue)
-            }
-            .labelStyle(TightLabelStyle())
-        }
-        .buttonStyle(.plain)
     }
 }
 
