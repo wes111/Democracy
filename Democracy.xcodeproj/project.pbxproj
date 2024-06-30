@@ -350,6 +350,7 @@
 		EEE08C1B2C2F990A00993422 /* VoteButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE08C1A2C2F990A00993422 /* VoteButtons.swift */; };
 		EEE08C1D2C30B88900993422 /* VoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE08C1C2C30B88900993422 /* VoteRepository.swift */; };
 		EEE08C1F2C30B96200993422 /* VoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE08C1E2C30B96200993422 /* VoteService.swift */; };
+		EEE08C212C30F0BB00993422 /* PostVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE08C202C30F0BB00993422 /* PostVote.swift */; };
 		EEE464482B5A0E1600E5DBFC /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE464472B5A0E1600E5DBFC /* CustomPicker.swift */; };
 		EEE4644A2B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE464492B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift */; };
 		EEE464502B5FF2C000E5DBFC /* HorizontalProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE4644F2B5FF2C000E5DBFC /* HorizontalProgressView.swift */; };
@@ -701,6 +702,7 @@
 		EEE08C1A2C2F990A00993422 /* VoteButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteButtons.swift; sourceTree = "<group>"; };
 		EEE08C1C2C30B88900993422 /* VoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteRepository.swift; sourceTree = "<group>"; };
 		EEE08C1E2C30B96200993422 /* VoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteService.swift; sourceTree = "<group>"; };
+		EEE08C202C30F0BB00993422 /* PostVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVote.swift; sourceTree = "<group>"; };
 		EEE464472B5A0E1600E5DBFC /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
 		EEE464492B5A11C300E5DBFC /* DismissKeyboardOnDragModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissKeyboardOnDragModifier.swift; sourceTree = "<group>"; };
 		EEE4644F2B5FF2C000E5DBFC /* HorizontalProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalProgressView.swift; sourceTree = "<group>"; };
@@ -1964,6 +1966,7 @@
 				EE412BAB2BB0D9A30007632B /* Membership.swift */,
 				EE5B938C29F776A400B43381 /* Enums */,
 				EE0696B62C25008000DABDDF /* CommentVote.swift */,
+				EEE08C202C30F0BB00993422 /* PostVote.swift */,
 			);
 			path = "Domain Models";
 			sourceTree = "<group>";
@@ -2389,6 +2392,7 @@
 				EEA2B4112B65552700063211 /* MenuCard.swift in Sources */,
 				EEA2B4352B71BB4C00063211 /* CommunitySettings.swift in Sources */,
 				EED4A54329BAB60100DDCCDA /* Hashable+Extensions.swift in Sources */,
+				EEE08C212C30F0BB00993422 /* PostVote.swift in Sources */,
 				EE412BAA2BAFAA210007632B /* PrimaryTitleModifier.swift in Sources */,
 				EED4A52629B810FF00DDCCDA /* Post.swift in Sources */,
 				EE412B4F2B8C28310007632B /* SuccessViewModel.swift in Sources */,

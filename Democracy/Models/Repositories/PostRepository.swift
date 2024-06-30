@@ -7,6 +7,7 @@
 
 import Factory
 import Foundation
+import SharedResourcesClientAndServer
 
 protocol PostRepository {
     func submitPost(_ newPost: PostCreationRequest) async throws

@@ -8,19 +8,49 @@
 import Foundation
 import SharedResourcesClientAndServer
 
-// The Post object sent to the Appwrite database.
-// Note that 'id', 'creationDate', and 'approvedDate' are not part of this object.
-struct PostCreationRequest: Encodable {
+// The domain model.
+@Observable
+final class Post: Identifiable, Hashable, Votable {
+    let id: String
     let title: String
     let body: String
-    let link: String?
+    let link: URL?
     let category: String
     let tags: [String]
     let userId: String
     let communityId: String
+    let creationDate: Date
+    let approvedDate: Date?
+    var upVoteCount: Int
+    var downVoteCount: Int
+    var userVote: PostVote?
     
-    enum CodingKeys: String, CodingKey {
-        case title, body, link, category, tags, userId, communityId
+    init(
+        id: String,
+        title: String,
+        body: String,
+        link: URL?,
+        category: String,
+        tags: [String],
+        userId: String,
+        communityId: String,
+        creationDate: Date,
+        approvedDate: Date?,
+        upVoteCount: Int,
+        downVoteCount: Int
+    ) {
+        self.id = id
+        self.title = title
+        self.body = body
+        self.link = link
+        self.category = category
+        self.tags = tags
+        self.userId = userId
+        self.communityId = communityId
+        self.creationDate = creationDate
+        self.approvedDate = approvedDate
+        self.upVoteCount = upVoteCount
+        self.downVoteCount = downVoteCount
     }
 }
 
@@ -36,21 +66,9 @@ extension PostDTO {
             userId: userId,
             communityId: communityId,
             creationDate: creationDate,
-            approvedDate: approvedDate
+            approvedDate: approvedDate,
+            upVoteCount: upVoteCount,
+            downVoteCount: downVoteCount
         )
     }
-}
-
-// The domain model.
-struct Post: Identifiable, Hashable { //}, Votable {
-    let id: String
-    let title: String
-    let body: String
-    let link: URL?
-    let category: String
-    let tags: [String]
-    let userId: String
-    let communityId: String
-    let creationDate: Date
-    let approvedDate: Date?
 }

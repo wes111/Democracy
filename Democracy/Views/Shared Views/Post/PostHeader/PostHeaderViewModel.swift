@@ -5,6 +5,7 @@
 //  Created by Wesley Luntsford on 6/28/24.
 //
 
+import Factory
 import Foundation
 import SharedResourcesClientAndServer
 
@@ -12,6 +13,7 @@ import SharedResourcesClientAndServer
 final class PostHeaderViewModel {
     let post: Post
     var linkProviderViewModel: LinkProviderViewModel?
+    @ObservationIgnored @Injected(\.voteService) private var voteService
     
     init(post: Post) {
         self.post = post
@@ -44,6 +46,13 @@ extension PostHeaderViewModel {
     }
     
     func onTapVoteButton(_ vote: VoteType) {
-        
+        Task {
+            do {
+                try await voteService.voteOnObject(post, vote: vote)
+            } catch {
+                print(error)
+                print()
+            }
+        }
     }
 }

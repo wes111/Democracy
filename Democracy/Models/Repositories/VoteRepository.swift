@@ -23,15 +23,35 @@ final class VoteRepositoryDefault: VoteRepository {
     
     func voteOnObject<T: Votable>(_ object: T, vote: VoteType) async throws -> T.Vote {
         if let object = object as? Comment {
-            let commentVote = try await appwriteService.voteOnComment(.init(
-                commentId: object.id,
-                userId: try await userRepository.userId(),
-                vote: vote
-            ))
-            return commentVote as! T.Vote
+            return try await appwriteVoteOnComment(object, vote: vote) as! T.Vote
+            
+        } else if let object = object as? Post {
+            return try await appwriteVoteOnPost(post: object, vote: vote) as! T.Vote
+            
         } else {
             throw VoteRepositoryError.unhandledVotable
         }
     }
+}
+
+// MARK: - Private Methods
+private extension VoteRepositoryDefault {
     
+    func appwriteVoteOnComment(_ comment: Comment, vote: VoteType) async throws -> CommentVote {
+        let commentVote = try await appwriteService.voteOnComment(.init(
+            commentId: comment.id,
+            userId: try await userRepository.userId(),
+            vote: vote
+        ))
+        return commentVote
+    }
+    
+    func appwriteVoteOnPost(post: Post, vote: VoteType) async throws -> PostVote {
+        let postVote = try await appwriteService.voteOnPost(.init(
+            postId: post.id,
+            userId: try await userRepository.userId(),
+            vote: vote
+        ))
+        return postVote
+    }
 }

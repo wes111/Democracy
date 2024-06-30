@@ -20,8 +20,9 @@ extension Post {
         userId: "DonaldTrump JoeBiden",
         communityId: "12345",
         creationDate: .now,
-        // rootCommentIds: [],
-        approvedDate: .now
+        approvedDate: .now,
+        upVoteCount: 5,
+        downVoteCount: 27
     )
     
     static let previewArray: [Post] = {

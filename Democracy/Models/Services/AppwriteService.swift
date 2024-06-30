@@ -73,6 +73,7 @@ protocol AppwriteService: Sendable {
     // Functions
     func submitComment(_ comment: CommentCreationRequest) async throws -> Comment
     func voteOnComment(_ commentVote: CommentVoteRequest) async throws -> CommentVote
+    func voteOnPost(_ postVote: PostVoteRequest) async throws -> PostVote
 }
 
 final class AppwriteServiceDefault: AppwriteService {
@@ -301,6 +302,11 @@ extension AppwriteServiceDefault {
         
         let response: CommentVoteDTO = try execution.responseBody.decode()
         return response.toCommentVote()
+    }
+    
+    func voteOnPost(_ postVote: PostVoteRequest) async throws -> PostVote {
+        // TODO: ... 
+        return .init(id: "", creationDate: .now, itemId: "", userId: "")
     }
 }
 

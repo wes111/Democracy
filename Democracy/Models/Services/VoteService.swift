@@ -103,6 +103,8 @@ private extension VoteServiceDefault {
     func voteOnObjectInRepository<T: Votable>(_ object: T, vote: VoteType) async throws -> T.Vote {
         if let object = object as? Comment {
             return try await voteRepository.voteOnObject(object, vote: vote) as! T.Vote
+        } else if let object = object as? Post {
+            return try await voteRepository.voteOnObject(object, vote: vote) as! T.Vote
         } else {
             throw VoteServiceError.unhandledVotable
         }
