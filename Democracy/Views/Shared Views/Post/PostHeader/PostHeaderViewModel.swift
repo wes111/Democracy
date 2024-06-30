@@ -31,11 +31,11 @@ extension PostHeaderViewModel {
     }
     
     var upVoteCount: Int {
-        0
+        post.upVoteCount
     }
     
     var downVoteCount: Int {
-        0
+        post.downVoteCount
     }
 }
 

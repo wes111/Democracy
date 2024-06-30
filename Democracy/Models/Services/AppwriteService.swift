@@ -305,8 +305,16 @@ extension AppwriteServiceDefault {
     }
     
     func voteOnPost(_ postVote: PostVoteRequest) async throws -> PostVote {
-        // TODO: ... 
-        return .init(id: "", creationDate: .now, itemId: "", userId: "")
+        let jsonString = try postVote.toJSONString()
+        
+        let execution = try await functions.createExecution(
+            functionId: AppwriteFunction.votePost.id,
+            body: jsonString,
+            method: AppwriteMethod.post.name
+        )
+        
+        let response: PostVoteDTO = try execution.responseBody.decode()
+        return response.toPostVote()
     }
 }
 
@@ -349,6 +357,7 @@ enum AppwriteMethod: String {
 enum AppwriteFunction: String {
     case postComment
     case voteComment
+    case votePost
     case uniqueAccountFieldIsAvailable = "UniqueAccountFieldIsAvailable"
     
     var id: String {
