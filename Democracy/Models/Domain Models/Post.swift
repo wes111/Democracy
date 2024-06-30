@@ -18,54 +18,31 @@ struct PostCreationRequest: Encodable {
     let tags: [String]
     let userId: String
     let communityId: String
-    //var rootCommentIds: [String] = []
     
     enum CodingKeys: String, CodingKey {
         case title, body, link, category, tags, userId, communityId
-        //case rootCommentIds = "comment"
     }
 }
 
-// The Post object received from the Appwrite database.
-struct PostDTO: Decodable {
-    let id: String
-    let title: String
-    let body: String
-    let link: URLOptionalWrapper
-    let category: String
-    let tags: [String]
-    let userId: String
-    let communityId: String
-    let creationDate: DateWrapper
-    //let rootCommentIds: [String]? // TODO: Add as attribute in Appwrite Database.
-    let approvedDate: DateOptionalWrapper
-    
-    enum CodingKeys: String, CodingKey {
-        case title, body, link, category, tags, userId, communityId, approvedDate
-        case id = "$id"
-        case creationDate = "$createdAt"
-        //case rootCommentIds = "comment"
-    }
-    
+extension PostDTO {
     func toPost() -> Post {
         .init(
             id: id,
             title: title,
             body: body,
-            link: link.url,
+            link: link,
             category: category,
             tags: tags,
             userId: userId,
             communityId: communityId,
-            creationDate: creationDate.date,
-            //rootCommentIds: rootCommentIds ?? [],
-            approvedDate: approvedDate.date
+            creationDate: creationDate,
+            approvedDate: approvedDate
         )
     }
 }
 
 // The domain model.
-struct Post: Identifiable, Hashable {
+struct Post: Identifiable, Hashable { //}, Votable {
     let id: String
     let title: String
     let body: String
@@ -75,6 +52,5 @@ struct Post: Identifiable, Hashable {
     let userId: String
     let communityId: String
     let creationDate: Date
-    //let rootCommentIds: [String]
     let approvedDate: Date?
 }

@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import SharedResourcesClientAndServer
 
 // The Resource object received from the Appwrite database.
 struct ResourceDTO: Decodable {
     let id: String
     let title: String
     let description: String?
-    let link: URLOptionalWrapper
+    let link: URL?
     let category: ResourceCategory
     let communityId: String
     
@@ -26,7 +27,7 @@ struct ResourceDTO: Decodable {
             id: id,
             title: title,
             description: description,
-            link: link.url,
+            link: link,
             category: category,
             communityId: communityId
         )

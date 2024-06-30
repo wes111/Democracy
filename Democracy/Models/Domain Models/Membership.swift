@@ -26,7 +26,7 @@ struct MembershipCreationRequest: Encodable {
 // The Membership object received from the Appwrite database.
 struct MembershipDTO: Decodable {
     let id: String
-    let joinDate: DateWrapper
+    let joinDate: Date
     let community: CommunityDTO
     let userId: String
     
@@ -39,7 +39,7 @@ struct MembershipDTO: Decodable {
     func toMembership() -> Membership {
         .init(
             id: id,
-            joinDate: joinDate.date,
+            joinDate: joinDate,
             community: community.toCommunity(),
             userId: userId
         )

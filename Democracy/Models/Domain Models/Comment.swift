@@ -52,7 +52,7 @@ extension CommentDTO {
             parentId: parentId,
             postId: postId,
             userId: userId,
-            creationDate: creationDate.date,
+            creationDate: creationDate,
             content: content,
             upVoteCount: upVoteCount,
             downVoteCount: downVoteCount,

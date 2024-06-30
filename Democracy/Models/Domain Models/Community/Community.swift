@@ -58,7 +58,7 @@ struct CommunityDTO: Decodable {
     let creatorId: String
     let name: String
     let descriptionText: String
-    let creationDateWrapper: DateWrapper
+    let creationDateWrapper: Date
     var representatives: [Candidate]? // TODO: Add as attribute in Appwrite Database.
     let memberCount: Int
     var rules: [RuleDTO]
@@ -94,7 +94,7 @@ struct CommunityDTO: Decodable {
             creatorId: creatorId,
             name: name,
             descriptionText: descriptionText,
-            creationDate: creationDateWrapper.date,
+            creationDate: creationDateWrapper,
             // representatives: representatives ?? [],
             memberCount: memberCount,
             rules: rules.map { $0.toRule() },

@@ -81,7 +81,6 @@
 		EE412B672B901E6E0007632B /* CommunityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B662B901E6E0007632B /* CommunityService.swift */; };
 		EE412B692B9029F60007632B /* CommunityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B682B9029F60007632B /* CommunityRepository.swift */; };
 		EE412B6C2B96BC390007632B /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B6B2B96BC390007632B /* Resource.swift */; };
-		EE412B6F2B9811EB0007632B /* URLOptionalWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B6E2B9811EB0007632B /* URLOptionalWrapper.swift */; };
 		EE412B732B981B220007632B /* ResourceCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B722B981B220007632B /* ResourceCategory.swift */; };
 		EE412B752B9965FB0007632B /* DateOptionalWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B742B9965FB0007632B /* DateOptionalWrapper.swift */; };
 		EE412B772B9D21680007632B /* PostFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B762B9D21680007632B /* PostFlow.swift */; };
@@ -434,7 +433,6 @@
 		EE412B662B901E6E0007632B /* CommunityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityService.swift; sourceTree = "<group>"; };
 		EE412B682B9029F60007632B /* CommunityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRepository.swift; sourceTree = "<group>"; };
 		EE412B6B2B96BC390007632B /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
-		EE412B6E2B9811EB0007632B /* URLOptionalWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLOptionalWrapper.swift; sourceTree = "<group>"; };
 		EE412B722B981B220007632B /* ResourceCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceCategory.swift; sourceTree = "<group>"; };
 		EE412B742B9965FB0007632B /* DateOptionalWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOptionalWrapper.swift; sourceTree = "<group>"; };
 		EE412B762B9D21680007632B /* PostFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFlow.swift; sourceTree = "<group>"; };
@@ -978,7 +976,6 @@
 		EE412B6D2B9811D40007632B /* DTO Wrappers */ = {
 			isa = PBXGroup;
 			children = (
-				EE412B6E2B9811EB0007632B /* URLOptionalWrapper.swift */,
 				EE412B742B9965FB0007632B /* DateOptionalWrapper.swift */,
 			);
 			path = "DTO Wrappers";
@@ -2254,7 +2251,6 @@
 				EE5B93922A033A7D00B43381 /* Month.swift in Sources */,
 				EE412B452B79AA750007632B /* AddResourceViewModel+Preview.swift in Sources */,
 				EE5B938B29F7764E00B43381 /* BoundMenu.swift in Sources */,
-				EE412B6F2B9811EB0007632B /* URLOptionalWrapper.swift in Sources */,
 				EE80D93729D289BB0000F8EF /* CreateCandidateAlert.swift in Sources */,
 				EE4988102B3E209700AB7522 /* SubmitPostInput.swift in Sources */,
 				EE7856242AB917FA0004B7E4 /* CheckboxToggleStyle.swift in Sources */,
