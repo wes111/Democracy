@@ -42,10 +42,12 @@ private extension CommunityHomeFeedView {
             scrollProgresssView(isVisible: viewModel.postShouldShowTopProgress(post))
             
             PostCardView(viewModel: viewModel.getPostCardViewModel(post: post))
-                .padding(.bottom, ViewConstants.smallElementSpacing)
                 .task {
                     await viewModel.onAppear(post)
                 }
+            
+            Divider()
+                .overlay(Color.black)
             
             scrollProgresssView(isVisible: viewModel.postShouldShowBottomProgress(post))
         }

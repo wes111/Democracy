@@ -37,6 +37,10 @@ extension PostHeaderViewModel {
     var downVoteCount: Int {
         post.downVoteCount
     }
+    
+    var commentsText: String {
+        "\(post.commentCount) comments"
+    }
 }
 
 // MARK: - Methods

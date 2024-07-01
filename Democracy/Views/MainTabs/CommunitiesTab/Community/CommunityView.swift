@@ -32,19 +32,25 @@ private extension CommunityView {
         ZStack(alignment: .topLeading) {
             Color.clear
             
-            VStack(alignment: .leading, spacing: ViewConstants.sectionSpacing) {
+            VStack(alignment: .leading, spacing: 0) {
                 headerButtons
-                    .padding(.horizontal, ViewConstants.screenPadding)
                 communitySection
             }
         }
     }
     
     var headerButtons: some View {
-        HStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
-            HorizontalSelectableList(selection: $viewModel.selectedTab)
-            joinLeaveButton
+        VStack(spacing: ViewConstants.smallInnerBorder) {
+            HStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
+                HorizontalSelectableList(selection: $viewModel.selectedTab)
+                joinLeaveButton
+            }
+            .padding(.horizontal, ViewConstants.screenPadding)
+            
+            Divider()
+                .overlay(Color.black)
         }
+
     }
     
     var joinLeaveButton: some View {

@@ -91,12 +91,23 @@ private extension PostHeaderView {
     }
     
     var bottomButtonsRow: some View {
-        VoteButtons(
-            didTapVoteButton: viewModel.onTapVoteButton(_:),
-            upVoteCount: viewModel.upVoteCount,
-            downVoteCount: viewModel.downVoteCount
-        )
-        .frame(maxWidth: .infinity, alignment: .trailing)
+        HStack(spacing: 0) {
+            commentsCount
+            
+            VoteButtons(
+                didTapVoteButton: viewModel.onTapVoteButton(_:),
+                upVoteCount: viewModel.upVoteCount,
+                downVoteCount: viewModel.downVoteCount
+            )
+            .frame(maxWidth: .infinity, alignment: .trailing)
+        }
+    }
+    
+    var commentsCount: some View {
+        Label(viewModel.commentsText, systemImage: SystemImage.bubble.rawValue)
+            .font(.footnote)
+            .foregroundStyle(Color.secondaryText)
+            .labelStyle(TightLabelStyle())
     }
 }
 

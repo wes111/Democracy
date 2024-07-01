@@ -22,7 +22,8 @@ extension Post {
         creationDate: .now,
         approvedDate: .now,
         upVoteCount: 5,
-        downVoteCount: 27
+        downVoteCount: 27,
+        commentCount: 55
     )
     
     static let previewArray: [Post] = {

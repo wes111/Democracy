@@ -23,6 +23,7 @@ final class Post: Identifiable, Hashable, Votable {
     let approvedDate: Date?
     var upVoteCount: Int
     var downVoteCount: Int
+    var commentCount: Int
     var userVote: PostVote?
     
     init(
@@ -37,7 +38,8 @@ final class Post: Identifiable, Hashable, Votable {
         creationDate: Date,
         approvedDate: Date?,
         upVoteCount: Int,
-        downVoteCount: Int
+        downVoteCount: Int,
+        commentCount: Int
     ) {
         self.id = id
         self.title = title
@@ -51,6 +53,7 @@ final class Post: Identifiable, Hashable, Votable {
         self.approvedDate = approvedDate
         self.upVoteCount = upVoteCount
         self.downVoteCount = downVoteCount
+        self.commentCount = commentCount
     }
 }
 
@@ -68,7 +71,8 @@ extension PostDTO {
             creationDate: creationDate,
             approvedDate: approvedDate,
             upVoteCount: upVoteCount,
-            downVoteCount: downVoteCount
+            downVoteCount: downVoteCount,
+            commentCount: commentCount
         )
     }
 }
