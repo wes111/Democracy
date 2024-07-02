@@ -9,6 +9,7 @@ import Foundation
 
 enum CommunityFlow: UserInputFlow {
     case name(CommunityNameViewModel)
+    case tagline(CommunityTaglineViewModel)
     case description(CommunityDescriptionViewModel)
     case categories(CommunityCategoriesViewModel)
     case tags(CommunityTagsViewModel)
@@ -18,12 +19,13 @@ enum CommunityFlow: UserInputFlow {
     
     // swiftlint:disable:next all
     enum ID: CaseIterable, Hashable, Equatable {
-        case name, description, categories, tags, rules, settings, resources
+        case name, description, categories, tags, tagline, rules, settings, resources
     }
     
     var id: ID {
         switch self {
         case .name: .name
+        case .tagline: .tagline
         case .description: .description
         case .categories: .categories
         case .tags: .tags
@@ -36,18 +38,20 @@ enum CommunityFlow: UserInputFlow {
     var progress: Int {
         switch self {
         case .name: 0
-        case .description: 1
-        case .categories: 2
-        case .tags: 3
-        case .rules: 4
-        case .settings: 5
-        case .resources: 6
+        case .tagline: 1
+        case .description: 2
+        case .categories: 3
+        case .tags: 4
+        case .rules: 5
+        case .settings: 6
+        case .resources: 7
         }
     }
     
     var title: String {
         switch self {
         case .name: "Community Name"
+        case .tagline: "Community Tagline"
         case .description: "Community Description"
         case .categories: "Community Categories"
         case .tags: "Community Tags"
@@ -61,6 +65,8 @@ enum CommunityFlow: UserInputFlow {
         switch self {
         case .name:
             "Create a name for the new community."
+        case .tagline:
+            "Add a tagline for users to get a quick overview of the community's main topic."
         case .description:
             "Add a description to the new community."
         case .categories:

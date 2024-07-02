@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TightLabelStyle: LabelStyle {
     func makeBody(configuration: Configuration) -> some View {
-        HStack(spacing: 2) {
+        HStack(spacing: ViewConstants.extraSmallElementSpacing) {
             configuration.icon
             configuration.title
         }

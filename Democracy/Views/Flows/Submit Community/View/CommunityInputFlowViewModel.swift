@@ -30,7 +30,8 @@ final class CommunityInputFlowViewModel: InputFlowViewModel, SubmitCommunityFlow
     func goBack() {
         switch flowPath {
         case .name, nil: return
-        case .description: toName()
+        case .tagline: toName()
+        case .description: toTagline()
         case .categories: toDescription()
         case .tags: toCategories()
         case .rules: toTags()
@@ -41,7 +42,8 @@ final class CommunityInputFlowViewModel: InputFlowViewModel, SubmitCommunityFlow
     
     func didSubmit(flow: CommunityFlow.ID) {
         switch flow {
-        case .name: toDescription()
+        case .name: toTagline()
+        case .tagline: toDescription()
         case .description: toCategories()
         case .categories: toTags()
         case .tags: toRules()
@@ -51,11 +53,11 @@ final class CommunityInputFlowViewModel: InputFlowViewModel, SubmitCommunityFlow
         }
     }
     
-    var trailingButtons: [OnboardingTopButton] {
+    var trailingButtons: [TopBarContent] {
         [.close(close)]
     }
     
-    var leadingButtons: [OnboardingTopButton] {
+    var leadingButtons: [TopBarContent] {
         shouldShowBackButton ? [.back(goBack)] : []
     }
     
@@ -67,7 +69,7 @@ final class CommunityInputFlowViewModel: InputFlowViewModel, SubmitCommunityFlow
         return switch flowPath {
         case .name:
             false
-        case .description, .categories, .tags, .rules, .settings, .resources:
+        case .tagline, .description, .categories, .tags, .rules, .settings, .resources:
             true
         }
     }
@@ -82,6 +84,11 @@ private extension CommunityInputFlowViewModel {
     func toName() {
         let viewModel = CommunityNameViewModel(submitCommunityInput: input, flowCoordinator: self)
         flowPath = .name(viewModel)
+    }
+    
+    func toTagline() {
+        let viewModel = CommunityTaglineViewModel(submitCommunityInput: input, flowCoordinator: self)
+        flowPath = .tagline(viewModel)
     }
     
     func toDescription() {

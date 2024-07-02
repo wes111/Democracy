@@ -13,13 +13,13 @@ struct LeadersSectionViewModel {
     let modsScrollViewModel: LeadersScrollViewModel
     let legislatorsScrollViewModel: LeadersScrollViewModel
     
-    private weak var coordinator: LeadersCoordinatorDelegate?
+    private weak var coordinator: CommunitiesCoordinatorDelegate?
     
     init(
         creators: [Candidate],
         mods: [Candidate],
         legislators: [Candidate],
-        coordinator: LeadersCoordinatorDelegate?
+        coordinator: CommunitiesCoordinatorDelegate?
     ) {
         self.coordinator = coordinator
         

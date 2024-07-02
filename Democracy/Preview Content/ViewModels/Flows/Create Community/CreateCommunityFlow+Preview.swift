@@ -18,6 +18,13 @@ extension CommunityNameViewModel {
     )
 }
 
+extension CommunityTaglineViewModel {
+    static let preview = CommunityTaglineViewModel(
+        submitCommunityInput: .init(),
+        flowCoordinator: CommunityInputFlowViewModel.preview
+    )
+}
+
 extension CommunityDescriptionViewModel {
     static let preview = CommunityDescriptionViewModel(
         submitCommunityInput: .init(),

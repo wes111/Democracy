@@ -7,94 +7,71 @@
 
 import Factory
 import Foundation
-import LinkPresentation
+import SharedResourcesClientAndServer
 
-protocol PostCardCoordinatorDelegate: AnyObject {
-    @MainActor func goToPostView(_ post: Post)
-}
-
-final class PostCardViewModel: ObservableObject, Hashable, Identifiable {
-    
-    // MARK: - Private Variables
-    @Injected(\.richLinkService) private var richLinkService
-    private weak var coordinator: PostCardCoordinatorDelegate?
+@MainActor @Observable
+final class PostCardViewModel: Hashable {
+    @ObservationIgnored @Injected(\.voteService) private var voteService
+    var linkProviderViewModel: LinkProviderViewModel?
+    private weak var coordinator: CommunitiesCoordinatorDelegate?
     let post: Post
     
-    // MARK: - Protocol Variables
-    @Published var linkMetadata: LPLinkMetadata?
-
-    var imageName: String {
-        // if postLocationInApp == global vs in community
-        // return post.creator.imageName ?? "bernie" // default image.
-        return "bernie"
-    }
-    
-    var postNameOrCommunity: String {
-        // if postLocationInApp == global vs in community
-        return "Bernie Sanders"
-    }
-    
-    var dateTitle: String {
-        ""
-//        if post.creationDate.isYesterday() {
-//            return "Yesterday"
-//        } else if post.creationDate.isToday() {
-//            return "Today"
-//        } else {
-//            return post.creationDate.getFormattedDate(format: "MMMM dd, YYYY")
-//        }
-        
-    }
-    
-    var postTitle: String {
-        post.title
-    }
-    
-    var postSuperLikeCountString: String {
-        ""
-    }
-    
-    var postLikeCountString: String {
-        ""
-    }
-    
-    var postDislikeCountString: String {
-        ""
-    }
-    
-    // MARK: - Init
-    
-    init(coordinator: PostCardCoordinatorDelegate?,
-         post: Post
-    ) {
+    init(coordinator: CommunitiesCoordinatorDelegate?, post: Post) {
         self.coordinator = coordinator
         self.post = post
+        
+        if let url = post.link {
+            linkProviderViewModel = LinkProviderViewModel(url)
+        }
+    }
+}
+
+// MARK: - Computed Properites
+extension PostCardViewModel {
+    var date: String {
+        post.creationDate.getFormattedDate(format: .ddMMMyyyy)
     }
     
-    // MARK: - Protocol Methods
+    var upVoteCount: Int {
+        post.upVoteCount
+    }
     
-    @MainActor
+    var downVoteCount: Int {
+        post.downVoteCount
+    }
+    
+    var userTagline: String {
+        "Todo: New York State"
+    }
+    
+    var username: String {
+        post.userId
+    }
+    
+    var commentsText: String {
+        "\(post.commentCount) comments"
+    }
+}
+
+// MARK: - Methods
+extension PostCardViewModel {
+    
     func goToPostView() {
         coordinator?.goToPostView(post)
     }
     
-    func noAction() {
-        
+    func onTapVoteButton(_ vote: VoteType) {
+        Task {
+            do {
+                try await voteService.voteOnObject(post, vote: vote)
+            } catch {
+                print(error)
+                print()
+            }
+        }
     }
     
-    // MARK: - Private methods
-    
-    func loadLinkMetadata() async {
-//        guard let url = post.link?.url else { return }
-//        do {
-//            let metadata = try await richLinkService.getMetadata(for: url)
-//            
-//            await MainActor.run {
-//                self.linkMetadata = metadata
-//            }
-//        } catch {
-//            print("Error occurred fetching rich link metadata: \(error).")
-//        }
+    func onTapMenuButton() {
+        // TODO: ...
     }
-    
 }

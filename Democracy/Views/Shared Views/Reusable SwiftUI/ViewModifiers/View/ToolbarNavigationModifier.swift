@@ -8,28 +8,63 @@
 import Foundation
 import SwiftUI
 
-enum ToolbarCenterContent: Hashable, Identifiable {
-    case title(String)
+struct MenuButtonOption: Identifiable {
+    let title: String
+    let action: @MainActor () -> Void
     
-    var id: Self {
-        self
+    var id: String {
+        title
+    }
+}
+
+enum NavigationTitleSize {
+    
+    case small, medium, large
+}
+
+enum TopBarContent: Identifiable {
+    typealias Action = @MainActor () -> Void
+    
+    case title(String, size: NavigationTitleSize)
+    case back(Action)
+    case close(Action)
+    case search(Action)
+    case menu([MenuButtonOption])
+    
+    var name: String {
+        switch self {
+        case .title:
+            "title"
+        case .back:
+            "back"
+        case .close:
+            "close"
+        case .search:
+            "search"
+        case .menu:
+            "menu"
+        }
+    }
+    
+    var id: String {
+        name
     }
 }
 
 @MainActor
 struct ToolbarNavigationModifier: ViewModifier {
-    let leadingButtons: [OnboardingTopButton]
-    let trailingButtons: [OnboardingTopButton]
-    let centerContent: ToolbarCenterContent?
+    let leadingContent: [TopBarContent]
+    let centerContent: [TopBarContent]
+    let trailingContent: [TopBarContent]
     
     init(
-        leadingButtons: [OnboardingTopButton],
-        trailingButtons: [OnboardingTopButton],
-        centerContent: ToolbarCenterContent?
+        leadingContent: [TopBarContent],
+        centerContent: [TopBarContent],
+        trailingContent: [TopBarContent]
     ) {
-        self.leadingButtons = leadingButtons
-        self.trailingButtons = trailingButtons
+        self.leadingContent = leadingContent
         self.centerContent = centerContent
+        self.trailingContent = trailingContent
         
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithOpaqueBackground()
@@ -54,53 +89,90 @@ struct ToolbarNavigationModifier: ViewModifier {
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
             .toolbar {
-                toolbarSideContent(placement: .topBarLeading, buttons: leadingButtons)
-                if let centerContent {
-                    toolbarCenterContent(centerContent)
-                }
-                toolbarSideContent(placement: .topBarTrailing, buttons: trailingButtons)
+                toolBarContent(content: leadingContent, placement: .topBarLeading)
+                toolBarContent(content: centerContent, placement: .principal)
+                toolBarContent(content: trailingContent, placement: .topBarTrailing)
             }
     }
 }
 
 // MARK: - Subviews
 private extension ToolbarNavigationModifier {
-    func toolbarCenterContent(_ content: ToolbarCenterContent) -> some ToolbarContent {
-        ToolbarItem(placement: .principal) {
-            switch content {
-            case .title(let string):
-                Text(string)
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .foregroundColor(.tertiaryText)
-            }
-        }
-    }
     
-    func toolbarSideContent(
-        placement: ToolbarItemPlacement,
-        buttons: [OnboardingTopButton]
-    ) -> some ToolbarContent {
+    func toolBarContent(content: [TopBarContent], placement: ToolbarItemPlacement) -> some ToolbarContent {
         ToolbarItemGroup(placement: placement) {
-            ForEach(buttons) { button in
-                switch button {
+            ForEach(content) { item in
+                switch item {
                 case .back(let action):
-                    Button {
-                        action()
-                    } label: {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.tertiaryText)
+                    backButton(action: action)
+                    
+                case .title(let title, let size):
+                    switch size {
+                    case .small:
+                        Text(title)
+                            .font(.headline)
+                            .foregroundColor(.primaryText)
+                        
+                    case .medium:
+                        Text(title)
+                            .primaryTitle()
+                        
+                    case .large:
+                        Text(title)
+                            .primaryTitle()
                     }
                     
                 case .close(let action):
-                    Button {
-                        action()
-                    } label: {
-                        Image(systemName: "xmark")
-                            .foregroundColor(.tertiaryText)
-                    }
+                    closeButton(action: action)
+                    
+                case .search(let action):
+                    searchButton(action: action)
+                    
+                case .menu(let options):
+                    menuButton(options)
                 }
             }
+        }
+    }
+}
+
+// MARK: Buttons
+private extension ToolbarNavigationModifier {
+    func backButton(action: @MainActor @escaping () -> Void) -> some View {
+        Button {
+            action()
+        } label: {
+            Image(systemName: "chevron.left")
+                .foregroundColor(.tertiaryText)
+        }
+    }
+    
+    func closeButton(action: @MainActor @escaping () -> Void) -> some View {
+        Button {
+            action()
+        } label: {
+            Image(systemName: "xmark")
+                .foregroundColor(.tertiaryText)
+        }
+    }
+    
+    func searchButton(action: @MainActor @escaping () -> Void) -> some View {
+        Button {
+            action()
+        } label: {
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(.tertiaryText)
+        }
+    }
+    
+    func menuButton(_ options: [MenuButtonOption]) -> some View {
+        Menu {
+            ForEach(options) { option in
+                Button(option.title) { option.action() }
+            }
+        } label: {
+            Image(systemName: "ellipsis")
+                .foregroundColor(.tertiaryText)
         }
     }
 }
@@ -109,14 +181,14 @@ private extension ToolbarNavigationModifier {
 @MainActor
 extension View {
     func toolbarNavigation(
-        leadingButtons: [OnboardingTopButton] = [],
-        trailingButtons: [OnboardingTopButton] = [],
-        centerContent: ToolbarCenterContent? = nil
+        leadingContent: [TopBarContent] = [],
+        centerContent: [TopBarContent] = [],
+        trailingContent: [TopBarContent] = []
     ) -> some View {
         modifier(ToolbarNavigationModifier(
-            leadingButtons: leadingButtons,
-            trailingButtons: trailingButtons,
-            centerContent: centerContent
+            leadingContent: leadingContent,
+            centerContent: centerContent,
+            trailingContent: trailingContent
         ))
     }
 }

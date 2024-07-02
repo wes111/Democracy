@@ -29,7 +29,7 @@ struct UserFormInputView<FormContent: View>: View {
         NavigationView { // Remove if this view needs navigation beyond closing.
             primaryContent
                 .toolbarNavigation(
-                    trailingButtons: [.close({ dismiss() })]
+                    trailingContent: [.close({ dismiss() })]
                 )
                 .background(Color.primaryBackground.ignoresSafeArea())
                 .alert(item: $alertModel) { alert in
@@ -53,7 +53,8 @@ private extension UserFormInputView {
             GeometryReader { _ in
                 ScrollView(.vertical) {
                     VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-                        UserInputTitle(title: title)
+                        Text(title)
+                            .primaryTitle()
                         formContent
                     }
                     .padding(ViewConstants.screenPadding)

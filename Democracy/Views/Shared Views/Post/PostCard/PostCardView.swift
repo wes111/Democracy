@@ -7,112 +7,124 @@
 
 import SwiftUI
 
+@MainActor
 struct PostCardView: View {
-    
-    @StateObject private var viewModel: PostCardViewModel
+    @State private var viewModel: PostCardViewModel
     
     init(viewModel: PostCardViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
     }
     
     var body: some View {
-        VStack(spacing: 10) {
-            
-            header
-                .padding(.horizontal, 10)
-            
-            content
-            
-            footer
-            
-        }
-        .foregroundColor(.primaryText)
-        .padding(.vertical, 20)
-        .background(Color.secondaryBackground)
-        .background(Rectangle())
-        .font(.body)
-        .lineLimit(1)
-        .onTapGesture {
+        content
+    }
+}
+
+// MARK: - Subviews
+private extension PostCardView {
+    
+    var content: some View {
+        Button {
             viewModel.goToPostView()
+        } label: {
+            VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
+                header
+                title
+                if let linkProviderViewModel = viewModel.linkProviderViewModel {
+                    customLink(viewModel: linkProviderViewModel)
+                }
+                bottomButtonsRow
+            }
+            .padding(.horizontal, ViewConstants.screenPadding)
+            .padding(.vertical, ViewConstants.largeElementSpacing)
+            .contentShape(Rectangle())
         }
-        .task {
-            await viewModel.loadLinkMetadata()
+        .buttonStyle(.plain)
+    }
+    
+    var title: some View {
+        Text(viewModel.post.title)
+            .foregroundStyle(Color.secondaryText)
+            .font(.headline)
+            .fontWeight(.semibold)
+    }
+    
+    func customLink(viewModel: LinkProviderViewModel) -> some View {
+        CustomLinkProviderView(viewModel: viewModel)
+            .frame(height: 75)
+    }
+    
+    var bottomButtonsRow: some View {
+        HStack(spacing: 0) {
+            commentsCount
+            
+            VoteButtons(
+                didTapVoteButton: viewModel.onTapVoteButton(_:),
+                upVoteCount: viewModel.upVoteCount,
+                downVoteCount: viewModel.downVoteCount
+            )
+            .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
     
     var header: some View {
-        HStack(alignment: .top) {
+        HStack(alignment: .center, spacing: ViewConstants.smallElementSpacing) {
+           userIcon
             
-            Image(viewModel.imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .clipShape(Circle())
-                .frame(height: 50)
-            
-            VStack(alignment: .leading) {
-                Text(viewModel.postNameOrCommunity)
-                Text(viewModel.dateTitle)
-                    .font(.caption)
-                    .foregroundColor(.secondaryText)
-            }
-            
-            Spacer()
-            
-            Menu {
-                Button("Order Now", action: viewModel.noAction)
-                Button("Adjust Order", action: viewModel.noAction)
-                Button("Cancel", action: viewModel.noAction)
-            } label: {
-                Image(systemName: "ellipsis")
+            VStack(alignment: .leading, spacing: 0) {
+                headerTopLine
+                headerBottomLine
             }
         }
     }
     
-    var content: some View {
-        VStack(spacing: 10) {
-            HStack {
-                VStack(alignment: .leading) {
-                    
-                    Text(viewModel.postTitle)
-                        .font(.title)
-//                    
-//                    if let subtitle = viewModel.postSubtitle {
-//                        Text(subtitle)
-//                            .lineLimit(3)
-//                            .foregroundColor(.secondaryText)
-//                    }
-                }
-                
-                Spacer()
-            }
-            .padding(.horizontal, 10)
-            
-            if let metadata = viewModel.linkMetadata {
-                LPLinkViewRepresented(metadata: metadata)
-            }
+    var headerTopLine: some View {
+        HStack(spacing: ViewConstants.elementSpacing) {
+            Text(viewModel.username)
+            Spacer()
+            menuButton
         }
+        .foregroundStyle(Color.secondaryText)
+        .font(.caption2)
     }
     
-    var footer: some View {
-        HStack(spacing: 15) {
-            
-            Label(viewModel.postSuperLikeCountString, systemImage: "heart")
-            Image(systemName: "square.and.arrow.up")
-            Spacer()
-            Label(viewModel.postDislikeCountString, systemImage: "arrow.down")
-            Label(viewModel.postLikeCountString, systemImage: "arrow.up")
+    var headerBottomLine: some View {
+        HStack(alignment: .center, spacing: ViewConstants.extraSmallElementSpacing) {
+            Text(viewModel.userTagline)
+            Text("•")
+            Text(viewModel.date)
         }
-        .labelStyle(TightLabelStyle())
-        .padding(.horizontal, 10)
+        .foregroundStyle(Color.secondaryText)
+        .font(.caption2)
     }
-        
+    
+    var userIcon: some View {
+        Circle()
+            .frame(width: 25, height: 25)
+            .foregroundStyle(Color.secondaryText)
+    }
+    
+    var menuButton: some View {
+        Button {
+            viewModel.onTapMenuButton()
+        } label: {
+            Image(systemName: SystemImage.ellipsis.rawValue)
+        }
+        .buttonStyle(.plain)
+    }
+    
+    var commentsCount: some View {
+        Label(viewModel.commentsText, systemImage: SystemImage.bubble.rawValue)
+            .font(.footnote)
+            .foregroundStyle(Color.secondaryText)
+            .labelStyle(TightLabelStyle())
+    }
 }
 
 // MARK: - Preview
 #Preview {
-    ScrollView {
-        PostCardView(viewModel: PostCardViewModel.preview)
-    }.background(
+    ZStack {
         Color.primaryBackground
-    )
+        PostCardView(viewModel: PostCardViewModel.preview)
+    }
 }

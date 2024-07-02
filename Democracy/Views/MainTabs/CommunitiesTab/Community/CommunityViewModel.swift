@@ -9,60 +9,91 @@ import Combine
 import Factory
 import Foundation
 
-protocol CommunityCoordinatorDelegate: 
-    CommunityHomeFeedCoordinatorDelegate, CommunityInfoCoordinatorDelegate,
-        CommunityArchiveFeedCoordinatorDelegate, AnyObject {
-    @MainActor func showCreatePostView()
-    @MainActor func goBack()
-}
+@MainActor @Observable
+final class CommunityViewModel {
 
-final class CommunityViewModel: ObservableObject {
-    
-    @Published var isShowingNavigationBar = true
-    private var cancellables = Set<AnyCancellable>()
-
-    private weak var coordinator: CommunityCoordinatorDelegate?
+    var isShowingProgress: Bool = false
+    var membership: Membership?
+    var selectedTab: CommunityTab = .feed
+    private weak var coordinator: CommunitiesCoordinatorDelegate?
     let community: Community
-    var canCreatePost: Bool {
-        return true
-        // Communityinteractor.canMakePostsInThisCommunity
-    }
     
-    lazy var leadingButtons: [OnboardingTopButton] = {
-        [.back(goBack)]
-    }()
+    @ObservationIgnored @Injected(\.membershipService) private var membershipService
     
-    lazy var trailingButtons: [OnboardingTopButton] = {
-        []
-    }()
-    
-    init(coordinator: CommunityCoordinatorDelegate,
-         community: Community
-    ) {
+    init(coordinator: CommunitiesCoordinatorDelegate, community: Community) {
         self.coordinator = coordinator
         self.community = community
+        
+        startMembershipsTask()
+    }
+}
+
+// MARK: - Computed Properties
+extension CommunityViewModel {
+    
+    var leadingContent: [TopBarContent] {
+        [.back(goBack)]
     }
     
-    @MainActor
+    var centerContent: [TopBarContent] {
+        [.title(community.name, size: .large)]
+    }
+    
+    var trailingContent: [TopBarContent] {
+        [.menu([
+            .init(title: "Create Post", action: showCreatePostView)
+        ])]
+    }
+    
+    var membershipButtonTitle: String {
+        membership == nil ? "Join" : "Leave"
+    }
+}
+
+// MARK: - Methods
+extension CommunityViewModel {
+    
+    func toggleCommunityMembership() async {
+        do {
+            if let membership {
+                try await membershipService.leaveCommunity(membership: membership)
+            } else {
+                try await membershipService.joinCommunity(community)
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     func showCreatePostView() {
         coordinator?.showCreatePostView()
     }
     
-    func getCommunityHomeFeedViewModel() -> CommunityHomeFeedViewModel {
-        CommunityHomeFeedViewModel(coordinator: coordinator)
+    func communityHomeFeedViewModel() -> CommunityHomeFeedViewModel {
+        CommunityHomeFeedViewModel(community: community, coordinator: coordinator)
     }
     
-    func getCommunityInfoViewModel() -> CommunityInfoViewModel {
+    func communityInfoViewModel() -> CommunityInfoViewModel {
         CommunityInfoViewModel(coordinator: coordinator, community: community)
     }
     
-    func getCommunityArchiveFeedViewModel() -> CommunityArchiveFeedViewModel {
+    func communityArchiveFeedViewModel() -> CommunityArchiveFeedViewModel {
         CommunityArchiveFeedViewModel(coordinator: coordinator, community: community)
     }
     
-    @MainActor
     func goBack() {
         coordinator?.goBack()
     }
-    
+}
+
+// MARK: - Private Methods
+private extension CommunityViewModel {
+    func startMembershipsTask() {
+        Task {
+            membership = await membershipService.currentValue.first(where: { $0.community == community })
+            for await membershipsArray in await membershipService.membershipsStream() {
+                membership = membershipsArray.first(where: { $0.community == community })
+            }
+        }
+    }
 }

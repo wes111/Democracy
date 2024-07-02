@@ -18,6 +18,9 @@ struct AccountInputFlowView: View {
         InputFlowView(viewModel: viewModel) {
             flowScreen
         }
+        .onAppear {
+            viewModel.onAppear()
+        }
     }
 }
 

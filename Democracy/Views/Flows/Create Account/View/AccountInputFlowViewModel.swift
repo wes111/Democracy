@@ -21,6 +21,39 @@ final class AccountInputFlowViewModel: InputFlowViewModel, CreateAccountFlowCoor
     init(coordinator: CreateAccountCoordinator?) {
         self.coordinator = coordinator
     }
+}
+
+// MARK: - Computed Properties
+extension AccountInputFlowViewModel {
+    
+    var trailingButtons: [TopBarContent] {
+        [.close(close)]
+    }
+    
+    var leadingButtons: [TopBarContent] {
+        shouldShowBackButton ? [.back(goBack)] : []
+    }
+    
+    var shouldShowBackButton: Bool {
+        guard let flowPath else {
+            return false
+        }
+        
+        return switch flowPath {
+        case .username:
+            false
+        case .email, .password, .phone, .acceptTerms:
+            true
+        }
+    }
+}
+
+// MARK: - Methods
+extension AccountInputFlowViewModel {
+    
+    func onAppear() {
+        flowPath = .username(.init(createAccountInput: input, flowCoordinator: self))
+    }
     
     func goBack() {
         switch flowPath {
@@ -39,27 +72,6 @@ final class AccountInputFlowViewModel: InputFlowViewModel, CreateAccountFlowCoor
         case .password: toPhone()
         case .phone: toAcceptTerms()
         case .acceptTerms: coordinator?.goToSuccess()
-        }
-    }
-    
-    var trailingButtons: [OnboardingTopButton] {
-        [.close(close)]
-    }
-    
-    var leadingButtons: [OnboardingTopButton] {
-        shouldShowBackButton ? [.back(goBack)] : []
-    }
-    
-    var shouldShowBackButton: Bool {
-        guard let flowPath else {
-            return false
-        }
-        
-        return switch flowPath {
-        case .username:
-            false
-        case .email, .password, .phone, .acceptTerms:
-            true
         }
     }
     

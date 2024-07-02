@@ -24,7 +24,7 @@ struct AlliedCommunitiesSection: View {
                     ForEach(viewModel.alliedCommunities) { community in
                         AlliedCommunityView(viewModel: community)
                             .onTapGesture {
-                                viewModel.onTapCommunity(id: community.id)
+                                viewModel.onTapCommunity(community: community.community)
                             }
                             .padding(.leading)
                     }
@@ -38,7 +38,7 @@ struct AlliedCommunitiesSection: View {
 #Preview {
     let viewModel = AlliedCommunitiesSectionViewModel(
         alliedCommunities: Community.myCommunitiesPreviewArray,
-        coordinator: CommunityCoordinator.preview
+        coordinator: CommunitiesCoordinator.preview
     )
     return AlliedCommunitiesSection(viewModel: viewModel)
 }

@@ -8,29 +8,25 @@
 import Factory
 import Foundation
 
-protocol CommunityArchiveFeedCoordinatorDelegate: PostCardCoordinatorDelegate, AnyObject {
-    @MainActor func goToCommunityPostCategory(categoryId: String)
-}
-
+@MainActor
 final class CommunityArchiveFeedViewModel: ObservableObject {
     
-    private weak var coordinator: CommunityArchiveFeedCoordinatorDelegate?
+    private weak var coordinator: CommunitiesCoordinatorDelegate?
     private let community: Community
     
     var categories: [CommunityCategoryViewModel] {
         Community.preview.categories.map { CommunityCategoryViewModel(name: $0) }
     }
     
-    init(coordinator: CommunityArchiveFeedCoordinatorDelegate?,
+    init(coordinator: CommunitiesCoordinatorDelegate?,
          community: Community
     ) {
         self.coordinator = coordinator
         self.community = community
     }
     
-    @MainActor
     func goToCommunityPostCategory(category: CommunityCategoryViewModel) {
-        coordinator?.goToCommunityPostCategory(categoryId: category.name)
+        coordinator?.goToCommunityPostCategory(categoryId: category.name, community: community)
     }
     
 }

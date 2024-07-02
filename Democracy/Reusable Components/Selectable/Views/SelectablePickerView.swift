@@ -27,18 +27,38 @@ struct SelectablePickerView<T: Selectable>: View {
     }
     
     var primaryContent: some View {
-        VStack {
-            Button {
+        TappableListItem(
+            title: T.metaTitle,
+            subtitle: selection.title) {
                 isPresented = true
                 action()
+            }
+    }
+}
+
+struct TappableListItem: View {
+    let tapAction: () -> Void
+    let title: String
+    let subtitle: String
+    
+    init(title: String, subtitle: String, tapAction: @escaping () -> Void) {
+        self.title = title
+        self.subtitle = subtitle
+        self.tapAction = tapAction
+    }
+    
+    var body: some View {
+        VStack {
+            Button {
+                tapAction()
             } label: {
                 HStack(alignment: .center, spacing: 0) {
                     VStack(alignment: .leading, spacing: 0) {
-                        Text(T.metaTitle)
+                        Text(title)
                             .font(.system(.body, weight: .semibold))
                             .foregroundStyle(Color.secondaryText)
                         
-                        Text(selection.title)
+                        Text(subtitle)
                             .font(.system(.subheadline, weight: .medium))
                             .foregroundStyle(Color.secondaryText.opacity(0.5))
                     }

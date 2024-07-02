@@ -11,28 +11,8 @@ import Factory
 extension Container {
     
     // MARK: - Interactors
-    var postInteractor: Factory<PostInteractorProtocol> {
-         self { PostInteractor() }
-    }
     var candidateInteractor: Factory<CandidateInteractorProtocol> {
          self { CandidateInteractor() }
-    }
-    var communityInteractor: Factory<CommunityInteractorProtocol> {
-        self { CommunityInteractor() }
-    }
-    
-    // MARK: - Repositories
-    // TODO: Get rid of these repositories!
-    var postLocalRepository: Factory<PostLocalRepositoryProtocol> {
-         self { PostLocalRepository() }
-    }
-    
-    var communityLocalRepository: Factory<CommunityLocalRepositoryProtocol> {
-         self { CommunityLocalRepository() }
-    }
-    
-    var candidateLocalRepository: Factory<CandidateLocalRepositoryProtocol> {
-         self { CandidateLocalRepository() }
     }
     
     // MARK: - Services
@@ -57,11 +37,23 @@ extension Container {
         self { CommunityServiceDefault() }.scope(.shared)
     }
     
+    var membershipService: Factory<MembershipService> {
+        self { MembershipServiceDefault() }.scope(.shared)
+    }
+    
+    var commentService: Factory<CommentService> {
+        self { CommentServiceDefault() }.scope(.shared)
+    }
+    
+    var voteService: Factory<VoteService> {
+        self { VoteServiceDefault() }.scope(.shared)
+    }
+    
     var passwordLocalRepository: Factory<PasswordRepository> {
         self { PasswordRepositoryDefault() }.scope(.shared)
     }
     
-    // MARK: - New Repositories
+    // MARK: - Repositories
     
     var userRepository: Factory<any UserRepository> {
         self { UserRepositoryDefault() }.scope(.shared)
@@ -77,5 +69,17 @@ extension Container {
     
     var communityRepository: Factory<CommunityRepository> {
         self { CommunityRepositoryDefault() }.scope(.shared)
+    }
+    
+    var membershipRepository: Factory<MembershipRepository> {
+        self { MembershipRepositoryDefault() }.scope(.shared)
+    }
+    
+    var commentRepository: Factory<CommentRepository> {
+        self { CommentRepositoryDefault() }.scope(.shared)
+    }
+    
+    var voteRepository: Factory<VoteRepository> {
+        self { VoteRepositoryDefault() }.scope(.shared)
     }
 }

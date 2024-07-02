@@ -7,47 +7,58 @@
 
 import SwiftUI
 
+// Shows post from last 24 sorted by upvotes? Or let the community decide the sort time (24 hours, week, etc).
+@MainActor
 struct CommunityHomeFeedView: View {
-    
-    @StateObject var viewModel: CommunityHomeFeedViewModel
-    private let postSpacing: CGFloat = 10
+    @State private var viewModel: CommunityHomeFeedViewModel
     
     init(viewModel: CommunityHomeFeedViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
     }
     
     var body: some View {
-            VStack(spacing: postSpacing) {
-                pinnedPosts(pinnedPosts: viewModel.pinnedPosts)
-                
-                ForEach(viewModel.initialDates, id: \.self) { date in
-                    VStack(spacing: postSpacing) {
-                        topPostsForDateSection(
-                            date: date,
-                            topPosts: viewModel.topPostsForDate(date)
-                        )
-                    }
+        primaryContent
+            .background(Color.primaryBackground, ignoresSafeAreaEdges: .all)
+    }
+}
+
+// MARK: - Subviews
+private extension CommunityHomeFeedView {
+    
+    var primaryContent: some View {
+        ScrollView(.vertical, showsIndicators: true) {
+            LazyVStack(alignment: .leading, spacing: 0) {
+                ForEach(viewModel.posts, id: \.self) { post in
+                    loadablePost(post)
                 }
             }
-        .refreshable {
-            viewModel.refreshPosts()
+            .scrollTargetLayout()
+        }
+        .scrollPosition(id: $viewModel.scrollId, anchor: .top)
+    }
+    
+    func loadablePost(_ post: Post) -> some View {
+        VStack(alignment: .center, spacing: 0) {
+            scrollProgresssView(isVisible: viewModel.postShouldShowTopProgress(post))
+            
+            PostCardView(viewModel: viewModel.getPostCardViewModel(post: post))
+                .task {
+                    await viewModel.onAppear(post)
+                }
+            
+            Divider()
+                .overlay(Color.black)
+            
+            scrollProgresssView(isVisible: viewModel.postShouldShowBottomProgress(post))
         }
     }
     
-    func topPostsForDateSection(date: Date, topPosts: [PostCardViewModel]) -> some View {
-        VStack(spacing: postSpacing) {
-            ForEach(topPosts, id: \.post) { postCardViewModel in
-                PostCardView(viewModel: postCardViewModel)
-            }
-        }
-    }
-    
-    func pinnedPosts(pinnedPosts: [PostCardViewModel]) -> some View {
-        VStack(spacing: postSpacing) {
-            ForEach(pinnedPosts, id: \.post) { postCardViewModel in
-                PostCardView(viewModel: postCardViewModel)
-            }
-        }
+    func scrollProgresssView(isVisible: Bool) -> some View {
+        ProgressView()
+            .controlSize(.large)
+            .opacity(isVisible ? 1.0 : 0.0)
+            .frame(height: isVisible ? 20 : 0.0)
+            .padding(isVisible ? ViewConstants.sectionSpacing : 0)
     }
 }
 

@@ -20,18 +20,12 @@ struct HorizontalSelectableList<T: Selectable>: View {
             }
         }
         .scrollClipDisabled()
+        .scrollIndicators(.hidden)
     }
     
     func optionView(_ option: T) -> some View {
         return Text(option.title)
-            .tagModifier()
-            .overlay(
-                RoundedRectangle(cornerRadius: ViewConstants.cornerRadius)
-                    .strokeBorder(
-                        selection == option ? Color.tertiaryText : Color.primaryBackground,
-                        lineWidth: ViewConstants.thinBorderWidth
-                    )
-            )
+            .tagModifier(backgroundColor: selection == option ? .otherRed : .onBackground)
             .onTapGesture {
                 selection = option
             }

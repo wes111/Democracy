@@ -7,80 +7,58 @@
 
 import SwiftUI
 
+@MainActor
 struct CommunitiesTabMainView: View {
-    
-    @StateObject var viewModel: CommunitiesTabMainViewModel
-    @State private var multiSelection = Set<String>()
-    @State private var bob = ""
+    @Bindable var viewModel: CommunitiesTabMainViewModel
     
     init(viewModel: CommunitiesTabMainViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
     }
     
     var body: some View {
-        
-        ScrollView(.vertical) {
-            
-            CommunitiesScrollView(
-                title: "My Communities",
-                communities: viewModel.myCommunities,
-                onTapAction: viewModel.goToCommunity
-            )
-            .padding(.bottom)
-            
-            CommunitiesScrollView(
-                title: "Recommended Communities",
-                communities: viewModel.recommendedCommunities,
-                onTapAction: viewModel.goToCommunity
-            )
-            .padding(.bottom)
-            
-            CommunitiesScrollView(
-                title: "Top Communities",
-                communities: viewModel.topCommunities,
-                onTapAction: viewModel.goToCommunity
-            )
-            
-        }
-        .navigationTitle("Communities")
-        .refreshable {
-            viewModel.refreshMyCommunities()
-        }
-        .searchable(text: $bob)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    viewModel.showCreateCommunityView()
-                } label: {
-                    Image(systemName: "plus")
-                }
+        content
+            .toolbarNavigation(leadingContent: leadingButtons, trailingContent: trailingButtons)
+            .background(Color.primaryBackground, ignoresSafeAreaEdges: .all)
+            .progressModifier(isShowingProgess: $viewModel.isShowingProgress)
+            .onChange(of: viewModel.category) { _, category in
+                viewModel.fetchCommunitiesByCategory(category)
             }
-        }
+            .onAppear {
+                viewModel.onAppear()
+            }
+            .refreshable {
+                await viewModel.forceRefreshMemberships()
+            }
     }
-    
 }
 
-struct CommunitiesScrollView: View {
+// MARK: - Subviews
+private extension CommunitiesTabMainView {
     
-    let title: String
-    var communities: [Community]
-    let onTapAction: @MainActor (Community) -> Void
+    var menuOptions: [MenuButtonOption] {
+        [.init(title: "Create Community", action: viewModel.showCreateCommunityView)]
+    }
     
-    var body: some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text(title)
-                .font(.title2)
-                .padding(.leading)
-            ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack {
-                    ForEach(communities) { community in
-                        CommunityCard(community: community)
-                            .padding(.leading)
-                            .onTapGesture {
-                                onTapAction(community)
-                            }
-                    }
-                }
+    var trailingButtons: [TopBarContent] {
+        [.search({}), .menu(menuOptions)]
+    }
+    
+    var leadingButtons: [TopBarContent] {
+        [.title("Communities", size: .large)]
+    }
+    
+    var content: some View {
+        VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+            HorizontalSelectableList(selection: $viewModel.category)
+            communityList
+        }
+        .padding(.horizontal, ViewConstants.screenPadding)
+    }
+    
+    var communityList: some View {
+        PlainListView(items: viewModel.allCommunities) { community in
+            TappableListItem(title: community.name, subtitle: community.tagline) {
+                viewModel.goToCommunity(community)
             }
         }
     }
@@ -90,6 +68,5 @@ struct CommunitiesScrollView: View {
 #Preview {
     NavigationStack {
         CommunitiesTabMainView(viewModel: CommunitiesTabMainViewModel.preview)
-            .background(Color.primaryBackground)
     }
 }

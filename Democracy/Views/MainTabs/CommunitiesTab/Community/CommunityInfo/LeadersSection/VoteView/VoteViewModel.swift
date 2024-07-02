@@ -7,24 +7,20 @@
 
 import Foundation
 
-protocol VoteViewCoordinator: AnyObject {
-    @MainActor func goBack()
-}
-
 final class VoteViewModel: ObservableObject {
     
     @Published var role: RepresentativeType = .legislator
-    private weak var coordinator: VoteViewCoordinator?
+    private weak var coordinator: CommunitiesCoordinatorDelegate?
     
-    init(coordinator: VoteViewCoordinator) {
+    init(coordinator: CommunitiesCoordinatorDelegate) {
         self.coordinator = coordinator
     }
     
-    lazy var leadingButtons: [OnboardingTopButton] = {
-        []
+    lazy var leadingButtons: [TopBarContent] = {
+        [.title(navigationTitle, size: .large)]
     }()
     
-    lazy var trailingButtons: [OnboardingTopButton] = {
+    lazy var trailingButtons: [TopBarContent] = {
         []
     }()
 }

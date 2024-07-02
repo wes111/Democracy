@@ -15,7 +15,6 @@ enum MainTab {
 final class MainTabViewModel: ObservableObject {
     @Published var selectedTab: MainTab = .updates
     
-    let communitiesTabCoordinator = CommunitiesTabCoordinator()
     let votingTabCoordinator = VotingTabCoordinatorViewModel()
     let eventsTabCoordinator = EventsTabCoordinatorViewModel()
     let updatesTabCoordinator = UpdatesTabCoordinatorViewModel()
@@ -72,7 +71,7 @@ struct MainTabView: View {
                 }
                 .tag(MainTab.updates)
             
-            CommunitiesTabCoordinatorView(coordinator: viewModel.communitiesTabCoordinator)
+            CommunitiesTabCoordinatorView()
                 .tabItem {
                     Label("Communities", systemImage: "person.3.fill")
                 }

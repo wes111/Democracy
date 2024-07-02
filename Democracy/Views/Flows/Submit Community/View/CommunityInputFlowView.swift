@@ -34,6 +34,9 @@ private extension CommunityInputFlowView {
         case .name(let viewModel):
             CommunityNameView(viewModel: viewModel)
             
+        case .tagline(let viewModel):
+            CommunityTaglineView(viewModel: viewModel)
+            
         case .description(let viewModel):
             CommunityDescriptionView(viewModel: viewModel)
             

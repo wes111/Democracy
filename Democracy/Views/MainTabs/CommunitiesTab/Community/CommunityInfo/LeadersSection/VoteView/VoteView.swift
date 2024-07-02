@@ -114,9 +114,8 @@ struct VoteView: View {
         }
         .padding()
         .toolbarNavigation(
-            leadingButtons: viewModel.leadingButtons,
-            trailingButtons: viewModel.trailingButtons,
-            centerContent: .title(viewModel.navigationTitle)
+            leadingContent: viewModel.leadingButtons,
+            trailingContent: viewModel.trailingButtons
         )
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -136,7 +135,7 @@ struct VoteView: View {
 
 // MARK: - Preview
 #Preview {
-    let viewModel = VoteViewModel(coordinator: CommunityCoordinator.preview)
+    let viewModel = VoteViewModel(coordinator: CommunitiesCoordinator.preview)
     
     return ZStack {
         Color.primaryBackground.ignoresSafeArea()

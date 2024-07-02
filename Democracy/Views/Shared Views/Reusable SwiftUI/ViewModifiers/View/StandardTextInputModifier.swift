@@ -8,13 +8,30 @@
 import Foundation
 import SwiftUI
 
+enum TextInputPadding {
+    case standardTextEditor
+    case standardTextField
+    case smallTextInput
+    
+    var value: CGFloat {
+        switch self {
+        case .standardTextEditor:
+            ViewConstants.textEditorPadding
+        case .standardTextField:
+            ViewConstants.textFieldPadding
+        case .smallTextInput:
+            ViewConstants.smallTextInputPadding
+        }
+    }
+}
+
 /// Standard shared appearance of TextFields and TextEditors.
 struct StandardTextInputModifier<Field: Hashable>: ViewModifier {
     @Binding var text: String
     @FocusState.Binding var focusedField: Field?
     let field: Field
     let shouldTrimWhileTyping: Bool
-    let isTextField: Bool // Either textField or textEditor
+    let isTextField: TextInputPadding // TODO: Rename
     let maxCharacterCount: Int
     
     init(
@@ -22,7 +39,7 @@ struct StandardTextInputModifier<Field: Hashable>: ViewModifier {
         focusedField: FocusState<Field?>.Binding,
         field: Field,
         shouldTrimWhileTyping: Bool,
-        isTextField: Bool,
+        isTextField: TextInputPadding,
         maxCharacterCount: Int
     ) {
         self._text = text
@@ -42,7 +59,7 @@ struct StandardTextInputModifier<Field: Hashable>: ViewModifier {
             .textInputAutocapitalization(.never)
             .autocorrectionDisabled()
             .foregroundStyle(Color.primaryText)
-            .padding(isTextField ? 17.5 : 15)
+            .padding(isTextField.value)
             .background(Color.onBackground)
             .clipShape(RoundedRectangle(cornerRadius: ViewConstants.cornerRadius, style: .circular))
             .limitCharacters(text: $text, count: maxCharacterCount)
@@ -62,7 +79,7 @@ extension View {
         focusedField: FocusState<Field?>.Binding,
         field: Field,
         shouldTrimWhileTyping: Bool = true,
-        isTextField: Bool = true
+        isTextField: TextInputPadding = .standardTextField
     ) -> some View {
         modifier(StandardTextInputModifier(
             text: text,

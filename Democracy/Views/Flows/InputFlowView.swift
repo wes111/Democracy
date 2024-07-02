@@ -21,8 +21,8 @@ struct InputFlowView<ViewModel: InputFlowViewModel, FlowContent: View>: View {
     var body: some View {
         primaryContent
             .toolbarNavigation(
-                leadingButtons: viewModel.leadingButtons,
-                trailingButtons: viewModel.trailingButtons
+                leadingContent: viewModel.leadingButtons,
+                trailingContent: viewModel.trailingButtons
             )
     }
 }
@@ -42,7 +42,9 @@ private extension InputFlowView {
                         totalProgress: viewModel.totalProgress,
                         currentProgress: viewModel.currentProgress
                     )
-                    UserInputTitle(title: viewModel.viewTitle)
+                    
+                    Text(viewModel.viewTitle)
+                        .primaryTitle()
                     
                     content
                         .titledElement(title: viewModel.viewSubtitle)

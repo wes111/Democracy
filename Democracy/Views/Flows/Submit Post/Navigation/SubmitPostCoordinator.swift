@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 protocol SubmitPostCoordinatorParent: AnyObject {
-    func dismiss()
+    func dismissSubmitPostView()
 }
 
 @MainActor @Observable
@@ -29,7 +29,7 @@ final class SubmitPostCoordinator {
 
 extension SubmitPostCoordinator: SubmitPostCoordinatorDelegate {
     func close() {
-        parentCoordinator?.dismiss()
+        parentCoordinator?.dismissSubmitPostView()
     }
     
     func goBack() {

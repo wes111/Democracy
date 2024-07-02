@@ -31,9 +31,9 @@ struct CandidateView: View {
                     .foregroundColor(.tertiaryText)
                 
                 LazyVStack(alignment: .leading, spacing: 10) {
-                    ForEach(viewModel.candidatePosts) { post in
-                        PostCardView(viewModel: post)
-                    }
+//                    ForEach(viewModel.candidatePosts) { post in
+//                        PostCardView(viewModel: post)
+//                    }
                 }
             }
         }

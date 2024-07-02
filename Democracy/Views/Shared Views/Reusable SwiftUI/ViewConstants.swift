@@ -7,20 +7,34 @@
 
 import Foundation
 
+// TODO: update to 4, 8, 12, 16, 20, 24, 28, 32, etc...
 enum ViewConstants {
     // Element Spacing
-    static let extraSmallElementSpacing: CGFloat = 5
-    static let smallElementSpacing: CGFloat = 10
-    static let elementSpacing: CGFloat = 20
-    static let mediumElementSpacing: CGFloat = 30
-    static let largeElementSpacing: CGFloat = 50
+    static let extraSmallElementSpacing: CGFloat = 4
+    static let smallElementSpacing: CGFloat = 8
+    static let elementSpacing: CGFloat = 12
+    static let largeElementSpacing: CGFloat = 16
+    static let extraLargeElementSpacing: CGFloat = 20
+    
+    // Section Spacing
+    static let sectionSpacing: CGFloat = 15
+    static let sectionIndent: CGFloat = 20
     
     // Padding between element and element's border
-    static let innerBorder: CGFloat = 20
-    static let smallInnerBorder: CGFloat = 10
+    static let innerBorder: CGFloat = 16
+    static let smallInnerBorder: CGFloat = 8
+    static let extraSmallInnerBorder: CGFloat = 4
+    
+    // Text (field or editor) padding
+    static let textFieldPadding: CGFloat = 15
+    static let textEditorPadding: CGFloat = 17.5
+    static let smallTextInputPadding: CGFloat = 5
     
     // Animation Constants
     static let animationLength = 0.3
+    
+    // Scaling
+    static let minTextScale = 0.75
     
     // Other standard values
     static let cornerRadius: CGFloat = 10
@@ -28,34 +42,51 @@ enum ViewConstants {
     static let partialSheetTopPadding: CGFloat = 20
     static let thinBorderWidth: CGFloat = 2 // For smaller elements like tags.
     static let borderWidth: CGFloat = 3
-    static let smallButtonRadius: CGFloat = 35
     static let dimmingBrightness = -0.1
+    
+    // Buttons
+    static let smallButtonRadius: CGFloat = 35
 }
 
 // SF Symbols
 enum SystemImage: String {
-    case checkmarkCircleFill = "checkmark.circle.fill"
-    case arrowRight = "arrow.right"
-    case asterisk = "asterisk"
-    case exclamationmarkTriangle = "exclamationmark.triangle"
-    case exclamationmarkTriangleFill = "exclamationmark.triangle.fill"
-    case xCircle = "x.circle"
-    case ellipsis
-    case chevronRight = "chevron.right"
-    case personThree = "person.3"
-    case person
-    case figureAndChildHoldingHands = "figure.and.child.holdinghands"
-    case eye
-    case eyeSlash = "eye.slash"
-    case booksVerticalFill = "books.vertical.fill"
-    case crown
-    case bolt
-    case checkmark
-    case book
-    case bookClosed = "book.closed"
-    case laptopComputer = "laptopcomputer"
-    case movieClapper = "movieclapper"
-    case checkmarkDiamondFill = "checkmark.diamond.fill"
+    case arrowRight = "arrow.right"                                    // 􀄫
+    case arrowshapeUp = "arrowshape.up"                                // 􁾨
+    case arrowshapeDown = "arrowshape.down"                            // 􁾬
+    case arrowshapeTurnUpLeft = "arrowshape.turn.up.left"              // 􀉌
+    case arrowUpRightSquare = "arrow.up.right.square"                  // 􀄔
+    case asterisk = "asterisk"                                         // 􀸓
+    case bolt                                                          // 􀋥
+    case book                                                          // 􀉚
+    case bookClosed = "book.closed"                                    // 􀤞
+    case booksVerticalFill = "books.vertical.fill"                     // 􀬓
+    case bubble = "bubble"                                             // 􂄹
+    case checkmark                                                     // 􀆅
+    case checkmarkCircleFill = "checkmark.circle.fill"                 // 􀁣
+    case checkmarkDiamondFill = "checkmark.diamond.fill"               // 􁁛
+    case chevronRight = "chevron.right"                                // 􀆊
+    case chevronDown = "chevron.down"                                  // 􀆈
+    case chevronUp = "chevron.up"                                      // 􀆇
+    case crown                                                         // 􀦅
+    case ellipsis                                                      // 􀍠
+    case eye                                                           // 􀋭
+    case eyeSlash = "eye.slash"                                        // 􀋯
+    case exclamationmarkTriangle = "exclamationmark.triangle"          // 􀇾
+    case exclamationmarkTriangleFill = "exclamationmark.triangle.fill" // 􀇿
+    case figureAndChildHoldingHands = "figure.and.child.holdinghands"  // 􁘁
+    case infoCircle = "info.circle"                                    // 􀅴
+    case laptopComputer = "laptopcomputer"                             // 􀟛
+    case link                                                          // 􀉣
+    case movieClapper = "movieclapper"                                 // 􀜤
+    case newspaperFill = "newspaper.fill"                              // 􀥅
+    case paperPlane = "paperplane"                                     // 􀈟
+    case person                                                        // 􀉩
+    case personThree = "person.3"                                      // 􀝊
+    case plus                                                          // 􀅼
+    case shuffle                                                       // 􀊝
+    case starFill = "star.fill"                                        // 􀋃
+    case squareAndArrowUp = "square.and.arrow.up"                      // 􀈂
+    case xCircle = "x.circle"                                          // 􀀲
 }
 
 // Image assets

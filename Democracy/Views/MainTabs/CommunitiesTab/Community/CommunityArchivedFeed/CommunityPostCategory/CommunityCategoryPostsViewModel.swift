@@ -7,10 +7,6 @@
 
 import Foundation
 
-protocol CommunityCatCoordinatorDelegate: PostCardCoordinatorDelegate {
-    
-}
-
 class CommunityCategoryPostsViewModel: ObservableObject {
     
     @Published var searchText = ""

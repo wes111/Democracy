@@ -1,4 +1,5 @@
 {
+  "originHash" : "354283f6818641a33628ea23b82b7fcf9a0ae542c1e387dcf684db142db117bc",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -59,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/wes111/SharedResourcesClientAndServer",
       "state" : {
-        "revision" : "9a80b7493988fae905c8094fc2bceb3496effdc1",
-        "version" : "1.0.19"
+        "revision" : "f63d999f62b37824a706ebcd03a5375014a77ab7",
+        "version" : "1.0.43"
       }
     },
     {
@@ -199,5 +200,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

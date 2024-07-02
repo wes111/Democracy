@@ -9,53 +9,86 @@ import Combine
 import Foundation
 import Factory
 
-protocol CommunitiesTabMainCoordinatorDelegate: AnyObject {
-    @MainActor func goToCommunity(communityId: String)
-    @MainActor func showCreateCommunityView()
+@MainActor @Observable
+final class CommunitiesTabMainViewModel {
+    
+    var allCommunities: [Community] = []
+    var category: CommunitiesCategory = .isMemberOf
+    var isShowingProgress: Bool = true
+    var fetchCommunitiesTask: Task<Void, Never>?
+    
+    @ObservationIgnored @Injected(\.communityService) private var communityService
+    @ObservationIgnored @Injected(\.membershipService) private var membershipService
+    
+    private weak var coordinator: CommunitiesCoordinatorDelegate?
+    
+    init(coordinator: CommunitiesCoordinatorDelegate?) {
+        self.coordinator = coordinator
+        startMembershipsTask()
+    }
 }
 
-final class CommunitiesTabMainViewModel: ObservableObject {
-
-    @Injected(\.communityInteractor) var communityInteractor
-    
-    @Published var myCommunities: [Community] = []
-    @Published var recommendedCommunities: [Community] = []
-    @Published var topCommunities: [Community] = []
-    
-    private weak var coordinator: CommunitiesTabMainCoordinatorDelegate?
-    
-    init(coordinator: CommunitiesTabMainCoordinatorDelegate?) {
-        self.coordinator = coordinator
-        
-        communityInteractor.subscribeToMyCommunities().assign(to: &$myCommunities)
-        communityInteractor.subscribeToRecommendedCommunities().assign(to: &$recommendedCommunities)
-        communityInteractor.subscribeToTopCommunities().assign(to: &$topCommunities)
-        
-        communityInteractor.refreshMyCommunities()
-        communityInteractor.refreshRecommendedCommunities()
-        communityInteractor.refreshTopCommunities()
-    }
-    
-    @MainActor
+// MARK: - Methods
+extension CommunitiesTabMainViewModel {
     func goToCommunity(_ community: Community) {
-        coordinator?.goToCommunity(communityId: community.id)
-    }
-
-    func refreshMyCommunities() {
-        communityInteractor.refreshMyCommunities()
+        coordinator?.goToCommunity(community: community)
     }
     
-    func refreshRecommendedCommunities() {
-        communityInteractor.refreshRecommendedCommunities()
-    }
-    
-    func refreshTopCommunities() {
-        communityInteractor.refreshTopCommunities()
-    }
-    
-    @MainActor
     func showCreateCommunityView() {
         coordinator?.showCreateCommunityView()
     }
     
+    func onAppear() {
+        fetchCommunitiesByCategory(category)
+    }
+    
+    nonisolated func forceRefreshMemberships() async {
+        do {
+            try await membershipService.fetchMemberships(refresh: true)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func fetchCommunitiesByCategory(_ category: CommunitiesCategory) {
+        fetchCommunitiesTask?.cancel()
+        allCommunities = []
+        
+        fetchCommunitiesTask = Task {
+            isShowingProgress = true
+            do {
+                try await Task.sleep(seconds: 1.0)
+                switch category {
+                case .isMemberOf:
+                    allCommunities = await membershipService.currentValue.map { $0.community } // TODO:
+                    
+                case .isLeaderOf:
+                    break // TODO: ...
+                case .topCommunities:
+                    break // TODO: ...
+                case .random:
+                    break // TODO: ...
+                case .recommendations:
+                    allCommunities = try await communityService.fetchAllCommunities()
+                }
+            } catch {
+                // Note: Cannot present an alert here, because cancelling a task (by selecting a different
+                // category) will throw an error.
+                print(error.localizedDescription)
+            }
+            isShowingProgress = false
+        }
+    }
+}
+
+// MARK: - Private Methods
+private extension CommunitiesTabMainViewModel {
+    func startMembershipsTask() {
+        Task {
+            for await membershipsArray in await membershipService.membershipsStream() {
+                allCommunities = membershipsArray.map { $0.community }
+                print("Wesley count: \(membershipsArray.count)")
+            }
+        }
+    }
 }

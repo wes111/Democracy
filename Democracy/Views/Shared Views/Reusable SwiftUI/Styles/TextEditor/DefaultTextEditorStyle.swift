@@ -22,7 +22,8 @@ extension TextEditor {
                     text: text,
                     focusedField: focusedField,
                     field: field,
-                    shouldTrimWhileTyping: false
+                    shouldTrimWhileTyping: false,
+                    isTextField: .standardTextEditor
                 )
                 .scrollContentBackground(.hidden)
                 .cornerRadius(ViewConstants.cornerRadius)
