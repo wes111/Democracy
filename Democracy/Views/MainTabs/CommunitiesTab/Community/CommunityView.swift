@@ -9,7 +9,7 @@ import SwiftUI
 
 @MainActor
 struct CommunityView: View {
-    @Bindable private var viewModel: CommunityViewModel
+    @State private var viewModel: CommunityViewModel
     
     init(viewModel: CommunityViewModel) {
         self.viewModel = viewModel
@@ -29,23 +29,22 @@ struct CommunityView: View {
 // MARK: - Subviews
 private extension CommunityView {
     var content: some View {
-        ZStack(alignment: .topLeading) {
-            Color.clear
-            
+        ScrollView {
             VStack(alignment: .leading, spacing: 0) {
+                communityOverview
+                    .padding(.bottom, 10)
                 headerButtons
                 communitySection
             }
         }
+        .clipped()
     }
     
     var headerButtons: some View {
         VStack(spacing: ViewConstants.smallInnerBorder) {
-            HStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
-                HorizontalSelectableList(selection: $viewModel.selectedTab)
-                joinLeaveButton
-            }
-            .padding(.horizontal, ViewConstants.screenPadding)
+            HorizontalSelectableList(selection: $viewModel.selectedTab)
+                .padding(.horizontal, ViewConstants.screenPadding)
+                .font(.callout)
             
             Divider()
                 .overlay(Color.black)
@@ -77,6 +76,40 @@ private extension CommunityView {
         case .archive:
             CommunityArchiveFeedView(viewModel: viewModel.communityArchiveFeedViewModel())
         }
+    }
+    
+    var communityOverview: some View {
+        VStack(alignment: .leading) {
+            HStack(alignment: .top) {
+                Circle()
+                    .frame(width: 50, height: 50)
+                    .foregroundStyle(Color.secondaryText)
+                
+                VStack(alignment: .leading, spacing: ViewConstants.extraSmallElementSpacing) {
+                    Text(viewModel.community.name)
+                        .foregroundStyle(Color.secondaryText)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                    
+                    Text(viewModel.foundedText)
+                        .foregroundStyle(Color.secondaryText)
+                        .font(.caption2)
+                    
+                    Text(viewModel.membersText)
+                        .foregroundStyle(Color.secondaryText)
+                        .font(.caption2)
+                }
+                
+                Spacer()
+                
+                joinLeaveButton
+            }
+            
+            Text(viewModel.community.tagline)
+                .foregroundStyle(Color.secondaryText)
+                .font(.footnote)
+        }
+        .padding(.horizontal, ViewConstants.screenPadding)
     }
 }
 

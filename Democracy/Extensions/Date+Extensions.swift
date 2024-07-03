@@ -23,7 +23,7 @@ extension Date {
     }
     
     func getFormattedDate(format: Date.Format) -> String {
-        let dateformat = DateFormatter()
+        let dateformat = DateFormatter() // TODO: This should be a static shared DateFormatter....
         dateformat.dateFormat = format.rawValue
         return dateformat.string(from: self)
     }

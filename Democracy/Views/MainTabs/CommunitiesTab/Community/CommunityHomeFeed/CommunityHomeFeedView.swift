@@ -26,15 +26,11 @@ struct CommunityHomeFeedView: View {
 private extension CommunityHomeFeedView {
     
     var primaryContent: some View {
-        ScrollView(.vertical, showsIndicators: true) {
-            LazyVStack(alignment: .leading, spacing: 0) {
-                ForEach(viewModel.posts, id: \.self) { post in
-                    loadablePost(post)
-                }
+        LazyVStack(alignment: .leading, spacing: 0) {
+            ForEach(viewModel.posts, id: \.self) { post in
+                loadablePost(post)
             }
-            .scrollTargetLayout()
         }
-        .scrollPosition(id: $viewModel.scrollId, anchor: .top)
     }
     
     func loadablePost(_ post: Post) -> some View {

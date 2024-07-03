@@ -36,7 +36,7 @@ extension CommunityViewModel {
     }
     
     var centerContent: [TopBarContent] {
-        [.title(community.name, size: .large)]
+       [] // [.title(community.name, size: .large)]
     }
     
     var trailingContent: [TopBarContent] {
@@ -47,6 +47,14 @@ extension CommunityViewModel {
     
     var membershipButtonTitle: String {
         membership == nil ? "Join" : "Leave"
+    }
+    
+    var membersText: String {
+        "\(community.memberCount.delimiter) members"
+    }
+    
+    var foundedText: String {
+        "Founded - \(community.creationDate.getFormattedDate(format: .ddMMMyyyy))"
     }
 }
 
@@ -95,5 +103,17 @@ private extension CommunityViewModel {
                 membership = membershipsArray.first(where: { $0.community == community })
             }
         }
+    }
+}
+
+extension Int {
+    private static var numberFormatter: NumberFormatter = {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        return numberFormatter
+    }()
+
+    var delimiter: String {
+        return Int.numberFormatter.string(from: NSNumber(value: self)) ?? ""
     }
 }
