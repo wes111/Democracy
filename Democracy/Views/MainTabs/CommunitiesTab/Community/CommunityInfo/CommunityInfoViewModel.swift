@@ -8,70 +8,61 @@
 import Factory
 import Foundation
 
-final class CommunityInfoViewModel: ObservableObject {
-
-    @Published var representatives: [Candidate] = Candidate.previewArray
-    @Published var alliedCommunities: [Community] = Community.myCommunitiesPreviewArray
-    
-    private weak var coordinator: CommunitiesCoordinatorDelegate?
+@MainActor @Observable
+final class CommunityInfoViewModel {
     let community: Community
-    
-    let resourcesSectionViewModel: ResourcesSectionViewModel
-    let aboutSectionViewModel: AboutSectionViewModel
-    let rulesSectionViewModel: RulesSectionViewModel
-    let alliedCommunitiesSectionViewModel: AlliedCommunitiesSectionViewModel
-    
-    var leadershipSectionViewModel: LeadersSectionViewModel {
-        .init(
-            creators: Candidate.previewArray.filter { $0.repType == .creator },
-            mods: Candidate.previewArray.filter { $0.repType == .mod },
-            legislators: Candidate.previewArray.filter { $0.repType == .legislator },
-            coordinator: coordinator
-        )
-    }
+    var isShowingProgress: Bool = false
+    weak var coordinator: CommunitiesCoordinatorDelegate?
     
     init(coordinator: CommunitiesCoordinatorDelegate?, community: Community) {
         self.coordinator = coordinator
         self.community = community
-        
-        resourcesSectionViewModel = .init(
-            title: "Resources",
-            resources: community.resources
-        )
-        
-        aboutSectionViewModel = .init(
-            summary: community.descriptionText,
-            memberCount: community.memberCount,
-            foundedDate: community.creationDate
-        )
-        
-        rulesSectionViewModel = .init(
-            rules: [],
-            title: "Rules"
-        )
-        
-        alliedCommunitiesSectionViewModel = .init(
-            alliedCommunities: Community.myCommunitiesPreviewArray,
-            coordinator: coordinator
-        )
     }
     
-    @MainActor
+}
+
+// MARK: - Computed Properties
+extension CommunityInfoViewModel {
+    var description: String {
+        community.descriptionText
+    }
+    
+    var alliedCommunities: [Community] {
+        Community.myCommunitiesPreviewArray // TODO: ...
+    }
+    
+    var rules: [Rule] {
+        community.rules
+    }
+    
+    var resources: [Resource] {
+        community.resources
+    }
+    
+    var candidates: [Candidate] { // TODO: This view should have reps, not candidates....
+        Candidate.previewArray
+    }
+    
+//    var leaders: [Leader] {
+//        [] // TODO: ...
+//    }
+}
+
+// MARK: - Methods
+extension CommunityInfoViewModel {
+    
     func showCandidates() {
         coordinator?.showCandidates()
     }
     
-    @MainActor
     func onTapCommunityCard(_ community: Community) {
         coordinator?.goToCommunity(community: community)
     }
     
-    @MainActor
     func onTapCandidateCard(candidateID: String) {
         coordinator?.goToCandidateView(candidateId: candidateID)
     }
     
-    @MainActor
     func openResourceURL(urlString: String) {
         guard let url = URL(string: urlString) else {
             return print("Failed to create URL from urlString.")
@@ -79,4 +70,7 @@ final class CommunityInfoViewModel: ObservableObject {
         coordinator?.openResourceURL(url)
     }
     
+    func onTapLeader(id: String) {
+        coordinator?.goToCandidateView(candidateId: id)
+    }
 }

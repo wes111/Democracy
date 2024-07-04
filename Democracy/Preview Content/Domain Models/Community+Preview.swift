@@ -121,7 +121,7 @@ extension Community {
     
     static var myCommunitiesPreviewArray: [Community] {
         var array: [Community] = []
-        for index in 0...25 {
+        for index in 0...10 {
             array.append(
                 Community(
                     id: UUID().uuidString,
@@ -156,7 +156,7 @@ extension Community {
     
     static var recommendedCommunitiesPreviewArray: [Community] {
         var array: [Community] = []
-        for index in 0...25 {
+        for index in 0...10 {
             array.append(
                 Community(
                     id: UUID().uuidString,
