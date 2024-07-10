@@ -133,9 +133,9 @@ extension CommunitiesCoordinator {
         CreateCandidateViewModel(coordinator: self)
     }
     
-    func voteViewModel() -> VoteViewModel {
-        VoteViewModel(coordinator: self)
-    }
+//    func voteViewModel() -> VoteViewModel {
+//        VoteViewModel(coordinator: self)
+//    }
 }
 
 // MARK: - Child Coordinators

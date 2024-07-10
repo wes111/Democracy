@@ -30,7 +30,7 @@ struct RuleDTO: Decodable {
     }
 }
 
-struct Rule: Equatable, Hashable, Codable {
+struct Rule: Equatable, Hashable, Codable, Identifiable {
     let id: String
     let title: String
     let description: String

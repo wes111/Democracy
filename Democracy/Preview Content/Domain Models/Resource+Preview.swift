@@ -14,10 +14,10 @@ extension Resource {
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
-                         At the Community Knowledge Hub, we recognize the power of shared resources
-                         in fostering personal growth and community development. That's why we have
-                         multiple copies of The Art of Effective Communication available for loan,
-                         both in print and digital formats, ensuring that everyone has equal access
+                         At the Community Knowledge Hub, we recognize the power of shared resources \
+                         in fostering personal growth and community development. That's why we have \
+                         multiple copies of The Art of Effective Communication available for loan, \
+                         both in print and digital formats, ensuring that everyone has equal access \
                          to this invaluable resource.
                          """,
             link: URL(string: "https://www.google.com")!,
@@ -28,10 +28,10 @@ extension Resource {
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
-                         At the Community Knowledge Hub, we recognize the power of shared resources
-                         in fostering personal growth and community development. That's why we have
-                         multiple copies of The Art of Effective Communication available for loan,
-                         both in print and digital formats, ensuring that everyone has equal access
+                         At the Community Knowledge Hub, we recognize the power of shared resources \
+                         in fostering personal growth and community development. That's why we have \
+                         multiple copies of The Art of Effective Communication available for loan, \
+                         both in print and digital formats, ensuring that everyone has equal access \
                          to this invaluable resource.
                          """,
             link: URL(string: "https://www.google.com")!,
@@ -42,10 +42,10 @@ extension Resource {
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
-                         At the Community Knowledge Hub, we recognize the power of shared resources
-                         in fostering personal growth and community development. That's why we have
-                         multiple copies of The Art of Effective Communication available for loan,
-                         both in print and digital formats, ensuring that everyone has equal access
+                         At the Community Knowledge Hub, we recognize the power of shared resources \
+                         in fostering personal growth and community development. That's why we have \
+                         multiple copies of The Art of Effective Communication available for loan, \
+                         both in print and digital formats, ensuring that everyone has equal access \
                          to this invaluable resource.
                          """,
             link: URL(string: "https://www.google.com")!,
@@ -56,10 +56,10 @@ extension Resource {
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
-                         At the Community Knowledge Hub, we recognize the power of shared resources
-                         in fostering personal growth and community development. That's why we have
-                         multiple copies of The Art of Effective Communication available for loan,
-                         both in print and digital formats, ensuring that everyone has equal access
+                         At the Community Knowledge Hub, we recognize the power of shared resources \
+                         in fostering personal growth and community development. That's why we have \
+                         multiple copies of The Art of Effective Communication available for loan, \
+                         both in print and digital formats, ensuring that everyone has equal access \
                          to this invaluable resource.
                          """,
             link: URL(string: "https://www.walmart.com")!,
@@ -70,10 +70,10 @@ extension Resource {
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
-                         At the Community Knowledge Hub, we recognize the power of shared resources
-                         in fostering personal growth and community development. That's why we have
-                         multiple copies of The Art of Effective Communication available for loan,
-                         both in print and digital formats, ensuring that everyone has equal access
+                         At the Community Knowledge Hub, we recognize the power of shared resources \
+                         in fostering personal growth and community development. That's why we have \
+                         multiple copies of The Art of Effective Communication available for loan, \
+                         both in print and digital formats, ensuring that everyone has equal access \
                          to this invaluable resource.
                          """,
             link: URL(string: "https://www.walmart.com")!,
@@ -84,10 +84,10 @@ extension Resource {
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
-                         At the Community Knowledge Hub, we recognize the power of shared resources
-                         in fostering personal growth and community development. That's why we have
-                         multiple copies of The Art of Effective Communication available for loan,
-                         both in print and digital formats, ensuring that everyone has equal access
+                         At the Community Knowledge Hub, we recognize the power of shared resources \
+                         in fostering personal growth and community development. That's why we have \
+                         multiple copies of The Art of Effective Communication available for loan, \
+                         both in print and digital formats, ensuring that everyone has equal access \
                          to this invaluable resource.
                          """,
             link: URL(string: "https://www.walmart.com")!,
@@ -98,10 +98,10 @@ extension Resource {
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
-                         At the Community Knowledge Hub, we recognize the power of shared resources
-                         in fostering personal growth and community development. That's why we have
-                         multiple copies of The Art of Effective Communication available for loan,
-                         both in print and digital formats, ensuring that everyone has equal access
+                         At the Community Knowledge Hub, we recognize the power of shared resources \
+                         in fostering personal growth and community development. That's why we have \
+                         multiple copies of The Art of Effective Communication available for loan, \
+                         both in print and digital formats, ensuring that everyone has equal access \
                          to this invaluable resource.
                          """,
             link: URL(string: "https://www.apple.com")!,
@@ -112,10 +112,10 @@ extension Resource {
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
-                         At the Community Knowledge Hub, we recognize the power of shared resources
-                         in fostering personal growth and community development. That's why we have
-                         multiple copies of The Art of Effective Communication available for loan,
-                         both in print and digital formats, ensuring that everyone has equal access
+                         At the Community Knowledge Hub, we recognize the power of shared resources \
+                         in fostering personal growth and community development. That's why we have \
+                         multiple copies of The Art of Effective Communication available for loan, \
+                         both in print and digital formats, ensuring that everyone has equal access \
                          to this invaluable resource.
                          """,
             link: URL(string: "https://www.apple.com")!,
@@ -126,10 +126,10 @@ extension Resource {
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
-                         At the Community Knowledge Hub, we recognize the power of shared resources
-                         in fostering personal growth and community development. That's why we have
-                         multiple copies of The Art of Effective Communication available for loan,
-                         both in print and digital formats, ensuring that everyone has equal access
+                         At the Community Knowledge Hub, we recognize the power of shared resources \
+                         in fostering personal growth and community development. That's why we have \
+                         multiple copies of The Art of Effective Communication available for loan, \
+                         both in print and digital formats, ensuring that everyone has equal access \
                          to this invaluable resource.
                          """,
             link: URL(string: "https://www.amazon.com")!,
@@ -140,10 +140,10 @@ extension Resource {
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
             description: """
-                         At the Community Knowledge Hub, we recognize the power of shared resources
-                         in fostering personal growth and community development. That's why we have
-                         multiple copies of The Art of Effective Communication available for loan,
-                         both in print and digital formats, ensuring that everyone has equal access
+                         At the Community Knowledge Hub, we recognize the power of shared resources \
+                         in fostering personal growth and community development. That's why we have \
+                         multiple copies of The Art of Effective Communication available for loan, \
+                         both in print and digital formats, ensuring that everyone has equal access \
                          to this invaluable resource.
                          """,
             link: URL(string: "https://www.amazon.com")!,

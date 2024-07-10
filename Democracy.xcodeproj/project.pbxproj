@@ -10,9 +10,6 @@
 		EE0696B32C095B9F00DABDDF /* AddCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0696B22C095B9F00DABDDF /* AddCommentView.swift */; };
 		EE0696B52C22795300DABDDF /* NodeOutlineGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0696B42C22795300DABDDF /* NodeOutlineGroup.swift */; };
 		EE0696B72C25008000DABDDF /* CommentVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0696B62C25008000DABDDF /* CommentVote.swift */; };
-		EE0CC2012A9ED9C8003A10C3 /* VoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2002A9ED9C8003A10C3 /* VoteViewModel.swift */; };
-		EE0CC2032A9EDA00003A10C3 /* VoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2022A9EDA00003A10C3 /* VoteView.swift */; };
-		EE0CC2052AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0CC2042AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift */; };
 		EE11729F2A71C3C700E529AF /* CommunityCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE11729E2A71C3C700E529AF /* CommunityCategoryViewModel.swift */; };
 		EE2477CF2BB9C6B800661A0A /* Streamable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477CE2BB9C6B800661A0A /* Streamable.swift */; };
 		EE2477D22BBCD95000661A0A /* CurrentScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2477D12BBCD95000661A0A /* CurrentScheme.swift */; };
@@ -102,8 +99,6 @@
 		EE412BAE2BB0E2C50007632B /* MembershipRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412BAD2BB0E2C50007632B /* MembershipRepository.swift */; };
 		EE412BB02BB0E7970007632B /* MembershipService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412BAF2BB0E7970007632B /* MembershipService.swift */; };
 		EE412BB22BB251590007632B /* CommunityTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412BB12BB251590007632B /* CommunityTab.swift */; };
-		EE4524912A56597400C7A2DD /* ResourceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524902A56597400C7A2DD /* ResourceView.swift */; };
-		EE4524942A565CA400C7A2DD /* ResourceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4524932A565CA400C7A2DD /* ResourceViewModel.swift */; };
 		EE4987CA2B2F5B3900AB7522 /* TitleTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987C92B2F5B3900AB7522 /* TitleTextFieldStyle.swift */; };
 		EE4987CC2B2F5ED200AB7522 /* ViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987CB2B2F5ED200AB7522 /* ViewConstants.swift */; };
 		EE4987CF2B2F823300AB7522 /* SubmitPostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4987CE2B2F823300AB7522 /* SubmitPostCoordinator.swift */; };
@@ -350,9 +345,6 @@
 		EE0696B22C095B9F00DABDDF /* AddCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommentView.swift; sourceTree = "<group>"; };
 		EE0696B42C22795300DABDDF /* NodeOutlineGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeOutlineGroup.swift; sourceTree = "<group>"; };
 		EE0696B62C25008000DABDDF /* CommentVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentVote.swift; sourceTree = "<group>"; };
-		EE0CC2002A9ED9C8003A10C3 /* VoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteViewModel.swift; sourceTree = "<group>"; };
-		EE0CC2022A9EDA00003A10C3 /* VoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteView.swift; sourceTree = "<group>"; };
-		EE0CC2042AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CandidateListItemViewModel+Preview.swift"; sourceTree = "<group>"; };
 		EE11729E2A71C3C700E529AF /* CommunityCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCategoryViewModel.swift; sourceTree = "<group>"; };
 		EE2477CE2BB9C6B800661A0A /* Streamable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Streamable.swift; sourceTree = "<group>"; };
 		EE2477D12BBCD95000661A0A /* CurrentScheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentScheme.swift; sourceTree = "<group>"; };
@@ -440,8 +432,6 @@
 		EE412BAD2BB0E2C50007632B /* MembershipRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipRepository.swift; sourceTree = "<group>"; };
 		EE412BAF2BB0E7970007632B /* MembershipService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipService.swift; sourceTree = "<group>"; };
 		EE412BB12BB251590007632B /* CommunityTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTab.swift; sourceTree = "<group>"; };
-		EE4524902A56597400C7A2DD /* ResourceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceView.swift; sourceTree = "<group>"; };
-		EE4524932A565CA400C7A2DD /* ResourceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceViewModel.swift; sourceTree = "<group>"; };
 		EE4987C92B2F5B3900AB7522 /* TitleTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextFieldStyle.swift; sourceTree = "<group>"; };
 		EE4987CB2B2F5ED200AB7522 /* ViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConstants.swift; sourceTree = "<group>"; };
 		EE4987CE2B2F823300AB7522 /* SubmitPostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitPostCoordinator.swift; sourceTree = "<group>"; };
@@ -699,15 +689,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EE0CC1FF2A9ED9A7003A10C3 /* VoteView */ = {
-			isa = PBXGroup;
-			children = (
-				EE0CC2002A9ED9C8003A10C3 /* VoteViewModel.swift */,
-				EE0CC2022A9EDA00003A10C3 /* VoteView.swift */,
-			);
-			path = VoteView;
-			sourceTree = "<group>";
-		};
 		EE2477D02BBCD8B200661A0A /* SwiftData */ = {
 			isa = PBXGroup;
 			children = (
@@ -1073,31 +1054,6 @@
 				EE412BB12BB251590007632B /* CommunityTab.swift */,
 			);
 			path = Selectable;
-			sourceTree = "<group>";
-		};
-		EE45248B2A5651B600C7A2DD /* ResourceSection */ = {
-			isa = PBXGroup;
-			children = (
-				EE4524922A565C8E00C7A2DD /* Resource */,
-			);
-			path = ResourceSection;
-			sourceTree = "<group>";
-		};
-		EE4524922A565C8E00C7A2DD /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-				EE4524902A56597400C7A2DD /* ResourceView.swift */,
-				EE4524932A565CA400C7A2DD /* ResourceViewModel.swift */,
-			);
-			path = Resource;
-			sourceTree = "<group>";
-		};
-		EE4524A42A5CECAD00C7A2DD /* LeadersSection */ = {
-			isa = PBXGroup;
-			children = (
-				EE0CC1FF2A9ED9A7003A10C3 /* VoteView */,
-			);
-			path = LeadersSection;
 			sourceTree = "<group>";
 		};
 		EE4987CD2B2F820A00AB7522 /* Navigation */ = {
@@ -1494,7 +1450,6 @@
 			isa = PBXGroup;
 			children = (
 				EE7EC2742B614D4600F62E90 /* Flows */,
-				EE0CC2042AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift */,
 				EE80D8C529BC12C70000F8EF /* CommunitiesTabMainViewModel+Preview.swift */,
 				EE80D8C929BC13C00000F8EF /* PostViewModel+Preview.swift */,
 				EE80D8CB29BC14560000F8EF /* PostCardViewModel+Preview.swift */,
@@ -1963,8 +1918,6 @@
 			children = (
 				EED4A53429B81D8000DDCCDA /* CommunityInfoView.swift */,
 				EE80D90329C923960000F8EF /* CommunityInfoViewModel.swift */,
-				EE4524A42A5CECAD00C7A2DD /* LeadersSection */,
-				EE45248B2A5651B600C7A2DD /* ResourceSection */,
 			);
 			path = CommunityInfo;
 			sourceTree = "<group>";
@@ -2224,7 +2177,6 @@
 				EEF83473299C6A11001EEA5E /* Router.swift in Sources */,
 				EE412B922B9E48EB0007632B /* CommunityInputFlowViewModel.swift in Sources */,
 				EE7EC2782B614E7B00F62E90 /* CommunityRulesView.swift in Sources */,
-				EE0CC2052AA02B74003A10C3 /* CandidateListItemViewModel+Preview.swift in Sources */,
 				EE80D93029D0D7970000F8EF /* AppDelegate.swift in Sources */,
 				EEE08C192C2F64D900993422 /* PostHeaderViewModel.swift in Sources */,
 				EE54ADEA29A712AE007C3E3F /* LoginView.swift in Sources */,
@@ -2277,11 +2229,9 @@
 				EE4DB8912AC899ED00A6DC90 /* LoginStatus.swift in Sources */,
 				EEF83461299C6824001EEA5E /* DemocracyApp.swift in Sources */,
 				EE7EC2902B6151BC00F62E90 /* CreateCommunityFlow+Preview.swift in Sources */,
-				EE4524942A565CA400C7A2DD /* ResourceViewModel.swift in Sources */,
 				EE9760192AD0B066003069CF /* AccountAcceptTermsView.swift in Sources */,
 				EE2477E12BCB68D100661A0A /* CommunityTaglineViewModel.swift in Sources */,
 				EE936CA22A789B8F00D49271 /* CommunitiesTabPath.swift in Sources */,
-				EE0CC2032A9EDA00003A10C3 /* VoteView.swift in Sources */,
 				EE80D8CE29BC15550000F8EF /* VotingTabCoordinator+Preview.swift in Sources */,
 				EE7055522B1147EE00E40A89 /* UserRepository.swift in Sources */,
 				EE412B9F2B9F3D7B0007632B /* CreateAccountFlow+Preview.swift in Sources */,
@@ -2351,7 +2301,6 @@
 				EEE08C0B2C2CE7E900993422 /* CommentViewModel.swift in Sources */,
 				EE412B752B9965FB0007632B /* DateOptionalWrapper.swift in Sources */,
 				EED4A51129AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift in Sources */,
-				EE4524912A56597400C7A2DD /* ResourceView.swift in Sources */,
 				EE80D95629E0B6D10000F8EF /* ReversedLabelStyle.swift in Sources */,
 				EE5B938329F747DD00B43381 /* RepresentativeType.swift in Sources */,
 				EE80D8DC29BC18EE0000F8EF /* CommunityHomeFeedViewModel+Preview.swift in Sources */,
@@ -2397,7 +2346,6 @@
 				EED4A50929AA8BC100DDCCDA /* EventsTabMainViewModel.swift in Sources */,
 				EE80D8C629BC12C70000F8EF /* CommunitiesTabMainViewModel+Preview.swift in Sources */,
 				EE80D8C329BC12720000F8EF /* CommunitiesTabCoordinator+Preview.swift in Sources */,
-				EE0CC2012A9ED9C8003A10C3 /* VoteViewModel.swift in Sources */,
 				EE936CB72A78A12F00D49271 /* UpdatesTabCoordinatorViewModel.swift in Sources */,
 				EED4A54029BAB3E800DDCCDA /* Comment.swift in Sources */,
 				EE7EC27D2B614ED300F62E90 /* CommunityTagsViewModel.swift in Sources */,

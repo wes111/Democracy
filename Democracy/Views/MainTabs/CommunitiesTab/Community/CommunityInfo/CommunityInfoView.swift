@@ -9,77 +9,64 @@ import SwiftUI
 
 @MainActor
 struct CommunityInfoView: View {
-    
     @State private var viewModel: CommunityInfoViewModel
+    @Environment(\.openURL) var openURL
     
     init(viewModel: CommunityInfoViewModel) {
         self.viewModel = viewModel
     }
     
     var body: some View {
+        content
+    }
+}
+
+// MARK: - Subviews
+private extension CommunityInfoView {
+    
+    var content: some View {
         VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
             representativesSection
             aboutSection
             rulesSection
             alliedCommunitiesSection
             resourcesSection
-                .padding(.horizontal)
         }
-        .foregroundColor(.primaryText)
         .padding(.top, ViewConstants.smallElementSpacing)
     }
-}
-
-// MARK: - Subviews
-private extension CommunityInfoView {
+    
     var aboutSection: some View {
-        VStack(alignment: .leading, spacing: ViewConstants.extraLargeElementSpacing) {
-            Text("Description")
-                .foregroundStyle(Color.primaryText)
-                .font(.title3)
-                .fontWeight(.semibold)
+        VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+            Text(viewModel.description)
+                .font(.caption)
+                .foregroundColor(.secondaryText)
                 .padding(.horizontal, ViewConstants.screenPadding)
             
-            VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-                Text(viewModel.description)
-                    .font(.caption)
-                    .foregroundColor(.secondaryText)
-                    .padding(.horizontal, ViewConstants.screenPadding)
-                
-                Divider()
-                    .overlay(Color.black)
-            }
+            Divider().overlay(Color.black)
         }
-
+        .sectionModifier(title: "Description")
     }
     
     var representativesSection: some View {
-        VStack(alignment: .leading, spacing: ViewConstants.extraLargeElementSpacing) {
-            Text("Representatives")
-                .foregroundStyle(Color.primaryText)
-                .font(.title3)
-                .fontWeight(.semibold)
-                .padding(.horizontal, ViewConstants.screenPadding)
-            
-            VStack(
-                alignment: .leading,
-                spacing: ViewConstants.elementSpacing - ViewConstants.smallInnerBorder // Offset for scroll indicator.
-            ) {
-                ScrollView(.horizontal) {
-                    HStack(spacing: ViewConstants.elementSpacing) {
-                        ForEach(viewModel.candidates) { candidate in
-                            representativeCard(candidate)
-                        }
+        VStack(
+            alignment: .leading,
+            // Offset for scroll indicator.
+            spacing: ViewConstants.elementSpacing - ViewConstants.smallInnerBorder
+        ) {
+            ScrollView(.horizontal) {
+                HStack(spacing: ViewConstants.elementSpacing) {
+                    ForEach(viewModel.candidates) { candidate in
+                        representativeCard(candidate)
                     }
-                    .padding(.bottom, ViewConstants.smallInnerBorder) // Offset for scroll indicator.
                 }
-                .contentMargins(.horizontal, ViewConstants.screenPadding, for: .scrollContent)
-                .contentMargins(.horizontal, ViewConstants.screenPadding, for: .scrollIndicators)
-                
-                Divider()
-                    .overlay(Color.black)
+                .padding(.bottom, ViewConstants.smallInnerBorder) // Offset for scroll indicator.
             }
+            .contentMargins(.horizontal, ViewConstants.screenPadding, for: .scrollContent)
+            .contentMargins(.horizontal, ViewConstants.screenPadding, for: .scrollIndicators)
+            
+            Divider().overlay(Color.black)
         }
+        .sectionModifier(title: "Representatives")
     }
     
     func representativeCard(_ rep: Candidate) -> some View {
@@ -107,43 +94,27 @@ private extension CommunityInfoView {
     }
     
     var alliedCommunitiesSection: some View {
-        VStack(alignment: .leading, spacing: ViewConstants.extraLargeElementSpacing) {
-            Text("Allied Communities")
-                .foregroundStyle(Color.primaryText)
-                .font(.title3)
-                .fontWeight(.semibold)
-                .padding(.horizontal, ViewConstants.screenPadding)
-            
-            VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-                ForEach(viewModel.alliedCommunities) { community in
-                    CommunityCard(viewModel: .init(community: community, coordinator: viewModel.coordinator))
-                }
-                .padding(.horizontal, ViewConstants.screenPadding)
-                
-                Divider()
-                    .overlay(Color.black)
+        VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+            ForEach(viewModel.alliedCommunities) { community in
+                CommunityCard(viewModel: .init(community: community, coordinator: viewModel.coordinator))
             }
+            .padding(.horizontal, ViewConstants.screenPadding)
+            
+            Divider().overlay(Color.black)
         }
+        .sectionModifier(title: "Allied Communities")
     }
     
     var rulesSection: some View {
-        VStack(alignment: .leading, spacing: ViewConstants.extraLargeElementSpacing) {
-            Text("Rules")
-                .foregroundStyle(Color.primaryText)
-                .font(.title3)
-                .fontWeight(.semibold)
-                .padding(.horizontal, ViewConstants.screenPadding)
-            
-            VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-                ForEach(Array(viewModel.rules.enumerated()), id: \.element) { index, rule in
-                    ruleView(rule, index: index)
-                }
-                .padding(.horizontal, ViewConstants.screenPadding)
-                
-                Divider()
-                    .overlay(Color.black)
+        VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+            ForEach(Array(viewModel.rules.enumerated()), id: \.element) { index, rule in
+                ruleView(rule, index: index)
             }
+            .padding(.horizontal, ViewConstants.screenPadding)
+            
+            Divider().overlay(Color.black)
         }
+        .sectionModifier(title: "Rules")
     }
     
     func ruleView(_ rule: Rule, index: Int) -> some View {
@@ -155,6 +126,7 @@ private extension CommunityInfoView {
             
             VStack(alignment: .leading, spacing: ViewConstants.extraSmallElementSpacing) {
                 Text(rule.title)
+                    .foregroundStyle(Color.primaryText)
                     .font(.subheadline)
                     .fontWeight(.bold)
                 
@@ -165,19 +137,77 @@ private extension CommunityInfoView {
         }
     }
     
-    var resourcesSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text("Resources")
-                .font(.title)
-            
-            ForEach(viewModel.resources, id: \.self) { resource in
-                VStack {
-                    ResourceView(viewModel: .init(title: resource.title, description: resource.description ?? "", index: 0, url: resource.link))
-                    Divider()
-                        .overlay(Color.tertiaryBackground)
+    func resourceView(_ resource: Resource) -> some View {
+        Button {
+            if let resourceLink = resource.link {
+                openURL(resourceLink)
+            }
+        } label: {
+            VStack(alignment: .leading, spacing: ViewConstants.extraSmallElementSpacing) {
+                HStack(alignment: .center, spacing: ViewConstants.smallElementSpacing) {
+                    Image(systemName: resource.category.image.rawValue)
+                    
+                    Text(resource.title)
+                        .foregroundStyle(Color.primaryText)
+                        .font(.subheadline)
+                        .fontWeight(.bold)
+                }
+                HStack(alignment: .lastTextBaseline, spacing: ViewConstants.smallElementSpacing) {
+                    if let description = resource.description {
+                        Text(description)
+                            .font(.caption2)
+                            .foregroundColor(.tertiaryText)
+                    }
+                    
+                    if resource.link != nil {
+                        Image(systemName: SystemImage.arrowUpRightSquare.rawValue)
+                            .foregroundStyle(Color.primaryText)
+                    }
                 }
             }
+            .multilineTextAlignment(.leading)
+            .padding(ViewConstants.smallInnerBorder)
+            .background(
+                Color.secondaryBackground,
+                in: RoundedRectangle(cornerRadius: ViewConstants.cornerRadius)
+            )
         }
+    }
+    
+    var resourcesSection: some View {
+        VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+            ForEach(viewModel.resources) { resource in
+                resourceView(resource)
+            }
+            .padding(.horizontal, ViewConstants.screenPadding)
+            
+            Divider().overlay(Color.black)
+        }
+        .sectionModifier(title: "Resources")
+    }
+}
+
+// MARK: Helper ViewModifier
+
+struct SectionModifier: ViewModifier {
+    let title: String
+    
+    func body(content: Content) -> some View {
+        VStack(alignment: .leading, spacing: ViewConstants.extraLargeElementSpacing) {
+            Text(title)
+                .foregroundStyle(Color.primaryText)
+                .font(.title3)
+                .fontWeight(.semibold)
+                .padding(.horizontal, ViewConstants.screenPadding)
+            
+            content
+        }
+    }
+}
+
+extension View {
+    func sectionModifier(title: String) -> some View {
+        self.modifier(SectionModifier(title: title))
     }
 }
 
