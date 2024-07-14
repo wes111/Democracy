@@ -10,7 +10,7 @@ import Foundation
 enum UsernameRequirement: InputRequirement {
     case length, startChar, validChars
     
-    static var fieldTitle: String = "Username"
+    static let fieldTitle: String = "Username"
 }
 
 // MARK: Computed Properties

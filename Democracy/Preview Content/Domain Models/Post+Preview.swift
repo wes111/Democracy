@@ -10,6 +10,7 @@ import SharedResourcesClientAndServer
 
 extension Post {
     
+    @MainActor
     static let preview = Post(
         id: "123",
         title: "Elon Musk May Have Lost More Than a $55 Billion",
@@ -21,11 +22,13 @@ extension Post {
         communityId: "12345",
         creationDate: .now,
         approvedDate: .now,
+        archivedDate: .now,
         upVoteCount: 5,
         downVoteCount: 27,
         commentCount: 55
     )
     
+    @MainActor
     static let previewArray: [Post] = {
         var postArray: [Post] = []
         for _ in 0...25 {

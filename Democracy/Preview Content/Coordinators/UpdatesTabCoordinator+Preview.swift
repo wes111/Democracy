@@ -8,7 +8,7 @@
 import Foundation
 
 extension UpdatesTabCoordinator {
-    static let preview = UpdatesTabCoordinator(viewModel: .preview)
+    @MainActor static let preview = UpdatesTabCoordinator(viewModel: .preview)
 }
 
 extension UpdatesTabCoordinatorViewModel {

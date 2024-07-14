@@ -49,7 +49,7 @@ struct CommunitiesTabCoordinatorView: View {
             CommunityCategoryPostsView(viewModel: viewModel)
             
         case .voteView:
-            EmptyView() //VoteView(viewModel: coordinator.voteViewModel())
+            EmptyView() // VoteView(viewModel: coordinator.voteViewModel())
         }
     }
 }

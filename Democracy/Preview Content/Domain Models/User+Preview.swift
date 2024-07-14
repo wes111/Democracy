@@ -9,7 +9,7 @@ import Foundation
 import SharedResourcesClientAndServer
 
 extension User {
-    static let preview = User(
+    @MainActor static let preview = User(
         accessedAt: Date.now,
         createdAt: Date.now,
         email: "bernie@gmail.com",

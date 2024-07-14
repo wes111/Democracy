@@ -10,7 +10,7 @@ import Foundation
 enum LinkRequirement: InputRequirement {
     case https, length
     
-    static var fieldTitle: String = "Link"
+    static let fieldTitle: String = "Link"
 }
 
 // MARK: - Computed Properties

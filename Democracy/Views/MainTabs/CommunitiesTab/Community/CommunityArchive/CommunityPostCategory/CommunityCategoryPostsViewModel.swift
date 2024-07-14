@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 class CommunityCategoryPostsViewModel: ObservableObject {
     
     @Published var searchText = ""

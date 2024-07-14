@@ -8,5 +8,5 @@
 import Foundation
 
 extension HistoryTabMainViewModel {
-    static let preview = HistoryTabMainViewModel()
+    @MainActor static let preview = HistoryTabMainViewModel()
 }

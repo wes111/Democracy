@@ -10,7 +10,7 @@ import Foundation
 enum PhoneRequirement: InputRequirement {
     case length
     
-    static var fieldTitle: String = "Phone"
+    static let fieldTitle: String = "Phone"
 }
 
 // MARK: - Computed Properties

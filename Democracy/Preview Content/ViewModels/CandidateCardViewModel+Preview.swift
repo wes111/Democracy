@@ -9,7 +9,7 @@ import Foundation
 
 extension CandidateCardViewModel {
     
-    static let preview = CandidateCardViewModel(
+    @MainActor static let preview = CandidateCardViewModel(
         candidate: Candidate.preview
     )
 }

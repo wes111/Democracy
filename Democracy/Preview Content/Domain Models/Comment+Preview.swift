@@ -8,7 +8,7 @@
 import Foundation
 
 extension Comment {
-    static let preview = Comment(
+    @MainActor static let preview = Comment(
         id: "",
         parentId: "",
         postId: "",

@@ -21,6 +21,7 @@ final class Post: Identifiable, Hashable, Votable {
     let communityId: String
     let creationDate: Date
     let approvedDate: Date?
+    let archivedDate: Date?
     var upVoteCount: Int
     var downVoteCount: Int
     var commentCount: Int
@@ -37,6 +38,7 @@ final class Post: Identifiable, Hashable, Votable {
         communityId: String,
         creationDate: Date,
         approvedDate: Date?,
+        archivedDate: Date?,
         upVoteCount: Int,
         downVoteCount: Int,
         commentCount: Int
@@ -51,6 +53,7 @@ final class Post: Identifiable, Hashable, Votable {
         self.communityId = communityId
         self.creationDate = creationDate
         self.approvedDate = approvedDate
+        self.archivedDate = archivedDate
         self.upVoteCount = upVoteCount
         self.downVoteCount = downVoteCount
         self.commentCount = commentCount
@@ -70,6 +73,7 @@ extension PostDTO {
             communityId: communityId,
             creationDate: creationDate,
             approvedDate: approvedDate,
+            archivedDate: archivedDate,
             upVoteCount: upVoteCount,
             downVoteCount: downVoteCount,
             commentCount: commentCount

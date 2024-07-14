@@ -10,7 +10,7 @@ import Foundation
 enum CommunityTab: String, Selectable {
     case feed, info, archive
     
-    static var metaTitle: String = "Community Tab"
+    static let metaTitle: String = "Community Tab"
     
     var title: String {
         switch self {

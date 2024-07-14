@@ -8,7 +8,7 @@
 import Foundation
 
 extension CandidateViewModel {
-    static let preview = CandidateViewModel(
+    @MainActor static let preview = CandidateViewModel(
         coordinator: CommunitiesCoordinator.preview,
         candidate: Candidate.preview
     )

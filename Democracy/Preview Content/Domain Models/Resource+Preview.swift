@@ -9,7 +9,7 @@ import Foundation
 
 extension Resource {
     
-    static let previewArray: [Resource] = [
+    @MainActor static let previewArray: [Resource] = [
         Resource(
             id: UUID().uuidString,
             title: "Das Capital by Karl Marx",
