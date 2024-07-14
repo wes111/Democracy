@@ -6,10 +6,9 @@
 //
 
 import Foundation
+import SharedResourcesClientAndServer
 
-enum CommunityCommenter: String, Codable, Selectable {
-    case all, leadership, experts
-    
+extension CommunityCommenter: Selectable {
     static let metaTitle = "Allowed Commenters"
     
     var title: String {

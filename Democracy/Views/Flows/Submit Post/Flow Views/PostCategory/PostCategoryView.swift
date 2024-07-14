@@ -40,7 +40,7 @@ private extension PostCategoryView {
         ScrollView {
             VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
                 ForEach(viewModel.categories, id: \.self) { category in
-                    categoryView(category)
+                    categoryView(category.name)
                 }
             }
         }

@@ -24,8 +24,6 @@ protocol CandidatesViewModelProtocol: ObservableObject {
 }
 
 final class CandidatesViewModel: CandidatesViewModelProtocol {
-    
-    @Injected(\.candidateInteractor) var candidateInteractor
     @Published var allCandidates: [Candidate] = []
     @Published var candidatesFilter: RepresentativeType = .legislator
     @Published var representativesFilter: RepresentativeType = .legislator
@@ -46,14 +44,14 @@ final class CandidatesViewModel: CandidatesViewModelProtocol {
         coordinator: CommunitiesCoordinatorDelegate?
     ) {
         self.coordinator = coordinator
-        candidateInteractor
-            .subscribeToCandidates()
-            .receive(on: DispatchQueue.main)
-            .assign(to: &$allCandidates)
+//        candidateInteractor
+//            .subscribeToCandidates()
+//            .receive(on: DispatchQueue.main)
+//            .assign(to: &$allCandidates)
     }
     
     func refreshCandidates() {
-        candidateInteractor.refreshCandidates()
+        // candidateInteractor.refreshCandidates()
     }
     
     func openCreateCandidateView() {

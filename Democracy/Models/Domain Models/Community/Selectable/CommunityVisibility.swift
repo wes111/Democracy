@@ -6,10 +6,9 @@
 //
 
 import Foundation
+import SharedResourcesClientAndServer
 
-enum CommunityVisibility: String, Codable, Selectable {
-    case all, member
-    
+extension CommunityVisibility: Selectable {
     static let metaTitle = "Community Visibility"
     
     var title: String {

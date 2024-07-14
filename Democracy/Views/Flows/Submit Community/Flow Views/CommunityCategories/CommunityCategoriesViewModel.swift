@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedResourcesClientAndServer
 
 @MainActor @Observable
 final class CommunityCategoriesViewModel: SubmittableMultiTextInputViewModel {
@@ -27,7 +28,7 @@ final class CommunityCategoriesViewModel: SubmittableMultiTextInputViewModel {
     }
 }
 
-// MARK: - Methods
+// MARK: - Computed Properties
 extension CommunityCategoriesViewModel {
     
     var canSubmit: Bool {
@@ -37,12 +38,16 @@ extension CommunityCategoriesViewModel {
     var canPerformNextAction: Bool {
         !categories.isEmpty
     }
+}
+
+// MARK: - Methods
+extension CommunityCategoriesViewModel {
     
     func nextButtonAction() async {
         guard !categories.isEmpty else {
             return presentMissingCategoryAlert()
         }
-        submitCommunityInput.categories = Set(categories)
+        submitCommunityInput.categories = categories.map { .init(name: $0, imageUrl: nil, communityId: submitCommunityInput.name!) }
         try? await Task.sleep(nanoseconds: 150_000)
         flowCoordinator?.didSubmit(flow: .categories)
     }
@@ -67,7 +72,7 @@ extension CommunityCategoriesViewModel {
     }
     
     func onAppear() {
-        categories = Array(submitCommunityInput.categories)
+        categories = submitCommunityInput.categories.map { $0.name }
     }
     
     private func presentMissingCategoryAlert() {

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedResourcesClientAndServer
 
 struct HorizontalSelectableList<T: Selectable>: View {
     

@@ -15,7 +15,7 @@ final class Post: Identifiable, Hashable, Votable {
     let title: String
     let body: String
     let link: URL?
-    let category: String
+    let categoryName: String
     let tags: [String]
     let userId: String
     let communityId: String
@@ -31,7 +31,7 @@ final class Post: Identifiable, Hashable, Votable {
         title: String,
         body: String,
         link: URL?,
-        category: String,
+        categoryName: String,
         tags: [String],
         userId: String,
         communityId: String,
@@ -45,7 +45,7 @@ final class Post: Identifiable, Hashable, Votable {
         self.title = title
         self.body = body
         self.link = link
-        self.category = category
+        self.categoryName = categoryName
         self.tags = tags
         self.userId = userId
         self.communityId = communityId
@@ -64,7 +64,7 @@ extension PostDTO {
             title: title,
             body: body,
             link: link,
-            category: category,
+            categoryName: categoryName,
             tags: tags,
             userId: userId,
             communityId: communityId,

@@ -28,7 +28,7 @@ extension Community {
         memberCount: 255,
         rules: Rule.previewArray,
         resources: Resource.previewArray,
-        categories: ["Racing", "Sports", "Weather", "Dog Grooming", "Vampires", "Fruit & Veggies"],
+        categories: PostCategory.previewArray,
         tags: [
             "Rudy",
             "Nicole",
@@ -111,12 +111,7 @@ extension Community {
         ], 
         tagline: "Forum for economy, business, politics, stocks, bonds, product releases, IPOs, advice, news, investment, videso, pranks, and more",
         // alliedCommunities: [],
-        governmentType: .autocracy,
-        contentType: .adultContent,
-        visibilityType: .member,
-        allowedPosterType: .experts,
-        allowedCommenterType: .experts,
-        postApprovalType: .automatic
+        settings: CommunitySettings.preview
     )
     
     static var myCommunitiesPreviewArray: [Community] {
@@ -138,92 +133,13 @@ extension Community {
                     memberCount: 255,
                     rules: Community.preview.rules,
                     resources: Community.preview.resources,
-                    categories: ["Racing", "Sports", "Weather",
-                                 "Dog Grooming", "Vampires", "Fruit & Veggies"],
+                    categories: PostCategory.previewArray,
                     tags: [],
                     tagline: "Community Tagline",
+                    settings: CommunitySettings.preview
                     // alliedCommunities: [],
-                    governmentType: .autocracy,
-                    contentType: .adultContent,
-                    visibilityType: .member,
-                    allowedPosterType: .experts,
-                    allowedCommenterType: .experts,
-                    postApprovalType: .automatic
                 ))
         }
         return array
-    }
-    
-    static var recommendedCommunitiesPreviewArray: [Community] {
-        var array: [Community] = []
-        for index in 0...10 {
-            array.append(
-                Community(
-                    id: UUID().uuidString,
-                    creatorId: UUID().uuidString,
-                    name: "Recommended Community \(index)",
-                    descriptionText: """
-                             Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah,
-                             blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah,
-                             blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community,
-                             blah, blah, blah
-                             """,
-                    creationDate: Community.preview.creationDate,
-                    // representatives: Community.preview.representatives,
-                    memberCount: 255,
-                    rules: Community.preview.rules,
-                    resources: Community.preview.resources,
-                    categories: ["Racing", "Sports", "Weather",
-                                 "Dog Grooming", "Vampires", "Fruit & Veggies"],
-                    tags: [],
-                    tagline: "Community Tagline",
-                    // alliedCommunities: [],
-                    governmentType: .autocracy,
-                    contentType: .adultContent,
-                    visibilityType: .member,
-                    allowedPosterType: .experts,
-                    allowedCommenterType: .experts,
-                    postApprovalType: .automatic
-                ))
-        }
-        return array
-    }
-
-    static var topCommunitiesPreviewArray: [Community] {
-        var array: [Community] = []
-        for index in 0...25 {
-            array.append(
-                Community(
-                    id: UUID().uuidString,
-                    creatorId: UUID().uuidString,
-                    name: "Top Community \(index)",
-                    descriptionText: """
-                             Welcome to the Community, blah, blah, blah Welcome to the Community, blah, blah, 
-                             blah Welcome to the Community, blah, blah, blah Welcome to the Community, blah,
-                             blah, blah Welcome to the Community, blah, blah, blah Welcome to the Community,
-                             blah, blah, blah
-                             """,
-                    creationDate: Community.preview.creationDate,
-                    // representatives: Community.preview.representatives,
-                    memberCount: 255,
-                    rules: Community.preview.rules,
-                    resources: Community.preview.resources,
-                    categories: ["Racing", "Sports", "Weather", "Dog Grooming", "Vampires", "Fruit & Veggies"],
-                    tags: [],
-                    tagline: "Community Tagline",
-                    // alliedCommunities: [],
-                    governmentType: .autocracy,
-                    contentType: .adultContent,
-                    visibilityType: .member,
-                    allowedPosterType: .experts,
-                    allowedCommenterType: .experts,
-                    postApprovalType: .automatic
-                ))
-        }
-        return array
-    }
-
-    static let communityCardTapAction: (Community) -> Void = { _ in
-        print("Community Card tapped.")
     }
 }

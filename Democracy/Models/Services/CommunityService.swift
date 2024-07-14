@@ -35,15 +35,10 @@ final class CommunityServiceDefault: CommunityService {
             descriptionText: description,
             rules: Array(userInput.rules).map { $0.toCreationRequest() },
             resources: userInput.resources.map { $0.toCreationRequest() },
-            categories: Array(userInput.categories),
+            postCategories: userInput.categories,
             tags: Array(userInput.tags),
             tagline: tagline,
-            governmentType: userInput.settings.government,
-            contentType: userInput.settings.content,
-            visibilityType: userInput.settings.visibility,
-            allowedPosterType: userInput.settings.poster,
-            allowedCommenterType: userInput.settings.commenter,
-            postApprovalType: userInput.settings.postApproval
+            settings: userInput.settings
         ))
     }
     

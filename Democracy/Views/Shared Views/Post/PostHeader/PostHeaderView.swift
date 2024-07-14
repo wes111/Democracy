@@ -41,7 +41,7 @@ private extension PostHeaderView {
     
     var topLineMetadata: some View {
         HStack(spacing: ViewConstants.smallElementSpacing) {
-            Text(viewModel.post.category)
+            Text(viewModel.post.categoryName)
                 .tagModifier(backgroundColor: .otherRed)
             
             VStack(alignment: .leading, spacing: ViewConstants.extraSmallElementSpacing) {

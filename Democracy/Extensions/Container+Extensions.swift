@@ -9,12 +9,6 @@ import Foundation
 import Factory
 
 extension Container {
-    
-    // MARK: - Interactors
-    var candidateInteractor: Factory<CandidateInteractorProtocol> {
-         self { CandidateInteractor() }
-    }
-    
     // MARK: - Services
     
     var appwriteService: Factory<AppwriteService> {

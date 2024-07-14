@@ -29,8 +29,6 @@ final class CreateCandidateViewModel: CreateCandidateViewModelProtocol {
     @Published var alert: CreateCandidateAlert?
     @Published var isLoading: Bool = false
     
-    @Injected(\.candidateInteractor) var candidateInteractor
-    
     weak var coordinator: CommunitiesCoordinatorDelegate?
     
     init(coordinator: CommunitiesCoordinatorDelegate?) {

@@ -7,6 +7,7 @@
 
 import Factory
 import Foundation
+import SharedResourcesClientAndServer
 
 protocol CommunityRepository {
     func submitCommunity(_ community: CommunityCreationRequest) async throws

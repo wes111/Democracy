@@ -6,10 +6,9 @@
 //
 
 import Foundation
+import SharedResourcesClientAndServer
 
-enum CommunityGovernment: String, Codable, Selectable {
-    case autocracy, democracy
-    
+extension CommunityGovernment: Selectable {
     static let metaTitle: String = "Government Type"
     
     var title: String {

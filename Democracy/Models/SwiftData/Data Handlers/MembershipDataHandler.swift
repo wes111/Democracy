@@ -86,12 +86,7 @@ private extension MembershipDataHandler {
             tags: model.tags,
             // alliedCommunities: model.alliedCommunities,
             tagline: model.tagline,
-            governmentType: model.governmentType,
-            contentType: model.contentType,
-            visibilityType: model.visibilityType,
-            allowedPosterType: model.allowedPosterType,
-            allowedCommenterType: model.allowedCommenterType,
-            postApprovalType: model.postApprovalType
+            settings: model.settings
         )
     }
     

@@ -74,7 +74,7 @@ private extension CommunityView {
             CommunityInfoView(viewModel: viewModel.communityInfoViewModel())
             
         case .archive:
-            CommunityArchiveFeedView(viewModel: viewModel.communityArchiveFeedViewModel())
+            CommunityArchiveFeedView(viewModel: viewModel.communityArchiveViewModel())
         }
     }
     

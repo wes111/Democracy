@@ -6,10 +6,9 @@
 //
 
 import Foundation
+import SharedResourcesClientAndServer
 
-enum CommunityPostApproval: String, Codable, Selectable {
-    case automatic, mod
-    
+extension CommunityPostApproval: Selectable {
     static let metaTitle = "Post Approval Process"
     
     var title: String {

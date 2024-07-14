@@ -6,13 +6,10 @@
 //
 
 import Foundation
-
-enum ResourceCategory: String, Codable { // TODO: Add more categories...
-    case book, website, magazine, movie
-}
+import SharedResourcesClientAndServer
 
 extension ResourceCategory: Selectable {
-    var id: String {
+    public var id: String {
         self.title
     }
     

@@ -6,11 +6,9 @@
 //
 
 import Foundation
+import SharedResourcesClientAndServer
 
-enum CommunityContent: String, Codable, Selectable {
-    
-    case familyFriendly, adultContent
-    
+extension CommunityContent: Selectable {
     static let metaTitle = "Content Type"
     
     var title: String {

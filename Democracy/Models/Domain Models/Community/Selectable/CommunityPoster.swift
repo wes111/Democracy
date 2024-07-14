@@ -6,9 +6,9 @@
 //
 
 import Foundation
+import SharedResourcesClientAndServer
 
-enum CommunityPoster: String, Codable, Selectable {
-    case all, leadership, experts
+extension CommunityPoster: Selectable {
     
     static let metaTitle = "Allowed Posters"
     

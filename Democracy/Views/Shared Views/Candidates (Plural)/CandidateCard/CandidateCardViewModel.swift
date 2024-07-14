@@ -14,8 +14,6 @@ protocol CandidateCardCoordinatorDelegate: AnyObject {
 }
 
 final class CandidateCardViewModel: ObservableObject {
-    
-    @Injected(\.candidateInteractor) var candidateInteractor
 
     // private let coordinator: CandidateCardCoordinatorDelegate
     @Published var candidate: Candidate
@@ -40,18 +38,18 @@ final class CandidateCardViewModel: ObservableObject {
     
     /// Subscribe to updates to the card's candidate.
     private func subscribeToCandidates() {
-        candidateInteractor
-            .subscribeToCandidates()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] candidates in
-                guard let self = self, 
-                      let cardCandidate = candidates.first(where: { $0.id == self.candidate.id })
-                else {
-                    return // print("Candidate for card went missing from local database.")
-                }
-                self.updateCandidate(newCandidate: cardCandidate)
-            }
-        .store(in: &cancellables)
+//        candidateInteractor
+//            .subscribeToCandidates()
+//            .receive(on: DispatchQueue.main)
+//            .sink { [weak self] candidates in
+//                guard let self = self, 
+//                      let cardCandidate = candidates.first(where: { $0.id == self.candidate.id })
+//                else {
+//                    return // print("Candidate for card went missing from local database.")
+//                }
+//                self.updateCandidate(newCandidate: cardCandidate)
+//            }
+//        .store(in: &cancellables)
     }
     
     /// Update the card's candidate on the main thread.

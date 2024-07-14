@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SharedResourcesClientAndServer
 
 struct SelectablePickerView<T: Selectable>: View {
     

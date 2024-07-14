@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import SharedResourcesClientAndServer
 
-struct CommunitySettings {
+struct CommunitySettings: Hashable, Codable {
     var government: CommunityGovernment
     var content: CommunityContent
     var visibility: CommunityVisibility
@@ -16,9 +17,9 @@ struct CommunitySettings {
     var postApproval: CommunityPostApproval
     
     init(
-        government: CommunityGovernment = .autocracy,
+        government: CommunityGovernment = .democracy,
         content: CommunityContent = .familyFriendly,
-        visibility: CommunityVisibility = .member,
+        visibility: CommunityVisibility = .all,
         poster: CommunityPoster = .all,
         commenter: CommunityCommenter = .all,
         postApproval: CommunityPostApproval = .automatic
@@ -29,6 +30,30 @@ struct CommunitySettings {
         self.poster = poster
         self.commenter = commenter
         self.postApproval = postApproval
+    }
+    
+    func toCreationRequest() -> CommunitySettingsCreationRequest {
+        .init(
+            government: government,
+            content: content,
+            visibility: visibility,
+            poster: poster,
+            commenter: commenter,
+            postApproval: postApproval
+        )
+    }
+}
+
+extension CommunitySettingsDTO {
+    func toCommunitySettings() -> CommunitySettings {
+        .init(
+            government: government,
+            content: content,
+            visibility: visibility,
+            poster: poster,
+            commenter: commenter,
+            postApproval: postApproval
+        )
     }
 }
 

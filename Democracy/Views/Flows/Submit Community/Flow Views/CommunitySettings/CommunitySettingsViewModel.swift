@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import SharedResourcesClientAndServer
 
 @MainActor @Observable
 final class CommunitySettingsViewModel: SubmittableNextButtonViewModel {
-    var settings: CommunitySettings
+    var settings: CommunitySettingsCreationRequest
     var selectedSetting: CommunitySetting?
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false

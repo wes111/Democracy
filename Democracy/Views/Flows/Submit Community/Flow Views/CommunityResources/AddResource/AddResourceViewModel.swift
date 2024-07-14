@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedResourcesClientAndServer
 
 @Observable
 final class AddResourceViewModel {

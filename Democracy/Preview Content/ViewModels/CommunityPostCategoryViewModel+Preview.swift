@@ -10,6 +10,6 @@ import Foundation
 extension CommunityCategoryPostsViewModel {
     static let preview = CommunityCategoryPostsViewModel(
         community: Community.preview,
-        category: Community.preview.categories.first!
+        category: PostCategory.preview
     )
 }

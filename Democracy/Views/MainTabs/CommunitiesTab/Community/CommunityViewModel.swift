@@ -85,8 +85,8 @@ extension CommunityViewModel {
         CommunityInfoViewModel(coordinator: coordinator, community: community)
     }
     
-    func communityArchiveFeedViewModel() -> CommunityArchiveFeedViewModel {
-        CommunityArchiveFeedViewModel(coordinator: coordinator, community: community)
+    func communityArchiveViewModel() -> CommunityArchiveViewModel {
+        .init(community: community, coordinator: coordinator)
     }
     
     func goBack() {

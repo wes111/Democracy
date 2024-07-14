@@ -35,7 +35,7 @@ final class PostServiceDefault: PostService {
             title: title,
             body: body,
             link: userInput.primaryLink,
-            category: category,
+            categoryName: category,
             tags: Array(userInput.tags),
             userId: try await userRepository.userId(),
             communityId: communityId

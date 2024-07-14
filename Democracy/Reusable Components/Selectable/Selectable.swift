@@ -17,7 +17,7 @@ protocol Selectable: Hashable, Identifiable, CaseIterable where AllCases == [Sel
 }
 
 extension Selectable {
-    var id: String {
+    public var id: String {
         self.title
     }
 }
