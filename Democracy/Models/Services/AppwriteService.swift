@@ -60,7 +60,7 @@ protocol AppwriteService: Sendable {
     
     func fetchPostsForCommunity(
         communityId: String,
-        oldestDate: Date,
+        query: PostsQuery,
         option: CursorPaginationOption
     ) async throws -> [Post]
     
@@ -253,7 +253,16 @@ extension AppwriteServiceDefault {
         return try documentList.documents.map { try CommentDTO($0.data.toDictionary()).toComment() }
     }
     
-    func fetchPostsForCommunity(communityId: String, oldestDate: Date, option: CursorPaginationOption) async throws -> [Post] {
+    func fetchPostsForCommunity(
+        communityId: String,
+        query: PostsQuery,
+        option: CursorPaginationOption
+    ) async throws -> [Post] {
+        
+        var queries = [
+            Query.equal("communityId", value: communityId),
+            Query.limit(25)
+        ]
         
         let cursorQuery: String? = switch option {
         case .after(let id): Query.cursorAfter(id)
@@ -261,14 +270,19 @@ extension AppwriteServiceDefault {
         case .initial: nil
         }
         
-        var queries = [
-            Query.equal("communityId", value: communityId),
-            Query.greaterThanEqual("approvedDate", value: oldestDate.ISO8601Format()),
-            Query.limit(25)
-        ]
-        
         if let cursorQuery {
             queries.append(cursorQuery)
+        }
+        
+        switch query {
+        case .approved:
+            queries.append(Query.isNotNull("approvedDate"))
+            
+        case .notApproved:
+            queries.append(Query.isNull("approvedDate"))
+            
+        case .category(let name):
+            queries.append(Query.equal("categoryName", value: name))
         }
         
         let documentList = try await databases.listDocuments(
@@ -370,4 +384,10 @@ enum CommentFetchRequest {
     case rootComments(postId: String, afterCommentId: String)
     case initialChildComments(parentId: String)
     case childComments(parentId: String, afterCommentId: String)
+}
+
+enum PostsQuery {
+    case approved
+    case notApproved
+    case category(name: String)
 }

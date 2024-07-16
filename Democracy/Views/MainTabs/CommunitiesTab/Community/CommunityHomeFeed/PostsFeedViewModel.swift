@@ -10,11 +10,11 @@ import Foundation
 import Factory
 
 @MainActor @Observable
-final class CommunityHomeFeedViewModel {
+class PostsFeedViewModel {
     var posts: [Post] = []
     var scrollId: Post?
-    var isShowingTopProgress: Bool = true
-    var isShowingBottomProgress: Bool = false
+    private var isShowingTopProgress: Bool = true
+    private var isShowingBottomProgress: Bool = false
     
     @ObservationIgnored @Injected(\.postService) private var postService
     @ObservationIgnored private weak var coordinator: CommunitiesCoordinatorDelegate?
@@ -26,23 +26,33 @@ final class CommunityHomeFeedViewModel {
     
     private static let maxInMemoryPostCount = 50
     private static let pageCount = 25
-    
-    // TODO: Should this be a community setting? To choose how old of posts are displayed? day, month, year, etc...
-    private let oldestFeedDate = Date.now
     private let community: Community
+    private let query: PostsQuery
     
-    init(community: Community, coordinator: CommunitiesCoordinatorDelegate?) {
+    init(community: Community, query: PostsQuery, coordinator: CommunitiesCoordinatorDelegate?) {
         self.community = community
         self.coordinator = coordinator
-        
-        Task {
-            await refreshPosts()
-        }
+        self.query = query
     }
 }
 
 // MARK: - Methods
-extension CommunityHomeFeedViewModel {
+extension PostsFeedViewModel {
+    
+    func refreshPosts() async {
+        do {
+            posts = try await postsPage(option: .initial)
+            firstPostInDatabase = posts.first
+            if posts.count < Self.pageCount {
+                lastPostInDatabase = posts.last
+            }
+        } catch {
+            print("Refresh posts error: \(error.localizedDescription)")
+        }
+        if !Task.isCancelled {
+            isShowingTopProgress = false
+        }
+    }
     
     func onAppear(_ post: Post) async {
         if post == posts.last {
@@ -50,6 +60,10 @@ extension CommunityHomeFeedViewModel {
         } else if post == posts.first {
             await fetchPreviousPage()
         }
+    }
+    
+    func goBack() {
+        coordinator?.goBack()
     }
     
     func postShouldShowBottomProgress(_ post: Post) -> Bool {
@@ -107,22 +121,7 @@ extension CommunityHomeFeedViewModel {
 }
 
 // MARK: - Private Methods
-private extension CommunityHomeFeedViewModel {
-    
-    func refreshPosts() async {
-        do {
-            posts = try await postsPage(option: .initial)
-            firstPostInDatabase = posts.first
-            if posts.count < Self.pageCount {
-                lastPostInDatabase = posts.last
-            }
-        } catch {
-            print("Refresh posts error: \(error.localizedDescription)")
-        }
-        if !Task.isCancelled {
-            isShowingTopProgress = false
-        }
-    }
+private extension PostsFeedViewModel {
     
     // As the user is scrolling down, if there are too many posts in memory,
     // remove them from the front of the `posts` array.
@@ -155,7 +154,7 @@ private extension CommunityHomeFeedViewModel {
     func postsPage(option: CursorPaginationOption) async throws -> [Post] {
         try await postService.fetchPostsForCommunity(
             communityId: community.id,
-            oldestDate: oldestFeedDate,
+            query: query,
             option: option
         )
     }

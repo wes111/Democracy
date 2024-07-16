@@ -21,8 +21,16 @@ final class CommunityArchiveViewModel {
 
 // MARK: - Methods
 extension CommunityArchiveViewModel {
-    func goToCommunityPostCategory(category: PostCategory) {
+    func goToCommunityPostCategory(category: PostCategory?) {
         coordinator?.goToCommunityPostCategory(category: category, community: community)
+    }
+    
+    func postCountStringForCategory(_ category: PostCategory?) -> String {
+        "\(category?.postCount ?? allPostsCount) Posts"
+    }
+    
+    func nameForCategory(_ category: PostCategory?) -> String {
+        "\(category?.name ?? "All Categories")"
     }
 }
 
@@ -30,5 +38,9 @@ extension CommunityArchiveViewModel {
 extension CommunityArchiveViewModel {
     var categories: [PostCategory] {
         community.categories
+    }
+    
+    private var allPostsCount: Int {
+        community.categories.reduce(0) { $0 + $1.postCount }
     }
 }

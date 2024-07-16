@@ -18,7 +18,7 @@ protocol PostService: Sendable {
     
     func fetchPostsForCommunity(
         communityId: String,
-        oldestDate: Date,
+        query: PostsQuery,
         option: CursorPaginationOption
     ) async throws -> [Post]
 }
@@ -44,12 +44,12 @@ final class PostServiceDefault: PostService {
     
     func fetchPostsForCommunity(
         communityId: String,
-        oldestDate: Date,
+        query: PostsQuery,
         option: CursorPaginationOption
     ) async throws -> [Post] {
         try await postRepository.fetchPostsForCommunity(
             communityId: communityId,
-            oldestDate: oldestDate,
+            query: query,
             option: option
         )
     }

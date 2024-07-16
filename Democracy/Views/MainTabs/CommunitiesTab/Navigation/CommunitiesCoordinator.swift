@@ -20,7 +20,7 @@ protocol CommunitiesCoordinatorDelegate: AnyObject {
     func goToPostView(_ post: Post)
     func showCandidates()
     func openResourceURL(_ url: URL)
-    func goToCommunityPostCategory(category: PostCategory, community: Community)
+    func goToCommunityPostCategory(category: PostCategory?, community: Community)
 }
 
 @MainActor @Observable
@@ -61,7 +61,7 @@ extension CommunitiesCoordinator {
         isShowingWebView = true
     }
     
-    func goToCommunityPostCategory(category: PostCategory, community: Community) {
+    func goToCommunityPostCategory(category: PostCategory?, community: Community) {
         router.push(CommunitiesTabPath.goToCommunityPostCategory(
             category: category,
             community: community
@@ -115,10 +115,19 @@ extension CommunitiesCoordinator {
     }
     
     func communityPostCategoryViewModel(
-        category: PostCategory,
+        category: PostCategory?,
         community: Community
-    ) -> CommunityCategoryPostsViewModel {
-        CommunityCategoryPostsViewModel(community: community, category: category)
+    ) -> FilterablePostsFeedViewModel {
+        let query: PostsQuery = if let category {
+            .category(name: category.name)
+        } else {
+            .approved
+        }
+        return FilterablePostsFeedViewModel(
+            community: community,
+            query: query,
+            coordinator: self
+        )
     }
     
     func communityViewModel(community: Community) -> CommunityViewModel {

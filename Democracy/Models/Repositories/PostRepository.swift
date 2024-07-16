@@ -14,7 +14,7 @@ protocol PostRepository {
     
     func fetchPostsForCommunity(
         communityId: String,
-        oldestDate: Date,
+        query: PostsQuery,
         option: CursorPaginationOption
     ) async throws -> [Post]
 }
@@ -28,12 +28,13 @@ final class PostRepositoryDefault: PostRepository {
     
     func fetchPostsForCommunity(
         communityId: String,
-        oldestDate: Date,
+        query: PostsQuery,
         option: CursorPaginationOption
     ) async throws -> [Post] {
+        
         try await appwriteService.fetchPostsForCommunity(
             communityId: communityId,
-            oldestDate: oldestDate,
+            query: query,
             option: option
         )
     }

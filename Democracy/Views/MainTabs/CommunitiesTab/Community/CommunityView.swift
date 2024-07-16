@@ -68,7 +68,7 @@ private extension CommunityView {
     var communitySection: some View {
         switch viewModel.selectedTab {
         case .feed:
-            CommunityHomeFeedView(viewModel: viewModel.communityHomeFeedViewModel())
+            PostsFeedView(viewModel: viewModel.communityHomeFeedViewModel())
             
         case .info:
             CommunityInfoView(viewModel: viewModel.communityInfoViewModel())

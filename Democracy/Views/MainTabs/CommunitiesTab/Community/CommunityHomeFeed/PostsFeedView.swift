@@ -9,21 +9,23 @@ import SwiftUI
 
 // Shows post from last 24 sorted by upvotes? Or let the community decide the sort time (24 hours, week, etc).
 @MainActor
-struct CommunityHomeFeedView: View {
-    @State private var viewModel: CommunityHomeFeedViewModel
+struct PostsFeedView: View {
+    @State private var viewModel: PostsFeedViewModel
     
-    init(viewModel: CommunityHomeFeedViewModel) {
+    init(viewModel: PostsFeedViewModel) {
         self.viewModel = viewModel
     }
     
     var body: some View {
         primaryContent
-            .background(Color.primaryBackground, ignoresSafeAreaEdges: .all)
+            .task {
+                await viewModel.refreshPosts()
+            }
     }
 }
 
 // MARK: - Subviews
-private extension CommunityHomeFeedView {
+private extension PostsFeedView {
     
     var primaryContent: some View {
         LazyVStack(alignment: .leading, spacing: 0) {
@@ -31,6 +33,7 @@ private extension CommunityHomeFeedView {
                 loadablePost(post)
             }
         }
+        .background(Color.primaryBackground, ignoresSafeAreaEdges: .all)
     }
     
     func loadablePost(_ post: Post) -> some View {
@@ -60,5 +63,5 @@ private extension CommunityHomeFeedView {
 
 // MARK: - Preview
 #Preview {
-    CommunityHomeFeedView(viewModel: CommunityHomeFeedViewModel.preview)
+    PostsFeedView(viewModel: PostsFeedViewModel.preview)
 }

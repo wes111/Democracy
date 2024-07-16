@@ -31,10 +31,8 @@ private extension CommunityArchiveFeedView {
     
     var content: some View {
         LazyVGrid(columns: gridItemLayout, alignment: .center, spacing: ViewConstants.elementSpacing) {
-            
             GridRow {
-                // TODO: ...
-                communityCategory(.init(id: UUID().uuidString, name: "All Categories", imageUrl: nil, postCount: 0, communityId: viewModel.community.id, creationDate: .now))
+                communityCategory(nil)
             }
             
             ForEach(viewModel.categories, id: \.self) { category in
@@ -44,7 +42,7 @@ private extension CommunityArchiveFeedView {
         .padding(.horizontal, ViewConstants.screenPadding)
     }
     
-    func communityCategory(_ category: PostCategory) -> some View {
+    func communityCategory(_ category: PostCategory?) -> some View {
         Button {
             viewModel.goToCommunityPostCategory(category: category)
         } label: {
@@ -58,12 +56,12 @@ private extension CommunityArchiveFeedView {
                 
                 HStack(alignment: .center, spacing: 0) {
                     VStack(alignment: .leading, spacing: 0) {
-                        Text(category.name)
+                        Text(viewModel.nameForCategory(category))
                             .foregroundStyle(Color.primaryText)
                             .font(.subheadline)
                             .fontWeight(.bold)
                         
-                        Text("55 Posts")
+                        Text(viewModel.postCountStringForCategory(category))
                             .font(.caption2)
                             .foregroundColor(.tertiaryText)
                     }

@@ -42,11 +42,11 @@ struct CommunitiesTabCoordinatorView: View {
             CandidateView(viewModel: coordinator.candidateViewModel(candidate: candidate))
             
         case .goToCommunityPostCategory(let category, let community):
-            let viewModel = coordinator.communityPostCategoryViewModel(
-                category: category,
-                community: community
-            )
-            CommunityCategoryPostsView(viewModel: viewModel)
+            FilterablePostsFeedView(
+                viewModel: coordinator.communityPostCategoryViewModel(
+                    category: category,
+                    community: community
+                ))
             
         case .voteView:
             EmptyView() // VoteView(viewModel: coordinator.voteViewModel())

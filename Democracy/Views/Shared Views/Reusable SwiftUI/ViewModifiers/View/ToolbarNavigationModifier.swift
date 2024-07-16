@@ -30,8 +30,9 @@ enum TopBarContent: Identifiable {
     case close(Action)
     case search(Action)
     case menu([MenuButtonOption])
-    
-    var name: String {
+    case filter(Action)
+
+    var id: String {
         switch self {
         case .title:
             "title"
@@ -43,11 +44,9 @@ enum TopBarContent: Identifiable {
             "search"
         case .menu:
             "menu"
+        case .filter:
+            "filter"
         }
-    }
-    
-    var id: String {
-        name
     }
 }
 
@@ -130,6 +129,9 @@ private extension ToolbarNavigationModifier {
                     
                 case .menu(let options):
                     menuButton(options)
+                    
+                case .filter(let action):
+                    filterButton(action: action)
                 }
             }
         }
@@ -142,7 +144,7 @@ private extension ToolbarNavigationModifier {
         Button {
             action()
         } label: {
-            Image(systemName: "chevron.left")
+            Image(systemName: SystemImage.chevronLeft.rawValue)
                 .foregroundColor(.tertiaryText)
         }
     }
@@ -151,7 +153,7 @@ private extension ToolbarNavigationModifier {
         Button {
             action()
         } label: {
-            Image(systemName: "xmark")
+            Image(systemName: SystemImage.xMark.rawValue)
                 .foregroundColor(.tertiaryText)
         }
     }
@@ -160,8 +162,16 @@ private extension ToolbarNavigationModifier {
         Button {
             action()
         } label: {
-            Image(systemName: "magnifyingglass")
+            Image(systemName: SystemImage.magnifyingGlass.rawValue)
                 .foregroundColor(.tertiaryText)
+        }
+    }
+    
+    func filterButton(action: @MainActor @escaping () -> Void) -> some View {
+        Button {
+            action()
+        } label: {
+            Image(systemName: SystemImage.slideVerticalThree.rawValue)
         }
     }
     
@@ -171,7 +181,7 @@ private extension ToolbarNavigationModifier {
                 Button(option.title) { option.action() }
             }
         } label: {
-            Image(systemName: "ellipsis")
+            Image(systemName: SystemImage.ellipsis.rawValue)
                 .foregroundColor(.tertiaryText)
         }
     }

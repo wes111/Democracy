@@ -64,8 +64,9 @@ enum SystemImage: String {
     case checkmark                                                     // 􀆅
     case checkmarkCircleFill = "checkmark.circle.fill"                 // 􀁣
     case checkmarkDiamondFill = "checkmark.diamond.fill"               // 􁁛
-    case chevronRight = "chevron.right"                                // 􀆊
     case chevronDown = "chevron.down"                                  // 􀆈
+    case chevronLeft = "chevron.left"                                  // 􀆉
+    case chevronRight = "chevron.right"                                // 􀆊
     case chevronUp = "chevron.up"                                      // 􀆇
     case crown                                                         // 􀦅
     case ellipsis                                                      // 􀍠
@@ -77,6 +78,7 @@ enum SystemImage: String {
     case infoCircle = "info.circle"                                    // 􀅴
     case laptopComputer = "laptopcomputer"                             // 􀟛
     case link                                                          // 􀉣
+    case magnifyingGlass = "magnifyingglass"                           // 􀊫
     case movieClapper = "movieclapper"                                 // 􀜤
     case newspaperFill = "newspaper.fill"                              // 􀥅
     case paperPlane = "paperplane"                                     // 􀈟
@@ -84,9 +86,11 @@ enum SystemImage: String {
     case personThree = "person.3"                                      // 􀝊
     case plus                                                          // 􀅼
     case shuffle                                                       // 􀊝
+    case slideVerticalThree = "slider.vertical.3"                      // 􀟲
     case starFill = "star.fill"                                        // 􀋃
     case squareAndArrowUp = "square.and.arrow.up"                      // 􀈂
     case xCircle = "x.circle"                                          // 􀀲
+    case xMark = "xmark"                                               // 􀆄
 }
 
 // Image assets
