@@ -286,6 +286,8 @@
 		EECA51692C4329F700BD8F59 /* PostCategory+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECA51682C4329F700BD8F59 /* PostCategory+Preview.swift */; };
 		EECA516C2C45EE2900BD8F59 /* FilterablePostsFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECA516B2C45EE2900BD8F59 /* FilterablePostsFeedViewModel.swift */; };
 		EECA51702C45EE7100BD8F59 /* FilterablePostsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECA516F2C45EE7000BD8F59 /* FilterablePostsFeedView.swift */; };
+		EECA51722C48871D00BD8F59 /* DynamicHeightSheetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECA51712C48871D00BD8F59 /* DynamicHeightSheetModifier.swift */; };
+		EECA51742C488A6700BD8F59 /* Binding+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECA51732C488A6700BD8F59 /* Binding+Extension.swift */; };
 		EED47ED5299F169000FEFC6E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47ED4299F169000FEFC6E /* SettingsView.swift */; };
 		EED47EDF299F186D00FEFC6E /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED47EDE299F186D00FEFC6E /* SettingsViewModel.swift */; };
 		EED4A4EC29A9984200DDCCDA /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED4A4EB29A9984200DDCCDA /* SettingsCoordinator.swift */; };
@@ -617,6 +619,8 @@
 		EECA51682C4329F700BD8F59 /* PostCategory+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostCategory+Preview.swift"; sourceTree = "<group>"; };
 		EECA516B2C45EE2900BD8F59 /* FilterablePostsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterablePostsFeedViewModel.swift; sourceTree = "<group>"; };
 		EECA516F2C45EE7000BD8F59 /* FilterablePostsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterablePostsFeedView.swift; sourceTree = "<group>"; };
+		EECA51712C48871D00BD8F59 /* DynamicHeightSheetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightSheetModifier.swift; sourceTree = "<group>"; };
+		EECA51732C488A6700BD8F59 /* Binding+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extension.swift"; sourceTree = "<group>"; };
 		EED47ED4299F169000FEFC6E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		EED47EDE299F186D00FEFC6E /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		EED4A4EB29A9984200DDCCDA /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
@@ -1208,6 +1212,7 @@
 		EE7856192AB7BB3D0004B7E4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EECA51712C48871D00BD8F59 /* DynamicHeightSheetModifier.swift */,
 				EE78561A2AB7BB4D0004B7E4 /* StandardTextInputModifier.swift */,
 				EE7856202AB90E200004B7E4 /* ToolbarNavigationModifier.swift */,
 				EE7856252AB948E50004B7E4 /* CharacterLimiterModifier.swift */,
@@ -1923,6 +1928,7 @@
 				EE5B938D2A03346C00B43381 /* Date+Extensions.swift */,
 				EE9760032AD07314003069CF /* NSPredicate+Extensions.swift */,
 				EE4987F12B32773300AB7522 /* String+Extensions.swift */,
+				EECA51732C488A6700BD8F59 /* Binding+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2138,6 +2144,7 @@
 				EE8A95CF2B61FF49000D038E /* SubmittableTextEditorInputViewModel.swift in Sources */,
 				EE2477DD2BCA29AC00661A0A /* PersistableData.swift in Sources */,
 				EE412B672B901E6E0007632B /* CommunityService.swift in Sources */,
+				EECA51722C48871D00BD8F59 /* DynamicHeightSheetModifier.swift in Sources */,
 				EE7856132AAE75620004B7E4 /* NewFlowLayout.swift in Sources */,
 				EE2477EF2BF00CFD00661A0A /* CommentView.swift in Sources */,
 				EECA51612C3F460600BD8F59 /* CommunityArchiveViewModel.swift in Sources */,
@@ -2375,6 +2382,7 @@
 				EE4DB8962AC89F6800A6DC90 /* CreateAccountCoordinator.swift in Sources */,
 				EE70555B2B138FB600E40A89 /* AccountPasswordViewModel.swift in Sources */,
 				EED4A53E29B971B700DDCCDA /* PostsFeedViewModel.swift in Sources */,
+				EECA51742C488A6700BD8F59 /* Binding+Extension.swift in Sources */,
 				EEC61B612B40F45000F73509 /* PostCategoryViewModel.swift in Sources */,
 				EE5D39F12A2BB5DC00D0E312 /* RichLinkService.swift in Sources */,
 				EE80D8C129BC120A0000F8EF /* Router+Preview.swift in Sources */,

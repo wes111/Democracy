@@ -29,6 +29,10 @@ extension Color {
         .init(red: 30 / 255, green: 30 / 255, blue: 30 / 255)
     }
     
+    static var sheetBackground: Color {
+        .init(red: 45 / 255, green: 45 / 255, blue: 45 / 255)
+    }
+    
     /// Medium gray.
     static var secondaryBackground: Color {
         .init(red: 65 / 255, green: 65 / 255, blue: 65 / 255)

@@ -9,15 +9,12 @@ import SwiftUI
 import SharedResourcesClientAndServer
 
 struct SelectablePickerView<T: Selectable>: View {
-    
-    let action: () -> Void
-    let dismissAction: () -> Void
     @Binding var selection: T
     @State private var isPresented: Bool = false
     
     var body: some View {
         primaryContent
-            .sheet(isPresented: $isPresented, onDismiss: dismissAction) {
+            .sheet(isPresented: $isPresented) {
                 SelectablePickerDetailView(selectedCategory: $selection)
                     .presentationDetents([
                         .fraction(detentsFraction(selectableType: T.self))
@@ -28,12 +25,9 @@ struct SelectablePickerView<T: Selectable>: View {
     }
     
     var primaryContent: some View {
-        TappableListItem(
-            title: T.metaTitle,
-            subtitle: selection.title) {
-                isPresented = true
-                action()
-            }
+        TappableListItem(title: T.metaTitle, subtitle: selection.title) {
+            isPresented = true
+        }
     }
 }
 
@@ -103,11 +97,7 @@ private extension SelectablePickerView {
     ZStack {
         Color.primaryBackground.ignoresSafeArea()
         
-        SelectablePickerView(
-            action: {},
-            dismissAction: {},
-            selection: .constant(CommunityCommenter.experts)
-        )
-        .padding()
+        SelectablePickerView(selection: .constant(CommunityCommenter.experts))
+            .padding()
     }
 }

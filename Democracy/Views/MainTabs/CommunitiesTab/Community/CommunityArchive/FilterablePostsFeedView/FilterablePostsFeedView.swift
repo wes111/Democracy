@@ -7,6 +7,37 @@
 
 import SwiftUI
 
+enum DateFilter: Selectable {
+    case day, week, month, year, all
+    
+    var title: String {
+        switch self {
+        case .day:
+            "Day"
+        case .week:
+            "Week"
+        case .month:
+            "Month"
+        case .year:
+            "Year"
+        case .all:
+            "All Posts"
+        }
+    }
+    
+    var subtitle: String? {
+        nil
+    }
+    
+    var image: SystemImage {
+        .calendar
+    }
+    
+    static var metaTitle: String {
+        "Date Filter"
+    }
+}
+
 @MainActor
 struct FilterablePostsFeedView: View {
     @State private var viewModel: FilterablePostsFeedViewModel
@@ -23,14 +54,11 @@ struct FilterablePostsFeedView: View {
                 centerContent: centerToolbarContent,
                 trailingContent: trailingToolbarContent
             )
-//            .sheet(isPresented: $viewModel.isShowingFilters, onDismiss: dismissAction) {
-//                SelectablePickerDetailView(selectedCategory: $selection)
-//                    .presentationDetents([
-//                        .fraction(detentsFraction(selectableType: T.self))
-//                    ])
-//                    .presentationDragIndicator(.visible)
-//                    .background(Color.black, ignoresSafeAreaEdges: .all)
-//            }
+            .dynamicHeightSheet(isShowingSheet: $viewModel.isShowingFilters) {
+                SelectablePickerDetailView(selectedCategory: $viewModel.dateFilter)
+                    .presentationDragIndicator(.visible)
+                    .background(Color.sheetBackground, ignoresSafeAreaEdges: .all)
+            }
     }
 }
 
@@ -55,7 +83,7 @@ private extension FilterablePostsFeedView {
     }
     
     var trailingToolbarContent: [TopBarContent] {
-        [.filter({})] // TODO: filter logic
+        [.filter({ viewModel.isShowingFilters = true })] // TODO: filter logic
     }
 }
 

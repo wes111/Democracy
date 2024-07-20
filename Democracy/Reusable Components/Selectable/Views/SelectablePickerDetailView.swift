@@ -14,24 +14,40 @@ struct SelectablePickerDetailView<Category: Selectable>: View {
     @Binding var selectedCategory: Category
     
     var body: some View {
-        VStack(alignment: .center, spacing: ViewConstants.elementSpacing) {
-            Text("Select a \(Category.metaTitle)")
-                .font(.system(.body, weight: .semibold))
-                .foregroundStyle(Color.primaryText)
-            
+        VStack(alignment: .center, spacing: ViewConstants.extraLargeElementSpacing) {
+            header
             selectableContent
-            
-            closeButton
         }
-        .frame(maxHeight: .infinity, alignment: .topLeading)
+        .frame(alignment: .topLeading)
         .padding(.top, ViewConstants.partialSheetTopPadding)
         .padding([.horizontal, .bottom], ViewConstants.screenPadding)
-        .background(Color.otherRed.opacity(0.4).ignoresSafeArea())
+        .background(Color.sheetBackground, ignoresSafeAreaEdges: .all)
     }
 }
 
 // MARK: - Subviews
 private extension SelectablePickerDetailView {
+    
+    var header: some View {
+        ZStack(alignment: .top) {
+            Text("Select a \(Category.metaTitle)")
+                .font(.system(.title2, weight: .semibold))
+                .foregroundStyle(Color.primaryText)
+                .containerRelativeFrame(.horizontal) { width, _ in
+                    let availableWidth = width - ViewConstants.screenPadding * 2
+                    return availableWidth * 2 / 3
+                }
+            
+            Group {
+                closeButton
+                    .containerRelativeFrame(.horizontal, alignment: .trailing) { width, _ in
+                        let availableWidth = width - ViewConstants.screenPadding * 2
+                        return availableWidth / 6
+                    }
+            }
+            .frame(maxWidth: .infinity, alignment: .trailing)
+        }
+    }
     
     var selectableContent: some View {
         VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
@@ -54,9 +70,9 @@ private extension SelectablePickerDetailView {
         Button {
             dismiss()
         } label: {
-            Text("Close")
+            Image(systemName: SystemImage.xMark.rawValue)
+                .foregroundColor(.tertiaryText)
         }
-        .buttonStyle(SeconaryButtonStyle())
     }
 }
 

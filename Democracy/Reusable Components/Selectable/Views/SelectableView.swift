@@ -36,6 +36,7 @@ struct SelectableView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 40, height: 25)
                     .font(.system(.title3, weight: .semibold))
+                    .foregroundStyle(colorScheme.secondaryText)
             }
             
             VStack(alignment: .leading, spacing: 0) {
@@ -54,9 +55,14 @@ struct SelectableView: View {
             
             Image(systemName: SystemImage.checkmarkCircleFill.rawValue)
                 .opacity(isSelected ? 1.0 : 0.0)
+                .foregroundStyle(colorScheme.secondaryText)
                 
         }
-        .selectableModifier(colorScheme: colorScheme)
+        .padding(ViewConstants.screenPadding)
+        .background(
+            Color.primaryBackground,
+            in: RoundedRectangle(cornerRadius: ViewConstants.cornerRadius)
+        )
         .overlay(
             RoundedRectangle(cornerRadius: ViewConstants.cornerRadius)
                 .strokeBorder(

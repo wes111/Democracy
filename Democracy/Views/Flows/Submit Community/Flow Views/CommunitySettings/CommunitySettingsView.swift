@@ -35,23 +35,15 @@ private extension CommunitySettingsView {
     var settingsView: some View {
         ScrollView(.vertical) {
             VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-                summaryView(category: $viewModel.settings.government, setting: .governmentType)
-                summaryView(category: $viewModel.settings.content, setting: .allowsAdultContent)
-                summaryView(category: $viewModel.settings.visibility, setting: .visibility)
-                summaryView(category: $viewModel.settings.poster, setting: .poster)
-                summaryView(category: $viewModel.settings.commenter, setting: .commenter)
-                summaryView(category: $viewModel.settings.postApproval, setting: .postApproval)
+                SelectablePickerView(selection: $viewModel.settings.government)
+                SelectablePickerView(selection: $viewModel.settings.content)
+                SelectablePickerView(selection: $viewModel.settings.visibility)
+                SelectablePickerView(selection: $viewModel.settings.poster)
+                SelectablePickerView(selection: $viewModel.settings.commenter)
+                SelectablePickerView(selection: $viewModel.settings.postApproval)
             }
             .padding(ViewConstants.smallInnerBorder)
         }
-    }
-    
-    func summaryView<T: Selectable>(category: Binding<T>, setting: CommunitySetting) -> some View {
-        SelectablePickerView(
-            action: { viewModel.selectedSetting = setting },
-            dismissAction: { viewModel.selectedSetting = nil },
-            selection: category
-        )
     }
 }
 

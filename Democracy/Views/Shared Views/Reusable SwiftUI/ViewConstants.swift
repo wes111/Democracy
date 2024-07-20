@@ -61,6 +61,7 @@ enum SystemImage: String {
     case bookClosed = "book.closed"                                    // 􀤞
     case booksVerticalFill = "books.vertical.fill"                     // 􀬓
     case bubble = "bubble"                                             // 􂄹
+    case calendar = "calendar"                                         // 􀉉
     case checkmark                                                     // 􀆅
     case checkmarkCircleFill = "checkmark.circle.fill"                 // 􀁣
     case checkmarkDiamondFill = "checkmark.diamond.fill"               // 􁁛
