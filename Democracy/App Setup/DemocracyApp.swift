@@ -11,13 +11,13 @@ import SwiftUI
 @main
 struct DemocracyApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    let dataProvider = DataProvider.shared
+    //let dataProvider = DataProvider.shared
     
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(dataProvider.sharedModelContainer)
+        //.modelContainer(dataProvider.sharedModelContainer)
         // TODO: This isn't needed if we don't access model objects from views.
     }
 }

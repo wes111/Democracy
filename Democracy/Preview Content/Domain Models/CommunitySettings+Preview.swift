@@ -8,5 +8,8 @@
 import Foundation
 
 extension CommunitySettings {
-    @MainActor static let preview = CommunitySettings()
+    
+    static var preview: CommunitySettings {
+        .init()
+    }
 }

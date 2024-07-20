@@ -84,7 +84,8 @@ private extension CommunityArchiveFeedView {
 
 // MARK: - Preview
 #Preview {
-    ZStack {
+    PreviewService.registerMocks()
+    return ZStack {
         Color.primaryBackground.ignoresSafeArea(.all)
         CommunityArchiveFeedView(viewModel: .preview)
     }

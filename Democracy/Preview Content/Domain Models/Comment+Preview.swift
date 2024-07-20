@@ -8,15 +8,18 @@
 import Foundation
 
 extension Comment {
-    @MainActor static let preview = Comment(
-        id: "",
-        parentId: "",
-        postId: "",
-        userId: "",
-        creationDate: .now,
-        content: "Post body Content - Hello World!",
-        upVoteCount: 10,
-        downVoteCount: 5,
-        responseCount: 11
-    )
+    
+    static var preview: Comment {
+        Comment(
+            id: "",
+            parentId: "",
+            postId: "",
+            userId: "",
+            creationDate: .now,
+            content: "Post body Content - Hello World!",
+            upVoteCount: 10,
+            downVoteCount: 5,
+            responseCount: 11
+        )
+    }
 }

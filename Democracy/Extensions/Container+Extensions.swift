@@ -8,15 +8,15 @@
 import Foundation
 import Factory
 
+// MARK: - Services
 extension Container {
-    // MARK: - Services
     
     var appwriteService: Factory<AppwriteService> {
         self { AppwriteServiceDefault() }
     }
     
     var richLinkService: Factory<RichLinkServiceProtocol> {
-        self { RichLinkService() } 
+        self { RichLinkService() }
     }
     
     var accountService: Factory<AccountService> {
@@ -46,8 +46,10 @@ extension Container {
     var passwordLocalRepository: Factory<PasswordRepository> {
         self { PasswordRepositoryDefault() }.scope(.shared)
     }
-    
-    // MARK: - Repositories
+}
+
+// MARK: - Repositories
+extension Container {
     
     var userRepository: Factory<any UserRepository> {
         self { UserRepositoryDefault() }.scope(.shared)
