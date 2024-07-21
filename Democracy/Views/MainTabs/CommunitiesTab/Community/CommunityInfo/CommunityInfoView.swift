@@ -145,7 +145,9 @@ private extension CommunityInfoView {
         } label: {
             VStack(alignment: .leading, spacing: ViewConstants.extraSmallElementSpacing) {
                 HStack(alignment: .center, spacing: ViewConstants.smallElementSpacing) {
-                    Image(systemName: resource.category.image.rawValue)
+                    if let image = resource.category.image {
+                        Image(systemName: image.rawValue)
+                    }
                     
                     Text(resource.title)
                         .foregroundStyle(Color.primaryText)

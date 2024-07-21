@@ -14,6 +14,8 @@ struct SelectableView: View {
     let image: SystemImage?
     let colorScheme: ColorScheme
     
+    private let isSmall: Bool
+    
     init(
         isSelected: Bool,
         title: String,
@@ -26,6 +28,8 @@ struct SelectableView: View {
         self.subtitle = subtitle
         self.image = image
         self.colorScheme = colorScheme
+        
+        isSmall = subtitle == nil
     }
     
     var body: some View {
@@ -41,12 +45,14 @@ struct SelectableView: View {
             
             VStack(alignment: .leading, spacing: 0) {
                 Text(title)
-                    .font(.system(.body, weight: .semibold))
+                    .font(isSmall ? .footnote : .body)
+                    .fontWeight(.semibold)
                     .foregroundStyle(colorScheme.secondaryText)
                 
                 if let subtitle {
                     Text(subtitle)
-                        .font(.system(.caption, weight: .medium))
+                        .font(.caption)
+                        .fontWeight(.medium)
                         .foregroundStyle(colorScheme.secondaryText.opacity(0.5))
                 }
             }
@@ -54,11 +60,12 @@ struct SelectableView: View {
             Spacer()
             
             Image(systemName: SystemImage.checkmarkCircleFill.rawValue)
+                .font(isSmall ? .footnote : .body)
                 .opacity(isSelected ? 1.0 : 0.0)
-                .foregroundStyle(colorScheme.secondaryText)
+                .foregroundStyle(Color.green)
                 
         }
-        .padding(ViewConstants.screenPadding)
+        .padding(ViewConstants.innerBorder)
         .background(
             Color.primaryBackground,
             in: RoundedRectangle(cornerRadius: ViewConstants.cornerRadius)
@@ -66,8 +73,8 @@ struct SelectableView: View {
         .overlay(
             RoundedRectangle(cornerRadius: ViewConstants.cornerRadius)
                 .strokeBorder(
-                    isSelected ? colorScheme.tertiaryText : .clear, // colorScheme.primaryBackground,
-                    lineWidth: ViewConstants.borderWidth
+                    isSelected ? colorScheme.tertiaryText : .clear,
+                    lineWidth: isSmall ? ViewConstants.thinBorderWidth : ViewConstants.borderWidth
                 )
         )
     }
@@ -91,7 +98,7 @@ struct SelectableView: View {
             SelectableView(
                 isSelected: true,
                 title: "Selectable Category",
-                image: .personThree
+                image: nil
             )
         }
         .padding()

@@ -11,12 +11,12 @@ struct MenuCard<MenuContent: View>: View {
     @ViewBuilder let menuContent: MenuContent
     let title: String
     let description: String?
-    let image: SystemImage
+    let image: SystemImage?
     
     init(
         title: String,
         description: String?,
-        image: SystemImage,
+        image: SystemImage?,
         @ViewBuilder menuContent: () -> MenuContent
     ) {
         self.title = title
@@ -29,7 +29,10 @@ struct MenuCard<MenuContent: View>: View {
         ZStack(alignment: .topTrailing) {
             VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
                 HStack(alignment: .top, spacing: ViewConstants.smallElementSpacing) {
-                    formattedImage
+                    if let image {
+                        formattedImage(image)
+                    }
+                    
                     formattedTitle
                     Spacer()
                 }
@@ -60,7 +63,7 @@ struct MenuCard<MenuContent: View>: View {
         }
     }
     
-    var formattedImage: some View {
+    func formattedImage(_ image: SystemImage) -> some View {
         Image(systemName: image.rawValue)
             .font(.system(size: 25))
             .font(.system(.largeTitle, weight: .semibold))

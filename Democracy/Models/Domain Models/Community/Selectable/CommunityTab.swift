@@ -24,7 +24,7 @@ enum CommunityTab: String, Selectable {
         nil
     }
     
-    var image: SystemImage {
+    var image: SystemImage? {
         switch self {
         case .feed:
                 .newspaperFill

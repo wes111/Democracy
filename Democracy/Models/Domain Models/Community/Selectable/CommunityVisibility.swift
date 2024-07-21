@@ -29,7 +29,7 @@ extension CommunityVisibility: Selectable {
         }
     }
     
-    var image: SystemImage {
+    var image: SystemImage? {
         switch self {
         case .all:
             .eye

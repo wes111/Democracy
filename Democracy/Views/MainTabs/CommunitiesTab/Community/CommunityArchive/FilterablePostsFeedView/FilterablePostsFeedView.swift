@@ -29,8 +29,8 @@ enum DateFilter: Selectable {
         nil
     }
     
-    var image: SystemImage {
-        .calendar
+    var image: SystemImage? {
+        nil
     }
     
     static var metaTitle: String {
@@ -89,5 +89,7 @@ private extension FilterablePostsFeedView {
 
 // MARK: - Preview
 #Preview {
-    FilterablePostsFeedView(viewModel: .preview2)
+    NavigationStack {
+        FilterablePostsFeedView(viewModel: .previewFilterable)
+    }
 }

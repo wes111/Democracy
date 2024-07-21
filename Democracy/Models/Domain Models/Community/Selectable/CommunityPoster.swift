@@ -34,7 +34,7 @@ extension CommunityPoster: Selectable {
         }
     }
     
-    var image: SystemImage {
+    var image: SystemImage? {
         switch self {
         case .all:
             .personThree

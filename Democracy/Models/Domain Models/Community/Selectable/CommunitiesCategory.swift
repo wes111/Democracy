@@ -28,7 +28,7 @@ enum CommunitiesCategory: String, Selectable {
         nil
     }
     
-    var image: SystemImage {
+    var image: SystemImage? {
         switch self {
         case .isMemberOf: .personThree
         case .isLeaderOf: .crown

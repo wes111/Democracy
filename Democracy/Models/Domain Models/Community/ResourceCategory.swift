@@ -30,7 +30,7 @@ extension ResourceCategory: Selectable {
         nil
     }
     
-    var image: SystemImage {
+    var image: SystemImage? {
         switch self {
         case .book:
             .bookClosed

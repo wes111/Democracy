@@ -11,7 +11,7 @@ import Foundation
 protocol Selectable: Hashable, Identifiable, CaseIterable where AllCases == [Self] {
     var title: String { get }
     var subtitle: String? { get }
-    var image: SystemImage { get }
+    var image: SystemImage? { get }
     
     static var metaTitle: String { get }
 }

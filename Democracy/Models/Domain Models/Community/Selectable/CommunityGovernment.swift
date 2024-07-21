@@ -29,7 +29,7 @@ extension CommunityGovernment: Selectable {
         }
     }
     
-    var image: SystemImage {
+    var image: SystemImage? {
         switch self {
         case .autocracy:
             .person

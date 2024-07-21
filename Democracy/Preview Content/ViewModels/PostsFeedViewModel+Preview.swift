@@ -16,7 +16,7 @@ extension PostsFeedViewModel {
 }
 
 extension FilterablePostsFeedViewModel {
-    static let preview2 = FilterablePostsFeedViewModel(
+    static let previewFilterable = FilterablePostsFeedViewModel(
         community: .preview,
         query: .approved,
         coordinator: CommunitiesCoordinator.preview

@@ -29,23 +29,14 @@ struct SelectablePickerDetailView<Category: Selectable>: View {
 private extension SelectablePickerDetailView {
     
     var header: some View {
-        ZStack(alignment: .top) {
+        VStack(alignment: .leading, spacing: ViewConstants.smallElementSpacing) {
+            closeButton
+                .frame(maxWidth: .infinity, alignment: .trailing)
+            
             Text("Select a \(Category.metaTitle)")
                 .font(.system(.title2, weight: .semibold))
+                .multilineTextAlignment(.leading)
                 .foregroundStyle(Color.primaryText)
-                .containerRelativeFrame(.horizontal) { width, _ in
-                    let availableWidth = width - ViewConstants.screenPadding * 2
-                    return availableWidth * 2 / 3
-                }
-            
-            Group {
-                closeButton
-                    .containerRelativeFrame(.horizontal, alignment: .trailing) { width, _ in
-                        let availableWidth = width - ViewConstants.screenPadding * 2
-                        return availableWidth / 6
-                    }
-            }
-            .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
     
