@@ -38,7 +38,7 @@ enum ViewConstants {
     
     // Other standard values
     static let cornerRadius: CGFloat = 10
-    static let screenPadding: CGFloat = 15
+    static let screenPadding: CGFloat = 16
     static let partialSheetTopPadding: CGFloat = 20
     static let thinBorderWidth: CGFloat = 2 // For smaller elements like tags.
     static let borderWidth: CGFloat = 3
@@ -46,6 +46,9 @@ enum ViewConstants {
     
     // Buttons
     static let smallButtonRadius: CGFloat = 35
+    
+    // Sheets
+    static let sheetBottomPadding: CGFloat = 32
 }
 
 // SF Symbols

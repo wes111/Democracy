@@ -11,7 +11,11 @@ import Foundation
 final class FilterablePostsFeedViewModel: PostsFeedViewModel {
     let categoryName: String = "Todo Category"
     var isShowingFilters: Bool = false
-    var dateFilter: DateFilter = .all
+    var postFilters = PostFilters()
+    
+    var filterPostsViewModel: FilterPostsViewModel {
+        .init(postFilters: postFilters)
+    }
 }
 
 // MARK: - Methods

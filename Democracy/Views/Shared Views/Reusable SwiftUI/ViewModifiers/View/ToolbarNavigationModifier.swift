@@ -55,22 +55,25 @@ struct ToolbarNavigationModifier: ViewModifier {
     let leadingContent: [TopBarContent]
     let centerContent: [TopBarContent]
     let trailingContent: [TopBarContent]
+    let backgroundColor: Color
     
     init(
         leadingContent: [TopBarContent],
         centerContent: [TopBarContent],
-        trailingContent: [TopBarContent]
+        trailingContent: [TopBarContent],
+        backgroundColor: Color
     ) {
         self.leadingContent = leadingContent
         self.centerContent = centerContent
         self.trailingContent = trailingContent
+        self.backgroundColor = backgroundColor
         
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithOpaqueBackground()
         navigationBarAppearance.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor(.primaryText)
         ]
-        navigationBarAppearance.backgroundColor = UIColor(.primaryBackground)
+        navigationBarAppearance.backgroundColor = UIColor(backgroundColor)
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         UINavigationBar.appearance().compactAppearance = navigationBarAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
@@ -78,7 +81,7 @@ struct ToolbarNavigationModifier: ViewModifier {
         
         let tabBarApperance = UITabBarAppearance()
         tabBarApperance.configureWithOpaqueBackground()
-        tabBarApperance.backgroundColor = UIColor(.primaryBackground)
+        tabBarApperance.backgroundColor = UIColor(backgroundColor)
         UITabBar.appearance().scrollEdgeAppearance = tabBarApperance
         UITabBar.appearance().standardAppearance = tabBarApperance
     }
@@ -193,12 +196,14 @@ extension View {
     func toolbarNavigation(
         leadingContent: [TopBarContent] = [],
         centerContent: [TopBarContent] = [],
-        trailingContent: [TopBarContent] = []
+        trailingContent: [TopBarContent] = [],
+        backgroundColor: Color = .primaryBackground
     ) -> some View {
         modifier(ToolbarNavigationModifier(
             leadingContent: leadingContent,
             centerContent: centerContent,
-            trailingContent: trailingContent
+            trailingContent: trailingContent,
+            backgroundColor: backgroundColor
         ))
     }
 }

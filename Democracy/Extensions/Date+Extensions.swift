@@ -17,11 +17,6 @@ extension Date {
         return Calendar.current.dateComponents([.year], from: self).year!
     }
     
-    var month: Month {
-        let monthInt = Calendar.current.dateComponents([.month], from: self).month!
-        return Month(rawValue: monthInt)!
-    }
-    
     func getFormattedDate(format: Date.Format) -> String {
         let dateformat = DateFormatter() // TODO: This should be a static shared DateFormatter....
         dateformat.dateFormat = format.rawValue

@@ -29,7 +29,9 @@ struct DynamicHeightSheetModifier<SheetContent: View>: ViewModifier {
                             GeometryReader { proxy in
                                 Color.clear
                                     .task(id: proxy.size.height) {
-                                        $height.wrappedValue = max(proxy.size.height, 0)
+                                        withAnimation {
+                                            $height.wrappedValue = max(proxy.size.height, 0)
+                                        }
                                     }
                             }
                         }

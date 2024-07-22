@@ -16,39 +16,40 @@ struct CandidatesView<ViewModel: CandidatesViewModelProtocol>: View {
     }
     
     var body: some View {
-        List {
-            Group {
-                Section {
-                    ForEach(viewModel.representatives) { candidate in
-                        CandidateCardView(
-                            candidate: candidate
-                        )
-                    }
-                } header: {
-                    HeaderWithDropDownFilter(
-                        title: "Representatives",
-                        menuItems: RepresentativeType.allCases,
-                        selectedItem: $viewModel.representativesFilter
-                    )
-                }
-                
-                Section {
-                    ForEach(viewModel.candidates) { candidate in
-                        CandidateCardView(
-                            candidate: candidate
-                        )
-                    }
-                } header: {
-                    HeaderWithDropDownFilter(
-                        title: "Candidates",
-                        menuItems: RepresentativeType.allCases,
-                        selectedItem: $viewModel.candidatesFilter
-                    )
-                }
-            }
-            .listRowInsets(EdgeInsets())
-            .listRowSeparator(.hidden)
-        }
+        EmptyView()
+//        List {
+//            Group {
+//                Section {
+//                    ForEach(viewModel.representatives) { candidate in
+//                        CandidateCardView(
+//                            candidate: candidate
+//                        )
+//                    }
+//                } header: {
+//                    HeaderWithDropDownFilter(
+//                        title: "Representatives",
+//                        menuItems: RepresentativeType.allCases,
+//                        selectedItem: $viewModel.representativesFilter
+//                    )
+//                }
+//                
+//                Section {
+//                    ForEach(viewModel.candidates) { candidate in
+//                        CandidateCardView(
+//                            candidate: candidate
+//                        )
+//                    }
+//                } header: {
+//                    HeaderWithDropDownFilter(
+//                        title: "Candidates",
+//                        menuItems: RepresentativeType.allCases,
+//                        selectedItem: $viewModel.candidatesFilter
+//                    )
+//                }
+//            }
+//            .listRowInsets(EdgeInsets())
+//            .listRowSeparator(.hidden)
+//        }
         .headerProminence(.increased)
         .listStyle(PlainListStyle())
         .refreshable {

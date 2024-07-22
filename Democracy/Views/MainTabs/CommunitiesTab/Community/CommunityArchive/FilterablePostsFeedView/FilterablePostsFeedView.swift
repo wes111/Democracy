@@ -7,37 +7,6 @@
 
 import SwiftUI
 
-enum DateFilter: Selectable {
-    case day, week, month, year, all
-    
-    var title: String {
-        switch self {
-        case .day:
-            "Day"
-        case .week:
-            "Week"
-        case .month:
-            "Month"
-        case .year:
-            "Year"
-        case .all:
-            "All Posts"
-        }
-    }
-    
-    var subtitle: String? {
-        nil
-    }
-    
-    var image: SystemImage? {
-        nil
-    }
-    
-    static var metaTitle: String {
-        "Date Filter"
-    }
-}
-
 @MainActor
 struct FilterablePostsFeedView: View {
     @State private var viewModel: FilterablePostsFeedViewModel
@@ -55,7 +24,7 @@ struct FilterablePostsFeedView: View {
                 trailingContent: trailingToolbarContent
             )
             .dynamicHeightSheet(isShowingSheet: $viewModel.isShowingFilters) {
-                SelectablePickerDetailView(selectedCategory: $viewModel.dateFilter)
+                FilterPostsView(viewModel: viewModel.filterPostsViewModel)
                     .presentationDragIndicator(.visible)
                     .background(Color.sheetBackground, ignoresSafeAreaEdges: .all)
             }
