@@ -9,6 +9,7 @@ import SwiftUI
 
 // https://github.com/apple/sample-food-truck
 // https://blog.logrocket.com/implementing-tags-swiftui/
+// TODO: Remove this layout. It breaks... and is complicated. Use the simpler implementation below...
 struct NewFlowLayout: Layout {
     var alignment: Alignment = .center
     var spacing: CGFloat?
@@ -145,4 +146,95 @@ private extension VerticalAlignment {
         }
     }
     .frame(width: 150)
+}
+
+// MARK: -- CollectionView
+
+// Modified from: https://blog.stackademic.com/swiftui-custom-collectionview-ea06c4a6bc70
+struct CollectionView: View {
+    @State private var itemsArranged: [[String]] = []
+    let selectedItems: [String]
+    let items: [String]
+    let toggleTagAction: (String) -> Void
+    
+    init(selectedItems: [String], items: [String], toggleTagAction: @escaping (String) -> Void) {
+        self.selectedItems = selectedItems
+        self.items = items
+        self.toggleTagAction = toggleTagAction
+    }
+    
+    private let horizontalSpacing: CGFloat = ViewConstants.smallElementSpacing
+    private let horizontalPadding: CGFloat = 16
+    private let font: UIFont = UIFont.systemFont(ofSize: 18)
+
+    var body: some View {
+        GeometryReader { geometry in
+            ScrollView {
+                LazyVStack(alignment: .leading) {
+                    ForEach(0..<itemsArranged.count, id: \.self) { row in
+                        let itemsInRow = itemsArranged[row]
+                        
+                        HStack(spacing: horizontalSpacing) {
+                            ForEach(0..<itemsInRow.count, id: \.self) { column in
+                                let tag = itemsInRow[column]
+                                tagView(
+                                    tag,
+                                    backgroundColor: selectedItems.contains(tag) ? .otherRed : .onBackground
+                                )
+                            }
+                        }
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                .onAppear {
+                    itemsArranged = arrangeItems(items, containerWidth: geometry.size.width)
+                }
+            }
+            .scrollBounceBehavior(.basedOnSize, axes: [.vertical])
+        }
+    }
+    
+    func arrangeItems(_ items: [String], containerWidth: CGFloat) -> [[String]] {
+        var arrangeItems: [[String]] = []
+        var currentRowWidth: CGFloat = 0
+        
+        for index in 0..<items.count {
+            let item = items[index]
+            let itemWidth = item.width(font: font) + 16
+            
+            // first item
+            if index == 0 {
+                arrangeItems.append([item])
+                currentRowWidth = itemWidth
+                continue
+            }
+            
+            if currentRowWidth + horizontalSpacing + itemWidth > containerWidth {
+                // start new row
+                arrangeItems.append([item])
+                currentRowWidth = itemWidth
+            } else {
+                // add to current row
+                arrangeItems[arrangeItems.count - 1].append(item)
+                currentRowWidth = currentRowWidth + horizontalSpacing + itemWidth
+            }
+        }
+        return arrangeItems
+    }
+    
+    func tagView(_ tag: String, backgroundColor: Color) -> some View {
+        HStack(alignment: .center, spacing: ViewConstants.smallElementSpacing) {
+            Text(tag)
+            
+            //            Button {
+            //                tapAction()
+            //            } label: {
+            //                Image(systemName: SystemImage.xCircle.rawValue)
+            //            }
+        }
+        .tagModifier(backgroundColor: backgroundColor)
+        .onTapGesture {
+            toggleTagAction(tag)
+        }
+    }
 }

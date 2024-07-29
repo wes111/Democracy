@@ -8,10 +8,9 @@
 import SwiftUI
 import SharedResourcesClientAndServer
 
-struct SelectablePickerDetailNavigationView<Category: Selectable>: View {
-    @Binding var selectedCategory: Category
-    let backAction: () -> Void
-    let closeAction: () -> Void
+@MainActor
+struct TagsPickerNavigationView: View {
+    @Bindable var viewModel: FilterPostsViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
@@ -20,21 +19,61 @@ struct SelectablePickerDetailNavigationView<Category: Selectable>: View {
         }
         .padding(ViewConstants.screenPadding)
         .frame(maxHeight: .infinity, alignment: .topLeading)
-        .background(Color.sheetBackground, ignoresSafeAreaEdges: .all)
+        .background(Color.secondaryBackground, ignoresSafeAreaEdges: .all)
         .toolbarNavigation(
             leadingContent: leadingToolbarContent,
             centerContent: centerToolbarContent,
-            trailingContent: trailingToolbarContent,
-            backgroundColor: .sheetBackground
+            backgroundColor: .secondaryBackground
+        )
+    }
+    
+    var selectButton: some View {
+        Button {
+            viewModel.backAction()
+        } label: {
+            Text("Select")
+        }
+        .buttonStyle(SeconaryButtonStyle())
+    }
+    
+    var leadingToolbarContent: [TopBarContent] {
+        [.back(viewModel.backAction)]
+    }
+    
+    var centerToolbarContent: [TopBarContent] {
+        [.title("Select Tags", size: .small)]
+    }
+    
+    var selectableContent: some View {
+        CollectionView(
+            selectedItems: viewModel.postFilters.tagsFilter,
+            items: viewModel.communityTags) { tag in
+            viewModel.toggleTag(tag)
+        }
+    }
+}
+
+struct SelectablePickerDetailNavigationView<Category: Selectable>: View {
+    @Binding var selectedCategory: Category
+    let backAction: () -> Void
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
+            selectableContent
+            selectButton
+        }
+        .padding(ViewConstants.screenPadding)
+        .frame(maxHeight: .infinity, alignment: .topLeading)
+        .background(Color.secondaryBackground, ignoresSafeAreaEdges: .all)
+        .toolbarNavigation(
+            leadingContent: leadingToolbarContent,
+            centerContent: centerToolbarContent,
+            backgroundColor: .secondaryBackground
         )
     }
     
     var leadingToolbarContent: [TopBarContent] {
         [.back(backAction)]
-    }
-    
-    var trailingToolbarContent: [TopBarContent] {
-        [.close(closeAction)]
     }
     
     var centerToolbarContent: [TopBarContent] {
@@ -50,7 +89,7 @@ struct SelectablePickerDetailNavigationView<Category: Selectable>: View {
                         title: category.title,
                         subtitle: category.subtitle,
                         image: category.image,
-                        colorScheme: .onRed
+                        colorScheme: .sheetColorScheme
                     )
                     .onTapGesture {
                         selectedCategory = category
@@ -84,7 +123,7 @@ struct SelectablePickerDetailView<Category: Selectable>: View {
         .frame(alignment: .topLeading)
         .padding(.top, ViewConstants.partialSheetTopPadding)
         .padding([.horizontal, .bottom], ViewConstants.screenPadding)
-        .background(Color.sheetBackground, ignoresSafeAreaEdges: .all)
+        .background(Color.secondaryBackground, ignoresSafeAreaEdges: .all)
     }
 }
 
@@ -111,7 +150,7 @@ private extension SelectablePickerDetailView {
                     title: category.title,
                     subtitle: category.subtitle,
                     image: category.image,
-                    colorScheme: .onRed
+                    colorScheme: .sheetColorScheme
                 )
                 .onTapGesture {
                     selectedCategory = category

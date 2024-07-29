@@ -8,12 +8,17 @@
 import SwiftUI
 import SharedResourcesClientAndServer
 
-struct SelectablePickerView<T: Selectable>: View {
+@MainActor
+struct TappableListItem: View {
+    let title: String
+    let subtitle: String
+    let image: SystemImage?
     let tapAction: () -> Void
-    let selection: T
     
-    init(selection: T, tapAction: @escaping () -> Void) {
-        self.selection = selection
+    init(title: String, subtitle: String, image: SystemImage? = nil, tapAction: @escaping () -> Void) {
+        self.title = title
+        self.subtitle = subtitle
+        self.image = image
         self.tapAction = tapAction
     }
     
@@ -22,17 +27,19 @@ struct SelectablePickerView<T: Selectable>: View {
             tapAction()
         } label: {
             HStack(alignment: .center, spacing: ViewConstants.smallElementSpacing) {
-                Image(systemName: T.metaImage.rawValue)
-                    .font(.title3)
-                    .foregroundStyle(Color.secondaryText)
+                if let imageName = image?.rawValue {
+                    Image(systemName: imageName)
+                        .font(.title3)
+                        .foregroundStyle(Color.secondaryText)
+                }
                 
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(T.metaTitle)
+                    Text(title)
                         .font(.callout)
                         .fontWeight(.semibold)
                         .foregroundStyle(Color.secondaryText)
                     
-                    Text(selection.title)
+                    Text(subtitle)
                         .font(.footnote)
                         .fontWeight(.medium)
                         .foregroundStyle(Color.secondaryText.opacity(0.5))
@@ -53,9 +60,13 @@ struct SelectablePickerView<T: Selectable>: View {
 #Preview {
     ZStack {
         Color.primaryBackground.ignoresSafeArea()
-        SelectablePickerView(selection: CommunityGovernment.autocracy) {
-            return
-        }
+        
+        TappableListItem(
+            title: "Tappable Title",
+            subtitle: "Tappable Subtitle",
+            image: .arrowRight,
+            tapAction: {}
+        )
         .padding()
     }
 }

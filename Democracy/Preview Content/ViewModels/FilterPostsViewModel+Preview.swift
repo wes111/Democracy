@@ -9,6 +9,6 @@ import Foundation
 
 extension FilterPostsViewModel {
     static var preview: FilterPostsViewModel {
-        .init(postFilters: .preview)
+        .init(communityTags: Community.preview.tags, postFilters: .preview, onUpdateFilters: { _ in })
     }
 }

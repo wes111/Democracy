@@ -74,7 +74,6 @@
 		EE412B692B9029F60007632B /* CommunityRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B682B9029F60007632B /* CommunityRepository.swift */; };
 		EE412B6C2B96BC390007632B /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B6B2B96BC390007632B /* Resource.swift */; };
 		EE412B732B981B220007632B /* ResourceCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B722B981B220007632B /* ResourceCategory.swift */; };
-		EE412B752B9965FB0007632B /* DateOptionalWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B742B9965FB0007632B /* DateOptionalWrapper.swift */; };
 		EE412B772B9D21680007632B /* PostFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B762B9D21680007632B /* PostFlow.swift */; };
 		EE412B7C2B9D227F0007632B /* PostInputFlowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B7B2B9D227F0007632B /* PostInputFlowViewModel.swift */; };
 		EE412B7E2B9D232E0007632B /* PostInputFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE412B7D2B9D232E0007632B /* PostInputFlowView.swift */; };
@@ -245,7 +244,7 @@
 		EE9760202AD76800003069CF /* RootPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97601F2AD76800003069CF /* RootPath.swift */; };
 		EE9760242AD76849003069CF /* RootCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9760232AD76849003069CF /* RootCoordinatorView.swift */; };
 		EE988AB02ADA07640057F9DE /* PhoneRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE988AAF2ADA07640057F9DE /* PhoneRequirement.swift */; };
-		EE9C4B012C519499004B2CE7 /* SelectablePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9C4B002C519499004B2CE7 /* SelectablePickerView.swift */; };
+		EE9C4B012C519499004B2CE7 /* TappableListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9C4B002C519499004B2CE7 /* TappableListItem.swift */; };
 		EEA2B40F2B6416DB00063211 /* SelectableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B40E2B6416DB00063211 /* SelectableModifier.swift */; };
 		EEA2B4112B65552700063211 /* MenuCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4102B65552700063211 /* MenuCard.swift */; };
 		EEA2B41A2B66CCD700063211 /* AddRuleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4192B66CCD700063211 /* AddRuleField.swift */; };
@@ -422,7 +421,6 @@
 		EE412B682B9029F60007632B /* CommunityRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRepository.swift; sourceTree = "<group>"; };
 		EE412B6B2B96BC390007632B /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		EE412B722B981B220007632B /* ResourceCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceCategory.swift; sourceTree = "<group>"; };
-		EE412B742B9965FB0007632B /* DateOptionalWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateOptionalWrapper.swift; sourceTree = "<group>"; };
 		EE412B762B9D21680007632B /* PostFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFlow.swift; sourceTree = "<group>"; };
 		EE412B7B2B9D227F0007632B /* PostInputFlowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInputFlowViewModel.swift; sourceTree = "<group>"; };
 		EE412B7D2B9D232E0007632B /* PostInputFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInputFlowView.swift; sourceTree = "<group>"; };
@@ -592,7 +590,7 @@
 		EE97601F2AD76800003069CF /* RootPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPath.swift; sourceTree = "<group>"; };
 		EE9760232AD76849003069CF /* RootCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorView.swift; sourceTree = "<group>"; };
 		EE988AAF2ADA07640057F9DE /* PhoneRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneRequirement.swift; sourceTree = "<group>"; };
-		EE9C4B002C519499004B2CE7 /* SelectablePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectablePickerView.swift; sourceTree = "<group>"; };
+		EE9C4B002C519499004B2CE7 /* TappableListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableListItem.swift; sourceTree = "<group>"; };
 		EEA2B40E2B6416DB00063211 /* SelectableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableModifier.swift; sourceTree = "<group>"; };
 		EEA2B4102B65552700063211 /* MenuCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCard.swift; sourceTree = "<group>"; };
 		EEA2B4192B66CCD700063211 /* AddRuleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRuleField.swift; sourceTree = "<group>"; };
@@ -867,7 +865,6 @@
 			isa = PBXGroup;
 			children = (
 				EEA2B40E2B6416DB00063211 /* SelectableModifier.swift */,
-				EE9C4B002C519499004B2CE7 /* SelectablePickerView.swift */,
 				EEA2B42A2B71811300063211 /* SelectableSheetPickerView.swift */,
 				EEA2B41F2B716D1500063211 /* SelectablePickerDetailView.swift */,
 				EEA2B41D2B6FE36700063211 /* SelectableView.swift */,
@@ -936,14 +933,6 @@
 				EE412BA62BAF757A0007632B /* Selectable */,
 			);
 			path = Community;
-			sourceTree = "<group>";
-		};
-		EE412B6D2B9811D40007632B /* DTO Wrappers */ = {
-			isa = PBXGroup;
-			children = (
-				EE412B742B9965FB0007632B /* DateOptionalWrapper.swift */,
-			);
-			path = "DTO Wrappers";
 			sourceTree = "<group>";
 		};
 		EE412B782B9D21B00007632B /* Model */ = {
@@ -1595,6 +1584,7 @@
 				EE5D39EE2A2B9B4B00D0E312 /* TightLabelStyle.swift */,
 				EE80D95929E8EBB70000F8EF /* UIViewRepresentable */,
 				EE7856122AAE75620004B7E4 /* NewFlowLayout.swift */,
+				EE9C4B002C519499004B2CE7 /* TappableListItem.swift */,
 				EE7055602B14034700E40A89 /* AsyncButton.swift */,
 				EE4988152B3F1E8F00AB7522 /* BackgroundGeometryView.swift */,
 				EE49881A2B406B2A00AB7522 /* CustomProgressView.swift */,
@@ -1913,7 +1903,6 @@
 				EE2477D02BBCD8B200661A0A /* SwiftData */,
 				EE80D8B829BC0EFA0000F8EF /* Repositories */,
 				EE80D92A29D0D48D0000F8EF /* Services */,
-				EE412B6D2B9811D40007632B /* DTO Wrappers */,
 				EE9760072AD07959003069CF /* InputRequirement */,
 				EED4A51829ABC2B800DDCCDA /* Domain Models */,
 				EE2B15B32B43592E0046D5FC /* GenericError.swift */,
@@ -2169,7 +2158,7 @@
 				EECA51A62C4DE3F100BD8F59 /* FilterPostsViewModel+Preview.swift in Sources */,
 				EE936CA92A789F6D00D49271 /* HistoryTabPath.swift in Sources */,
 				EECA517A2C4C175900BD8F59 /* AppwriteService+Preview.swift in Sources */,
-				EE9C4B012C519499004B2CE7 /* SelectablePickerView.swift in Sources */,
+				EE9C4B012C519499004B2CE7 /* TappableListItem.swift in Sources */,
 				EE412B692B9029F60007632B /* CommunityRepository.swift in Sources */,
 				EEC61B5C2B408A7600F73509 /* InputFlowViewModel.swift in Sources */,
 				EE412B522B8D82730007632B /* UserFormInputView.swift in Sources */,
@@ -2367,7 +2356,6 @@
 				EE412B9D2B9F3A560007632B /* AccountInputFlowViewModel.swift in Sources */,
 				EEA2B4202B716D1500063211 /* SelectablePickerDetailView.swift in Sources */,
 				EEE08C0B2C2CE7E900993422 /* CommentViewModel.swift in Sources */,
-				EE412B752B9965FB0007632B /* DateOptionalWrapper.swift in Sources */,
 				EED4A51129AB1A6900DDCCDA /* CommunitiesTabMainViewModel.swift in Sources */,
 				EE80D95629E0B6D10000F8EF /* ReversedLabelStyle.swift in Sources */,
 				EE5B938329F747DD00B43381 /* RepresentativeType.swift in Sources */,

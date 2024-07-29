@@ -25,10 +25,10 @@ struct ColorScheme { // TODO: Add all options
         self.onBackground = onBackground
     }
     
-    static let onRed: ColorScheme = .init(
+    static let sheetColorScheme: ColorScheme = .init(
         secondaryText: .secondaryText,
-        primaryBackground: .sheetBackground,
+        primaryBackground: .secondaryBackground,
         tertiaryText: .tertiaryText,
-        onBackground: .secondarySheetBackground
+        onBackground: .tertiaryBackground
     )
 }

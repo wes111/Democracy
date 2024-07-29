@@ -26,26 +26,23 @@ extension Color {
     
     /// Dark gray.
     static var primaryBackground: Color {
-        .black //.init(red: 30 / 255, green: 30 / 255, blue: 30 / 255)
-    }
-    
-    // Deep red
-    static var sheetBackground: Color {
-        .init(red: 30 / 255, green: 30 / 255, blue: 30 / 255) // .init(red: 50 / 255, green: 4 / 255, blue: 4 / 255)
-        // .black//.init(red: 45 / 255, green: 45 / 255, blue: 45 / 255)
-    }
-    
-    static var secondarySheetBackground: Color {
-        .init(red: 85 / 255, green: 4 / 255, blue: 4 / 255)
+        .black
     }
     
     /// Medium gray.
     static var secondaryBackground: Color {
-        .init(red: 65 / 255, green: 65 / 255, blue: 65 / 255)
+        .init(red: 30 / 255, green: 30 / 255, blue: 30 / 255)
+
     }
     
     /// Medicum dark gray.
     static var tertiaryBackground: Color {
+        .init(red: 65 / 255, green: 65 / 255, blue: 65 / 255)
+
+    }
+    
+    // I don't think we will want to use this, but just in case...
+    static var quadBackground: Color {
         .init(red: 93 / 255, green: 93 / 255, blue: 93 / 255)
     }
     

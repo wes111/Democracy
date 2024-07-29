@@ -97,6 +97,7 @@ enum SystemImage: String {
     case slideVerticalThree = "slider.vertical.3"                      // 􀟲
     case starFill = "star.fill"                                        // 􀋃
     case squareAndArrowUp = "square.and.arrow.up"                      // 􀈂
+    case tag                                                           // 􀋡
     case xCircle = "x.circle"                                          // 􀀲
     case xMark = "xmark"                                               // 􀆄
 }

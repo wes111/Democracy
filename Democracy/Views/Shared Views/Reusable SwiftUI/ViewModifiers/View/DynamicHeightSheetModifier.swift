@@ -22,7 +22,7 @@ struct DynamicHeightSheetModifier<SheetContent: View>: ViewModifier {
         content
             .sheet(isPresented: $isShowingSheet) {
                 ZStack {
-                    Color.sheetBackground.ignoresSafeArea(.all)
+                    Color.secondaryBackground.ignoresSafeArea(.all)
                     
                     sheetContent()
                         .overlay {

@@ -26,7 +26,7 @@ class PostsFeedViewModel {
     
     private static let maxInMemoryPostCount = 50
     private static let pageCount = 25
-    private let community: Community
+    let community: Community
     private let query: PostsQuery
     
     init(community: Community, query: PostsQuery, coordinator: CommunitiesCoordinatorDelegate?) {

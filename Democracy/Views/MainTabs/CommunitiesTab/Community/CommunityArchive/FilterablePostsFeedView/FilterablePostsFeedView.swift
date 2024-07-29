@@ -26,7 +26,7 @@ struct FilterablePostsFeedView: View {
             .dynamicHeightSheet(isShowingSheet: $viewModel.isShowingFilters) {
                 FilterPostsView(viewModel: viewModel.filterPostsViewModel)
                     .presentationDragIndicator(.visible)
-                    .background(Color.sheetBackground, ignoresSafeAreaEdges: .all)
+                    .background(Color.secondaryBackground, ignoresSafeAreaEdges: .all)
                     .interactiveDismissDisabled()
             }
     }

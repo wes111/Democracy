@@ -10,12 +10,12 @@ import SwiftUI
 struct PostFilters {
     var dateFilter: DateFilter
     var sortOrder: SortOrder
-    var categoriesFilter: [String]
+    var tagsFilter: [String]
     
     init(dateFilter: DateFilter = .all, sortOrder: SortOrder = .top, categoriesFilter: [String] = []) {
         self.dateFilter = dateFilter
         self.sortOrder = sortOrder
-        self.categoriesFilter = categoriesFilter
+        self.tagsFilter = categoriesFilter
     }
 }
 
@@ -27,19 +27,47 @@ enum FilterPostsPath {
 
 @MainActor @Observable
 final class FilterPostsViewModel {
+    let communityTags: [String]
+    let onUpdateFilters: (PostFilters) -> Void
     var router = Router()
     var postFilters: PostFilters
     
-    init(postFilters: PostFilters) {
+    init(
+        communityTags: [String],
+        postFilters: PostFilters,
+        onUpdateFilters: @escaping (PostFilters) -> Void
+    ) {
         self.postFilters = postFilters
+        self.communityTags = communityTags
+        self.onUpdateFilters = onUpdateFilters
     }
     
     func navigateToPath(_ path: FilterPostsPath) {
         router.push(path)
     }
     
-    func goBack() {
+    func backAction() {
         router.pop()
+    }
+    
+    func toggleTag(_ tag: String) {
+        if postFilters.tagsFilter.contains(tag) {
+            postFilters.tagsFilter.removeAll(where: { $0 == tag })
+        } else {
+            postFilters.tagsFilter.append(tag)
+        }
+    }
+    
+    var categoriesSubtitle: String {
+        if postFilters.tagsFilter.isEmpty {
+            "None Selected"
+        } else {
+            postFilters.tagsFilter.sorted().joined(separator: ", ")
+        }
+    }
+    
+    func onTapUpdateFilters() {
+        onUpdateFilters(postFilters)
     }
 }
 
@@ -63,11 +91,11 @@ private extension FilterPostsView {
             applyButton
         }
         .frame(maxHeight: .infinity, alignment: .topLeading)
-        .background(Color.sheetBackground, ignoresSafeAreaEdges: .all)
+        .background(Color.secondaryBackground, ignoresSafeAreaEdges: .all)
         .toolbarNavigation(
             leadingContent: leadingToolbarContent,
             trailingContent: trailingToolbarContent,
-            backgroundColor: .sheetBackground
+            backgroundColor: .secondaryBackground
         )
     }
     
@@ -95,7 +123,13 @@ private extension FilterPostsView {
                 Divider()
                     .overlay(Color.black)
                 
-                // TODO: Categories...
+                TappableListItem(title: "Tags Filter", subtitle: viewModel.categoriesSubtitle, image: .tag) {
+                    viewModel.navigateToPath(.categoriesFilter)
+                }
+                .padding(.horizontal, ViewConstants.screenPadding)
+                
+                Divider()
+                    .overlay(Color.black)
             }
         }
         .contentMargins(.top, ViewConstants.scrollViewTopContentMargin)
@@ -103,15 +137,14 @@ private extension FilterPostsView {
     }
     
     func tappableItem<T: Selectable>(selection: T, path: FilterPostsPath) -> some View {
-        SelectablePickerView(selection: selection) {
+        TappableListItem(title: T.metaTitle, subtitle: selection.title, image: T.metaImage) {
             viewModel.navigateToPath(path)
         }
     }
     
     var applyButton: some View {
         Button {
-            // TODO: - Give the fitler/sort object back to the parent viewModel. And dismiss
-            dismiss()
+            viewModel.onTapUpdateFilters()
         } label: {
             Text("Apply")
         }
@@ -147,20 +180,17 @@ private extension FilterPostsView {
         case .sortOrder:
             SelectablePickerDetailNavigationView(
                 selectedCategory: $viewModel.postFilters.sortOrder,
-                backAction: viewModel.goBack,
-                closeAction: { dismiss() }
+                backAction: viewModel.backAction
             )
             
         case .dateFilter:
             SelectablePickerDetailNavigationView(
                 selectedCategory: $viewModel.postFilters.dateFilter,
-                backAction: viewModel.goBack,
-                closeAction: { dismiss() }
+                backAction: viewModel.backAction
             )
             
         case .categoriesFilter:
-            EmptyView()
-            
+            TagsPickerNavigationView(viewModel: viewModel)
         }
     }
 }

@@ -14,7 +14,16 @@ final class FilterablePostsFeedViewModel: PostsFeedViewModel {
     var postFilters = PostFilters()
     
     var filterPostsViewModel: FilterPostsViewModel {
-        .init(postFilters: postFilters)
+        .init(
+            communityTags: community.tags,
+            postFilters: postFilters,
+            onUpdateFilters: onUpdatePostFilters(_:)
+        )
+    }
+    
+    func onUpdatePostFilters(_ postFilters: PostFilters) {
+        self.postFilters = postFilters
+        isShowingFilters = false
     }
 }
 
