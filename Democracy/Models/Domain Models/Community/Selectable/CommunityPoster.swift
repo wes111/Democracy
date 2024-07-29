@@ -11,6 +11,7 @@ import SharedResourcesClientAndServer
 extension CommunityPoster: Selectable {
     
     static let metaTitle = "Allowed Posters"
+    static let metaImage: SystemImage = .personThree
     
     var title: String {
         switch self {

@@ -11,6 +11,7 @@ enum CommunityTab: String, Selectable {
     case feed, info, archive
     
     static let metaTitle: String = "Community Tab"
+    static let metaImage: SystemImage = .book
     
     var title: String {
         switch self {

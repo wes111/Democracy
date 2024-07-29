@@ -46,4 +46,8 @@ extension ResourceCategory: Selectable {
     static var metaTitle: String {
         "Resource Type"
     }
+    
+    static var metaImage: SystemImage {
+        .booksVerticalFill
+    }
 }

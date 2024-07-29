@@ -49,6 +49,8 @@ enum ViewConstants {
     
     // Sheets
     static let sheetBottomPadding: CGFloat = 32
+    
+    static let scrollViewTopContentMargin: CGFloat = 16
 }
 
 // SF Symbols
@@ -57,6 +59,7 @@ enum SystemImage: String {
     case arrowshapeUp = "arrowshape.up"                                // 􁾨
     case arrowshapeDown = "arrowshape.down"                            // 􁾬
     case arrowshapeTurnUpLeft = "arrowshape.turn.up.left"              // 􀉌
+    case arrowUpArrowDown = "arrow.up.arrow.down"                      // 􀄬
     case arrowUpRightSquare = "arrow.up.right.square"                  // 􀄔
     case asterisk = "asterisk"                                         // 􀸓
     case bolt                                                          // 􀋥
@@ -64,6 +67,7 @@ enum SystemImage: String {
     case bookClosed = "book.closed"                                    // 􀤞
     case booksVerticalFill = "books.vertical.fill"                     // 􀬓
     case bubble = "bubble"                                             // 􂄹
+    case buildingColumns = "building.columns"                          // 􀤨
     case calendar = "calendar"                                         // 􀉉
     case checkmark                                                     // 􀆅
     case checkmarkCircleFill = "checkmark.circle.fill"                 // 􀁣

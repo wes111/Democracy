@@ -35,12 +35,12 @@ private extension CommunitySettingsView {
     var settingsView: some View {
         ScrollView(.vertical) {
             VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-                SelectablePickerView(selection: $viewModel.settings.government)
-                SelectablePickerView(selection: $viewModel.settings.content)
-                SelectablePickerView(selection: $viewModel.settings.visibility)
-                SelectablePickerView(selection: $viewModel.settings.poster)
-                SelectablePickerView(selection: $viewModel.settings.commenter)
-                SelectablePickerView(selection: $viewModel.settings.postApproval)
+                SelectableSheetPickerView(selection: $viewModel.settings.government)
+                SelectableSheetPickerView(selection: $viewModel.settings.content)
+                SelectableSheetPickerView(selection: $viewModel.settings.visibility)
+                SelectableSheetPickerView(selection: $viewModel.settings.poster)
+                SelectableSheetPickerView(selection: $viewModel.settings.commenter)
+                SelectableSheetPickerView(selection: $viewModel.settings.postApproval)
             }
             .padding(ViewConstants.smallInnerBorder)
         }

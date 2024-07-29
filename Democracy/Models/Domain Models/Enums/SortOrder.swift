@@ -13,6 +13,9 @@ enum SortOrder {
 }
 
 extension SortOrder: Selectable {
+    static let metaTitle: String = "Sort Order"
+    static let metaImage: SystemImage = .arrowUpArrowDown
+    
     var title: String {
         switch self {
         case .recent:
@@ -28,9 +31,5 @@ extension SortOrder: Selectable {
     
     var image: SystemImage? {
         nil
-    }
-    
-    static var metaTitle: String {
-        "Sort Order"
     }
 }

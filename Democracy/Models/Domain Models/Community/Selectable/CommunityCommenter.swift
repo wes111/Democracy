@@ -10,6 +10,7 @@ import SharedResourcesClientAndServer
 
 extension CommunityCommenter: Selectable {
     static let metaTitle = "Allowed Commenters"
+    static let metaImage: SystemImage = .personThree
     
     var title: String {
         switch self {

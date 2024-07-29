@@ -10,6 +10,7 @@ import SharedResourcesClientAndServer
 
 extension CommunityContent: Selectable {
     static let metaTitle = "Content Type"
+    static let metaImage: SystemImage = .figureAndChildHoldingHands
     
     var title: String {
         switch self {

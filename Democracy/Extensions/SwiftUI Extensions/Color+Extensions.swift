@@ -26,11 +26,17 @@ extension Color {
     
     /// Dark gray.
     static var primaryBackground: Color {
-        .init(red: 30 / 255, green: 30 / 255, blue: 30 / 255)
+        .black //.init(red: 30 / 255, green: 30 / 255, blue: 30 / 255)
     }
     
+    // Deep red
     static var sheetBackground: Color {
-        .init(red: 45 / 255, green: 45 / 255, blue: 45 / 255)
+        .init(red: 30 / 255, green: 30 / 255, blue: 30 / 255) // .init(red: 50 / 255, green: 4 / 255, blue: 4 / 255)
+        // .black//.init(red: 45 / 255, green: 45 / 255, blue: 45 / 255)
+    }
+    
+    static var secondarySheetBackground: Color {
+        .init(red: 85 / 255, green: 4 / 255, blue: 4 / 255)
     }
     
     /// Medium gray.

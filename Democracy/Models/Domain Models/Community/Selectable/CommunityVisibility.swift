@@ -10,6 +10,7 @@ import SharedResourcesClientAndServer
 
 extension CommunityVisibility: Selectable {
     static let metaTitle = "Community Visibility"
+    static let metaImage: SystemImage = .eye
     
     var title: String {
         switch self {

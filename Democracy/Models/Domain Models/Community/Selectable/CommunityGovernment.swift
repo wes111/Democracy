@@ -10,6 +10,7 @@ import SharedResourcesClientAndServer
 
 extension CommunityGovernment: Selectable {
     static let metaTitle: String = "Government Type"
+    static let metaImage: SystemImage = .buildingColumns
     
     var title: String {
         switch self {

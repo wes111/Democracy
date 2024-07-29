@@ -27,8 +27,8 @@ struct ColorScheme { // TODO: Add all options
     
     static let onRed: ColorScheme = .init(
         secondaryText: .secondaryText,
-        primaryBackground: .primaryBackground,
+        primaryBackground: .sheetBackground,
         tertiaryText: .tertiaryText,
-        onBackground: .black.opacity(0.3)
+        onBackground: .secondarySheetBackground
     )
 }

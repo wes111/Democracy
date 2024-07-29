@@ -67,7 +67,7 @@ struct SelectableView: View {
         }
         .padding(ViewConstants.innerBorder)
         .background(
-            Color.primaryBackground,
+            colorScheme.onBackground,
             in: RoundedRectangle(cornerRadius: ViewConstants.cornerRadius)
         )
         .overlay(

@@ -14,6 +14,7 @@ protocol Selectable: Hashable, Identifiable, CaseIterable where AllCases == [Sel
     var image: SystemImage? { get }
     
     static var metaTitle: String { get }
+    static var metaImage: SystemImage { get }
 }
 
 extension Selectable {

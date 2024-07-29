@@ -37,6 +37,10 @@ final class FilterPostsViewModel {
     func navigateToPath(_ path: FilterPostsPath) {
         router.push(path)
     }
+    
+    func goBack() {
+        router.pop()
+    }
 }
 
 @MainActor
@@ -54,15 +58,14 @@ struct FilterPostsView: View {
 private extension FilterPostsView {
     
     var content: some View {
-        VStack(alignment: .leading, spacing: ViewConstants.largeElementSpacing) {
-            title
+        VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
             selectablePickerViews
+            applyButton
         }
-        .padding([.horizontal], ViewConstants.screenPadding)
-        .padding(.bottom, ViewConstants.sheetBottomPadding)
         .frame(maxHeight: .infinity, alignment: .topLeading)
         .background(Color.sheetBackground, ignoresSafeAreaEdges: .all)
         .toolbarNavigation(
+            leadingContent: leadingToolbarContent,
             trailingContent: trailingToolbarContent,
             backgroundColor: .sheetBackground
         )
@@ -76,18 +79,44 @@ private extension FilterPostsView {
     
     var selectablePickerViews: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: ViewConstants.elementSpacing) {
-                tappableItem(selection: viewModel.postFilters.dateFilter, path: .dateFilter)
+            VStack(alignment: .leading, spacing: ViewConstants.largeElementSpacing) {
+                Divider()
+                    .overlay(Color.black)
+                
                 tappableItem(selection: viewModel.postFilters.sortOrder, path: .sortOrder)
+                    .padding(.horizontal, ViewConstants.screenPadding)
+                
+                Divider()
+                    .overlay(Color.black)
+                
+                tappableItem(selection: viewModel.postFilters.dateFilter, path: .dateFilter)
+                    .padding(.horizontal, ViewConstants.screenPadding)
+                
+                Divider()
+                    .overlay(Color.black)
+                
                 // TODO: Categories...
             }
         }
+        .contentMargins(.top, ViewConstants.scrollViewTopContentMargin)
+        .scrollBounceBehavior(.basedOnSize, axes: [.vertical])
     }
     
     func tappableItem<T: Selectable>(selection: T, path: FilterPostsPath) -> some View {
-        TappableListItem(title: T.metaTitle, subtitle: selection.title) {
+        SelectablePickerView(selection: selection) {
             viewModel.navigateToPath(path)
         }
+    }
+    
+    var applyButton: some View {
+        Button {
+            // TODO: - Give the fitler/sort object back to the parent viewModel. And dismiss
+            dismiss()
+        } label: {
+            Text("Apply")
+        }
+        .buttonStyle(PrimaryButtonStyle())
+        .padding(ViewConstants.screenPadding)
     }
 }
 
@@ -101,21 +130,33 @@ private extension FilterPostsView {
                     navigationScreen(path: path)
                 }
         }
-        .frame(height: 350)
+        .frame(height: 450)
     }
     
     var trailingToolbarContent: [TopBarContent] {
         [.close({ dismiss() })]
     }
     
+    var leadingToolbarContent: [TopBarContent] {
+        [.title("Sort & Filter", size: .large)]
+    }
+    
     @ViewBuilder
     func navigationScreen(path: FilterPostsPath) -> some View {
         switch path {
         case .sortOrder:
-            EmptyView()
+            SelectablePickerDetailNavigationView(
+                selectedCategory: $viewModel.postFilters.sortOrder,
+                backAction: viewModel.goBack,
+                closeAction: { dismiss() }
+            )
             
         case .dateFilter:
-            SelectablePickerDetailView(selectedCategory: $viewModel.postFilters.dateFilter)
+            SelectablePickerDetailNavigationView(
+                selectedCategory: $viewModel.postFilters.dateFilter,
+                backAction: viewModel.goBack,
+                closeAction: { dismiss() }
+            )
             
         case .categoriesFilter:
             EmptyView()

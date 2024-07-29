@@ -13,6 +13,7 @@ enum CommunitiesCategory: String, Selectable {
     case isMemberOf, isLeaderOf, topCommunities, random, recommendations
     
     static let metaTitle: String = "Communities Category"
+    static let metaImage: SystemImage = .personThree
     
     var title: String {
         switch self {

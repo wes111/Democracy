@@ -16,6 +16,7 @@ enum DateFilter {
 }
 
 extension DateFilter: Selectable {
+    static let metaImage: SystemImage = .calendar
     
     var title: String {
         switch self {

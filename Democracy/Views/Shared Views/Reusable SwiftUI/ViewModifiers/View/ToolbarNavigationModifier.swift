@@ -117,7 +117,9 @@ private extension ToolbarNavigationModifier {
                         
                     case .medium:
                         Text(title)
-                            .primaryTitle()
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.primaryText)
                         
                     case .large:
                         Text(title)

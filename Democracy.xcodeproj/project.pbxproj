@@ -245,6 +245,7 @@
 		EE9760202AD76800003069CF /* RootPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97601F2AD76800003069CF /* RootPath.swift */; };
 		EE9760242AD76849003069CF /* RootCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9760232AD76849003069CF /* RootCoordinatorView.swift */; };
 		EE988AB02ADA07640057F9DE /* PhoneRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE988AAF2ADA07640057F9DE /* PhoneRequirement.swift */; };
+		EE9C4B012C519499004B2CE7 /* SelectablePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9C4B002C519499004B2CE7 /* SelectablePickerView.swift */; };
 		EEA2B40F2B6416DB00063211 /* SelectableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B40E2B6416DB00063211 /* SelectableModifier.swift */; };
 		EEA2B4112B65552700063211 /* MenuCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4102B65552700063211 /* MenuCard.swift */; };
 		EEA2B41A2B66CCD700063211 /* AddRuleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4192B66CCD700063211 /* AddRuleField.swift */; };
@@ -254,7 +255,7 @@
 		EEA2B4232B7173D600063211 /* Selectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4222B7173D600063211 /* Selectable.swift */; };
 		EEA2B4252B71745D00063211 /* CommunityContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4242B71745D00063211 /* CommunityContent.swift */; };
 		EEA2B4272B71747500063211 /* CommunityGovernment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4262B71747500063211 /* CommunityGovernment.swift */; };
-		EEA2B42B2B71811300063211 /* SelectablePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B42A2B71811300063211 /* SelectablePickerView.swift */; };
+		EEA2B42B2B71811300063211 /* SelectableSheetPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B42A2B71811300063211 /* SelectableSheetPickerView.swift */; };
 		EEA2B42D2B718BB100063211 /* CommunityVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B42C2B718BB100063211 /* CommunityVisibility.swift */; };
 		EEA2B42F2B71915000063211 /* CommunityPoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B42E2B71915000063211 /* CommunityPoster.swift */; };
 		EEA2B4312B71935A00063211 /* CommunityCommenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4302B71935A00063211 /* CommunityCommenter.swift */; };
@@ -591,6 +592,7 @@
 		EE97601F2AD76800003069CF /* RootPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootPath.swift; sourceTree = "<group>"; };
 		EE9760232AD76849003069CF /* RootCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorView.swift; sourceTree = "<group>"; };
 		EE988AAF2ADA07640057F9DE /* PhoneRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneRequirement.swift; sourceTree = "<group>"; };
+		EE9C4B002C519499004B2CE7 /* SelectablePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectablePickerView.swift; sourceTree = "<group>"; };
 		EEA2B40E2B6416DB00063211 /* SelectableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableModifier.swift; sourceTree = "<group>"; };
 		EEA2B4102B65552700063211 /* MenuCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCard.swift; sourceTree = "<group>"; };
 		EEA2B4192B66CCD700063211 /* AddRuleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRuleField.swift; sourceTree = "<group>"; };
@@ -600,7 +602,7 @@
 		EEA2B4222B7173D600063211 /* Selectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selectable.swift; sourceTree = "<group>"; };
 		EEA2B4242B71745D00063211 /* CommunityContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityContent.swift; sourceTree = "<group>"; };
 		EEA2B4262B71747500063211 /* CommunityGovernment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityGovernment.swift; sourceTree = "<group>"; };
-		EEA2B42A2B71811300063211 /* SelectablePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectablePickerView.swift; sourceTree = "<group>"; };
+		EEA2B42A2B71811300063211 /* SelectableSheetPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableSheetPickerView.swift; sourceTree = "<group>"; };
 		EEA2B42C2B718BB100063211 /* CommunityVisibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityVisibility.swift; sourceTree = "<group>"; };
 		EEA2B42E2B71915000063211 /* CommunityPoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityPoster.swift; sourceTree = "<group>"; };
 		EEA2B4302B71935A00063211 /* CommunityCommenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCommenter.swift; sourceTree = "<group>"; };
@@ -865,7 +867,8 @@
 			isa = PBXGroup;
 			children = (
 				EEA2B40E2B6416DB00063211 /* SelectableModifier.swift */,
-				EEA2B42A2B71811300063211 /* SelectablePickerView.swift */,
+				EE9C4B002C519499004B2CE7 /* SelectablePickerView.swift */,
+				EEA2B42A2B71811300063211 /* SelectableSheetPickerView.swift */,
 				EEA2B41F2B716D1500063211 /* SelectablePickerDetailView.swift */,
 				EEA2B41D2B6FE36700063211 /* SelectableView.swift */,
 			);
@@ -2166,6 +2169,7 @@
 				EECA51A62C4DE3F100BD8F59 /* FilterPostsViewModel+Preview.swift in Sources */,
 				EE936CA92A789F6D00D49271 /* HistoryTabPath.swift in Sources */,
 				EECA517A2C4C175900BD8F59 /* AppwriteService+Preview.swift in Sources */,
+				EE9C4B012C519499004B2CE7 /* SelectablePickerView.swift in Sources */,
 				EE412B692B9029F60007632B /* CommunityRepository.swift in Sources */,
 				EEC61B5C2B408A7600F73509 /* InputFlowViewModel.swift in Sources */,
 				EE412B522B8D82730007632B /* UserFormInputView.swift in Sources */,
@@ -2299,7 +2303,7 @@
 				EE2477F32BF0617500661A0A /* CommentViewModel +Preview.swift in Sources */,
 				EE2B15E82B5615E90046D5FC /* DisabledAnimationModifier.swift in Sources */,
 				EE4988082B35D8BA00AB7522 /* CreateAccountCoordinatorDelegate.swift in Sources */,
-				EEA2B42B2B71811300063211 /* SelectablePickerView.swift in Sources */,
+				EEA2B42B2B71811300063211 /* SelectableSheetPickerView.swift in Sources */,
 				EE4988162B3F1E8F00AB7522 /* BackgroundGeometryView.swift in Sources */,
 				EED4A4FF29AA858600DDCCDA /* HistoryTabCoordinator.swift in Sources */,
 				EED4A4F929AA855900DDCCDA /* EventsTabCoordinator.swift in Sources */,

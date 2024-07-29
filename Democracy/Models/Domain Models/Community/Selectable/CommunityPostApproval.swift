@@ -10,6 +10,7 @@ import SharedResourcesClientAndServer
 
 extension CommunityPostApproval: Selectable {
     static let metaTitle = "Post Approval Process"
+    static let metaImage: SystemImage = .checkmarkCircleFill
     
     var title: String {
         switch self {

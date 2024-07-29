@@ -27,6 +27,7 @@ struct FilterablePostsFeedView: View {
                 FilterPostsView(viewModel: viewModel.filterPostsViewModel)
                     .presentationDragIndicator(.visible)
                     .background(Color.sheetBackground, ignoresSafeAreaEdges: .all)
+                    .interactiveDismissDisabled()
             }
     }
 }
