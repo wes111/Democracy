@@ -7,68 +7,10 @@
 
 import SwiftUI
 
-struct PostFilters {
-    var dateFilter: DateFilter
-    var sortOrder: SortOrder
-    var tagsFilter: [String]
-    
-    init(dateFilter: DateFilter = .all, sortOrder: SortOrder = .top, categoriesFilter: [String] = []) {
-        self.dateFilter = dateFilter
-        self.sortOrder = sortOrder
-        self.tagsFilter = categoriesFilter
-    }
-}
-
 enum FilterPostsPath {
     case sortOrder
     case dateFilter
     case categoriesFilter
-}
-
-@MainActor @Observable
-final class FilterPostsViewModel {
-    let communityTags: [String]
-    let onUpdateFilters: (PostFilters) -> Void
-    var router = Router()
-    var postFilters: PostFilters
-    
-    init(
-        communityTags: [String],
-        postFilters: PostFilters,
-        onUpdateFilters: @escaping (PostFilters) -> Void
-    ) {
-        self.postFilters = postFilters
-        self.communityTags = communityTags
-        self.onUpdateFilters = onUpdateFilters
-    }
-    
-    func navigateToPath(_ path: FilterPostsPath) {
-        router.push(path)
-    }
-    
-    func backAction() {
-        router.pop()
-    }
-    
-    func toggleTag(_ tag: String) {
-        if postFilters.tagsFilter.contains(tag) {
-            postFilters.tagsFilter.removeAll(where: { $0 == tag })
-        } else {
-            postFilters.tagsFilter.append(tag)
-        }
-    }
-    
-    var categoriesSubtitle: String {
-        if postFilters.tagsFilter.isEmpty {
-            "None Selected"
-        } else {
-            postFilters.tagsFilter.sorted().joined(separator: ", ")
-        }
-    }
-    
-    func onTapUpdateFilters() {
-        onUpdateFilters(postFilters)
-    }
 }
 
 @MainActor

@@ -24,18 +24,18 @@ extension Color {
     
     // MARK: - Background Colors
     
-    /// Dark gray.
+
     static var primaryBackground: Color {
         .black
     }
     
-    /// Medium gray.
+    /// Dark gray.
     static var secondaryBackground: Color {
         .init(red: 30 / 255, green: 30 / 255, blue: 30 / 255)
 
     }
     
-    /// Medicum dark gray.
+    /// Medium gray.
     static var tertiaryBackground: Color {
         .init(red: 65 / 255, green: 65 / 255, blue: 65 / 255)
 
@@ -45,8 +45,6 @@ extension Color {
     static var quadBackground: Color {
         .init(red: 93 / 255, green: 93 / 255, blue: 93 / 255)
     }
-    
-    // MARK: - Label Colors
     
     // MARK: - Text Colors
     

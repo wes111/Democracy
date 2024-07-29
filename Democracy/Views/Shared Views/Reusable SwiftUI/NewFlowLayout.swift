@@ -148,7 +148,7 @@ private extension VerticalAlignment {
     .frame(width: 150)
 }
 
-// MARK: -- CollectionView
+// MARK: - CollectionView
 
 // Modified from: https://blog.stackademic.com/swiftui-custom-collectionview-ea06c4a6bc70
 struct CollectionView: View {
