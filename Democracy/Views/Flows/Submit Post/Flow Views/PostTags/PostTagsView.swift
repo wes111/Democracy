@@ -46,9 +46,9 @@ private extension PostTagsView {
         }
     }
     
-    func tagView(_ tag: String) -> some View {
+    func tagView(_ tag: CommunityTag) -> some View {
         let background: Color = viewModel.selectedTags.contains(tag) ? .otherRed : .onBackground
-        return Text(tag)
+        return Text(tag.name)
             .tagModifier(backgroundColor: background)
             .onTapGesture {
                 viewModel.toggleTag(tag)

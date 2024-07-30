@@ -18,12 +18,23 @@ struct CommunitiesTabCoordinatorView: View {
         } secondaryScreen: { (path: CommunitiesTabPath) in
             createViewFromPath(path)
         }
-        .fullScreenCover(isPresented: $coordinator.isShowingCreateCommunityView) {
-            SubmitCommunityCoordinatorView(coordinator: .init(parentCoordinator: coordinator))
-        }
-        .fullScreenCover(isPresented: $coordinator.isShowingCreatePostView) {
-            SubmitPostCoordinatorView(coordinator: .init(parentCoordinator: coordinator))
-        }
+        .fullScreenCover(item: $coordinator.sheetView, content: { sheetView in
+            switch sheetView {
+            case .createCandidate:
+                EmptyView()
+                
+            case .createPost(let community):
+                SubmitPostCoordinatorView(
+                    coordinator: .init(parentCoordinator: coordinator, community: community)
+                )
+                
+            case .webview:
+                EmptyView()
+                
+            case .createCommunity:
+                SubmitCommunityCoordinatorView(coordinator: .init(parentCoordinator: coordinator))
+            }
+        })
     }
     
     @ViewBuilder

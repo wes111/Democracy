@@ -54,7 +54,7 @@ private extension TagsPickerNavigationView {
     var selectableContent: some View {
         CollectionView(
             selectedItems: viewModel.postFilters.tagsFilter,
-            items: viewModel.communityTags) { tag in
+            items: viewModel.communityTags.map { $0.name }) { tag in
             viewModel.toggleTag(tag)
         }
     }

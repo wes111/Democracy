@@ -16,7 +16,7 @@ final class Post: Identifiable, Hashable, Votable {
     let body: String
     let link: URL?
     let categoryName: String
-    let tags: [String]
+    let tags: [CommunityTag]
     let userId: String
     let communityId: String
     let creationDate: Date
@@ -33,7 +33,7 @@ final class Post: Identifiable, Hashable, Votable {
         body: String,
         link: URL?,
         categoryName: String,
-        tags: [String],
+        tags: [CommunityTag],
         userId: String,
         communityId: String,
         creationDate: Date,
@@ -68,7 +68,7 @@ extension PostDTO {
             body: body,
             link: link,
             categoryName: categoryName,
-            tags: tags,
+            tags: tags.map { $0.toCommunityTag() },
             userId: userId,
             communityId: communityId,
             creationDate: creationDate,

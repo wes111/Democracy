@@ -60,7 +60,7 @@ private extension PostHeaderView {
     var tags: some View {
         NewFlowLayout(alignment: .leading) {
             ForEach(viewModel.post.tags, id: \.self) { tag in
-                Text(tag)
+                Text(tag.name)
                     .font(.footnote)
                     .tagModifier(backgroundColor: .onBackground)
             }

@@ -12,13 +12,14 @@ final class PostCategoryViewModel: SubmittableNextButtonViewModel {
     var selectedCategory: String?
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
-    let categories: [PostCategory] = Community.preview.categories // TODO: Pass a community object into the flow...
+    let categories: [PostCategory]
     private let submitPostInput: SubmitPostInput
     private weak var flowCoordinator: SubmitPostFlowCoordinator?
     
     init(submitPostInput: SubmitPostInput, flowCoordinator: SubmitPostFlowCoordinator?) {
         self.submitPostInput = submitPostInput
         self.flowCoordinator = flowCoordinator
+        self.categories = submitPostInput.community.categories
     }
 }
 

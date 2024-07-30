@@ -8,7 +8,7 @@
 import Foundation
 import SharedResourcesClientAndServer
 
-struct CommunitySettings: Hashable, Codable {
+struct CommunitySettings: Hashable, Codable, Sendable {
     var government: CommunityGovernment
     var content: CommunityContent
     var visibility: CommunityVisibility

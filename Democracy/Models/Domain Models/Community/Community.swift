@@ -21,7 +21,7 @@ struct Community: StringIdentifiable, Hashable, Sendable {
     var rules: [Rule]
     var resources: [Resource]
     var categories: [PostCategory]
-    var tags: [String]
+    var tags: [CommunityTag]
     var tagline: String
     var settings: CommunitySettings
     // var alliedCommunities: [Community]
@@ -39,7 +39,7 @@ extension CommunityDTO {
             rules: rules.map { $0.toRule() },
             resources: resources.map { $0.toResource() },
             categories: postCategories.map { $0.toPostCategory() },
-            tags: tags,
+            tags: tags.map { $0.toCommunityTag() },
             tagline: tagline,
             settings: settings.toCommunitySettings()
             // alliedCommunities: alliedCommunities?.compactMap { $0.toCommunity() } ?? [],
@@ -71,7 +71,7 @@ extension SchemaV1 {
         var rules: [Rule]
         var resources: [Resource]
         var categories: [PostCategory]
-        var tags: [String]
+        var tags: [CommunityTag]
         var tagline: String
         var settings: CommunitySettings
         // var alliedCommunities: [CommunityData]
@@ -88,7 +88,7 @@ extension SchemaV1 {
             rules: [Rule],
             resources: [Resource],
             categories: [PostCategory],
-            tags: [String],
+            tags: [CommunityTag],
             tagline: String,
             // alliedCommunities: [CommunityData],
             settings: CommunitySettings

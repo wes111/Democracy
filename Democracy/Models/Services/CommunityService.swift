@@ -7,6 +7,7 @@
 
 import Factory
 import Foundation
+import SharedResourcesClientAndServer
 
 enum CommunityServiceError: Error {
     case invalidUserInput
@@ -36,7 +37,7 @@ final class CommunityServiceDefault: CommunityService {
             rules: Array(userInput.rules).map { $0.toCreationRequest() },
             resources: userInput.resources.map { $0.toCreationRequest() },
             postCategories: userInput.categories,
-            tags: Array(userInput.tags),
+            tags: userInput.tags.map { CommunityTagCreationRequest(communityId: name, name: $0) },
             tagline: tagline,
             settings: userInput.settings
         ))

@@ -15,11 +15,12 @@ protocol SubmitPostFlowCoordinator: AnyObject {
 @MainActor @Observable
 final class PostInputFlowViewModel: InputFlowViewModel, SubmitPostFlowCoordinator {
     var flowPath: PostFlow?
-    private let input = SubmitPostInput()
+    private let input: SubmitPostInput
     private weak var coordinator: SubmitPostCoordinator?
     
-    init(coordinator: SubmitPostCoordinator) {
+    init(coordinator: SubmitPostCoordinator?, community: Community) {
         self.coordinator = coordinator
+        self.input = .init(community: community)
         flowPath = .title(.init(input: input, flowCoordinator: self))
     }
     

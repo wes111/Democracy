@@ -8,6 +8,19 @@
 import Foundation
 import SharedResourcesClientAndServer
 
+extension CommunityTag {
+    static var previewArray: [CommunityTag] {
+        [
+            .init(id: "", communityId: "", name: "Dog", creationDate: .now),
+            .init(id: "", communityId: "", name: "Chicken", creationDate: .now),
+            .init(id: "", communityId: "", name: "Cat", creationDate: .now),
+            .init(id: "", communityId: "", name: "Elephant", creationDate: .now),
+            .init(id: "", communityId: "", name: "Zebra", creationDate: .now),
+            .init(id: "", communityId: "", name: "Mouse", creationDate: .now),
+        ]
+    }
+}
+
 extension Post {
     
     static var preview: Post {
@@ -17,7 +30,7 @@ extension Post {
             body: "In this bonus Elon, Inc. episode, we take a long look at the scathing, 200-page ruling by a Delaware judge that could reshape Musk's empire.",
             link: URL(string: "https://www.wired.com/story/seagrass-humble-ocean-plant-worth-trillions/")!,
             categoryName: "racing",
-            tags: [ "Dog", "Cat", "Mouse", "Horse", "Elephant", "Zebra", "Donkey", "Chicken"],
+            tags: CommunityTag.previewArray,
             userId: "DonaldTrump JoeBiden",
             communityId: "12345",
             creationDate: .now,

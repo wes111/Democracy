@@ -7,6 +7,7 @@
 
 import Factory
 import Foundation
+import SharedResourcesClientAndServer
 
 enum PostServiceError: Error {
     case userAccountMissing
@@ -28,6 +29,7 @@ final class PostServiceDefault: PostService {
     @Injected(\.userRepository) private var userRepository
     
     func submitPost(userInput: SubmitPostInput, communityId: String) async throws {
+        let bob = userInput.tags
         guard let title = userInput.title, let body = userInput.body, let category = userInput.category else {
             throw PostServiceError.invalidUserInput
         }
@@ -36,7 +38,7 @@ final class PostServiceDefault: PostService {
             body: body,
             link: userInput.primaryLink,
             categoryName: category,
-            tags: Array(userInput.tags),
+            tagIds: userInput.tags.map { $0.id },
             userId: try await userRepository.userId(),
             communityId: communityId
         ))

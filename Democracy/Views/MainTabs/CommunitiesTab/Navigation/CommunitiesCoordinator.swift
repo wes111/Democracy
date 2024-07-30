@@ -7,12 +7,28 @@
 
 import Foundation
 
+enum CommunityCoordinatorSheet: Identifiable {
+    case webview
+    case createPost(Community)
+    case createCandidate
+    case createCommunity
+    
+    var id: String {
+        switch self {
+        case .webview: "web"
+        case .createPost(let community): "post"
+        case .createCandidate: "candidate"
+        case .createCommunity: "community"
+        }
+    }
+}
+
 @MainActor
 protocol CommunitiesCoordinatorDelegate: AnyObject {
     func goToCommunity(community: Community)
     func showCreateCommunityView()
     func showCreateCandidateView()
-    func showCreatePostView()
+    func showCreatePostView(for community: Community)
     func goBack()
     func closeCreateCandidateView()
     func goToCandidateView(candidateId: String)
@@ -25,12 +41,9 @@ protocol CommunitiesCoordinatorDelegate: AnyObject {
 
 @MainActor @Observable
 final class CommunitiesCoordinator: CommunitiesCoordinatorDelegate {
-    var isShowingCreateCommunityView = false
     var router = Router()
     var url: URL = URL(string: "https://www.google.com")!
-    var isShowingWebView = false
-    var isShowingCreatePostView = false
-    var isShowingCreateCandidateView = false
+    var sheetView: CommunityCoordinatorSheet?
     
     @ObservationIgnored lazy var communitiesTabMainViewModel: CommunitiesTabMainViewModel = {
         CommunitiesTabMainViewModel(coordinator: self)
@@ -41,7 +54,7 @@ final class CommunitiesCoordinator: CommunitiesCoordinatorDelegate {
 extension CommunitiesCoordinator {
     
     func showCreateCommunityView() {
-        isShowingCreateCommunityView = true
+        sheetView = .createCommunity
     }
     
     func goToCommunity(community: Community) {
@@ -49,7 +62,7 @@ extension CommunitiesCoordinator {
     }
     
     func dismiss() {
-        isShowingCreateCommunityView = false
+        sheetView = nil
     }
     
     func showCandidates() {
@@ -58,7 +71,7 @@ extension CommunitiesCoordinator {
     
     func openResourceURL(_ url: URL) {
         self.url = url
-        isShowingWebView = true
+        sheetView = .webview
     }
     
     func goToCommunityPostCategory(category: PostCategory?, community: Community) {
@@ -76,8 +89,8 @@ extension CommunitiesCoordinator {
         router.push(CommunitiesTabPath.singleCandidate(.preview))
     }
     
-    func showCreatePostView() {
-        isShowingCreatePostView = true
+    func showCreatePostView(for community: Community) {
+        sheetView = .createPost(community)
     }
     
     func goBack() {
@@ -85,11 +98,11 @@ extension CommunitiesCoordinator {
     }
     
     func showCreateCandidateView() {
-        isShowingCreateCandidateView = true
+        sheetView = .createCandidate
     }
     
     func closeCreateCandidateView() {
-        isShowingCreateCandidateView = false
+        sheetView = nil
     }
     
     func goToCommunityView(community: Community) {
@@ -152,7 +165,7 @@ extension CommunitiesCoordinator: SubmitCommunityCoordinatorParent {}
 
 extension CommunitiesCoordinator: SubmitPostCoordinatorParent {
     func dismissSubmitPostView() {
-        isShowingCreatePostView = false
+        sheetView = nil
     }
 }
 

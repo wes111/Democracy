@@ -8,5 +8,8 @@
 import Foundation
 
 extension SubmitPostCoordinator {
-    static let preview: SubmitPostCoordinator = .init(parentCoordinator: CommunitiesCoordinator.preview)
+    static let preview: SubmitPostCoordinator = .init(
+        parentCoordinator: CommunitiesCoordinator.preview,
+        community: .preview
+    )
 }

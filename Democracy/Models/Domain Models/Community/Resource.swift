@@ -9,7 +9,7 @@ import Foundation
 import SharedResourcesClientAndServer
 
 // Domain Object.
-struct Resource: Hashable, Codable, Identifiable {
+struct Resource: Hashable, Codable, Identifiable, Sendable {
     let id: String
     let title: String
     let description: String?

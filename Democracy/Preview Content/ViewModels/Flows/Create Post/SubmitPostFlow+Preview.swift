@@ -8,40 +8,40 @@
 import Foundation
 
 extension PostInputFlowViewModel {
-    static let preivew = PostInputFlowViewModel(coordinator: .preview)
+    static let preivew = PostInputFlowViewModel(coordinator: .preview, community: .preview)
 }
 
 extension PostTitleViewModel {
     static let preview = PostTitleViewModel(
-        input: .init(),
+        input: .init(community: .preview),
         flowCoordinator: PostInputFlowViewModel.preivew
     )
 }
 
 extension PostPrimaryLinkViewModel {
     static let preview = PostPrimaryLinkViewModel(
-        submitPostInput: .init(),
+        submitPostInput: .init(community: .preview),
         flowCoordinator: PostInputFlowViewModel.preivew
     )
 }
 
 extension PostBodyViewModel {
     static let preview = PostBodyViewModel(
-        submitPostInput: .init(),
+        submitPostInput: .init(community: .preview),
         flowCoordinator: PostInputFlowViewModel.preivew
     )
 }
 
 extension PostCategoryViewModel {
     static let preview = PostCategoryViewModel(
-        submitPostInput: .init(),
+        submitPostInput: .init(community: .preview),
         flowCoordinator: PostInputFlowViewModel.preivew
     )
 }
 
 extension PostTagsViewModel {
     static let preview = PostTagsViewModel(
-        submitPostInput: .init(),
+        submitPostInput: .init(community: .preview),
         flowCoordinator: PostInputFlowViewModel.preivew
     )
 }

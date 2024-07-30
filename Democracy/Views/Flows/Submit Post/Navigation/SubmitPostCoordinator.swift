@@ -15,15 +15,17 @@ protocol SubmitPostCoordinatorParent: AnyObject {
 @MainActor @Observable
 final class SubmitPostCoordinator {
     
+    private let community: Community
     weak var parentCoordinator: SubmitPostCoordinatorParent?
     var router = Router()
     
-    init(parentCoordinator: SubmitPostCoordinatorParent?) {
+    init(parentCoordinator: SubmitPostCoordinatorParent?, community: Community) {
         self.parentCoordinator = parentCoordinator
+        self.community = community
     }
     
     var postInputFlowViewModel: PostInputFlowViewModel {
-        .init(coordinator: self)
+        .init(coordinator: self, community: community)
     }
 }
 

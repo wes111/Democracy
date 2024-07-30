@@ -9,13 +9,13 @@ import Foundation
 
 @MainActor @Observable
 final class FilterPostsViewModel {
-    let communityTags: [String]
+    let communityTags: [CommunityTag]
     let onUpdateFilters: (PostFilters) -> Void
     var router = Router()
     var postFilters: PostFilters
     
     init(
-        communityTags: [String],
+        communityTags: [CommunityTag],
         postFilters: PostFilters,
         onUpdateFilters: @escaping (PostFilters) -> Void
     ) {

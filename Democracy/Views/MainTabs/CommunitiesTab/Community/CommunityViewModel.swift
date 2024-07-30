@@ -74,7 +74,7 @@ extension CommunityViewModel {
     }
     
     func showCreatePostView() {
-        coordinator?.showCreatePostView()
+        coordinator?.showCreatePostView(for: community)
     }
     
     func communityHomeFeedViewModel() -> PostsFeedViewModel {

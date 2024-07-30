@@ -11,8 +11,8 @@ import Combine
 
 @MainActor @Observable
 final class PostTagsViewModel: SubmittableNextButtonViewModel {
-    let tags: [String] = Community.preview.tags // TODO: ...
-    var selectedTags: Set<String> = []
+    let tags: [CommunityTag]
+    var selectedTags: [CommunityTag] = []
     var alertModel: NewAlertModel?
     var isShowingProgress: Bool = false
     private let submitPostInput: SubmitPostInput
@@ -23,6 +23,7 @@ final class PostTagsViewModel: SubmittableNextButtonViewModel {
     init(submitPostInput: SubmitPostInput, flowCoordinator: SubmitPostFlowCoordinator?) {
         self.submitPostInput = submitPostInput
         self.flowCoordinator = flowCoordinator
+        self.tags = submitPostInput.community.tags
     }
 }
 
@@ -43,7 +44,7 @@ extension PostTagsViewModel {
         
         do {
             submitPostInput.tags = selectedTags
-            try await postService.submitPost(userInput: submitPostInput, communityId: "123") // TODO: ...
+            try await postService.submitPost(userInput: submitPostInput, communityId: submitPostInput.community.id)
             try? await Task.sleep(nanoseconds: 150_000)
             flowCoordinator?.didSubmit(flow: .tags)
         } catch {
@@ -52,11 +53,11 @@ extension PostTagsViewModel {
         }
     }
     
-    func toggleTag(_ tag: String) {
+    func toggleTag(_ tag: CommunityTag) {
         if selectedTags.contains(tag) {
-            selectedTags.remove(tag)
+            selectedTags.removeAll(where: { $0 == tag })
         } else {
-            selectedTags.insert(tag)
+            selectedTags.append(tag)
         }
     }
     

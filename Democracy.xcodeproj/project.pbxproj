@@ -249,6 +249,7 @@
 		EE9C4B052C583809004B2CE7 /* FilterPostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9C4B042C583809004B2CE7 /* FilterPostsViewModel.swift */; };
 		EE9C4B072C583908004B2CE7 /* TagsPickerNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9C4B062C583908004B2CE7 /* TagsPickerNavigationView.swift */; };
 		EE9C4B092C583962004B2CE7 /* SelectablePickerDetailNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9C4B082C583962004B2CE7 /* SelectablePickerDetailNavigationView.swift */; };
+		EE9C4B0B2C597360004B2CE7 /* CommunityTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9C4B0A2C597360004B2CE7 /* CommunityTag.swift */; };
 		EEA2B40F2B6416DB00063211 /* SelectableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B40E2B6416DB00063211 /* SelectableModifier.swift */; };
 		EEA2B4112B65552700063211 /* MenuCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4102B65552700063211 /* MenuCard.swift */; };
 		EEA2B41A2B66CCD700063211 /* AddRuleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4192B66CCD700063211 /* AddRuleField.swift */; };
@@ -599,6 +600,7 @@
 		EE9C4B042C583809004B2CE7 /* FilterPostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPostsViewModel.swift; sourceTree = "<group>"; };
 		EE9C4B062C583908004B2CE7 /* TagsPickerNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsPickerNavigationView.swift; sourceTree = "<group>"; };
 		EE9C4B082C583962004B2CE7 /* SelectablePickerDetailNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectablePickerDetailNavigationView.swift; sourceTree = "<group>"; };
+		EE9C4B0A2C597360004B2CE7 /* CommunityTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTag.swift; sourceTree = "<group>"; };
 		EEA2B40E2B6416DB00063211 /* SelectableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableModifier.swift; sourceTree = "<group>"; };
 		EEA2B4102B65552700063211 /* MenuCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCard.swift; sourceTree = "<group>"; };
 		EEA2B4192B66CCD700063211 /* AddRuleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRuleField.swift; sourceTree = "<group>"; };
@@ -936,6 +938,7 @@
 			isa = PBXGroup;
 			children = (
 				EED4A51929ABC2D400DDCCDA /* Community.swift */,
+				EE9C4B0A2C597360004B2CE7 /* CommunityTag.swift */,
 				EE412B6B2B96BC390007632B /* Resource.swift */,
 				EE412B722B981B220007632B /* ResourceCategory.swift */,
 				EE412B602B8EC8410007632B /* Rule.swift */,
@@ -2459,6 +2462,7 @@
 				EE36FF862B1C15FD009E8F86 /* CustomSecureField.swift in Sources */,
 				EE412BA12B9F3DD40007632B /* AccountInputFlowView.swift in Sources */,
 				EEE08C1D2C30B88900993422 /* VoteRepository.swift in Sources */,
+				EE9C4B0B2C597360004B2CE7 /* CommunityTag.swift in Sources */,
 				EEC61B5F2B40F43400F73509 /* PostCategoryView.swift in Sources */,
 				EE412B5D2B8EC10C0007632B /* LinkField.swift in Sources */,
 				EE2477F92C069A3B00661A0A /* StandardCommentStyle.swift in Sources */,

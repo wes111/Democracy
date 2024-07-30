@@ -390,4 +390,7 @@ enum PostsQuery {
     case approved
     case notApproved
     case category(name: String)
+    // case archived
+    // case date
+    // case tags
 }
