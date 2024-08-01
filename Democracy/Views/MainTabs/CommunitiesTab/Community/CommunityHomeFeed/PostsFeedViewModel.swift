@@ -27,12 +27,12 @@ class PostsFeedViewModel {
     private static let maxInMemoryPostCount = 50
     private static let pageCount = 25
     let community: Community
-    private let query: PostsQuery
+    private let filters: [PostFilter]
     
-    init(community: Community, query: PostsQuery, coordinator: CommunitiesCoordinatorDelegate?) {
+    init(community: Community, filters: [PostFilter], coordinator: CommunitiesCoordinatorDelegate?) {
         self.community = community
         self.coordinator = coordinator
-        self.query = query
+        self.filters = filters
     }
 }
 
@@ -41,7 +41,7 @@ extension PostsFeedViewModel {
     
     func refreshPosts() async {
         do {
-            posts = try await postsPage(option: .initial)
+            posts = try await postsPage(paginationOption: .initial)
             firstPostInDatabase = posts.first
             if posts.count < Self.pageCount {
                 lastPostInDatabase = posts.last
@@ -90,7 +90,7 @@ extension PostsFeedViewModel {
             isShowingBottomProgress = true
             removeLeadingPostsIfNecessary()
             try? await Task.sleep(seconds: 3.0)
-            let newPosts = try await postsPage(option: .after(id: lastPost.id))
+            let newPosts = try await postsPage(paginationOption: .after(id: lastPost.id))
             posts.append(contentsOf: newPosts)
             updateLastPostInDatabase(from: newPosts)
         } catch {
@@ -109,7 +109,7 @@ extension PostsFeedViewModel {
             isShowingTopProgress = true
             removeTrailingPostsIfNecessary()
             try? await Task.sleep(seconds: 3.0)
-            let newPosts = try await postsPage(option: .before(id: firstPost.id))
+            let newPosts = try await postsPage(paginationOption: .before(id: firstPost.id))
             posts = newPosts + posts
         } catch {
             print("Fetch previous page error: \(error.localizedDescription)")
@@ -151,11 +151,11 @@ private extension PostsFeedViewModel {
         }
     }
     
-    func postsPage(option: CursorPaginationOption) async throws -> [Post] {
+    func postsPage(paginationOption: CursorPaginationOption) async throws -> [Post] {
         try await postService.fetchPostsForCommunity(
             communityId: community.id,
-            query: query,
-            option: option
+            filters: filters,
+            paginationOption: paginationOption
         )
     }
 }

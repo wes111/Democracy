@@ -51,8 +51,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/appwrite/sdk-for-apple",
       "state" : {
-        "revision" : "d19fb1f26cb0c64a36e96c83a54b631336cfc5b5",
-        "version" : "4.0.2"
+        "revision" : "3b20b483dcc7a47ffb91cec8485c34b0e44e89c9",
+        "version" : "6.0.0"
       }
     },
     {
@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/wes111/SharedResourcesClientAndServer",
       "state" : {
-        "revision" : "b6655c58d557563c1b4ffa40e4b0c9a2fc5aa6b3",
-        "version" : "1.0.50"
+        "revision" : "1c4dbd2fa08e1d33e756b96a4701882b0ceadf47",
+        "version" : "1.0.51"
       }
     },
     {

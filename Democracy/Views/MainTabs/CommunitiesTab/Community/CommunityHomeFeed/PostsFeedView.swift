@@ -45,8 +45,7 @@ private extension PostsFeedView {
                     await viewModel.onAppear(post)
                 }
             
-            Divider()
-                .overlay(Color.black)
+            CustomDivider()
             
             scrollProgresssView(isVisible: viewModel.postShouldShowBottomProgress(post))
         }

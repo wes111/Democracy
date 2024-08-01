@@ -46,8 +46,7 @@ private extension CommunityView {
                 .padding(.horizontal, ViewConstants.screenPadding)
                 .font(.callout)
             
-            Divider()
-                .overlay(Color.black)
+            CustomDivider()
         }
 
     }

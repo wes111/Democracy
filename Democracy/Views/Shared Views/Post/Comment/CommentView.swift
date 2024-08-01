@@ -22,8 +22,7 @@ private extension CommentView {
     var primaryContent: some View {
         HStack {
             ForEach(0..<viewModel.commentNode.depth, id: \.self) { _ in
-                Divider()
-                    .overlay(Color.tertiaryText)
+                CustomDivider()
                     .padding(.trailing, ViewConstants.smallInnerBorder)
             }
             

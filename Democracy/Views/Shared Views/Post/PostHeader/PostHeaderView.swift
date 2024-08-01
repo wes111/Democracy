@@ -35,7 +35,7 @@ private extension PostHeaderView {
                 bottomButtonsRow
             }
             .padding(.horizontal, ViewConstants.screenPadding)
-            divider
+            CustomDivider()
         }
     }
     
@@ -83,11 +83,6 @@ private extension PostHeaderView {
     func customLink(viewModel: LinkProviderViewModel) -> some View {
         CustomLinkProviderView(viewModel: viewModel)
             .frame(height: 100)
-    }
-    
-    var divider: some View {
-        Divider()
-            .overlay(Color.black)
     }
     
     var bottomButtonsRow: some View {

@@ -19,8 +19,8 @@ protocol PostService: Sendable {
     
     func fetchPostsForCommunity(
         communityId: String,
-        query: PostsQuery,
-        option: CursorPaginationOption
+        filters: [PostFilter],
+        paginationOption: CursorPaginationOption
     ) async throws -> [Post]
 }
 
@@ -29,16 +29,17 @@ final class PostServiceDefault: PostService {
     @Injected(\.userRepository) private var userRepository
     
     func submitPost(userInput: SubmitPostInput, communityId: String) async throws {
-        let bob = userInput.tags
         guard let title = userInput.title, let body = userInput.body, let category = userInput.category else {
             throw PostServiceError.invalidUserInput
         }
+        
         try await postRepository.submitPost(.init(
             title: title,
             body: body,
             link: userInput.primaryLink,
             categoryName: category,
             tagIds: userInput.tags.map { $0.id },
+            communityTagsString: userInput.tags.map { $0.name }.joined(separator: ", "), // TODO: Should only be on backend, see note in Shared...
             userId: try await userRepository.userId(),
             communityId: communityId
         ))
@@ -46,13 +47,13 @@ final class PostServiceDefault: PostService {
     
     func fetchPostsForCommunity(
         communityId: String,
-        query: PostsQuery,
-        option: CursorPaginationOption
+        filters: [PostFilter],
+        paginationOption: CursorPaginationOption
     ) async throws -> [Post] {
         try await postRepository.fetchPostsForCommunity(
             communityId: communityId,
-            query: query,
-            option: option
+            filters: filters,
+            paginationOption: paginationOption
         )
     }
 }

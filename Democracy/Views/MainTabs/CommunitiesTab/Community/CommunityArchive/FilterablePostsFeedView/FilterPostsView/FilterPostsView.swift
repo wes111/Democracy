@@ -50,28 +50,24 @@ private extension FilterPostsView {
     var selectablePickerViews: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: ViewConstants.largeElementSpacing) {
-                Divider()
-                    .overlay(Color.black)
+                CustomDivider()
                 
                 tappableItem(selection: viewModel.postFilters.sortOrder, path: .sortOrder)
                     .padding(.horizontal, ViewConstants.screenPadding)
                 
-                Divider()
-                    .overlay(Color.black)
+                CustomDivider()
                 
                 tappableItem(selection: viewModel.postFilters.dateFilter, path: .dateFilter)
                     .padding(.horizontal, ViewConstants.screenPadding)
                 
-                Divider()
-                    .overlay(Color.black)
+                CustomDivider()
                 
                 TappableListItem(title: "Tags Filter", subtitle: viewModel.categoriesSubtitle, image: .tag) {
                     viewModel.navigateToPath(.categoriesFilter)
                 }
                 .padding(.horizontal, ViewConstants.screenPadding)
                 
-                Divider()
-                    .overlay(Color.black)
+                CustomDivider()
             }
         }
         .contentMargins(.top, ViewConstants.scrollViewTopContentMargin)

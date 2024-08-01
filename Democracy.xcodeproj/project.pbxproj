@@ -250,6 +250,7 @@
 		EE9C4B072C583908004B2CE7 /* TagsPickerNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9C4B062C583908004B2CE7 /* TagsPickerNavigationView.swift */; };
 		EE9C4B092C583962004B2CE7 /* SelectablePickerDetailNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9C4B082C583962004B2CE7 /* SelectablePickerDetailNavigationView.swift */; };
 		EE9C4B0B2C597360004B2CE7 /* CommunityTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9C4B0A2C597360004B2CE7 /* CommunityTag.swift */; };
+		EE9C4B0E2C5AEA2C004B2CE7 /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9C4B0D2C5AEA2C004B2CE7 /* CustomDivider.swift */; };
 		EEA2B40F2B6416DB00063211 /* SelectableModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B40E2B6416DB00063211 /* SelectableModifier.swift */; };
 		EEA2B4112B65552700063211 /* MenuCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4102B65552700063211 /* MenuCard.swift */; };
 		EEA2B41A2B66CCD700063211 /* AddRuleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2B4192B66CCD700063211 /* AddRuleField.swift */; };
@@ -601,6 +602,7 @@
 		EE9C4B062C583908004B2CE7 /* TagsPickerNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsPickerNavigationView.swift; sourceTree = "<group>"; };
 		EE9C4B082C583962004B2CE7 /* SelectablePickerDetailNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectablePickerDetailNavigationView.swift; sourceTree = "<group>"; };
 		EE9C4B0A2C597360004B2CE7 /* CommunityTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTag.swift; sourceTree = "<group>"; };
+		EE9C4B0D2C5AEA2C004B2CE7 /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
 		EEA2B40E2B6416DB00063211 /* SelectableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableModifier.swift; sourceTree = "<group>"; };
 		EEA2B4102B65552700063211 /* MenuCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCard.swift; sourceTree = "<group>"; };
 		EEA2B4192B66CCD700063211 /* AddRuleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRuleField.swift; sourceTree = "<group>"; };
@@ -866,8 +868,9 @@
 		EE412B3A2B782C9C0007632B /* Reusable Components */ = {
 			isa = PBXGroup;
 			children = (
-				EEA2B4212B7173C700063211 /* Selectable */,
 				EE9C4B062C583908004B2CE7 /* TagsPickerNavigationView.swift */,
+				EEA2B4212B7173C700063211 /* Selectable */,
+				EE9C4B0D2C5AEA2C004B2CE7 /* CustomDivider.swift */,
 			);
 			path = "Reusable Components";
 			sourceTree = "<group>";
@@ -2478,6 +2481,7 @@
 				EE0696B72C25008000DABDDF /* CommentVote.swift in Sources */,
 				EE4DB88A2AC50AD200A6DC90 /* AppwriteService.swift in Sources */,
 				EE80D8CC29BC14560000F8EF /* PostCardViewModel+Preview.swift in Sources */,
+				EE9C4B0E2C5AEA2C004B2CE7 /* CustomDivider.swift in Sources */,
 				EE78561B2AB7BB4D0004B7E4 /* StandardTextInputModifier.swift in Sources */,
 				EEA2B4232B7173D600063211 /* Selectable.swift in Sources */,
 				EED4A51C29ABC2FE00DDCCDA /* User.swift in Sources */,
@@ -2743,7 +2747,7 @@
 			repositoryURL = "https://github.com/appwrite/sdk-for-apple";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.2;
+				minimumVersion = 6.0.0;
 			};
 		};
 		EE7055622B14E2E000E40A89 /* XCRemoteSwiftPackageReference "Asynchrone" */ = {

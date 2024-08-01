@@ -91,8 +91,7 @@ private extension PostView {
         HStack {
             if let comment {
                 ForEach(0...comment.depth, id: \.self) { _ in
-                    Divider()
-                        .overlay(Color.tertiaryText)
+                    CustomDivider()
                         .padding(.trailing, ViewConstants.smallInnerBorder)
                 }
             }

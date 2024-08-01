@@ -14,8 +14,8 @@ protocol PostRepository {
     
     func fetchPostsForCommunity(
         communityId: String,
-        query: PostsQuery,
-        option: CursorPaginationOption
+        filters: [PostFilter],
+        paginationOption: CursorPaginationOption
     ) async throws -> [Post]
 }
 
@@ -28,14 +28,14 @@ final class PostRepositoryDefault: PostRepository {
     
     func fetchPostsForCommunity(
         communityId: String,
-        query: PostsQuery,
-        option: CursorPaginationOption
+        filters: [PostFilter],
+        paginationOption: CursorPaginationOption
     ) async throws -> [Post] {
         
         try await appwriteService.fetchPostsForCommunity(
             communityId: communityId,
-            query: query,
-            option: option
+            filters: filters,
+            paginationOption: paginationOption
         )
     }
 }

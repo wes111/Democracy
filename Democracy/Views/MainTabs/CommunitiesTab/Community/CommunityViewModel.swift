@@ -78,7 +78,7 @@ extension CommunityViewModel {
     }
     
     func communityHomeFeedViewModel() -> PostsFeedViewModel {
-        PostsFeedViewModel(community: community, query: .approved, coordinator: coordinator)
+        PostsFeedViewModel(community: community, filters: [.approved], coordinator: coordinator)
     }
     
     func communityInfoViewModel() -> CommunityInfoViewModel {

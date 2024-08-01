@@ -28,8 +28,7 @@ private extension AddCommentView {
     
     var content: some View {
         VStack(spacing: ViewConstants.smallElementSpacing) {
-            Divider()
-                .overlay(Color.black)
+            CustomDivider()
             
             VStack(spacing: ViewConstants.elementSpacing) {
                 if let isAddCommentFieldFocused, isAddCommentFieldFocused {

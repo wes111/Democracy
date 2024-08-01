@@ -96,9 +96,7 @@ struct CandidateCard: View {
                         .foregroundColor(.tertiaryText)
                 }
                 
-                Divider()
-                    .frame(minHeight: 1)
-                    .overlay(Color.tertiaryBackground)
+                CustomDivider()
                 
                 VStack(spacing: 2) {
                     Text("1,000")
@@ -109,9 +107,7 @@ struct CandidateCard: View {
                         .foregroundColor(.tertiaryText)
                 }
 
-                Divider()
-                    .frame(minHeight: 1)
-                    .overlay(Color.tertiaryBackground)
+                CustomDivider()
                 
                 VStack(spacing: 2) {
                     Text(dateString)

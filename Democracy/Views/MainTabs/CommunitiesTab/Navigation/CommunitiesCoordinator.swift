@@ -131,14 +131,14 @@ extension CommunitiesCoordinator {
         category: PostCategory?,
         community: Community
     ) -> FilterablePostsFeedViewModel {
-        let query: PostsQuery = if let category {
-            .category(name: category.name)
-        } else {
-            .approved
+        var filters: [PostFilter] = [.approved]
+        if let category {
+            filters.append(.category(name: category.name))
         }
+        
         return FilterablePostsFeedViewModel(
             community: community,
-            query: query,
+            filters: filters,
             coordinator: self
         )
     }

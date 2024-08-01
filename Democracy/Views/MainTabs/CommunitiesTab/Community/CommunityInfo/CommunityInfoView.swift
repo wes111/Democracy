@@ -42,7 +42,7 @@ private extension CommunityInfoView {
                 .foregroundColor(.secondaryText)
                 .padding(.horizontal, ViewConstants.screenPadding)
             
-            Divider().overlay(Color.black)
+            CustomDivider()
         }
         .sectionModifier(title: "Description")
     }
@@ -64,7 +64,7 @@ private extension CommunityInfoView {
             .contentMargins(.horizontal, ViewConstants.screenPadding, for: .scrollContent)
             .contentMargins(.horizontal, ViewConstants.screenPadding, for: .scrollIndicators)
             
-            Divider().overlay(Color.black)
+            CustomDivider()
         }
         .sectionModifier(title: "Representatives")
     }
@@ -100,7 +100,7 @@ private extension CommunityInfoView {
             }
             .padding(.horizontal, ViewConstants.screenPadding)
             
-            Divider().overlay(Color.black)
+            CustomDivider()
         }
         .sectionModifier(title: "Allied Communities")
     }
@@ -112,7 +112,7 @@ private extension CommunityInfoView {
             }
             .padding(.horizontal, ViewConstants.screenPadding)
             
-            Divider().overlay(Color.black)
+            CustomDivider()
         }
         .sectionModifier(title: "Rules")
     }
@@ -183,7 +183,7 @@ private extension CommunityInfoView {
             }
             .padding(.horizontal, ViewConstants.screenPadding)
             
-            Divider().overlay(Color.black)
+            CustomDivider()
         }
         .sectionModifier(title: "Resources")
     }

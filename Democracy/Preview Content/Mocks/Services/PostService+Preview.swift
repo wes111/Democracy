@@ -20,8 +20,8 @@ extension PostServiceMock {
     
     func fetchPostsForCommunity(
         communityId: String,
-        query: PostsQuery,
-        option: CursorPaginationOption
+        filters: [PostFilter],
+        paginationOption: CursorPaginationOption
     ) async throws -> [Post] {
         []
     }

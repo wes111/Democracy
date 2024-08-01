@@ -60,8 +60,8 @@ protocol AppwriteService: Sendable {
     
     func fetchPostsForCommunity(
         communityId: String,
-        query: PostsQuery,
-        option: CursorPaginationOption
+        filters: [PostFilter],
+        paginationOption: CursorPaginationOption
     ) async throws -> [Post]
     
     // Post/Database Methods
@@ -114,7 +114,7 @@ extension AppwriteServiceDefault {
     }
     
     func login(email: String, password: String) async throws -> Session {
-        try await account.createEmailSession(email: email, password: password).toSession()
+        try await account.createEmailPasswordSession(email: email, password: password).toSession()
     }
     
     func logout(sessionId: String) async throws {
@@ -255,8 +255,8 @@ extension AppwriteServiceDefault {
     
     func fetchPostsForCommunity(
         communityId: String,
-        query: PostsQuery,
-        option: CursorPaginationOption
+        filters: [PostFilter],
+        paginationOption: CursorPaginationOption
     ) async throws -> [Post] {
         
         var queries = [
@@ -264,7 +264,7 @@ extension AppwriteServiceDefault {
             Query.limit(25)
         ]
         
-        let cursorQuery: String? = switch option {
+        let cursorQuery: String? = switch paginationOption {
         case .after(let id): Query.cursorAfter(id)
         case .before(let id): Query.cursorBefore(id)
         case .initial: nil
@@ -274,15 +274,26 @@ extension AppwriteServiceDefault {
             queries.append(cursorQuery)
         }
         
-        switch query {
-        case .approved:
-            queries.append(Query.isNotNull("approvedDate"))
-            
-        case .notApproved:
-            queries.append(Query.isNull("approvedDate"))
-            
-        case .category(let name):
-            queries.append(Query.equal("categoryName", value: name))
+        filters.forEach { filter in
+            switch filter {
+            case .approved:
+                queries.append(Query.isNotNull("approvedDate"))
+                
+            case .notApproved:
+                queries.append(Query.isNull("approvedDate"))
+                
+            case .category(let name):
+                queries.append(Query.equal("categoryName", value: name))
+                
+            case .archived:
+                queries.append(Query.isNotNull("archivedDate"))
+                
+            case .tags(let communityTags):
+                queries.append(Query.contains("communityTagsString", value: communityTags.map { $0.name }))
+                
+            case .date(let date):
+                queries.append(Query.greaterThan("$createdAt", value: date))
+            }
         }
         
         let documentList = try await databases.listDocuments(
@@ -299,7 +310,7 @@ extension AppwriteServiceDefault {
         let execution = try await functions.createExecution(
             functionId: AppwriteFunction.postComment.id,
             body: jsonString,
-            method: AppwriteMethod.post.name
+            method: .pOST
         )
         let response: CommentDTO = try execution.responseBody.decode()
         return response.toComment()
@@ -311,7 +322,7 @@ extension AppwriteServiceDefault {
         let execution = try await functions.createExecution(
             functionId: AppwriteFunction.voteComment.id,
             body: jsonString,
-            method: AppwriteMethod.post.name
+            method: .pOST
         )
         
         let response: CommentVoteDTO = try execution.responseBody.decode()
@@ -324,7 +335,7 @@ extension AppwriteServiceDefault {
         let execution = try await functions.createExecution(
             functionId: AppwriteFunction.votePost.id,
             body: jsonString,
-            method: AppwriteMethod.post.name
+            method: .pOST
         )
         
         let response: PostVoteDTO = try execution.responseBody.decode()
@@ -343,7 +354,7 @@ private extension AppwriteServiceDefault {
         let execution = try await functions.createExecution(
             functionId: AppwriteFunction.uniqueAccountFieldIsAvailable.id,
             body: jsonString,
-            method: AppwriteMethod.get.name
+            method: .gET
         )
         let isAvailable: UniqueAccountFieldAvailable = try execution.responseBody.decode()
         return isAvailable.isAvailable
@@ -352,20 +363,6 @@ private extension AppwriteServiceDefault {
 
 enum FetchLimit: Int {
     case comment = 25
-}
-
-enum AppwriteMethod: String {
-    case get
-    case post
-    
-    var name: String {
-        switch self {
-        case .get:
-            "GET"
-        case .post:
-            "POST"
-        }
-    }
 }
 
 enum AppwriteFunction: String {
@@ -386,11 +383,11 @@ enum CommentFetchRequest {
     case childComments(parentId: String, afterCommentId: String)
 }
 
-enum PostsQuery {
+enum PostFilter {
     case approved
     case notApproved
     case category(name: String)
-    // case archived
-    // case date
-    // case tags
+    case archived
+    case tags([CommunityTag])
+    case date(Date)
 }
