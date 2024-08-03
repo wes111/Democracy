@@ -32,7 +32,7 @@ extension FilterPostsViewModel {
         if postFilters.tagsFilter.isEmpty {
             "None Selected"
         } else {
-            postFilters.tagsFilter.sorted().joined(separator: ", ")
+            postFilters.tagsFilter.map { $0.name }.sorted().joined(separator: ", ")
         }
     }
 }
@@ -48,7 +48,7 @@ extension FilterPostsViewModel  {
         router.pop()
     }
     
-    func toggleTag(_ tag: String) {
+    func toggleTag(_ tag: CommunityTag) {
         if postFilters.tagsFilter.contains(tag) {
             postFilters.tagsFilter.removeAll(where: { $0 == tag })
         } else {

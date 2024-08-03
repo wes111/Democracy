@@ -10,15 +10,7 @@ import Foundation
 extension PostsFeedViewModel {
     static let preview = PostsFeedViewModel(
         community: .preview,
-        filters: [.approved],
-        coordinator: CommunitiesCoordinator.preview
-    )
-}
-
-extension FilterablePostsFeedViewModel {
-    static let previewFilterable = FilterablePostsFeedViewModel(
-        community: .preview,
-        filters: [.approved],
+        postFilters: .init(),
         coordinator: CommunitiesCoordinator.preview
     )
 }

@@ -14,7 +14,7 @@ protocol PostRepository {
     
     func fetchPostsForCommunity(
         communityId: String,
-        filters: [PostFilter],
+        filters: PostFilters,
         paginationOption: CursorPaginationOption
     ) async throws -> [Post]
 }
@@ -28,7 +28,7 @@ final class PostRepositoryDefault: PostRepository {
     
     func fetchPostsForCommunity(
         communityId: String,
-        filters: [PostFilter],
+        filters: PostFilters,
         paginationOption: CursorPaginationOption
     ) async throws -> [Post] {
         

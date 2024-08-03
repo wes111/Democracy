@@ -19,7 +19,7 @@ protocol PostService: Sendable {
     
     func fetchPostsForCommunity(
         communityId: String,
-        filters: [PostFilter],
+        filters: PostFilters,
         paginationOption: CursorPaginationOption
     ) async throws -> [Post]
 }
@@ -47,7 +47,7 @@ final class PostServiceDefault: PostService {
     
     func fetchPostsForCommunity(
         communityId: String,
-        filters: [PostFilter],
+        filters: PostFilters,
         paginationOption: CursorPaginationOption
     ) async throws -> [Post] {
         try await postRepository.fetchPostsForCommunity(

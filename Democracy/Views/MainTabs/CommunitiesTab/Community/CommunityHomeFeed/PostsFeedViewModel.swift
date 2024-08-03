@@ -15,6 +15,7 @@ class PostsFeedViewModel {
     var scrollId: Post?
     private var isShowingTopProgress: Bool = true
     private var isShowingBottomProgress: Bool = false
+    @ObservationIgnored private var refreshPostsTask: Task<Void, Never>?
     
     @ObservationIgnored @Injected(\.postService) private var postService
     @ObservationIgnored private weak var coordinator: CommunitiesCoordinatorDelegate?
@@ -27,17 +28,53 @@ class PostsFeedViewModel {
     private static let maxInMemoryPostCount = 50
     private static let pageCount = 25
     let community: Community
-    private let filters: [PostFilter]
+    var isShowingFilters: Bool = false
+    var postFilters: PostFilters
     
-    init(community: Community, filters: [PostFilter], coordinator: CommunitiesCoordinatorDelegate?) {
+    init(community: Community, postFilters: PostFilters, coordinator: CommunitiesCoordinatorDelegate?) {
+        self.postFilters = postFilters
         self.community = community
         self.coordinator = coordinator
-        self.filters = filters
+    }
+    
+    deinit {
+        refreshPostsTask?.cancel()
+    }
+}
+
+// MARK: - Computed Properties
+extension PostsFeedViewModel {
+    
+    var filterPostsViewModel: FilterPostsViewModel {
+        .init(
+            communityTags: community.tags,
+            postFilters: postFilters,
+            onUpdateFilters: onUpdatePostFilters(_:)
+        )
+    }
+    
+    var categoryName: String {
+        postFilters.categoriesFilter?.name ?? ""
     }
 }
 
 // MARK: - Methods
 extension PostsFeedViewModel {
+    
+    func onUpdatePostFilters(_ postFilters: PostFilters) {
+        if postFilters != self.postFilters {
+            posts = []
+            self.postFilters = postFilters
+            isShowingFilters = false
+            self.refreshPostsTask = Task { [weak self] in
+                // TODO: - Should probably show spinner here
+                try? await Task.sleep(seconds: 5.0)
+                await self?.refreshPosts()
+            }
+        } else {
+            isShowingFilters = false
+        }
+    }
     
     func refreshPosts() async {
         do {
@@ -123,6 +160,13 @@ extension PostsFeedViewModel {
 // MARK: - Private Methods
 private extension PostsFeedViewModel {
     
+    func reset() async {
+        scrollId = nil
+        lastPostInDatabase = nil
+        firstPostInDatabase = nil
+        await refreshPosts()
+    }
+    
     // As the user is scrolling down, if there are too many posts in memory,
     // remove them from the front of the `posts` array.
     func removeLeadingPostsIfNecessary() {
@@ -154,7 +198,7 @@ private extension PostsFeedViewModel {
     func postsPage(paginationOption: CursorPaginationOption) async throws -> [Post] {
         try await postService.fetchPostsForCommunity(
             communityId: community.id,
-            filters: filters,
+            filters: postFilters,
             paginationOption: paginationOption
         )
     }

@@ -8,8 +8,10 @@
 import Foundation
 
 enum SortOrder {
-    case recent
-    case top
+    case newest
+    case oldest
+    case topRated
+    case lowRated
 }
 
 extension SortOrder: Selectable {
@@ -18,10 +20,14 @@ extension SortOrder: Selectable {
     
     var title: String {
         switch self {
-        case .recent:
+        case .newest:
             "Newest"
-        case .top:
-            "Top"
+        case .oldest:
+            "Oldest"
+        case .topRated:
+            "Top Rated"
+        case .lowRated:
+            "Lowest Rated"
         }
     }
     

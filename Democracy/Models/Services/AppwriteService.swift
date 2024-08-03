@@ -60,7 +60,7 @@ protocol AppwriteService: Sendable {
     
     func fetchPostsForCommunity(
         communityId: String,
-        filters: [PostFilter],
+        filters: PostFilters,
         paginationOption: CursorPaginationOption
     ) async throws -> [Post]
     
@@ -255,12 +255,12 @@ extension AppwriteServiceDefault {
     
     func fetchPostsForCommunity(
         communityId: String,
-        filters: [PostFilter],
+        filters: PostFilters,
         paginationOption: CursorPaginationOption
     ) async throws -> [Post] {
         
         var queries = [
-            Query.equal("communityId", value: communityId),
+            Query.equal(PostAttributes.communityId.queryName, value: communityId),
             Query.limit(25)
         ]
         
@@ -274,27 +274,50 @@ extension AppwriteServiceDefault {
             queries.append(cursorQuery)
         }
         
-        filters.forEach { filter in
-            switch filter {
-            case .approved:
-                queries.append(Query.isNotNull("approvedDate"))
-                
-            case .notApproved:
-                queries.append(Query.isNull("approvedDate"))
-                
-            case .category(let name):
-                queries.append(Query.equal("categoryName", value: name))
-                
-            case .archived:
-                queries.append(Query.isNotNull("archivedDate"))
-                
-            case .tags(let communityTags):
-                queries.append(Query.contains("communityTagsString", value: communityTags.map { $0.name }))
-                
-            case .date(let date):
-                queries.append(Query.greaterThan("$createdAt", value: date))
-            }
+        switch filters.approved {
+        case .noFilter:
+            break
+        case .approved:
+            queries.append(Query.isNotNull(PostAttributes.approvedDate.queryName))
+        case .notApproved:
+            queries.append(Query.isNull(PostAttributes.approvedDate.queryName))
         }
+        
+        switch filters.archived {
+        case .noFilter:
+            break
+        case .archived:
+            queries.append(Query.isNotNull(PostAttributes.archivedDate.queryName))
+        case .notArchived:
+            queries.append(Query.isNull(PostAttributes.archivedDate.queryName))
+        }
+        
+        if let filterCategory = filters.categoriesFilter {
+            queries.append(Query.equal(PostAttributes.categoryName.queryName, value: filterCategory.name))
+        }
+        
+        switch filters.sortOrder {
+        case .newest:
+            queries.append(Query.orderAsc(PostAttributes.approvedDate.queryName))
+        case .oldest:
+            queries.append(Query.orderDesc(PostAttributes.approvedDate.queryName))
+        case .topRated:
+            queries.append(Query.orderAsc(PostAttributes.upVoteCount.queryName))
+        case .lowRated:
+            queries.append(Query.orderDesc(PostAttributes.downVoteCount.queryName))
+        }
+        
+        if !filters.tagsFilter.isEmpty {
+            queries.append(Query.contains(
+                "communityTagsString",
+                value: filters.tagsFilter.map { $0.name + ", " }
+            ))
+        }
+        
+        queries.append(Query.greaterThanEqual(
+            PostAttributes.approvedDate.queryName,
+            value: filters.earliestDate.ISO8601Format()
+        ))
         
         let documentList = try await databases.listDocuments(
             databaseId: Database.id,
@@ -365,29 +388,9 @@ enum FetchLimit: Int {
     case comment = 25
 }
 
-enum AppwriteFunction: String {
-    case postComment
-    case voteComment
-    case votePost
-    case uniqueAccountFieldIsAvailable = "UniqueAccountFieldIsAvailable"
-    
-    var id: String {
-        self.rawValue
-    }
-}
-
 enum CommentFetchRequest {
     case initialRootComments(postId: String)
     case rootComments(postId: String, afterCommentId: String)
     case initialChildComments(parentId: String)
     case childComments(parentId: String, afterCommentId: String)
-}
-
-enum PostFilter {
-    case approved
-    case notApproved
-    case category(name: String)
-    case archived
-    case tags([CommunityTag])
-    case date(Date)
 }

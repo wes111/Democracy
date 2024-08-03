@@ -12,7 +12,7 @@ enum DateFilter {
     case week
     case month
     case year
-    case all
+    case noFilter
 }
 
 extension DateFilter: Selectable {
@@ -28,7 +28,7 @@ extension DateFilter: Selectable {
             "Month"
         case .year:
             "Year"
-        case .all:
+        case .noFilter:
             "All Time"
         }
     }

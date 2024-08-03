@@ -285,7 +285,6 @@
 		EECA51652C43261000BD8F59 /* PostCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECA51642C43261000BD8F59 /* PostCategory.swift */; };
 		EECA51672C4329E100BD8F59 /* CommunitySettings+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECA51662C4329E100BD8F59 /* CommunitySettings+Preview.swift */; };
 		EECA51692C4329F700BD8F59 /* PostCategory+Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECA51682C4329F700BD8F59 /* PostCategory+Preview.swift */; };
-		EECA516C2C45EE2900BD8F59 /* FilterablePostsFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECA516B2C45EE2900BD8F59 /* FilterablePostsFeedViewModel.swift */; };
 		EECA51702C45EE7100BD8F59 /* FilterablePostsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECA516F2C45EE7000BD8F59 /* FilterablePostsFeedView.swift */; };
 		EECA51722C48871D00BD8F59 /* DynamicHeightSheetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECA51712C48871D00BD8F59 /* DynamicHeightSheetModifier.swift */; };
 		EECA51742C488A6700BD8F59 /* Binding+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECA51732C488A6700BD8F59 /* Binding+Extension.swift */; };
@@ -603,6 +602,7 @@
 		EE9C4B082C583962004B2CE7 /* SelectablePickerDetailNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectablePickerDetailNavigationView.swift; sourceTree = "<group>"; };
 		EE9C4B0A2C597360004B2CE7 /* CommunityTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTag.swift; sourceTree = "<group>"; };
 		EE9C4B0D2C5AEA2C004B2CE7 /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
+		EE9C4B0F2C5DCBDB004B2CE7 /* SharedResourcesClientAndServer */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = SharedResourcesClientAndServer; path = ../SharedResourcesClientAndServer; sourceTree = "<group>"; };
 		EEA2B40E2B6416DB00063211 /* SelectableModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectableModifier.swift; sourceTree = "<group>"; };
 		EEA2B4102B65552700063211 /* MenuCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCard.swift; sourceTree = "<group>"; };
 		EEA2B4192B66CCD700063211 /* AddRuleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRuleField.swift; sourceTree = "<group>"; };
@@ -637,7 +637,6 @@
 		EECA51642C43261000BD8F59 /* PostCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCategory.swift; sourceTree = "<group>"; };
 		EECA51662C4329E100BD8F59 /* CommunitySettings+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CommunitySettings+Preview.swift"; sourceTree = "<group>"; };
 		EECA51682C4329F700BD8F59 /* PostCategory+Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PostCategory+Preview.swift"; sourceTree = "<group>"; };
-		EECA516B2C45EE2900BD8F59 /* FilterablePostsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterablePostsFeedViewModel.swift; sourceTree = "<group>"; };
 		EECA516F2C45EE7000BD8F59 /* FilterablePostsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterablePostsFeedView.swift; sourceTree = "<group>"; };
 		EECA51712C48871D00BD8F59 /* DynamicHeightSheetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightSheetModifier.swift; sourceTree = "<group>"; };
 		EECA51732C488A6700BD8F59 /* Binding+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extension.swift"; sourceTree = "<group>"; };
@@ -1220,7 +1219,6 @@
 		EE5B93932A0864BE00B43381 /* FilterablePostsFeedView */ = {
 			isa = PBXGroup;
 			children = (
-				EECA516B2C45EE2900BD8F59 /* FilterablePostsFeedViewModel.swift */,
 				EECA516F2C45EE7000BD8F59 /* FilterablePostsFeedView.swift */,
 				EECA51932C4D8BBE00BD8F59 /* FilterPostsView */,
 			);
@@ -2033,6 +2031,7 @@
 		EEF83454299C6824001EEA5E = {
 			isa = PBXGroup;
 			children = (
+				EE9C4B0F2C5DCBDB004B2CE7 /* SharedResourcesClientAndServer */,
 				EEF8345F299C6824001EEA5E /* Democracy */,
 				EEF8345E299C6824001EEA5E /* Products */,
 			);
@@ -2213,7 +2212,6 @@
 				EED4A52E29B81A2E00DDCCDA /* PostViewModel.swift in Sources */,
 				EE49880E2B3E1FE700AB7522 /* SubmitPostAlert.swift in Sources */,
 				EE80D91E29C932180000F8EF /* CandidatesViewModel.swift in Sources */,
-				EECA516C2C45EE2900BD8F59 /* FilterablePostsFeedViewModel.swift in Sources */,
 				EE80D91829C930210000F8EF /* CandidateView.swift in Sources */,
 				EEA2B4252B71745D00063211 /* CommunityContent.swift in Sources */,
 				EE80D90F29C92C190000F8EF /* CandidateCardViewModel.swift in Sources */,

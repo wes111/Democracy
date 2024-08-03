@@ -152,20 +152,24 @@ private extension VerticalAlignment {
 
 // Modified from: https://blog.stackademic.com/swiftui-custom-collectionview-ea06c4a6bc70
 struct CollectionView: View {
-    @State private var itemsArranged: [[String]] = []
-    let selectedItems: [String]
-    let items: [String]
-    let toggleTagAction: (String) -> Void
-    
-    init(selectedItems: [String], items: [String], toggleTagAction: @escaping (String) -> Void) {
-        self.selectedItems = selectedItems
-        self.items = items
-        self.toggleTagAction = toggleTagAction
-    }
+    @State private var itemsArranged: [[CommunityTag]] = []
+    let selectedItems: [CommunityTag]
+    let items: [CommunityTag]
+    let toggleTagAction: (CommunityTag) -> Void
     
     private let horizontalSpacing: CGFloat = ViewConstants.smallElementSpacing
     private let horizontalPadding: CGFloat = 16
     private let font: UIFont = UIFont.systemFont(ofSize: 18)
+    
+    init(
+        selectedItems: [CommunityTag],
+        items: [CommunityTag],
+        toggleTagAction: @escaping (CommunityTag) -> Void
+    ) {
+        self.selectedItems = selectedItems
+        self.items = items
+        self.toggleTagAction = toggleTagAction
+    }
 
     var body: some View {
         GeometryReader { geometry in
@@ -194,13 +198,13 @@ struct CollectionView: View {
         }
     }
     
-    func arrangeItems(_ items: [String], containerWidth: CGFloat) -> [[String]] {
-        var arrangeItems: [[String]] = []
+    func arrangeItems(_ items: [CommunityTag], containerWidth: CGFloat) -> [[CommunityTag]] {
+        var arrangeItems: [[CommunityTag]] = []
         var currentRowWidth: CGFloat = 0
         
         for index in 0..<items.count {
             let item = items[index]
-            let itemWidth = item.width(font: font) + 16
+            let itemWidth = item.name.width(font: font) + 16
             
             // first item
             if index == 0 {
@@ -222,9 +226,9 @@ struct CollectionView: View {
         return arrangeItems
     }
     
-    func tagView(_ tag: String, backgroundColor: Color) -> some View {
+    func tagView(_ tag: CommunityTag, backgroundColor: Color) -> some View {
         HStack(alignment: .center, spacing: ViewConstants.smallElementSpacing) {
-            Text(tag)
+            Text(tag.name)
             
             //            Button {
             //                tapAction()

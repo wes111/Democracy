@@ -9,9 +9,9 @@ import SwiftUI
 
 @MainActor
 struct FilterablePostsFeedView: View {
-    @State private var viewModel: FilterablePostsFeedViewModel
+    @State private var viewModel: PostsFeedViewModel
     
-    init(viewModel: FilterablePostsFeedViewModel) {
+    init(viewModel: PostsFeedViewModel) {
         self.viewModel = viewModel
     }
     
@@ -60,6 +60,6 @@ private extension FilterablePostsFeedView {
 // MARK: - Preview
 #Preview {
     NavigationStack {
-        FilterablePostsFeedView(viewModel: .previewFilterable)
+        FilterablePostsFeedView(viewModel: .preview)
     }
 }

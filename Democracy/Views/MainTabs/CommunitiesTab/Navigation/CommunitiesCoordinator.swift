@@ -130,15 +130,15 @@ extension CommunitiesCoordinator {
     func communityPostCategoryViewModel(
         category: PostCategory?,
         community: Community
-    ) -> FilterablePostsFeedViewModel {
-        var filters: [PostFilter] = [.approved]
+    ) -> PostsFeedViewModel {
+        var filters = PostFilters()
         if let category {
-            filters.append(.category(name: category.name))
+            filters.categoriesFilter = category
         }
         
-        return FilterablePostsFeedViewModel(
+        return PostsFeedViewModel(
             community: community,
-            filters: filters,
+            postFilters: filters,
             coordinator: self
         )
     }
