@@ -129,4 +129,8 @@ final class CommentNode: Node<Comment>, Identifiable {
     var isLoadMoreNode: Bool {
         id.hasPrefix("end")
     }
+    
+    var remainingRepliesToLoadCount: Int {
+        value.responseCount - (children?.count ?? 0) + 1 // Offset of one to account for load button "child"
+    }
 }

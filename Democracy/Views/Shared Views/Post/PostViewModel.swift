@@ -111,17 +111,9 @@ extension PostViewModel {
     
     func loadButtonText(for node: CommentNode?) -> String {
         if let node {
-            if let replies = node.replies, replies.count > 1 {
-                "Load More Replies"
-            } else {
-                "Load Replies"
-            }
+            "Load Replies (\(node.remainingRepliesToLoadCount))"
         } else {
-            if comments.count > 1 {
-                "Load More Comments"
-            } else {
-                "Load Comments"
-            }
+            "Load Top-Level Replies (\(remainingTopLevelRepliesToLoadCount)"
         }
     }
 }
@@ -130,6 +122,10 @@ private extension PostViewModel {
     
     func goBack() {
         coordinator?.goBack()
+    }
+    
+    var remainingTopLevelRepliesToLoadCount: Int {
+        post.commentCount - comments.count
     }
 }
 
